@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Syati.info</title>
+      <title> on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
     <link>http://syati.github.io/blog/</link>
-    <description>Recent content on Syati.info</description>
-    <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
+    
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <lastBuildDate>Wed, 03 Jun 2015 23:00:25 +0900</lastBuildDate>
-    <atom:link href="http://syati.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <updated>Wed, 03 Jun 2015 23:00:25 JST</updated>
     
     <item>
       <title>aa</title>
       <link>http://syati.github.io/blog/post/aa/</link>
-      <pubDate>Wed, 03 Jun 2015 23:00:25 +0900</pubDate>
+      <pubDate>Wed, 03 Jun 2015 23:00:25 JST</pubDate>
       
       <guid>http://syati.github.io/blog/post/aa/</guid>
       <description></description>
@@ -22,24 +21,10 @@
     <item>
       <title>first</title>
       <link>http://syati.github.io/blog/post/first/</link>
-      <pubDate>Wed, 03 Jun 2015 22:56:40 +0900</pubDate>
+      <pubDate>Wed, 03 Jun 2015 22:56:40 JST</pubDate>
       
       <guid>http://syati.github.io/blog/post/first/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>about</title>
-      <link>http://syati.github.io/blog/about/</link>
-      <pubDate>Sun, 01 Mar 2015 21:36:21 +0900</pubDate>
-      
-      <guid>http://syati.github.io/blog/about/</guid>
-      <description>
-
-&lt;h2 id=&#34;a-headline:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;A headline&lt;/h2&gt;
-
-&lt;p&gt;some Content&lt;/p&gt;
-</description>
     </item>
     
   </channel>
