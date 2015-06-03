@@ -1,0 +1,9 @@
+baseurl = "http://syati.github.io/blog"
+languageCode = "ja-JP"
+title = "Syati.info"
+theme = "greyshade"
+author = "mizuki-y"
+copyright = "Copyright (c) 2008 - 2015, mizuki-y; all rights reserved."
+canonifyurls = true
+
+
