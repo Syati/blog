@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Emacs on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://syati.github.io/blog/categories/emacs/</link>
+    <language>ja-JP</language>
+    
+    <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
+    <updated>Thu, 04 Jun 2015 23:09:38 JST</updated>
+    
+    <item>
+      <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
+      <link>http://syati.github.io/blog/post/make_windows_emacs/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/make_windows_emacs/</guid>
+      <description>
+
+&lt;p&gt;最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、否応なく Windows を利用しなければいけない時がある Syati です。 そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば AutoHotkey もあるのですが、それは、また次の機会に。今回は、Cygwin、Zsh、NTEmacs で Windows に Linux環境を構築をする。&lt;/p&gt;
+
+&lt;h1 id=&#34;1-インストール:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;1. インストール&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.cygwin.com/&#34;&gt;cygwin&lt;/a&gt; のインストール
+
+&lt;ol&gt;
+&lt;li&gt;注意がでるけどインストールディレクトリをドライブのRoot( F:/ ) にでもする&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;デフォルトから追加で、とりあえずインストールするパッケージは以下の通り（あとは好きなパッケケージを入れる）
+
+&lt;ol&gt;
+&lt;li&gt;Archive
+
+&lt;ol&gt;
+&lt;li&gt;p7zip&lt;/li&gt;
+&lt;li&gt;unzip&lt;/li&gt;
+&lt;li&gt;zip&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Devel
+
+&lt;ol&gt;
+&lt;li&gt;gcc-core&lt;/li&gt;
+&lt;li&gt;gcc-g++&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Net
+
+&lt;ol&gt;
+&lt;li&gt;openssh&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Shells
+
+&lt;ol&gt;
+&lt;li&gt;zsh&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Web
+
+&lt;ol&gt;
+&lt;li&gt;wget&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://sourceforge.jp/projects/gnupack/&#34;&gt;gnupack emacs only&lt;/a&gt; でインストール
+
+&lt;ol&gt;
+&lt;li&gt;ダウンロードしたファイルを解凍&lt;/li&gt;
+&lt;li&gt;解凍されたディレクトリの中身(bin,etc,info などなど）をすべてコピーして cygwin をインストールしたディレクトリの F:/usr/local/ に上書きする&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;2-cygwin-のデフォルト-shell-を-zsh-に切り替え-初期設定する:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;/etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する&lt;/li&gt;
+&lt;li&gt;Cygwin が MS-DOS形式のパスに対して Warning を出力するので消しておく
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/takuya_1st/20110423/1303586388&#34;&gt;cygwin がMS-DOS形式のパスをWarningするので消した&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Cygwin Terminal ショートカットから Terminal を起動すると zsh startup が立ち上がるので (0) Exit, creating the &amp;#x2026;.. を選択（0 をタイプする）&lt;/li&gt;
+&lt;li&gt;HOME に .zshrc が作成されていると思うが、中身を消して、以下のサイトから設定ファイルをコピペして利用する
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://news.mynavi.jp/column/zsh/024/index.html&#34;&gt;漢のzsh 24 グッバイ野郎ども! コピペではじめるzshファイナル&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;zsh についても詳しく書かれているので、勉強しておく&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;3-emacs-の作業場所-home-を設定する:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;3. Emacs の作業場所(HOME) を設定する&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;F:/usr/local/bin の中にある runemacs.exe のショートカットを作成 Desktop にでも貼り付ける&lt;/li&gt;
+&lt;li&gt;My Computer で右クリック -&amp;gt; プロパティ -&amp;gt; 詳細設定タブ -&amp;gt; 環境変数 -&amp;gt; ○○のユーザー環境変数 の新規でHOMEを作成する
+
+&lt;ul&gt;
+&lt;li&gt;変数名： HOME&lt;/li&gt;
+&lt;li&gt;変数値： F:/home/ユーザー名/&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;1.で作成したショートカットを右クリックしてプロパティから、作業フォルダを %HOME% と入力する（%HOME% は 2. 作成した変数名HOMEの変数値を入れるという意味）&lt;/li&gt;
+&lt;li&gt;emacsを起動して Ctrl + x, Ctrl + f をタイプしたあとに ~/ を入力して、HOME に移動するか確認して終了&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;4-emacs-の環境を設定する-設定ファイルは-emacs-d-init-el:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;4. Emacs の環境を設定する (設定ファイルは ~/.emacs.d/init.el )&lt;/h1&gt;
+
+&lt;p&gt;Emacs で設定する環境変数は、以下の通り３つある。本設定が上手くいっていない/理解していないと command not found で悩むかも。
+1.  PATH
+    -   emacs で shell (M-x shell)を利用する際に使う。端末(cmd, minttyなど)で利用する場合と同じ。
+        -   ※ M は Alt キー のこと
+2.  exec-path
+    -   emacs のコマンド（grep, shell, diff, dired-mode 中の圧縮/解凍など）を利用する際に使う。
+3.  load-path
+    -   emacs-lisp（*.el、*.elc) を利用する際に使う。&lt;/p&gt;
+
+&lt;h2 id=&#34;path-exec-path-に同じ設定をする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;PATH, exec-path に同じ設定をする&lt;/h2&gt;
+
+&lt;p&gt;cygwin から emacs を立ち上げた場合と、GUIから emacs を立ち上げた場合は、異なる環境変数が利用されるため、混乱を避けるためにも PATH, exec-path に同じ設定をする
+1.  違いを確かめて見たい場合は、双方で立ち上げた emacs の &lt;strong&gt;scratch&lt;/strong&gt; で以下をタイプして、それぞれの行末で（Ctrl-j) をタイプして式を評価して見ましょう。
+    1.  (getenv &amp;ldquo;PATH&amp;rdquo;)　
+    2.  exec-path
+2.  修正するには、emacs の設定ファイルに以下のように PATH と exec-path を記述する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    (let ((my-emacs-path (list
+             &amp;quot;/bin&amp;quot;
+             &amp;quot;/usr/bin&amp;quot;
+             &amp;quot;/usr/local/bin&amp;quot;)))
+     (setq exec-path my-emacs-path)
+     (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;補足:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;補足&lt;/h3&gt;
+
+&lt;p&gt;cygwin から呼び出した場合は、/etc/profile の PATH に加えて、Windows の環境変数 PATH 、/home/ユーザー名/シェル設定ファイル（ .zshrc または .bashrc ) のPATH が読み込まれる （優先されるのは、先に記述されている方）。GUIからの場合は、Windows の環境変数 PATH が exec-path にも適用される。&lt;/p&gt;
+
+&lt;h3 id=&#34;参考:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ergoemacs.org/emacs/emacs_env_var_paths.html&#34;&gt;http://ergoemacs.org/emacs/emacs_env_var_paths.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;gui-から立ち上げる-emacs-の-m-x-shell-を-コマンドプロンプトから-zsh-にする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;GUI から立ち上げる emacs の M-x shell を コマンドプロンプトから zsh にする&lt;/h2&gt;
+
+&lt;p&gt;cygwin から emacs を立ち上げて、 M-x shell で呼び出されるのは、[2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する] を設定していた場合 zsh が呼び出されるが GUI の emacs から M-x shell で呼び出されるのはコマンドプロンプトになる。理由は、cygwin からの場合は、cygwinの環境変数のSHELL(zsh.exe)が利用される一方、GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が利用されるため。
+1.  設定ファイルに以下を書き込む&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    (setq shell-file-name &amp;quot;zsh&amp;quot;)
+    (setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
+    (setq explicit-shell-file-name shell-file-name)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;参考-1:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/NTEmacsWithCygwin&#34;&gt;NTEmacsWithCygwin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&#34;&gt;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;デフォルトの-load-path-に自分がインストールする-emacs-lisp-el-elc-置場を追記しておく:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;デフォルトの load-path に自分がインストールする emacs-lisp（*.el、*.elc) 置場を追記しておく&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;~/.emacs.d/lisp を自分がインストールする emacs-lisp（*.el、*.elc) 置場として、load-path に追加する。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;~/.emacs.d/lisp 以下のサブディレクトリも自動で追記してくれる&lt;/p&gt;
+
+&lt;p&gt;(let ((default-directory &amp;ldquo;~/.emacs.d/lisp/&amp;ldquo;))
+  (normal-top-level-add-subdirs-to-load-path))&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;参考-2:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/LoadPath&#34;&gt;http://emacswiki.org/emacs/LoadPath&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;まとめ:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;まとめ&lt;/h1&gt;
+
+&lt;p&gt;以下にここまで記述した init.el の設定を残しておく。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;;; Set PATH and exec-path
+(let ((my-emacs-path (list
+                      &amp;quot;/bin&amp;quot;
+                      &amp;quot;/usr/bin&amp;quot;
+                      &amp;quot;/usr/local/bin&amp;quot;)))
+  (setq exec-path my-emacs-path)
+  (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
+
+;; Add my lisp dir to load-path
+(let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
+  (normal-top-level-add-subdirs-to-load-path))            
+
+;; Set SHELL Value
+(setq shell-file-name &amp;quot;zsh&amp;quot;)
+(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
+(setq explicit-shell-file-name shell-file-name)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;日本語の設定や、キーカスタマイズなど、その他設定することは、まだまだたくさんありますが、それはまた次回ということで Windows に Linux環境の構築を〆る。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Emacs で CoffeeScript を AutoComplete する</title>
+      <link>http://syati.github.io/blog/post/coffee_script/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/coffee_script/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。&lt;/p&gt;
+
+&lt;h1 id=&#34;必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;必要なパッケージ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;M-x package-list-package から 以下をインストールする
+
+&lt;ul&gt;
+&lt;li&gt;jquery-doc&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;設定:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;設定&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考にして以下の部分を変更してあげる&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-hook &#39;coffee-mode-hook
+          &#39;(lambda ()
+             (jquery-doc-setup) ;; ここに jquery-doc を追加する
+             (add-to-list &#39;ac-dictionary-files &amp;quot;~/.emacs.d/ac-dict/js2-mode&amp;quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
+             ))
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Emacs で JavaScript の開発環境を整える</title>
+      <link>http://syati.github.io/blog/post/emacsJavascript/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/emacsJavascript/</guid>
+      <description>
+
+&lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。ということで私の環境を忘れないうちにメモ！！&lt;/p&gt;
+
+&lt;h1 id=&#34;前提:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;前提&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ubuntu 12.04 or OSX&lt;/li&gt;
+&lt;li&gt;emacs &amp;gt;= 24&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;構築:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;構築&lt;/h1&gt;
+
+&lt;h2 id=&#34;パッケージ管理にmelpa追加:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理にmelpa追加&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(require &#39;package)
+(add-to-list &#39;package-archives
+  &#39;(&amp;quot;melpa&amp;quot; . &amp;quot;http://melpa.milkbox.net/packages/&amp;quot;) t)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;パッケージ管理からインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理からインストール&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;M-x package-list-package で以下の2点をインストールする（該当箇所で &lt;strong&gt;i&lt;/strong&gt; をタイプしてマークをつけて &lt;strong&gt;x&lt;/strong&gt; でインストールする）
+
+&lt;ol&gt;
+&lt;li&gt;flycheck&lt;/li&gt;
+&lt;li&gt;js2-mode&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-hook &#39;after-init-hook #&#39;global-flycheck-mode)
+(add-to-list &#39;auto-mode-alist &#39;(&amp;quot;\\.js\\&#39;&amp;quot; . js2-mode))
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;jshint をインストール&lt;/h2&gt;
+
+&lt;p&gt;上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。
+-   npm をインストール
+    -   ubuntu の場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        sudo apt-get install npm
+-   OSX の場合
+
+        brew install npm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;jshint をインストール&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo npm install jshint -g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;オプション -g でグローバルで利用するということ。付けない場合は、カレントディレクトリにインストールされる。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;試す:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;試す&lt;/h1&gt;
+
+&lt;p&gt;a.js とでもファイルを作ってみると emacsの下の帯に　(javascript-IDE FlyC) となっていることが確認できる。
+後は適当にプログラムを書けば jshint がはしり、文法エラーなどを教えてくれる。&lt;/p&gt;
+
+&lt;h1 id=&#34;参考:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://melpa.milkbox.net/#/getting-started&#34;&gt;melpa&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Emacs を 256色で起動する</title>
+      <link>http://syati.github.io/blog/post/emacs_256/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
+      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
+
+&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
+以下のコマンドを実行しましょう。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Scala の開発環境</title>
+      <link>http://syati.github.io/blog/post/make_scala_env/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/make_scala_env/</guid>
+      <description>
+
+&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ubuntu 12.04&lt;/li&gt;
+&lt;li&gt;emacs 24.3.1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
+
+&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;jdk をインストール
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;以下のコマンドでエラーが無いことを確認
+
+&lt;ul&gt;
+&lt;li&gt;java -version&lt;/li&gt;
+&lt;li&gt;javac -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;scala のダウンロード
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
+&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
+
+&lt;ul&gt;
+&lt;li&gt;scala -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
+
+&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;以下から tool を clone する
+
+&lt;ul&gt;
+&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;コピーした scala-mode に移動して make コマンドする
+
+&lt;ul&gt;
+&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
+(require &#39;scala-mode2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;yasnipet がない場合は、以下から clone する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>org2blog でブログに接続する際のパスワードを .netrc に保存しておく</title>
+      <link>http://syati.github.io/blog/post/org2blogNetrc/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/org2blogNetrc/</guid>
+      <description>
+
+&lt;p&gt;org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&amp;#x2026;とおもっている場合は、.netrc を使うのがお勧め&lt;/p&gt;
+
+&lt;h1 id=&#34;手順:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;手順&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;ホームに以下のコマンドで .netrc を作成する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo &amp;quot;machine myblog login myusername password myrealpassword&amp;quot; &amp;gt; ~/.netrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;myusername と myrealpassword を自分がログインするときのユーザー名とパスワードに書き換える&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;emacs の設定ファイル（ .emacs.d/init.el ) に以下を書き加える&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;;; org2blog
+(require &#39;org2blog-autoloads)
+(require &#39;netrc) ;; or nothing if already in the load-path
+(setq org2blog/wp-use-sourcecode-shortcode t) ;;syntaxhl
+(setq blog (netrc-machine (netrc-parse &amp;quot;~/.netrc&amp;quot;) &amp;quot;myblog&amp;quot; t))
+(setq org2blog/wp-blog-alist
+       &#39;((&amp;quot;my-blog&amp;quot;
+          :url &amp;quot;your wordpress url&amp;quot;
+          :username (netrc-get blog &amp;quot;login&amp;quot;)
+          :password (netrc-get blog &amp;quot;password&amp;quot;)
+          :tags-as-categories nil)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;参考:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>org2blog の記事にコードブロックを入れる</title>
+      <link>http://syati.github.io/blog/post/org2blogInsertSourceCode/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/org2blogInsertSourceCode/</guid>
+      <description>
+
+&lt;p&gt;org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 &lt;a href=&#34;http://syati.info/?p=1746&#34;&gt;org2blogからの投稿&lt;/a&gt; の続き。&lt;/p&gt;
+
+&lt;h1 id=&#34;必要なもの:c443d59d4160338c2614fe779a49a87f&#34;&gt;必要なもの&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;htmlize.el を load-path の通ったところに入れる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;htmlize.el は &lt;a href=&#34;http://orgmode.org/ja/index.html&#34;&gt;org-mode&lt;/a&gt; をDLして、解凍した contrib/lisp に入っている。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://wordpress.org/extend/plugins/syntaxhighlighter/&#34;&gt;SyntaxHighlighter Evolved&lt;/a&gt; をワードプレスに入れて有効化しておく。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に &lt;strong&gt;:wp-code t&lt;/strong&gt; を書き加える。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;以下が .emacs.d/init.el に書き込んだ私の org2blog の設定&lt;/p&gt;
+
+&lt;p&gt;;;org2blog
+(require &amp;lsquo;org2blog)
+(setq org2blog/wp-blog-alist
+      &amp;lsquo;((&amp;ldquo;wordpress&amp;rdquo;
+         :url &amp;ldquo;your wordpress url&amp;rdquo;
+         :username &amp;ldquo;login name&amp;rdquo;
+         :wp-code t))) ;; insert this line&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;使ってみる:c443d59d4160338c2614fe779a49a87f&#34;&gt;使ってみる&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;org2blog/wp-new-entry で投稿記事を作成する。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;表記 &lt;strong&gt;#+BEGIN_SRC 言語　:syntaxhl [利用したいパラメータ（任意）] ソースコード #+END_SRC&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;:syntaxhl にパラメータを与えない場合は、ワードプレスの管理画面-&amp;gt;設定 SyntaxHighlighter の一般設定が用いられる。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.support.wordpress.com/code/posting-source-code/#configuration-parameters&#34;&gt;パラメータはこちら&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;
+＃+BEGIN_SRC bash :syntaxhl
+echo &#34;hoge&#34; 
+＃+END_SRC
+&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;これで org2blog の記事投稿でコードも綺麗に投稿できる。&lt;/p&gt;
+
+&lt;h1 id=&#34;補足:c443d59d4160338c2614fe779a49a87f&#34;&gt;補足&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;必要なもの 3. の設定を加えるのは、以下の通り &lt;pre&gt; タグが挿入されるため SyntaxHighlighter の表記方法 [language] code [/language] と合致しなくなるため。（以下は org2blog.el 内のコード）&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;参考 &lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;(defcustom org2blog/wp-use-sourcecode-shortcode nil
+   &amp;ldquo;Non-nil means convert &lt;pre&gt; tags to WP sourcecode blocks.
+ NOTE: htmlize.el available in org-mode&amp;rsquo;s contrib directory should
+ be on your emacs load-path for this to work.&amp;rdquo;
+   :group &amp;lsquo;org2blog/wp
+   :type &amp;lsquo;boolean)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;覚えておくと良いショートカット:c443d59d4160338c2614fe779a49a87f&#34;&gt;覚えておくと良いショートカット&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;コードブロックを挿入する際は &lt;strong&gt;&amp;lt;キー&lt;TAB&gt;&lt;/strong&gt; をタイプするべし。
+
+&lt;ul&gt;
+&lt;li&gt;以下は、挿入したいテンプレートのキー一覧
+
+&lt;ul&gt;
+&lt;li&gt;参考 &lt;a href=&#34;http://emacsclub.github.com/html/org_tutorial.html&#34;&gt;Org-mode Tutorial / Cheat Sheet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table border=&#34;2&#34; cellspacing=&#34;0&#34; cellpadding=&#34;6&#34; rules=&#34;groups&#34; frame=&#34;hsides&#34;&gt;
+
+
+&lt;colgroup&gt;
+&lt;col  class=&#34;left&#34; /&gt;
+
+&lt;col  class=&#34;left&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope=&#34;col&#34; class=&#34;left&#34;&gt;キー　&lt;/th&gt;
+&lt;th scope=&#34;col&#34; class=&#34;left&#34;&gt;挿入したいテンプレート&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;s&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_src &amp;#x2026; #+end\_src&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;e&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_example &amp;#x2026; #+end\_example&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;q&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_quote &amp;#x2026; #+end\_quote&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;v&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_verse &amp;#x2026; #+end\_verse&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;c&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_center &amp;#x2026; #+end\_center&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;l&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_latex &amp;#x2026; #+end\_latex&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;L&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+latex:&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;h&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_html &amp;#x2026; #+end\_html&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;H&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+html:&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;a&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_ascii &amp;#x2026; #+end\_ascii&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;A&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+ascii:&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;i&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+index: line&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;I&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+include: line&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&#34;その他-参考サイト:c443d59d4160338c2614fe779a49a87f&#34;&gt;その他、参考サイト&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://orgmode.org/worg/org-contrib/babel/intro.html&#34;&gt;Babel: Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/tamura70/20100304/org&#34;&gt;Emacs org-modeを使ってみる: (29) エクスポートオプション一覧&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

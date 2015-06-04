@@ -7,24 +7,1449 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Wed, 03 Jun 2015 23:00:25 JST</updated>
+    <updated>Thu, 04 Jun 2015 23:09:38 JST</updated>
     
     <item>
-      <title>aa</title>
-      <link>http://syati.github.io/blog/post/aa/</link>
-      <pubDate>Wed, 03 Jun 2015 23:00:25 JST</pubDate>
+      <title>Angular test sample 1</title>
+      <link>http://syati.github.io/blog/post/angular-test-sample-recipe1/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/aa/</guid>
-      <description></description>
+      <guid>http://syati.github.io/blog/post/angular-test-sample-recipe1/</guid>
+      <description>
+
+&lt;p&gt;js ってテストしにくいよねってことで今流行りの angular で unit test する。
+最初なので、事細かに説明するつもりで書いてみる。&lt;/p&gt;
+
+&lt;p&gt;サンプルは以下から git clone してください。ソースと突き合わせながら見るといいかも。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/angular-test-sample&#34;&gt;https://github.com/Syati/angular-test-sample&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;準備:d28091e7273529f0913311111ae23332&#34;&gt;準備&lt;/h1&gt;
+
+&lt;h2 id=&#34;ubuntu:d28091e7273529f0913311111ae23332&#34;&gt;ubuntu&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;node &amp;amp; npm&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install nodejs
+sudo apt-get install npm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;mac:d28091e7273529f0913311111ae23332&#34;&gt;mac&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;node &amp;amp; npm&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install node
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;共通:d28091e7273529f0913311111ae23332&#34;&gt;共通&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;bower&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo npm install -g bower
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;karma&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo npm install -g karma-cli
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332&#34;&gt;実施：サンプルを CLONE して TEST&lt;/h1&gt;
+
+&lt;p&gt;github にサンプルを書いたので clone する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:Syati/angular-test-sample.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;prj-依存環境を入れる:d28091e7273529f0913311111ae23332&#34;&gt;prj 依存環境を入れる&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;cd your_clone_path/angular-test-sample/controller/recipe1
+npm install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;test-実行する:d28091e7273529f0913311111ae23332&#34;&gt;test 実行する&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;npm test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以下のような出力で、テストが成功する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;WARN [karma]: Port 9876 in use
+INFO [karma]: Karma v0.12.24 server started at http://localhost:9877/
+INFO [launcher]: Starting browser PhantomJS
+INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id 62869514
+PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;説明:d28091e7273529f0913311111ae23332&#34;&gt;説明&lt;/h1&gt;
+
+&lt;h2 id=&#34;directory:d28091e7273529f0913311111ae23332&#34;&gt;directory&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;recipe1
+├── app
+│   ├── bower_compornents #1 bower js lib install dir
+│   ├── css
+│   ├── index.html
+│   ├── js
+│   │   └── app.js       #4 target js
+│   └── test              #2 test files
+│        └── app.spec.js  #4 test js
+├── .bowerrc      #1 bower install dir 設定
+├── bower.json    #1 bower install する js lib などの設定
+├── karma.conf.js #3 angular のテスト設定
+├── package.json  #2 npm lib などの設定 
+└── node_modules  #2 npm lib install dir
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;1-bower:d28091e7273529f0913311111ae23332&#34;&gt;#1 bower&lt;/h2&gt;
+
+&lt;p&gt;js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 以下のコマンドで初期設定 bower.json を作成できる
+bower init 
+# あとは以下のようにして依存関係を bower.json に追記する
+bower install angular --save　# または --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;デフォルトは &lt;strong&gt;bower.json&lt;/strong&gt; がある場所がインストール先になるので &lt;strong&gt;.bowerrc&lt;/strong&gt; にインストール先を書いておく。
+上記を実施することで以下のファイルを作成する。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;bower.json&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;.bowerrc&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;その他&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;.gitignore に bower_components を入れておく（bower install でいつでも同じ環境を構築できるので）。&lt;/li&gt;
+&lt;li&gt;bower のオプション &lt;strong&gt;&amp;#x2013;save&lt;/strong&gt; または &lt;strong&gt;&amp;#x2013;save-dev&lt;/strong&gt; を分けることで、本番用と開発用を分けることが出来る。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;bower install &amp;#x2013;production&lt;/strong&gt; で &amp;#x2013;save-dev で入れたパッケージはインストールせずに済むのである。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;参考
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://bower.io/docs/api&#34;&gt;http://bower.io/docs/api&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-npm:d28091e7273529f0913311111ae23332&#34;&gt;#2 npm&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;# 以下のコマンドで初期設定 package.json を作成できる
+npm init 
+# あとは以下のようにして依存関係を package.json に追記する
+npm install jasmine --save-dev　# または --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記を実施することで以下のファイルを作成する。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;package.json&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;その他&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;.gitignore に node_modules を入れておく（npm install でいつでも同じ環境を構築できるので）。&lt;/li&gt;
+&lt;li&gt;npm のオプション &lt;strong&gt;&amp;#x2013;save&lt;/strong&gt; または &lt;strong&gt;&amp;#x2013;save-dev&lt;/strong&gt; を分けることで、本番用と開発用を分けることが出来る(bower と同様ですね)。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;npm install &amp;#x2013;production&lt;/strong&gt; で &amp;#x2013;save-dev で入れたパッケージはインストールせずに済むのである。&lt;/li&gt;
+&lt;li&gt;今回は test 用しかないので &amp;#x2013;save-dev ですべてインストールする。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;package.json 内の scripts って便利&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;参考
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.npmjs.org/doc/cli/npm-install.html&#34;&gt;https://www.npmjs.org/doc/cli/npm-install.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;3-karma-angular-の-unit-test-の設定:d28091e7273529f0913311111ae23332&#34;&gt;#3 karma  angular の unit test の設定&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;# 以下のコマンドで初期設定 karma.conf.js を作成できる
+karma init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;今回特に意識する場所としては以下の通り。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;basePath
+
+&lt;ul&gt;
+&lt;li&gt;基準とするパスなので設定ファイルのある場所 &lt;strong&gt;./&lt;/strong&gt; にする。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;files
+
+&lt;ul&gt;
+&lt;li&gt;ここで必要な js lib と テストのターゲット js とテスト js を読み込ませてあげる。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;browsers
+
+&lt;ul&gt;
+&lt;li&gt;init のデフォルトだと Chrome だが、テストするたびに Chrome が開くのは邪魔なので、PhantomJS にする。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://phantomjs.org/&#34;&gt;PhantomJS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;plugins
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://jasmine.github.io&#34;&gt;jasmine&lt;/a&gt; を利用するために以下を追加する。
+
+&lt;ul&gt;
+&lt;li&gt;karma-jasmine&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;karma から PhantomJS を呼べるようにするために以下を追加する。
+
+&lt;ul&gt;
+&lt;li&gt;karma-phantomjs-launcher&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;4-test-を書く:d28091e7273529f0913311111ae23332&#34;&gt;#4 test を書く&lt;/h2&gt;
+
+&lt;p&gt;テストするうえで jasmine の理解は必須なので &lt;a href=&#34;http://jasmine.github.io/2.1/introduction.html&#34;&gt;tutorial&lt;/a&gt; で勉強しておく。
+index.html をローカルで開けばわかると思うが button click で &amp;lsquo;hello&amp;rsquo; とでてくるだけのもの。
+テストする js は app.js である。&lt;/p&gt;
+
+&lt;p&gt;テストコードにコメント付与した。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&#39;use strict&#39;;
+
+describe(&#39;Unit: app moudle &#39;, function(){
+  var scope; # scope がどこからでも呼べるように定義しておく
+
+  beforeEach(function(){
+    angular.mock.module(&#39;app&#39;); # モジュールのモックを作成する
+  });
+
+  describe(&#39;MainCtrl&#39;, function(){
+    # ここで DI する。今回は MainCtrl cotroller で GET, POST など何もしていないので
+    # $rootScope と $controller のみ
+    beforeEach(inject(function($rootScope, $controller){ 
+      scope = $rootScope.$new(); # scope を作成して、上記で定義した scope に代入する
+
+      # scope を渡してコントローラを作成する
+      # これで scope に controller 内に定義した sayHello 関数などが入る 
+      $controller(&#39;MainCtrl&#39;, {&#39;$scope&#39;: scope}); 
+    }));
+
+    it(&#39;sayHello&#39;, function(){
+      scope.sayHello();
+      # scope.message が &#39;hello&#39; となっているかテスト
+      expect(scope.message).toBe(&#39;hello&#39;);
+    });
+  });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;その他
+
+&lt;ul&gt;
+&lt;li&gt;angular.mock.module を利用するうえで、bower.json に記述のある angular-mocks は必要。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;まとめ:d28091e7273529f0913311111ae23332&#34;&gt;まとめ&lt;/h1&gt;
+
+&lt;p&gt;controller のテストは意外と簡単。ただし、DI が増えてくるとハマるポイントも多くなってくるので、次はそんなサンプルを書いていくつもり。&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>first</title>
-      <link>http://syati.github.io/blog/post/first/</link>
-      <pubDate>Wed, 03 Jun 2015 22:56:40 JST</pubDate>
+      <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
+      <link>http://syati.github.io/blog/post/make_windows_emacs/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/first/</guid>
-      <description></description>
+      <guid>http://syati.github.io/blog/post/make_windows_emacs/</guid>
+      <description>
+
+&lt;p&gt;最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、否応なく Windows を利用しなければいけない時がある Syati です。 そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば AutoHotkey もあるのですが、それは、また次の機会に。今回は、Cygwin、Zsh、NTEmacs で Windows に Linux環境を構築をする。&lt;/p&gt;
+
+&lt;h1 id=&#34;1-インストール:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;1. インストール&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.cygwin.com/&#34;&gt;cygwin&lt;/a&gt; のインストール
+
+&lt;ol&gt;
+&lt;li&gt;注意がでるけどインストールディレクトリをドライブのRoot( F:/ ) にでもする&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;デフォルトから追加で、とりあえずインストールするパッケージは以下の通り（あとは好きなパッケケージを入れる）
+
+&lt;ol&gt;
+&lt;li&gt;Archive
+
+&lt;ol&gt;
+&lt;li&gt;p7zip&lt;/li&gt;
+&lt;li&gt;unzip&lt;/li&gt;
+&lt;li&gt;zip&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Devel
+
+&lt;ol&gt;
+&lt;li&gt;gcc-core&lt;/li&gt;
+&lt;li&gt;gcc-g++&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Net
+
+&lt;ol&gt;
+&lt;li&gt;openssh&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Shells
+
+&lt;ol&gt;
+&lt;li&gt;zsh&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Web
+
+&lt;ol&gt;
+&lt;li&gt;wget&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://sourceforge.jp/projects/gnupack/&#34;&gt;gnupack emacs only&lt;/a&gt; でインストール
+
+&lt;ol&gt;
+&lt;li&gt;ダウンロードしたファイルを解凍&lt;/li&gt;
+&lt;li&gt;解凍されたディレクトリの中身(bin,etc,info などなど）をすべてコピーして cygwin をインストールしたディレクトリの F:/usr/local/ に上書きする&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;2-cygwin-のデフォルト-shell-を-zsh-に切り替え-初期設定する:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;/etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する&lt;/li&gt;
+&lt;li&gt;Cygwin が MS-DOS形式のパスに対して Warning を出力するので消しておく
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/takuya_1st/20110423/1303586388&#34;&gt;cygwin がMS-DOS形式のパスをWarningするので消した&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Cygwin Terminal ショートカットから Terminal を起動すると zsh startup が立ち上がるので (0) Exit, creating the &amp;#x2026;.. を選択（0 をタイプする）&lt;/li&gt;
+&lt;li&gt;HOME に .zshrc が作成されていると思うが、中身を消して、以下のサイトから設定ファイルをコピペして利用する
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://news.mynavi.jp/column/zsh/024/index.html&#34;&gt;漢のzsh 24 グッバイ野郎ども! コピペではじめるzshファイナル&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;zsh についても詳しく書かれているので、勉強しておく&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;3-emacs-の作業場所-home-を設定する:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;3. Emacs の作業場所(HOME) を設定する&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;F:/usr/local/bin の中にある runemacs.exe のショートカットを作成 Desktop にでも貼り付ける&lt;/li&gt;
+&lt;li&gt;My Computer で右クリック -&amp;gt; プロパティ -&amp;gt; 詳細設定タブ -&amp;gt; 環境変数 -&amp;gt; ○○のユーザー環境変数 の新規でHOMEを作成する
+
+&lt;ul&gt;
+&lt;li&gt;変数名： HOME&lt;/li&gt;
+&lt;li&gt;変数値： F:/home/ユーザー名/&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;1.で作成したショートカットを右クリックしてプロパティから、作業フォルダを %HOME% と入力する（%HOME% は 2. 作成した変数名HOMEの変数値を入れるという意味）&lt;/li&gt;
+&lt;li&gt;emacsを起動して Ctrl + x, Ctrl + f をタイプしたあとに ~/ を入力して、HOME に移動するか確認して終了&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;4-emacs-の環境を設定する-設定ファイルは-emacs-d-init-el:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;4. Emacs の環境を設定する (設定ファイルは ~/.emacs.d/init.el )&lt;/h1&gt;
+
+&lt;p&gt;Emacs で設定する環境変数は、以下の通り３つある。本設定が上手くいっていない/理解していないと command not found で悩むかも。
+1.  PATH
+    -   emacs で shell (M-x shell)を利用する際に使う。端末(cmd, minttyなど)で利用する場合と同じ。
+        -   ※ M は Alt キー のこと
+2.  exec-path
+    -   emacs のコマンド（grep, shell, diff, dired-mode 中の圧縮/解凍など）を利用する際に使う。
+3.  load-path
+    -   emacs-lisp（*.el、*.elc) を利用する際に使う。&lt;/p&gt;
+
+&lt;h2 id=&#34;path-exec-path-に同じ設定をする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;PATH, exec-path に同じ設定をする&lt;/h2&gt;
+
+&lt;p&gt;cygwin から emacs を立ち上げた場合と、GUIから emacs を立ち上げた場合は、異なる環境変数が利用されるため、混乱を避けるためにも PATH, exec-path に同じ設定をする
+1.  違いを確かめて見たい場合は、双方で立ち上げた emacs の &lt;strong&gt;scratch&lt;/strong&gt; で以下をタイプして、それぞれの行末で（Ctrl-j) をタイプして式を評価して見ましょう。
+    1.  (getenv &amp;ldquo;PATH&amp;rdquo;)　
+    2.  exec-path
+2.  修正するには、emacs の設定ファイルに以下のように PATH と exec-path を記述する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    (let ((my-emacs-path (list
+             &amp;quot;/bin&amp;quot;
+             &amp;quot;/usr/bin&amp;quot;
+             &amp;quot;/usr/local/bin&amp;quot;)))
+     (setq exec-path my-emacs-path)
+     (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;補足:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;補足&lt;/h3&gt;
+
+&lt;p&gt;cygwin から呼び出した場合は、/etc/profile の PATH に加えて、Windows の環境変数 PATH 、/home/ユーザー名/シェル設定ファイル（ .zshrc または .bashrc ) のPATH が読み込まれる （優先されるのは、先に記述されている方）。GUIからの場合は、Windows の環境変数 PATH が exec-path にも適用される。&lt;/p&gt;
+
+&lt;h3 id=&#34;参考:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ergoemacs.org/emacs/emacs_env_var_paths.html&#34;&gt;http://ergoemacs.org/emacs/emacs_env_var_paths.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;gui-から立ち上げる-emacs-の-m-x-shell-を-コマンドプロンプトから-zsh-にする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;GUI から立ち上げる emacs の M-x shell を コマンドプロンプトから zsh にする&lt;/h2&gt;
+
+&lt;p&gt;cygwin から emacs を立ち上げて、 M-x shell で呼び出されるのは、[2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する] を設定していた場合 zsh が呼び出されるが GUI の emacs から M-x shell で呼び出されるのはコマンドプロンプトになる。理由は、cygwin からの場合は、cygwinの環境変数のSHELL(zsh.exe)が利用される一方、GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が利用されるため。
+1.  設定ファイルに以下を書き込む&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    (setq shell-file-name &amp;quot;zsh&amp;quot;)
+    (setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
+    (setq explicit-shell-file-name shell-file-name)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;参考-1:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/NTEmacsWithCygwin&#34;&gt;NTEmacsWithCygwin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&#34;&gt;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;デフォルトの-load-path-に自分がインストールする-emacs-lisp-el-elc-置場を追記しておく:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;デフォルトの load-path に自分がインストールする emacs-lisp（*.el、*.elc) 置場を追記しておく&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;~/.emacs.d/lisp を自分がインストールする emacs-lisp（*.el、*.elc) 置場として、load-path に追加する。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;~/.emacs.d/lisp 以下のサブディレクトリも自動で追記してくれる&lt;/p&gt;
+
+&lt;p&gt;(let ((default-directory &amp;ldquo;~/.emacs.d/lisp/&amp;ldquo;))
+  (normal-top-level-add-subdirs-to-load-path))&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;参考-2:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/LoadPath&#34;&gt;http://emacswiki.org/emacs/LoadPath&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;まとめ:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;まとめ&lt;/h1&gt;
+
+&lt;p&gt;以下にここまで記述した init.el の設定を残しておく。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;;; Set PATH and exec-path
+(let ((my-emacs-path (list
+                      &amp;quot;/bin&amp;quot;
+                      &amp;quot;/usr/bin&amp;quot;
+                      &amp;quot;/usr/local/bin&amp;quot;)))
+  (setq exec-path my-emacs-path)
+  (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
+
+;; Add my lisp dir to load-path
+(let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
+  (normal-top-level-add-subdirs-to-load-path))            
+
+;; Set SHELL Value
+(setq shell-file-name &amp;quot;zsh&amp;quot;)
+(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
+(setq explicit-shell-file-name shell-file-name)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;日本語の設定や、キーカスタマイズなど、その他設定することは、まだまだたくさんありますが、それはまた次回ということで Windows に Linux環境の構築を〆る。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Development Environment in my OSX</title>
+      <link>http://syati.github.io/blog/post/make_env_mac/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/make_env_mac/</guid>
+      <description>
+
+&lt;p&gt;仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。&lt;/p&gt;
+
+&lt;h1 id=&#34;開発環境:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;開発環境&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;xcode:開発環境
+
+&lt;ul&gt;
+&lt;li&gt;プラグイン
+
+&lt;ul&gt;
+&lt;li&gt;command line tools (os x mountain lion) for xcode&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;fink:package management のソフト
+
+&lt;ul&gt;
+&lt;li&gt;上記を用いて入れたソフトウェア
+
+&lt;ul&gt;
+&lt;li&gt;coreutil-default
+
+&lt;ul&gt;
+&lt;li&gt;prefix に g がない方&lt;/li&gt;
+&lt;li&gt;/sw/bin にコマンドが入るので、パスの優先度を上げておく&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;wget&lt;/li&gt;
+&lt;li&gt;tmux&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;問題：mac の tmux では pbcopy/pbpaste で クリップボードの共有ができない&lt;/li&gt;
+&lt;li&gt;解決：&lt;a href=&#34;http://d.hatena.ne.jp/tmatsuu/20111220/1324399472&#34;&gt;X環境のクリップボードやOS Xのペーストボードとtmuxのバッファを連携する方法&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;autoconf
+
+&lt;ul&gt;
+&lt;li&gt;古かったので結局自分で入れた&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;emacs24.2:エディター
+
+&lt;ul&gt;
+&lt;li&gt;デフォルトは emacs22.1 のため導入する。ただし、パッチを入れないと最大化等できない。以下のサイト参照のこと
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://mgrace.info/?p=1032&#34;&gt;http://mgrace.info/?p=1032&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://sakito.jp/emacs/emacs24.html&#34;&gt;http://sakito.jp/emacs/emacs24.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;デフォルトターミナルの変更
+
+&lt;ul&gt;
+&lt;li&gt;コマンド &lt;strong&gt;chsh&lt;/strong&gt; で zsh にする&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;iTerm2：ターミナル
+
+&lt;ul&gt;
+&lt;li&gt;デフォルトのターミナルに比べて、なんか見やすかったから入れといた
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.iterm2.com/#/section/home&#34;&gt;http://www.iterm2.com/#/section/home&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;meta-key が使えるように以下を実施する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/kitokitoki/20111129/p1&#34;&gt;http://d.hatena.ne.jp/kitokitoki/20111129/p1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;zsh + tmux を使っていると、当該ソフトの autocomplete とか tab とか、あまり必要性を感じないんだが、どうなんだろうか。なんかメリットあったら教えて下さい。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;ブラウジング:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;ブラウジング&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;adobe pdf&lt;/li&gt;
+&lt;li&gt;adobe flash&lt;/li&gt;
+&lt;li&gt;firefox:ブラウザ
+
+&lt;ul&gt;
+&lt;li&gt;meta key が効かない問題あり・・・。現在対処不明&lt;/li&gt;
+&lt;li&gt;アドオンのインストール
+
+&lt;ul&gt;
+&lt;li&gt;keysnail&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;plugin(従来と異なる点だけ)
+
+&lt;ul&gt;
+&lt;li&gt;Set Mac
+
+&lt;ul&gt;
+&lt;li&gt;firefox で Ctl + space が利用できるようになる
+
+&lt;ul&gt;
+&lt;li&gt;導入しない場合 Ctrl + space では、 右クリックになる&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;問題：acrobat reader をインストールしたのに、firefox から pdf の DL がされない、見れない、見れたと思ったら文字化けして困った&lt;/li&gt;
+&lt;li&gt;解決：firefox を選択した後、上部のメニューバーの「 firefox 」-&amp;gt; 「環境設定」-&amp;gt; 「アプリケーションタブ」を選択して以下の通りする
+
+&lt;ul&gt;
+&lt;li&gt;ファイルの種類：Adobe Pdf document&lt;/li&gt;
+&lt;li&gt;取り扱い方法　：Adobe Readerを使用（標準設定）&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;ここが、Adobe Acrobat NPAPI Plug-in &lt;code&gt;~&lt;/code&gt; とかになっていたのが原因だった&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;キーバインド設定:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;キーバインド設定&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HyperSwitch：ウィンドウ切り替え
+
+&lt;ul&gt;
+&lt;li&gt;mac の command + tab だと、アプリケーション単位の切り替えしかできないことに加えて、main os の ubuntu とキーバインド alt + tab で揃えたいので導入する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://bahoom.com/hyperswitch&#34;&gt;http://bahoom.com/hyperswitch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;問題：HyperSwitch の設定から command + tab -&amp;gt; alt + tab に変更したが、ターミナルではうまく働かない&lt;/li&gt;
+&lt;li&gt;解決：ターミナルを選択した後、上部のメニューバーの「ターミナル」 -&amp;gt; 「キーボード入力のセキュリティを保護」のチェックを外す
+
+&lt;ul&gt;
+&lt;li&gt;「キーボード入力のセキュリティを保護」が原因だったけど、これ何？&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;KeyRemap4MacBook:キーバインド変更
+
+&lt;ul&gt;
+&lt;li&gt;キーボードの「英数」「かな」がうざいので、 以下の通り違うキーに変更する
+
+&lt;ol&gt;
+&lt;li&gt;KeyRemap4MacBookを立ち上げて、Change Key タブから For Japanese メニューを選択する&lt;/li&gt;
+&lt;li&gt;Change EISUU Key メニュー選択して、好きなキーバインドに変更する&lt;/li&gt;
+&lt;li&gt;Change KANA key も同様に実施する&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;IMEの変換（ひらがなと英数）を Ctrl + / にしたいので以下を実施する
+
+&lt;ol&gt;
+&lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「キーボード」-&amp;gt; 「キーボードショートカット」 -&amp;gt; 「キーボードと文字入力」を選択する&lt;/li&gt;
+&lt;li&gt;「前の入力ソース」をダブルクリック後、Ctrl + / をタイプする&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;その他:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;その他&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;inconsolate:フォント&lt;/li&gt;
+&lt;li&gt;takao:フォント&lt;/li&gt;
+&lt;li&gt;QuickSilver：ランチャー
+
+&lt;ul&gt;
+&lt;li&gt;どこからでもキーボードでアプリケーションを起動したいため導入する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://quicksilver.en.softonic.com/mac&#34;&gt;http://quicksilver.en.softonic.com/mac&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;ShifIt:ウィンドウサイズ変更アプリ
+
+&lt;ul&gt;
+&lt;li&gt;Windows の windowボタン + カーソル で ウィンドを半分にしたり拡大したり出来たと思いますが、それを可能にする。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/shiftit/&#34;&gt;http://code.google.com/p/shiftit/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://veadardiary.blog29.fc2.com/blog-entry-2764.html&#34;&gt;ウィンドウのサイズ変更や移動をホットキーから『ShiftIt』&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;マウスのホイール操作が逆なので戻す
+
+&lt;ol&gt;
+&lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「マウス」-&amp;gt; 「スクロールの方向：ナチュラル」のチェックを外す&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Emacs で CoffeeScript を AutoComplete する</title>
+      <link>http://syati.github.io/blog/post/coffee_script/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/coffee_script/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。&lt;/p&gt;
+
+&lt;h1 id=&#34;必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;必要なパッケージ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;M-x package-list-package から 以下をインストールする
+
+&lt;ul&gt;
+&lt;li&gt;jquery-doc&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;設定:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;設定&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考にして以下の部分を変更してあげる&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-hook &#39;coffee-mode-hook
+          &#39;(lambda ()
+             (jquery-doc-setup) ;; ここに jquery-doc を追加する
+             (add-to-list &#39;ac-dictionary-files &amp;quot;~/.emacs.d/ac-dict/js2-mode&amp;quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
+             ))
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Emacs で JavaScript の開発環境を整える</title>
+      <link>http://syati.github.io/blog/post/emacsJavascript/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/emacsJavascript/</guid>
+      <description>
+
+&lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。ということで私の環境を忘れないうちにメモ！！&lt;/p&gt;
+
+&lt;h1 id=&#34;前提:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;前提&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ubuntu 12.04 or OSX&lt;/li&gt;
+&lt;li&gt;emacs &amp;gt;= 24&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;構築:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;構築&lt;/h1&gt;
+
+&lt;h2 id=&#34;パッケージ管理にmelpa追加:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理にmelpa追加&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(require &#39;package)
+(add-to-list &#39;package-archives
+  &#39;(&amp;quot;melpa&amp;quot; . &amp;quot;http://melpa.milkbox.net/packages/&amp;quot;) t)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;パッケージ管理からインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理からインストール&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;M-x package-list-package で以下の2点をインストールする（該当箇所で &lt;strong&gt;i&lt;/strong&gt; をタイプしてマークをつけて &lt;strong&gt;x&lt;/strong&gt; でインストールする）
+
+&lt;ol&gt;
+&lt;li&gt;flycheck&lt;/li&gt;
+&lt;li&gt;js2-mode&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-hook &#39;after-init-hook #&#39;global-flycheck-mode)
+(add-to-list &#39;auto-mode-alist &#39;(&amp;quot;\\.js\\&#39;&amp;quot; . js2-mode))
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;jshint をインストール&lt;/h2&gt;
+
+&lt;p&gt;上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。
+-   npm をインストール
+    -   ubuntu の場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        sudo apt-get install npm
+-   OSX の場合
+
+        brew install npm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;jshint をインストール&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo npm install jshint -g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;オプション -g でグローバルで利用するということ。付けない場合は、カレントディレクトリにインストールされる。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;試す:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;試す&lt;/h1&gt;
+
+&lt;p&gt;a.js とでもファイルを作ってみると emacsの下の帯に　(javascript-IDE FlyC) となっていることが確認できる。
+後は適当にプログラムを書けば jshint がはしり、文法エラーなどを教えてくれる。&lt;/p&gt;
+
+&lt;h1 id=&#34;参考:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://melpa.milkbox.net/#/getting-started&#34;&gt;melpa&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Emacs を 256色で起動する</title>
+      <link>http://syati.github.io/blog/post/emacs_256/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
+      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
+
+&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
+以下のコマンドを実行しましょう。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Google Fonts をローカルで利用する</title>
+      <link>http://syati.github.io/blog/post/typecatchar/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/typecatchar/</guid>
+      <description>
+
+&lt;p&gt;Google Fonts をローカル環境で使いたいと思い調べたら、意外と簡単だった。以下は参考のほぼ転記。&lt;/p&gt;
+
+&lt;h1 id=&#34;環境:68568d62e9a876d6a56009578931cad6&#34;&gt;環境&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;OS:ubuntu 12.04&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;インストール:68568d62e9a876d6a56009578931cad6&#34;&gt;インストール&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:andrewsomething/typecatcher
+sudo apt-get update
+sudo apt-get install typecatcher
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;メニュー　-&amp;gt; アクセサリー -&amp;gt; TypeCatchar で起動した後、好きなフォントを選んでインストール&lt;/p&gt;
+
+&lt;h1 id=&#34;その他:68568d62e9a876d6a56009578931cad6&#34;&gt;その他&lt;/h1&gt;
+
+&lt;p&gt;ubuntu 13.10 以上は、以下の通り&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install typecatcher
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;参考:68568d62e9a876d6a56009578931cad6&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&#34;&gt;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Scala の開発環境</title>
+      <link>http://syati.github.io/blog/post/make_scala_env/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/make_scala_env/</guid>
+      <description>
+
+&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ubuntu 12.04&lt;/li&gt;
+&lt;li&gt;emacs 24.3.1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
+
+&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;jdk をインストール
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;以下のコマンドでエラーが無いことを確認
+
+&lt;ul&gt;
+&lt;li&gt;java -version&lt;/li&gt;
+&lt;li&gt;javac -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;scala のダウンロード
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
+&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
+
+&lt;ul&gt;
+&lt;li&gt;scala -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
+
+&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;以下から tool を clone する
+
+&lt;ul&gt;
+&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;コピーした scala-mode に移動して make コマンドする
+
+&lt;ul&gt;
+&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
+(require &#39;scala-mode2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;yasnipet がない場合は、以下から clone する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>nkf で直す文字化け</title>
+      <link>http://syati.github.io/blog/post/nkf/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/nkf/</guid>
+      <description>
+
+&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
+
+&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
+
+&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
+
+&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
+
+&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
+output: Shift_JIS
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
+      <link>http://syati.github.io/blog/post/node_path/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/node_path/</guid>
+      <description>
+
+&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
+
+&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
+
+&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
+Syati% node 
+
+require(&#39;underscore&#39;); 
+Error: Cannot find module &#39;underscore&#39;
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:362:17)
+    at require (module.js:378:17)
+    at repl:1:1
+    at REPLServer.self.eval (repl.js:109:21)
+    at rli.on.self.bufferedCmd (repl.js:258:20)
+    at REPLServer.self.eval (repl.js:116:5)
+    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
+    at Interface.EventEmitter.emit (events.js:96:17)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
+
+&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
+
+&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm root -g
+// output =&amp;gt; /usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>org2blog でブログに接続する際のパスワードを .netrc に保存しておく</title>
+      <link>http://syati.github.io/blog/post/org2blogNetrc/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/org2blogNetrc/</guid>
+      <description>
+
+&lt;p&gt;org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&amp;#x2026;とおもっている場合は、.netrc を使うのがお勧め&lt;/p&gt;
+
+&lt;h1 id=&#34;手順:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;手順&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;ホームに以下のコマンドで .netrc を作成する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo &amp;quot;machine myblog login myusername password myrealpassword&amp;quot; &amp;gt; ~/.netrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;myusername と myrealpassword を自分がログインするときのユーザー名とパスワードに書き換える&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;emacs の設定ファイル（ .emacs.d/init.el ) に以下を書き加える&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;;; org2blog
+(require &#39;org2blog-autoloads)
+(require &#39;netrc) ;; or nothing if already in the load-path
+(setq org2blog/wp-use-sourcecode-shortcode t) ;;syntaxhl
+(setq blog (netrc-machine (netrc-parse &amp;quot;~/.netrc&amp;quot;) &amp;quot;myblog&amp;quot; t))
+(setq org2blog/wp-blog-alist
+       &#39;((&amp;quot;my-blog&amp;quot;
+          :url &amp;quot;your wordpress url&amp;quot;
+          :username (netrc-get blog &amp;quot;login&amp;quot;)
+          :password (netrc-get blog &amp;quot;password&amp;quot;)
+          :tags-as-categories nil)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;参考:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>org2blog の記事にコードブロックを入れる</title>
+      <link>http://syati.github.io/blog/post/org2blogInsertSourceCode/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/org2blogInsertSourceCode/</guid>
+      <description>
+
+&lt;p&gt;org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 &lt;a href=&#34;http://syati.info/?p=1746&#34;&gt;org2blogからの投稿&lt;/a&gt; の続き。&lt;/p&gt;
+
+&lt;h1 id=&#34;必要なもの:c443d59d4160338c2614fe779a49a87f&#34;&gt;必要なもの&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;htmlize.el を load-path の通ったところに入れる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;htmlize.el は &lt;a href=&#34;http://orgmode.org/ja/index.html&#34;&gt;org-mode&lt;/a&gt; をDLして、解凍した contrib/lisp に入っている。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://wordpress.org/extend/plugins/syntaxhighlighter/&#34;&gt;SyntaxHighlighter Evolved&lt;/a&gt; をワードプレスに入れて有効化しておく。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に &lt;strong&gt;:wp-code t&lt;/strong&gt; を書き加える。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;以下が .emacs.d/init.el に書き込んだ私の org2blog の設定&lt;/p&gt;
+
+&lt;p&gt;;;org2blog
+(require &amp;lsquo;org2blog)
+(setq org2blog/wp-blog-alist
+      &amp;lsquo;((&amp;ldquo;wordpress&amp;rdquo;
+         :url &amp;ldquo;your wordpress url&amp;rdquo;
+         :username &amp;ldquo;login name&amp;rdquo;
+         :wp-code t))) ;; insert this line&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;使ってみる:c443d59d4160338c2614fe779a49a87f&#34;&gt;使ってみる&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;org2blog/wp-new-entry で投稿記事を作成する。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;表記 &lt;strong&gt;#+BEGIN_SRC 言語　:syntaxhl [利用したいパラメータ（任意）] ソースコード #+END_SRC&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;:syntaxhl にパラメータを与えない場合は、ワードプレスの管理画面-&amp;gt;設定 SyntaxHighlighter の一般設定が用いられる。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.support.wordpress.com/code/posting-source-code/#configuration-parameters&#34;&gt;パラメータはこちら&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;
+＃+BEGIN_SRC bash :syntaxhl
+echo &#34;hoge&#34; 
+＃+END_SRC
+&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;これで org2blog の記事投稿でコードも綺麗に投稿できる。&lt;/p&gt;
+
+&lt;h1 id=&#34;補足:c443d59d4160338c2614fe779a49a87f&#34;&gt;補足&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;必要なもの 3. の設定を加えるのは、以下の通り &lt;pre&gt; タグが挿入されるため SyntaxHighlighter の表記方法 [language] code [/language] と合致しなくなるため。（以下は org2blog.el 内のコード）&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;参考 &lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;(defcustom org2blog/wp-use-sourcecode-shortcode nil
+   &amp;ldquo;Non-nil means convert &lt;pre&gt; tags to WP sourcecode blocks.
+ NOTE: htmlize.el available in org-mode&amp;rsquo;s contrib directory should
+ be on your emacs load-path for this to work.&amp;rdquo;
+   :group &amp;lsquo;org2blog/wp
+   :type &amp;lsquo;boolean)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;覚えておくと良いショートカット:c443d59d4160338c2614fe779a49a87f&#34;&gt;覚えておくと良いショートカット&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;コードブロックを挿入する際は &lt;strong&gt;&amp;lt;キー&lt;TAB&gt;&lt;/strong&gt; をタイプするべし。
+
+&lt;ul&gt;
+&lt;li&gt;以下は、挿入したいテンプレートのキー一覧
+
+&lt;ul&gt;
+&lt;li&gt;参考 &lt;a href=&#34;http://emacsclub.github.com/html/org_tutorial.html&#34;&gt;Org-mode Tutorial / Cheat Sheet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table border=&#34;2&#34; cellspacing=&#34;0&#34; cellpadding=&#34;6&#34; rules=&#34;groups&#34; frame=&#34;hsides&#34;&gt;
+
+
+&lt;colgroup&gt;
+&lt;col  class=&#34;left&#34; /&gt;
+
+&lt;col  class=&#34;left&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope=&#34;col&#34; class=&#34;left&#34;&gt;キー　&lt;/th&gt;
+&lt;th scope=&#34;col&#34; class=&#34;left&#34;&gt;挿入したいテンプレート&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;s&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_src &amp;#x2026; #+end\_src&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;e&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_example &amp;#x2026; #+end\_example&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;q&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_quote &amp;#x2026; #+end\_quote&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;v&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_verse &amp;#x2026; #+end\_verse&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;c&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_center &amp;#x2026; #+end\_center&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;l&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_latex &amp;#x2026; #+end\_latex&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;L&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+latex:&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;h&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_html &amp;#x2026; #+end\_html&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;H&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+html:&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;a&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_ascii &amp;#x2026; #+end\_ascii&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;A&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+ascii:&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;i&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+index: line&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;I&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+include: line&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&#34;その他-参考サイト:c443d59d4160338c2614fe779a49a87f&#34;&gt;その他、参考サイト&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://orgmode.org/worg/org-contrib/babel/intro.html&#34;&gt;Babel: Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/tamura70/20100304/org&#34;&gt;Emacs org-modeを使ってみる: (29) エクスポートオプション一覧&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
+      <link>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</guid>
+      <description>
+
+&lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;
+
+&lt;h1 id=&#34;手順:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;手順&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt; ここにいってソースコードをDLしてくる（git cloneでもOK）&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ダウンロードしたファイルのディレクトリで make する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ~/Downloads/tmux-MacOSX-pasteboard
+make reattach-to-user-namespace
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;which reattach-to-user-namespace
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;これでワーニングもサヨウナラ&lt;/p&gt;
+
+&lt;h1 id=&#34;参考:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>vagrant、chef-solo で開発環境を構築する</title>
+      <link>http://syati.github.io/blog/post/vagrant_css_problem/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/vagrant_css_problem/</guid>
+      <description>
+
+&lt;p&gt;最近、vagrant、chef-solo で開発環境を構築するのがブームなSyatiです。xampp、mamp とかで？？ができないとかよくありますが、面倒くさいので皆サーバーと同じ環境にして開発しましょうよ。そしたら、？？ができないなんてことがなくなりますので。&lt;/p&gt;
+
+&lt;p&gt;今回はまったのは、vagrant の共有フォルダに apache のバーチャルホストのドキュメントルートを設定して、ローカルでソースコードをいじり、ブラウザで確認している時である。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;CSSをいじって、ブラウザで確認しても反映されないのである。もちろんキャッシュクリア済み。やむなくvagrantを再起動すると反映されるのである&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;原因:5c1f1c5e88ff812515d1aa7457a96fee&#34;&gt;原因&lt;/h1&gt;
+
+&lt;p&gt;httpd.conf の設定に問題があった。
+以下の設定を加えるのである。EnableSendfile なんて httpd.conf 中のどこにも記述が無いんだが、デフォルトが On のため、明示的に加えてあげる必要がある。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;EnableSendfile Off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以下&lt;a href=&#34;http://httpd.apache.org/docs/2.2/mod/core.html#enablesendfile&#34;&gt; EnableSendfile&lt;/a&gt;より引用&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;このディレクティブはクライアンにファイルの内容を送るときに httpd がカーネルの sendfile サポートを使うかどうかを制御します。デフォルトでは、 例えば静的なファイルの配送のように、リクエストの処理にファイルの 途中のデータのアクセスを必要としないときには、Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。
+sendfile は read と send を別々に行なうことと、バッファの割り当てを 回避します。しかし、プラットフォームやファイルシステムの中には 運用上の問題を避けるためにこの機能を使用不可にした方が良い場合があります&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;おそらく、以下の部分が原因か！？それでファイルを変更しても、逐次更新されないんでしょう。
+-   &lt;strong&gt;Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;参考:5c1f1c5e88ff812515d1aa7457a96fee&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/shoyan/items/12389d5beaa8695b1a53&#34;&gt;http://qiita.com/shoyan/items/12389d5beaa8695b1a53&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;上記に nginx の場合も書いて有りますね。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>bowerrc で install ディレクトリを変更する</title>
+      <link>http://syati.github.io/blog/post/bowerrc/</link>
+      <pubDate>Sun, 01 Mar 2015 21:37:06 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/bowerrc/</guid>
+      <description>
+
+&lt;p&gt;bower install をしたはいいが、デフォルトでインストールされるディレクトリ(bower_components)を以下の例のように変えたい、そんな時は。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;project/
+
+&lt;ul&gt;
+&lt;li&gt;js
+
+&lt;ul&gt;
+&lt;li&gt;bower_components
+
+&lt;ul&gt;
+&lt;li&gt;jquery&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;img&lt;/li&gt;
+&lt;li&gt;css&lt;/li&gt;
+&lt;li&gt;index.html&lt;/li&gt;
+&lt;li&gt;bower.json&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;解決策:faaade8871e8a9add4cb3dea3150f715&#34;&gt;解決策&lt;/h1&gt;
+
+&lt;p&gt;以下のように &lt;strong&gt;.bowerrc&lt;/strong&gt; を project ルートに作成してあげる。これを自分の好きなように書き換えることで、インストールディレクトリを変更できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// .bowerrc
+{
+    &amp;quot;directory&amp;quot; : &amp;quot;js/bower_components&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以降、bower install すれば希望通り&lt;/p&gt;
+
+&lt;h2 id=&#34;bowerrc作成後:faaade8871e8a9add4cb3dea3150f715&#34;&gt;.bowerrc作成後&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;project/
+
+&lt;ul&gt;
+&lt;li&gt;js
+
+&lt;ul&gt;
+&lt;li&gt;bower_components
+
+&lt;ul&gt;
+&lt;li&gt;jquery&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;img&lt;/li&gt;
+&lt;li&gt;css&lt;/li&gt;
+&lt;li&gt;index.html&lt;/li&gt;
+&lt;li&gt;bower.json&lt;/li&gt;
+&lt;li&gt;.bowerrc&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考:faaade8871e8a9add4cb3dea3150f715&#34;&gt;参考&lt;/h1&gt;
+
+&lt;h2 id=&#34;デフォルトの動作:faaade8871e8a9add4cb3dea3150f715&#34;&gt;デフォルトの動作&lt;/h2&gt;
+
+&lt;h3 id=&#34;初期ディレクトリ構成:faaade8871e8a9add4cb3dea3150f715&#34;&gt;初期ディレクトリ構成&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;project/
+
+&lt;ul&gt;
+&lt;li&gt;js&lt;/li&gt;
+&lt;li&gt;img&lt;/li&gt;
+&lt;li&gt;css&lt;/li&gt;
+&lt;li&gt;index.html&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;コマンド:faaade8871e8a9add4cb3dea3150f715&#34;&gt;コマンド&lt;/h3&gt;
+
+&lt;p&gt;project ルートで 以下のように bower コマンドを入れる&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bower init
+bower install jquery -save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;コマンド後のディレクトリ構成:faaade8871e8a9add4cb3dea3150f715&#34;&gt;コマンド後のディレクトリ構成&lt;/h3&gt;
+
+&lt;p&gt;ディレクトリは以下のようになる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;project/
+
+&lt;ul&gt;
+&lt;li&gt;bower_components
+
+&lt;ul&gt;
+&lt;li&gt;jquery&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;js&lt;/li&gt;
+&lt;li&gt;img&lt;/li&gt;
+&lt;li&gt;css&lt;/li&gt;
+&lt;li&gt;index.html&lt;/li&gt;
+&lt;li&gt;bower.json&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

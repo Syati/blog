@@ -1,7 +1,9 @@
 +++
+Categories = ["JavaScript"]
+Description = "bowerrc を用いることでデフォルトのインストールディレクトリを変更できる"
+Tags = ["bower"]
 date = "2015-03-01T21:37:06+09:00"
-draft = true
-title = "bowerrc"
+title = "bowerrc で install ディレクトリを変更する"
 
 +++
 

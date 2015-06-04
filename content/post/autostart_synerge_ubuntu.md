@@ -1,6 +1,8 @@
 +++
+Categories = ["Ubuntu"]
+Description = ""
+Tags = ["Tips"]
 date = "2015-03-01T21:37:06+09:00"
-draft = true
 title = "synerge ubuntu"
 
 +++
