@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Coffeescript on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://syati.github.io/blog/categories/coffeescript/</link>
+    <language>ja-JP</language>
+    
+    <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
+    <updated>Thu, 04 Jun 2015 23:09:38 JST</updated>
+    
+    <item>
+      <title>Emacs で CoffeeScript を AutoComplete する</title>
+      <link>http://syati.github.io/blog/post/coffee_script/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/coffee_script/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。&lt;/p&gt;
+
+&lt;h1 id=&#34;必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;必要なパッケージ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;M-x package-list-package から 以下をインストールする
+
+&lt;ul&gt;
+&lt;li&gt;jquery-doc&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;設定:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;設定&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考にして以下の部分を変更してあげる&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-hook &#39;coffee-mode-hook
+          &#39;(lambda ()
+             (jquery-doc-setup) ;; ここに jquery-doc を追加する
+             (add-to-list &#39;ac-dictionary-files &amp;quot;~/.emacs.d/ac-dict/js2-mode&amp;quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
+             ))
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
