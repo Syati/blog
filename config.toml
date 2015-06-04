@@ -7,7 +7,7 @@ canonifyurls = true
 
 [author]
 author = "mizuki-y"
-email = "mizuki-y@syati.info"
+#email = "mizuki-y@syati.info"
 
 [taxonomies]
 category = "categories"
