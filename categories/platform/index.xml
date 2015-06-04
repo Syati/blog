@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Platform on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://syati.github.io/blog/categories/platform/</link>
+    <language>ja-JP</language>
+    
+    <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
+    <updated>Thu, 04 Jun 2015 23:09:38 JST</updated>
+    
+    <item>
+      <title>vagrant、chef-solo で開発環境を構築する</title>
+      <link>http://syati.github.io/blog/post/vagrant_css_problem/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/vagrant_css_problem/</guid>
+      <description>
+
+&lt;p&gt;最近、vagrant、chef-solo で開発環境を構築するのがブームなSyatiです。xampp、mamp とかで？？ができないとかよくありますが、面倒くさいので皆サーバーと同じ環境にして開発しましょうよ。そしたら、？？ができないなんてことがなくなりますので。&lt;/p&gt;
+
+&lt;p&gt;今回はまったのは、vagrant の共有フォルダに apache のバーチャルホストのドキュメントルートを設定して、ローカルでソースコードをいじり、ブラウザで確認している時である。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;CSSをいじって、ブラウザで確認しても反映されないのである。もちろんキャッシュクリア済み。やむなくvagrantを再起動すると反映されるのである&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;原因:5c1f1c5e88ff812515d1aa7457a96fee&#34;&gt;原因&lt;/h1&gt;
+
+&lt;p&gt;httpd.conf の設定に問題があった。
+以下の設定を加えるのである。EnableSendfile なんて httpd.conf 中のどこにも記述が無いんだが、デフォルトが On のため、明示的に加えてあげる必要がある。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;EnableSendfile Off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以下&lt;a href=&#34;http://httpd.apache.org/docs/2.2/mod/core.html#enablesendfile&#34;&gt; EnableSendfile&lt;/a&gt;より引用&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;このディレクティブはクライアンにファイルの内容を送るときに httpd がカーネルの sendfile サポートを使うかどうかを制御します。デフォルトでは、 例えば静的なファイルの配送のように、リクエストの処理にファイルの 途中のデータのアクセスを必要としないときには、Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。
+sendfile は read と send を別々に行なうことと、バッファの割り当てを 回避します。しかし、プラットフォームやファイルシステムの中には 運用上の問題を避けるためにこの機能を使用不可にした方が良い場合があります&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;おそらく、以下の部分が原因か！？それでファイルを変更しても、逐次更新されないんでしょう。
+-   &lt;strong&gt;Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;参考:5c1f1c5e88ff812515d1aa7457a96fee&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/shoyan/items/12389d5beaa8695b1a53&#34;&gt;http://qiita.com/shoyan/items/12389d5beaa8695b1a53&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;上記に nginx の場合も書いて有りますね。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
