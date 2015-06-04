@@ -231,55 +231,19 @@
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/osx"> OSX </a>
+	    <a href="http://syati.github.io/blog/categories/shell"> Shell </a>
 	
 
 
 </div>
 		
-			<span class="comments"><a href="http://syati.github.io/blog/post/make_env_mac/#disqus_thread">Comments</a></span>
+			<span class="comments"><a href="http://syati.github.io/blog/post/nkf/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/make_env_mac/" itemprop="url">Development Environment in my OSX</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/nkf/" itemprop="url">nkf で直す文字化け</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。 開発環境 xcode:開発環境 プラグイン command line tools (os x mountain lion) for xcode fink:package management のソフト 上記を用いて入れたソフトウェア coreutil-default prefix に g がない方 /sw/bin にコマンドが入るので、パスの優先度を上げておく wget tmux 問題：mac の tmux では pbcopy/pbpaste で クリップボードの共有ができない 解決：X環境のクリップボードやOS Xのペーストボードとtmuxのバッファを連携する方法 autoconf 古かったので結局自分で入れた emacs24.2:エディター デフォルトは emacs22.1 のため導入する。ただし、パッチを入れないと最大化等できない。以下のサイト参照のこと http://mgrace.info/?p=1032 http://sakito.jp/emacs/emacs24.html デフォルトターミナルの変更 コマンド chsh で zsh にする iTerm2：ターミナル デフォルトのターミナルに比べて、なんか見やすかったから入れといた http://www.iterm2.com/#/section/home meta-key が使えるように以下を実施する http://d.hatena.ne.jp/kitokitoki/20111129/p1 zsh + tmux を使っていると、当該ソフトの autocomplete とか
-		<a href="http://syati.github.io/blog/post/make_env_mac/" class="more-link">Read on →</a>
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-		<a href="http://syati.github.io/blog/categories/windows"> Windows </a>,
-	
-
-	
-	
-		<a href="http://syati.github.io/blog/categories/emacs"> Emacs </a>,
-	
-
-	
-	
-	    <a href="http://syati.github.io/blog/categories/linux"> Linux </a>
-	
-
-
-</div>
+		Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。開いてびっくり文字化け。全部 utf-8 に修正してしまいます。 利用するもの nkf ただこれだけ インストール パッケージ管理でいれるのが楽です。無い場合は、nkf Network Kanji Filter からダウンロードして、make してください。 利用例 文字コードを判定する場合 % nkf -g shiftjis.txt output: Shift_JIS 文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合 % nkf -w -Lu shiftjis.txt 文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合 % nkf -w --overwrite -Lu shiftjis.txt 参考 Linux上で文字コードを変換できるコマンドnkfのオプション一覧 文字コード変換コマンドnkfの使い方まとめ Linux 6.9. 文字コードと改行コードの変換 【nkf】
 		
-			<span class="comments"><a href="http://syati.github.io/blog/post/make_windows_emacs/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/make_windows_emacs/" itemprop="url">Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、否応なく Windows を利用しなければいけない時がある Syati です。 そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば AutoHotkey もあるのですが、それは、また次の機会に。今回は、Cygwin、Zsh、NTEmacs で Windows に Linux環境を構築をする。 1. インストール cygwin のインストール 注意がでるけどインストールディレクトリをドライブのRoot( F:/ ) にでもする デフォルトから追加で、とりあえずインストールするパッケージは以下の通り（あとは好きなパッケケージを入れる） Archive p7zip unzip zip Devel gcc-core gcc-g++ Net openssh Shells zsh Web wget gnupack emacs only でインストール ダウンロードしたファイルを解凍 解凍されたディレクトリの中身(bin,etc,info などなど）をすべてコピーして cygwin をインストールしたディレクトリの F:/usr/local/ に上書きする 2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する /etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する Cygwin が MS-DOS形式のパスに対して Warning を出力するので消しておく cygwin がMS-DOS形式のパスをWarningするので消した Cygwin Terminal ショートカットから Terminal を起動すると zsh startup が立ち上がるので (0) Exit, creating the &#x2026;..
-		<a href="http://syati.github.io/blog/post/make_windows_emacs/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -324,19 +288,50 @@
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/shell"> Shell </a>
+	    <a href="http://syati.github.io/blog/categories/osx"> OSX </a>
 	
 
 
 </div>
 		
-			<span class="comments"><a href="http://syati.github.io/blog/post/nkf/#disqus_thread">Comments</a></span>
+			<span class="comments"><a href="http://syati.github.io/blog/post/make_env_mac/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/nkf/" itemprop="url">nkf で直す文字化け</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/make_env_mac/" itemprop="url">Development Environment in my OSX</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。開いてびっくり文字化け。全部 utf-8 に修正してしまいます。 利用するもの nkf ただこれだけ インストール パッケージ管理でいれるのが楽です。無い場合は、nkf Network Kanji Filter からダウンロードして、make してください。 利用例 文字コードを判定する場合 % nkf -g shiftjis.txt output: Shift_JIS 文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合 % nkf -w -Lu shiftjis.txt 文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合 % nkf -w --overwrite -Lu shiftjis.txt 参考 Linux上で文字コードを変換できるコマンドnkfのオプション一覧 文字コード変換コマンドnkfの使い方まとめ Linux 6.9. 文字コードと改行コードの変換 【nkf】
+		仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。 開発環境 xcode:開発環境 プラグイン command line tools (os x mountain lion) for xcode fink:package management のソフト 上記を用いて入れたソフトウェア coreutil-default prefix に g がない方 /sw/bin にコマンドが入るので、パスの優先度を上げておく wget tmux 問題：mac の tmux では pbcopy/pbpaste で クリップボードの共有ができない 解決：X環境のクリップボードやOS Xのペーストボードとtmuxのバッファを連携する方法 autoconf 古かったので結局自分で入れた emacs24.2:エディター デフォルトは emacs22.1 のため導入する。ただし、パッチを入れないと最大化等できない。以下のサイト参照のこと http://mgrace.info/?p=1032 http://sakito.jp/emacs/emacs24.html デフォルトターミナルの変更 コマンド chsh で zsh にする iTerm2：ターミナル デフォルトのターミナルに比べて、なんか見やすかったから入れといた http://www.iterm2.com/#/section/home meta-key が使えるように以下を実施する http://d.hatena.ne.jp/kitokitoki/20111129/p1 zsh + tmux を使っていると、当該ソフトの autocomplete とか
+		<a href="http://syati.github.io/blog/post/make_env_mac/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+		<a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>,
+	
+
+	
+	
+	    <a href="http://syati.github.io/blog/categories/node"> Node </a>
+	
+
+
+</div>
 		
+			<span class="comments"><a href="http://syati.github.io/blog/post/node_path/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/node_path/" itemprop="url">node 利用するなら、まずは環境変数を設定しましょう</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		javascript を REPL で利用できるといえば node 。underscore.js を試したいと思いハマったメモ。 はまった事 以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。 Syati% sudo npm install undersocre -g Syati% node require('underscore'); Error: Cannot find module 'underscore' at Function.Module._resolveFilename (module.js:338:15) at Function.Module._load (module.js:280:25) at Module.require (module.js:362:17) at require (module.js:378:17) at repl:1:1 at REPLServer.self.eval (repl.js:109:21) at rli.on.self.bufferedCmd (repl.js:258:20) at REPLServer.self.eval (repl.js:116:5) at Interface.&lt;anonymous&gt; (repl.js:248:12) at Interface.EventEmitter.emit (events.js:96:17) 原因 npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。 解決 設定するパスを確認する npm root -g // output =&gt; /usr/local/lib/node_modules 利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了 export
+		<a href="http://syati.github.io/blog/post/node_path/" class="more-link">Read on →</a>
 	</div>
 </article>
 
