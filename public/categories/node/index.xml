@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Node on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://syati.github.io/blog/categories/node/</link>
+    <language>ja-JP</language>
+    
+    <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
+    <updated>Thu, 04 Jun 2015 23:09:38 JST</updated>
+    
+    <item>
+      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
+      <link>http://syati.github.io/blog/post/node_path/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/node_path/</guid>
+      <description>
+
+&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
+
+&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
+
+&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
+Syati% node 
+
+require(&#39;underscore&#39;); 
+Error: Cannot find module &#39;underscore&#39;
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:362:17)
+    at require (module.js:378:17)
+    at repl:1:1
+    at REPLServer.self.eval (repl.js:109:21)
+    at rli.on.self.bufferedCmd (repl.js:258:20)
+    at REPLServer.self.eval (repl.js:116:5)
+    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
+    at Interface.EventEmitter.emit (events.js:96:17)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
+
+&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
+
+&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm root -g
+// output =&amp;gt; /usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

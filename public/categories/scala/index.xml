@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Scala on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://syati.github.io/blog/categories/scala/</link>
+    <language>ja-JP</language>
+    
+    <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
+    <updated>Thu, 04 Jun 2015 23:09:38 JST</updated>
+    
+    <item>
+      <title>Scala の開発環境</title>
+      <link>http://syati.github.io/blog/post/make_scala_env/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/make_scala_env/</guid>
+      <description>
+
+&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ubuntu 12.04&lt;/li&gt;
+&lt;li&gt;emacs 24.3.1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
+
+&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;jdk をインストール
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;以下のコマンドでエラーが無いことを確認
+
+&lt;ul&gt;
+&lt;li&gt;java -version&lt;/li&gt;
+&lt;li&gt;javac -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;scala のダウンロード
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
+&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
+
+&lt;ul&gt;
+&lt;li&gt;scala -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
+
+&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;以下から tool を clone する
+
+&lt;ul&gt;
+&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;コピーした scala-mode に移動して make コマンドする
+
+&lt;ul&gt;
+&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
+(require &#39;scala-mode2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;yasnipet がない場合は、以下から clone する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

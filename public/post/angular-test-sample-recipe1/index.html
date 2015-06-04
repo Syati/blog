@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head>
+	<meta charset="utf-8">
+	<title>Angular test sample 1 - Syati.info</title>
+	<meta name="author" content="map[author:mizuki-y]">
+
+	
+	  
+	<meta name="description" content="Angular controller の unit test をする">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='http://syati.github.io/blog/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://syati.github.io/blog/post/angular-test-sample-recipe1/">
+	<link href="http://syati.github.io/blog/favicon.png" rel="shortcut icon">
+	<link href="http://syati.github.io/blog/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://syati.github.io/blog/css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-9380531-9']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	
+	
+</div>
+
+<nav id="main-nav"><ul class="main">
+    <li><a href="http://syati.github.io/blog/">Blog</a></li>
+    <li><a href="http://syati.github.io/blog/about/">About</a></li>
+    <li><a href="http://syati.github.io/blog/post/">Archives</a></li>
+</ul>
+
+
+<section class="aboutme">
+  <p>
+    かんがえるさかな
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='http://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+			<a class="google" href='https://plus.google.com/&#43;mizukiyamamoto' rel="author" title="Google+">Google+</a>
+		
+		
+			<a class="twitter" href='http://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='http://syati.github.io/blog/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title" itemprop="name">Angular test sample 1</h1>
+	<div class="entry-content" itemprop="articleBody">
+
+<p>js ってテストしにくいよねってことで今流行りの angular で unit test する。
+最初なので、事細かに説明するつもりで書いてみる。</p>
+
+<p>サンプルは以下から git clone してください。ソースと突き合わせながら見るといいかも。</p>
+
+<p><a href="https://github.com/Syati/angular-test-sample">https://github.com/Syati/angular-test-sample</a></p>
+
+<h1 id="準備:d28091e7273529f0913311111ae23332">準備</h1>
+
+<h2 id="ubuntu:d28091e7273529f0913311111ae23332">ubuntu</h2>
+
+<ul>
+<li><p>node &amp; npm</p>
+
+<pre><code>sudo apt-get install nodejs
+sudo apt-get install npm
+</code></pre></li>
+</ul>
+
+<h2 id="mac:d28091e7273529f0913311111ae23332">mac</h2>
+
+<ul>
+<li><p>node &amp; npm</p>
+
+<pre><code>brew install node
+</code></pre></li>
+</ul>
+
+<h2 id="共通:d28091e7273529f0913311111ae23332">共通</h2>
+
+<ul>
+<li><p>bower</p>
+
+<pre><code>sudo npm install -g bower
+</code></pre></li>
+
+<li><p>karma</p>
+
+<pre><code>sudo npm install -g karma-cli
+</code></pre></li>
+</ul>
+
+<h1 id="実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332">実施：サンプルを CLONE して TEST</h1>
+
+<p>github にサンプルを書いたので clone する。</p>
+
+<pre><code>git clone git@github.com:Syati/angular-test-sample.git
+</code></pre>
+
+<h2 id="prj-依存環境を入れる:d28091e7273529f0913311111ae23332">prj 依存環境を入れる</h2>
+
+<pre><code>cd your_clone_path/angular-test-sample/controller/recipe1
+npm install
+</code></pre>
+
+<h2 id="test-実行する:d28091e7273529f0913311111ae23332">test 実行する</h2>
+
+<pre><code>npm test
+</code></pre>
+
+<p>以下のような出力で、テストが成功する。</p>
+
+<pre><code>WARN [karma]: Port 9876 in use
+INFO [karma]: Karma v0.12.24 server started at http://localhost:9877/
+INFO [launcher]: Starting browser PhantomJS
+INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id 62869514
+PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
+</code></pre>
+
+<h1 id="説明:d28091e7273529f0913311111ae23332">説明</h1>
+
+<h2 id="directory:d28091e7273529f0913311111ae23332">directory</h2>
+
+<pre><code>recipe1
+├── app
+│   ├── bower_compornents #1 bower js lib install dir
+│   ├── css
+│   ├── index.html
+│   ├── js
+│   │   └── app.js       #4 target js
+│   └── test              #2 test files
+│        └── app.spec.js  #4 test js
+├── .bowerrc      #1 bower install dir 設定
+├── bower.json    #1 bower install する js lib などの設定
+├── karma.conf.js #3 angular のテスト設定
+├── package.json  #2 npm lib などの設定 
+└── node_modules  #2 npm lib install dir
+</code></pre>
+
+<h2 id="1-bower:d28091e7273529f0913311111ae23332">#1 bower</h2>
+
+<p>js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。</p>
+
+<pre><code># 以下のコマンドで初期設定 bower.json を作成できる
+bower init 
+# あとは以下のようにして依存関係を bower.json に追記する
+bower install angular --save　# または --save-dev
+</code></pre>
+
+<p>デフォルトは <strong>bower.json</strong> がある場所がインストール先になるので <strong>.bowerrc</strong> にインストール先を書いておく。
+上記を実施することで以下のファイルを作成する。</p>
+
+<ul>
+<li>bower.json</li>
+
+<li><p>.bowerrc</p></li>
+
+<li><p>その他</p>
+
+<ul>
+<li>.gitignore に bower_components を入れておく（bower install でいつでも同じ環境を構築できるので）。</li>
+<li>bower のオプション <strong>&#x2013;save</strong> または <strong>&#x2013;save-dev</strong> を分けることで、本番用と開発用を分けることが出来る。
+
+<ul>
+<li><strong>bower install &#x2013;production</strong> で &#x2013;save-dev で入れたパッケージはインストールせずに済むのである。</li>
+</ul></li>
+<li>参考
+
+<ul>
+<li><a href="http://bower.io/docs/api">http://bower.io/docs/api</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2 id="2-npm:d28091e7273529f0913311111ae23332">#2 npm</h2>
+
+<pre><code># 以下のコマンドで初期設定 package.json を作成できる
+npm init 
+# あとは以下のようにして依存関係を package.json に追記する
+npm install jasmine --save-dev　# または --save
+</code></pre>
+
+<p>上記を実施することで以下のファイルを作成する。</p>
+
+<ul>
+<li><p>package.json</p></li>
+
+<li><p>その他</p>
+
+<ul>
+<li>.gitignore に node_modules を入れておく（npm install でいつでも同じ環境を構築できるので）。</li>
+<li>npm のオプション <strong>&#x2013;save</strong> または <strong>&#x2013;save-dev</strong> を分けることで、本番用と開発用を分けることが出来る(bower と同様ですね)。
+
+<ul>
+<li><strong>npm install &#x2013;production</strong> で &#x2013;save-dev で入れたパッケージはインストールせずに済むのである。</li>
+<li>今回は test 用しかないので &#x2013;save-dev ですべてインストールする。</li>
+</ul></li>
+<li><strong>package.json 内の scripts って便利</strong></li>
+<li>参考
+
+<ul>
+<li><a href="https://www.npmjs.org/doc/cli/npm-install.html">https://www.npmjs.org/doc/cli/npm-install.html</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2 id="3-karma-angular-の-unit-test-の設定:d28091e7273529f0913311111ae23332">#3 karma  angular の unit test の設定</h2>
+
+<pre><code># 以下のコマンドで初期設定 karma.conf.js を作成できる
+karma init
+</code></pre>
+
+<p>今回特に意識する場所としては以下の通り。</p>
+
+<ul>
+<li>basePath
+
+<ul>
+<li>基準とするパスなので設定ファイルのある場所 <strong>./</strong> にする。</li>
+</ul></li>
+<li>files
+
+<ul>
+<li>ここで必要な js lib と テストのターゲット js とテスト js を読み込ませてあげる。</li>
+</ul></li>
+<li>browsers
+
+<ul>
+<li>init のデフォルトだと Chrome だが、テストするたびに Chrome が開くのは邪魔なので、PhantomJS にする。
+
+<ul>
+<li><a href="http://phantomjs.org/">PhantomJS</a></li>
+</ul></li>
+</ul></li>
+<li>plugins
+
+<ul>
+<li><a href="http://jasmine.github.io">jasmine</a> を利用するために以下を追加する。
+
+<ul>
+<li>karma-jasmine</li>
+</ul></li>
+<li>karma から PhantomJS を呼べるようにするために以下を追加する。
+
+<ul>
+<li>karma-phantomjs-launcher</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2 id="4-test-を書く:d28091e7273529f0913311111ae23332">#4 test を書く</h2>
+
+<p>テストするうえで jasmine の理解は必須なので <a href="http://jasmine.github.io/2.1/introduction.html">tutorial</a> で勉強しておく。
+index.html をローカルで開けばわかると思うが button click で &lsquo;hello&rsquo; とでてくるだけのもの。
+テストする js は app.js である。</p>
+
+<p>テストコードにコメント付与した。</p>
+
+<pre><code>'use strict';
+
+describe('Unit: app moudle ', function(){
+  var scope; # scope がどこからでも呼べるように定義しておく
+
+  beforeEach(function(){
+    angular.mock.module('app'); # モジュールのモックを作成する
+  });
+
+  describe('MainCtrl', function(){
+    # ここで DI する。今回は MainCtrl cotroller で GET, POST など何もしていないので
+    # $rootScope と $controller のみ
+    beforeEach(inject(function($rootScope, $controller){ 
+      scope = $rootScope.$new(); # scope を作成して、上記で定義した scope に代入する
+
+      # scope を渡してコントローラを作成する
+      # これで scope に controller 内に定義した sayHello 関数などが入る 
+      $controller('MainCtrl', {'$scope': scope}); 
+    }));
+
+    it('sayHello', function(){
+      scope.sayHello();
+      # scope.message が 'hello' となっているかテスト
+      expect(scope.message).toBe('hello');
+    });
+  });
+});
+</code></pre>
+
+<ul>
+<li>その他
+
+<ul>
+<li>angular.mock.module を利用するうえで、bower.json に記述のある angular-mocks は必要。</li>
+</ul></li>
+</ul>
+
+<h1 id="まとめ:d28091e7273529f0913311111ae23332">まとめ</h1>
+
+<p>controller のテストは意外と簡単。ただし、DI が増えてくるとハマるポイントも多くなってくるので、次はそんなサンプルを書いていくつもり。</p>
+</div></article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size=''></a>
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					
+
+
+				    </div>
+				</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2015
+
+    Syati.info
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="http://syati.github.io/blog/js/slash.js"></script>
+<script src="http://syati.github.io/blog/js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script></footer>
+		</div>
+	</div>
+	
+</body>
+</html>
