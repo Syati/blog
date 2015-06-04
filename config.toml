@@ -2,8 +2,51 @@ baseurl = "http://syati.github.io/blog"
 languageCode = "ja-JP"
 title = "Syati.info"
 theme = "greyshade"
-author = "mizuki-y"
 copyright = "Copyright (c) 2008 - 2015, mizuki-y; all rights reserved."
 canonifyurls = true
 
+[author]
+author = "mizuki-y"
+email = "mizuki-y@syati.info"
+
+[taxonomies]
+category = "categories"
+
+[params]
+# site description, will show under navigation
+description = "かんがえるさかな"
+
+# RSS / Email (optional) subscription links (change if using something like Feedburner)
+subscribe_rss = "/index.xml"
+#subscribe_email = ""
+
+# social links
+facebook_user = "Syati.org"
+googleplus_user = "+mizukiyamamoto"
+twitter_user = "syati_org"
+github_user = "Syati"
+#coderwall_user = ""
+#stackoverflow_user = ""
+#stackoverflow_user_id = ""
+#linkedin_user = ""
+#pinterest_user = ""
+#delicious_user = ""
+#pinboard_user = ""
+#quora_user = ""
+#instagram_user = ""
+#behance_user = ""
+#douban_user = ""
+
+# share links
+facebook_like = true
+twitter_tweet_button = true
+google_plus_one = "true"
+#addthis_profile_id = ""
+
+# Disqus Comments
+disqus_short_name = ""
+disqus_show_comment_count = false
+
+# google analytics
+google_analytics_tracking_id = "UA-9380531-9"
 
