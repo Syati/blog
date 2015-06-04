@@ -19,54 +19,64 @@ js ってテストしにくいよねってことで今流行りの angular で u
 
 ## ubuntu
 
--   node & npm
-    
-        sudo apt-get install nodejs
-        sudo apt-get install npm
+- node & npm
+  <pre><code class="language-bash">
+    sudo apt-get install nodejs
+    sudo apt-get install npm
+  </code></pre>
 
 ## mac
 
--   node & npm
-    
-        brew install node
+- node & npm
+  <pre><code class="language-bash">
+    brew install node
+  </code></pre>
 
 ## 共通
 
--   bower
-    
-        sudo npm install -g bower
+- bower
+  <pre><code class="language-bash">
+    sudo npm install -g bower
+  </code></pre>
 
--   karma
-    
-        sudo npm install -g karma-cli
+- karma
+  <pre><code class="language-bash">
+    sudo npm install -g karma-cli
+  </code></pre>
 
 # 実施：サンプルを CLONE して TEST
 
 github にサンプルを書いたので clone する。
-
-    git clone git@github.com:Syati/angular-test-sample.git
+<pre><code class="language-bash">
+git clone git@github.com:Syati/angular-test-sample.git
+</code></pre>
 
 ## prj 依存環境を入れる
 
-    cd your_clone_path/angular-test-sample/controller/recipe1
-    npm install
+<pre><code class="language-bash">
+cd your_clone_path/angular-test-sample/controller/recipe1
+npm install
+</code></pre>
 
 ## test 実行する
 
-    npm test
-
+<pre><code class="language-bash">
+npm test
+</code></pre>
+    
 以下のような出力で、テストが成功する。
-
-    WARN [karma]: Port 9876 in use
-    INFO [karma]: Karma v0.12.24 server started at http://localhost:9877/
-    INFO [launcher]: Starting browser PhantomJS
-    INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id 62869514
-    PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
-
+<pre><code class="language-bash">
+WARN [karma]: Port 9876 in use
+INFO [karma]: Karma v0.12.24 server started at http://localhost:9877/
+INFO [launcher]: Starting browser PhantomJS
+INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id 62869514
+PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
+</code></pre>
+    
 # 説明
 
 ## directory
-
+<pre><code class="language-bash">
     recipe1
     ├── app
     │   ├── bower_compornents #1 bower js lib install dir
@@ -81,68 +91,70 @@ github にサンプルを書いたので clone する。
     ├── karma.conf.js #3 angular のテスト設定
     ├── package.json  #2 npm lib などの設定 
     └── node_modules  #2 npm lib install dir
-
+</code></pre>
+    
 ## #1 bower
 
 js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。
 
-    # 以下のコマンドで初期設定 bower.json を作成できる
-    bower init 
-    # あとは以下のようにして依存関係を bower.json に追記する
-    bower install angular --save　# または --save-dev
+<pre><code class="language-bash">
+bower init  # コマンドで初期設定 bower.json を作成
+bower install angular --save　# または --save-dev
+</code></pre>
+ 
 
 デフォルトは **bower.json** がある場所がインストール先になるので **.bowerrc** にインストール先を書いておく。
 上記を実施することで以下のファイルを作成する。
 
--   bower.json
--   .bowerrc
+- bower.json
+- .bowerrc
 
--   その他
-    -   .gitignore に bower\_components を入れておく（bower install でいつでも同じ環境を構築できるので）。
-    -   bower のオプション **&#x2013;save** または **&#x2013;save-dev** を分けることで、本番用と開発用を分けることが出来る。
-        -   **bower install &#x2013;production** で &#x2013;save-dev で入れたパッケージはインストールせずに済むのである。
-    -   参考
-        -   <http://bower.io/docs/api>
+- その他
+    - .gitignore に bower\_components を入れておく（bower install でいつでも同じ環境を構築できるので）。
+    - bower のオプション **&#x2013;save** または **&#x2013;save-dev** を分けることで、本番用と開発用を分けることが出来る。
+        - **bower install &#x2013;production** で &#x2013;save-dev で入れたパッケージはインストールせずに済むのである。
+    - 参考
+      -   <http://bower.io/docs/api>
 
 ## #2 npm
 
-    # 以下のコマンドで初期設定 package.json を作成できる
-    npm init 
-    # あとは以下のようにして依存関係を package.json に追記する
-    npm install jasmine --save-dev　# または --save
+<pre><code class="language-bash">
+npm init 
+npm install jasmine --save-dev　# または --save
+</code></pre>
 
 上記を実施することで以下のファイルを作成する。
 
--   package.json
-
--   その他
-    -   .gitignore に node\_modules を入れておく（npm install でいつでも同じ環境を構築できるので）。
-    -   npm のオプション **&#x2013;save** または **&#x2013;save-dev** を分けることで、本番用と開発用を分けることが出来る(bower と同様ですね)。
-        -   **npm install &#x2013;production** で &#x2013;save-dev で入れたパッケージはインストールせずに済むのである。
-        -   今回は test 用しかないので &#x2013;save-dev ですべてインストールする。
-    -   **package.json 内の scripts って便利**
-    -   参考
-        -   <https://www.npmjs.org/doc/cli/npm-install.html>
+- package.json
+- その他
+    - .gitignore に node\_modules を入れておく（npm install でいつでも同じ環境を構築できるので）。
+    - npm のオプション **&#x2013;save** または **&#x2013;save-dev** を分けることで、本番用と開発用を分けることが出来る(bower と同様ですね)。
+        - **npm install &#x2013;production** で &#x2013;save-dev で入れたパッケージはインストールせずに済むのである。
+        - 今回は test 用しかないので &#x2013;save-dev ですべてインストールする。
+    - **package.json 内の scripts って便利**
+    - 参考
+        - <https://www.npmjs.org/doc/cli/npm-install.html>
 
 ## #3 karma  angular の unit test の設定
 
-    # 以下のコマンドで初期設定 karma.conf.js を作成できる
-    karma init
+<pre><code class="language-bash">
+karma init  # コマンドで初期設定 karma.conf.js を作成できる
+</code></pre>
 
 今回特に意識する場所としては以下の通り。
 
--   basePath
-    -   基準とするパスなので設定ファイルのある場所 **./** にする。
--   files
-    -   ここで必要な js lib と テストのターゲット js とテスト js を読み込ませてあげる。
--   browsers
-    -   init のデフォルトだと Chrome だが、テストするたびに Chrome が開くのは邪魔なので、PhantomJS にする。
-        -   [PhantomJS](http://phantomjs.org/)
--   plugins
-    -   [jasmine](http://jasmine.github.io) を利用するために以下を追加する。
-        -   karma-jasmine
-    -   karma から PhantomJS を呼べるようにするために以下を追加する。
-        -   karma-phantomjs-launcher
+- basePath
+    - 基準とするパスなので設定ファイルのある場所 **./** にする。
+- files
+    - ここで必要な js lib と テストのターゲット js とテスト js を読み込ませてあげる。
+- browsers
+    - init のデフォルトだと Chrome だが、テストするたびに Chrome が開くのは邪魔なので、PhantomJS にする。
+        - [PhantomJS](http://phantomjs.org/)
+- plugins
+    - [jasmine](http://jasmine.github.io) を利用するために以下を追加する。
+        - karma-jasmine
+    - karma から PhantomJS を呼べるようにするために以下を追加する。
+        - karma-phantomjs-launcher
 
 ## #4 test を書く
 
@@ -152,33 +164,35 @@ index.html をローカルで開けばわかると思うが button click で 'he
 
 テストコードにコメント付与した。
 
-    'use strict';
-    
-    describe('Unit: app moudle ', function(){
-      var scope; # scope がどこからでも呼べるように定義しておく
-    
-      beforeEach(function(){
-        angular.mock.module('app'); # モジュールのモックを作成する
-      });
-    
-      describe('MainCtrl', function(){
-        # ここで DI する。今回は MainCtrl cotroller で GET, POST など何もしていないので
-        # $rootScope と $controller のみ
-        beforeEach(inject(function($rootScope, $controller){ 
-          scope = $rootScope.$new(); # scope を作成して、上記で定義した scope に代入する
-    
-          # scope を渡してコントローラを作成する
-          # これで scope に controller 内に定義した sayHello 関数などが入る 
-          $controller('MainCtrl', {'$scope': scope}); 
-        }));
-    
-        it('sayHello', function(){
-          scope.sayHello();
-          # scope.message が 'hello' となっているかテスト
-          expect(scope.message).toBe('hello');
-        });
-      });
+<pre><code class="language-javascript">
+'use strict';
+ 
+describe('Unit: app moudle ', function(){
+  var scope; # scope がどこからでも呼べるように定義しておく
+
+  beforeEach(function(){
+    angular.mock.module('app'); # モジュールのモックを作成する
+  });
+
+  describe('MainCtrl', function(){
+    # ここで DI する。今回は MainCtrl cotroller で GET, POST など何もしていないので
+    # $rootScope と $controller のみ
+    beforeEach(inject(function($rootScope, $controller){ 
+      scope = $rootScope.$new(); # scope を作成して、上記で定義した scope に代入する
+
+      # scope を渡してコントローラを作成する
+      # これで scope に controller 内に定義した sayHello 関数などが入る 
+      $controller('MainCtrl', {'$scope': scope}); 
+    }));
+
+    it('sayHello', function(){
+      scope.sayHello();
+      # scope.message が 'hello' となっているかテスト
+      expect(scope.message).toBe('hello');
     });
+  });
+});
+</code></pre>
 
 -   その他
     -   angular.mock.module を利用するうえで、bower.json に記述のある angular-mocks は必要。

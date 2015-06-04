@@ -26,7 +26,8 @@
 	
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	
+	<link href="http://syati.github.io/blog/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+
   
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
@@ -121,9 +122,9 @@
 <h2 id="ubuntu:d28091e7273529f0913311111ae23332">ubuntu</h2>
 
 <ul>
-<li><p>node &amp; npm</p>
-
-<pre><code>sudo apt-get install nodejs
+<li>node &amp; npm
+<pre><code class="language-bash">
+sudo apt-get install nodejs
 sudo apt-get install npm
 </code></pre></li>
 </ul>
@@ -131,82 +132,87 @@ sudo apt-get install npm
 <h2 id="mac:d28091e7273529f0913311111ae23332">mac</h2>
 
 <ul>
-<li><p>node &amp; npm</p>
-
-<pre><code>brew install node
+<li>node &amp; npm
+<pre><code class="language-bash">
+brew install node
 </code></pre></li>
 </ul>
 
 <h2 id="共通:d28091e7273529f0913311111ae23332">共通</h2>
 
 <ul>
-<li><p>bower</p>
+<li><p>bower
+<pre><code class="language-bash">
+sudo npm install -g bower
+</code></pre></p></li>
 
-<pre><code>sudo npm install -g bower
-</code></pre></li>
-
-<li><p>karma</p>
-
-<pre><code>sudo npm install -g karma-cli
-</code></pre></li>
+<li><p>karma
+<pre><code class="language-bash">
+sudo npm install -g karma-cli
+</code></pre></p></li>
 </ul>
 
 <h1 id="実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332">実施：サンプルを CLONE して TEST</h1>
 
-<p>github にサンプルを書いたので clone する。</p>
-
-<pre><code>git clone git@github.com:Syati/angular-test-sample.git
-</code></pre>
+<p>github にサンプルを書いたので clone する。
+<pre><code class="language-bash">
+git clone git@github.com:Syati/angular-test-sample.git
+</code></pre></p>
 
 <h2 id="prj-依存環境を入れる:d28091e7273529f0913311111ae23332">prj 依存環境を入れる</h2>
 
-<pre><code>cd your_clone_path/angular-test-sample/controller/recipe1
+<pre><code class="language-bash">
+cd your_clone_path/angular-test-sample/controller/recipe1
 npm install
 </code></pre>
 
 <h2 id="test-実行する:d28091e7273529f0913311111ae23332">test 実行する</h2>
 
-<pre><code>npm test
+<pre><code class="language-bash">
+npm test
 </code></pre>
+    
 
-<p>以下のような出力で、テストが成功する。</p>
-
-<pre><code>WARN [karma]: Port 9876 in use
-INFO [karma]: Karma v0.12.24 server started at http://localhost:9877/
+<p>以下のような出力で、テストが成功する。
+<pre><code class="language-bash">
+WARN [karma]: Port 9876 in use
+INFO [karma]: Karma v0.12.24 server started at <a href="http://localhost:9877/">http://localhost:9877/</a>
 INFO [launcher]: Starting browser PhantomJS
 INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id 62869514
 PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
-</code></pre>
+</code></pre></p>
 
 <h1 id="説明:d28091e7273529f0913311111ae23332">説明</h1>
 
 <h2 id="directory:d28091e7273529f0913311111ae23332">directory</h2>
 
-<pre><code>recipe1
-├── app
-│   ├── bower_compornents #1 bower js lib install dir
-│   ├── css
-│   ├── index.html
-│   ├── js
-│   │   └── app.js       #4 target js
-│   └── test              #2 test files
-│        └── app.spec.js  #4 test js
-├── .bowerrc      #1 bower install dir 設定
-├── bower.json    #1 bower install する js lib などの設定
-├── karma.conf.js #3 angular のテスト設定
-├── package.json  #2 npm lib などの設定 
-└── node_modules  #2 npm lib install dir
+<pre><code class="language-bash">
+    recipe1
+    ├── app
+    │   ├── bower_compornents #1 bower js lib install dir
+    │   ├── css
+    │   ├── index.html
+    │   ├── js
+    │   │   └── app.js       #4 target js
+    │   └── test              #2 test files
+    │        └── app.spec.js  #4 test js
+    ├── .bowerrc      #1 bower install dir 設定
+    ├── bower.json    #1 bower install する js lib などの設定
+    ├── karma.conf.js #3 angular のテスト設定
+    ├── package.json  #2 npm lib などの設定 
+    └── node_modules  #2 npm lib install dir
 </code></pre>
+    
 
 <h2 id="1-bower:d28091e7273529f0913311111ae23332">#1 bower</h2>
 
 <p>js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。</p>
 
-<pre><code># 以下のコマンドで初期設定 bower.json を作成できる
-bower init 
-# あとは以下のようにして依存関係を bower.json に追記する
+<pre><code class="language-bash">
+bower init  # コマンドで初期設定 bower.json を作成
 bower install angular --save　# または --save-dev
 </code></pre>
+ 
 
 <p>デフォルトは <strong>bower.json</strong> がある場所がインストール先になるので <strong>.bowerrc</strong> にインストール先を書いておく。
 上記を実施することで以下のファイルを作成する。</p>
@@ -235,18 +241,16 @@ bower install angular --save　# または --save-dev
 
 <h2 id="2-npm:d28091e7273529f0913311111ae23332">#2 npm</h2>
 
-<pre><code># 以下のコマンドで初期設定 package.json を作成できる
+<pre><code class="language-bash">
 npm init 
-# あとは以下のようにして依存関係を package.json に追記する
 npm install jasmine --save-dev　# または --save
 </code></pre>
 
 <p>上記を実施することで以下のファイルを作成する。</p>
 
 <ul>
-<li><p>package.json</p></li>
-
-<li><p>その他</p>
+<li>package.json</li>
+<li>その他
 
 <ul>
 <li>.gitignore に node_modules を入れておく（npm install でいつでも同じ環境を構築できるので）。</li>
@@ -267,8 +271,8 @@ npm install jasmine --save-dev　# または --save
 
 <h2 id="3-karma-angular-の-unit-test-の設定:d28091e7273529f0913311111ae23332">#3 karma  angular の unit test の設定</h2>
 
-<pre><code># 以下のコマンドで初期設定 karma.conf.js を作成できる
-karma init
+<pre><code class="language-bash">
+karma init  # コマンドで初期設定 karma.conf.js を作成できる
 </code></pre>
 
 <p>今回特に意識する場所としては以下の通り。</p>
@@ -317,8 +321,9 @@ index.html をローカルで開けばわかると思うが button click で &ls
 
 <p>テストコードにコメント付与した。</p>
 
-<pre><code>'use strict';
-
+<pre><code class="language-javascript">
+'use strict';
+ 
 describe('Unit: app moudle ', function(){
   var scope; # scope がどこからでも呼べるように定義しておく
 
@@ -399,6 +404,7 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
 </script></footer>
 		</div>
 	</div>
-	
+	<script src="http://syati.github.io/blog/js/prism.js"></script>
+
 </body>
 </html>

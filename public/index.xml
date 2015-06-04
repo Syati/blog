@@ -10,6 +10,39 @@
     <updated>Thu, 04 Jun 2015 23:09:38 JST</updated>
     
     <item>
+      <title>Emacs で CoffeeScript を AutoComplete する</title>
+      <link>http://syati.github.io/blog/post/coffee_script/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/coffee_script/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。&lt;/p&gt;
+
+&lt;h1 id=&#34;必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;必要なパッケージ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;M-x package-list-package から 以下をインストールする
+
+&lt;ul&gt;
+&lt;li&gt;jquery-doc&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;設定:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;設定&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考にして以下の部分を変更してあげる&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-hook &#39;coffee-mode-hook
+          &#39;(lambda ()
+             (jquery-doc-setup) ;; ここに jquery-doc を追加する
+             (add-to-list &#39;ac-dictionary-files &amp;quot;~/.emacs.d/ac-dict/js2-mode&amp;quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
+             ))
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Angular test sample 1</title>
       <link>http://syati.github.io/blog/post/angular-test-sample-recipe1/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -29,9 +62,9 @@
 &lt;h2 id=&#34;ubuntu:d28091e7273529f0913311111ae23332&#34;&gt;ubuntu&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;node &amp;amp; npm&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get install nodejs
+&lt;li&gt;node &amp;amp; npm
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+sudo apt-get install nodejs
 sudo apt-get install npm
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -39,82 +72,87 @@ sudo apt-get install npm
 &lt;h2 id=&#34;mac:d28091e7273529f0913311111ae23332&#34;&gt;mac&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;node &amp;amp; npm&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;brew install node
+&lt;li&gt;node &amp;amp; npm
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+brew install node
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;共通:d28091e7273529f0913311111ae23332&#34;&gt;共通&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;bower&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;bower
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+sudo npm install -g bower
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;&lt;/li&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo npm install -g bower
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;karma&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo npm install -g karma-cli
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;karma
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+sudo npm install -g karma-cli
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&#34;実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332&#34;&gt;実施：サンプルを CLONE して TEST&lt;/h1&gt;
 
-&lt;p&gt;github にサンプルを書いたので clone する。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone git@github.com:Syati/angular-test-sample.git
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;github にサンプルを書いたので clone する。
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+git clone git@github.com:Syati/angular-test-sample.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;prj-依存環境を入れる:d28091e7273529f0913311111ae23332&#34;&gt;prj 依存環境を入れる&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;cd your_clone_path/angular-test-sample/controller/recipe1
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+cd your_clone_path/angular-test-sample/controller/recipe1
 npm install
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;test-実行する:d28091e7273529f0913311111ae23332&#34;&gt;test 実行する&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;npm test
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+npm test
 &lt;/code&gt;&lt;/pre&gt;
+    
 
-&lt;p&gt;以下のような出力で、テストが成功する。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;WARN [karma]: Port 9876 in use
-INFO [karma]: Karma v0.12.24 server started at http://localhost:9877/
+&lt;p&gt;以下のような出力で、テストが成功する。
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+WARN [karma]: Port 9876 in use
+INFO [karma]: Karma v0.12.24 server started at &lt;a href=&#34;http://localhost:9877/&#34;&gt;http://localhost:9877/&lt;/a&gt;
 INFO [launcher]: Starting browser PhantomJS
 INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id 62869514
 PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;説明:d28091e7273529f0913311111ae23332&#34;&gt;説明&lt;/h1&gt;
 
 &lt;h2 id=&#34;directory:d28091e7273529f0913311111ae23332&#34;&gt;directory&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;recipe1
-├── app
-│   ├── bower_compornents #1 bower js lib install dir
-│   ├── css
-│   ├── index.html
-│   ├── js
-│   │   └── app.js       #4 target js
-│   └── test              #2 test files
-│        └── app.spec.js  #4 test js
-├── .bowerrc      #1 bower install dir 設定
-├── bower.json    #1 bower install する js lib などの設定
-├── karma.conf.js #3 angular のテスト設定
-├── package.json  #2 npm lib などの設定 
-└── node_modules  #2 npm lib install dir
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+    recipe1
+    ├── app
+    │   ├── bower_compornents #1 bower js lib install dir
+    │   ├── css
+    │   ├── index.html
+    │   ├── js
+    │   │   └── app.js       #4 target js
+    │   └── test              #2 test files
+    │        └── app.spec.js  #4 test js
+    ├── .bowerrc      #1 bower install dir 設定
+    ├── bower.json    #1 bower install する js lib などの設定
+    ├── karma.conf.js #3 angular のテスト設定
+    ├── package.json  #2 npm lib などの設定 
+    └── node_modules  #2 npm lib install dir
 &lt;/code&gt;&lt;/pre&gt;
+    
 
 &lt;h2 id=&#34;1-bower:d28091e7273529f0913311111ae23332&#34;&gt;#1 bower&lt;/h2&gt;
 
 &lt;p&gt;js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# 以下のコマンドで初期設定 bower.json を作成できる
-bower init 
-# あとは以下のようにして依存関係を bower.json に追記する
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+bower init  # コマンドで初期設定 bower.json を作成
 bower install angular --save　# または --save-dev
 &lt;/code&gt;&lt;/pre&gt;
+ 
 
 &lt;p&gt;デフォルトは &lt;strong&gt;bower.json&lt;/strong&gt; がある場所がインストール先になるので &lt;strong&gt;.bowerrc&lt;/strong&gt; にインストール先を書いておく。
 上記を実施することで以下のファイルを作成する。&lt;/p&gt;
@@ -143,18 +181,16 @@ bower install angular --save　# または --save-dev
 
 &lt;h2 id=&#34;2-npm:d28091e7273529f0913311111ae23332&#34;&gt;#2 npm&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;# 以下のコマンドで初期設定 package.json を作成できる
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
 npm init 
-# あとは以下のようにして依存関係を package.json に追記する
 npm install jasmine --save-dev　# または --save
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;上記を実施することで以下のファイルを作成する。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;package.json&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;その他&lt;/p&gt;
+&lt;li&gt;package.json&lt;/li&gt;
+&lt;li&gt;その他
 
 &lt;ul&gt;
 &lt;li&gt;.gitignore に node_modules を入れておく（npm install でいつでも同じ環境を構築できるので）。&lt;/li&gt;
@@ -175,8 +211,8 @@ npm install jasmine --save-dev　# または --save
 
 &lt;h2 id=&#34;3-karma-angular-の-unit-test-の設定:d28091e7273529f0913311111ae23332&#34;&gt;#3 karma  angular の unit test の設定&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;# 以下のコマンドで初期設定 karma.conf.js を作成できる
-karma init
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+karma init  # コマンドで初期設定 karma.conf.js を作成できる
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;今回特に意識する場所としては以下の通り。&lt;/p&gt;
@@ -225,8 +261,9 @@ index.html をローカルで開けばわかると思うが button click で &am
 
 &lt;p&gt;テストコードにコメント付与した。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&#39;use strict&#39;;
-
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
+&#39;use strict&#39;;
+ 
 describe(&#39;Unit: app moudle &#39;, function(){
   var scope; # scope がどこからでも呼べるように定義しておく
 
@@ -265,39 +302,6 @@ describe(&#39;Unit: app moudle &#39;, function(){
 &lt;h1 id=&#34;まとめ:d28091e7273529f0913311111ae23332&#34;&gt;まとめ&lt;/h1&gt;
 
 &lt;p&gt;controller のテストは意外と簡単。ただし、DI が増えてくるとハマるポイントも多くなってくるので、次はそんなサンプルを書いていくつもり。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Emacs で CoffeeScript を AutoComplete する</title>
-      <link>http://syati.github.io/blog/post/coffee_script/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/coffee_script/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。&lt;/p&gt;
-
-&lt;h1 id=&#34;必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;必要なパッケージ&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;M-x package-list-package から 以下をインストールする
-
-&lt;ul&gt;
-&lt;li&gt;jquery-doc&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;設定:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;設定&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考にして以下の部分を変更してあげる&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(add-hook &#39;coffee-mode-hook
-          &#39;(lambda ()
-             (jquery-doc-setup) ;; ここに jquery-doc を追加する
-             (add-to-list &#39;ac-dictionary-files &amp;quot;~/.emacs.d/ac-dict/js2-mode&amp;quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
-             ))
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -500,239 +504,54 @@ describe(&#39;Unit: app moudle &#39;, function(){
     </item>
     
     <item>
-      <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
-      <link>http://syati.github.io/blog/post/make_windows_emacs/</link>
+      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
+      <link>http://syati.github.io/blog/post/node_path/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/make_windows_emacs/</guid>
+      <guid>http://syati.github.io/blog/post/node_path/</guid>
       <description>
 
-&lt;p&gt;最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、否応なく Windows を利用しなければいけない時がある Syati です。 そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば AutoHotkey もあるのですが、それは、また次の機会に。今回は、Cygwin、Zsh、NTEmacs で Windows に Linux環境を構築をする。&lt;/p&gt;
+&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
 
-&lt;h1 id=&#34;1-インストール:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;1. インストール&lt;/h1&gt;
+&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
 
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.cygwin.com/&#34;&gt;cygwin&lt;/a&gt; のインストール
+&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;注意がでるけどインストールディレクトリをドライブのRoot( F:/ ) にでもする&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;デフォルトから追加で、とりあえずインストールするパッケージは以下の通り（あとは好きなパッケケージを入れる）
+&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
+Syati% node 
 
-&lt;ol&gt;
-&lt;li&gt;Archive
-
-&lt;ol&gt;
-&lt;li&gt;p7zip&lt;/li&gt;
-&lt;li&gt;unzip&lt;/li&gt;
-&lt;li&gt;zip&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;Devel
-
-&lt;ol&gt;
-&lt;li&gt;gcc-core&lt;/li&gt;
-&lt;li&gt;gcc-g++&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;Net
-
-&lt;ol&gt;
-&lt;li&gt;openssh&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;Shells
-
-&lt;ol&gt;
-&lt;li&gt;zsh&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;Web
-
-&lt;ol&gt;
-&lt;li&gt;wget&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://sourceforge.jp/projects/gnupack/&#34;&gt;gnupack emacs only&lt;/a&gt; でインストール
-
-&lt;ol&gt;
-&lt;li&gt;ダウンロードしたファイルを解凍&lt;/li&gt;
-&lt;li&gt;解凍されたディレクトリの中身(bin,etc,info などなど）をすべてコピーして cygwin をインストールしたディレクトリの F:/usr/local/ に上書きする&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;2-cygwin-のデフォルト-shell-を-zsh-に切り替え-初期設定する:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;/etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する&lt;/li&gt;
-&lt;li&gt;Cygwin が MS-DOS形式のパスに対して Warning を出力するので消しておく
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/takuya_1st/20110423/1303586388&#34;&gt;cygwin がMS-DOS形式のパスをWarningするので消した&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Cygwin Terminal ショートカットから Terminal を起動すると zsh startup が立ち上がるので (0) Exit, creating the &amp;#x2026;.. を選択（0 をタイプする）&lt;/li&gt;
-&lt;li&gt;HOME に .zshrc が作成されていると思うが、中身を消して、以下のサイトから設定ファイルをコピペして利用する
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://news.mynavi.jp/column/zsh/024/index.html&#34;&gt;漢のzsh 24 グッバイ野郎ども! コピペではじめるzshファイナル&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;zsh についても詳しく書かれているので、勉強しておく&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;3-emacs-の作業場所-home-を設定する:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;3. Emacs の作業場所(HOME) を設定する&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;F:/usr/local/bin の中にある runemacs.exe のショートカットを作成 Desktop にでも貼り付ける&lt;/li&gt;
-&lt;li&gt;My Computer で右クリック -&amp;gt; プロパティ -&amp;gt; 詳細設定タブ -&amp;gt; 環境変数 -&amp;gt; ○○のユーザー環境変数 の新規でHOMEを作成する
-
-&lt;ul&gt;
-&lt;li&gt;変数名： HOME&lt;/li&gt;
-&lt;li&gt;変数値： F:/home/ユーザー名/&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;1.で作成したショートカットを右クリックしてプロパティから、作業フォルダを %HOME% と入力する（%HOME% は 2. 作成した変数名HOMEの変数値を入れるという意味）&lt;/li&gt;
-&lt;li&gt;emacsを起動して Ctrl + x, Ctrl + f をタイプしたあとに ~/ を入力して、HOME に移動するか確認して終了&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;4-emacs-の環境を設定する-設定ファイルは-emacs-d-init-el:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;4. Emacs の環境を設定する (設定ファイルは ~/.emacs.d/init.el )&lt;/h1&gt;
-
-&lt;p&gt;Emacs で設定する環境変数は、以下の通り３つある。本設定が上手くいっていない/理解していないと command not found で悩むかも。
-1.  PATH
-    -   emacs で shell (M-x shell)を利用する際に使う。端末(cmd, minttyなど)で利用する場合と同じ。
-        -   ※ M は Alt キー のこと
-2.  exec-path
-    -   emacs のコマンド（grep, shell, diff, dired-mode 中の圧縮/解凍など）を利用する際に使う。
-3.  load-path
-    -   emacs-lisp（*.el、*.elc) を利用する際に使う。&lt;/p&gt;
-
-&lt;h2 id=&#34;path-exec-path-に同じ設定をする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;PATH, exec-path に同じ設定をする&lt;/h2&gt;
-
-&lt;p&gt;cygwin から emacs を立ち上げた場合と、GUIから emacs を立ち上げた場合は、異なる環境変数が利用されるため、混乱を避けるためにも PATH, exec-path に同じ設定をする
-1.  違いを確かめて見たい場合は、双方で立ち上げた emacs の &lt;strong&gt;scratch&lt;/strong&gt; で以下をタイプして、それぞれの行末で（Ctrl-j) をタイプして式を評価して見ましょう。
-    1.  (getenv &amp;ldquo;PATH&amp;rdquo;)　
-    2.  exec-path
-2.  修正するには、emacs の設定ファイルに以下のように PATH と exec-path を記述する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    (let ((my-emacs-path (list
-             &amp;quot;/bin&amp;quot;
-             &amp;quot;/usr/bin&amp;quot;
-             &amp;quot;/usr/local/bin&amp;quot;)))
-     (setq exec-path my-emacs-path)
-     (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
+require(&#39;underscore&#39;); 
+Error: Cannot find module &#39;underscore&#39;
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:362:17)
+    at require (module.js:378:17)
+    at repl:1:1
+    at REPLServer.self.eval (repl.js:109:21)
+    at rli.on.self.bufferedCmd (repl.js:258:20)
+    at REPLServer.self.eval (repl.js:116:5)
+    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
+    at Interface.EventEmitter.emit (events.js:96:17)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;補足:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;補足&lt;/h3&gt;
+&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
 
-&lt;p&gt;cygwin から呼び出した場合は、/etc/profile の PATH に加えて、Windows の環境変数 PATH 、/home/ユーザー名/シェル設定ファイル（ .zshrc または .bashrc ) のPATH が読み込まれる （優先されるのは、先に記述されている方）。GUIからの場合は、Windows の環境変数 PATH が exec-path にも適用される。&lt;/p&gt;
+&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
 
-&lt;h3 id=&#34;参考:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ergoemacs.org/emacs/emacs_env_var_paths.html&#34;&gt;http://ergoemacs.org/emacs/emacs_env_var_paths.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;gui-から立ち上げる-emacs-の-m-x-shell-を-コマンドプロンプトから-zsh-にする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;GUI から立ち上げる emacs の M-x shell を コマンドプロンプトから zsh にする&lt;/h2&gt;
-
-&lt;p&gt;cygwin から emacs を立ち上げて、 M-x shell で呼び出されるのは、[2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する] を設定していた場合 zsh が呼び出されるが GUI の emacs から M-x shell で呼び出されるのはコマンドプロンプトになる。理由は、cygwin からの場合は、cygwinの環境変数のSHELL(zsh.exe)が利用される一方、GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が利用されるため。
-1.  設定ファイルに以下を書き込む&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    (setq shell-file-name &amp;quot;zsh&amp;quot;)
-    (setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
-    (setq explicit-shell-file-name shell-file-name)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;参考-1:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/NTEmacsWithCygwin&#34;&gt;NTEmacsWithCygwin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&#34;&gt;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;デフォルトの-load-path-に自分がインストールする-emacs-lisp-el-elc-置場を追記しておく:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;デフォルトの load-path に自分がインストールする emacs-lisp（*.el、*.elc) 置場を追記しておく&lt;/h2&gt;
+&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;~/.emacs.d/lisp を自分がインストールする emacs-lisp（*.el、*.elc) 置場として、load-path に追加する。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;~/.emacs.d/lisp 以下のサブディレクトリも自動で追記してくれる&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;npm root -g
+// output =&amp;gt; /usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;p&gt;(let ((default-directory &amp;ldquo;~/.emacs.d/lisp/&amp;ldquo;))
-  (normal-top-level-add-subdirs-to-load-path))&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
-
-&lt;h3 id=&#34;参考-2:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/LoadPath&#34;&gt;http://emacswiki.org/emacs/LoadPath&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;まとめ:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;まとめ&lt;/h1&gt;
-
-&lt;p&gt;以下にここまで記述した init.el の設定を残しておく。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;;; Set PATH and exec-path
-(let ((my-emacs-path (list
-                      &amp;quot;/bin&amp;quot;
-                      &amp;quot;/usr/bin&amp;quot;
-                      &amp;quot;/usr/local/bin&amp;quot;)))
-  (setq exec-path my-emacs-path)
-  (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
-
-;; Add my lisp dir to load-path
-(let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
-  (normal-top-level-add-subdirs-to-load-path))            
-
-;; Set SHELL Value
-(setq shell-file-name &amp;quot;zsh&amp;quot;)
-(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
-(setq explicit-shell-file-name shell-file-name)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;日本語の設定や、キーカスタマイズなど、その他設定することは、まだまだたくさんありますが、それはまた次回ということで Windows に Linux環境の構築を〆る。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>nkf で直す文字化け</title>
-      <link>http://syati.github.io/blog/post/nkf/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/nkf/</guid>
-      <description>
-
-&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
-
-&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
-
-&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
-
-&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
-
-&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
-output: Shift_JIS
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
@@ -921,58 +740,6 @@ output: Shift_JIS
 &lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「マウス」-&amp;gt; 「スクロールの方向：ナチュラル」のチェックを外す&lt;/li&gt;
 &lt;/ol&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
-      <link>http://syati.github.io/blog/post/node_path/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/node_path/</guid>
-      <description>
-
-&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
-
-&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
-
-&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
-Syati% node 
-
-require(&#39;underscore&#39;); 
-Error: Cannot find module &#39;underscore&#39;
-    at Function.Module._resolveFilename (module.js:338:15)
-    at Function.Module._load (module.js:280:25)
-    at Module.require (module.js:362:17)
-    at require (module.js:378:17)
-    at repl:1:1
-    at REPLServer.self.eval (repl.js:109:21)
-    at rli.on.self.bufferedCmd (repl.js:258:20)
-    at REPLServer.self.eval (repl.js:116:5)
-    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
-    at Interface.EventEmitter.emit (events.js:96:17)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
-
-&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
-
-&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm root -g
-// output =&amp;gt; /usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
 </description>
     </item>
     
@@ -1217,6 +984,282 @@ echo &#34;hoge&#34;
     </item>
     
     <item>
+      <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
+      <link>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</guid>
+      <description>
+
+&lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;
+
+&lt;h1 id=&#34;手順:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;手順&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt; ここにいってソースコードをDLしてくる（git cloneでもOK）&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ダウンロードしたファイルのディレクトリで make する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ~/Downloads/tmux-MacOSX-pasteboard
+make reattach-to-user-namespace
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;which reattach-to-user-namespace
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;これでワーニングもサヨウナラ&lt;/p&gt;
+
+&lt;h1 id=&#34;参考:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
+      <link>http://syati.github.io/blog/post/make_windows_emacs/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/make_windows_emacs/</guid>
+      <description>
+
+&lt;p&gt;最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、否応なく Windows を利用しなければいけない時がある Syati です。 そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば AutoHotkey もあるのですが、それは、また次の機会に。今回は、Cygwin、Zsh、NTEmacs で Windows に Linux環境を構築をする。&lt;/p&gt;
+
+&lt;h1 id=&#34;1-インストール:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;1. インストール&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.cygwin.com/&#34;&gt;cygwin&lt;/a&gt; のインストール
+
+&lt;ol&gt;
+&lt;li&gt;注意がでるけどインストールディレクトリをドライブのRoot( F:/ ) にでもする&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;デフォルトから追加で、とりあえずインストールするパッケージは以下の通り（あとは好きなパッケケージを入れる）
+
+&lt;ol&gt;
+&lt;li&gt;Archive
+
+&lt;ol&gt;
+&lt;li&gt;p7zip&lt;/li&gt;
+&lt;li&gt;unzip&lt;/li&gt;
+&lt;li&gt;zip&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Devel
+
+&lt;ol&gt;
+&lt;li&gt;gcc-core&lt;/li&gt;
+&lt;li&gt;gcc-g++&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Net
+
+&lt;ol&gt;
+&lt;li&gt;openssh&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Shells
+
+&lt;ol&gt;
+&lt;li&gt;zsh&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Web
+
+&lt;ol&gt;
+&lt;li&gt;wget&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://sourceforge.jp/projects/gnupack/&#34;&gt;gnupack emacs only&lt;/a&gt; でインストール
+
+&lt;ol&gt;
+&lt;li&gt;ダウンロードしたファイルを解凍&lt;/li&gt;
+&lt;li&gt;解凍されたディレクトリの中身(bin,etc,info などなど）をすべてコピーして cygwin をインストールしたディレクトリの F:/usr/local/ に上書きする&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;2-cygwin-のデフォルト-shell-を-zsh-に切り替え-初期設定する:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;/etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する&lt;/li&gt;
+&lt;li&gt;Cygwin が MS-DOS形式のパスに対して Warning を出力するので消しておく
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/takuya_1st/20110423/1303586388&#34;&gt;cygwin がMS-DOS形式のパスをWarningするので消した&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Cygwin Terminal ショートカットから Terminal を起動すると zsh startup が立ち上がるので (0) Exit, creating the &amp;#x2026;.. を選択（0 をタイプする）&lt;/li&gt;
+&lt;li&gt;HOME に .zshrc が作成されていると思うが、中身を消して、以下のサイトから設定ファイルをコピペして利用する
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://news.mynavi.jp/column/zsh/024/index.html&#34;&gt;漢のzsh 24 グッバイ野郎ども! コピペではじめるzshファイナル&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;zsh についても詳しく書かれているので、勉強しておく&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;3-emacs-の作業場所-home-を設定する:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;3. Emacs の作業場所(HOME) を設定する&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;F:/usr/local/bin の中にある runemacs.exe のショートカットを作成 Desktop にでも貼り付ける&lt;/li&gt;
+&lt;li&gt;My Computer で右クリック -&amp;gt; プロパティ -&amp;gt; 詳細設定タブ -&amp;gt; 環境変数 -&amp;gt; ○○のユーザー環境変数 の新規でHOMEを作成する
+
+&lt;ul&gt;
+&lt;li&gt;変数名： HOME&lt;/li&gt;
+&lt;li&gt;変数値： F:/home/ユーザー名/&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;1.で作成したショートカットを右クリックしてプロパティから、作業フォルダを %HOME% と入力する（%HOME% は 2. 作成した変数名HOMEの変数値を入れるという意味）&lt;/li&gt;
+&lt;li&gt;emacsを起動して Ctrl + x, Ctrl + f をタイプしたあとに ~/ を入力して、HOME に移動するか確認して終了&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;4-emacs-の環境を設定する-設定ファイルは-emacs-d-init-el:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;4. Emacs の環境を設定する (設定ファイルは ~/.emacs.d/init.el )&lt;/h1&gt;
+
+&lt;p&gt;Emacs で設定する環境変数は、以下の通り３つある。本設定が上手くいっていない/理解していないと command not found で悩むかも。
+1.  PATH
+    -   emacs で shell (M-x shell)を利用する際に使う。端末(cmd, minttyなど)で利用する場合と同じ。
+        -   ※ M は Alt キー のこと
+2.  exec-path
+    -   emacs のコマンド（grep, shell, diff, dired-mode 中の圧縮/解凍など）を利用する際に使う。
+3.  load-path
+    -   emacs-lisp（*.el、*.elc) を利用する際に使う。&lt;/p&gt;
+
+&lt;h2 id=&#34;path-exec-path-に同じ設定をする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;PATH, exec-path に同じ設定をする&lt;/h2&gt;
+
+&lt;p&gt;cygwin から emacs を立ち上げた場合と、GUIから emacs を立ち上げた場合は、異なる環境変数が利用されるため、混乱を避けるためにも PATH, exec-path に同じ設定をする
+1.  違いを確かめて見たい場合は、双方で立ち上げた emacs の &lt;strong&gt;scratch&lt;/strong&gt; で以下をタイプして、それぞれの行末で（Ctrl-j) をタイプして式を評価して見ましょう。
+    1.  (getenv &amp;ldquo;PATH&amp;rdquo;)　
+    2.  exec-path
+2.  修正するには、emacs の設定ファイルに以下のように PATH と exec-path を記述する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    (let ((my-emacs-path (list
+             &amp;quot;/bin&amp;quot;
+             &amp;quot;/usr/bin&amp;quot;
+             &amp;quot;/usr/local/bin&amp;quot;)))
+     (setq exec-path my-emacs-path)
+     (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;補足:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;補足&lt;/h3&gt;
+
+&lt;p&gt;cygwin から呼び出した場合は、/etc/profile の PATH に加えて、Windows の環境変数 PATH 、/home/ユーザー名/シェル設定ファイル（ .zshrc または .bashrc ) のPATH が読み込まれる （優先されるのは、先に記述されている方）。GUIからの場合は、Windows の環境変数 PATH が exec-path にも適用される。&lt;/p&gt;
+
+&lt;h3 id=&#34;参考:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ergoemacs.org/emacs/emacs_env_var_paths.html&#34;&gt;http://ergoemacs.org/emacs/emacs_env_var_paths.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;gui-から立ち上げる-emacs-の-m-x-shell-を-コマンドプロンプトから-zsh-にする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;GUI から立ち上げる emacs の M-x shell を コマンドプロンプトから zsh にする&lt;/h2&gt;
+
+&lt;p&gt;cygwin から emacs を立ち上げて、 M-x shell で呼び出されるのは、[2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する] を設定していた場合 zsh が呼び出されるが GUI の emacs から M-x shell で呼び出されるのはコマンドプロンプトになる。理由は、cygwin からの場合は、cygwinの環境変数のSHELL(zsh.exe)が利用される一方、GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が利用されるため。
+1.  設定ファイルに以下を書き込む&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    (setq shell-file-name &amp;quot;zsh&amp;quot;)
+    (setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
+    (setq explicit-shell-file-name shell-file-name)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;参考-1:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/NTEmacsWithCygwin&#34;&gt;NTEmacsWithCygwin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&#34;&gt;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;デフォルトの-load-path-に自分がインストールする-emacs-lisp-el-elc-置場を追記しておく:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;デフォルトの load-path に自分がインストールする emacs-lisp（*.el、*.elc) 置場を追記しておく&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;~/.emacs.d/lisp を自分がインストールする emacs-lisp（*.el、*.elc) 置場として、load-path に追加する。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;~/.emacs.d/lisp 以下のサブディレクトリも自動で追記してくれる&lt;/p&gt;
+
+&lt;p&gt;(let ((default-directory &amp;ldquo;~/.emacs.d/lisp/&amp;ldquo;))
+  (normal-top-level-add-subdirs-to-load-path))&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;参考-2:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/LoadPath&#34;&gt;http://emacswiki.org/emacs/LoadPath&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;まとめ:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;まとめ&lt;/h1&gt;
+
+&lt;p&gt;以下にここまで記述した init.el の設定を残しておく。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;;; Set PATH and exec-path
+(let ((my-emacs-path (list
+                      &amp;quot;/bin&amp;quot;
+                      &amp;quot;/usr/bin&amp;quot;
+                      &amp;quot;/usr/local/bin&amp;quot;)))
+  (setq exec-path my-emacs-path)
+  (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
+
+;; Add my lisp dir to load-path
+(let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
+  (normal-top-level-add-subdirs-to-load-path))            
+
+;; Set SHELL Value
+(setq shell-file-name &amp;quot;zsh&amp;quot;)
+(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
+(setq explicit-shell-file-name shell-file-name)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;日本語の設定や、キーカスタマイズなど、その他設定することは、まだまだたくさんありますが、それはまた次回ということで Windows に Linux環境の構築を〆る。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>nkf で直す文字化け</title>
+      <link>http://syati.github.io/blog/post/nkf/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/nkf/</guid>
+      <description>
+
+&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
+
+&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
+
+&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
+
+&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
+
+&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
+output: Shift_JIS
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Google Fonts をローカルで利用する</title>
       <link>http://syati.github.io/blog/post/typecatchar/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1252,45 +1295,6 @@ sudo apt-get install typecatcher
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&#34;&gt;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
-      <link>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</guid>
-      <description>
-
-&lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;
-
-&lt;h1 id=&#34;手順:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;手順&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt; ここにいってソースコードをDLしてくる（git cloneでもOK）&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;ダウンロードしたファイルのディレクトリで make する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd ~/Downloads/tmux-MacOSX-pasteboard
-make reattach-to-user-namespace
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;which reattach-to-user-namespace
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;これでワーニングもサヨウナラ&lt;/p&gt;
-
-&lt;h1 id=&#34;参考:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
