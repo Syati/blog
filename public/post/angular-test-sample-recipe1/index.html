@@ -122,54 +122,60 @@
 <h2 id="ubuntu:d28091e7273529f0913311111ae23332">ubuntu</h2>
 
 <ul>
-<li>node &amp; npm
-<pre><code class="language-bash">
-sudo apt-get install nodejs
-sudo apt-get install npm
-</code></pre></li>
+<li>node &amp; npm</li>
 </ul>
+
+<pre><code class="language-bash">
+$ sudo apt-get install nodejs
+$ sudo apt-get install npm
+</code></pre>
 
 <h2 id="mac:d28091e7273529f0913311111ae23332">mac</h2>
 
 <ul>
-<li>node &amp; npm
-<pre><code class="language-bash">
-brew install node
-</code></pre></li>
+<li>node &amp; npm</li>
 </ul>
+
+<pre><code class="language-bash">
+$ brew install node
+</code></pre>
 
 <h2 id="共通:d28091e7273529f0913311111ae23332">共通</h2>
 
 <ul>
-<li><p>bower
-<pre><code class="language-bash">
-sudo npm install -g bower
-</code></pre></p></li>
-
-<li><p>karma
-<pre><code class="language-bash">
-sudo npm install -g karma-cli
-</code></pre></p></li>
+<li>bower</li>
 </ul>
+
+<pre><code class="language-bash">
+$ sudo npm install -g bower
+</code></pre>
+
+<ul>
+<li>karma</li>
+</ul>
+
+<pre><code class="language-bash">
+$ sudo npm install -g karma-cli
+</code></pre>
 
 <h1 id="実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332">実施：サンプルを CLONE して TEST</h1>
 
 <p>github にサンプルを書いたので clone する。
 <pre><code class="language-bash">
-git clone git@github.com:Syati/angular-test-sample.git
+$ git clone git@github.com:Syati/angular-test-sample.git
 </code></pre></p>
 
 <h2 id="prj-依存環境を入れる:d28091e7273529f0913311111ae23332">prj 依存環境を入れる</h2>
 
 <pre><code class="language-bash">
-cd your_clone_path/angular-test-sample/controller/recipe1
-npm install
+$ cd your_clone_path/angular-test-sample/controller/recipe1
+$ npm install
 </code></pre>
 
 <h2 id="test-実行する:d28091e7273529f0913311111ae23332">test 実行する</h2>
 
 <pre><code class="language-bash">
-npm test
+$ npm test
 </code></pre>
     
 
@@ -209,8 +215,8 @@ PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
 <p>js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。</p>
 
 <pre><code class="language-bash">
-bower init  # コマンドで初期設定 bower.json を作成
-bower install angular --save　# または --save-dev
+$ bower init  # コマンドで初期設定 bower.json を作成
+$ bower install angular --save　# または --save-dev
 </code></pre>
  
 
@@ -242,8 +248,8 @@ bower install angular --save　# または --save-dev
 <h2 id="2-npm:d28091e7273529f0913311111ae23332">#2 npm</h2>
 
 <pre><code class="language-bash">
-npm init 
-npm install jasmine --save-dev　# または --save
+$ npm init 
+$ npm install jasmine --save-dev　# または --save
 </code></pre>
 
 <p>上記を実施することで以下のファイルを作成する。</p>

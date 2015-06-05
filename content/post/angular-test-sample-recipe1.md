@@ -20,48 +20,52 @@ js ってテストしにくいよねってことで今流行りの angular で u
 ## ubuntu
 
 - node & npm
-  <pre><code class="language-bash">
-    sudo apt-get install nodejs
-    sudo apt-get install npm
-  </code></pre>
+
+<pre><code class="language-bash">
+$ sudo apt-get install nodejs
+$ sudo apt-get install npm
+</code></pre>
 
 ## mac
 
 - node & npm
-  <pre><code class="language-bash">
-    brew install node
-  </code></pre>
+
+<pre><code class="language-bash">
+$ brew install node
+</code></pre>
 
 ## 共通
 
 - bower
-  <pre><code class="language-bash">
-    sudo npm install -g bower
-  </code></pre>
+
+<pre><code class="language-bash">
+$ sudo npm install -g bower
+</code></pre>
 
 - karma
-  <pre><code class="language-bash">
-    sudo npm install -g karma-cli
-  </code></pre>
+
+<pre><code class="language-bash">
+$ sudo npm install -g karma-cli
+</code></pre>
 
 # 実施：サンプルを CLONE して TEST
 
 github にサンプルを書いたので clone する。
 <pre><code class="language-bash">
-git clone git@github.com:Syati/angular-test-sample.git
+$ git clone git@github.com:Syati/angular-test-sample.git
 </code></pre>
 
 ## prj 依存環境を入れる
 
 <pre><code class="language-bash">
-cd your_clone_path/angular-test-sample/controller/recipe1
-npm install
+$ cd your_clone_path/angular-test-sample/controller/recipe1
+$ npm install
 </code></pre>
 
 ## test 実行する
 
 <pre><code class="language-bash">
-npm test
+$ npm test
 </code></pre>
     
 以下のような出力で、テストが成功する。
@@ -98,8 +102,8 @@ PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
 js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。
 
 <pre><code class="language-bash">
-bower init  # コマンドで初期設定 bower.json を作成
-bower install angular --save　# または --save-dev
+$ bower init  # コマンドで初期設定 bower.json を作成
+$ bower install angular --save　# または --save-dev
 </code></pre>
  
 
@@ -119,8 +123,8 @@ bower install angular --save　# または --save-dev
 ## #2 npm
 
 <pre><code class="language-bash">
-npm init 
-npm install jasmine --save-dev　# または --save
+$ npm init 
+$ npm install jasmine --save-dev　# または --save
 </code></pre>
 
 上記を実施することで以下のファイルを作成する。

@@ -143,32 +143,6 @@
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/" itemprop="url">Angular test sample 1</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		js ってテストしにくいよねってことで今流行りの angular で unit test する。 最初なので、事細かに説明するつもりで書いてみる。 サンプルは以下から git clone してください。ソースと突き合わせながら見るといいかも。 https://github.com/Syati/angular-test-sample 準備 ubuntu node &amp; npm sudo apt-get install nodejs sudo apt-get install npm mac node &amp; npm brew install node 共通 bower sudo npm install -g bower karma sudo npm install -g karma-cli 実施：サンプルを CLONE して TEST github にサンプルを書いたので clone する。 git clone git@github.com:Syati/angular-test-sample.git prj 依存環境を入れる cd your_clone_path/angular-test-sample/controller/recipe1 npm install test 実行する npm test 以下のような出力で、テストが成功する。 WARN [karma]:
-		<a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/" class="more-link">Read on →</a>
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
 		<a href="http://syati.github.io/blog/categories/emacs"> Emacs </a>,
 	
 
@@ -186,6 +160,58 @@
 	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/coffee_script/" itemprop="url">Emacs で CoffeeScript を AutoComplete する</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		Coffee-modeでauto-completeを使えるようにする を参考に、coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。 必要なパッケージ M-x package-list-package から 以下をインストールする jquery-doc 設定 Coffee-modeでauto-completeを使えるようにする を参考にして以下の部分を変更してあげる (add-hook 'coffee-mode-hook '(lambda () (jquery-doc-setup) ;; ここに jquery-doc を追加する (add-to-list 'ac-dictionary-files &quot;~/.emacs.d/ac-dict/js2-mode&quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある ))
+		
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/" itemprop="url">Angular test sample 1</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		js ってテストしにくいよねってことで今流行りの angular で unit test する。 最初なので、事細かに説明するつもりで書いてみる。 サンプルは以下から git clone してください。ソースと突き合わせながら見るといいかも。 https://github.com/Syati/angular-test-sample 準備 ubuntu node &amp; npm $ sudo apt-get install nodejs $ sudo apt-get install npm mac node &amp; npm $ brew install node 共通 bower $ sudo npm install -g bower karma $ sudo npm install -g karma-cli 実施：サンプルを CLONE して TEST github にサンプルを書いたので clone する。 $ git clone git@github.com:Syati/angular-test-sample.git prj 依存環境を入れる $ cd your_clone_path/angular-test-sample/controller/recipe1 $ npm
+		<a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="http://syati.github.io/blog/categories/emacs"> Emacs </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://syati.github.io/blog/post/emacs_256/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/emacs_256/" itemprop="url">Emacs を 256色で起動する</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		最近は、さくらVPSで色々と遊んでいますので、そのメモ。 .bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。 alias emacs='TERM=xterm-256color emacs' emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から 以下のコマンドを実行しましょう。
 		
 	</div>
 </article>
@@ -231,19 +257,24 @@
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/emacs"> Emacs </a>
+		<a href="http://syati.github.io/blog/categories/emacs"> Emacs </a>,
+	
+
+	
+	
+	    <a href="http://syati.github.io/blog/categories/scala"> Scala </a>
 	
 
 
 </div>
 		
-			<span class="comments"><a href="http://syati.github.io/blog/post/emacs_256/#disqus_thread">Comments</a></span>
+			<span class="comments"><a href="http://syati.github.io/blog/post/make_scala_env/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/emacs_256/" itemprop="url">Emacs を 256色で起動する</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/make_scala_env/" itemprop="url">Scala の開発環境</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		最近は、さくらVPSで色々と遊んでいますので、そのメモ。 .bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。 alias emacs='TERM=xterm-256color emacs' emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から 以下のコマンドを実行しましょう。
-		
+		os ubuntu 12.04 emacs 24.3.1 scala 開発環境 java のインストール jdk をインストール sudo apt-get install default-jdk 以下のコマンドでエラーが無いことを確認 java -version javac -version scala のインストール scala のダウンロード http://www.scala-lang.org/download/ sudo apt-get install scala でも可能だが version が古い 解凍ファイルを usr/local に上書きする ターミナルから以下のコマンドで、インストールできているか確認する scala -version ENSIME 導入 scala-mode2 以下から tool を clone する git clone https://github.com/hvesalai/scala-mode2.git コピーした scala-mode に移動して make コマンドする カレントディレクトリで .elc ファイルを作成される init.el に書く加える (add-to-list 'load-path &quot;/path/to/scala-mode2/&quot;) (require 'scala-mode2) scala-mode 補助 yasnipet がない場合は、以下から clone する
+		<a href="http://syati.github.io/blog/post/make_scala_env/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -283,24 +314,19 @@
 
 	
 	
-		<a href="http://syati.github.io/blog/categories/emacs"> Emacs </a>,
-	
-
-	
-	
-	    <a href="http://syati.github.io/blog/categories/scala"> Scala </a>
+	    <a href="http://syati.github.io/blog/categories/shell"> Shell </a>
 	
 
 
 </div>
 		
-			<span class="comments"><a href="http://syati.github.io/blog/post/make_scala_env/#disqus_thread">Comments</a></span>
+			<span class="comments"><a href="http://syati.github.io/blog/post/nkf/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/make_scala_env/" itemprop="url">Scala の開発環境</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/nkf/" itemprop="url">nkf で直す文字化け</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		os ubuntu 12.04 emacs 24.3.1 scala 開発環境 java のインストール jdk をインストール sudo apt-get install default-jdk 以下のコマンドでエラーが無いことを確認 java -version javac -version scala のインストール scala のダウンロード http://www.scala-lang.org/download/ sudo apt-get install scala でも可能だが version が古い 解凍ファイルを usr/local に上書きする ターミナルから以下のコマンドで、インストールできているか確認する scala -version ENSIME 導入 scala-mode2 以下から tool を clone する git clone https://github.com/hvesalai/scala-mode2.git コピーした scala-mode に移動して make コマンドする カレントディレクトリで .elc ファイルを作成される init.el に書く加える (add-to-list 'load-path &quot;/path/to/scala-mode2/&quot;) (require 'scala-mode2) scala-mode 補助 yasnipet がない場合は、以下から clone する
-		<a href="http://syati.github.io/blog/post/make_scala_env/" class="more-link">Read on →</a>
+		Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。開いてびっくり文字化け。全部 utf-8 に修正してしまいます。 利用するもの nkf ただこれだけ インストール パッケージ管理でいれるのが楽です。無い場合は、nkf Network Kanji Filter からダウンロードして、make してください。 利用例 文字コードを判定する場合 % nkf -g shiftjis.txt output: Shift_JIS 文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合 % nkf -w -Lu shiftjis.txt 文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合 % nkf -w --overwrite -Lu shiftjis.txt 参考 Linux上で文字コードを変換できるコマンドnkfのオプション一覧 文字コード変換コマンドnkfの使い方まとめ Linux 6.9. 文字コードと改行コードの変換 【nkf】
+		
 	</div>
 </article>
 
@@ -335,34 +361,8 @@
 	</div>
 	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/make_windows_emacs/" itemprop="url">Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、否応なく Windows を利用しなければいけない時がある Syati です。 そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば AutoHotkey もあるのですが、それは、また次の機会に。今回は、Cygwin、Zsh、NTEmacs で Windows に Linux環境を構築をする。 1. インストール cygwin のインストール 注意がでるけどインストールディレクトリをドライブのRoot( F:/ ) にでもする デフォルトから追加で、とりあえずインストールするパッケージは以下の通り（あとは好きなパッケケージを入れる） Archive p7zip unzip zip Devel gcc-core gcc-g++ Net openssh Shells zsh Web wget gnupack emacs only でインストール ダウンロードしたファイルを解凍 解凍されたディレクトリの中身(bin,etc,info などなど）をすべてコピーして cygwin をインストールしたディレクトリの F:/usr/local/ に上書きする 2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する /etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する Cygwin が MS-DOS形式のパスに対して Warning を出力するので消しておく cygwin がMS-DOS形式のパスをWarningするので消した Cygwin Terminal ショートカットから Terminal を起動すると zsh startup が立ち上がるので (0) Exit, creating the &#x2026;..
+		最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、 否応なく Windows を利用しなければいけない時がある Syati です。 そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば AutoHotkey もあるのですが、それは、また次の機会に。 今回は、Cygwin、Zsh、NTEmacs でWindows に Linux環境を構築をする。 1. インストール cygwin のインストール 注意がでるけどインストールディレクトリをドライブのRoot( F:/ ) にでもする デフォルトから追加で、とりあえずインストールするパッケージは 以下の通り（あとは好きなパッケケージを入れる） Archive p7zip unzip zip Devel gcc-core gcc-g++ Net openssh Shells zsh Web wget gnupack emacs only でインストール ダウンロードしたファイルを解凍 解凍されたディレクトリの中身(bin,etc,info などなど）をすべてコピーして cygwin をインストールしたディレクトリの F:/usr/local/ に上書きする 2. cygwin のデフォルト Shell を zsh に切り替え、初期設定 /etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する Cygwin が MS-DOS形式のパスに対して Warning を出力するので消しておく cygwin がMS-DOS形式のパスをWarningするので消した Cygwin Terminal ショートカットから Terminal を起動すると zsh startup が立ち上がるので (0) Exit, creating the &#x2026;..
 		<a href="http://syati.github.io/blog/post/make_windows_emacs/" class="more-link">Read on →</a>
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-	    <a href="http://syati.github.io/blog/categories/shell"> Shell </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://syati.github.io/blog/post/nkf/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/nkf/" itemprop="url">nkf で直す文字化け</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。開いてびっくり文字化け。全部 utf-8 に修正してしまいます。 利用するもの nkf ただこれだけ インストール パッケージ管理でいれるのが楽です。無い場合は、nkf Network Kanji Filter からダウンロードして、make してください。 利用例 文字コードを判定する場合 % nkf -g shiftjis.txt output: Shift_JIS 文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合 % nkf -w -Lu shiftjis.txt 文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合 % nkf -w --overwrite -Lu shiftjis.txt 参考 Linux上で文字コードを変換できるコマンドnkfのオプション一覧 文字コード変換コマンドnkfの使い方まとめ Linux 6.9. 文字コードと改行コードの変換 【nkf】
-		
 	</div>
 </article>
 
