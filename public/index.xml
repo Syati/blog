@@ -7,7 +7,134 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Thu, 04 Jun 2015 23:09:38 JST</updated>
+    <updated>Fri, 05 Jun 2015 21:55:31 JST</updated>
+    
+    <item>
+      <title>Hugo で github.io にブログを簡単に立ち上げる Part 1</title>
+      <link>http://syati.github.io/blog/post/create_hugo/</link>
+      <pubDate>Fri, 05 Jun 2015 21:55:31 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/create_hugo/</guid>
+      <description>
+
+&lt;p&gt;WordPress でブログをつくっていましたが、記事投稿が面倒くさなって続かない。
+なぜかと考えた時にテキストで書いたものを簡単に POST できないからである。
+過去に org2blog などを試し、簡単になった！！と喜んでいた時期もあったが、
+WordPress の Version Up などで POST できなくり、それっきり・・・。&lt;/p&gt;
+
+&lt;p&gt;今回は、ついに上記のことを打開できる策を見つけたのだ。
+それが &lt;strong&gt;Hugo で github.io 上にブログを立ち上げることだ。&lt;/strong&gt;
+何が良いかといえば、markdown でかけて、github に push するだけでブログ
+が更新されることだ。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://gohugo.io/overview/quickstart/&#34;&gt;Hugo Quickstart Guide&lt;/a&gt; にならって
+セットアップ手順を記していく。Part 1 では、まずはブログをローカルに構築する。
+Part 2 で、github.io にブログを立ち上げる。&lt;/p&gt;
+
+&lt;h1 id=&#34;step-1-インストールしましょう:21ff63570566c64813270f2340abd251&#34;&gt;Step 1 インストールしましょう&lt;/h1&gt;
+
+&lt;h2 id=&#34;osx-の場合:21ff63570566c64813270f2340abd251&#34;&gt;OSX の場合&lt;/h2&gt;
+
+&lt;p&gt;以下のコマンドでおしまい。
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ brew install hugo
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;ubuntu-の場合:21ff63570566c64813270f2340abd251&#34;&gt;Ubuntu の場合&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;Hugo relase&lt;/a&gt; から適したものをDLして以下のコマンドを実行する。
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ sudo dpkg -i hugo_0.14_amd64.deb　# 自分に適したパッケージを選んでね
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-2-ブログをつくろう:21ff63570566c64813270f2340abd251&#34;&gt;Step 2 ブログをつくろう&lt;/h1&gt;
+
+&lt;p&gt;以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ hugo new site ./yourblog
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;雛形はこんな感じになる。
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+yourblog/
+├── archetypes  # 新規記事を作成した際に利用される雛形を置く場所
+├── config.toml # 設定を書くファイル
+├── content     # 記事などが入る場所
+├── data        # 今回は利用しない（サイトを生成するときに利用する DATA などを置く。詳しくは &lt;a href=&#34;http://gohugo.io/extras/datafiles/&#34;&gt;http://gohugo.io/extras/datafiles/&lt;/a&gt; ）
+├── layouts     # 今回は利用しない（サイトを生成するときの雛形）
+└── static      # 今回は利用しない（サイトで利用する js, css, images などを置く）
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-3-新しい記事をつくろう:21ff63570566c64813270f2340abd251&#34;&gt;Step 3 新しい記事をつくろう&lt;/h1&gt;
+
+&lt;p&gt;yourblog ディレクトリで以下のコマンド実行して、新規記事を作成する。
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ hugo new post/hello.md
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;こんな感じで新規記事が作成される。
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+content/
+└── post
+    └── hello.md
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;hello.md の中身はこんな感じ。
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;
++++
+date = &amp;ldquo;2015-06-05T23:04:20+09:00&amp;rdquo;
+draft = true # この行を消せば step 5 の --buildDrafts オプションはいりません
+title = &amp;ldquo;hello&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;+++&lt;/p&gt;
+
+&lt;p&gt;&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-4-テーマをインストールしよう:21ff63570566c64813270f2340abd251&#34;&gt;Step 4 テーマをインストールしよう&lt;/h1&gt;
+
+&lt;p&gt;自分好みのテーマをさがすために、テーマ一式いれてみる。yourblog ディレクトリで以下のコマンドを実行する。
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ git clone --recursive &lt;a href=&#34;https://github.com/spf13/hugoThemes&#34;&gt;https://github.com/spf13/hugoThemes&lt;/a&gt; themes
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-5-ブログを見てみよう:21ff63570566c64813270f2340abd251&#34;&gt;Step 5 ブログを見てみよう&lt;/h1&gt;
+
+&lt;p&gt;とりあえず準備はととのったので、サーバーを立ち上げてブログを見てみる。
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ hugo server --theme=hyde --buildDrafts&lt;/p&gt;
+
+&lt;p&gt;1 of 1 draft rendered
+0 future content
+1 pages created
+0 paginator pages created
+0 tags created
+0 categories created
+in 7 ms
+Serving pages from /home/mizuki-y/Documents/yourblog/public
+Web Server is available at &lt;a href=&#34;http://127.0.0.1:1313/&#34;&gt;http://127.0.0.1:1313/&lt;/a&gt;
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://127.0.0.1:1313/&#34;&gt;http://127.0.0.1:1313/&lt;/a&gt; にアクセスするとブログが見れるようになっている。&lt;/p&gt;
+
+&lt;p&gt;theme を以下のように変更して、自分の好きなものを選ぼう。
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ hugo server --theme=slim --buildDrafts
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;コマンドオプションについて
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;--theme&lt;/strong&gt;: themes ディレクトリに入っているディレクトリ名を指定してあげる&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;--buildDrafts&lt;/strong&gt;: draft ステータスのものを表示するためのオプション&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ブログ構築完成。&lt;/p&gt;
+
+&lt;p&gt;Part 2 で、github.io にブログを立ち上げる。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Emacs で CoffeeScript を AutoComplete する</title>
@@ -409,149 +536,6 @@ describe(&#39;Unit: app moudle &#39;, function(){
     </item>
     
     <item>
-      <title>nkf で直す文字化け</title>
-      <link>http://syati.github.io/blog/post/nkf/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/nkf/</guid>
-      <description>
-
-&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
-
-&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
-
-&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
-
-&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
-
-&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
-output: Shift_JIS
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Scala の開発環境</title>
-      <link>http://syati.github.io/blog/post/make_scala_env/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/make_scala_env/</guid>
-      <description>
-
-&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ubuntu 12.04&lt;/li&gt;
-&lt;li&gt;emacs 24.3.1&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
-
-&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;jdk をインストール
-
-&lt;ul&gt;
-&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;以下のコマンドでエラーが無いことを確認
-
-&lt;ul&gt;
-&lt;li&gt;java -version&lt;/li&gt;
-&lt;li&gt;javac -version&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;scala のダウンロード
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
-&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
-
-&lt;ul&gt;
-&lt;li&gt;scala -version&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
-
-&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;以下から tool を clone する
-
-&lt;ul&gt;
-&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;コピーした scala-mode に移動して make コマンドする
-
-&lt;ul&gt;
-&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
-(require &#39;scala-mode2)
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;yasnipet がない場合は、以下から clone する
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Development Environment in my OSX</title>
       <link>http://syati.github.io/blog/post/make_env_mac/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -735,6 +719,338 @@ output: Shift_JIS
 &lt;ol&gt;
 &lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「マウス」-&amp;gt; 「スクロールの方向：ナチュラル」のチェックを外す&lt;/li&gt;
 &lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Scala の開発環境</title>
+      <link>http://syati.github.io/blog/post/make_scala_env/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/make_scala_env/</guid>
+      <description>
+
+&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ubuntu 12.04&lt;/li&gt;
+&lt;li&gt;emacs 24.3.1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
+
+&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;jdk をインストール
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;以下のコマンドでエラーが無いことを確認
+
+&lt;ul&gt;
+&lt;li&gt;java -version&lt;/li&gt;
+&lt;li&gt;javac -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;scala のダウンロード
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
+&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
+
+&lt;ul&gt;
+&lt;li&gt;scala -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
+
+&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;以下から tool を clone する
+
+&lt;ul&gt;
+&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;コピーした scala-mode に移動して make コマンドする
+
+&lt;ul&gt;
+&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
+(require &#39;scala-mode2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;yasnipet がない場合は、以下から clone する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
+      <link>http://syati.github.io/blog/post/make_windows_emacs/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/make_windows_emacs/</guid>
+      <description>
+
+&lt;p&gt;最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、否応なく Windows を利用しなければいけない時がある Syati です。 そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば AutoHotkey もあるのですが、それは、また次の機会に。今回は、Cygwin、Zsh、NTEmacs で Windows に Linux環境を構築をする。&lt;/p&gt;
+
+&lt;h1 id=&#34;1-インストール:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;1. インストール&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.cygwin.com/&#34;&gt;cygwin&lt;/a&gt; のインストール
+
+&lt;ol&gt;
+&lt;li&gt;注意がでるけどインストールディレクトリをドライブのRoot( F:/ ) にでもする&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;デフォルトから追加で、とりあえずインストールするパッケージは以下の通り（あとは好きなパッケケージを入れる）
+
+&lt;ol&gt;
+&lt;li&gt;Archive
+
+&lt;ol&gt;
+&lt;li&gt;p7zip&lt;/li&gt;
+&lt;li&gt;unzip&lt;/li&gt;
+&lt;li&gt;zip&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Devel
+
+&lt;ol&gt;
+&lt;li&gt;gcc-core&lt;/li&gt;
+&lt;li&gt;gcc-g++&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Net
+
+&lt;ol&gt;
+&lt;li&gt;openssh&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Shells
+
+&lt;ol&gt;
+&lt;li&gt;zsh&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Web
+
+&lt;ol&gt;
+&lt;li&gt;wget&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://sourceforge.jp/projects/gnupack/&#34;&gt;gnupack emacs only&lt;/a&gt; でインストール
+
+&lt;ol&gt;
+&lt;li&gt;ダウンロードしたファイルを解凍&lt;/li&gt;
+&lt;li&gt;解凍されたディレクトリの中身(bin,etc,info などなど）をすべてコピーして cygwin をインストールしたディレクトリの F:/usr/local/ に上書きする&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;2-cygwin-のデフォルト-shell-を-zsh-に切り替え-初期設定する:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;/etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する&lt;/li&gt;
+&lt;li&gt;Cygwin が MS-DOS形式のパスに対して Warning を出力するので消しておく
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/takuya_1st/20110423/1303586388&#34;&gt;cygwin がMS-DOS形式のパスをWarningするので消した&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Cygwin Terminal ショートカットから Terminal を起動すると zsh startup が立ち上がるので (0) Exit, creating the &amp;#x2026;.. を選択（0 をタイプする）&lt;/li&gt;
+&lt;li&gt;HOME に .zshrc が作成されていると思うが、中身を消して、以下のサイトから設定ファイルをコピペして利用する
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://news.mynavi.jp/column/zsh/024/index.html&#34;&gt;漢のzsh 24 グッバイ野郎ども! コピペではじめるzshファイナル&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;zsh についても詳しく書かれているので、勉強しておく&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;3-emacs-の作業場所-home-を設定する:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;3. Emacs の作業場所(HOME) を設定する&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;F:/usr/local/bin の中にある runemacs.exe のショートカットを作成 Desktop にでも貼り付ける&lt;/li&gt;
+&lt;li&gt;My Computer で右クリック -&amp;gt; プロパティ -&amp;gt; 詳細設定タブ -&amp;gt; 環境変数 -&amp;gt; ○○のユーザー環境変数 の新規でHOMEを作成する
+
+&lt;ul&gt;
+&lt;li&gt;変数名： HOME&lt;/li&gt;
+&lt;li&gt;変数値： F:/home/ユーザー名/&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;1.で作成したショートカットを右クリックしてプロパティから、作業フォルダを %HOME% と入力する（%HOME% は 2. 作成した変数名HOMEの変数値を入れるという意味）&lt;/li&gt;
+&lt;li&gt;emacsを起動して Ctrl + x, Ctrl + f をタイプしたあとに ~/ を入力して、HOME に移動するか確認して終了&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;4-emacs-の環境を設定する-設定ファイルは-emacs-d-init-el:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;4. Emacs の環境を設定する (設定ファイルは ~/.emacs.d/init.el )&lt;/h1&gt;
+
+&lt;p&gt;Emacs で設定する環境変数は、以下の通り３つある。本設定が上手くいっていない/理解していないと command not found で悩むかも。
+1.  PATH
+    -   emacs で shell (M-x shell)を利用する際に使う。端末(cmd, minttyなど)で利用する場合と同じ。
+        -   ※ M は Alt キー のこと
+2.  exec-path
+    -   emacs のコマンド（grep, shell, diff, dired-mode 中の圧縮/解凍など）を利用する際に使う。
+3.  load-path
+    -   emacs-lisp（*.el、*.elc) を利用する際に使う。&lt;/p&gt;
+
+&lt;h2 id=&#34;path-exec-path-に同じ設定をする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;PATH, exec-path に同じ設定をする&lt;/h2&gt;
+
+&lt;p&gt;cygwin から emacs を立ち上げた場合と、GUIから emacs を立ち上げた場合は、異なる環境変数が利用されるため、混乱を避けるためにも PATH, exec-path に同じ設定をする
+1.  違いを確かめて見たい場合は、双方で立ち上げた emacs の &lt;strong&gt;scratch&lt;/strong&gt; で以下をタイプして、それぞれの行末で（Ctrl-j) をタイプして式を評価して見ましょう。
+    1.  (getenv &amp;ldquo;PATH&amp;rdquo;)　
+    2.  exec-path
+2.  修正するには、emacs の設定ファイルに以下のように PATH と exec-path を記述する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    (let ((my-emacs-path (list
+             &amp;quot;/bin&amp;quot;
+             &amp;quot;/usr/bin&amp;quot;
+             &amp;quot;/usr/local/bin&amp;quot;)))
+     (setq exec-path my-emacs-path)
+     (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;補足:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;補足&lt;/h3&gt;
+
+&lt;p&gt;cygwin から呼び出した場合は、/etc/profile の PATH に加えて、Windows の環境変数 PATH 、/home/ユーザー名/シェル設定ファイル（ .zshrc または .bashrc ) のPATH が読み込まれる （優先されるのは、先に記述されている方）。GUIからの場合は、Windows の環境変数 PATH が exec-path にも適用される。&lt;/p&gt;
+
+&lt;h3 id=&#34;参考:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ergoemacs.org/emacs/emacs_env_var_paths.html&#34;&gt;http://ergoemacs.org/emacs/emacs_env_var_paths.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;gui-から立ち上げる-emacs-の-m-x-shell-を-コマンドプロンプトから-zsh-にする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;GUI から立ち上げる emacs の M-x shell を コマンドプロンプトから zsh にする&lt;/h2&gt;
+
+&lt;p&gt;cygwin から emacs を立ち上げて、 M-x shell で呼び出されるのは、[2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する] を設定していた場合 zsh が呼び出されるが GUI の emacs から M-x shell で呼び出されるのはコマンドプロンプトになる。理由は、cygwin からの場合は、cygwinの環境変数のSHELL(zsh.exe)が利用される一方、GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が利用されるため。
+1.  設定ファイルに以下を書き込む&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    (setq shell-file-name &amp;quot;zsh&amp;quot;)
+    (setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
+    (setq explicit-shell-file-name shell-file-name)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;参考-1:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/NTEmacsWithCygwin&#34;&gt;NTEmacsWithCygwin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&#34;&gt;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;デフォルトの-load-path-に自分がインストールする-emacs-lisp-el-elc-置場を追記しておく:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;デフォルトの load-path に自分がインストールする emacs-lisp（*.el、*.elc) 置場を追記しておく&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;~/.emacs.d/lisp を自分がインストールする emacs-lisp（*.el、*.elc) 置場として、load-path に追加する。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;~/.emacs.d/lisp 以下のサブディレクトリも自動で追記してくれる&lt;/p&gt;
+
+&lt;p&gt;(let ((default-directory &amp;ldquo;~/.emacs.d/lisp/&amp;ldquo;))
+  (normal-top-level-add-subdirs-to-load-path))&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;参考-2:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/LoadPath&#34;&gt;http://emacswiki.org/emacs/LoadPath&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;まとめ:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;まとめ&lt;/h1&gt;
+
+&lt;p&gt;以下にここまで記述した init.el の設定を残しておく。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;;; Set PATH and exec-path
+(let ((my-emacs-path (list
+                      &amp;quot;/bin&amp;quot;
+                      &amp;quot;/usr/bin&amp;quot;
+                      &amp;quot;/usr/local/bin&amp;quot;)))
+  (setq exec-path my-emacs-path)
+  (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
+
+;; Add my lisp dir to load-path
+(let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
+  (normal-top-level-add-subdirs-to-load-path))            
+
+;; Set SHELL Value
+(setq shell-file-name &amp;quot;zsh&amp;quot;)
+(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
+(setq explicit-shell-file-name shell-file-name)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;日本語の設定や、キーカスタマイズなど、その他設定することは、まだまだたくさんありますが、それはまた次回ということで Windows に Linux環境の構築を〆る。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>nkf で直す文字化け</title>
+      <link>http://syati.github.io/blog/post/nkf/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/nkf/</guid>
+      <description>
+
+&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
+
+&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
+
+&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
+
+&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
+
+&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
+output: Shift_JIS
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -1072,195 +1388,6 @@ sudo apt-get install typecatcher
     </item>
     
     <item>
-      <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
-      <link>http://syati.github.io/blog/post/make_windows_emacs/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/make_windows_emacs/</guid>
-      <description>
-
-&lt;p&gt;最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、否応なく Windows を利用しなければいけない時がある Syati です。 そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば AutoHotkey もあるのですが、それは、また次の機会に。今回は、Cygwin、Zsh、NTEmacs で Windows に Linux環境を構築をする。&lt;/p&gt;
-
-&lt;h1 id=&#34;1-インストール:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;1. インストール&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.cygwin.com/&#34;&gt;cygwin&lt;/a&gt; のインストール
-
-&lt;ol&gt;
-&lt;li&gt;注意がでるけどインストールディレクトリをドライブのRoot( F:/ ) にでもする&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;デフォルトから追加で、とりあえずインストールするパッケージは以下の通り（あとは好きなパッケケージを入れる）
-
-&lt;ol&gt;
-&lt;li&gt;Archive
-
-&lt;ol&gt;
-&lt;li&gt;p7zip&lt;/li&gt;
-&lt;li&gt;unzip&lt;/li&gt;
-&lt;li&gt;zip&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;Devel
-
-&lt;ol&gt;
-&lt;li&gt;gcc-core&lt;/li&gt;
-&lt;li&gt;gcc-g++&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;Net
-
-&lt;ol&gt;
-&lt;li&gt;openssh&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;Shells
-
-&lt;ol&gt;
-&lt;li&gt;zsh&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;Web
-
-&lt;ol&gt;
-&lt;li&gt;wget&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://sourceforge.jp/projects/gnupack/&#34;&gt;gnupack emacs only&lt;/a&gt; でインストール
-
-&lt;ol&gt;
-&lt;li&gt;ダウンロードしたファイルを解凍&lt;/li&gt;
-&lt;li&gt;解凍されたディレクトリの中身(bin,etc,info などなど）をすべてコピーして cygwin をインストールしたディレクトリの F:/usr/local/ に上書きする&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;2-cygwin-のデフォルト-shell-を-zsh-に切り替え-初期設定する:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;/etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する&lt;/li&gt;
-&lt;li&gt;Cygwin が MS-DOS形式のパスに対して Warning を出力するので消しておく
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/takuya_1st/20110423/1303586388&#34;&gt;cygwin がMS-DOS形式のパスをWarningするので消した&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Cygwin Terminal ショートカットから Terminal を起動すると zsh startup が立ち上がるので (0) Exit, creating the &amp;#x2026;.. を選択（0 をタイプする）&lt;/li&gt;
-&lt;li&gt;HOME に .zshrc が作成されていると思うが、中身を消して、以下のサイトから設定ファイルをコピペして利用する
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://news.mynavi.jp/column/zsh/024/index.html&#34;&gt;漢のzsh 24 グッバイ野郎ども! コピペではじめるzshファイナル&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;zsh についても詳しく書かれているので、勉強しておく&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;3-emacs-の作業場所-home-を設定する:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;3. Emacs の作業場所(HOME) を設定する&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;F:/usr/local/bin の中にある runemacs.exe のショートカットを作成 Desktop にでも貼り付ける&lt;/li&gt;
-&lt;li&gt;My Computer で右クリック -&amp;gt; プロパティ -&amp;gt; 詳細設定タブ -&amp;gt; 環境変数 -&amp;gt; ○○のユーザー環境変数 の新規でHOMEを作成する
-
-&lt;ul&gt;
-&lt;li&gt;変数名： HOME&lt;/li&gt;
-&lt;li&gt;変数値： F:/home/ユーザー名/&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;1.で作成したショートカットを右クリックしてプロパティから、作業フォルダを %HOME% と入力する（%HOME% は 2. 作成した変数名HOMEの変数値を入れるという意味）&lt;/li&gt;
-&lt;li&gt;emacsを起動して Ctrl + x, Ctrl + f をタイプしたあとに ~/ を入力して、HOME に移動するか確認して終了&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;4-emacs-の環境を設定する-設定ファイルは-emacs-d-init-el:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;4. Emacs の環境を設定する (設定ファイルは ~/.emacs.d/init.el )&lt;/h1&gt;
-
-&lt;p&gt;Emacs で設定する環境変数は、以下の通り３つある。本設定が上手くいっていない/理解していないと command not found で悩むかも。
-1.  PATH
-    -   emacs で shell (M-x shell)を利用する際に使う。端末(cmd, minttyなど)で利用する場合と同じ。
-        -   ※ M は Alt キー のこと
-2.  exec-path
-    -   emacs のコマンド（grep, shell, diff, dired-mode 中の圧縮/解凍など）を利用する際に使う。
-3.  load-path
-    -   emacs-lisp（*.el、*.elc) を利用する際に使う。&lt;/p&gt;
-
-&lt;h2 id=&#34;path-exec-path-に同じ設定をする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;PATH, exec-path に同じ設定をする&lt;/h2&gt;
-
-&lt;p&gt;cygwin から emacs を立ち上げた場合と、GUIから emacs を立ち上げた場合は、異なる環境変数が利用されるため、混乱を避けるためにも PATH, exec-path に同じ設定をする
-1.  違いを確かめて見たい場合は、双方で立ち上げた emacs の &lt;strong&gt;scratch&lt;/strong&gt; で以下をタイプして、それぞれの行末で（Ctrl-j) をタイプして式を評価して見ましょう。
-    1.  (getenv &amp;ldquo;PATH&amp;rdquo;)　
-    2.  exec-path
-2.  修正するには、emacs の設定ファイルに以下のように PATH と exec-path を記述する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    (let ((my-emacs-path (list
-             &amp;quot;/bin&amp;quot;
-             &amp;quot;/usr/bin&amp;quot;
-             &amp;quot;/usr/local/bin&amp;quot;)))
-     (setq exec-path my-emacs-path)
-     (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;補足:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;補足&lt;/h3&gt;
-
-&lt;p&gt;cygwin から呼び出した場合は、/etc/profile の PATH に加えて、Windows の環境変数 PATH 、/home/ユーザー名/シェル設定ファイル（ .zshrc または .bashrc ) のPATH が読み込まれる （優先されるのは、先に記述されている方）。GUIからの場合は、Windows の環境変数 PATH が exec-path にも適用される。&lt;/p&gt;
-
-&lt;h3 id=&#34;参考:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ergoemacs.org/emacs/emacs_env_var_paths.html&#34;&gt;http://ergoemacs.org/emacs/emacs_env_var_paths.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;gui-から立ち上げる-emacs-の-m-x-shell-を-コマンドプロンプトから-zsh-にする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;GUI から立ち上げる emacs の M-x shell を コマンドプロンプトから zsh にする&lt;/h2&gt;
-
-&lt;p&gt;cygwin から emacs を立ち上げて、 M-x shell で呼び出されるのは、[2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する] を設定していた場合 zsh が呼び出されるが GUI の emacs から M-x shell で呼び出されるのはコマンドプロンプトになる。理由は、cygwin からの場合は、cygwinの環境変数のSHELL(zsh.exe)が利用される一方、GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が利用されるため。
-1.  設定ファイルに以下を書き込む&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    (setq shell-file-name &amp;quot;zsh&amp;quot;)
-    (setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
-    (setq explicit-shell-file-name shell-file-name)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;参考-1:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/NTEmacsWithCygwin&#34;&gt;NTEmacsWithCygwin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&#34;&gt;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;デフォルトの-load-path-に自分がインストールする-emacs-lisp-el-elc-置場を追記しておく:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;デフォルトの load-path に自分がインストールする emacs-lisp（*.el、*.elc) 置場を追記しておく&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;~/.emacs.d/lisp を自分がインストールする emacs-lisp（*.el、*.elc) 置場として、load-path に追加する。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;~/.emacs.d/lisp 以下のサブディレクトリも自動で追記してくれる&lt;/p&gt;
-
-&lt;p&gt;(let ((default-directory &amp;ldquo;~/.emacs.d/lisp/&amp;ldquo;))
-  (normal-top-level-add-subdirs-to-load-path))&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;参考-2:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;参考&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/LoadPath&#34;&gt;http://emacswiki.org/emacs/LoadPath&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;まとめ:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;まとめ&lt;/h1&gt;
-
-&lt;p&gt;以下にここまで記述した init.el の設定を残しておく。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;;; Set PATH and exec-path
-(let ((my-emacs-path (list
-                      &amp;quot;/bin&amp;quot;
-                      &amp;quot;/usr/bin&amp;quot;
-                      &amp;quot;/usr/local/bin&amp;quot;)))
-  (setq exec-path my-emacs-path)
-  (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
-
-;; Add my lisp dir to load-path
-(let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
-  (normal-top-level-add-subdirs-to-load-path))            
-
-;; Set SHELL Value
-(setq shell-file-name &amp;quot;zsh&amp;quot;)
-(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
-(setq explicit-shell-file-name shell-file-name)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;日本語の設定や、キーカスタマイズなど、その他設定することは、まだまだたくさんありますが、それはまた次回ということで Windows に Linux環境の構築を〆る。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
       <link>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1338,33 +1465,6 @@ sendfile は read と send を別々に行なうことと、バッファの割�
 &lt;/ul&gt;
 
 &lt;p&gt;上記に nginx の場合も書いて有りますね。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>synerge ubuntu</title>
-      <link>http://syati.github.io/blog/post/autostart_synerge_ubuntu/</link>
-      <pubDate>Sun, 01 Mar 2015 21:37:06 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/autostart_synerge_ubuntu/</guid>
-      <description>
-
-&lt;p&gt;Windows 7 と Ubuntu 12.04 のマシンを利用している Syati ですが、毎回 Ubuntu を立ち上げてログイン、synergy を立ち上げるのは面倒くさいので Ubuntu ログイン画面で自動で起動させるようにした。&lt;/p&gt;
-
-&lt;h1 id=&#34;方法:cf16ac303ea93c9e95b662f13d7e2643&#34;&gt;方法&lt;/h1&gt;
-
-&lt;p&gt;/etc/lightdm/lightdm に一行加える&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;1  [SeatDefaults]
-2  greeter-session=unity-greeter
-3  greeter-setup-script=/usr/bin/synergyc シナジーサーバーが起動しているIP /* この行を加えた */
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;参考サイト:cf16ac303ea93c9e95b662f13d7e2643&#34;&gt;参考サイト&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://yasu1973fc2.blog99.fc2.com/blog-entry-72.html&#34;&gt;Ubuntu11.10でSynergyを自動起動&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
