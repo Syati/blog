@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head>
+	<meta charset="utf-8">
+	<title>Hugo で github.io にブログを簡単に立ち上げる Part 1 - Syati.info</title>
+	<meta name="author" content="map[author:mizuki-y]">
+
+	
+	  
+	<meta name="description" content="WordPress から github.io にブログを立ち上げる">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='http://syati.github.io/blog/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://syati.github.io/blog/post/create_hugo/">
+	<link href="http://syati.github.io/blog/favicon.png" rel="shortcut icon">
+	<link href="http://syati.github.io/blog/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://syati.github.io/blog/css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href="http://syati.github.io/blog/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-9380531-9']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	
+	
+</div>
+
+<nav id="main-nav"><ul class="main">
+    <li><a href="http://syati.github.io/blog/">Blog</a></li>
+    <li><a href="http://syati.github.io/blog/about/">About</a></li>
+    <li><a href="http://syati.github.io/blog/post/">Archives</a></li>
+</ul>
+
+
+<section class="aboutme">
+  <p>
+    かんがえるさかな
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='http://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+			<a class="google" href='https://plus.google.com/&#43;mizukiyamamoto' rel="author" title="Google+">Google+</a>
+		
+		
+			<a class="twitter" href='http://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='http://syati.github.io/blog/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title" itemprop="name">Hugo で github.io にブログを簡単に立ち上げる Part 1</h1>
+	<div class="entry-content" itemprop="articleBody">
+
+<p>WordPress でブログをつくっていましたが、記事投稿が面倒くさなって続かない。
+なぜかと考えた時にテキストで書いたものを簡単に POST できないからである。
+過去に org2blog などを試し、簡単になった！！と喜んでいた時期もあったが、
+WordPress の Version Up などで POST できなくり、それっきり・・・。</p>
+
+<p>今回は、ついに上記のことを打開できる策を見つけたのだ。
+それが <strong>Hugo で github.io 上にブログを立ち上げることだ。</strong>
+何が良いかといえば、markdown でかけて、github に push するだけでブログ
+が更新されることだ。</p>
+
+<p><a href="http://gohugo.io/overview/quickstart/">Hugo Quickstart Guide</a> にならって
+セットアップ手順を記していく。Part 1 では、まずはブログをローカルに構築する。
+Part 2 で、github.io にブログを立ち上げる。</p>
+
+<h1 id="step-1-インストールしましょう:21ff63570566c64813270f2340abd251">Step 1 インストールしましょう</h1>
+
+<h2 id="osx-の場合:21ff63570566c64813270f2340abd251">OSX の場合</h2>
+
+<p>以下のコマンドでおしまい。
+<pre><code class="language-bash">
+$ brew install hugo
+</pre></code></p>
+
+<h2 id="ubuntu-の場合:21ff63570566c64813270f2340abd251">Ubuntu の場合</h2>
+
+<p><a href="https://github.com/spf13/hugo/releases">Hugo relase</a> から適したものをDLして以下のコマンドを実行する。
+<pre><code class="language-bash">
+$ sudo dpkg -i hugo_0.14_amd64.deb　# 自分に適したパッケージを選んでね
+</pre></code></p>
+
+<h1 id="step-2-ブログをつくろう:21ff63570566c64813270f2340abd251">Step 2 ブログをつくろう</h1>
+
+<p>以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。
+<pre><code class="language-bash">
+$ hugo new site ./yourblog
+</pre></code></p>
+
+<p>雛形はこんな感じになる。
+<pre><code class="language-bash">
+yourblog/
+├── archetypes  # 新規記事を作成した際に利用される雛形を置く場所
+├── config.toml # 設定を書くファイル
+├── content     # 記事などが入る場所
+├── data        # 今回は利用しない（サイトを生成するときに利用する DATA などを置く。詳しくは <a href="http://gohugo.io/extras/datafiles/">http://gohugo.io/extras/datafiles/</a> ）
+├── layouts     # 今回は利用しない（サイトを生成するときの雛形）
+└── static      # 今回は利用しない（サイトで利用する js, css, images などを置く）
+</pre></code></p>
+
+<h1 id="step-3-新しい記事をつくろう:21ff63570566c64813270f2340abd251">Step 3 新しい記事をつくろう</h1>
+
+<p>yourblog ディレクトリで以下のコマンド実行して、新規記事を作成する。
+<pre><code class="language-bash">
+$ hugo new post/hello.md
+</pre></code></p>
+
+<p>こんな感じで新規記事が作成される。
+<pre><code class="language-bash">
+content/
+└── post
+    └── hello.md
+</pre></code></p>
+
+<p>hello.md の中身はこんな感じ。
+<pre><code class="language-markdown">
++++
+date = &ldquo;2015-06-05T23:04:20+09:00&rdquo;
+draft = true # この行を消せば step 5 の --buildDrafts オプションはいりません
+title = &ldquo;hello&rdquo;</p>
+
+<p>+++</p>
+
+<p></pre></code></p>
+
+<h1 id="step-4-テーマをインストールしよう:21ff63570566c64813270f2340abd251">Step 4 テーマをインストールしよう</h1>
+
+<p>自分好みのテーマをさがすために、テーマ一式いれてみる。yourblog ディレクトリで以下のコマンドを実行する。
+<pre><code class="language-bash">
+$ git clone --recursive <a href="https://github.com/spf13/hugoThemes">https://github.com/spf13/hugoThemes</a> themes
+</pre></code></p>
+
+<h1 id="step-5-ブログを見てみよう:21ff63570566c64813270f2340abd251">Step 5 ブログを見てみよう</h1>
+
+<p>とりあえず準備はととのったので、サーバーを立ち上げてブログを見てみる。
+<pre><code class="language-bash">
+$ hugo server --theme=hyde --buildDrafts</p>
+
+<p>1 of 1 draft rendered
+0 future content
+1 pages created
+0 paginator pages created
+0 tags created
+0 categories created
+in 7 ms
+Serving pages from /home/mizuki-y/Documents/yourblog/public
+Web Server is available at <a href="http://127.0.0.1:1313/">http://127.0.0.1:1313/</a>
+</pre></code></p>
+
+<p><a href="http://127.0.0.1:1313/">http://127.0.0.1:1313/</a> にアクセスするとブログが見れるようになっている。</p>
+
+<p>theme を以下のように変更して、自分の好きなものを選ぼう。
+<pre><code class="language-bash">
+$ hugo server --theme=slim --buildDrafts
+</pre></code></p>
+
+<ul>
+<li>コマンドオプションについて
+
+<ul>
+<li><strong>--theme</strong>: themes ディレクトリに入っているディレクトリ名を指定してあげる</li>
+<li><strong>--buildDrafts</strong>: draft ステータスのものを表示するためのオプション</li>
+</ul></li>
+</ul>
+
+<p>ブログ構築完成。</p>
+
+<p>Part 2 で、github.io にブログを立ち上げる。</p>
+</div></article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size=''></a>
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					
+
+
+				    </div>
+				</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2015
+
+    Syati.info
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="http://syati.github.io/blog/js/slash.js"></script>
+<script src="http://syati.github.io/blog/js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script></footer>
+		</div>
+	</div>
+	<script src="http://syati.github.io/blog/js/prism.js"></script>
+
+</body>
+</html>
