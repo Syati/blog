@@ -117,7 +117,7 @@
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/blog"> Blog </a>
+	    <a href="http://syati.github.io/blog/categories/hugo"> Hugo </a>
 	
 
 
@@ -130,6 +130,32 @@
 	<div class="entry-content" itemprop="articleBody">
 		WordPress でブログをつくっていましたが、記事投稿が面倒くさなって続かない。 なぜかと考えた時にテキストで書いたものを簡単に POST できないからである。 過去に org2blog などを試し、簡単になった！！と喜んでいた時期もあったが、 WordPress の Version Up などで POST できなくり、それっきり・・・。 今回は、ついに上記のことを打開できる策を見つけたのだ。 それが Hugo で github.io 上にブログを立ち上げることだ。 何が良いかといえば、markdown でかけて、github に push するだけでブログ が更新されることだ。 Hugo Quickstart Guide にならって セットアップ手順を記していく。Part 1 では、まずはブログをローカルに構築する。 Part 2 で、github.io にブログを立ち上げる。 Step 1 インストールしましょう OSX の場合 以下のコマンドでおしまい。 $ brew install hugo Ubuntu の場合 Hugo relase から適したものをDLして以下のコマンドを実行する。 $ sudo dpkg -i hugo_0.14_amd64.deb # 自分に適したパッケージを選んでね Step 2 ブログをつくろう 以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。 $ hugo new site ./yourblog 雛形はこんな感じになる。
 		<a href="http://syati.github.io/blog/post/create_hugo/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/" itemprop="url">Angular test sample 1</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		js ってテストしにくいよねってことで今流行りの angular で unit test する。 最初なので、事細かに説明するつもりで書いてみる。 サンプルは以下から git clone してください。ソースと突き合わせながら見るといいかも。 https://github.com/Syati/angular-test-sample 準備 ubuntu node &amp; npm sudo apt-get install nodejs sudo apt-get install npm mac node &amp; npm brew install node 共通 bower sudo npm install -g bower karma sudo npm install -g karma-cli 実施：サンプルを CLONE して TEST github にサンプルを書いたので clone する。 git clone git@github.com:Syati/angular-test-sample.git prj 依存環境を入れる cd your_clone_path/angular-test-sample/controller/recipe1 npm install test 実行する npm test 以下のような出力で、テストが成功する。 WARN [karma]:
+		<a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -161,32 +187,6 @@
 	<div class="entry-content" itemprop="articleBody">
 		Coffee-modeでauto-completeを使えるようにする を参考に、coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。 必要なパッケージ M-x package-list-package から 以下をインストールする jquery-doc 設定 Coffee-modeでauto-completeを使えるようにする を参考にして以下の部分を変更してあげる (add-hook 'coffee-mode-hook '(lambda () (jquery-doc-setup) ;; ここに jquery-doc を追加する (add-to-list 'ac-dictionary-files &quot;~/.emacs.d/ac-dict/js2-mode&quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある ))
 		
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-	    <a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/" itemprop="url">Angular test sample 1</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		js ってテストしにくいよねってことで今流行りの angular で unit test する。 最初なので、事細かに説明するつもりで書いてみる。 サンプルは以下から git clone してください。ソースと突き合わせながら見るといいかも。 https://github.com/Syati/angular-test-sample 準備 ubuntu node &amp; npm sudo apt-get install nodejs sudo apt-get install npm mac node &amp; npm brew install node 共通 bower sudo npm install -g bower karma sudo npm install -g karma-cli 実施：サンプルを CLONE して TEST github にサンプルを書いたので clone する。 git clone git@github.com:Syati/angular-test-sample.git prj 依存環境を入れる cd your_clone_path/angular-test-sample/controller/recipe1 npm install test 実行する npm test 以下のような出力で、テストが成功する。 WARN [karma]:
-		<a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/" class="more-link">Read on →</a>
 	</div>
 </article>
 
