@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Blog on Syati.info </title>
+      <title>Hugo on Syati.info </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://localhost:1313/blog/categories/blog/</link>
+    <link>http://syati.github.io/blog/categories/hugo/</link>
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Hugo で github.io にブログを簡単に立ち上げる Part 1</title>
-      <link>http://localhost:1313/blog/post/create_hugo/</link>
+      <link>http://syati.github.io/blog/post/create_hugo/</link>
       <pubDate>Fri, 05 Jun 2015 21:55:31 JST</pubDate>
       
-      <guid>http://localhost:1313/blog/post/create_hugo/</guid>
+      <guid>http://syati.github.io/blog/post/create_hugo/</guid>
       <description>
 
 &lt;p&gt;WordPress でブログをつくっていましたが、記事投稿が面倒くさなって続かない。
