@@ -117,24 +117,35 @@
 
 	
 	
-		<a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>,
+		<a href="http://syati.github.io/blog/categories/windows"> Windows </a>,
 	
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/node"> Node </a>
+		<a href="http://syati.github.io/blog/categories/emacs"> Emacs </a>,
+	
+
+	
+	
+	    <a href="http://syati.github.io/blog/categories/linux"> Linux </a>
 	
 
 
 </div>
 		
-			<span class="comments"><a href="http://syati.github.io/blog/post/node_path/#disqus_thread">Comments</a></span>
+			<span class="comments"><a href="http://syati.github.io/blog/post/make_windows_emacs/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/node_path/" itemprop="url">node 利用するなら、まずは環境変数を設定しましょう</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/make_windows_emacs/" itemprop="url">Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		javascript を REPL で利用できるといえば node 。underscore.js を試したいと思いハマったメモ。 はまった事 以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。 Syati% sudo npm install undersocre -g Syati% node require('underscore'); Error: Cannot find module 'underscore' at Function.Module._resolveFilename (module.js:338:15) at Function.Module._load (module.js:280:25) at Module.require (module.js:362:17) at require (module.js:378:17) at repl:1:1 at REPLServer.self.eval (repl.js:109:21) at rli.on.self.bufferedCmd (repl.js:258:20) at REPLServer.self.eval (repl.js:116:5) at Interface.&lt;anonymous&gt; (repl.js:248:12) at Interface.EventEmitter.emit (events.js:96:17) 原因 npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。 解決 設定するパスを確認する npm root -g // output =&gt; /usr/local/lib/node_modules 利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了 export
-		<a href="http://syati.github.io/blog/post/node_path/" class="more-link">Read on →</a>
+		<p>最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、
+否応なく Windows を利用しなければいけない時がある Syati です。
+そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば
+AutoHotkey もあるのですが、それは、また次の機会に。</p>
+
+<p>今回は、Cygwin、Zsh、NTEmacs でWindows に Linux環境を構築をする。</p>
+
+		<a href="http://syati.github.io/blog/post/make_windows_emacs/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -288,18 +299,18 @@
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>
+	    <a href="http://syati.github.io/blog/categories/ubuntu"> Ubuntu </a>
 	
 
 
 </div>
 		
-			<span class="comments"><a href="http://syati.github.io/blog/post/bowerrc/#disqus_thread">Comments</a></span>
+			<span class="comments"><a href="http://syati.github.io/blog/post/autostart_synerge_ubuntu/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/bowerrc/" itemprop="url">bowerrc で install ディレクトリを変更する</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/autostart_synerge_ubuntu/" itemprop="url">synerge ubuntu</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		bower install をしたはいいが、デフォルトでインストールされるディレクトリ(bower_components)を以下の例のように変えたい、そんな時は。 例 project/ js bower_components jquery img css index.html bower.json 解決策 以下のように .bowerrc を project ルートに作成してあげる。これを自分の好きなように書き換えることで、インストールディレクトリを変更できる。 // .bowerrc { &quot;directory&quot; : &quot;js/bower_components&quot; } 以降、bower install すれば希望通り .bowerrc作成後 project/ js bower_components jquery img css index.html bower.json .bowerrc 参考 デフォルトの動作 初期ディレクトリ構成 project/ js img css index.html コマンド project ルートで 以下のように bower コマンドを入れる bower init bower install jquery -save コマンド後のディレクトリ構成 ディレクトリは以下のようになる。 project/ bower_components jquery js img css index.html bower.json
+		Windows 7 と Ubuntu 12.04 のマシンを利用している Syati ですが、毎回 Ubuntu を立ち上げてログイン、synergy を立ち上げるのは面倒くさいので Ubuntu ログイン画面で自動で起動させるようにした。 方法 /etc/lightdm/lightdm に一行加える 1 [SeatDefaults] 2 greeter-session=unity-greeter 3 greeter-setup-script=/usr/bin/synergyc シナジーサーバーが起動しているIP /* この行を加えた */ 参考サイト Ubuntu11.10でSynergyを自動起動
 		
 	</div>
 </article>
@@ -314,18 +325,18 @@
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/ubuntu"> Ubuntu </a>
+	    <a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>
 	
 
 
 </div>
 		
-			<span class="comments"><a href="http://syati.github.io/blog/post/autostart_synerge_ubuntu/#disqus_thread">Comments</a></span>
+			<span class="comments"><a href="http://syati.github.io/blog/post/bowerrc/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/autostart_synerge_ubuntu/" itemprop="url">synerge ubuntu</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/bowerrc/" itemprop="url">bowerrc で install ディレクトリを変更する</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		Windows 7 と Ubuntu 12.04 のマシンを利用している Syati ですが、毎回 Ubuntu を立ち上げてログイン、synergy を立ち上げるのは面倒くさいので Ubuntu ログイン画面で自動で起動させるようにした。 方法 /etc/lightdm/lightdm に一行加える 1 [SeatDefaults] 2 greeter-session=unity-greeter 3 greeter-setup-script=/usr/bin/synergyc シナジーサーバーが起動しているIP /* この行を加えた */ 参考サイト Ubuntu11.10でSynergyを自動起動
+		bower install をしたはいいが、デフォルトでインストールされるディレクトリ(bower_components)を以下の例のように変えたい、そんな時は。 例 project/ js bower_components jquery img css index.html bower.json 解決策 以下のように .bowerrc を project ルートに作成してあげる。これを自分の好きなように書き換えることで、インストールディレクトリを変更できる。 // .bowerrc { &quot;directory&quot; : &quot;js/bower_components&quot; } 以降、bower install すれば希望通り .bowerrc作成後 project/ js bower_components jquery img css index.html bower.json .bowerrc 参考 デフォルトの動作 初期ディレクトリ構成 project/ js img css index.html コマンド project ルートで 以下のように bower コマンドを入れる bower init bower install jquery -save コマンド後のディレクトリ構成 ディレクトリは以下のようになる。 project/ bower_components jquery js img css index.html bower.json
 		
 	</div>
 </article>
