@@ -56,7 +56,8 @@
 title = &amp;ldquo;My New Hugo Site&amp;rdquo;
 baseurl = &amp;ldquo;http://[username].github.io/yourblog&amp;rdquo;
 languageCode = &amp;ldquo;ja-jp&amp;rdquo;
-theme = &amp;ldquo;hyde&amp;rdquo;　# part 1 で選んだ theme を設定する&lt;/p&gt;
+theme = &amp;ldquo;hyde&amp;rdquo;　# part 1 で選んだ theme を設定する
+canonifyurls = true # 相対パスではなく baseurl を基点とした絶対パスにする&lt;/p&gt;
 
 &lt;p&gt;[params]
   description = &amp;ldquo;This is yourblog&amp;rdquo;

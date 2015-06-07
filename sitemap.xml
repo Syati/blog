@@ -38,6 +38,11 @@
   </url>
   
   <url>
+    <loc>http://syati.github.io/blog/post/make_scala_env/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://syati.github.io/blog/post/make_env_mac/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
@@ -48,17 +53,7 @@
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/make_scala_env/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://syati.github.io/blog/post/nkf/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://syati.github.io/blog/post/org2blogInsertSourceCode/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
@@ -68,12 +63,12 @@
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/org2blogNetrc/</loc>
+    <loc>http://syati.github.io/blog/post/org2blogInsertSourceCode/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/typecatchar/</loc>
+    <loc>http://syati.github.io/blog/post/org2blogNetrc/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
@@ -83,17 +78,22 @@
   </url>
   
   <url>
+    <loc>http://syati.github.io/blog/post/typecatchar/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://syati.github.io/blog/post/vagrant_css_problem/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/bowerrc/</loc>
+    <loc>http://syati.github.io/blog/post/autostart_synerge_ubuntu/</loc>
     <lastmod>2015-03-01T21:37:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/autostart_synerge_ubuntu/</loc>
+    <loc>http://syati.github.io/blog/post/bowerrc/</loc>
     <lastmod>2015-03-01T21:37:06+09:00</lastmod>
   </url>
   
