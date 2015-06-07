@@ -20,13 +20,13 @@
 	<link href='/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
 	
 	<link rel="canonical" href="http://syati.github.io/blog/">
-	<link href="http://syati.github.io/blog/favicon.png" rel="shortcut icon">
-	<link href="http://syati.github.io/blog/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="http://syati.github.io/blog/css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://syati.github.io/blog//favicon.png" rel="shortcut icon">
+	<link href="http://syati.github.io/blog//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://syati.github.io/blog//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
 	
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<link href="http://syati.github.io/blog/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://syati.github.io/blog//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
 
   
 	<script type="text/javascript">
@@ -117,35 +117,24 @@
 
 	
 	
-		<a href="http://syati.github.io/blog/categories/windows"> Windows </a>,
+		<a href="http://syati.github.io/blog//categories/javascript"> JavaScript </a>,
 	
 
 	
 	
-		<a href="http://syati.github.io/blog/categories/emacs"> Emacs </a>,
-	
-
-	
-	
-	    <a href="http://syati.github.io/blog/categories/linux"> Linux </a>
+	    <a href="http://syati.github.io/blog//categories/node"> Node </a>
 	
 
 
 </div>
 		
-			<span class="comments"><a href="http://syati.github.io/blog/post/make_windows_emacs/#disqus_thread">Comments</a></span>
+			<span class="comments"><a href="http://syati.github.io/blog/post/node_path/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/make_windows_emacs/" itemprop="url">Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/node_path/" itemprop="url">node 利用するなら、まずは環境変数を設定しましょう</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<p>最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、
-否応なく Windows を利用しなければいけない時がある Syati です。
-そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば
-AutoHotkey もあるのですが、それは、また次の機会に。</p>
-
-<p>今回は、Cygwin、Zsh、NTEmacs でWindows に Linux環境を構築をする。</p>
-
-		<a href="http://syati.github.io/blog/post/make_windows_emacs/" class="more-link">Read on →</a>
+		javascript を REPL で利用できるといえば node 。underscore.js を試したいと思いハマったメモ。 はまった事 以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。 Syati% sudo npm install undersocre -g Syati% node require('underscore'); Error: Cannot find module 'underscore' at Function.Module._resolveFilename (module.js:338:15) at Function.Module._load (module.js:280:25) at Module.require (module.js:362:17) at require (module.js:378:17) at repl:1:1 at REPLServer.self.eval (repl.js:109:21) at rli.on.self.bufferedCmd (repl.js:258:20) at REPLServer.self.eval (repl.js:116:5) at Interface.&lt;anonymous&gt; (repl.js:248:12) at Interface.EventEmitter.emit (events.js:96:17) 原因 npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。 解決 設定するパスを確認する npm root -g // output =&gt; /usr/local/lib/node_modules 利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了 export
+		<a href="http://syati.github.io/blog/post/node_path/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -159,33 +148,7 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/emacs"> Emacs </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://syati.github.io/blog/post/org2blogInsertSourceCode/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/org2blogInsertSourceCode/" itemprop="url">org2blog の記事にコードブロックを入れる</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 org2blogからの投稿 の続き。 必要なもの htmlize.el を load-path の通ったところに入れる。 htmlize.el は org-mode をDLして、解凍した contrib/lisp に入っている。 SyntaxHighlighter Evolved をワードプレスに入れて有効化しておく。 emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に :wp-code t を書き加える。 以下が .emacs.d/init.el に書き込んだ私の org2blog の設定 ;;org2blog (require &lsquo;org2blog) (setq org2blog/wp-blog-alist &lsquo;((&ldquo;wordpress&rdquo; :url &ldquo;your wordpress url&rdquo; :username &ldquo;login name&rdquo; :wp-code t))) ;; insert this line 使ってみる org2blog/wp-new-entry で投稿記事を作成する。 以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。 表記 #+BEGIN_SRC 言語 :syntaxhl [利用したいパラメータ（任意）] ソースコード #+END_SRC :syntaxhl にパラメータを与えない場合は、ワードプレスの管理画面-&gt;設定 SyntaxHighlighter の一般設定が用いられる。 パラメータはこちら ＃+BEGIN_SRC bash :syntaxhl echo "hoge" ＃+END_SRC これで org2blog の記事投稿でコードも綺麗に投稿できる。 補足 必要なもの 3.
-		<a href="http://syati.github.io/blog/post/org2blogInsertSourceCode/" class="more-link">Read on →</a>
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-	    <a href="http://syati.github.io/blog/categories/emacs"> Emacs </a>
+	    <a href="http://syati.github.io/blog//categories/emacs"> Emacs </a>
 	
 
 
@@ -211,12 +174,38 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 
 	
 	
-		<a href="http://syati.github.io/blog/categories/shell"> Shell </a>,
+	    <a href="http://syati.github.io/blog//categories/emacs"> Emacs </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://syati.github.io/blog/post/org2blogInsertSourceCode/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/org2blogInsertSourceCode/" itemprop="url">org2blog の記事にコードブロックを入れる</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 org2blogからの投稿 の続き。 必要なもの htmlize.el を load-path の通ったところに入れる。 htmlize.el は org-mode をDLして、解凍した contrib/lisp に入っている。 SyntaxHighlighter Evolved をワードプレスに入れて有効化しておく。 emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に :wp-code t を書き加える。 以下が .emacs.d/init.el に書き込んだ私の org2blog の設定 ;;org2blog (require &lsquo;org2blog) (setq org2blog/wp-blog-alist &lsquo;((&ldquo;wordpress&rdquo; :url &ldquo;your wordpress url&rdquo; :username &ldquo;login name&rdquo; :wp-code t))) ;; insert this line 使ってみる org2blog/wp-new-entry で投稿記事を作成する。 以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。 表記 #+BEGIN_SRC 言語 :syntaxhl [利用したいパラメータ（任意）] ソースコード #+END_SRC :syntaxhl にパラメータを与えない場合は、ワードプレスの管理画面-&gt;設定 SyntaxHighlighter の一般設定が用いられる。 パラメータはこちら ＃+BEGIN_SRC bash :syntaxhl echo "hoge" ＃+END_SRC これで org2blog の記事投稿でコードも綺麗に投稿できる。 補足 必要なもの 3.
+		<a href="http://syati.github.io/blog/post/org2blogInsertSourceCode/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+		<a href="http://syati.github.io/blog//categories/shell"> Shell </a>,
 	
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/osx"> OSX </a>
+	    <a href="http://syati.github.io/blog//categories/osx"> OSX </a>
 	
 
 
@@ -242,7 +231,7 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/design"> Design </a>
+	    <a href="http://syati.github.io/blog//categories/design"> Design </a>
 	
 
 
@@ -268,12 +257,12 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 
 	
 	
-		<a href="http://syati.github.io/blog/categories/linux"> Linux </a>,
+		<a href="http://syati.github.io/blog//categories/linux"> Linux </a>,
 	
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/platform"> Platform </a>
+	    <a href="http://syati.github.io/blog//categories/platform"> Platform </a>
 	
 
 
@@ -299,7 +288,7 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/ubuntu"> Ubuntu </a>
+	    <a href="http://syati.github.io/blog//categories/ubuntu"> Ubuntu </a>
 	
 
 
@@ -325,7 +314,7 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 
 	
 	
-	    <a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>
+	    <a href="http://syati.github.io/blog//categories/javascript"> JavaScript </a>
 	
 
 
@@ -348,7 +337,7 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 					        <a href="/" class="prev">Prev</a>
 					    
 					    
-					    <div class="center"><a href="http://syati.github.io/blog/post/">Blog Archives</a></div>
+					    <div class="center"><a href="http://syati.github.io/blog//post/">Blog Archives</a></div>
 					</nav>
 				</div>
 			</div>
@@ -357,8 +346,8 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
     Syati.info
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
-<script src="http://syati.github.io/blog/js/slash.js"></script>
-<script src="http://syati.github.io/blog/js/jquery.fancybox.pack.js"></script>
+<script src="http://syati.github.io/blog//js/slash.js"></script>
+<script src="http://syati.github.io/blog//js/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
 	$('.fancybox').fancybox();
@@ -366,7 +355,7 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
 </script></footer>
 		</div>
 	</div>
-	<script src="http://syati.github.io/blog/js/prism.js"></script>
+	<script src="http://syati.github.io/blog//js/prism.js"></script>
 
 </body>
 </html>
