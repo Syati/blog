@@ -17,9 +17,10 @@
       <guid>http://syati.github.io/blog/post/create_hugo_2/</guid>
       <description>
 
-&lt;p&gt;Part 1 では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる
-&lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; を参考にして、
-セットアップ手順を記していく。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
+&lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; を参考にして、セットアップ手順を記していく。&lt;/p&gt;
+
+&lt;p&gt;全てが終われば&lt;a href=&#34;http://syati.github.io/yourblog/&#34;&gt;yourblog&lt;/a&gt;のように作成できる。&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;※注意&lt;/strong&gt;
@@ -104,7 +105,7 @@ $ git checkout &amp;ndash;orphan gh-pages   # orphan ブランチ 作成
 $ git rm &amp;ndash;cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
 $ git add README.md                # README.md だけいれておく
 $ git commit -m &amp;ldquo;initial commit on gh-pages branch&amp;rdquo;
-$ git push -u origin gh-pages
+$ git push origin gh-pages
 &lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;master に戻って git subtree を利用して、gh-pages ブランチを master の public に取り込む。
@@ -205,7 +206,7 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 
 &lt;p&gt;&lt;a href=&#34;http://gohugo.io/overview/quickstart/&#34;&gt;Hugo Quickstart Guide&lt;/a&gt; にならって
 セットアップ手順を記していく。Part 1 では、まずはブログをローカルに構築する。
-Part 2 で、github.io にブログを立ち上げる。&lt;/p&gt;
+&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
 
 &lt;h1 id=&#34;step-1-インストールしましょう:21ff63570566c64813270f2340abd251&#34;&gt;Step 1 インストールしましょう&lt;/h1&gt;
 
@@ -308,7 +309,7 @@ $ hugo server --theme=slim --buildDrafts
 
 &lt;p&gt;ブログ構築完成。&lt;/p&gt;
 
-&lt;p&gt;Part 2 で、github.io にブログを立ち上げる。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
 </description>
     </item>
     

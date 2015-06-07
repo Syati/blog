@@ -19,7 +19,8 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
  <!--more-->
 [Hugo Quickstart Guide](http://gohugo.io/overview/quickstart/) にならって
 セットアップ手順を記していく。Part 1 では、まずはブログをローカルに構築する。
-Part 2 で、github.io にブログを立ち上げる。
+[Part 2]({{< ref "post/create_hugo_2.md" >}}) で、github.io にブログを立ち上げる。
+
 
 # Step 1 インストールしましょう
 
@@ -120,5 +121,5 @@ $ hugo server -\-theme=slim -\-buildDrafts
 
 ブログ構築完成。
 
-Part 2 で、github.io にブログを立ち上げる。
+[Part 2]({{< ref "post/create_hugo_2.md" >}}) で、github.io にブログを立ち上げる。
 

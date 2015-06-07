@@ -7,9 +7,11 @@ title = "Hugo で github にブログを立ち上げる Part 2"
 
 +++
 
-Part 1 では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる
-[Hosting on GitHub Pages](http://gohugo.io/tutorials/github-pages-blog/) を参考にして、
-セットアップ手順を記していく。
+[Part 1]({{< ref "post/create_hugo.md" >}}) では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
+[Hosting on GitHub Pages](http://gohugo.io/tutorials/github-pages-blog/) を参考にして、セットアップ手順を記していく。
+
+全てが終われば[yourblog](http://syati.github.io/yourblog/)のように作成できる。
+
  <!--more-->
 - **※注意**
     - ソースコード内の **&quot;** が、二重引用符（始）、二重引用符（終）に 変わっているので  
@@ -80,7 +82,7 @@ $ git checkout --orphan gh-pages   # orphan ブランチ 作成
 $ git rm --cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
 $ git add README.md                # README.md だけいれておく
 $ git commit -m "initial commit on gh-pages branch"
-$ git push -u origin gh-pages
+$ git push origin gh-pages
 </pre></code>
 
 master に戻って git subtree を利用して、gh-pages ブランチを master の public に取り込む。
