@@ -1,4 +1,4 @@
-baseurl = "http://syati.github.io/blog"
+baseurl = "http://syati.github.io/blog/"
 languageCode = "ja-JP"
 title = "Syati.info"
 theme = "greyshade"
