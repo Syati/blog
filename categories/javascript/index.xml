@@ -286,7 +286,8 @@ describe(&#39;Unit: app moudle &#39;, function(){
       <guid>http://syati.github.io/blog/post/emacsJavascript/</guid>
       <description>
 
-&lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。ということで私の環境を忘れないうちにメモ！！&lt;/p&gt;
+&lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
+ということで私の環境を忘れないうちにメモ！！&lt;/p&gt;
 
 &lt;h1 id=&#34;前提:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;前提&lt;/h1&gt;
 

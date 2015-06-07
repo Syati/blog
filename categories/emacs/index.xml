@@ -271,7 +271,8 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
       <guid>http://syati.github.io/blog/post/coffee_script/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、
+coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。&lt;/p&gt;
 
 &lt;h1 id=&#34;必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;必要なパッケージ&lt;/h1&gt;
 
@@ -304,7 +305,8 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
       <guid>http://syati.github.io/blog/post/emacsJavascript/</guid>
       <description>
 
-&lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。ということで私の環境を忘れないうちにメモ！！&lt;/p&gt;
+&lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
+ということで私の環境を忘れないうちにメモ！！&lt;/p&gt;
 
 &lt;h1 id=&#34;前提:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;前提&lt;/h1&gt;
 
@@ -406,6 +408,8 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
       
       <guid>http://syati.github.io/blog/post/make_scala_env/</guid>
       <description>
+
+&lt;p&gt;ubuntu で scala の開発環境を構築するメモ&lt;/p&gt;
 
 &lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
 

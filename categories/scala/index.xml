@@ -17,6 +17,8 @@
       <guid>http://syati.github.io/blog/post/make_scala_env/</guid>
       <description>
 
+&lt;p&gt;ubuntu で scala の開発環境を構築するメモ&lt;/p&gt;
+
 &lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
 
 &lt;ul&gt;

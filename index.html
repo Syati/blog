@@ -17,7 +17,7 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     
-	<link href='http://syati.github.io/blog/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	<link href='/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
 	
 	<link rel="canonical" href="http://syati.github.io/blog/">
 	<link href="http://syati.github.io/blog/favicon.png" rel="shortcut icon">
@@ -56,9 +56,9 @@
 </div>
 
 <nav id="main-nav"><ul class="main">
-    <li><a href="http://syati.github.io/blog/">Blog</a></li>
-    <li><a href="http://syati.github.io/blog/about/">About</a></li>
-    <li><a href="http://syati.github.io/blog/post/">Archives</a></li>
+    <li><a href="/">Blog</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/post/">Archives</a></li>
 </ul>
 
 
@@ -94,7 +94,7 @@
 		
     	
     	
-			<a class="rss" href='http://syati.github.io/blog/index.xml' title="RSS">RSS</a>
+			<a class="rss" href='/index.xml' title="RSS">RSS</a>
 		
 	</div>
 </nav>
@@ -108,6 +108,35 @@
 					
 					<div itemscope itemtype="http://schema.org/Blog">
 					
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Sun, Jun 7, 2015' data-updated="true" itemprop="datePublished">Sun, Jun 7, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="http://syati.github.io/blog/categories/hugo"> Hugo </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://syati.github.io/blog/post/create_hugo_2/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/create_hugo_2/" itemprop="url">Hugo で github にブログを立ち上げる Part 2</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Part 1 では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる
+<a href="http://gohugo.io/tutorials/github-pages-blog/">Hosting on GitHub Pages</a> を参考にして、
+セットアップ手順を記していく。</p>
+
+		<a href="http://syati.github.io/blog/post/create_hugo_2/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
 				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
     <div class="meta">
 		<div class="date"><time datetime='Fri, Jun 5, 2015' data-updated="true" itemprop="datePublished">Fri, Jun 5, 2015</time>
@@ -126,10 +155,51 @@
 			<span class="comments"><a href="http://syati.github.io/blog/post/create_hugo/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/create_hugo/" itemprop="url">Hugo で github.io にブログを簡単に立ち上げる Part 1</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/create_hugo/" itemprop="url">Hugo で github にブログを立ち上げる Part 1</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		WordPress でブログをつくっていましたが、記事投稿が面倒くさなって続かない。 なぜかと考えた時にテキストで書いたものを簡単に POST できないからである。 過去に org2blog などを試し、簡単になった！！と喜んでいた時期もあったが、 WordPress の Version Up などで POST できなくり、それっきり・・・。 今回は、ついに上記のことを打開できる策を見つけたのだ。 それが Hugo で github.io 上にブログを立ち上げることだ。 何が良いかといえば、markdown でかけて、github に push するだけでブログ が更新されることだ。 Hugo Quickstart Guide にならって セットアップ手順を記していく。Part 1 では、まずはブログをローカルに構築する。 Part 2 で、github.io にブログを立ち上げる。 Step 1 インストールしましょう OSX の場合 以下のコマンドでおしまい。 $ brew install hugo Ubuntu の場合 Hugo relase から適したものをDLして以下のコマンドを実行する。 $ sudo dpkg -i hugo_0.14_amd64.deb # 自分に適したパッケージを選んでね Step 2 ブログをつくろう 以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。 $ hugo new site ./yourblog 雛形はこんな感じになる。
+		<p>WordPress でブログをつくっていましたが、記事投稿が面倒くさなって続かない。
+なぜかと考えた時にテキストで書いたものを簡単に POST できないからである。
+過去に org2blog などを試し、簡単になった！！と喜んでいた時期もあったが、
+WordPress の Version Up などで POST できなくり、それっきり・・・。</p>
+
+<p>今回は、ついに上記のことを打開できる策を見つけたのだ。
+それが <strong>Hugo で github.io 上にブログを立ち上げることだ。</strong>
+何が良いかといえば、markdown でかけて、github に push するだけでブログ
+が更新されることだ。</p>
+
 		<a href="http://syati.github.io/blog/post/create_hugo/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/" itemprop="url">Angular test sample 1</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>js ってテストしにくいよねってことで今流行りの angular で unit test する。
+最初なので、事細かに説明するつもりで書いてみる。</p>
+
+<p>サンプルは以下から git clone してください。ソースと突き合わせながら見るといいかも。</p>
+
+<p><a href="https://github.com/Syati/angular-test-sample">https://github.com/Syati/angular-test-sample</a></p>
+
+		<a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -159,8 +229,10 @@
 	</div>
 	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/coffee_script/" itemprop="url">Emacs で CoffeeScript を AutoComplete する</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		Coffee-modeでauto-completeを使えるようにする を参考に、coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。 必要なパッケージ M-x package-list-package から 以下をインストールする jquery-doc 設定 Coffee-modeでauto-completeを使えるようにする を参考にして以下の部分を変更してあげる (add-hook 'coffee-mode-hook '(lambda () (jquery-doc-setup) ;; ここに jquery-doc を追加する (add-to-list 'ac-dictionary-files &quot;~/.emacs.d/ac-dict/js2-mode&quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある ))
-		
+		<p><a href="http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/">Coffee-modeでauto-completeを使えるようにする</a> を参考に、
+coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。</p>
+
+		<a href="http://syati.github.io/blog/post/coffee_script/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -174,19 +246,26 @@
 
 	
 	
+		<a href="http://syati.github.io/blog/categories/emacs"> Emacs </a>,
+	
+
+	
+	
 	    <a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>
 	
 
 
 </div>
 		
-			<span class="comments"><a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/#disqus_thread">Comments</a></span>
+			<span class="comments"><a href="http://syati.github.io/blog/post/emacsJavascript/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/" itemprop="url">Angular test sample 1</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/emacsJavascript/" itemprop="url">Emacs で JavaScript の開発環境を整える</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		js ってテストしにくいよねってことで今流行りの angular で unit test する。 最初なので、事細かに説明するつもりで書いてみる。 サンプルは以下から git clone してください。ソースと突き合わせながら見るといいかも。 https://github.com/Syati/angular-test-sample 準備 ubuntu node &amp; npm $ sudo apt-get install nodejs $ sudo apt-get install npm mac node &amp; npm $ brew install node 共通 bower $ sudo npm install -g bower karma $ sudo npm install -g karma-cli 実施：サンプルを CLONE して TEST github にサンプルを書いたので clone する。 $ git clone git@github.com:Syati/angular-test-sample.git prj 依存環境を入れる $ cd your_clone_path/angular-test-sample/controller/recipe1 $ npm
-		<a href="http://syati.github.io/blog/post/angular-test-sample-recipe1/" class="more-link">Read on →</a>
+		<p>開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
+ということで私の環境を忘れないうちにメモ！！</p>
+
+		<a href="http://syati.github.io/blog/post/emacsJavascript/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -226,24 +305,21 @@
 
 	
 	
-		<a href="http://syati.github.io/blog/categories/emacs"> Emacs </a>,
-	
-
-	
-	
-	    <a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>
+	    <a href="http://syati.github.io/blog/categories/osx"> OSX </a>
 	
 
 
 </div>
 		
-			<span class="comments"><a href="http://syati.github.io/blog/post/emacsJavascript/#disqus_thread">Comments</a></span>
+			<span class="comments"><a href="http://syati.github.io/blog/post/make_env_mac/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/emacsJavascript/" itemprop="url">Emacs で JavaScript の開発環境を整える</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/make_env_mac/" itemprop="url">Development Environment in my OSX</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		開発環境はとっても大事なんですが、構築までに時間がかかりますよね。ということで私の環境を忘れないうちにメモ！！ 前提 ubuntu 12.04 or OSX emacs &gt;= 24 構築 パッケージ管理にmelpa追加 ~/.emacs.d/init.el に以下を追加 (require 'package) (add-to-list 'package-archives '(&quot;melpa&quot; . &quot;http://melpa.milkbox.net/packages/&quot;) t) パッケージ管理からインストール M-x package-list-package で以下の2点をインストールする（該当箇所で i をタイプしてマークをつけて x でインストールする） flycheck js2-mode ~/.emacs.d/init.el に以下を追加 (add-hook 'after-init-hook #'global-flycheck-mode) (add-to-list 'auto-mode-alist '(&quot;\\.js\\'&quot; . js2-mode)) jshint をインストール 上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。 - npm をインストール - ubuntu の場合 sudo apt-get install npm - OSX の場合 brew install npm jshint をインストール sudo npm install jshint -g オプション -g
-		<a href="http://syati.github.io/blog/post/emacsJavascript/" class="more-link">Read on →</a>
+		<p>仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。
+ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。</p>
+
+		<a href="http://syati.github.io/blog/post/make_env_mac/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -273,34 +349,9 @@
 	</div>
 	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/make_scala_env/" itemprop="url">Scala の開発環境</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		os ubuntu 12.04 emacs 24.3.1 scala 開発環境 java のインストール jdk をインストール sudo apt-get install default-jdk 以下のコマンドでエラーが無いことを確認 java -version javac -version scala のインストール scala のダウンロード http://www.scala-lang.org/download/ sudo apt-get install scala でも可能だが version が古い 解凍ファイルを usr/local に上書きする ターミナルから以下のコマンドで、インストールできているか確認する scala -version ENSIME 導入 scala-mode2 以下から tool を clone する git clone https://github.com/hvesalai/scala-mode2.git コピーした scala-mode に移動して make コマンドする カレントディレクトリで .elc ファイルを作成される init.el に書く加える (add-to-list 'load-path &quot;/path/to/scala-mode2/&quot;) (require 'scala-mode2) scala-mode 補助 yasnipet がない場合は、以下から clone する
+		<p>ubuntu で scala の開発環境を構築するメモ</p>
+
 		<a href="http://syati.github.io/blog/post/make_scala_env/" class="more-link">Read on →</a>
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-	    <a href="http://syati.github.io/blog/categories/osx"> OSX </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://syati.github.io/blog/post/make_env_mac/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/make_env_mac/" itemprop="url">Development Environment in my OSX</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。 開発環境 xcode:開発環境 プラグイン command line tools (os x mountain lion) for xcode fink:package management のソフト 上記を用いて入れたソフトウェア coreutil-default prefix に g がない方 /sw/bin にコマンドが入るので、パスの優先度を上げておく wget tmux 問題：mac の tmux では pbcopy/pbpaste で クリップボードの共有ができない 解決：X環境のクリップボードやOS Xのペーストボードとtmuxのバッファを連携する方法 autoconf 古かったので結局自分で入れた emacs24.2:エディター デフォルトは emacs22.1 のため導入する。ただし、パッチを入れないと最大化等できない。以下のサイト参照のこと http://mgrace.info/?p=1032 http://sakito.jp/emacs/emacs24.html デフォルトターミナルの変更 コマンド chsh で zsh にする iTerm2：ターミナル デフォルトのターミナルに比べて、なんか見やすかったから入れといた http://www.iterm2.com/#/section/home meta-key が使えるように以下を実施する http://d.hatena.ne.jp/kitokitoki/20111129/p1 zsh + tmux を使っていると、当該ソフトの autocomplete とか
-		<a href="http://syati.github.io/blog/post/make_env_mac/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -325,8 +376,10 @@
 	</div>
 	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/nkf/" itemprop="url">nkf で直す文字化け</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。開いてびっくり文字化け。全部 utf-8 に修正してしまいます。 利用するもの nkf ただこれだけ インストール パッケージ管理でいれるのが楽です。無い場合は、nkf Network Kanji Filter からダウンロードして、make してください。 利用例 文字コードを判定する場合 % nkf -g shiftjis.txt output: Shift_JIS 文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合 % nkf -w -Lu shiftjis.txt 文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合 % nkf -w --overwrite -Lu shiftjis.txt 参考 Linux上で文字コードを変換できるコマンドnkfのオプション一覧 文字コード変換コマンドnkfの使い方まとめ Linux 6.9. 文字コードと改行コードの変換 【nkf】
-		
+		<p>Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
+開いてびっくり文字化け。全部 utf-8 に修正してしまいます。</p>
+
+		<a href="http://syati.github.io/blog/post/nkf/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -361,39 +414,14 @@
 	</div>
 	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/make_windows_emacs/" itemprop="url">Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、 否応なく Windows を利用しなければいけない時がある Syati です。 そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば AutoHotkey もあるのですが、それは、また次の機会に。 今回は、Cygwin、Zsh、NTEmacs でWindows に Linux環境を構築をする。 1. インストール cygwin のインストール 注意がでるけどインストールディレクトリをドライブのRoot( F:/ ) にでもする デフォルトから追加で、とりあえずインストールするパッケージは 以下の通り（あとは好きなパッケケージを入れる） Archive p7zip unzip zip Devel gcc-core gcc-g++ Net openssh Shells zsh Web wget gnupack emacs only でインストール ダウンロードしたファイルを解凍 解凍されたディレクトリの中身(bin,etc,info などなど）をすべてコピーして cygwin をインストールしたディレクトリの F:/usr/local/ に上書きする 2. cygwin のデフォルト Shell を zsh に切り替え、初期設定 /etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する Cygwin が MS-DOS形式のパスに対して Warning を出力するので消しておく cygwin がMS-DOS形式のパスをWarningするので消した Cygwin Terminal ショートカットから Terminal を起動すると zsh startup が立ち上がるので (0) Exit, creating the &#x2026;..
+		<p>最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、
+否応なく Windows を利用しなければいけない時がある Syati です。
+そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば
+AutoHotkey もあるのですが、それは、また次の機会に。</p>
+
+<p>今回は、Cygwin、Zsh、NTEmacs でWindows に Linux環境を構築をする。</p>
+
 		<a href="http://syati.github.io/blog/post/make_windows_emacs/" class="more-link">Read on →</a>
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-		<a href="http://syati.github.io/blog/categories/javascript"> JavaScript </a>,
-	
-
-	
-	
-	    <a href="http://syati.github.io/blog/categories/node"> Node </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://syati.github.io/blog/post/node_path/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/node_path/" itemprop="url">node 利用するなら、まずは環境変数を設定しましょう</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		javascript を REPL で利用できるといえば node 。underscore.js を試したいと思いハマったメモ。 はまった事 以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。 Syati% sudo npm install undersocre -g Syati% node require('underscore'); Error: Cannot find module 'underscore' at Function.Module._resolveFilename (module.js:338:15) at Function.Module._load (module.js:280:25) at Module.require (module.js:362:17) at require (module.js:378:17) at repl:1:1 at REPLServer.self.eval (repl.js:109:21) at rli.on.self.bufferedCmd (repl.js:258:20) at REPLServer.self.eval (repl.js:116:5) at Interface.&lt;anonymous&gt; (repl.js:248:12) at Interface.EventEmitter.emit (events.js:96:17) 原因 npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。 解決 設定するパスを確認する npm root -g // output =&gt; /usr/local/lib/node_modules 利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了 export
-		<a href="http://syati.github.io/blog/post/node_path/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -402,7 +430,7 @@
 				    <nav id="pagenavi">
 					    
 					    
-					        <a href="http://syati.github.io/blog/page/2/" class="next">Next</a>
+					        <a href="/page/2/" class="next">Next</a>
 					    
 					    <div class="center"><a href="http://syati.github.io/blog/post/">Blog Archives</a></div>
 					</nav>

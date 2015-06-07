@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://syati.github.io/blog/</loc>
-    <lastmod>2015-06-05T21:55:31+09:00</lastmod>
+    <lastmod>2015-06-07T21:55:31+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://syati.github.io/blog/post/create_hugo_2/</loc>
+    <lastmod>2015-06-07T21:55:31+09:00</lastmod>
   </url>
   
   <url>
@@ -13,17 +18,12 @@
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/coffee_script/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://syati.github.io/blog/post/angular-test-sample-recipe1/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/emacs_256/</loc>
+    <loc>http://syati.github.io/blog/post/coffee_script/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
@@ -33,12 +33,17 @@
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/make_scala_env/</loc>
+    <loc>http://syati.github.io/blog/post/emacs_256/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
     <loc>http://syati.github.io/blog/post/make_env_mac/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://syati.github.io/blog/post/make_scala_env/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
@@ -68,12 +73,12 @@
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/typecatchar/</loc>
+    <loc>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</loc>
+    <loc>http://syati.github.io/blog/post/typecatchar/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
@@ -83,12 +88,12 @@
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/autostart_synerge_ubuntu/</loc>
+    <loc>http://syati.github.io/blog/post/bowerrc/</loc>
     <lastmod>2015-03-01T21:37:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/bowerrc/</loc>
+    <loc>http://syati.github.io/blog/post/autostart_synerge_ubuntu/</loc>
     <lastmod>2015-03-01T21:37:06+09:00</lastmod>
   </url>
   
