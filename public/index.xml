@@ -7,10 +7,186 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Fri, 05 Jun 2015 21:55:31 JST</updated>
+    <updated>Sun, 07 Jun 2015 21:55:31 JST</updated>
     
     <item>
-      <title>Hugo で github.io にブログを簡単に立ち上げる Part 1</title>
+      <title>Hugo で github にブログを立ち上げる Part 2</title>
+      <link>http://syati.github.io/blog/post/create_hugo_2/</link>
+      <pubDate>Sun, 07 Jun 2015 21:55:31 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/create_hugo_2/</guid>
+      <description>
+
+&lt;p&gt;Part 1 では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる
+&lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; を参考にして、
+セットアップ手順を記していく。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;※注意&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ソースコード内の &lt;strong&gt;&amp;quot;&lt;/strong&gt; が、二重引用符（始）、二重引用符（終）に 変わっているので&lt;br /&gt;
+コピペしてもバグります。コピペする場合は修正してください。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;step-1-github-に-blog-repository-をつくる:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 1 github に blog repository をつくる&lt;/h1&gt;
+
+&lt;p&gt;github にアクセスして、repository をつくる。repository name がそのまま URL になる（以下のようなURL）。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;http://[username].githug.io/[repo]&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[] の意味
+
+&lt;ul&gt;
+&lt;li&gt;[username] : github の username&lt;/li&gt;
+&lt;li&gt;[repo] : github に作成する repository name&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;step-2-blog-の設定をかいておく:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 2 blog の設定をかいておく&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;※以降、github に yourblog として repostitory を作成したとして記す。また、part 1 で作成した yourblog があるものとする&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;part 1 で作成した yourblog ディレクトリ内の &lt;strong&gt;config.toml&lt;/strong&gt; を開いて設定を書く（以下参考）。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+title = &amp;ldquo;My New Hugo Site&amp;rdquo;
+baseurl = &amp;ldquo;http://[username].github.io/yourblog&amp;rdquo;
+languageCode = &amp;ldquo;ja-jp&amp;rdquo;
+theme = &amp;ldquo;hyde&amp;rdquo;　# part 1 で選んだ theme を設定する&lt;/p&gt;
+
+&lt;p&gt;[params]
+  description = &amp;ldquo;This is yourblog&amp;rdquo;
+  author = &amp;ldquo;your name&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;[taxonomies]
+  category = &amp;ldquo;categories&amp;rdquo;
+  tag = &amp;ldquo;tags&amp;rdquo;
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;参考
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://gohugo.io/overview/configuration/&#34;&gt;Configuring Hugo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mojavy.com/blog/2013/04/26/toml/&#34;&gt;TOMLノススメ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/toml-lang/toml&#34;&gt;toml-lang/toml&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;step-3-repository-に-push-する:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 3 repository に push する&lt;/h1&gt;
+
+&lt;p&gt;yourblog ディレクトリで以下のコマンドを実行する。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ git init # part 1 で作成した yourblog をリポジトリにする
+$ git remote add origin git@github.com:[username]/yourblog.git # remote を設定する
+$ git pull origin master
+$
+$ rm -rf public # このディレクトリは git subtree を利用して管理するので削除する
+$ git add -A
+$ git commit -m &amp;ldquo;Add hugo template&amp;rdquo;
+$ git push origin master
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-4-gh-pages-ブランチを作成する:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 4 gh-pages ブランチを作成する&lt;/h1&gt;
+
+&lt;p&gt;gh-pages ブランチには hugo で作成されたコンテンツ（ public ）のみ置いて、
+関係のないもの（ archetypes, themes, etc ）は紛らわしいので管理したくない。&lt;/p&gt;
+
+&lt;p&gt;そこで、master から独立したブランチを作成するために、orphan オプションを
+つけて履歴のないブランチを作成する。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ git checkout &amp;ndash;orphan gh-pages   # orphan ブランチ 作成
+$ git rm &amp;ndash;cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
+$ git add README.md                # README.md だけいれておく
+$ git commit -m &amp;ldquo;initial commit on gh-pages branch&amp;rdquo;
+$ git push -u origin gh-pages
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;master に戻って git subtree を利用して、gh-pages ブランチを master の public に取り込む。
+subtree って何？って思う方は、下部の参考を見てください。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ git checkout master
+$ git subtree add &amp;ndash;prefix=public git@github.com:[username]/yourblog.git gh-pages --squash
+$ git subtree pull &amp;ndash;prefix=public git@github.com:[username]/yourblog.git gh-pages
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;hugo コマンドで public を生成して以下のように push していくことで、
+master に変更を加え、gh-pages にも変更を加える事が出来る。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ hugo
+$ git add -A
+$ git commit -m &amp;ldquo;Updating site&amp;rdquo;
+$ git push origin master
+$ git subtree push &amp;ndash;prefix=public git@github.com:Syati/yourblog.git gh-pages
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;基本的に新しい記事を書いて github.io に公開（ Deploy ）する際、上記の手順を踏むことになる。
+毎回これするのはめんどくさいので、Step 5 に進む。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;参考
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/akiko-pusu/items/7c0a99b8cb37882d2cfe&#34;&gt;gitの空ブランチを作る&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://japan.blogs.atlassian.com/2014/03/alternatives-to-git-submodule-git-subtree/&#34;&gt;Git Submodule の代替: Git Subtree&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/shogo82148/items/04b29b195dbbb373152f&#34;&gt;git-subtree移行メモ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/marutanm/items/d02e7d5ff8ed7c2c4b95&#34;&gt;submoduleとsubtree-mergingの使い分け&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;step-5-めんどさい-deploy-はスクリプトを利用する:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 5 めんどさい Deploy はスクリプトを利用する&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; の &lt;strong&gt;deploy.sh&lt;/strong&gt; に書かれている以下を利用する。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+# !/bin/bash&lt;/p&gt;
+
+&lt;p&gt;echo -e &amp;ldquo;\033[0;32mDeploying updates to GitHub&amp;hellip;\033[0m&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;# Build the project.
+hugo&lt;/p&gt;
+
+&lt;p&gt;# Add changes to git.
+git add -A&lt;/p&gt;
+
+&lt;p&gt;# Commit changes.
+msg=&amp;ldquo;rebuilding site &lt;code&gt;date&lt;/code&gt;&amp;ldquo;
+if [ $# -eq 1 ]
+  then msg=&amp;ldquo;$1&amp;rdquo;
+fi
+git commit -m &amp;ldquo;$msg\&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;# Push source and build repos.
+git push origin master
+git subtree push --prefix=public git@github.com:[username]/yourblog.git gh-pages　
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spencerlyon2/hugo_gh_blog&#34;&gt;spencerlyon2/hugo_gh_blog&lt;/a&gt; のレポジトリに deploy.sh
+があるので　DL してきて修正するのがはやいかも。&lt;/p&gt;
+
+&lt;p&gt;deploy.sh を yourblog ディレクトリに保存したのち、実行できるように以下を実行する。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ chmod +x deploy.sh
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;これで新しい記事を書いて github.io に公開（ Deploy ）する際は、以下のコマンドを実行するのみで良い。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ ./deploy.sh
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hugo で github にブログを立ち上げる Part 1</title>
       <link>http://syati.github.io/blog/post/create_hugo/</link>
       <pubDate>Fri, 05 Jun 2015 21:55:31 JST</pubDate>
       
@@ -133,39 +309,6 @@ $ hugo server --theme=slim --buildDrafts
 &lt;p&gt;ブログ構築完成。&lt;/p&gt;
 
 &lt;p&gt;Part 2 で、github.io にブログを立ち上げる。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Emacs で CoffeeScript を AutoComplete する</title>
-      <link>http://syati.github.io/blog/post/coffee_script/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/coffee_script/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。&lt;/p&gt;
-
-&lt;h1 id=&#34;必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;必要なパッケージ&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;M-x package-list-package から 以下をインストールする
-
-&lt;ul&gt;
-&lt;li&gt;jquery-doc&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;設定:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;設定&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考にして以下の部分を変更してあげる&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(add-hook &#39;coffee-mode-hook
-          &#39;(lambda ()
-             (jquery-doc-setup) ;; ここに jquery-doc を追加する
-             (add-to-list &#39;ac-dictionary-files &amp;quot;~/.emacs.d/ac-dict/js2-mode&amp;quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
-             ))
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -439,20 +582,36 @@ describe(&#39;Unit: app moudle &#39;, function(){
     </item>
     
     <item>
-      <title>Emacs を 256色で起動する</title>
-      <link>http://syati.github.io/blog/post/emacs_256/</link>
+      <title>Emacs で CoffeeScript を AutoComplete する</title>
+      <link>http://syati.github.io/blog/post/coffee_script/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
-      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
+      <guid>http://syati.github.io/blog/post/coffee_script/</guid>
+      <description>
 
-&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、
+coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
+&lt;h1 id=&#34;必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;必要なパッケージ&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;M-x package-list-package から 以下をインストールする
+
+&lt;ul&gt;
+&lt;li&gt;jquery-doc&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;設定:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;設定&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考にして以下の部分を変更してあげる&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-hook &#39;coffee-mode-hook
+          &#39;(lambda ()
+             (jquery-doc-setup) ;; ここに jquery-doc を追加する
+             (add-to-list &#39;ac-dictionary-files &amp;quot;~/.emacs.d/ac-dict/js2-mode&amp;quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
+             ))
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
-以下のコマンドを実行しましょう。&lt;/p&gt;
 </description>
     </item>
     
@@ -464,7 +623,8 @@ describe(&#39;Unit: app moudle &#39;, function(){
       <guid>http://syati.github.io/blog/post/emacsJavascript/</guid>
       <description>
 
-&lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。ということで私の環境を忘れないうちにメモ！！&lt;/p&gt;
+&lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
+ということで私の環境を忘れないうちにメモ！！&lt;/p&gt;
 
 &lt;h1 id=&#34;前提:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;前提&lt;/h1&gt;
 
@@ -542,97 +702,20 @@ describe(&#39;Unit: app moudle &#39;, function(){
     </item>
     
     <item>
-      <title>Scala の開発環境</title>
-      <link>http://syati.github.io/blog/post/make_scala_env/</link>
+      <title>Emacs を 256色で起動する</title>
+      <link>http://syati.github.io/blog/post/emacs_256/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/make_scala_env/</guid>
-      <description>
+      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
+      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
 
-&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
+&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;ubuntu 12.04&lt;/li&gt;
-&lt;li&gt;emacs 24.3.1&lt;/li&gt;
-&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
-
-&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;jdk をインストール
-
-&lt;ul&gt;
-&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;以下のコマンドでエラーが無いことを確認
-
-&lt;ul&gt;
-&lt;li&gt;java -version&lt;/li&gt;
-&lt;li&gt;javac -version&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;scala のダウンロード
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
-&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
-
-&lt;ul&gt;
-&lt;li&gt;scala -version&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
-
-&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;以下から tool を clone する
-
-&lt;ul&gt;
-&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;コピーした scala-mode に移動して make コマンドする
-
-&lt;ul&gt;
-&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
-(require &#39;scala-mode2)
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;yasnipet がない場合は、以下から clone する
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
+以下のコマンドを実行しましょう。&lt;/p&gt;
 </description>
     </item>
     
@@ -644,7 +727,8 @@ describe(&#39;Unit: app moudle &#39;, function(){
       <guid>http://syati.github.io/blog/post/make_env_mac/</guid>
       <description>
 
-&lt;p&gt;仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。&lt;/p&gt;
+&lt;p&gt;仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。
+ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。&lt;/p&gt;
 
 &lt;h1 id=&#34;開発環境:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;開発環境&lt;/h1&gt;
 
@@ -825,6 +909,103 @@ describe(&#39;Unit: app moudle &#39;, function(){
     </item>
     
     <item>
+      <title>Scala の開発環境</title>
+      <link>http://syati.github.io/blog/post/make_scala_env/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/make_scala_env/</guid>
+      <description>
+
+&lt;p&gt;ubuntu で scala の開発環境を構築するメモ&lt;/p&gt;
+
+&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ubuntu 12.04&lt;/li&gt;
+&lt;li&gt;emacs 24.3.1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
+
+&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;jdk をインストール
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;以下のコマンドでエラーが無いことを確認
+
+&lt;ul&gt;
+&lt;li&gt;java -version&lt;/li&gt;
+&lt;li&gt;javac -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;scala のダウンロード
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
+&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
+
+&lt;ul&gt;
+&lt;li&gt;scala -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
+
+&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;以下から tool を clone する
+
+&lt;ul&gt;
+&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;コピーした scala-mode に移動して make コマンドする
+
+&lt;ul&gt;
+&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
+(require &#39;scala-mode2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;yasnipet がない場合は、以下から clone する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>nkf で直す文字化け</title>
       <link>http://syati.github.io/blog/post/nkf/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -832,7 +1013,8 @@ describe(&#39;Unit: app moudle &#39;, function(){
       <guid>http://syati.github.io/blog/post/nkf/</guid>
       <description>
 
-&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
+&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
+開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
 
 &lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
 
@@ -1419,46 +1601,6 @@ echo &#34;hoge&#34;
     </item>
     
     <item>
-      <title>Google Fonts をローカルで利用する</title>
-      <link>http://syati.github.io/blog/post/typecatchar/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/typecatchar/</guid>
-      <description>
-
-&lt;p&gt;Google Fonts をローカル環境で使いたいと思い調べたら、意外と簡単だった。以下は参考のほぼ転記。&lt;/p&gt;
-
-&lt;h1 id=&#34;環境:68568d62e9a876d6a56009578931cad6&#34;&gt;環境&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;OS:ubuntu 12.04&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;インストール:68568d62e9a876d6a56009578931cad6&#34;&gt;インストール&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:andrewsomething/typecatcher
-sudo apt-get update
-sudo apt-get install typecatcher
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;メニュー　-&amp;gt; アクセサリー -&amp;gt; TypeCatchar で起動した後、好きなフォントを選んでインストール&lt;/p&gt;
-
-&lt;h1 id=&#34;その他:68568d62e9a876d6a56009578931cad6&#34;&gt;その他&lt;/h1&gt;
-
-&lt;p&gt;ubuntu 13.10 以上は、以下の通り&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get install typecatcher
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;参考:68568d62e9a876d6a56009578931cad6&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&#34;&gt;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
       <link>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1498,44 +1640,42 @@ make reattach-to-user-namespace
     </item>
     
     <item>
-      <title>vagrant、chef-solo で開発環境を構築する</title>
-      <link>http://syati.github.io/blog/post/vagrant_css_problem/</link>
+      <title>Google Fonts をローカルで利用する</title>
+      <link>http://syati.github.io/blog/post/typecatchar/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/vagrant_css_problem/</guid>
+      <guid>http://syati.github.io/blog/post/typecatchar/</guid>
       <description>
 
-&lt;p&gt;最近、vagrant、chef-solo で開発環境を構築するのがブームなSyatiです。xampp、mamp とかで？？ができないとかよくありますが、面倒くさいので皆サーバーと同じ環境にして開発しましょうよ。そしたら、？？ができないなんてことがなくなりますので。&lt;/p&gt;
+&lt;p&gt;Google Fonts をローカル環境で使いたいと思い調べたら、意外と簡単だった。以下は参考のほぼ転記。&lt;/p&gt;
 
-&lt;p&gt;今回はまったのは、vagrant の共有フォルダに apache のバーチャルホストのドキュメントルートを設定して、ローカルでソースコードをいじり、ブラウザで確認している時である。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;CSSをいじって、ブラウザで確認しても反映されないのである。もちろんキャッシュクリア済み。やむなくvagrantを再起動すると反映されるのである&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;原因:5c1f1c5e88ff812515d1aa7457a96fee&#34;&gt;原因&lt;/h1&gt;
-
-&lt;p&gt;httpd.conf の設定に問題があった。
-以下の設定を加えるのである。EnableSendfile なんて httpd.conf 中のどこにも記述が無いんだが、デフォルトが On のため、明示的に加えてあげる必要がある。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;EnableSendfile Off
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;以下&lt;a href=&#34;http://httpd.apache.org/docs/2.2/mod/core.html#enablesendfile&#34;&gt; EnableSendfile&lt;/a&gt;より引用&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;このディレクティブはクライアンにファイルの内容を送るときに httpd がカーネルの sendfile サポートを使うかどうかを制御します。デフォルトでは、 例えば静的なファイルの配送のように、リクエストの処理にファイルの 途中のデータのアクセスを必要としないときには、Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。
-sendfile は read と send を別々に行なうことと、バッファの割り当てを 回避します。しかし、プラットフォームやファイルシステムの中には 運用上の問題を避けるためにこの機能を使用不可にした方が良い場合があります&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;おそらく、以下の部分が原因か！？それでファイルを変更しても、逐次更新されないんでしょう。
--   &lt;strong&gt;Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;参考:5c1f1c5e88ff812515d1aa7457a96fee&#34;&gt;参考&lt;/h1&gt;
+&lt;h1 id=&#34;環境:68568d62e9a876d6a56009578931cad6&#34;&gt;環境&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://qiita.com/shoyan/items/12389d5beaa8695b1a53&#34;&gt;http://qiita.com/shoyan/items/12389d5beaa8695b1a53&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;OS:ubuntu 12.04&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;上記に nginx の場合も書いて有りますね。&lt;/p&gt;
+&lt;h1 id=&#34;インストール:68568d62e9a876d6a56009578931cad6&#34;&gt;インストール&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:andrewsomething/typecatcher
+sudo apt-get update
+sudo apt-get install typecatcher
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;メニュー　-&amp;gt; アクセサリー -&amp;gt; TypeCatchar で起動した後、好きなフォントを選んでインストール&lt;/p&gt;
+
+&lt;h1 id=&#34;その他:68568d62e9a876d6a56009578931cad6&#34;&gt;その他&lt;/h1&gt;
+
+&lt;p&gt;ubuntu 13.10 以上は、以下の通り&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install typecatcher
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;参考:68568d62e9a876d6a56009578931cad6&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&#34;&gt;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     

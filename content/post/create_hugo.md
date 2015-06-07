@@ -3,7 +3,7 @@ Categories = ["Hugo"]
 Description = "WordPress から github.io にブログを立ち上げる"
 Tags = ["Blog", "github.io"]
 date = "2015-06-05T21:55:31+09:00"
-title = "Hugo で github.io にブログを簡単に立ち上げる Part 1"
+title = "Hugo で github にブログを立ち上げる Part 1"
 
 +++
 
@@ -16,7 +16,7 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 それが **Hugo で github.io 上にブログを立ち上げることだ。**
 何が良いかといえば、markdown でかけて、github に push するだけでブログ
 が更新されることだ。
-
+ <!--more-->
 [Hugo Quickstart Guide](http://gohugo.io/overview/quickstart/) にならって
 セットアップ手順を記していく。Part 1 では、まずはブログをローカルに構築する。
 Part 2 で、github.io にブログを立ち上げる。

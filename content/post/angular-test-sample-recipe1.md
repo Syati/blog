@@ -14,6 +14,7 @@ js ってテストしにくいよねってことで今流行りの angular で u
 サンプルは以下から git clone してください。ソースと突き合わせながら見るといいかも。
 
 <https://github.com/Syati/angular-test-sample>
+<!--more-->
 
 # 準備
 

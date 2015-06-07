@@ -14,7 +14,7 @@ title = "Cygwin + Zsh + NTEmacs で作る Linux環境 in Windows"
 AutoHotkey もあるのですが、それは、また次の機会に。
 
 今回は、Cygwin、Zsh、NTEmacs でWindows に Linux環境を構築をする。
-
+ <!--more-->
 # 1. インストール
 
 1.  [cygwin](http://www.cygwin.com/) のインストール

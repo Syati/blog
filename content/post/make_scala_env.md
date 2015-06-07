@@ -7,6 +7,8 @@ title = "Scala の開発環境"
 
 +++
 
+ubuntu で scala の開発環境を構築するメモ
+ <!--more-->
 # os
 
 -   ubuntu 12.04
