@@ -102,8 +102,8 @@ $ git push origin master
 つけて履歴のないブランチを作成する。&lt;/p&gt;
 
 &lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ git checkout &amp;ndash;orphan gh-pages   # orphan ブランチ 作成
-$ git rm &amp;ndash;cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
+$ git checkout --orphan gh-pages   # orphan ブランチ 作成
+$ git rm --cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
 $ git add README.md                # README.md だけいれておく
 $ git commit -m &amp;ldquo;initial commit on gh-pages branch&amp;rdquo;
 $ git push origin gh-pages
@@ -114,8 +114,8 @@ subtree って何？って思う方は、下部の参考を見てください。
 
 &lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
 $ git checkout master
-$ git subtree add &amp;ndash;prefix=public git@github.com:[username]/yourblog.git gh-pages --squash
-$ git subtree pull &amp;ndash;prefix=public git@github.com:[username]/yourblog.git gh-pages
+$ git subtree add --prefix=public git@github.com:[username]/yourblog.git gh-pages --squash
+$ git subtree pull --prefix=public git@github.com:[username]/yourblog.git gh-pages
 &lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;hugo コマンドで public を生成して以下のように push していくことで、
@@ -126,7 +126,7 @@ $ hugo
 $ git add -A
 $ git commit -m &amp;ldquo;Updating site&amp;rdquo;
 $ git push origin master
-$ git subtree push &amp;ndash;prefix=public git@github.com:Syati/yourblog.git gh-pages
+$ git subtree push --prefix=public git@github.com:Syati/yourblog.git gh-pages
 &lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;基本的に新しい記事を書いて github.io に公開（ Deploy ）する際、上記の手順を踏むことになる。
@@ -704,6 +704,24 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
+      <title>Emacs を 256色で起動する</title>
+      <link>http://syati.github.io/blog/post/emacs_256/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
+      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
+
+&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
+以下のコマンドを実行しましょう。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Development Environment in my OSX</title>
       <link>http://syati.github.io/blog/post/make_env_mac/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -889,24 +907,6 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 &lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「マウス」-&amp;gt; 「スクロールの方向：ナチュラル」のチェックを外す&lt;/li&gt;
 &lt;/ol&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Emacs を 256色で起動する</title>
-      <link>http://syati.github.io/blog/post/emacs_256/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
-      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
-
-&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
-以下のコマンドを実行しましょう。&lt;/p&gt;
 </description>
     </item>
     
@@ -1311,58 +1311,6 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
     </item>
     
     <item>
-      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
-      <link>http://syati.github.io/blog/post/node_path/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/node_path/</guid>
-      <description>
-
-&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
-
-&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
-
-&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
-Syati% node 
-
-require(&#39;underscore&#39;); 
-Error: Cannot find module &#39;underscore&#39;
-    at Function.Module._resolveFilename (module.js:338:15)
-    at Function.Module._load (module.js:280:25)
-    at Module.require (module.js:362:17)
-    at require (module.js:378:17)
-    at repl:1:1
-    at REPLServer.self.eval (repl.js:109:21)
-    at rli.on.self.bufferedCmd (repl.js:258:20)
-    at REPLServer.self.eval (repl.js:116:5)
-    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
-    at Interface.EventEmitter.emit (events.js:96:17)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
-
-&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
-
-&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm root -g
-// output =&amp;gt; /usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
       <title>org2blog の記事にコードブロックを入れる</title>
       <link>http://syati.github.io/blog/post/org2blogInsertSourceCode/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1559,6 +1507,58 @@ echo &#34;hoge&#34;
     </item>
     
     <item>
+      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
+      <link>http://syati.github.io/blog/post/node_path/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/node_path/</guid>
+      <description>
+
+&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
+
+&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
+
+&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
+Syati% node 
+
+require(&#39;underscore&#39;); 
+Error: Cannot find module &#39;underscore&#39;
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:362:17)
+    at require (module.js:378:17)
+    at repl:1:1
+    at REPLServer.self.eval (repl.js:109:21)
+    at rli.on.self.bufferedCmd (repl.js:258:20)
+    at REPLServer.self.eval (repl.js:116:5)
+    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
+    at Interface.EventEmitter.emit (events.js:96:17)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
+
+&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
+
+&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm root -g
+// output =&amp;gt; /usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
       <title>org2blog でブログに接続する際のパスワードを .netrc に保存しておく</title>
       <link>http://syati.github.io/blog/post/org2blogNetrc/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1603,45 +1603,6 @@ echo &#34;hoge&#34;
     </item>
     
     <item>
-      <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
-      <link>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</guid>
-      <description>
-
-&lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;
-
-&lt;h1 id=&#34;手順:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;手順&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt; ここにいってソースコードをDLしてくる（git cloneでもOK）&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;ダウンロードしたファイルのディレクトリで make する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd ~/Downloads/tmux-MacOSX-pasteboard
-make reattach-to-user-namespace
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;which reattach-to-user-namespace
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;これでワーニングもサヨウナラ&lt;/p&gt;
-
-&lt;h1 id=&#34;参考:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Google Fonts をローカルで利用する</title>
       <link>http://syati.github.io/blog/post/typecatchar/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1677,6 +1638,45 @@ sudo apt-get install typecatcher
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&#34;&gt;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
+      <link>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</guid>
+      <description>
+
+&lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;
+
+&lt;h1 id=&#34;手順:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;手順&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt; ここにいってソースコードをDLしてくる（git cloneでもOK）&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ダウンロードしたファイルのディレクトリで make する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ~/Downloads/tmux-MacOSX-pasteboard
+make reattach-to-user-namespace
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;which reattach-to-user-namespace
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;これでワーニングもサヨウナラ&lt;/p&gt;
+
+&lt;h1 id=&#34;参考:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

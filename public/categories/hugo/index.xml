@@ -102,8 +102,8 @@ $ git push origin master
 つけて履歴のないブランチを作成する。&lt;/p&gt;
 
 &lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ git checkout &amp;ndash;orphan gh-pages   # orphan ブランチ 作成
-$ git rm &amp;ndash;cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
+$ git checkout --orphan gh-pages   # orphan ブランチ 作成
+$ git rm --cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
 $ git add README.md                # README.md だけいれておく
 $ git commit -m &amp;ldquo;initial commit on gh-pages branch&amp;rdquo;
 $ git push origin gh-pages
@@ -114,8 +114,8 @@ subtree って何？って思う方は、下部の参考を見てください。
 
 &lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
 $ git checkout master
-$ git subtree add &amp;ndash;prefix=public git@github.com:[username]/yourblog.git gh-pages --squash
-$ git subtree pull &amp;ndash;prefix=public git@github.com:[username]/yourblog.git gh-pages
+$ git subtree add --prefix=public git@github.com:[username]/yourblog.git gh-pages --squash
+$ git subtree pull --prefix=public git@github.com:[username]/yourblog.git gh-pages
 &lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;hugo コマンドで public を生成して以下のように push していくことで、
@@ -126,7 +126,7 @@ $ hugo
 $ git add -A
 $ git commit -m &amp;ldquo;Updating site&amp;rdquo;
 $ git push origin master
-$ git subtree push &amp;ndash;prefix=public git@github.com:Syati/yourblog.git gh-pages
+$ git subtree push --prefix=public git@github.com:Syati/yourblog.git gh-pages
 &lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;基本的に新しい記事を書いて github.io に公開（ Deploy ）する際、上記の手順を踏むことになる。

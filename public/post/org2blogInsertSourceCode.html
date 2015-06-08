@@ -1,0 +1,370 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head>
+	<meta charset="utf-8">
+	<title>org2blog の記事にコードブロックを入れる - Syati.info</title>
+	<meta name="author" content="map[author:mizuki-y]">
+
+	
+	  
+	<meta name="description" content="org2blog の記事にコードブロックを入れるをいれて綺麗にコードを見せる">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='http://localhost:1313/blog/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://localhost:1313/blog/post/org2blogInsertSourceCode.html">
+	<link href="http://localhost:1313/blog//favicon.png" rel="shortcut icon">
+	<link href="http://localhost:1313/blog//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://localhost:1313/blog//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href="http://localhost:1313/blog//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-9380531-9']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	
+	
+</div>
+
+<nav id="main-nav"><ul class="main">
+    <li><a href="http://localhost:1313/blog/">Blog</a></li>
+    <li><a href="http://localhost:1313/blog/about/">About</a></li>
+    <li><a href="http://localhost:1313/blog/post/">Archives</a></li>
+</ul>
+
+
+<section class="aboutme">
+  <p>
+    かんがえるさかな
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='http://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+			<a class="google" href='https://plus.google.com/&#43;mizukiyamamoto' rel="author" title="Google+">Google+</a>
+		
+		
+			<a class="twitter" href='http://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='http://localhost:1313/blog/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title" itemprop="name">org2blog の記事にコードブロックを入れる</h1>
+	<div class="entry-content" itemprop="articleBody">
+
+<p>org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 <a href="http://syati.info/?p=1746">org2blogからの投稿</a> の続き。</p>
+
+<h1 id="必要なもの:c443d59d4160338c2614fe779a49a87f">必要なもの</h1>
+
+<ol>
+<li><p>htmlize.el を load-path の通ったところに入れる。</p>
+
+<ul>
+<li>htmlize.el は <a href="http://orgmode.org/ja/index.html">org-mode</a> をDLして、解凍した contrib/lisp に入っている。</li>
+</ul></li>
+
+<li><p><a href="http://wordpress.org/extend/plugins/syntaxhighlighter/">SyntaxHighlighter Evolved</a> をワードプレスに入れて有効化しておく。</p></li>
+
+<li><p>emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に <strong>:wp-code t</strong> を書き加える。</p>
+
+<ul>
+<li><p>以下が .emacs.d/init.el に書き込んだ私の org2blog の設定</p>
+
+<p>;;org2blog
+(require &lsquo;org2blog)
+(setq org2blog/wp-blog-alist
+      &lsquo;((&ldquo;wordpress&rdquo;
+         :url &ldquo;your wordpress url&rdquo;
+         :username &ldquo;login name&rdquo;
+         :wp-code t))) ;; insert this line</p></li>
+</ul></li>
+</ol>
+
+<h1 id="使ってみる:c443d59d4160338c2614fe779a49a87f">使ってみる</h1>
+
+<ol>
+<li>org2blog/wp-new-entry で投稿記事を作成する。</li>
+
+<li><p>以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。</p>
+
+<ul>
+<li>表記 <strong>#+BEGIN_SRC 言語　:syntaxhl [利用したいパラメータ（任意）] ソースコード #+END_SRC</strong>
+
+<ul>
+<li>:syntaxhl にパラメータを与えない場合は、ワードプレスの管理画面-&gt;設定 SyntaxHighlighter の一般設定が用いられる。</li>
+<li><a href="http://en.support.wordpress.com/code/posting-source-code/#configuration-parameters">パラメータはこちら</a></li>
+</ul></li>
+</ul>
+
+<pre>
+＃+BEGIN_SRC bash :syntaxhl
+echo "hoge" 
+＃+END_SRC
+</pre></li>
+</ol>
+
+<p>これで org2blog の記事投稿でコードも綺麗に投稿できる。</p>
+
+<h1 id="補足:c443d59d4160338c2614fe779a49a87f">補足</h1>
+
+<ul>
+<li><p>必要なもの 3. の設定を加えるのは、以下の通り <pre> タグが挿入されるため SyntaxHighlighter の表記方法 [language] code [/language] と合致しなくなるため。（以下は org2blog.el 内のコード）</p>
+
+<ul>
+<li><p>参考 <a href="https://github.com/punchagan/org2blog#posting-source-code-blocks">org2blog</a></p>
+
+<p>(defcustom org2blog/wp-use-sourcecode-shortcode nil
+   &ldquo;Non-nil means convert <pre> tags to WP sourcecode blocks.
+ NOTE: htmlize.el available in org-mode&rsquo;s contrib directory should
+ be on your emacs load-path for this to work.&rdquo;
+   :group &lsquo;org2blog/wp
+   :type &lsquo;boolean)</p></li>
+</ul></li>
+</ul>
+
+<h1 id="覚えておくと良いショートカット:c443d59d4160338c2614fe779a49a87f">覚えておくと良いショートカット</h1>
+
+<ul>
+<li>コードブロックを挿入する際は <strong>&lt;キー<TAB></strong> をタイプするべし。
+
+<ul>
+<li>以下は、挿入したいテンプレートのキー一覧
+
+<ul>
+<li>参考 <a href="http://emacsclub.github.com/html/org_tutorial.html">Org-mode Tutorial / Cheat Sheet</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">キー　</th>
+<th scope="col" class="left">挿入したいテンプレート</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="left">s</td>
+<td class="left">#+begin\_src &#x2026; #+end\_src</td>
+</tr>
+
+
+<tr>
+<td class="left">e</td>
+<td class="left">#+begin\_example &#x2026; #+end\_example</td>
+</tr>
+
+
+<tr>
+<td class="left">q</td>
+<td class="left">#+begin\_quote &#x2026; #+end\_quote</td>
+</tr>
+
+
+<tr>
+<td class="left">v</td>
+<td class="left">#+begin\_verse &#x2026; #+end\_verse</td>
+</tr>
+
+
+<tr>
+<td class="left">c</td>
+<td class="left">#+begin\_center &#x2026; #+end\_center</td>
+</tr>
+
+
+<tr>
+<td class="left">l</td>
+<td class="left">#+begin\_latex &#x2026; #+end\_latex</td>
+</tr>
+
+
+<tr>
+<td class="left">L</td>
+<td class="left">#+latex:</td>
+</tr>
+
+
+<tr>
+<td class="left">h</td>
+<td class="left">#+begin\_html &#x2026; #+end\_html</td>
+</tr>
+
+
+<tr>
+<td class="left">H</td>
+<td class="left">#+html:</td>
+</tr>
+
+
+<tr>
+<td class="left">a</td>
+<td class="left">#+begin\_ascii &#x2026; #+end\_ascii</td>
+</tr>
+
+
+<tr>
+<td class="left">A</td>
+<td class="left">#+ascii:</td>
+</tr>
+
+
+<tr>
+<td class="left">i</td>
+<td class="left">#+index: line</td>
+</tr>
+
+
+<tr>
+<td class="left">I</td>
+<td class="left">#+include: line</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="その他-参考サイト:c443d59d4160338c2614fe779a49a87f">その他、参考サイト</h1>
+
+<ul>
+<li><a href="http://orgmode.org/worg/org-contrib/babel/intro.html">Babel: Introduction</a></li>
+<li><a href="http://d.hatena.ne.jp/tamura70/20100304/org">Emacs org-modeを使ってみる: (29) エクスポートオプション一覧</a></li>
+</ul>
+</div></article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size=''></a>
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					<section id="comment">
+					    <h1 class="title">Comments</h1>
+					    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+					</section>
+					
+					
+
+<script type="text/javascript">
+      var disqus_shortname = 'syati';
+      
+        
+        var disqus_script = 'count.js';
+      
+  (function () {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+				    </div>
+				</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2015
+
+    Syati.info
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="http://localhost:1313/blog//js/slash.js"></script>
+<script src="http://localhost:1313/blog//js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script></footer>
+		</div>
+	</div>
+	<script src="http://localhost:1313/blog//js/prism.js"></script>
+
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

@@ -80,8 +80,8 @@ gh-pages ブランチには hugo で作成されたコンテンツ（ public ）
 つけて履歴のないブランチを作成する。
 
 <pre><code class="language-bash">
-$ git checkout --orphan gh-pages   # orphan ブランチ 作成
-$ git rm --cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
+$ git checkout -\-orphan gh-pages   # orphan ブランチ 作成
+$ git rm -\-cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
 $ git add README.md                # README.md だけいれておく
 $ git commit -m "initial commit on gh-pages branch"
 $ git push origin gh-pages
@@ -92,8 +92,8 @@ subtree って何？って思う方は、下部の参考を見てください。
 
 <pre><code class="language-bash">
 $ git checkout master
-$ git subtree add --prefix=public git@github.com:[username]/yourblog.git gh-pages -\-squash
-$ git subtree pull --prefix=public git@github.com:[username]/yourblog.git gh-pages
+$ git subtree add -\-prefix=public git@github.com:[username]/yourblog.git gh-pages -\-squash
+$ git subtree pull -\-prefix=public git@github.com:[username]/yourblog.git gh-pages
 </pre></code>
 
 hugo コマンドで public を生成して以下のように push していくことで、
@@ -104,7 +104,7 @@ $ hugo
 $ git add -A
 $ git commit -m "Updating site"
 $ git push origin master
-$ git subtree push --prefix=public git@github.com:Syati/yourblog.git gh-pages
+$ git subtree push -\-prefix=public git@github.com:Syati/yourblog.git gh-pages
 </pre></code>
 
 基本的に新しい記事を書いて github.io に公開（ Deploy ）する際、上記の手順を踏むことになる。

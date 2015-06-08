@@ -1,0 +1,355 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head>
+	<meta charset="utf-8">
+	<title>Hugo で github にブログを立ち上げる Part 2 - Syati.info</title>
+	<meta name="author" content="map[author:mizuki-y]">
+
+	
+	  
+	<meta name="description" content="WordPress から github.io にブログを立ち上げる">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='http://localhost:1313/blog/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://localhost:1313/blog/post/create_hugo_2.html">
+	<link href="http://localhost:1313/blog//favicon.png" rel="shortcut icon">
+	<link href="http://localhost:1313/blog//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://localhost:1313/blog//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href="http://localhost:1313/blog//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-9380531-9']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	
+	
+</div>
+
+<nav id="main-nav"><ul class="main">
+    <li><a href="http://localhost:1313/blog/">Blog</a></li>
+    <li><a href="http://localhost:1313/blog/about/">About</a></li>
+    <li><a href="http://localhost:1313/blog/post/">Archives</a></li>
+</ul>
+
+
+<section class="aboutme">
+  <p>
+    かんがえるさかな
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='http://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+			<a class="google" href='https://plus.google.com/&#43;mizukiyamamoto' rel="author" title="Google+">Google+</a>
+		
+		
+			<a class="twitter" href='http://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='http://localhost:1313/blog/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title" itemprop="name">Hugo で github にブログを立ち上げる Part 2</h1>
+	<div class="entry-content" itemprop="articleBody">
+
+<p><a href="http://localhost:1313/blog/post/create_hugo.html">Part 1</a> では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
+<a href="http://gohugo.io/tutorials/github-pages-blog/">Hosting on GitHub Pages</a> を参考にして、セットアップ手順を記していく。</p>
+
+<p>全てが終われば<a href="http://syati.github.io/yourblog/">yourblog</a>のように作成できる。</p>
+
+<ul>
+<li><strong>※注意</strong>
+
+<ul>
+<li>ソースコード内の <strong>&quot;</strong> が、二重引用符（始）、二重引用符（終）に 変わっているので<br />
+コピペしてもバグります。コピペする場合は修正してください。</li>
+</ul></li>
+</ul>
+
+<h1 id="step-1-github-に-blog-repository-をつくる:a830f51eecde66402e29d75bcb0532ee">Step 1 github に blog repository をつくる</h1>
+
+<p>github にアクセスして、repository をつくる。repository name がそのまま URL になる（以下のようなURL）。</p>
+
+<p><strong>http://[username].githug.io/[repo]</strong></p>
+
+<ul>
+<li>[] の意味
+
+<ul>
+<li>[username] : github の username</li>
+<li>[repo] : github に作成する repository name</li>
+</ul></li>
+</ul>
+
+<h1 id="step-2-blog-の設定をかいておく:a830f51eecde66402e29d75bcb0532ee">Step 2 blog の設定をかいておく</h1>
+
+<p><strong>※以降、github に yourblog として repostitory を作成したとして記す。また、part 1 で作成した yourblog があるものとする</strong></p>
+
+<p>part 1 で作成した yourblog ディレクトリ内の <strong>config.toml</strong> を開いて設定を書く（以下参考）。</p>
+
+<p><pre><code class="language-bash">
+title = &ldquo;My New Hugo Site&rdquo;
+baseurl = &ldquo;http://[username].github.io/yourblog&rdquo;
+languageCode = &ldquo;ja-jp&rdquo;
+theme = &ldquo;hyde&rdquo;　# part 1 で選んだ theme を設定する
+canonifyurls = true # 相対パスではなく baseurl を基点とした絶対パスにする</p>
+
+<p>[params]
+  description = &ldquo;This is yourblog&rdquo;
+  author = &ldquo;your name&rdquo;</p>
+
+<p>[taxonomies]
+  category = &ldquo;categories&rdquo;
+  tag = &ldquo;tags&rdquo;
+</pre></code></p>
+
+<ul>
+<li>参考
+
+<ul>
+<li><a href="http://gohugo.io/overview/configuration/">Configuring Hugo</a></li>
+<li><a href="http://mojavy.com/blog/2013/04/26/toml/">TOMLノススメ</a></li>
+<li><a href="https://github.com/toml-lang/toml">toml-lang/toml</a></li>
+</ul></li>
+</ul>
+
+<h1 id="step-3-repository-に-push-する:a830f51eecde66402e29d75bcb0532ee">Step 3 repository に push する</h1>
+
+<p>yourblog ディレクトリで以下のコマンドを実行する。</p>
+
+<p><pre><code class="language-bash">
+$ git init # part 1 で作成した yourblog をリポジトリにする
+$ git remote add origin git@github.com:[username]/yourblog.git # remote を設定する
+$ git pull origin master
+$
+$ rm -rf public # このディレクトリは git subtree を利用して管理するので削除する
+$ git add -A
+$ git commit -m &ldquo;Add hugo template&rdquo;
+$ git push origin master
+</pre></code></p>
+
+<h1 id="step-4-gh-pages-ブランチを作成する:a830f51eecde66402e29d75bcb0532ee">Step 4 gh-pages ブランチを作成する</h1>
+
+<p>gh-pages ブランチには hugo で作成されたコンテンツ（ public ）のみ置いて、
+関係のないもの（ archetypes, themes, etc ）は紛らわしいので管理したくない。</p>
+
+<p>そこで、master から独立したブランチを作成するために、orphan オプションを
+つけて履歴のないブランチを作成する。</p>
+
+<p><pre><code class="language-bash">
+$ git checkout --orphan gh-pages   # orphan ブランチ 作成
+$ git rm --cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
+$ git add README.md                # README.md だけいれておく
+$ git commit -m &ldquo;initial commit on gh-pages branch&rdquo;
+$ git push origin gh-pages
+</pre></code></p>
+
+<p>master に戻って git subtree を利用して、gh-pages ブランチを master の public に取り込む。
+subtree って何？って思う方は、下部の参考を見てください。</p>
+
+<p><pre><code class="language-bash">
+$ git checkout master
+$ git subtree add --prefix=public git@github.com:[username]/yourblog.git gh-pages --squash
+$ git subtree pull --prefix=public git@github.com:[username]/yourblog.git gh-pages
+</pre></code></p>
+
+<p>hugo コマンドで public を生成して以下のように push していくことで、
+master に変更を加え、gh-pages にも変更を加える事が出来る。</p>
+
+<p><pre><code class="language-bash">
+$ hugo
+$ git add -A
+$ git commit -m &ldquo;Updating site&rdquo;
+$ git push origin master
+$ git subtree push --prefix=public git@github.com:Syati/yourblog.git gh-pages
+</pre></code></p>
+
+<p>基本的に新しい記事を書いて github.io に公開（ Deploy ）する際、上記の手順を踏むことになる。
+毎回これするのはめんどくさいので、Step 5 に進む。</p>
+
+<ul>
+<li>参考
+
+<ul>
+<li><a href="http://qiita.com/akiko-pusu/items/7c0a99b8cb37882d2cfe">gitの空ブランチを作る</a></li>
+<li><a href="http://japan.blogs.atlassian.com/2014/03/alternatives-to-git-submodule-git-subtree/">Git Submodule の代替: Git Subtree</a></li>
+<li><a href="http://qiita.com/shogo82148/items/04b29b195dbbb373152f">git-subtree移行メモ</a></li>
+<li><a href="http://qiita.com/marutanm/items/d02e7d5ff8ed7c2c4b95">submoduleとsubtree-mergingの使い分け</a></li>
+</ul></li>
+</ul>
+
+<h1 id="step-5-めんどさい-deploy-はスクリプトを利用する:a830f51eecde66402e29d75bcb0532ee">Step 5 めんどさい Deploy はスクリプトを利用する</h1>
+
+<p><a href="http://gohugo.io/tutorials/github-pages-blog/">Hosting on GitHub Pages</a> の <strong>deploy.sh</strong> に書かれている以下を利用する。</p>
+
+<p><pre><code class="language-bash">
+# !/bin/bash</p>
+
+<p>echo -e &ldquo;\033[0;32mDeploying updates to GitHub&hellip;\033[0m&rdquo;</p>
+
+<p># Build the project.
+hugo</p>
+
+<p># Add changes to git.
+git add -A</p>
+
+<p># Commit changes.
+msg=&ldquo;rebuilding site <code>date</code>&ldquo;
+if [ $# -eq 1 ]
+  then msg=&ldquo;$1&rdquo;
+fi
+git commit -m &ldquo;$msg\&rdquo;</p>
+
+<p># Push source and build repos.
+git push origin master
+git subtree push --prefix=public git@github.com:[username]/yourblog.git gh-pages　
+</pre></code></p>
+
+<p><a href="https://github.com/spencerlyon2/hugo_gh_blog">spencerlyon2/hugo_gh_blog</a> のレポジトリに deploy.sh
+があるので　DL してきて修正するのがはやいかも。</p>
+
+<p>deploy.sh を yourblog ディレクトリに保存したのち、実行できるように以下を実行する。</p>
+
+<p><pre><code class="language-bash">
+$ chmod +x deploy.sh
+</pre></code></p>
+
+<p>これで新しい記事を書いて github.io に公開（ Deploy ）する際は、以下のコマンドを実行するのみで良い。</p>
+
+<p><pre><code class="language-bash">
+$ ./deploy.sh
+</pre></code></p>
+</div></article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size=''></a>
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					<section id="comment">
+					    <h1 class="title">Comments</h1>
+					    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+					</section>
+					
+					
+
+<script type="text/javascript">
+      var disqus_shortname = 'syati';
+      
+        
+        
+        var disqus_identifier = 'http:\/\/localhost:1313\/blog\/post\/create_hugo_2.html';
+        var disqus_url = 'http:\/\/localhost:1313\/blog\/post\/create_hugo_2.html';
+        var disqus_script = 'embed.js';
+      
+  (function () {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+				    </div>
+				</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2015
+
+    Syati.info
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="http://localhost:1313/blog//js/slash.js"></script>
+<script src="http://localhost:1313/blog//js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script></footer>
+		</div>
+	</div>
+	<script src="http://localhost:1313/blog//js/prism.js"></script>
+
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
