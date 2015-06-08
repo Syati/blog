@@ -4,6 +4,7 @@ Description = "WordPress から github.io にブログを立ち上げる"
 Tags = ["Blog", "github.io"]
 date = "2015-06-07T21:55:31+09:00"
 title = "Hugo で github にブログを立ち上げる Part 2"
+comments = true
 
 +++
 

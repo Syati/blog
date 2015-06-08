@@ -636,6 +636,92 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
+      <title>Emacs で JavaScript の開発環境を整える</title>
+      <link>http://syati.github.io/blog/post/emacsJavascript/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/emacsJavascript/</guid>
+      <description>
+
+&lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
+ということで私の環境を忘れないうちにメモ！！&lt;/p&gt;
+
+&lt;h1 id=&#34;前提:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;前提&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ubuntu 12.04 or OSX&lt;/li&gt;
+&lt;li&gt;emacs &amp;gt;= 24&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;構築:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;構築&lt;/h1&gt;
+
+&lt;h2 id=&#34;パッケージ管理にmelpa追加:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理にmelpa追加&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(require &#39;package)
+(add-to-list &#39;package-archives
+  &#39;(&amp;quot;melpa&amp;quot; . &amp;quot;http://melpa.milkbox.net/packages/&amp;quot;) t)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;パッケージ管理からインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理からインストール&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;M-x package-list-package で以下の2点をインストールする（該当箇所で &lt;strong&gt;i&lt;/strong&gt; をタイプしてマークをつけて &lt;strong&gt;x&lt;/strong&gt; でインストールする）
+
+&lt;ol&gt;
+&lt;li&gt;flycheck&lt;/li&gt;
+&lt;li&gt;js2-mode&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-hook &#39;after-init-hook #&#39;global-flycheck-mode)
+(add-to-list &#39;auto-mode-alist &#39;(&amp;quot;\\.js\\&#39;&amp;quot; . js2-mode))
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;jshint をインストール&lt;/h2&gt;
+
+&lt;p&gt;上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。
+-   npm をインストール
+    -   ubuntu の場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        sudo apt-get install npm
+-   OSX の場合
+
+        brew install npm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;jshint をインストール&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo npm install jshint -g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;オプション -g でグローバルで利用するということ。付けない場合は、カレントディレクトリにインストールされる。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;試す:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;試す&lt;/h1&gt;
+
+&lt;p&gt;a.js とでもファイルを作ってみると emacsの下の帯に　(javascript-IDE FlyC) となっていることが確認できる。
+後は適当にプログラムを書けば jshint がはしり、文法エラーなどを教えてくれる。&lt;/p&gt;
+
+&lt;h1 id=&#34;参考:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://melpa.milkbox.net/#/getting-started&#34;&gt;melpa&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Development Environment in my OSX</title>
       <link>http://syati.github.io/blog/post/make_env_mac/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -820,92 +906,6 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 &lt;ol&gt;
 &lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「マウス」-&amp;gt; 「スクロールの方向：ナチュラル」のチェックを外す&lt;/li&gt;
 &lt;/ol&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Emacs で JavaScript の開発環境を整える</title>
-      <link>http://syati.github.io/blog/post/emacsJavascript/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/emacsJavascript/</guid>
-      <description>
-
-&lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
-ということで私の環境を忘れないうちにメモ！！&lt;/p&gt;
-
-&lt;h1 id=&#34;前提:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;前提&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ubuntu 12.04 or OSX&lt;/li&gt;
-&lt;li&gt;emacs &amp;gt;= 24&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;構築:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;構築&lt;/h1&gt;
-
-&lt;h2 id=&#34;パッケージ管理にmelpa追加:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理にmelpa追加&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(require &#39;package)
-(add-to-list &#39;package-archives
-  &#39;(&amp;quot;melpa&amp;quot; . &amp;quot;http://melpa.milkbox.net/packages/&amp;quot;) t)
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;パッケージ管理からインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理からインストール&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;M-x package-list-package で以下の2点をインストールする（該当箇所で &lt;strong&gt;i&lt;/strong&gt; をタイプしてマークをつけて &lt;strong&gt;x&lt;/strong&gt; でインストールする）
-
-&lt;ol&gt;
-&lt;li&gt;flycheck&lt;/li&gt;
-&lt;li&gt;js2-mode&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(add-hook &#39;after-init-hook #&#39;global-flycheck-mode)
-(add-to-list &#39;auto-mode-alist &#39;(&amp;quot;\\.js\\&#39;&amp;quot; . js2-mode))
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;jshint をインストール&lt;/h2&gt;
-
-&lt;p&gt;上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。
--   npm をインストール
-    -   ubuntu の場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;        sudo apt-get install npm
--   OSX の場合
-
-        brew install npm
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;jshint をインストール&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo npm install jshint -g
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;オプション -g でグローバルで利用するということ。付けない場合は、カレントディレクトリにインストールされる。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;試す:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;試す&lt;/h1&gt;
-
-&lt;p&gt;a.js とでもファイルを作ってみると emacsの下の帯に　(javascript-IDE FlyC) となっていることが確認できる。
-後は適当にプログラムを書けば jshint がはしり、文法エラーなどを教えてくれる。&lt;/p&gt;
-
-&lt;h1 id=&#34;参考:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://melpa.milkbox.net/#/getting-started&#34;&gt;melpa&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -1363,90 +1363,6 @@ Error: Cannot find module &#39;underscore&#39;
     </item>
     
     <item>
-      <title>org2blog でブログに接続する際のパスワードを .netrc に保存しておく</title>
-      <link>http://syati.github.io/blog/post/org2blogNetrc/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/org2blogNetrc/</guid>
-      <description>
-
-&lt;p&gt;org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&amp;#x2026;とおもっている場合は、.netrc を使うのがお勧め&lt;/p&gt;
-
-&lt;h1 id=&#34;手順:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;手順&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;ホームに以下のコマンドで .netrc を作成する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;echo &amp;quot;machine myblog login myusername password myrealpassword&amp;quot; &amp;gt; ~/.netrc
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;myusername と myrealpassword を自分がログインするときのユーザー名とパスワードに書き換える&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;emacs の設定ファイル（ .emacs.d/init.el ) に以下を書き加える&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;;; org2blog
-(require &#39;org2blog-autoloads)
-(require &#39;netrc) ;; or nothing if already in the load-path
-(setq org2blog/wp-use-sourcecode-shortcode t) ;;syntaxhl
-(setq blog (netrc-machine (netrc-parse &amp;quot;~/.netrc&amp;quot;) &amp;quot;myblog&amp;quot; t))
-(setq org2blog/wp-blog-alist
-       &#39;((&amp;quot;my-blog&amp;quot;
-          :url &amp;quot;your wordpress url&amp;quot;
-          :username (netrc-get blog &amp;quot;login&amp;quot;)
-          :password (netrc-get blog &amp;quot;password&amp;quot;)
-          :tags-as-categories nil)))
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;参考:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Google Fonts をローカルで利用する</title>
-      <link>http://syati.github.io/blog/post/typecatchar/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/typecatchar/</guid>
-      <description>
-
-&lt;p&gt;Google Fonts をローカル環境で使いたいと思い調べたら、意外と簡単だった。以下は参考のほぼ転記。&lt;/p&gt;
-
-&lt;h1 id=&#34;環境:68568d62e9a876d6a56009578931cad6&#34;&gt;環境&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;OS:ubuntu 12.04&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;インストール:68568d62e9a876d6a56009578931cad6&#34;&gt;インストール&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:andrewsomething/typecatcher
-sudo apt-get update
-sudo apt-get install typecatcher
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;メニュー　-&amp;gt; アクセサリー -&amp;gt; TypeCatchar で起動した後、好きなフォントを選んでインストール&lt;/p&gt;
-
-&lt;h1 id=&#34;その他:68568d62e9a876d6a56009578931cad6&#34;&gt;その他&lt;/h1&gt;
-
-&lt;p&gt;ubuntu 13.10 以上は、以下の通り&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get install typecatcher
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;参考:68568d62e9a876d6a56009578931cad6&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&#34;&gt;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>org2blog の記事にコードブロックを入れる</title>
       <link>http://syati.github.io/blog/post/org2blogInsertSourceCode/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1643,6 +1559,50 @@ echo &#34;hoge&#34;
     </item>
     
     <item>
+      <title>org2blog でブログに接続する際のパスワードを .netrc に保存しておく</title>
+      <link>http://syati.github.io/blog/post/org2blogNetrc/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/org2blogNetrc/</guid>
+      <description>
+
+&lt;p&gt;org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&amp;#x2026;とおもっている場合は、.netrc を使うのがお勧め&lt;/p&gt;
+
+&lt;h1 id=&#34;手順:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;手順&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;ホームに以下のコマンドで .netrc を作成する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo &amp;quot;machine myblog login myusername password myrealpassword&amp;quot; &amp;gt; ~/.netrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;myusername と myrealpassword を自分がログインするときのユーザー名とパスワードに書き換える&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;emacs の設定ファイル（ .emacs.d/init.el ) に以下を書き加える&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;;; org2blog
+(require &#39;org2blog-autoloads)
+(require &#39;netrc) ;; or nothing if already in the load-path
+(setq org2blog/wp-use-sourcecode-shortcode t) ;;syntaxhl
+(setq blog (netrc-machine (netrc-parse &amp;quot;~/.netrc&amp;quot;) &amp;quot;myblog&amp;quot; t))
+(setq org2blog/wp-blog-alist
+       &#39;((&amp;quot;my-blog&amp;quot;
+          :url &amp;quot;your wordpress url&amp;quot;
+          :username (netrc-get blog &amp;quot;login&amp;quot;)
+          :password (netrc-get blog &amp;quot;password&amp;quot;)
+          :tags-as-categories nil)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;参考:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
       <link>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1677,6 +1637,46 @@ make reattach-to-user-namespace
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Google Fonts をローカルで利用する</title>
+      <link>http://syati.github.io/blog/post/typecatchar/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/typecatchar/</guid>
+      <description>
+
+&lt;p&gt;Google Fonts をローカル環境で使いたいと思い調べたら、意外と簡単だった。以下は参考のほぼ転記。&lt;/p&gt;
+
+&lt;h1 id=&#34;環境:68568d62e9a876d6a56009578931cad6&#34;&gt;環境&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;OS:ubuntu 12.04&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;インストール:68568d62e9a876d6a56009578931cad6&#34;&gt;インストール&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:andrewsomething/typecatcher
+sudo apt-get update
+sudo apt-get install typecatcher
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;メニュー　-&amp;gt; アクセサリー -&amp;gt; TypeCatchar で起動した後、好きなフォントを選んでインストール&lt;/p&gt;
+
+&lt;h1 id=&#34;その他:68568d62e9a876d6a56009578931cad6&#34;&gt;その他&lt;/h1&gt;
+
+&lt;p&gt;ubuntu 13.10 以上は、以下の通り&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install typecatcher
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;参考:68568d62e9a876d6a56009578931cad6&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&#34;&gt;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
