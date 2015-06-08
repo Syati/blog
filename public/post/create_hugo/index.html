@@ -265,7 +265,12 @@ $ hugo server --theme=slim --buildDrafts
         var disqus_url = 'http:\/\/syati.github.io\/blog\/post\/create_hugo\/';
         var disqus_script = 'embed.js';
       
-    (function () {
+  (function () {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
       dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
