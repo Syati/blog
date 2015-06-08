@@ -17,16 +17,16 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     
-	<link href='http://syati.github.io/blog/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	<link href='http://localhost:1313/blog/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://syati.github.io/blog/post/create_hugo_2/">
-	<link href="http://syati.github.io/blog//favicon.png" rel="shortcut icon">
-	<link href="http://syati.github.io/blog//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="http://syati.github.io/blog//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="canonical" href="http://localhost:1313/blog/post/create_hugo_2.html">
+	<link href="http://localhost:1313/blog//favicon.png" rel="shortcut icon">
+	<link href="http://localhost:1313/blog//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://localhost:1313/blog//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
 	
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<link href="http://syati.github.io/blog//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://localhost:1313/blog//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
 
   
 	<script type="text/javascript">
@@ -56,9 +56,9 @@
 </div>
 
 <nav id="main-nav"><ul class="main">
-    <li><a href="http://syati.github.io/blog/">Blog</a></li>
-    <li><a href="http://syati.github.io/blog/about/">About</a></li>
-    <li><a href="http://syati.github.io/blog/post/">Archives</a></li>
+    <li><a href="http://localhost:1313/blog/">Blog</a></li>
+    <li><a href="http://localhost:1313/blog/about/">About</a></li>
+    <li><a href="http://localhost:1313/blog/post/">Archives</a></li>
 </ul>
 
 
@@ -94,7 +94,7 @@
 		
     	
     	
-			<a class="rss" href='http://syati.github.io/blog/index.xml' title="RSS">RSS</a>
+			<a class="rss" href='http://localhost:1313/blog/index.xml' title="RSS">RSS</a>
 		
 	</div>
 </nav>
@@ -110,7 +110,7 @@
     <h1 class="title" itemprop="name">Hugo で github にブログを立ち上げる Part 2</h1>
 	<div class="entry-content" itemprop="articleBody">
 
-<p><a href="http://syati.github.io/blog/post/create_hugo/">Part 1</a> では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
+<p><a href="http://localhost:1313/blog/post/create_hugo.html">Part 1</a> では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
 <a href="http://gohugo.io/tutorials/github-pages-blog/">Hosting on GitHub Pages</a> を参考にして、セットアップ手順を記していく。</p>
 
 <p>全てが終われば<a href="http://syati.github.io/yourblog/">yourblog</a>のように作成できる。</p>
@@ -312,8 +312,8 @@ $ ./deploy.sh
       
         
         
-        var disqus_identifier = 'http:\/\/syati.github.io\/blog\/post\/create_hugo_2\/';
-        var disqus_url = 'http:\/\/syati.github.io\/blog\/post\/create_hugo_2\/';
+        var disqus_identifier = 'http:\/\/localhost:1313\/blog\/post\/create_hugo_2.html';
+        var disqus_url = 'http:\/\/localhost:1313\/blog\/post\/create_hugo_2.html';
         var disqus_script = 'embed.js';
       
   (function () {
@@ -337,8 +337,8 @@ $ ./deploy.sh
     Syati.info
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
-<script src="http://syati.github.io/blog//js/slash.js"></script>
-<script src="http://syati.github.io/blog//js/jquery.fancybox.pack.js"></script>
+<script src="http://localhost:1313/blog//js/slash.js"></script>
+<script src="http://localhost:1313/blog//js/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
 	$('.fancybox').fancybox();
@@ -346,7 +346,10 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
 </script></footer>
 		</div>
 	</div>
-	<script src="http://syati.github.io/blog//js/prism.js"></script>
+	<script src="http://localhost:1313/blog//js/prism.js"></script>
 
-</body>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>
