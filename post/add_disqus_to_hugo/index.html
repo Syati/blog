@@ -17,16 +17,16 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     
-	<link href='http://localhost:1313/blog/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	<link href='http://syati.github.io/blog/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://localhost:1313/blog/post/add_disqus_to_hugo/">
-	<link href="http://localhost:1313/blog//favicon.png" rel="shortcut icon">
-	<link href="http://localhost:1313/blog//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="http://localhost:1313/blog//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="canonical" href="http://syati.github.io/blog/post/add_disqus_to_hugo/">
+	<link href="http://syati.github.io/blog//favicon.png" rel="shortcut icon">
+	<link href="http://syati.github.io/blog//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://syati.github.io/blog//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
 	
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<link href="http://localhost:1313/blog//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://syati.github.io/blog//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
 
   
 	<script type="text/javascript">
@@ -56,9 +56,9 @@
 </div>
 
 <nav id="main-nav"><ul class="main">
-    <li><a href="http://localhost:1313/blog/">Blog</a></li>
-    <li><a href="http://localhost:1313/blog/about/">About</a></li>
-    <li><a href="http://localhost:1313/blog/post/">Archives</a></li>
+    <li><a href="http://syati.github.io/blog/">Blog</a></li>
+    <li><a href="http://syati.github.io/blog/about/">About</a></li>
+    <li><a href="http://syati.github.io/blog/post/">Archives</a></li>
 </ul>
 
 
@@ -94,7 +94,7 @@
 		
     	
     	
-			<a class="rss" href='http://localhost:1313/blog/index.xml' title="RSS">RSS</a>
+			<a class="rss" href='http://syati.github.io/blog/index.xml' title="RSS">RSS</a>
 		
 	</div>
 </nav>
@@ -108,7 +108,174 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">Hugo にコメント欄をいれる</h1>
-	<div class="entry-content" itemprop="articleBody"></div></article>
+	<div class="entry-content" itemprop="articleBody">
+
+<p><a href="http://syati.github.io/blog/post/create_hugo/">Part 1</a> 、 <a href="http://syati.github.io/blog/post/create_hugo/">Part 2</a> で
+Hugo を用いて github.io にブログを立ち上げましたが、コメント欄が無いので導入したい！！</p>
+
+<p><a href="http://gohugo.io/extras/comments/">Comments in Hugo</a> を参考にして早速、導入していこうと
+おもったが、もっと楽にやりたいので、Part 1 で利用していた theme の hyde を変えて超簡単に導入する</p>
+
+<p>全てが終われば <a href="http://syati.github.io/yourblog/">yourblog</a> のようにコメント欄が作成できる。</p>
+
+<p><strong>※part 1 で作成した yourblog があるものとして記す</strong></p>
+
+<h1 id="step-1-theme-を変える:d75fd18943ec8adafe7501d2e4ec3936">Step 1 theme を変える</h1>
+
+<p>今まで通り、themes に中に theme を git clone してもいいのだが、
+とりあえず今回は themes ディレクトリを利用しないことにする。</p>
+
+<p>なので <strong>config.toml</strong> の<strong>theme</strong> 設定を削除する</p>
+
+<p><pre><code class="language-clike">
+title = &ldquo;My New Hugo Site&rdquo;
+baseurl = &ldquo;<a href="http://syati.github.io/yourblog&quot;">http://syati.github.io/yourblog&quot;</a>
+languageCode = &ldquo;ja-jp&rdquo;
+theme = &ldquo;hyde&rdquo;  //この行はもう不要なので削除する</p>
+
+<p>[params]
+  description = &ldquo;This is yourblog&rdquo;
+  author = &ldquo;your name&rdquo;</p>
+
+<p>[taxonomies]
+  category = &ldquo;categories&rdquo;
+  tag = &ldquo;tags&rdquo;
+</pre></code></p>
+
+<p>theme を <a href="https://github.com/Syati/greyshade">Syati/greyshade</a> に git clone して
+yourblog のメインテーマにする</p>
+
+<p><pre><code class="language-bash">
+$ git clone git@github.com:Syati/greyshade.git
+$ tree -L 1 #こんなディレクトリ構成
+.
+├── greyshade
+└── yourblog</p>
+
+<p>$ cd greyshade
+$ cp -R archetypes images layouts static ../yourblog
+$ cd ../yourblog
+$ rm -rf themes # 必要無いのでとりあえず削除
+$ hugo server # テーマが変わっていることが確認できる
+</pre></code></p>
+
+<h1 id="step-2-disqus-を導入:d75fd18943ec8adafe7501d2e4ec3936">Step 2 Disqus を導入</h1>
+
+<p>導入が楽なので <a href="https://disqus.com">Disqus</a> を利用する。</p>
+
+<p>Disqus に Sign up して http://[username].github.io でサイトを登録して
+ゴニョゴニョすると、<strong>Choose your platform</strong> とかでる画面になるので
+<strong>Universal Code</strong> をクリックすると、以下のコードをコメント欄を表示
+させたいところに入れてね！と記載があるが、以下の <strong>[disqus_shortname]</strong> だけ覚えておく。</p>
+
+<p><pre><code class="language-markup">
+&lt;div id=&ldquo;disqus_thread&rdquo;&gt;&lt;/div&gt;
+&lt;script type=&ldquo;text/javascript&rdquo;&gt;
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = [disqus_shortname];</p>
+
+<pre><code>/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</code></pre>
+
+<p>&lt;/script&gt;
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&ldquo;<a href="https://disqus.com/?ref_noscript&quot;">https://disqus.com/?ref_noscript&quot;</a> rel=&ldquo;nofollow&rdquo;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+</pre></code></p>
+
+<h1 id="step-3-config-toml-を変更する:d75fd18943ec8adafe7501d2e4ec3936">Step 3 config.toml を変更する</h1>
+
+<p><a href="https://github.com/Syati/greyshade#setup">テーマの設定</a> を config.toml にコピペして、編集。
+Step 2 で覚えておいた <strong>[disqus_shortname]</strong> を設定に入れる。以下サンプル</p>
+
+<p><pre><code class="language-bash">
+title = &ldquo;My New Hugo Site&rdquo;
+baseurl = &ldquo;<a href="http://syati.github.io/yourblog&quot;">http://syati.github.io/yourblog&quot;</a>
+languageCode = &ldquo;ja-jp&rdquo;
+canonifyurls = true</p>
+
+<p>[author]
+name = &ldquo;your name&rdquo;
+# email will use for gravatar
+email = &ldquo;&rdquo;</p>
+
+<p>[taxonomies]
+category = &ldquo;categories&rdquo;</p>
+
+<p>[params]
+# site description, will show under navigation
+description = &ldquo;This is yourblog&rdquo;</p>
+
+<p># RSS / Email (optional) subscription links (change if using something like Feedburner)
+subscribe_rss = &ldquo;/index.xml&rdquo;
+subscribe_email = &ldquo;&rdquo;</p>
+
+<p># social links
+facebook_user = &ldquo;&rdquo;
+googleplus_user = &ldquo;&rdquo;
+twitter_user = &ldquo;&rdquo;
+github_user = &ldquo;&rdquo;
+coderwall_user = &ldquo;&rdquo;
+stackoverflow_user = &ldquo;&rdquo;
+stackoverflow_user_id = &ldquo;&rdquo;
+linkedin_user = &ldquo;&rdquo;
+pinterest_user = &ldquo;&rdquo;
+delicious_user = &ldquo;&rdquo;
+pinboard_user = &ldquo;&rdquo;
+quora_user = &ldquo;&rdquo;
+instagram_user = &ldquo;&rdquo;
+behance_user = &ldquo;&rdquo;
+douban_user = &ldquo;&rdquo;</p>
+
+<p># share links
+facebook_like = true
+twitter_tweet_button = true
+google_plus_one = &ldquo;true&rdquo;
+addthis_profile_id = &ldquo;&rdquo;</p>
+
+<p># Disqus Comments
+disqus_short_name = &ldquo;[disqus_shortname]&rdquo; #ここに part2 で覚えた[disqus_shortname]を入れる
+disqus_show_comment_count = false</p>
+
+<p># google analytics
+google_analytics_tracking_id = &ldquo;&rdquo;
+</pre></code></p>
+
+<h1 id="step-4-記事にパラメータを加える:d75fd18943ec8adafe7501d2e4ec3936">Step 4 記事にパラメータを加える</h1>
+
+<p>最後に記事のパラメータに <strong>comments = true</strong> といれれば、disqus を読み込んでコメント欄が入る。
+ただし、localhost では読み込まないようにしているので、記事ページ下部 に <strong>Comments</strong>
+とだけでてくる。</p>
+
+<p><pre><code class="language-markup">
++++
+date = &ldquo;2015-06-06T17:20:38+09:00&rdquo;
+title = &ldquo;first&rdquo;
+comments = true</p>
+
+<p>+++</p>
+
+<p>first page.
+</pre></code></p>
+
+<h1 id="step-5-新規記事のテンプレートを変更しておく:d75fd18943ec8adafe7501d2e4ec3936">Step 5 新規記事のテンプレートを変更しておく</h1>
+
+<p>毎回コマンド（ <strong>hugo new post/new_post.md</strong> ） で新規記事作成後に、
+comments = true とパラメータ設定するのは面倒くさいので
+yourblog/archetypes/default.md を以下のように変更しておくと楽ができる</p>
+
+<p><pre><code class="language-markup">
++++
+Description = &ldquo;&rdquo;
+Tags = []
+Categories = []
+comments = true
++++
+</pre></code></p>
+</div></article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">
@@ -139,21 +306,21 @@
 					
 
 <script type="text/javascript">
-      var disqus_shortname = 'syati';
-      
-        
-        var disqus_script = 'count.js';
-      
+  var disqus_shortname = 'syati';
+  
+    
+    var disqus_script = 'count.js';
+  
   (function () {
-      
-      
-      if (window.location.hostname == "localhost")
-        return;
-
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+    
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }());
 </script>
 
 
@@ -165,16 +332,17 @@
     Syati.info
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
-<script src="http://localhost:1313/blog//js/slash.js"></script>
-<script src="http://localhost:1313/blog//js/jquery.fancybox.pack.js"></script>
+<script src="http://syati.github.io/blog//js/slash.js"></script>
+<script src="http://syati.github.io/blog//js/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
 	$('.fancybox').fancybox();
 })(jQuery);
-</script></footer>
+</script>
+</footer>
 		</div>
 	</div>
-	<script src="http://localhost:1313/blog//js/prism.js"></script>
+	<script src="http://syati.github.io/blog//js/prism.js"></script>
 
 </body>
 </html>

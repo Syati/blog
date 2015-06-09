@@ -7,7 +7,183 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Sun, 07 Jun 2015 21:55:31 JST</updated>
+    <updated>Tue, 09 Jun 2015 00:02:04 JST</updated>
+    
+    <item>
+      <title>Hugo にコメント欄をいれる</title>
+      <link>http://syati.github.io/blog/post/add_disqus_to_hugo/</link>
+      <pubDate>Tue, 09 Jun 2015 00:02:04 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/add_disqus_to_hugo/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; 、 &lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 2&lt;/a&gt; で
+Hugo を用いて github.io にブログを立ち上げましたが、コメント欄が無いので導入したい！！&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://gohugo.io/extras/comments/&#34;&gt;Comments in Hugo&lt;/a&gt; を参考にして早速、導入していこうと
+おもったが、もっと楽にやりたいので、Part 1 で利用していた theme の hyde を変えて超簡単に導入する&lt;/p&gt;
+
+&lt;p&gt;全てが終われば &lt;a href=&#34;http://syati.github.io/yourblog/&#34;&gt;yourblog&lt;/a&gt; のようにコメント欄が作成できる。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;※part 1 で作成した yourblog があるものとして記す&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-1-theme-を変える:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 1 theme を変える&lt;/h1&gt;
+
+&lt;p&gt;今まで通り、themes に中に theme を git clone してもいいのだが、
+とりあえず今回は themes ディレクトリを利用しないことにする。&lt;/p&gt;
+
+&lt;p&gt;なので &lt;strong&gt;config.toml&lt;/strong&gt; の&lt;strong&gt;theme&lt;/strong&gt; 設定を削除する&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;
+title = &amp;ldquo;My New Hugo Site&amp;rdquo;
+baseurl = &amp;ldquo;&lt;a href=&#34;http://syati.github.io/yourblog&amp;quot;&#34;&gt;http://syati.github.io/yourblog&amp;quot;&lt;/a&gt;
+languageCode = &amp;ldquo;ja-jp&amp;rdquo;
+theme = &amp;ldquo;hyde&amp;rdquo;  //この行はもう不要なので削除する&lt;/p&gt;
+
+&lt;p&gt;[params]
+  description = &amp;ldquo;This is yourblog&amp;rdquo;
+  author = &amp;ldquo;your name&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;[taxonomies]
+  category = &amp;ldquo;categories&amp;rdquo;
+  tag = &amp;ldquo;tags&amp;rdquo;
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;theme を &lt;a href=&#34;https://github.com/Syati/greyshade&#34;&gt;Syati/greyshade&lt;/a&gt; に git clone して
+yourblog のメインテーマにする&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ git clone git@github.com:Syati/greyshade.git
+$ tree -L 1 #こんなディレクトリ構成
+.
+├── greyshade
+└── yourblog&lt;/p&gt;
+
+&lt;p&gt;$ cd greyshade
+$ cp -R archetypes images layouts static ../yourblog
+$ cd ../yourblog
+$ rm -rf themes # 必要無いのでとりあえず削除
+$ hugo server # テーマが変わっていることが確認できる
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-2-disqus-を導入:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 2 Disqus を導入&lt;/h1&gt;
+
+&lt;p&gt;導入が楽なので &lt;a href=&#34;https://disqus.com&#34;&gt;Disqus&lt;/a&gt; を利用する。&lt;/p&gt;
+
+&lt;p&gt;Disqus に Sign up して http://[username].github.io でサイトを登録して
+ゴニョゴニョすると、&lt;strong&gt;Choose your platform&lt;/strong&gt; とかでる画面になるので
+&lt;strong&gt;Universal Code&lt;/strong&gt; をクリックすると、以下のコードをコメント欄を表示
+させたいところに入れてね！と記載があるが、以下の &lt;strong&gt;[disqus_shortname]&lt;/strong&gt; だけ覚えておく。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
+&amp;lt;div id=&amp;ldquo;disqus_thread&amp;rdquo;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;script type=&amp;ldquo;text/javascript&amp;rdquo;&amp;gt;
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = [disqus_shortname];&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* * * DON&#39;T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement(&#39;script&#39;); dsq.type = &#39;text/javascript&#39;; dsq.async = true;
+    dsq.src = &#39;//&#39; + disqus_shortname + &#39;.disqus.com/embed.js&#39;;
+    (document.getElementsByTagName(&#39;head&#39;)[0] || document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(dsq);
+})();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;lt;/script&amp;gt;
+&amp;lt;noscript&amp;gt;Please enable JavaScript to view the &amp;lt;a href=&amp;ldquo;&lt;a href=&#34;https://disqus.com/?ref_noscript&amp;quot;&#34;&gt;https://disqus.com/?ref_noscript&amp;quot;&lt;/a&gt; rel=&amp;ldquo;nofollow&amp;rdquo;&amp;gt;comments powered by Disqus.&amp;lt;/a&amp;gt;&amp;lt;/noscript&amp;gt;
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-3-config-toml-を変更する:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 3 config.toml を変更する&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/greyshade#setup&#34;&gt;テーマの設定&lt;/a&gt; を config.toml にコピペして、編集。
+Step 2 で覚えておいた &lt;strong&gt;[disqus_shortname]&lt;/strong&gt; を設定に入れる。以下サンプル&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+title = &amp;ldquo;My New Hugo Site&amp;rdquo;
+baseurl = &amp;ldquo;&lt;a href=&#34;http://syati.github.io/yourblog&amp;quot;&#34;&gt;http://syati.github.io/yourblog&amp;quot;&lt;/a&gt;
+languageCode = &amp;ldquo;ja-jp&amp;rdquo;
+canonifyurls = true&lt;/p&gt;
+
+&lt;p&gt;[author]
+name = &amp;ldquo;your name&amp;rdquo;
+# email will use for gravatar
+email = &amp;ldquo;&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;[taxonomies]
+category = &amp;ldquo;categories&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;[params]
+# site description, will show under navigation
+description = &amp;ldquo;This is yourblog&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;# RSS / Email (optional) subscription links (change if using something like Feedburner)
+subscribe_rss = &amp;ldquo;/index.xml&amp;rdquo;
+subscribe_email = &amp;ldquo;&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;# social links
+facebook_user = &amp;ldquo;&amp;rdquo;
+googleplus_user = &amp;ldquo;&amp;rdquo;
+twitter_user = &amp;ldquo;&amp;rdquo;
+github_user = &amp;ldquo;&amp;rdquo;
+coderwall_user = &amp;ldquo;&amp;rdquo;
+stackoverflow_user = &amp;ldquo;&amp;rdquo;
+stackoverflow_user_id = &amp;ldquo;&amp;rdquo;
+linkedin_user = &amp;ldquo;&amp;rdquo;
+pinterest_user = &amp;ldquo;&amp;rdquo;
+delicious_user = &amp;ldquo;&amp;rdquo;
+pinboard_user = &amp;ldquo;&amp;rdquo;
+quora_user = &amp;ldquo;&amp;rdquo;
+instagram_user = &amp;ldquo;&amp;rdquo;
+behance_user = &amp;ldquo;&amp;rdquo;
+douban_user = &amp;ldquo;&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;# share links
+facebook_like = true
+twitter_tweet_button = true
+google_plus_one = &amp;ldquo;true&amp;rdquo;
+addthis_profile_id = &amp;ldquo;&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;# Disqus Comments
+disqus_short_name = &amp;ldquo;[disqus_shortname]&amp;rdquo; #ここに part2 で覚えた[disqus_shortname]を入れる
+disqus_show_comment_count = false&lt;/p&gt;
+
+&lt;p&gt;# google analytics
+google_analytics_tracking_id = &amp;ldquo;&amp;rdquo;
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-4-記事にパラメータを加える:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 4 記事にパラメータを加える&lt;/h1&gt;
+
+&lt;p&gt;最後に記事のパラメータに &lt;strong&gt;comments = true&lt;/strong&gt; といれれば、disqus を読み込んでコメント欄が入る。
+ただし、localhost では読み込まないようにしているので、記事ページ下部 に &lt;strong&gt;Comments&lt;/strong&gt;
+とだけでてくる。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
++++
+date = &amp;ldquo;2015-06-06T17:20:38+09:00&amp;rdquo;
+title = &amp;ldquo;first&amp;rdquo;
+comments = true&lt;/p&gt;
+
+&lt;p&gt;+++&lt;/p&gt;
+
+&lt;p&gt;first page.
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-5-新規記事のテンプレートを変更しておく:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 5 新規記事のテンプレートを変更しておく&lt;/h1&gt;
+
+&lt;p&gt;毎回コマンド（ &lt;strong&gt;hugo new post/new_post.md&lt;/strong&gt; ） で新規記事作成後に、
+comments = true とパラメータ設定するのは面倒くさいので
+yourblog/archetypes/default.md を以下のように変更しておくと楽ができる&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
++++
+Description = &amp;ldquo;&amp;rdquo;
+Tags = []
+Categories = []
+comments = true
++++
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Hugo で github にブログを立ち上げる Part 2</title>
@@ -19,8 +195,6 @@
 
 &lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
 &lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; を参考にして、セットアップ手順を記していく。&lt;/p&gt;
-
-&lt;p&gt;全てが終われば&lt;a href=&#34;http://syati.github.io/yourblog/&#34;&gt;yourblog&lt;/a&gt;のように作成できる。&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;※注意&lt;/strong&gt;
@@ -1638,45 +1812,6 @@ echo &#34;hoge&#34;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://orgmode.org/worg/org-contrib/babel/intro.html&#34;&gt;Babel: Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/tamura70/20100304/org&#34;&gt;Emacs org-modeを使ってみる: (29) エクスポートオプション一覧&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
-      <link>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</guid>
-      <description>
-
-&lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;
-
-&lt;h1 id=&#34;手順:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;手順&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt; ここにいってソースコードをDLしてくる（git cloneでもOK）&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;ダウンロードしたファイルのディレクトリで make する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd ~/Downloads/tmux-MacOSX-pasteboard
-make reattach-to-user-namespace
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;which reattach-to-user-namespace
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;これでワーニングもサヨウナラ&lt;/p&gt;
-
-&lt;h1 id=&#34;参考:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
