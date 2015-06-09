@@ -20,8 +20,8 @@
 &lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; 、 &lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 2&lt;/a&gt; で
 Hugo を用いて github.io にブログを立ち上げましたが、コメント欄が無いので導入したい！！&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://gohugo.io/extras/comments/&#34;&gt;Comments in Hugo&lt;/a&gt; を参考にして早速、導入していこうと
-おもったが、もっと楽にやりたいので、Part 1 で利用していた theme の hyde を変えて超簡単に導入する&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://gohugo.io/extras/comments/&#34;&gt;Comments in Hugo&lt;/a&gt; を参考にして早速、導入していこうとおもったが、
+もっと楽にやりたいので、Part 1 で利用していた theme の hyde を変えて超簡単に導入する。&lt;/p&gt;
 
 &lt;p&gt;全てが終われば &lt;a href=&#34;http://syati.github.io/yourblog/&#34;&gt;yourblog&lt;/a&gt; のようにコメント欄が作成できる。&lt;/p&gt;
 
@@ -49,8 +49,8 @@ theme = &amp;ldquo;hyde&amp;rdquo;  //この行はもう不要なので削除す
   tag = &amp;ldquo;tags&amp;rdquo;
 &lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;theme を &lt;a href=&#34;https://github.com/Syati/greyshade&#34;&gt;Syati/greyshade&lt;/a&gt; に git clone して
-yourblog のメインテーマにする&lt;/p&gt;
+&lt;p&gt;theme を &lt;a href=&#34;https://github.com/Syati/greyshade&#34;&gt;Syati/greyshade&lt;/a&gt; に変更する。
+git clone して yourblog のメインテーマにする&lt;/p&gt;
 
 &lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
 $ git clone git@github.com:Syati/greyshade.git
