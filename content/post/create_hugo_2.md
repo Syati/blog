@@ -11,8 +11,6 @@ comments = true
 [Part 1]({{< ref "post/create_hugo.md" >}}) では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
 [Hosting on GitHub Pages](http://gohugo.io/tutorials/github-pages-blog/) を参考にして、セットアップ手順を記していく。
 
-全てが終われば[yourblog](http://syati.github.io/yourblog/)のように作成できる。
-
  <!--more-->
 - **※注意**
     - ソースコード内の **&quot;** が、二重引用符（始）、二重引用符（終）に 変わっているので  
