@@ -11,8 +11,8 @@ title = "Hugo にコメント欄をいれる"
 [Part 1]({{< ref "post/create_hugo.md" >}}) 、 [Part 2]({{< ref "post/create_hugo.md" >}}) で
 Hugo を用いて github.io にブログを立ち上げましたが、コメント欄が無いので導入したい！！
 
-[Comments in Hugo](http://gohugo.io/extras/comments/) を参考にして早速、導入していこうと
-おもったが、もっと楽にやりたいので、Part 1 で利用していた theme の hyde を変えて超簡単に導入する
+[Comments in Hugo](http://gohugo.io/extras/comments/) を参考にして早速、導入していこうとおもったが、
+もっと楽にやりたいので、Part 1 で利用していた theme の hyde を変えて超簡単に導入する。
 
 全てが終われば [yourblog](http://syati.github.io/yourblog/) のようにコメント欄が作成できる。
 
@@ -41,8 +41,8 @@ theme = "hyde"  //この行はもう不要なので削除する
   tag = "tags"
 </pre></code>
 
-theme を [Syati/greyshade](https://github.com/Syati/greyshade) に git clone して
-yourblog のメインテーマにする
+theme を [Syati/greyshade](https://github.com/Syati/greyshade) に変更する。
+git clone して yourblog のメインテーマにする
 
 <pre><code class="language-bash">
 $ git clone git@github.com:Syati/greyshade.git
