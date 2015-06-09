@@ -8,7 +8,7 @@ title = "Hugo にコメント欄をいれる"
 
 +++
 
-[Part 1]({{< ref "post/create_hugo.md" >}}) 、 [Part 2]({{< ref "post/create_hugo.md" >}}) で
+[Part 1]({{< ref "post/create_hugo.md" >}}) 、 [Part 2]({{< ref "post/create_hugo_2.md" >}}) で
 Hugo を用いて github.io にブログを立ち上げましたが、コメント欄が無いので導入したい！！
 
 [Comments in Hugo](http://gohugo.io/extras/comments/) を参考にして早速、導入していこうとおもったが、
