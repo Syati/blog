@@ -17,7 +17,7 @@
       <guid>http://syati.github.io/blog/post/add_disqus_to_hugo/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; 、 &lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 2&lt;/a&gt; で
+&lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; 、 &lt;a href=&#34;http://syati.github.io/blog/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で
 Hugo を用いて github.io にブログを立ち上げましたが、コメント欄が無いので導入したい！！&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://gohugo.io/extras/comments/&#34;&gt;Comments in Hugo&lt;/a&gt; を参考にして早速、導入していこうとおもったが、
