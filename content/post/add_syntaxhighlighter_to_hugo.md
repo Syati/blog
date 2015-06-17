@@ -1,14 +1,14 @@
 +++
 Categories = ["Hugo"]
-Description = ""
+Description = "Hugo に SyntaxHighlighter を導入""
 Tags = ["Blog", "github.io"]
 comments = true
 date = "2015-06-17T22:42:39+09:00"
-title = "Hugo に SyntaxHighlighter を入れる"
+title = "Hugo に SyntaxHighlighter を導入"
 
 +++
 
-ソースコードをブログに載せるうえで欠かせないのが SyntaxHighlighter ですよね。
+ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
 というこで [Syntax Highlighting](http://gohugo.io/extras/highlighting/) を
 参考にして早速導入する。
 
