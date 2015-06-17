@@ -2,7 +2,7 @@
 Categories = ["Hugo"]
 Description = "Disqus を用いて Hugo にコメント欄をいれる"
 Tags = ["Blog", "github.io"]
-comment = true
+comments = true
 date = "2015-06-09T00:02:04+09:00"
 title = "Hugo にコメント欄をいれる"
 
@@ -17,7 +17,11 @@ Hugo を用いて github.io にブログを立ち上げましたが、コメン�
 全てが終われば [yourblog](http://syati.github.io/yourblog/) のようにコメント欄が作成できる。
 
 <!--more-->
-**※part 1 で作成した yourblog があるものとして記す**
+
+- **※注意**
+    - part 1 で作成した yourblog があるものとして記す
+    - ソースコード内の **&quot;** が、二重引用符（始）、二重引用符（終）に 変わっているので  
+      コピペしてもバグります。コピペする場合は修正してください。
 
 # Step 1 theme を変える
 

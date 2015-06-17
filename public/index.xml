@@ -7,7 +7,117 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Tue, 09 Jun 2015 00:02:04 JST</updated>
+    <updated>Wed, 17 Jun 2015 22:42:39 JST</updated>
+    
+    <item>
+      <title>Hugo に SyntaxHighlighter を入れる</title>
+      <link>http://syati.github.io/blog/post/add_syntaxhighlighter_to_hugo/</link>
+      <pubDate>Wed, 17 Jun 2015 22:42:39 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/add_syntaxhighlighter_to_hugo/</guid>
+      <description>
+
+&lt;p&gt;ソースコードをブログに載せるうえで欠かせないのが SyntaxHighlighter ですよね。
+というこで &lt;a href=&#34;http://gohugo.io/extras/highlighting/&#34;&gt;Syntax Highlighting&lt;/a&gt; を
+参考にして早速導入する。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;※注意&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://syati.github.io/blog/post/add_disqus_to_hugo/&#34;&gt;Hugo にコメント欄をいれる&lt;/a&gt; を実施したとして記す。&lt;/li&gt;
+&lt;li&gt;ソースコード内の &lt;strong&gt;&amp;quot;&lt;/strong&gt; が、二重引用符（始）、二重引用符（終）に 変わっているので&lt;br /&gt;
+コピペしてもバグります。コピペする場合は修正してください。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 1 Client-side の SyntaxHighlighter ライブラリ取得&lt;/h1&gt;
+
+&lt;p&gt;導入方法として &lt;strong&gt;Server-side&lt;/strong&gt; と &lt;strong&gt;Client-side&lt;/strong&gt; の方法がありますが、
+今回は後者を利用します。また、ライブラリーはたくさんありますが、&lt;strong&gt;&lt;a href=&#34;http://prismjs.com/&#34;&gt;Prism&lt;/a&gt;&lt;/strong&gt;
+を利用します。&lt;/p&gt;
+
+&lt;p&gt;Prism のHPにいって利用したい好きな Themes と Languages にチェックをいれて、
+ページ下部の DOWNLOAD JS と DOWNLOAD CSS から DL しましょう。
+ちなみに当ページの Prism のテーマは Default(Okaidia) を利用しています。&lt;/p&gt;
+
+&lt;h1 id=&#34;step-2-対象ファイルコピー:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 2 対象ファイルコピー&lt;/h1&gt;
+
+&lt;p&gt;DL したファイルを以下のようにコピーしてあげる。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ cp prism.js yourblog/static/js/
+$ cp prism.css yourblog/static/css/
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-3-custom-設定を加える:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 3 custom 設定を加える&lt;/h1&gt;
+
+&lt;p&gt;以下のように yourblog/layouts/partials/custom に移動して
+&lt;strong&gt;対象ファイル１&lt;/strong&gt;と&lt;strong&gt;対象ファイル２&lt;/strong&gt;を編集します。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ cd yourblog/layouts/partials/custom
+$ tree -L 1
+.
+├── after_footer.html  # 対象ファイル１
+├── asides
+├── footer.html
+├── head.html          # 対象ファイル２
+├── header.html
+└── navigation.html
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;以下のように対象ファイル１に１行追加。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
+&amp;lt;script src=&amp;ldquo;{{ .Site.BaseUrl }}/js/prism.js&amp;rdquo;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;以下のように対象ファイル２に１行追加。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
+&amp;lt;link href=&amp;ldquo;{{ .Site.BaseUrl }}/css/prism.css&amp;rdquo; media=&amp;ldquo;screen, projection&amp;rdquo; rel=&amp;ldquo;stylesheet&amp;rdquo; type=&amp;ldquo;text/css&amp;rdquo;&amp;gt;
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;これで設定は終了。&lt;/p&gt;
+
+&lt;h1 id=&#34;step-4-コードをいれてみる:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 4 コードをいれてみる&lt;/h1&gt;
+
+&lt;p&gt;新しい記事でも作成して、以下のような感じでコードをいれると&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
+&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;ldquo;language-c&amp;rdquo;&amp;gt;
+#include &amp;lt;stdio.h&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;int main(void)
+{
+    printf(&amp;ldquo;hello, world\n&amp;rdquo;);
+    return;
+}
+&amp;lt;/pre&amp;gt;&amp;lt;/code&amp;gt;
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;あら素敵！！というふうになる。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=“language-c”&gt;
+#include &amp;lt;stdio.h&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;int main(void)
+{
+    printf(&amp;ldquo;hello, world\n&amp;rdquo;);
+    return;
+}
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;注意
+
+&lt;ul&gt;
+&lt;li&gt;markdown で利用されている &lt;strong&gt;#&lt;/strong&gt; などは &lt;strong&gt;\#&lt;/strong&gt; でエスケープする必要があります&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Hugo にコメント欄をいれる</title>
@@ -25,7 +135,15 @@ Hugo を用いて github.io にブログを立ち上げましたが、コメン�
 
 &lt;p&gt;全てが終われば &lt;a href=&#34;http://syati.github.io/yourblog/&#34;&gt;yourblog&lt;/a&gt; のようにコメント欄が作成できる。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;※part 1 で作成した yourblog があるものとして記す&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;※注意&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;part 1 で作成した yourblog があるものとして記す&lt;/li&gt;
+&lt;li&gt;ソースコード内の &lt;strong&gt;&amp;quot;&lt;/strong&gt; が、二重引用符（始）、二重引用符（終）に 変わっているので&lt;br /&gt;
+コピペしてもバグります。コピペする場合は修正してください。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&#34;step-1-theme-を変える:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 1 theme を変える&lt;/h1&gt;
 
@@ -878,24 +996,6 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
-      <title>Emacs を 256色で起動する</title>
-      <link>http://syati.github.io/blog/post/emacs_256/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
-      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
-
-&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
-以下のコマンドを実行しましょう。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Development Environment in my OSX</title>
       <link>http://syati.github.io/blog/post/make_env_mac/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1182,6 +1282,125 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
+      <title>Emacs を 256色で起動する</title>
+      <link>http://syati.github.io/blog/post/emacs_256/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
+      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
+
+&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
+以下のコマンドを実行しましょう。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>nkf で直す文字化け</title>
+      <link>http://syati.github.io/blog/post/nkf/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/nkf/</guid>
+      <description>
+
+&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
+開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
+
+&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
+
+&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
+
+&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
+
+&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
+output: Shift_JIS
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
+      <link>http://syati.github.io/blog/post/node_path/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/node_path/</guid>
+      <description>
+
+&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
+
+&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
+
+&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
+Syati% node 
+
+require(&#39;underscore&#39;); 
+Error: Cannot find module &#39;underscore&#39;
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:362:17)
+    at require (module.js:378:17)
+    at repl:1:1
+    at REPLServer.self.eval (repl.js:109:21)
+    at rli.on.self.bufferedCmd (repl.js:258:20)
+    at REPLServer.self.eval (repl.js:116:5)
+    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
+    at Interface.EventEmitter.emit (events.js:96:17)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
+
+&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
+
+&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm root -g
+// output =&amp;gt; /usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
       <link>http://syati.github.io/blog/post/make_windows_emacs/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1436,103 +1655,46 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
     </item>
     
     <item>
-      <title>nkf で直す文字化け</title>
-      <link>http://syati.github.io/blog/post/nkf/</link>
+      <title>org2blog でブログに接続する際のパスワードを .netrc に保存しておく</title>
+      <link>http://syati.github.io/blog/post/org2blogNetrc/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/nkf/</guid>
+      <guid>http://syati.github.io/blog/post/org2blogNetrc/</guid>
       <description>
 
-&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
-開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
+&lt;p&gt;org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&amp;#x2026;とおもっている場合は、.netrc を使うのがお勧め&lt;/p&gt;
 
-&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
-
-&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
-
-&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
-
-&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
-output: Shift_JIS
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
-      <link>http://syati.github.io/blog/post/node_path/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/node_path/</guid>
-      <description>
-
-&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
-
-&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
-
-&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
-Syati% node 
-
-require(&#39;underscore&#39;); 
-Error: Cannot find module &#39;underscore&#39;
-    at Function.Module._resolveFilename (module.js:338:15)
-    at Function.Module._load (module.js:280:25)
-    at Module.require (module.js:362:17)
-    at require (module.js:378:17)
-    at repl:1:1
-    at REPLServer.self.eval (repl.js:109:21)
-    at rli.on.self.bufferedCmd (repl.js:258:20)
-    at REPLServer.self.eval (repl.js:116:5)
-    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
-    at Interface.EventEmitter.emit (events.js:96:17)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
-
-&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
-
-&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
+&lt;h1 id=&#34;手順:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;手順&lt;/h1&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;ホームに以下のコマンドで .netrc を作成する&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;npm root -g
-// output =&amp;gt; /usr/local/lib/node_modules
+&lt;pre&gt;&lt;code&gt;echo &amp;quot;machine myblog login myusername password myrealpassword&amp;quot; &amp;gt; ~/.netrc
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;myusername と myrealpassword を自分がログインするときのユーザー名とパスワードに書き換える&lt;/p&gt;&lt;/li&gt;
 
-&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
+&lt;li&gt;&lt;p&gt;emacs の設定ファイル（ .emacs.d/init.el ) に以下を書き加える&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;;; org2blog
+(require &#39;org2blog-autoloads)
+(require &#39;netrc) ;; or nothing if already in the load-path
+(setq org2blog/wp-use-sourcecode-shortcode t) ;;syntaxhl
+(setq blog (netrc-machine (netrc-parse &amp;quot;~/.netrc&amp;quot;) &amp;quot;myblog&amp;quot; t))
+(setq org2blog/wp-blog-alist
+       &#39;((&amp;quot;my-blog&amp;quot;
+          :url &amp;quot;your wordpress url&amp;quot;
+          :username (netrc-get blog &amp;quot;login&amp;quot;)
+          :password (netrc-get blog &amp;quot;password&amp;quot;)
+          :tags-as-categories nil)))
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;h1 id=&#34;参考:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -1728,90 +1890,6 @@ echo &#34;hoge&#34;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://orgmode.org/worg/org-contrib/babel/intro.html&#34;&gt;Babel: Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/tamura70/20100304/org&#34;&gt;Emacs org-modeを使ってみる: (29) エクスポートオプション一覧&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Google Fonts をローカルで利用する</title>
-      <link>http://syati.github.io/blog/post/typecatchar/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/typecatchar/</guid>
-      <description>
-
-&lt;p&gt;Google Fonts をローカル環境で使いたいと思い調べたら、意外と簡単だった。以下は参考のほぼ転記。&lt;/p&gt;
-
-&lt;h1 id=&#34;環境:68568d62e9a876d6a56009578931cad6&#34;&gt;環境&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;OS:ubuntu 12.04&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;インストール:68568d62e9a876d6a56009578931cad6&#34;&gt;インストール&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:andrewsomething/typecatcher
-sudo apt-get update
-sudo apt-get install typecatcher
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;メニュー　-&amp;gt; アクセサリー -&amp;gt; TypeCatchar で起動した後、好きなフォントを選んでインストール&lt;/p&gt;
-
-&lt;h1 id=&#34;その他:68568d62e9a876d6a56009578931cad6&#34;&gt;その他&lt;/h1&gt;
-
-&lt;p&gt;ubuntu 13.10 以上は、以下の通り&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get install typecatcher
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;参考:68568d62e9a876d6a56009578931cad6&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&#34;&gt;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>org2blog でブログに接続する際のパスワードを .netrc に保存しておく</title>
-      <link>http://syati.github.io/blog/post/org2blogNetrc/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/org2blogNetrc/</guid>
-      <description>
-
-&lt;p&gt;org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&amp;#x2026;とおもっている場合は、.netrc を使うのがお勧め&lt;/p&gt;
-
-&lt;h1 id=&#34;手順:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;手順&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;ホームに以下のコマンドで .netrc を作成する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;echo &amp;quot;machine myblog login myusername password myrealpassword&amp;quot; &amp;gt; ~/.netrc
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;myusername と myrealpassword を自分がログインするときのユーザー名とパスワードに書き換える&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;emacs の設定ファイル（ .emacs.d/init.el ) に以下を書き加える&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;;; org2blog
-(require &#39;org2blog-autoloads)
-(require &#39;netrc) ;; or nothing if already in the load-path
-(setq org2blog/wp-use-sourcecode-shortcode t) ;;syntaxhl
-(setq blog (netrc-machine (netrc-parse &amp;quot;~/.netrc&amp;quot;) &amp;quot;myblog&amp;quot; t))
-(setq org2blog/wp-blog-alist
-       &#39;((&amp;quot;my-blog&amp;quot;
-          :url &amp;quot;your wordpress url&amp;quot;
-          :username (netrc-get blog &amp;quot;login&amp;quot;)
-          :password (netrc-get blog &amp;quot;password&amp;quot;)
-          :tags-as-categories nil)))
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;参考:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

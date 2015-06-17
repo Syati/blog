@@ -118,7 +118,15 @@ Hugo を用いて github.io にブログを立ち上げましたが、コメン�
 
 <p>全てが終われば <a href="http://syati.github.io/yourblog/">yourblog</a> のようにコメント欄が作成できる。</p>
 
-<p><strong>※part 1 で作成した yourblog があるものとして記す</strong></p>
+<ul>
+<li><strong>※注意</strong>
+
+<ul>
+<li>part 1 で作成した yourblog があるものとして記す</li>
+<li>ソースコード内の <strong>&quot;</strong> が、二重引用符（始）、二重引用符（終）に 変わっているので<br />
+コピペしてもバグります。コピペする場合は修正してください。</li>
+</ul></li>
+</ul>
 
 <h1 id="step-1-theme-を変える:d75fd18943ec8adafe7501d2e4ec3936">Step 1 theme を変える</h1>
 
@@ -309,7 +317,10 @@ comments = true
   var disqus_shortname = 'syati';
   
     
-    var disqus_script = 'count.js';
+    
+    var disqus_identifier = 'http:\/\/syati.github.io\/blog\/post\/add_disqus_to_hugo\/';
+    var disqus_url = 'http:\/\/syati.github.io\/blog\/post\/add_disqus_to_hugo\/';
+    var disqus_script = 'embed.js';
   
   (function () {
     

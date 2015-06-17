@@ -7,7 +7,117 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Tue, 09 Jun 2015 00:02:04 JST</updated>
+    <updated>Wed, 17 Jun 2015 22:42:39 JST</updated>
+    
+    <item>
+      <title>Hugo に SyntaxHighlighter を入れる</title>
+      <link>http://syati.github.io/blog/post/add_syntaxhighlighter_to_hugo/</link>
+      <pubDate>Wed, 17 Jun 2015 22:42:39 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/add_syntaxhighlighter_to_hugo/</guid>
+      <description>
+
+&lt;p&gt;ソースコードをブログに載せるうえで欠かせないのが SyntaxHighlighter ですよね。
+というこで &lt;a href=&#34;http://gohugo.io/extras/highlighting/&#34;&gt;Syntax Highlighting&lt;/a&gt; を
+参考にして早速導入する。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;※注意&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://syati.github.io/blog/post/add_disqus_to_hugo/&#34;&gt;Hugo にコメント欄をいれる&lt;/a&gt; を実施したとして記す。&lt;/li&gt;
+&lt;li&gt;ソースコード内の &lt;strong&gt;&amp;quot;&lt;/strong&gt; が、二重引用符（始）、二重引用符（終）に 変わっているので&lt;br /&gt;
+コピペしてもバグります。コピペする場合は修正してください。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 1 Client-side の SyntaxHighlighter ライブラリ取得&lt;/h1&gt;
+
+&lt;p&gt;導入方法として &lt;strong&gt;Server-side&lt;/strong&gt; と &lt;strong&gt;Client-side&lt;/strong&gt; の方法がありますが、
+今回は後者を利用します。また、ライブラリーはたくさんありますが、&lt;strong&gt;&lt;a href=&#34;http://prismjs.com/&#34;&gt;Prism&lt;/a&gt;&lt;/strong&gt;
+を利用します。&lt;/p&gt;
+
+&lt;p&gt;Prism のHPにいって利用したい好きな Themes と Languages にチェックをいれて、
+ページ下部の DOWNLOAD JS と DOWNLOAD CSS から DL しましょう。
+ちなみに当ページの Prism のテーマは Default(Okaidia) を利用しています。&lt;/p&gt;
+
+&lt;h1 id=&#34;step-2-対象ファイルコピー:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 2 対象ファイルコピー&lt;/h1&gt;
+
+&lt;p&gt;DL したファイルを以下のようにコピーしてあげる。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ cp prism.js yourblog/static/js/
+$ cp prism.css yourblog/static/css/
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-3-custom-設定を加える:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 3 custom 設定を加える&lt;/h1&gt;
+
+&lt;p&gt;以下のように yourblog/layouts/partials/custom に移動して
+&lt;strong&gt;対象ファイル１&lt;/strong&gt;と&lt;strong&gt;対象ファイル２&lt;/strong&gt;を編集します。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+$ cd yourblog/layouts/partials/custom
+$ tree -L 1
+.
+├── after_footer.html  # 対象ファイル１
+├── asides
+├── footer.html
+├── head.html          # 対象ファイル２
+├── header.html
+└── navigation.html
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;以下のように対象ファイル１に１行追加。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
+&amp;lt;script src=&amp;ldquo;{{ .Site.BaseUrl }}/js/prism.js&amp;rdquo;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;以下のように対象ファイル２に１行追加。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
+&amp;lt;link href=&amp;ldquo;{{ .Site.BaseUrl }}/css/prism.css&amp;rdquo; media=&amp;ldquo;screen, projection&amp;rdquo; rel=&amp;ldquo;stylesheet&amp;rdquo; type=&amp;ldquo;text/css&amp;rdquo;&amp;gt;
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;これで設定は終了。&lt;/p&gt;
+
+&lt;h1 id=&#34;step-4-コードをいれてみる:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 4 コードをいれてみる&lt;/h1&gt;
+
+&lt;p&gt;新しい記事でも作成して、以下のような感じでコードをいれると&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
+&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;ldquo;language-c&amp;rdquo;&amp;gt;
+#include &amp;lt;stdio.h&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;int main(void)
+{
+    printf(&amp;ldquo;hello, world\n&amp;rdquo;);
+    return;
+}
+&amp;lt;/pre&amp;gt;&amp;lt;/code&amp;gt;
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;あら素敵！！というふうになる。&lt;/p&gt;
+
+&lt;p&gt;&lt;pre&gt;&lt;code class=“language-c”&gt;
+#include &amp;lt;stdio.h&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;int main(void)
+{
+    printf(&amp;ldquo;hello, world\n&amp;rdquo;);
+    return;
+}
+&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;注意
+
+&lt;ul&gt;
+&lt;li&gt;markdown で利用されている &lt;strong&gt;#&lt;/strong&gt; などは &lt;strong&gt;\#&lt;/strong&gt; でエスケープする必要があります&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Hugo にコメント欄をいれる</title>
@@ -25,7 +135,15 @@ Hugo を用いて github.io にブログを立ち上げましたが、コメン�
 
 &lt;p&gt;全てが終われば &lt;a href=&#34;http://syati.github.io/yourblog/&#34;&gt;yourblog&lt;/a&gt; のようにコメント欄が作成できる。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;※part 1 で作成した yourblog があるものとして記す&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;※注意&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;part 1 で作成した yourblog があるものとして記す&lt;/li&gt;
+&lt;li&gt;ソースコード内の &lt;strong&gt;&amp;quot;&lt;/strong&gt; が、二重引用符（始）、二重引用符（終）に 変わっているので&lt;br /&gt;
+コピペしてもバグります。コピペする場合は修正してください。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&#34;step-1-theme-を変える:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 1 theme を変える&lt;/h1&gt;
 
@@ -1616,202 +1734,6 @@ Error: Cannot find module &#39;underscore&#39;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>org2blog の記事にコードブロックを入れる</title>
-      <link>http://syati.github.io/blog/post/org2blogInsertSourceCode/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/org2blogInsertSourceCode/</guid>
-      <description>
-
-&lt;p&gt;org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 &lt;a href=&#34;http://syati.info/?p=1746&#34;&gt;org2blogからの投稿&lt;/a&gt; の続き。&lt;/p&gt;
-
-&lt;h1 id=&#34;必要なもの:c443d59d4160338c2614fe779a49a87f&#34;&gt;必要なもの&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;htmlize.el を load-path の通ったところに入れる。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;htmlize.el は &lt;a href=&#34;http://orgmode.org/ja/index.html&#34;&gt;org-mode&lt;/a&gt; をDLして、解凍した contrib/lisp に入っている。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://wordpress.org/extend/plugins/syntaxhighlighter/&#34;&gt;SyntaxHighlighter Evolved&lt;/a&gt; をワードプレスに入れて有効化しておく。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に &lt;strong&gt;:wp-code t&lt;/strong&gt; を書き加える。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;以下が .emacs.d/init.el に書き込んだ私の org2blog の設定&lt;/p&gt;
-
-&lt;p&gt;;;org2blog
-(require &amp;lsquo;org2blog)
-(setq org2blog/wp-blog-alist
-      &amp;lsquo;((&amp;ldquo;wordpress&amp;rdquo;
-         :url &amp;ldquo;your wordpress url&amp;rdquo;
-         :username &amp;ldquo;login name&amp;rdquo;
-         :wp-code t))) ;; insert this line&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;使ってみる:c443d59d4160338c2614fe779a49a87f&#34;&gt;使ってみる&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;org2blog/wp-new-entry で投稿記事を作成する。&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;表記 &lt;strong&gt;#+BEGIN_SRC 言語　:syntaxhl [利用したいパラメータ（任意）] ソースコード #+END_SRC&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;:syntaxhl にパラメータを与えない場合は、ワードプレスの管理画面-&amp;gt;設定 SyntaxHighlighter の一般設定が用いられる。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.support.wordpress.com/code/posting-source-code/#configuration-parameters&#34;&gt;パラメータはこちら&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;
-＃+BEGIN_SRC bash :syntaxhl
-echo &#34;hoge&#34; 
-＃+END_SRC
-&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;これで org2blog の記事投稿でコードも綺麗に投稿できる。&lt;/p&gt;
-
-&lt;h1 id=&#34;補足:c443d59d4160338c2614fe779a49a87f&#34;&gt;補足&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;必要なもの 3. の設定を加えるのは、以下の通り &lt;pre&gt; タグが挿入されるため SyntaxHighlighter の表記方法 [language] code [/language] と合致しなくなるため。（以下は org2blog.el 内のコード）&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;参考 &lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;(defcustom org2blog/wp-use-sourcecode-shortcode nil
-   &amp;ldquo;Non-nil means convert &lt;pre&gt; tags to WP sourcecode blocks.
- NOTE: htmlize.el available in org-mode&amp;rsquo;s contrib directory should
- be on your emacs load-path for this to work.&amp;rdquo;
-   :group &amp;lsquo;org2blog/wp
-   :type &amp;lsquo;boolean)&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;覚えておくと良いショートカット:c443d59d4160338c2614fe779a49a87f&#34;&gt;覚えておくと良いショートカット&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;コードブロックを挿入する際は &lt;strong&gt;&amp;lt;キー&lt;TAB&gt;&lt;/strong&gt; をタイプするべし。
-
-&lt;ul&gt;
-&lt;li&gt;以下は、挿入したいテンプレートのキー一覧
-
-&lt;ul&gt;
-&lt;li&gt;参考 &lt;a href=&#34;http://emacsclub.github.com/html/org_tutorial.html&#34;&gt;Org-mode Tutorial / Cheat Sheet&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;table border=&#34;2&#34; cellspacing=&#34;0&#34; cellpadding=&#34;6&#34; rules=&#34;groups&#34; frame=&#34;hsides&#34;&gt;
-
-
-&lt;colgroup&gt;
-&lt;col  class=&#34;left&#34; /&gt;
-
-&lt;col  class=&#34;left&#34; /&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope=&#34;col&#34; class=&#34;left&#34;&gt;キー　&lt;/th&gt;
-&lt;th scope=&#34;col&#34; class=&#34;left&#34;&gt;挿入したいテンプレート&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;s&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_src &amp;#x2026; #+end\_src&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;e&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_example &amp;#x2026; #+end\_example&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;q&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_quote &amp;#x2026; #+end\_quote&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;v&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_verse &amp;#x2026; #+end\_verse&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;c&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_center &amp;#x2026; #+end\_center&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;l&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_latex &amp;#x2026; #+end\_latex&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;L&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+latex:&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;h&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_html &amp;#x2026; #+end\_html&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;H&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+html:&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_ascii &amp;#x2026; #+end\_ascii&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+ascii:&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;i&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+index: line&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;I&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+include: line&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&#34;その他-参考サイト:c443d59d4160338c2614fe779a49a87f&#34;&gt;その他、参考サイト&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://orgmode.org/worg/org-contrib/babel/intro.html&#34;&gt;Babel: Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/tamura70/20100304/org&#34;&gt;Emacs org-modeを使ってみる: (29) エクスポートオプション一覧&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
