@@ -1,6 +1,6 @@
 +++
 Categories = ["Hugo"]
-Description = "Hugo に SyntaxHighlighter を導入""
+Description = "Hugo に SyntaxHighlighter を導入"
 Tags = ["Blog", "github.io"]
 comments = true
 date = "2015-06-17T22:42:39+09:00"

@@ -10,14 +10,14 @@
     <updated>Wed, 17 Jun 2015 22:42:39 JST</updated>
     
     <item>
-      <title>Hugo に SyntaxHighlighter を入れる</title>
+      <title>Hugo に SyntaxHighlighter を導入</title>
       <link>http://syati.github.io/blog/post/add_syntaxhighlighter_to_hugo/</link>
       <pubDate>Wed, 17 Jun 2015 22:42:39 JST</pubDate>
       
       <guid>http://syati.github.io/blog/post/add_syntaxhighlighter_to_hugo/</guid>
       <description>
 
-&lt;p&gt;ソースコードをブログに載せるうえで欠かせないのが SyntaxHighlighter ですよね。
+&lt;p&gt;ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
 というこで &lt;a href=&#34;http://gohugo.io/extras/highlighting/&#34;&gt;Syntax Highlighting&lt;/a&gt; を
 参考にして早速導入する。&lt;/p&gt;
 
@@ -120,7 +120,7 @@ $ tree -L 1
     </item>
     
     <item>
-      <title>Hugo にコメント欄をいれる</title>
+      <title>Hugo にコメント欄を導入</title>
       <link>http://syati.github.io/blog/post/add_disqus_to_hugo/</link>
       <pubDate>Tue, 09 Jun 2015 00:02:04 JST</pubDate>
       
