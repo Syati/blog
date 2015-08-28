@@ -3,7 +3,7 @@
   <channel>
       <title>Emacs on Syati.info </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://syati.github.io/blog/categories/emacs/</link>
+    <link>http://blog.syati.info/categories/emacs/</link>
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
-      <link>http://syati.github.io/blog/post/make_windows_emacs/</link>
+      <link>http://blog.syati.info/post/make_windows_emacs/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/make_windows_emacs/</guid>
+      <guid>http://blog.syati.info/post/make_windows_emacs/</guid>
       <description>
 
 &lt;p&gt;最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、
@@ -260,10 +260,10 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
     
     <item>
       <title>Emacs で CoffeeScript を AutoComplete する</title>
-      <link>http://syati.github.io/blog/post/coffee_script/</link>
+      <link>http://blog.syati.info/post/coffee_script/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/coffee_script/</guid>
+      <guid>http://blog.syati.info/post/coffee_script/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、
@@ -294,10 +294,10 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     
     <item>
       <title>Emacs で JavaScript の開発環境を整える</title>
-      <link>http://syati.github.io/blog/post/emacsJavascript/</link>
+      <link>http://blog.syati.info/post/emacsJavascript/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/emacsJavascript/</guid>
+      <guid>http://blog.syati.info/post/emacsJavascript/</guid>
       <description>
 
 &lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
@@ -380,10 +380,10 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     
     <item>
       <title>Emacs を 256色で起動する</title>
-      <link>http://syati.github.io/blog/post/emacs_256/</link>
+      <link>http://blog.syati.info/post/emacs_256/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
+      <guid>http://blog.syati.info/post/emacs_256/</guid>
       <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
 
 &lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
@@ -398,10 +398,10 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     
     <item>
       <title>Scala の開発環境</title>
-      <link>http://syati.github.io/blog/post/make_scala_env/</link>
+      <link>http://blog.syati.info/post/make_scala_env/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/make_scala_env/</guid>
+      <guid>http://blog.syati.info/post/make_scala_env/</guid>
       <description>
 
 &lt;p&gt;ubuntu で scala の開発環境を構築するメモ&lt;/p&gt;
@@ -495,10 +495,10 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     
     <item>
       <title>org2blog でブログに接続する際のパスワードを .netrc に保存しておく</title>
-      <link>http://syati.github.io/blog/post/org2blogNetrc/</link>
+      <link>http://blog.syati.info/post/org2blogNetrc/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/org2blogNetrc/</guid>
+      <guid>http://blog.syati.info/post/org2blogNetrc/</guid>
       <description>
 
 &lt;p&gt;org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&amp;#x2026;とおもっている場合は、.netrc を使うのがお勧め&lt;/p&gt;
@@ -539,10 +539,10 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     
     <item>
       <title>org2blog の記事にコードブロックを入れる</title>
-      <link>http://syati.github.io/blog/post/org2blogInsertSourceCode/</link>
+      <link>http://blog.syati.info/post/org2blogInsertSourceCode/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/org2blogInsertSourceCode/</guid>
+      <guid>http://blog.syati.info/post/org2blogInsertSourceCode/</guid>
       <description>
 
 &lt;p&gt;org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 &lt;a href=&#34;http://syati.info/?p=1746&#34;&gt;org2blogからの投稿&lt;/a&gt; の続き。&lt;/p&gt;

@@ -3,7 +3,7 @@
   <channel>
       <title>Scala on Syati.info </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://syati.github.io/blog/categories/scala/</link>
+    <link>http://blog.syati.info/categories/scala/</link>
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Scala の開発環境</title>
-      <link>http://syati.github.io/blog/post/make_scala_env/</link>
+      <link>http://blog.syati.info/post/make_scala_env/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/make_scala_env/</guid>
+      <guid>http://blog.syati.info/post/make_scala_env/</guid>
       <description>
 
 &lt;p&gt;ubuntu で scala の開発環境を構築するメモ&lt;/p&gt;

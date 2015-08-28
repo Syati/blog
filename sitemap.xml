@@ -2,113 +2,113 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://syati.github.io/blog/</loc>
+    <loc>http://blog.syati.info/</loc>
     <lastmod>2015-06-17T22:42:39+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/add_syntaxhighlighter_to_hugo/</loc>
+    <loc>http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</loc>
     <lastmod>2015-06-17T22:42:39+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/add_disqus_to_hugo/</loc>
+    <loc>http://blog.syati.info/post/add_disqus_to_hugo/</loc>
     <lastmod>2015-06-09T00:02:04+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/create_hugo_2/</loc>
+    <loc>http://blog.syati.info/post/create_hugo_2/</loc>
     <lastmod>2015-06-07T21:55:31+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/create_hugo/</loc>
+    <loc>http://blog.syati.info/post/create_hugo/</loc>
     <lastmod>2015-06-05T21:55:31+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/angular-test-sample-recipe1/</loc>
+    <loc>http://blog.syati.info/post/angular-test-sample-recipe1/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/coffee_script/</loc>
+    <loc>http://blog.syati.info/post/coffee_script/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/emacsJavascript/</loc>
+    <loc>http://blog.syati.info/post/emacsJavascript/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/emacs_256/</loc>
+    <loc>http://blog.syati.info/post/emacs_256/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/make_env_mac/</loc>
+    <loc>http://blog.syati.info/post/make_scala_env/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/make_scala_env/</loc>
+    <loc>http://blog.syati.info/post/make_env_mac/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/make_windows_emacs/</loc>
+    <loc>http://blog.syati.info/post/nkf/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/nkf/</loc>
+    <loc>http://blog.syati.info/post/node_path/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/node_path/</loc>
+    <loc>http://blog.syati.info/post/make_windows_emacs/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/org2blogInsertSourceCode/</loc>
+    <loc>http://blog.syati.info/post/org2blogInsertSourceCode/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/org2blogNetrc/</loc>
+    <loc>http://blog.syati.info/post/org2blogNetrc/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/typecatchar/</loc>
+    <loc>http://blog.syati.info/post/vagrant_css_problem/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</loc>
+    <loc>http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/vagrant_css_problem/</loc>
+    <loc>http://blog.syati.info/post/typecatchar/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/autostart_synerge_ubuntu/</loc>
+    <loc>http://blog.syati.info/post/autostart_synerge_ubuntu/</loc>
     <lastmod>2015-03-01T21:37:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/post/bowerrc/</loc>
+    <loc>http://blog.syati.info/post/bowerrc/</loc>
     <lastmod>2015-03-01T21:37:06+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://syati.github.io/blog/about/</loc>
+    <loc>http://blog.syati.info/about/</loc>
     <lastmod>2015-03-01T21:36:21+09:00</lastmod>
   </url>
   

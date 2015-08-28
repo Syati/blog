@@ -3,7 +3,7 @@
   <channel>
       <title>Shell on Syati.info </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://syati.github.io/blog/categories/shell/</link>
+    <link>http://blog.syati.info/categories/shell/</link>
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>nkf で直す文字化け</title>
-      <link>http://syati.github.io/blog/post/nkf/</link>
+      <link>http://blog.syati.info/post/nkf/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/nkf/</guid>
+      <guid>http://blog.syati.info/post/nkf/</guid>
       <description>
 
 &lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
@@ -60,10 +60,10 @@ output: Shift_JIS
     
     <item>
       <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
-      <link>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</link>
+      <link>http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/</guid>
+      <guid>http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/</guid>
       <description>
 
 &lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;
