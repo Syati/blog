@@ -925,6 +925,24 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
+      <title>Emacs を 256色で起動する</title>
+      <link>http://syati.github.io/blog/post/emacs_256/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
+      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
+
+&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
+以下のコマンドを実行しましょう。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Development Environment in my OSX</title>
       <link>http://syati.github.io/blog/post/make_env_mac/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1114,24 +1132,6 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
-      <title>Emacs を 256色で起動する</title>
-      <link>http://syati.github.io/blog/post/emacs_256/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
-      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
-
-&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
-以下のコマンドを実行しましょう。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Scala の開発環境</title>
       <link>http://syati.github.io/blog/post/make_scala_env/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1224,55 +1224,6 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>nkf で直す文字化け</title>
-      <link>http://syati.github.io/blog/post/nkf/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/nkf/</guid>
-      <description>
-
-&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
-開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
-
-&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
-
-&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
-
-&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
-
-&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
-output: Shift_JIS
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -1527,54 +1478,51 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
     </item>
     
     <item>
-      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
-      <link>http://syati.github.io/blog/post/node_path/</link>
+      <title>nkf で直す文字化け</title>
+      <link>http://syati.github.io/blog/post/nkf/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/node_path/</guid>
+      <guid>http://syati.github.io/blog/post/nkf/</guid>
       <description>
 
-&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
+&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
+開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
 
-&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
+&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
 
-&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
-Syati% node 
+&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
 
-require(&#39;underscore&#39;); 
-Error: Cannot find module &#39;underscore&#39;
-    at Function.Module._resolveFilename (module.js:338:15)
-    at Function.Module._load (module.js:280:25)
-    at Module.require (module.js:362:17)
-    at require (module.js:378:17)
-    at repl:1:1
-    at REPLServer.self.eval (repl.js:109:21)
-    at rli.on.self.bufferedCmd (repl.js:258:20)
-    at REPLServer.self.eval (repl.js:116:5)
-    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
-    at Interface.EventEmitter.emit (events.js:96:17)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
 
-&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
+&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
 
-&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
 
-&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm root -g
-// output =&amp;gt; /usr/local/lib/node_modules
+&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
+output: Shift_JIS
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
+&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -1814,6 +1762,46 @@ echo &#34;hoge&#34;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Google Fonts をローカルで利用する</title>
+      <link>http://syati.github.io/blog/post/typecatchar/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/typecatchar/</guid>
+      <description>
+
+&lt;p&gt;Google Fonts をローカル環境で使いたいと思い調べたら、意外と簡単だった。以下は参考のほぼ転記。&lt;/p&gt;
+
+&lt;h1 id=&#34;環境:68568d62e9a876d6a56009578931cad6&#34;&gt;環境&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;OS:ubuntu 12.04&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;インストール:68568d62e9a876d6a56009578931cad6&#34;&gt;インストール&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:andrewsomething/typecatcher
+sudo apt-get update
+sudo apt-get install typecatcher
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;メニュー　-&amp;gt; アクセサリー -&amp;gt; TypeCatchar で起動した後、好きなフォントを選んでインストール&lt;/p&gt;
+
+&lt;h1 id=&#34;その他:68568d62e9a876d6a56009578931cad6&#34;&gt;その他&lt;/h1&gt;
+
+&lt;p&gt;ubuntu 13.10 以上は、以下の通り&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install typecatcher
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;参考:68568d62e9a876d6a56009578931cad6&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&#34;&gt;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
