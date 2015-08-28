@@ -3,7 +3,7 @@
   <channel>
       <title>Coffeescript on Syati.info </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://syati.github.io/blog/categories/coffeescript/</link>
+    <link>http://blog.syati.info/categories/coffeescript/</link>
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Emacs で CoffeeScript を AutoComplete する</title>
-      <link>http://syati.github.io/blog/post/coffee_script/</link>
+      <link>http://blog.syati.info/post/coffee_script/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/coffee_script/</guid>
+      <guid>http://blog.syati.info/post/coffee_script/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、

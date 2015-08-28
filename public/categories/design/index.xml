@@ -3,7 +3,7 @@
   <channel>
       <title>Design on Syati.info </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://syati.github.io/blog/categories/design/</link>
+    <link>http://blog.syati.info/categories/design/</link>
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Google Fonts をローカルで利用する</title>
-      <link>http://syati.github.io/blog/post/typecatchar/</link>
+      <link>http://blog.syati.info/post/typecatchar/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/typecatchar/</guid>
+      <guid>http://blog.syati.info/post/typecatchar/</guid>
       <description>
 
 &lt;p&gt;Google Fonts をローカル環境で使いたいと思い調べたら、意外と簡単だった。以下は参考のほぼ転記。&lt;/p&gt;

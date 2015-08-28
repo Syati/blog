@@ -3,7 +3,7 @@
   <channel>
       <title>Node on Syati.info </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://syati.github.io/blog/categories/node/</link>
+    <link>http://blog.syati.info/categories/node/</link>
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>node 利用するなら、まずは環境変数を設定しましょう</title>
-      <link>http://syati.github.io/blog/post/node_path/</link>
+      <link>http://blog.syati.info/post/node_path/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/node_path/</guid>
+      <guid>http://blog.syati.info/post/node_path/</guid>
       <description>
 
 &lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;

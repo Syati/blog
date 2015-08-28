@@ -3,7 +3,7 @@
   <channel>
       <title> on Syati.info </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://syati.github.io/blog/</link>
+    <link>http://blog.syati.info/</link>
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Hugo に SyntaxHighlighter を導入</title>
-      <link>http://syati.github.io/blog/post/add_syntaxhighlighter_to_hugo/</link>
+      <link>http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</link>
       <pubDate>Wed, 17 Jun 2015 22:42:39 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/add_syntaxhighlighter_to_hugo/</guid>
+      <guid>http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</guid>
       <description>
 
 &lt;p&gt;ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
@@ -98,13 +98,13 @@ int main(void)
     
     <item>
       <title>Hugo にコメント欄を導入</title>
-      <link>http://syati.github.io/blog/post/add_disqus_to_hugo/</link>
+      <link>http://blog.syati.info/post/add_disqus_to_hugo/</link>
       <pubDate>Tue, 09 Jun 2015 00:02:04 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/add_disqus_to_hugo/</guid>
+      <guid>http://blog.syati.info/post/add_disqus_to_hugo/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; 、 &lt;a href=&#34;http://syati.github.io/blog/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で
+&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; 、 &lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で
 Hugo を用いて github.io にブログを立ち上げましたが、コメント欄が無いので導入したい！！&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://gohugo.io/extras/comments/&#34;&gt;Comments in Hugo&lt;/a&gt; を参考にして早速、導入していこうとおもったが、
@@ -264,13 +264,13 @@ comments = true
     
     <item>
       <title>Hugo で github にブログを立ち上げる Part 2</title>
-      <link>http://syati.github.io/blog/post/create_hugo_2/</link>
+      <link>http://blog.syati.info/post/create_hugo_2/</link>
       <pubDate>Sun, 07 Jun 2015 21:55:31 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/create_hugo_2/</guid>
+      <guid>http://blog.syati.info/post/create_hugo_2/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
+&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
 &lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; を参考にして、セットアップ手順を記していく。&lt;/p&gt;
 
 &lt;h1 id=&#34;step-1-github-に-blog-repository-をつくる:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 1 github に blog repository をつくる&lt;/h1&gt;
@@ -424,10 +424,10 @@ git subtree push --prefix=public git@github.com:[username]/yourblog.git gh-pages
     
     <item>
       <title>Hugo で github にブログを立ち上げる Part 1</title>
-      <link>http://syati.github.io/blog/post/create_hugo/</link>
+      <link>http://blog.syati.info/post/create_hugo/</link>
       <pubDate>Fri, 05 Jun 2015 21:55:31 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/create_hugo/</guid>
+      <guid>http://blog.syati.info/post/create_hugo/</guid>
       <description>
 
 &lt;p&gt;WordPress でブログをつくっていましたが、記事投稿が面倒くさなって続かない。
@@ -442,7 +442,7 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 
 &lt;p&gt;&lt;a href=&#34;http://gohugo.io/overview/quickstart/&#34;&gt;Hugo Quickstart Guide&lt;/a&gt; にならって
 セットアップ手順を記していく。Part 1 では、まずはブログをローカルに構築する。
-&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
+&lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
 
 &lt;h1 id=&#34;step-1-インストールしましょう:21ff63570566c64813270f2340abd251&#34;&gt;Step 1 インストールしましょう&lt;/h1&gt;
 
@@ -545,16 +545,16 @@ Web Server is available at http://127.0.0.1:1313/
 
 &lt;p&gt;ブログ構築完成。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Angular test sample 1</title>
-      <link>http://syati.github.io/blog/post/angular-test-sample-recipe1/</link>
+      <link>http://blog.syati.info/post/angular-test-sample-recipe1/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/angular-test-sample-recipe1/</guid>
+      <guid>http://blog.syati.info/post/angular-test-sample-recipe1/</guid>
       <description>
 
 &lt;p&gt;js ってテストしにくいよねってことで今流行りの angular で unit test する。
@@ -806,10 +806,10 @@ describe(&#39;Unit: app moudle &#39;, function(){
     
     <item>
       <title>Emacs で CoffeeScript を AutoComplete する</title>
-      <link>http://syati.github.io/blog/post/coffee_script/</link>
+      <link>http://blog.syati.info/post/coffee_script/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/coffee_script/</guid>
+      <guid>http://blog.syati.info/post/coffee_script/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、
@@ -840,10 +840,10 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     
     <item>
       <title>Emacs で JavaScript の開発環境を整える</title>
-      <link>http://syati.github.io/blog/post/emacsJavascript/</link>
+      <link>http://blog.syati.info/post/emacsJavascript/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/emacsJavascript/</guid>
+      <guid>http://blog.syati.info/post/emacsJavascript/</guid>
       <description>
 
 &lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
@@ -926,10 +926,10 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     
     <item>
       <title>Emacs を 256色で起動する</title>
-      <link>http://syati.github.io/blog/post/emacs_256/</link>
+      <link>http://blog.syati.info/post/emacs_256/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
+      <guid>http://blog.syati.info/post/emacs_256/</guid>
       <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
 
 &lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
@@ -943,11 +943,108 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
-      <title>Development Environment in my OSX</title>
-      <link>http://syati.github.io/blog/post/make_env_mac/</link>
+      <title>Scala の開発環境</title>
+      <link>http://blog.syati.info/post/make_scala_env/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/make_env_mac/</guid>
+      <guid>http://blog.syati.info/post/make_scala_env/</guid>
+      <description>
+
+&lt;p&gt;ubuntu で scala の開発環境を構築するメモ&lt;/p&gt;
+
+&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ubuntu 12.04&lt;/li&gt;
+&lt;li&gt;emacs 24.3.1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
+
+&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;jdk をインストール
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;以下のコマンドでエラーが無いことを確認
+
+&lt;ul&gt;
+&lt;li&gt;java -version&lt;/li&gt;
+&lt;li&gt;javac -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;scala のダウンロード
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
+&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
+
+&lt;ul&gt;
+&lt;li&gt;scala -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
+
+&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;以下から tool を clone する
+
+&lt;ul&gt;
+&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;コピーした scala-mode に移動して make コマンドする
+
+&lt;ul&gt;
+&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
+(require &#39;scala-mode2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;yasnipet がない場合は、以下から clone する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Development Environment in my OSX</title>
+      <link>http://blog.syati.info/post/make_env_mac/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/make_env_mac/</guid>
       <description>
 
 &lt;p&gt;仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。
@@ -1132,108 +1229,112 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
-      <title>Scala の開発環境</title>
-      <link>http://syati.github.io/blog/post/make_scala_env/</link>
+      <title>nkf で直す文字化け</title>
+      <link>http://blog.syati.info/post/nkf/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/make_scala_env/</guid>
+      <guid>http://blog.syati.info/post/nkf/</guid>
       <description>
 
-&lt;p&gt;ubuntu で scala の開発環境を構築するメモ&lt;/p&gt;
+&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
+開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
 
-&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
+&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
 
-&lt;ul&gt;
-&lt;li&gt;ubuntu 12.04&lt;/li&gt;
-&lt;li&gt;emacs 24.3.1&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
 
-&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
+&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
 
-&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
+&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;jdk をインストール
+&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;以下のコマンドでエラーが無いことを確認
+&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;java -version&lt;/li&gt;
-&lt;li&gt;javac -version&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
+output: Shift_JIS
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;scala のダウンロード
+&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
-&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
-
-&lt;ul&gt;
-&lt;li&gt;scala -version&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
-
-&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;以下から tool を clone する
-
-&lt;ul&gt;
-&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;コピーした scala-mode に移動して make コマンドする
-
-&lt;ul&gt;
-&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
-(require &#39;scala-mode2)
+&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
+&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;yasnipet がない場合は、以下から clone する
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
-      <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
-      <link>http://syati.github.io/blog/post/make_windows_emacs/</link>
+      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
+      <link>http://blog.syati.info/post/node_path/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/make_windows_emacs/</guid>
+      <guid>http://blog.syati.info/post/node_path/</guid>
+      <description>
+
+&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
+
+&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
+
+&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
+Syati% node 
+
+require(&#39;underscore&#39;); 
+Error: Cannot find module &#39;underscore&#39;
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:362:17)
+    at require (module.js:378:17)
+    at repl:1:1
+    at REPLServer.self.eval (repl.js:109:21)
+    at rli.on.self.bufferedCmd (repl.js:258:20)
+    at REPLServer.self.eval (repl.js:116:5)
+    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
+    at Interface.EventEmitter.emit (events.js:96:17)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
+
+&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
+
+&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm root -g
+// output =&amp;gt; /usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
+      <link>http://blog.syati.info/post/make_windows_emacs/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/make_windows_emacs/</guid>
       <description>
 
 &lt;p&gt;最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、
@@ -1478,112 +1579,11 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
     </item>
     
     <item>
-      <title>nkf で直す文字化け</title>
-      <link>http://syati.github.io/blog/post/nkf/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/nkf/</guid>
-      <description>
-
-&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
-開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
-
-&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
-
-&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
-
-&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
-
-&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
-output: Shift_JIS
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
-      <link>http://syati.github.io/blog/post/node_path/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/node_path/</guid>
-      <description>
-
-&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
-
-&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
-
-&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
-Syati% node 
-
-require(&#39;underscore&#39;); 
-Error: Cannot find module &#39;underscore&#39;
-    at Function.Module._resolveFilename (module.js:338:15)
-    at Function.Module._load (module.js:280:25)
-    at Module.require (module.js:362:17)
-    at require (module.js:378:17)
-    at repl:1:1
-    at REPLServer.self.eval (repl.js:109:21)
-    at rli.on.self.bufferedCmd (repl.js:258:20)
-    at REPLServer.self.eval (repl.js:116:5)
-    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
-    at Interface.EventEmitter.emit (events.js:96:17)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
-
-&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
-
-&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm root -g
-// output =&amp;gt; /usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
       <title>org2blog の記事にコードブロックを入れる</title>
-      <link>http://syati.github.io/blog/post/org2blogInsertSourceCode/</link>
+      <link>http://blog.syati.info/post/org2blogInsertSourceCode/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/org2blogInsertSourceCode/</guid>
+      <guid>http://blog.syati.info/post/org2blogInsertSourceCode/</guid>
       <description>
 
 &lt;p&gt;org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 &lt;a href=&#34;http://syati.info/?p=1746&#34;&gt;org2blogからの投稿&lt;/a&gt; の続き。&lt;/p&gt;
@@ -1776,10 +1776,10 @@ echo &#34;hoge&#34;
     
     <item>
       <title>org2blog でブログに接続する際のパスワードを .netrc に保存しておく</title>
-      <link>http://syati.github.io/blog/post/org2blogNetrc/</link>
+      <link>http://blog.syati.info/post/org2blogNetrc/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/org2blogNetrc/</guid>
+      <guid>http://blog.syati.info/post/org2blogNetrc/</guid>
       <description>
 
 &lt;p&gt;org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&amp;#x2026;とおもっている場合は、.netrc を使うのがお勧め&lt;/p&gt;

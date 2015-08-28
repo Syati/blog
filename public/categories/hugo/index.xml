@@ -3,7 +3,7 @@
   <channel>
       <title>Hugo on Syati.info </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://syati.github.io/blog/categories/hugo/</link>
+    <link>http://blog.syati.info/categories/hugo/</link>
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>Hugo に SyntaxHighlighter を導入</title>
-      <link>http://syati.github.io/blog/post/add_syntaxhighlighter_to_hugo/</link>
+      <link>http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</link>
       <pubDate>Wed, 17 Jun 2015 22:42:39 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/add_syntaxhighlighter_to_hugo/</guid>
+      <guid>http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</guid>
       <description>
 
 &lt;p&gt;ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
@@ -98,13 +98,13 @@ int main(void)
     
     <item>
       <title>Hugo にコメント欄を導入</title>
-      <link>http://syati.github.io/blog/post/add_disqus_to_hugo/</link>
+      <link>http://blog.syati.info/post/add_disqus_to_hugo/</link>
       <pubDate>Tue, 09 Jun 2015 00:02:04 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/add_disqus_to_hugo/</guid>
+      <guid>http://blog.syati.info/post/add_disqus_to_hugo/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; 、 &lt;a href=&#34;http://syati.github.io/blog/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で
+&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; 、 &lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で
 Hugo を用いて github.io にブログを立ち上げましたが、コメント欄が無いので導入したい！！&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://gohugo.io/extras/comments/&#34;&gt;Comments in Hugo&lt;/a&gt; を参考にして早速、導入していこうとおもったが、
@@ -264,13 +264,13 @@ comments = true
     
     <item>
       <title>Hugo で github にブログを立ち上げる Part 2</title>
-      <link>http://syati.github.io/blog/post/create_hugo_2/</link>
+      <link>http://blog.syati.info/post/create_hugo_2/</link>
       <pubDate>Sun, 07 Jun 2015 21:55:31 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/create_hugo_2/</guid>
+      <guid>http://blog.syati.info/post/create_hugo_2/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
+&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
 &lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; を参考にして、セットアップ手順を記していく。&lt;/p&gt;
 
 &lt;h1 id=&#34;step-1-github-に-blog-repository-をつくる:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 1 github に blog repository をつくる&lt;/h1&gt;
@@ -424,10 +424,10 @@ git subtree push --prefix=public git@github.com:[username]/yourblog.git gh-pages
     
     <item>
       <title>Hugo で github にブログを立ち上げる Part 1</title>
-      <link>http://syati.github.io/blog/post/create_hugo/</link>
+      <link>http://blog.syati.info/post/create_hugo/</link>
       <pubDate>Fri, 05 Jun 2015 21:55:31 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/create_hugo/</guid>
+      <guid>http://blog.syati.info/post/create_hugo/</guid>
       <description>
 
 &lt;p&gt;WordPress でブログをつくっていましたが、記事投稿が面倒くさなって続かない。
@@ -442,7 +442,7 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 
 &lt;p&gt;&lt;a href=&#34;http://gohugo.io/overview/quickstart/&#34;&gt;Hugo Quickstart Guide&lt;/a&gt; にならって
 セットアップ手順を記していく。Part 1 では、まずはブログをローカルに構築する。
-&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
+&lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
 
 &lt;h1 id=&#34;step-1-インストールしましょう:21ff63570566c64813270f2340abd251&#34;&gt;Step 1 インストールしましょう&lt;/h1&gt;
 
@@ -545,7 +545,7 @@ Web Server is available at http://127.0.0.1:1313/
 
 &lt;p&gt;ブログ構築完成。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
 </description>
     </item>
     

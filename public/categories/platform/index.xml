@@ -3,7 +3,7 @@
   <channel>
       <title>Platform on Syati.info </title>
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://syati.github.io/blog/categories/platform/</link>
+    <link>http://blog.syati.info/categories/platform/</link>
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
@@ -11,10 +11,10 @@
     
     <item>
       <title>vagrant、chef-solo で開発環境を構築する</title>
-      <link>http://syati.github.io/blog/post/vagrant_css_problem/</link>
+      <link>http://blog.syati.info/post/vagrant_css_problem/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/vagrant_css_problem/</guid>
+      <guid>http://blog.syati.info/post/vagrant_css_problem/</guid>
       <description>
 
 &lt;p&gt;最近、vagrant、chef-solo で開発環境を構築するのがブームなSyatiです。xampp、mamp とかで？？ができないとかよくありますが、面倒くさいので皆サーバーと同じ環境にして開発しましょうよ。そしたら、？？ができないなんてことがなくなりますので。&lt;/p&gt;
