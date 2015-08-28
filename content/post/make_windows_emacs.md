@@ -95,14 +95,14 @@ cygwin から emacs を立ち上げた場合と、GUIから emacs を立ち上�
     
 2.  修正するには、emacs の設定ファイルに以下のように PATH と exec-path を記述する。
 
-<pre><code class='language-clike'>
+~~~clike
 (let ((my-emacs-path
        (list "/bin"
              "/usr/bin"
              "/usr/local/bin")))
   (setq exec-path my-emacs-path)
   (setenv "PATH" (mapconcat 'identity my-emacs-path ";")))
-</code></pre>
+~~~
 
 
 - 補足
@@ -125,11 +125,11 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 そのため、**設定ファイルに以下を書き込む**
 
-<pre><code class='language-clike'>
+~~~clike
 (setq shell-file-name "zsh")
 (setenv "SHELL" shell-file-name) 
 (setq explicit-shell-file-name shell-file-name)
-</code></pre>
+~~~
         
 - 参考
     -  [NTEmacsWithCygwin](http://emacswiki.org/emacs/NTEmacsWithCygwin)
@@ -140,10 +140,10 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 1. ~/.emacs.d/lisp を自分がインストールする emacs-lisp（\*.el、\*.elc) 置場として、load-path に追加する。
     -  ~/.emacs.d/lisp 以下のサブディレクトリも自動で追記してくれる
 
-<pre><code class='language-clike'>
+~~~clike
 (let ((default-directory "~/.emacs.d/lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
-</code></pre>
+~~~
 
 
 - 参考
@@ -153,7 +153,7 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 以下にここまで記述した init.el の設定を残しておく。
 
-<pre><code class='language-clike'>
+~~~clike
 ;; Set PATH and exec-path
 (let ((my-emacs-path (list
                       "/bin"
@@ -170,7 +170,7 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 (setq shell-file-name "zsh")
 (setenv "SHELL" shell-file-name) 
 (setq explicit-shell-file-name shell-file-name)
-</code></pre>
+~~~
 
 日本語の設定や、キーカスタマイズなど、その他設定することは、まだまだたくさんありますが、
 それはまた次回ということで Windows に Linux環境の構築を〆る。

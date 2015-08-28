@@ -22,66 +22,68 @@ js ってテストしにくいよねってことで今流行りの angular で u
 
 - node & npm
 
-<pre><code class="language-bash">
+~~~bash
 $ sudo apt-get install nodejs
 $ sudo apt-get install npm
-</code></pre>
+~~~
 
 ## mac
 
 - node & npm
 
-<pre><code class="language-bash">
+~~~bash
 $ brew install node
-</code></pre>
+~~~
 
 ## 共通
 
 - bower
 
-<pre><code class="language-bash">
+~~~bash
 $ sudo npm install -g bower
-</code></pre>
+~~~
 
 - karma
 
-<pre><code class="language-bash">
+~~~bash
 $ sudo npm install -g karma-cli
-</code></pre>
+~~~
 
 # 実施：サンプルを CLONE して TEST
 
 github にサンプルを書いたので clone する。
-<pre><code class="language-bash">
+
+~~~bash
 $ git clone git@github.com:Syati/angular-test-sample.git
-</code></pre>
+~~~
 
 ## prj 依存環境を入れる
 
-<pre><code class="language-bash">
+~~~bash
 $ cd your_clone_path/angular-test-sample/controller/recipe1
 $ npm install
-</code></pre>
+~~~
 
 ## test 実行する
 
-<pre><code class="language-bash">
+~~~bash
 $ npm test
-</code></pre>
+~~~
     
 以下のような出力で、テストが成功する。
-<pre><code class="language-bash">
+
+~~~bash
 WARN [karma]: Port 9876 in use
 INFO [karma]: Karma v0.12.24 server started at http://localhost:9877/
 INFO [launcher]: Starting browser PhantomJS
 INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id 62869514
 PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
-</code></pre>
+~~~
     
 # 説明
 
 ## directory
-<pre><code class="language-bash">
+~~~bash
     recipe1
     ├── app
     │   ├── bower_compornents #1 bower js lib install dir
@@ -96,16 +98,16 @@ PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
     ├── karma.conf.js #3 angular のテスト設定
     ├── package.json  #2 npm lib などの設定 
     └── node_modules  #2 npm lib install dir
-</code></pre>
+~~~
     
 ## #1 bower
 
 js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。
 
-<pre><code class="language-bash">
+~~~bash
 $ bower init  # コマンドで初期設定 bower.json を作成
 $ bower install angular --save　# または --save-dev
-</code></pre>
+~~~
  
 
 デフォルトは **bower.json** がある場所がインストール先になるので **.bowerrc** にインストール先を書いておく。
@@ -123,10 +125,10 @@ $ bower install angular --save　# または --save-dev
 
 ## #2 npm
 
-<pre><code class="language-bash">
+~~~bash
 $ npm init 
 $ npm install jasmine --save-dev　# または --save
-</code></pre>
+~~~
 
 上記を実施することで以下のファイルを作成する。
 
@@ -142,9 +144,9 @@ $ npm install jasmine --save-dev　# または --save
 
 ## #3 karma  angular の unit test の設定
 
-<pre><code class="language-bash">
+~~~bash
 karma init  # コマンドで初期設定 karma.conf.js を作成できる
-</code></pre>
+~~~
 
 今回特に意識する場所としては以下の通り。
 
@@ -169,7 +171,7 @@ index.html をローカルで開けばわかると思うが button click で 'he
 
 テストコードにコメント付与した。
 
-<pre><code class="language-javascript">
+~~~javascript
 'use strict';
  
 describe('Unit: app moudle ', function(){
@@ -197,7 +199,7 @@ describe('Unit: app moudle ', function(){
     });
   });
 });
-</code></pre>
+~~~
 
 -   その他
     -   angular.mock.module を利用するうえで、bower.json に記述のある angular-mocks は必要。

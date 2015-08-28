@@ -28,27 +28,31 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 ## OSX の場合
  
 以下のコマンドでおしまい。
-<pre><code class="language-bash">
+
+~~~bash
 $ brew install hugo
-</pre></code>
+~~~
 
 ## Ubuntu の場合
 
 [Hugo relase](https://github.com/spf13/hugo/releases) から適したものをDLして以下のコマンドを実行する。
-<pre><code class="language-bash">
+
+~~~bash
 $ sudo dpkg -i hugo_0.14_amd64.deb　# 自分に適したパッケージを選んでね
-</pre></code>
+~~~
 
 
 # Step 2 ブログをつくろう
 
 以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。
-<pre><code class="language-bash">
+
+~~~bash
 $ hugo new site ./yourblog
-</pre></code>
+~~~
 
 雛形はこんな感じになる。
-<pre><code class="language-bash">
+
+~~~bash
 yourblog/
 ├── archetypes  # 新規記事を作成した際に利用される雛形を置く場所
 ├── config.toml # 設定を書くファイル
@@ -56,25 +60,28 @@ yourblog/
 ├── data        # 今回は利用しない（サイトを生成するときに利用する DATA などを置く。詳しくは http://gohugo.io/extras/datafiles/ ）
 ├── layouts     # 今回は利用しない（サイトを生成するときの雛形）
 └── static      # 今回は利用しない（サイトで利用する js, css, images などを置く）
-</pre></code>
-
+~~~
 
 # Step 3 新しい記事をつくろう
 
 yourblog ディレクトリで以下のコマンド実行して、新規記事を作成する。
-<pre><code class="language-bash">
+
+~~~bash
 $ hugo new post/hello.md
-</pre></code>
+~~~
 
 こんな感じで新規記事が作成される。
-<pre><code class="language-bash">
+
+~~~bash
 content/
 └── post
     └── hello.md
-</pre></code>
+~~~
+    
 
 hello.md の中身はこんな感じ。
-<pre><code class="language-markdown">
+
+~~~markdown
 +++
 date = "2015-06-05T23:04:20+09:00"
 draft = true # この行を消せば step 5 の -\-buildDrafts オプションはいりません
@@ -82,19 +89,21 @@ title = "hello"
 
 +++
 
-</pre></code>
+~~~
 
 # Step 4 テーマをインストールしよう
 
 自分好みのテーマをさがすために、テーマ一式いれてみる。yourblog ディレクトリで以下のコマンドを実行する。
-<pre><code class="language-bash">
+
+~~~bash
 $ git clone -\-recursive https://github.com/spf13/hugoThemes themes
-</pre></code>
+~~~
 
 # Step 5 ブログを見てみよう
 
 とりあえず準備はととのったので、サーバーを立ち上げてブログを見てみる。
-<pre><code class="language-bash">
+
+~~~bash
 $ hugo server -\-theme=hyde -\-buildDrafts
 
 1 of 1 draft rendered
@@ -106,14 +115,15 @@ $ hugo server -\-theme=hyde -\-buildDrafts
 in 7 ms
 Serving pages from /home/mizuki-y/Documents/yourblog/public
 Web Server is available at http://127.0.0.1:1313/
-</pre></code>
+~~~
 
 http://127.0.0.1:1313/ にアクセスするとブログが見れるようになっている。
 
 theme を以下のように変更して、自分の好きなものを選ぼう。
-<pre><code class="language-bash">
+
+~~~bash
 $ hugo server -\-theme=slim -\-buildDrafts
-</pre></code>
+~~~
 
 
 - コマンドオプションについて
