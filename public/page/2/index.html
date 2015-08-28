@@ -188,32 +188,6 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 
 	
 	
-	    <a href="http://syati.github.io/blog//categories/emacs"> Emacs </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://syati.github.io/blog/post/org2blogInsertSourceCode/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/org2blogInsertSourceCode/" itemprop="url">org2blog の記事にコードブロックを入れる</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 org2blogからの投稿 の続き。 必要なもの htmlize.el を load-path の通ったところに入れる。 htmlize.el は org-mode をDLして、解凍した contrib/lisp に入っている。 SyntaxHighlighter Evolved をワードプレスに入れて有効化しておく。 emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に :wp-code t を書き加える。 以下が .emacs.d/init.el に書き込んだ私の org2blog の設定 ;;org2blog (require &lsquo;org2blog) (setq org2blog/wp-blog-alist &lsquo;((&ldquo;wordpress&rdquo; :url &ldquo;your wordpress url&rdquo; :username &ldquo;login name&rdquo; :wp-code t))) ;; insert this line 使ってみる org2blog/wp-new-entry で投稿記事を作成する。 以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。 表記 #+BEGIN_SRC 言語 :syntaxhl [利用したいパラメータ（任意）] ソースコード #+END_SRC :syntaxhl にパラメータを与えない場合は、ワードプレスの管理画面-&gt;設定 SyntaxHighlighter の一般設定が用いられる。 パラメータはこちら ＃+BEGIN_SRC bash :syntaxhl echo "hoge" ＃+END_SRC これで org2blog の記事投稿でコードも綺麗に投稿できる。 補足 必要なもの 3.
-		<a href="http://syati.github.io/blog/post/org2blogInsertSourceCode/" class="more-link">Read on →</a>
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
 		<a href="http://syati.github.io/blog//categories/javascript"> JavaScript </a>,
 	
 
@@ -232,6 +206,32 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 	<div class="entry-content" itemprop="articleBody">
 		javascript を REPL で利用できるといえば node 。underscore.js を試したいと思いハマったメモ。 はまった事 以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。 Syati% sudo npm install undersocre -g Syati% node require('underscore'); Error: Cannot find module 'underscore' at Function.Module._resolveFilename (module.js:338:15) at Function.Module._load (module.js:280:25) at Module.require (module.js:362:17) at require (module.js:378:17) at repl:1:1 at REPLServer.self.eval (repl.js:109:21) at rli.on.self.bufferedCmd (repl.js:258:20) at REPLServer.self.eval (repl.js:116:5) at Interface.&lt;anonymous&gt; (repl.js:248:12) at Interface.EventEmitter.emit (events.js:96:17) 原因 npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。 解決 設定するパスを確認する npm root -g // output =&gt; /usr/local/lib/node_modules 利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了 export
 		<a href="http://syati.github.io/blog/post/node_path/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="http://syati.github.io/blog//categories/emacs"> Emacs </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://syati.github.io/blog/post/org2blogInsertSourceCode/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/org2blogInsertSourceCode/" itemprop="url">org2blog の記事にコードブロックを入れる</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 org2blogからの投稿 の続き。 必要なもの htmlize.el を load-path の通ったところに入れる。 htmlize.el は org-mode をDLして、解凍した contrib/lisp に入っている。 SyntaxHighlighter Evolved をワードプレスに入れて有効化しておく。 emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に :wp-code t を書き加える。 以下が .emacs.d/init.el に書き込んだ私の org2blog の設定 ;;org2blog (require &lsquo;org2blog) (setq org2blog/wp-blog-alist &lsquo;((&ldquo;wordpress&rdquo; :url &ldquo;your wordpress url&rdquo; :username &ldquo;login name&rdquo; :wp-code t))) ;; insert this line 使ってみる org2blog/wp-new-entry で投稿記事を作成する。 以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。 表記 #+BEGIN_SRC 言語 :syntaxhl [利用したいパラメータ（任意）] ソースコード #+END_SRC :syntaxhl にパラメータを与えない場合は、ワードプレスの管理画面-&gt;設定 SyntaxHighlighter の一般設定が用いられる。 パラメータはこちら ＃+BEGIN_SRC bash :syntaxhl echo "hoge" ＃+END_SRC これで org2blog の記事投稿でコードも綺麗に投稿できる。 補足 必要なもの 3.
+		<a href="http://syati.github.io/blog/post/org2blogInsertSourceCode/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -297,37 +297,6 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 
 	
 	
-		<a href="http://syati.github.io/blog//categories/shell"> Shell </a>,
-	
-
-	
-	
-	    <a href="http://syati.github.io/blog//categories/osx"> OSX </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/" itemprop="url">reattach-to-user-namespace: unsupported new OS を解決する</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。 手順 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard ここにいってソースコードをDLしてくる（git cloneでもOK） ダウンロードしたファイルのディレクトリで make する cd ~/Downloads/tmux-MacOSX-pasteboard make reattach-to-user-namespace パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく which reattach-to-user-namespace makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする これでワーニングもサヨウナラ 参考 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
-		
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
 		<a href="http://syati.github.io/blog//categories/linux"> Linux </a>,
 	
 
@@ -345,6 +314,37 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/vagrant_css_problem/" itemprop="url">vagrant、chef-solo で開発環境を構築する</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		最近、vagrant、chef-solo で開発環境を構築するのがブームなSyatiです。xampp、mamp とかで？？ができないとかよくありますが、面倒くさいので皆サーバーと同じ環境にして開発しましょうよ。そしたら、？？ができないなんてことがなくなりますので。 今回はまったのは、vagrant の共有フォルダに apache のバーチャルホストのドキュメントルートを設定して、ローカルでソースコードをいじり、ブラウザで確認している時である。 CSSをいじって、ブラウザで確認しても反映されないのである。もちろんキャッシュクリア済み。やむなくvagrantを再起動すると反映されるのである 原因 httpd.conf の設定に問題があった。 以下の設定を加えるのである。EnableSendfile なんて httpd.conf 中のどこにも記述が無いんだが、デフォルトが On のため、明示的に加えてあげる必要がある。 EnableSendfile Off 以下 EnableSendfileより引用 このディレクティブはクライアンにファイルの内容を送るときに httpd がカーネルの sendfile サポートを使うかどうかを制御します。デフォルトでは、 例えば静的なファイルの配送のように、リクエストの処理にファイルの 途中のデータのアクセスを必要としないときには、Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。 sendfile は read と send を別々に行なうことと、バッファの割り当てを 回避します。しかし、プラットフォームやファイルシステムの中には 運用上の問題を避けるためにこの機能を使用不可にした方が良い場合があります おそらく、以下の部分が原因か！？それでファイルを変更しても、逐次更新されないんでしょう。 - Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。 参考 http://qiita.com/shoyan/items/12389d5beaa8695b1a53 上記に nginx の場合も書いて有りますね。
+		
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+		<a href="http://syati.github.io/blog//categories/shell"> Shell </a>,
+	
+
+	
+	
+	    <a href="http://syati.github.io/blog//categories/osx"> OSX </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://syati.github.io/blog/post/solveReattachToUserNamespaceInMac109/" itemprop="url">reattach-to-user-namespace: unsupported new OS を解決する</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。 手順 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard ここにいってソースコードをDLしてくる（git cloneでもOK） ダウンロードしたファイルのディレクトリで make する cd ~/Downloads/tmux-MacOSX-pasteboard make reattach-to-user-namespace パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく which reattach-to-user-namespace makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする これでワーニングもサヨウナラ 参考 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 		
 	</div>
 </article>
