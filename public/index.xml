@@ -839,24 +839,6 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
-      <title>Emacs を 256色で起動する</title>
-      <link>http://syati.github.io/blog/post/emacs_256/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
-      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
-
-&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
-以下のコマンドを実行しましょう。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Emacs で JavaScript の開発環境を整える</title>
       <link>http://syati.github.io/blog/post/emacsJavascript/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -943,191 +925,20 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
-      <title>Development Environment in my OSX</title>
-      <link>http://syati.github.io/blog/post/make_env_mac/</link>
+      <title>Emacs を 256色で起動する</title>
+      <link>http://syati.github.io/blog/post/emacs_256/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/make_env_mac/</guid>
-      <description>
+      <guid>http://syati.github.io/blog/post/emacs_256/</guid>
+      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
 
-&lt;p&gt;仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。
-ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。&lt;/p&gt;
+&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
 
-&lt;h1 id=&#34;開発環境:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;開発環境&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;ul&gt;
-&lt;li&gt;xcode:開発環境
-
-&lt;ul&gt;
-&lt;li&gt;プラグイン
-
-&lt;ul&gt;
-&lt;li&gt;command line tools (os x mountain lion) for xcode&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;fink:package management のソフト
-
-&lt;ul&gt;
-&lt;li&gt;上記を用いて入れたソフトウェア
-
-&lt;ul&gt;
-&lt;li&gt;coreutil-default
-
-&lt;ul&gt;
-&lt;li&gt;prefix に g がない方&lt;/li&gt;
-&lt;li&gt;/sw/bin にコマンドが入るので、パスの優先度を上げておく&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;wget&lt;/li&gt;
-&lt;li&gt;tmux&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;問題：mac の tmux では pbcopy/pbpaste で クリップボードの共有ができない&lt;/li&gt;
-&lt;li&gt;解決：&lt;a href=&#34;http://d.hatena.ne.jp/tmatsuu/20111220/1324399472&#34;&gt;X環境のクリップボードやOS Xのペーストボードとtmuxのバッファを連携する方法&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;autoconf
-
-&lt;ul&gt;
-&lt;li&gt;古かったので結局自分で入れた&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;emacs24.2:エディター
-
-&lt;ul&gt;
-&lt;li&gt;デフォルトは emacs22.1 のため導入する。ただし、パッチを入れないと最大化等できない。以下のサイト参照のこと
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://mgrace.info/?p=1032&#34;&gt;http://mgrace.info/?p=1032&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://sakito.jp/emacs/emacs24.html&#34;&gt;http://sakito.jp/emacs/emacs24.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;デフォルトターミナルの変更
-
-&lt;ul&gt;
-&lt;li&gt;コマンド &lt;strong&gt;chsh&lt;/strong&gt; で zsh にする&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;iTerm2：ターミナル
-
-&lt;ul&gt;
-&lt;li&gt;デフォルトのターミナルに比べて、なんか見やすかったから入れといた
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.iterm2.com/#/section/home&#34;&gt;http://www.iterm2.com/#/section/home&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;meta-key が使えるように以下を実施する
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/kitokitoki/20111129/p1&#34;&gt;http://d.hatena.ne.jp/kitokitoki/20111129/p1&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;zsh + tmux を使っていると、当該ソフトの autocomplete とか tab とか、あまり必要性を感じないんだが、どうなんだろうか。なんかメリットあったら教えて下さい。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;ブラウジング:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;ブラウジング&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;adobe pdf&lt;/li&gt;
-&lt;li&gt;adobe flash&lt;/li&gt;
-&lt;li&gt;firefox:ブラウザ
-
-&lt;ul&gt;
-&lt;li&gt;meta key が効かない問題あり・・・。現在対処不明&lt;/li&gt;
-&lt;li&gt;アドオンのインストール
-
-&lt;ul&gt;
-&lt;li&gt;keysnail&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;plugin(従来と異なる点だけ)
-
-&lt;ul&gt;
-&lt;li&gt;Set Mac
-
-&lt;ul&gt;
-&lt;li&gt;firefox で Ctl + space が利用できるようになる
-
-&lt;ul&gt;
-&lt;li&gt;導入しない場合 Ctrl + space では、 右クリックになる&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;問題：acrobat reader をインストールしたのに、firefox から pdf の DL がされない、見れない、見れたと思ったら文字化けして困った&lt;/li&gt;
-&lt;li&gt;解決：firefox を選択した後、上部のメニューバーの「 firefox 」-&amp;gt; 「環境設定」-&amp;gt; 「アプリケーションタブ」を選択して以下の通りする
-
-&lt;ul&gt;
-&lt;li&gt;ファイルの種類：Adobe Pdf document&lt;/li&gt;
-&lt;li&gt;取り扱い方法　：Adobe Readerを使用（標準設定）&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;ここが、Adobe Acrobat NPAPI Plug-in &lt;code&gt;~&lt;/code&gt; とかになっていたのが原因だった&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;キーバインド設定:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;キーバインド設定&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;HyperSwitch：ウィンドウ切り替え
-
-&lt;ul&gt;
-&lt;li&gt;mac の command + tab だと、アプリケーション単位の切り替えしかできないことに加えて、main os の ubuntu とキーバインド alt + tab で揃えたいので導入する
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://bahoom.com/hyperswitch&#34;&gt;http://bahoom.com/hyperswitch&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;問題：HyperSwitch の設定から command + tab -&amp;gt; alt + tab に変更したが、ターミナルではうまく働かない&lt;/li&gt;
-&lt;li&gt;解決：ターミナルを選択した後、上部のメニューバーの「ターミナル」 -&amp;gt; 「キーボード入力のセキュリティを保護」のチェックを外す
-
-&lt;ul&gt;
-&lt;li&gt;「キーボード入力のセキュリティを保護」が原因だったけど、これ何？&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;KeyRemap4MacBook:キーバインド変更
-
-&lt;ul&gt;
-&lt;li&gt;キーボードの「英数」「かな」がうざいので、 以下の通り違うキーに変更する
-
-&lt;ol&gt;
-&lt;li&gt;KeyRemap4MacBookを立ち上げて、Change Key タブから For Japanese メニューを選択する&lt;/li&gt;
-&lt;li&gt;Change EISUU Key メニュー選択して、好きなキーバインドに変更する&lt;/li&gt;
-&lt;li&gt;Change KANA key も同様に実施する&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;IMEの変換（ひらがなと英数）を Ctrl + / にしたいので以下を実施する
-
-&lt;ol&gt;
-&lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「キーボード」-&amp;gt; 「キーボードショートカット」 -&amp;gt; 「キーボードと文字入力」を選択する&lt;/li&gt;
-&lt;li&gt;「前の入力ソース」をダブルクリック後、Ctrl + / をタイプする&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;その他:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;その他&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;inconsolate:フォント&lt;/li&gt;
-&lt;li&gt;takao:フォント&lt;/li&gt;
-&lt;li&gt;QuickSilver：ランチャー
-
-&lt;ul&gt;
-&lt;li&gt;どこからでもキーボードでアプリケーションを起動したいため導入する
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://quicksilver.en.softonic.com/mac&#34;&gt;http://quicksilver.en.softonic.com/mac&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;ShifIt:ウィンドウサイズ変更アプリ
-
-&lt;ul&gt;
-&lt;li&gt;Windows の windowボタン + カーソル で ウィンドを半分にしたり拡大したり出来たと思いますが、それを可能にする。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/shiftit/&#34;&gt;http://code.google.com/p/shiftit/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://veadardiary.blog29.fc2.com/blog-entry-2764.html&#34;&gt;ウィンドウのサイズ変更や移動をホットキーから『ShiftIt』&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;マウスのホイール操作が逆なので戻す
-
-&lt;ol&gt;
-&lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「マウス」-&amp;gt; 「スクロールの方向：ナチュラル」のチェックを外す&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
+以下のコマンドを実行しましょう。&lt;/p&gt;
 </description>
     </item>
     
@@ -1224,6 +1035,55 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>nkf で直す文字化け</title>
+      <link>http://syati.github.io/blog/post/nkf/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/nkf/</guid>
+      <description>
+
+&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
+開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
+
+&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
+
+&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
+
+&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
+
+&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
+output: Shift_JIS
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -1478,103 +1338,191 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
     </item>
     
     <item>
-      <title>nkf で直す文字化け</title>
-      <link>http://syati.github.io/blog/post/nkf/</link>
+      <title>Development Environment in my OSX</title>
+      <link>http://syati.github.io/blog/post/make_env_mac/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://syati.github.io/blog/post/nkf/</guid>
+      <guid>http://syati.github.io/blog/post/make_env_mac/</guid>
       <description>
 
-&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
-開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
+&lt;p&gt;仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。
+ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。&lt;/p&gt;
 
-&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
-
-&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
-
-&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
-
-&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
+&lt;h1 id=&#34;開発環境:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;開発環境&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
-output: Shift_JIS
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
+&lt;li&gt;xcode:開発環境
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;プラグイン
+
+&lt;ul&gt;
+&lt;li&gt;command line tools (os x mountain lion) for xcode&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;fink:package management のソフト
+
+&lt;ul&gt;
+&lt;li&gt;上記を用いて入れたソフトウェア
+
+&lt;ul&gt;
+&lt;li&gt;coreutil-default
+
+&lt;ul&gt;
+&lt;li&gt;prefix に g がない方&lt;/li&gt;
+&lt;li&gt;/sw/bin にコマンドが入るので、パスの優先度を上げておく&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;wget&lt;/li&gt;
+&lt;li&gt;tmux&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;問題：mac の tmux では pbcopy/pbpaste で クリップボードの共有ができない&lt;/li&gt;
+&lt;li&gt;解決：&lt;a href=&#34;http://d.hatena.ne.jp/tmatsuu/20111220/1324399472&#34;&gt;X環境のクリップボードやOS Xのペーストボードとtmuxのバッファを連携する方法&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;autoconf
+
+&lt;ul&gt;
+&lt;li&gt;古かったので結局自分で入れた&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;emacs24.2:エディター
+
+&lt;ul&gt;
+&lt;li&gt;デフォルトは emacs22.1 のため導入する。ただし、パッチを入れないと最大化等できない。以下のサイト参照のこと
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://mgrace.info/?p=1032&#34;&gt;http://mgrace.info/?p=1032&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://sakito.jp/emacs/emacs24.html&#34;&gt;http://sakito.jp/emacs/emacs24.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;デフォルトターミナルの変更
+
+&lt;ul&gt;
+&lt;li&gt;コマンド &lt;strong&gt;chsh&lt;/strong&gt; で zsh にする&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;iTerm2：ターミナル
+
+&lt;ul&gt;
+&lt;li&gt;デフォルトのターミナルに比べて、なんか見やすかったから入れといた
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.iterm2.com/#/section/home&#34;&gt;http://www.iterm2.com/#/section/home&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;meta-key が使えるように以下を実施する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/kitokitoki/20111129/p1&#34;&gt;http://d.hatena.ne.jp/kitokitoki/20111129/p1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;zsh + tmux を使っていると、当該ソフトの autocomplete とか tab とか、あまり必要性を感じないんだが、どうなんだろうか。なんかメリットあったら教えて下さい。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
-      <link>http://syati.github.io/blog/post/node_path/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://syati.github.io/blog/post/node_path/</guid>
-      <description>
 
-&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
+&lt;h1 id=&#34;ブラウジング:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;ブラウジング&lt;/h1&gt;
 
-&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;adobe pdf&lt;/li&gt;
+&lt;li&gt;adobe flash&lt;/li&gt;
+&lt;li&gt;firefox:ブラウザ
 
-&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;meta key が効かない問題あり・・・。現在対処不明&lt;/li&gt;
+&lt;li&gt;アドオンのインストール
 
-&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
-Syati% node 
+&lt;ul&gt;
+&lt;li&gt;keysnail&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;plugin(従来と異なる点だけ)
 
-require(&#39;underscore&#39;); 
-Error: Cannot find module &#39;underscore&#39;
-    at Function.Module._resolveFilename (module.js:338:15)
-    at Function.Module._load (module.js:280:25)
-    at Module.require (module.js:362:17)
-    at require (module.js:378:17)
-    at repl:1:1
-    at REPLServer.self.eval (repl.js:109:21)
-    at rli.on.self.bufferedCmd (repl.js:258:20)
-    at REPLServer.self.eval (repl.js:116:5)
-    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
-    at Interface.EventEmitter.emit (events.js:96:17)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Set Mac
 
-&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;firefox で Ctl + space が利用できるようになる
 
-&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;導入しない場合 Ctrl + space では、 右クリックになる&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;問題：acrobat reader をインストールしたのに、firefox から pdf の DL がされない、見れない、見れたと思ったら文字化けして困った&lt;/li&gt;
+&lt;li&gt;解決：firefox を選択した後、上部のメニューバーの「 firefox 」-&amp;gt; 「環境設定」-&amp;gt; 「アプリケーションタブ」を選択して以下の通りする
 
-&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;ファイルの種類：Adobe Pdf document&lt;/li&gt;
+&lt;li&gt;取り扱い方法　：Adobe Readerを使用（標準設定）&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;ここが、Adobe Acrobat NPAPI Plug-in &lt;code&gt;~&lt;/code&gt; とかになっていたのが原因だった&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;キーバインド設定:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;キーバインド設定&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HyperSwitch：ウィンドウ切り替え
+
+&lt;ul&gt;
+&lt;li&gt;mac の command + tab だと、アプリケーション単位の切り替えしかできないことに加えて、main os の ubuntu とキーバインド alt + tab で揃えたいので導入する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://bahoom.com/hyperswitch&#34;&gt;http://bahoom.com/hyperswitch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;問題：HyperSwitch の設定から command + tab -&amp;gt; alt + tab に変更したが、ターミナルではうまく働かない&lt;/li&gt;
+&lt;li&gt;解決：ターミナルを選択した後、上部のメニューバーの「ターミナル」 -&amp;gt; 「キーボード入力のセキュリティを保護」のチェックを外す
+
+&lt;ul&gt;
+&lt;li&gt;「キーボード入力のセキュリティを保護」が原因だったけど、これ何？&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;KeyRemap4MacBook:キーバインド変更
+
+&lt;ul&gt;
+&lt;li&gt;キーボードの「英数」「かな」がうざいので、 以下の通り違うキーに変更する
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
+&lt;li&gt;KeyRemap4MacBookを立ち上げて、Change Key タブから For Japanese メニューを選択する&lt;/li&gt;
+&lt;li&gt;Change EISUU Key メニュー選択して、好きなキーバインドに変更する&lt;/li&gt;
+&lt;li&gt;Change KANA key も同様に実施する&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;IMEの変換（ひらがなと英数）を Ctrl + / にしたいので以下を実施する
 
-&lt;pre&gt;&lt;code&gt;npm root -g
-// output =&amp;gt; /usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;ol&gt;
+&lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「キーボード」-&amp;gt; 「キーボードショートカット」 -&amp;gt; 「キーボードと文字入力」を選択する&lt;/li&gt;
+&lt;li&gt;「前の入力ソース」をダブルクリック後、Ctrl + / をタイプする&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
+&lt;h1 id=&#34;その他:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;その他&lt;/h1&gt;
 
-&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;inconsolate:フォント&lt;/li&gt;
+&lt;li&gt;takao:フォント&lt;/li&gt;
+&lt;li&gt;QuickSilver：ランチャー
+
+&lt;ul&gt;
+&lt;li&gt;どこからでもキーボードでアプリケーションを起動したいため導入する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://quicksilver.en.softonic.com/mac&#34;&gt;http://quicksilver.en.softonic.com/mac&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;ShifIt:ウィンドウサイズ変更アプリ
+
+&lt;ul&gt;
+&lt;li&gt;Windows の windowボタン + カーソル で ウィンドを半分にしたり拡大したり出来たと思いますが、それを可能にする。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/shiftit/&#34;&gt;http://code.google.com/p/shiftit/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://veadardiary.blog29.fc2.com/blog-entry-2764.html&#34;&gt;ウィンドウのサイズ変更や移動をホットキーから『ShiftIt』&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;マウスのホイール操作が逆なので戻す
+
+&lt;ol&gt;
+&lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「マウス」-&amp;gt; 「スクロールの方向：ナチュラル」のチェックを外す&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -1771,6 +1719,58 @@ echo &#34;hoge&#34;
 &lt;li&gt;&lt;a href=&#34;http://orgmode.org/worg/org-contrib/babel/intro.html&#34;&gt;Babel: Introduction&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/tamura70/20100304/org&#34;&gt;Emacs org-modeを使ってみる: (29) エクスポートオプション一覧&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
+      <link>http://syati.github.io/blog/post/node_path/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://syati.github.io/blog/post/node_path/</guid>
+      <description>
+
+&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
+
+&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
+
+&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
+Syati% node 
+
+require(&#39;underscore&#39;); 
+Error: Cannot find module &#39;underscore&#39;
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:362:17)
+    at require (module.js:378:17)
+    at repl:1:1
+    at REPLServer.self.eval (repl.js:109:21)
+    at rli.on.self.bufferedCmd (repl.js:258:20)
+    at REPLServer.self.eval (repl.js:116:5)
+    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
+    at Interface.EventEmitter.emit (events.js:96:17)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
+
+&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
+
+&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm root -g
+// output =&amp;gt; /usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
     </item>
     
