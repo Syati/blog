@@ -8,7 +8,7 @@
 			</div>
 		</div>
 		<div class="mid-col">
-			{{ if isset .Site.Params "banner" }}
+			{{ if $.Site.Params.banner }}
 				{{ partial "banner.html" . }}
 			{{ end }}
 			<div class="mid-col-container">
