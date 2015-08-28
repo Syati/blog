@@ -159,13 +159,12 @@ cygwin をインストールしたディレクトリの F:/usr/local/ に上書�
 &lt;li&gt;&lt;p&gt;修正するには、emacs の設定ファイルに以下のように PATH と exec-path を記述する。&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;pre&gt;&lt;code class=&#39;language-clike&#39;&gt;
-(let ((my-emacs-path
-       (list &#34;/bin&#34;
-             &#34;/usr/bin&#34;
-             &#34;/usr/local/bin&#34;)))
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(let ((my-emacs-path
+       (list &amp;quot;/bin&amp;quot;
+             &amp;quot;/usr/bin&amp;quot;
+             &amp;quot;/usr/local/bin&amp;quot;)))
   (setq exec-path my-emacs-path)
-  (setenv &#34;PATH&#34; (mapconcat &#39;identity my-emacs-path &#34;;&#34;)))
+  (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
@@ -196,12 +195,10 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 &lt;p&gt;そのため、&lt;strong&gt;設定ファイルに以下を書き込む&lt;/strong&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#39;language-clike&#39;&gt;
-(setq shell-file-name &#34;zsh&#34;)
-(setenv &#34;SHELL&#34; shell-file-name) 
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(setq shell-file-name &amp;quot;zsh&amp;quot;)
+(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
 (setq explicit-shell-file-name shell-file-name)
 &lt;/code&gt;&lt;/pre&gt;
-        
 
 &lt;ul&gt;
 &lt;li&gt;参考
@@ -222,8 +219,7 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;pre&gt;&lt;code class=&#39;language-clike&#39;&gt;
-(let ((default-directory &#34;~/.emacs.d/lisp/&#34;))
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
   (normal-top-level-add-subdirs-to-load-path))
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -239,22 +235,21 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 &lt;p&gt;以下にここまで記述した init.el の設定を残しておく。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#39;language-clike&#39;&gt;
-;; Set PATH and exec-path
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;;; Set PATH and exec-path
 (let ((my-emacs-path (list
-                      &#34;/bin&#34;
-                      &#34;/usr/bin&#34;
-                      &#34;/usr/local/bin&#34;)))
+                      &amp;quot;/bin&amp;quot;
+                      &amp;quot;/usr/bin&amp;quot;
+                      &amp;quot;/usr/local/bin&amp;quot;)))
   (setq exec-path my-emacs-path)
-  (setenv &#34;PATH&#34; (mapconcat &#39;identity my-emacs-path &#34;;&#34;)))
+  (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
 
 ;; Add my lisp dir to load-path
-(let ((default-directory &#34;~/.emacs.d/lisp/&#34;))
+(let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
   (normal-top-level-add-subdirs-to-load-path))            
 
 ;; Set SHELL Value
-(setq shell-file-name &#34;zsh&#34;)
-(setenv &#34;SHELL&#34; shell-file-name) 
+(setq shell-file-name &amp;quot;zsh&amp;quot;)
+(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
 (setq explicit-shell-file-name shell-file-name)
 &lt;/code&gt;&lt;/pre&gt;
 

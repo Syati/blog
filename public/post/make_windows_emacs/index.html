@@ -252,13 +252,12 @@ cygwin をインストールしたディレクトリの F:/usr/local/ に上書�
 <li><p>修正するには、emacs の設定ファイルに以下のように PATH と exec-path を記述する。</p></li>
 </ol>
 
-<pre><code class='language-clike'>
-(let ((my-emacs-path
-       (list "/bin"
-             "/usr/bin"
-             "/usr/local/bin")))
+<pre><code class="language-clike">(let ((my-emacs-path
+       (list &quot;/bin&quot;
+             &quot;/usr/bin&quot;
+             &quot;/usr/local/bin&quot;)))
   (setq exec-path my-emacs-path)
-  (setenv "PATH" (mapconcat 'identity my-emacs-path ";")))
+  (setenv &quot;PATH&quot; (mapconcat 'identity my-emacs-path &quot;;&quot;)))
 </code></pre>
 
 <ul>
@@ -289,12 +288,10 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 <p>そのため、<strong>設定ファイルに以下を書き込む</strong></p>
 
-<pre><code class='language-clike'>
-(setq shell-file-name "zsh")
-(setenv "SHELL" shell-file-name) 
+<pre><code class="language-clike">(setq shell-file-name &quot;zsh&quot;)
+(setenv &quot;SHELL&quot; shell-file-name) 
 (setq explicit-shell-file-name shell-file-name)
 </code></pre>
-        
 
 <ul>
 <li>参考
@@ -315,8 +312,7 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 </ul></li>
 </ol>
 
-<pre><code class='language-clike'>
-(let ((default-directory "~/.emacs.d/lisp/"))
+<pre><code class="language-clike">(let ((default-directory &quot;~/.emacs.d/lisp/&quot;))
   (normal-top-level-add-subdirs-to-load-path))
 </code></pre>
 
@@ -332,22 +328,21 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 <p>以下にここまで記述した init.el の設定を残しておく。</p>
 
-<pre><code class='language-clike'>
-;; Set PATH and exec-path
+<pre><code class="language-clike">;; Set PATH and exec-path
 (let ((my-emacs-path (list
-                      "/bin"
-                      "/usr/bin"
-                      "/usr/local/bin")))
+                      &quot;/bin&quot;
+                      &quot;/usr/bin&quot;
+                      &quot;/usr/local/bin&quot;)))
   (setq exec-path my-emacs-path)
-  (setenv "PATH" (mapconcat 'identity my-emacs-path ";")))
+  (setenv &quot;PATH&quot; (mapconcat 'identity my-emacs-path &quot;;&quot;)))
 
 ;; Add my lisp dir to load-path
-(let ((default-directory "~/.emacs.d/lisp/"))
+(let ((default-directory &quot;~/.emacs.d/lisp/&quot;))
   (normal-top-level-add-subdirs-to-load-path))            
 
 ;; Set SHELL Value
-(setq shell-file-name "zsh")
-(setenv "SHELL" shell-file-name) 
+(setq shell-file-name &quot;zsh&quot;)
+(setenv &quot;SHELL&quot; shell-file-name) 
 (setq explicit-shell-file-name shell-file-name)
 </code></pre>
 

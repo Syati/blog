@@ -21,16 +21,6 @@
 というこで &lt;a href=&#34;http://gohugo.io/extras/highlighting/&#34;&gt;Syntax Highlighting&lt;/a&gt; を
 参考にして早速導入する。&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;※注意&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://syati.github.io/blog/post/add_disqus_to_hugo/&#34;&gt;Hugo にコメント欄をいれる&lt;/a&gt; を実施したとして記す。&lt;/li&gt;
-&lt;li&gt;ソースコード内の &lt;strong&gt;&amp;quot;&lt;/strong&gt; が、二重引用符（始）、二重引用符（終）に 変わっているので&lt;br /&gt;
-コピペしてもバグります。コピペする場合は修正してください。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
 &lt;h1 id=&#34;step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 1 Client-side の SyntaxHighlighter ライブラリ取得&lt;/h1&gt;
 
 &lt;p&gt;導入方法として &lt;strong&gt;Server-side&lt;/strong&gt; と &lt;strong&gt;Client-side&lt;/strong&gt; の方法がありますが、
@@ -45,18 +35,16 @@
 
 &lt;p&gt;DL したファイルを以下のようにコピーしてあげる。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ cp prism.js yourblog/static/js/
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cp prism.js yourblog/static/js/
 $ cp prism.css yourblog/static/css/
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;step-3-custom-設定を加える:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 3 custom 設定を加える&lt;/h1&gt;
 
 &lt;p&gt;以下のように yourblog/layouts/partials/custom に移動して
 &lt;strong&gt;対象ファイル１&lt;/strong&gt;と&lt;strong&gt;対象ファイル２&lt;/strong&gt;を編集します。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ cd yourblog/layouts/partials/custom
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd yourblog/layouts/partials/custom
 $ tree -L 1
 .
 ├── after_footer.html  # 対象ファイル１
@@ -65,57 +53,46 @@ $ tree -L 1
 ├── head.html          # 対象ファイル２
 ├── header.html
 └── navigation.html
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;以下のように対象ファイル１に１行追加。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
-&amp;lt;script src=&amp;ldquo;{{ .Site.BaseUrl }}/js/prism.js&amp;rdquo;&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;&amp;lt;script src=&amp;quot;{{ .Site.BaseURL }}/js/prism.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;以下のように対象ファイル２に１行追加。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
-&amp;lt;link href=&amp;ldquo;{{ .Site.BaseUrl }}/css/prism.css&amp;rdquo; media=&amp;ldquo;screen, projection&amp;rdquo; rel=&amp;ldquo;stylesheet&amp;rdquo; type=&amp;ldquo;text/css&amp;rdquo;&amp;gt;
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;&amp;lt;link href=&amp;quot;{{ .Site.BaseURL }}/css/prism.css&amp;quot; media=&amp;quot;screen, projection&amp;quot; rel=&amp;quot;stylesheet&amp;quot; type=&amp;quot;text/css&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;これで設定は終了。&lt;/p&gt;
 
 &lt;h1 id=&#34;step-4-コードをいれてみる:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 4 コードをいれてみる&lt;/h1&gt;
 
-&lt;p&gt;新しい記事でも作成して、以下のような感じでコードをいれると&lt;/p&gt;
+&lt;p&gt;新しい記事でも作成して、以下のような感じでコードをいれると。
+~ 半角でいれると解釈されるため 〜 全角で入れています。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
-&amp;lt;pre&amp;gt;&amp;lt;code class=&amp;ldquo;language-c&amp;rdquo;&amp;gt;
-#include &amp;lt;stdio.h&amp;gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;〜〜〜c
+#include &amp;lt;stdio.h&amp;gt;
 
-&lt;p&gt;int main(void)
+int main(void)
 {
-    printf(&amp;ldquo;hello, world\n&amp;rdquo;);
+    printf(&amp;quot;hello, world\n&amp;quot;);
     return;
 }
-&amp;lt;/pre&amp;gt;&amp;lt;/code&amp;gt;
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+〜〜〜
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;あら素敵！！というふうになる。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=“language-c”&gt;
-#include &amp;lt;stdio.h&amp;gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
 
-&lt;p&gt;int main(void)
+int main(void)
 {
-    printf(&amp;ldquo;hello, world\n&amp;rdquo;);
+    printf(&amp;quot;hello, world\n&amp;quot;);
     return;
 }
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;注意
-
-&lt;ul&gt;
-&lt;li&gt;markdown で利用されている &lt;strong&gt;#&lt;/strong&gt; などは &lt;strong&gt;\#&lt;/strong&gt; でエスケープする必要があります&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -135,16 +112,6 @@ Hugo を用いて github.io にブログを立ち上げましたが、コメン�
 
 &lt;p&gt;全てが終われば &lt;a href=&#34;http://syati.github.io/yourblog/&#34;&gt;yourblog&lt;/a&gt; のようにコメント欄が作成できる。&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;※注意&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;part 1 で作成した yourblog があるものとして記す&lt;/li&gt;
-&lt;li&gt;ソースコード内の &lt;strong&gt;&amp;quot;&lt;/strong&gt; が、二重引用符（始）、二重引用符（終）に 変わっているので&lt;br /&gt;
-コピペしてもバグります。コピペする場合は修正してください。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
 &lt;h1 id=&#34;step-1-theme-を変える:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 1 theme を変える&lt;/h1&gt;
 
 &lt;p&gt;今まで通り、themes に中に theme を git clone してもいいのだが、
@@ -152,37 +119,35 @@ Hugo を用いて github.io にブログを立ち上げましたが、コメン�
 
 &lt;p&gt;なので &lt;strong&gt;config.toml&lt;/strong&gt; の&lt;strong&gt;theme&lt;/strong&gt; 設定を削除する&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;
-title = &amp;ldquo;My New Hugo Site&amp;rdquo;
-baseurl = &amp;ldquo;&lt;a href=&#34;http://syati.github.io/yourblog&amp;quot;&#34;&gt;http://syati.github.io/yourblog&amp;quot;&lt;/a&gt;
-languageCode = &amp;ldquo;ja-jp&amp;rdquo;
-theme = &amp;ldquo;hyde&amp;rdquo;  //この行はもう不要なので削除する&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;title = &amp;quot;My New Hugo Site&amp;quot;
+baseurl = &amp;quot;http://syati.github.io/yourblog&amp;quot;
+languageCode = &amp;quot;ja-jp&amp;quot;
+theme = &amp;quot;hyde&amp;quot;  //この行はもう不要なので削除する
 
-&lt;p&gt;[params]
-  description = &amp;ldquo;This is yourblog&amp;rdquo;
-  author = &amp;ldquo;your name&amp;rdquo;&lt;/p&gt;
+[params]
+  description = &amp;quot;This is yourblog&amp;quot;
+  author = &amp;quot;your name&amp;quot;
 
-&lt;p&gt;[taxonomies]
-  category = &amp;ldquo;categories&amp;rdquo;
-  tag = &amp;ldquo;tags&amp;rdquo;
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+[taxonomies]
+  category = &amp;quot;categories&amp;quot;
+  tag = &amp;quot;tags&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;theme を &lt;a href=&#34;https://github.com/Syati/greyshade&#34;&gt;Syati/greyshade&lt;/a&gt; に変更する。
 git clone して yourblog のメインテーマにする&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ git clone git@github.com:Syati/greyshade.git
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git clone git@github.com:Syati/greyshade.git
 $ tree -L 1 #こんなディレクトリ構成
 .
 ├── greyshade
-└── yourblog&lt;/p&gt;
+└── yourblog
 
-&lt;p&gt;$ cd greyshade
+$ cd greyshade
 $ cp -R archetypes images layouts static ../yourblog
 $ cd ../yourblog
 $ rm -rf themes # 必要無いのでとりあえず削除
 $ hugo server # テーマが変わっていることが確認できる
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;step-2-disqus-を導入:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 2 Disqus を導入&lt;/h1&gt;
 
@@ -193,81 +158,77 @@ $ hugo server # テーマが変わっていることが確認できる
 &lt;strong&gt;Universal Code&lt;/strong&gt; をクリックすると、以下のコードをコメント欄を表示
 させたいところに入れてね！と記載があるが、以下の &lt;strong&gt;[disqus_shortname]&lt;/strong&gt; だけ覚えておく。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
-&amp;lt;div id=&amp;ldquo;disqus_thread&amp;rdquo;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;script type=&amp;ldquo;text/javascript&amp;rdquo;&amp;gt;
+&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;&amp;lt;div id=&amp;quot;disqus_thread&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
     /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = [disqus_shortname];&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/* * * DON&#39;T EDIT BELOW THIS LINE * * */
-(function() {
-    var dsq = document.createElement(&#39;script&#39;); dsq.type = &#39;text/javascript&#39;; dsq.async = true;
-    dsq.src = &#39;//&#39; + disqus_shortname + &#39;.disqus.com/embed.js&#39;;
-    (document.getElementsByTagName(&#39;head&#39;)[0] || document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(dsq);
-})();
+    var disqus_shortname = [disqus_shortname];
+    
+    /* * * DON&#39;T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement(&#39;script&#39;); dsq.type = &#39;text/javascript&#39;; dsq.async = true;
+        dsq.src = &#39;//&#39; + disqus_shortname + &#39;.disqus.com/embed.js&#39;;
+        (document.getElementsByTagName(&#39;head&#39;)[0] || document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(dsq);
+    })();
+&amp;lt;/script&amp;gt;
+&amp;lt;noscript&amp;gt;Please enable JavaScript to view the &amp;lt;a href=&amp;quot;https://disqus.com/?ref_noscript&amp;quot; rel=&amp;quot;nofollow&amp;quot;&amp;gt;comments powered by Disqus.&amp;lt;/a&amp;gt;&amp;lt;/noscript&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&amp;lt;/script&amp;gt;
-&amp;lt;noscript&amp;gt;Please enable JavaScript to view the &amp;lt;a href=&amp;ldquo;&lt;a href=&#34;https://disqus.com/?ref_noscript&amp;quot;&#34;&gt;https://disqus.com/?ref_noscript&amp;quot;&lt;/a&gt; rel=&amp;ldquo;nofollow&amp;rdquo;&amp;gt;comments powered by Disqus.&amp;lt;/a&amp;gt;&amp;lt;/noscript&amp;gt;
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;step-3-config-toml-を変更する:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 3 config.toml を変更する&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/greyshade#setup&#34;&gt;テーマの設定&lt;/a&gt; を config.toml にコピペして、編集。
 Step 2 で覚えておいた &lt;strong&gt;[disqus_shortname]&lt;/strong&gt; を設定に入れる。以下サンプル&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-title = &amp;ldquo;My New Hugo Site&amp;rdquo;
-baseurl = &amp;ldquo;&lt;a href=&#34;http://syati.github.io/yourblog&amp;quot;&#34;&gt;http://syati.github.io/yourblog&amp;quot;&lt;/a&gt;
-languageCode = &amp;ldquo;ja-jp&amp;rdquo;
-canonifyurls = true&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;title = &amp;quot;My New Hugo Site&amp;quot;
+baseurl = &amp;quot;http://syati.github.io/yourblog&amp;quot;
+languageCode = &amp;quot;ja-jp&amp;quot;
+canonifyurls = true
 
-&lt;p&gt;[author]
-name = &amp;ldquo;your name&amp;rdquo;
+[author]
+name = &amp;quot;your name&amp;quot;
 # email will use for gravatar
-email = &amp;ldquo;&amp;rdquo;&lt;/p&gt;
+email = &amp;quot;&amp;quot;
 
-&lt;p&gt;[taxonomies]
-category = &amp;ldquo;categories&amp;rdquo;&lt;/p&gt;
+[taxonomies]
+category = &amp;quot;categories&amp;quot;
 
-&lt;p&gt;[params]
+[params]
 # site description, will show under navigation
-description = &amp;ldquo;This is yourblog&amp;rdquo;&lt;/p&gt;
+description = &amp;quot;This is yourblog&amp;quot;
 
-&lt;p&gt;# RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss = &amp;ldquo;/index.xml&amp;rdquo;
-subscribe_email = &amp;ldquo;&amp;rdquo;&lt;/p&gt;
+# RSS / Email (optional) subscription links (change if using something like Feedburner)
+subscribe_rss = &amp;quot;/index.xml&amp;quot;
+subscribe_email = &amp;quot;&amp;quot;
 
-&lt;p&gt;# social links
-facebook_user = &amp;ldquo;&amp;rdquo;
-googleplus_user = &amp;ldquo;&amp;rdquo;
-twitter_user = &amp;ldquo;&amp;rdquo;
-github_user = &amp;ldquo;&amp;rdquo;
-coderwall_user = &amp;ldquo;&amp;rdquo;
-stackoverflow_user = &amp;ldquo;&amp;rdquo;
-stackoverflow_user_id = &amp;ldquo;&amp;rdquo;
-linkedin_user = &amp;ldquo;&amp;rdquo;
-pinterest_user = &amp;ldquo;&amp;rdquo;
-delicious_user = &amp;ldquo;&amp;rdquo;
-pinboard_user = &amp;ldquo;&amp;rdquo;
-quora_user = &amp;ldquo;&amp;rdquo;
-instagram_user = &amp;ldquo;&amp;rdquo;
-behance_user = &amp;ldquo;&amp;rdquo;
-douban_user = &amp;ldquo;&amp;rdquo;&lt;/p&gt;
+# social links
+facebook_user = &amp;quot;&amp;quot;
+googleplus_user = &amp;quot;&amp;quot;
+twitter_user = &amp;quot;&amp;quot;
+github_user = &amp;quot;&amp;quot;
+coderwall_user = &amp;quot;&amp;quot;
+stackoverflow_user = &amp;quot;&amp;quot;
+stackoverflow_user_id = &amp;quot;&amp;quot;
+linkedin_user = &amp;quot;&amp;quot;
+pinterest_user = &amp;quot;&amp;quot;
+delicious_user = &amp;quot;&amp;quot;
+pinboard_user = &amp;quot;&amp;quot;
+quora_user = &amp;quot;&amp;quot;
+instagram_user = &amp;quot;&amp;quot;
+behance_user = &amp;quot;&amp;quot;
+douban_user = &amp;quot;&amp;quot;
 
-&lt;p&gt;# share links
+# share links
 facebook_like = true
 twitter_tweet_button = true
-google_plus_one = &amp;ldquo;true&amp;rdquo;
-addthis_profile_id = &amp;ldquo;&amp;rdquo;&lt;/p&gt;
+google_plus_one = &amp;quot;true&amp;quot;
+addthis_profile_id = &amp;quot;&amp;quot;
 
-&lt;p&gt;# Disqus Comments
-disqus_short_name = &amp;ldquo;[disqus_shortname]&amp;rdquo; #ここに part2 で覚えた[disqus_shortname]を入れる
-disqus_show_comment_count = false&lt;/p&gt;
+# Disqus Comments
+disqus_short_name = &amp;quot;[disqus_shortname]&amp;quot; #ここに part2 で覚えた[disqus_shortname]を入れる
+disqus_show_comment_count = false
 
-&lt;p&gt;# google analytics
-google_analytics_tracking_id = &amp;ldquo;&amp;rdquo;
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+# google analytics
+google_analytics_tracking_id = &amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;step-4-記事にパラメータを加える:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 4 記事にパラメータを加える&lt;/h1&gt;
 
@@ -275,16 +236,15 @@ google_analytics_tracking_id = &amp;ldquo;&amp;rdquo;
 ただし、localhost では読み込まないようにしているので、記事ページ下部 に &lt;strong&gt;Comments&lt;/strong&gt;
 とだけでてくる。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;+++
+date = &amp;quot;2015-06-06T17:20:38+09:00&amp;quot;
+title = &amp;quot;first&amp;quot;
+comments = true
+
 +++
-date = &amp;ldquo;2015-06-06T17:20:38+09:00&amp;rdquo;
-title = &amp;ldquo;first&amp;rdquo;
-comments = true&lt;/p&gt;
 
-&lt;p&gt;+++&lt;/p&gt;
-
-&lt;p&gt;first page.
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+first page.
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;step-5-新規記事のテンプレートを変更しておく:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 5 新規記事のテンプレートを変更しておく&lt;/h1&gt;
 
@@ -292,14 +252,13 @@ comments = true&lt;/p&gt;
 comments = true とパラメータ設定するのは面倒くさいので
 yourblog/archetypes/default.md を以下のように変更しておくと楽ができる&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;
-+++
-Description = &amp;ldquo;&amp;rdquo;
+&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;+++
+Description = &amp;quot;&amp;quot;
 Tags = []
 Categories = []
 comments = true
 +++
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -313,15 +272,6 @@ comments = true
 
 &lt;p&gt;&lt;a href=&#34;http://syati.github.io/blog/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
 &lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; を参考にして、セットアップ手順を記していく。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;※注意&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ソースコード内の &lt;strong&gt;&amp;quot;&lt;/strong&gt; が、二重引用符（始）、二重引用符（終）に 変わっているので&lt;br /&gt;
-コピペしてもバグります。コピペする場合は修正してください。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
 
 &lt;h1 id=&#34;step-1-github-に-blog-repository-をつくる:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 1 github に blog repository をつくる&lt;/h1&gt;
 
@@ -344,21 +294,20 @@ comments = true
 
 &lt;p&gt;part 1 で作成した yourblog ディレクトリ内の &lt;strong&gt;config.toml&lt;/strong&gt; を開いて設定を書く（以下参考）。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-title = &amp;ldquo;My New Hugo Site&amp;rdquo;
-baseurl = &amp;ldquo;http://[username].github.io/yourblog&amp;rdquo;
-languageCode = &amp;ldquo;ja-jp&amp;rdquo;
-theme = &amp;ldquo;hyde&amp;rdquo;　# part 1 で選んだ theme を設定する
-canonifyurls = true # 相対パスではなく baseurl を基点とした絶対パスにする&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;title = &amp;quot;My New Hugo Site&amp;quot;
+baseurl = &amp;quot;http://[username].github.io/yourblog&amp;quot;
+languageCode = &amp;quot;ja-jp&amp;quot;
+theme = &amp;quot;hyde&amp;quot;　# part 1 で選んだ theme を設定する
+canonifyurls = true # 相対パスではなく baseurl を基点とした絶対パスにする
 
-&lt;p&gt;[params]
-  description = &amp;ldquo;This is yourblog&amp;rdquo;
-  author = &amp;ldquo;your name&amp;rdquo;&lt;/p&gt;
+[params]
+  description = &amp;quot;This is yourblog&amp;quot;
+  author = &amp;quot;your name&amp;quot;
 
-&lt;p&gt;[taxonomies]
-  category = &amp;ldquo;categories&amp;rdquo;
-  tag = &amp;ldquo;tags&amp;rdquo;
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+[taxonomies]
+  category = &amp;quot;categories&amp;quot;
+  tag = &amp;quot;tags&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
 &lt;li&gt;参考
@@ -374,16 +323,15 @@ canonifyurls = true # 相対パスではなく baseurl を基点とした絶対�
 
 &lt;p&gt;yourblog ディレクトリで以下のコマンドを実行する。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ git init # part 1 で作成した yourblog をリポジトリにする
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git init # part 1 で作成した yourblog をリポジトリにする
 $ git remote add origin git@github.com:[username]/yourblog.git # remote を設定する
 $ git pull origin master
 $
 $ rm -rf public # このディレクトリは git subtree を利用して管理するので削除する
 $ git add -A
-$ git commit -m &amp;ldquo;Add hugo template&amp;rdquo;
+$ git commit -m &amp;quot;Add hugo template&amp;quot;
 $ git push origin master
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;step-4-gh-pages-ブランチを作成する:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 4 gh-pages ブランチを作成する&lt;/h1&gt;
 
@@ -393,33 +341,30 @@ $ git push origin master
 &lt;p&gt;そこで、master から独立したブランチを作成するために、orphan オプションを
 つけて履歴のないブランチを作成する。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ git checkout --orphan gh-pages   # orphan ブランチ 作成
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git checkout --orphan gh-pages   # orphan ブランチ 作成
 $ git rm --cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
 $ git add README.md                # README.md だけいれておく
-$ git commit -m &amp;ldquo;initial commit on gh-pages branch&amp;rdquo;
+$ git commit -m &amp;quot;initial commit on gh-pages branch&amp;quot;
 $ git push origin gh-pages
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;master に戻って git subtree を利用して、gh-pages ブランチを master の public に取り込む。
 subtree って何？って思う方は、下部の参考を見てください。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ git checkout master
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git checkout master
 $ git subtree add --prefix=public git@github.com:[username]/yourblog.git gh-pages --squash
 $ git subtree pull --prefix=public git@github.com:[username]/yourblog.git gh-pages
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;hugo コマンドで public を生成して以下のように push していくことで、
 master に変更を加え、gh-pages にも変更を加える事が出来る。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ hugo
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ hugo
 $ git add -A
-$ git commit -m &amp;ldquo;Updating site&amp;rdquo;
+$ git commit -m &amp;quot;Updating site&amp;quot;
 $ git push origin master
 $ git subtree push --prefix=public git@github.com:Syati/yourblog.git gh-pages
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;基本的に新しい記事を書いて github.io に公開（ Deploy ）する際、上記の手順を踏むことになる。
 毎回これするのはめんどくさいので、Step 5 に進む。&lt;/p&gt;
@@ -439,43 +384,41 @@ $ git subtree push --prefix=public git@github.com:Syati/yourblog.git gh-pages
 
 &lt;p&gt;&lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; の &lt;strong&gt;deploy.sh&lt;/strong&gt; に書かれている以下を利用する。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-# !/bin/bash&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+# !/bin/bash
 
-&lt;p&gt;echo -e &amp;ldquo;\033[0;32mDeploying updates to GitHub&amp;hellip;\033[0m&amp;rdquo;&lt;/p&gt;
+echo -e &amp;quot;\033[0;32mDeploying updates to GitHub...\033[0m&amp;quot;
 
-&lt;p&gt;# Build the project.
-hugo&lt;/p&gt;
+# Build the project. 
+hugo
 
-&lt;p&gt;# Add changes to git.
-git add -A&lt;/p&gt;
+# Add changes to git.
+git add -A
 
-&lt;p&gt;# Commit changes.
-msg=&amp;ldquo;rebuilding site &lt;code&gt;date&lt;/code&gt;&amp;ldquo;
+# Commit changes.
+msg=&amp;quot;rebuilding site `date`&amp;quot;
 if [ $# -eq 1 ]
-  then msg=&amp;ldquo;$1&amp;rdquo;
+  then msg=&amp;quot;$1&amp;quot;
 fi
-git commit -m &amp;ldquo;$msg\&amp;rdquo;&lt;/p&gt;
+git commit -m &amp;quot;$msg&amp;quot;
 
-&lt;p&gt;# Push source and build repos.
+# Push source and build repos.
 git push origin master
 git subtree push --prefix=public git@github.com:[username]/yourblog.git gh-pages　
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/spencerlyon2/hugo_gh_blog&#34;&gt;spencerlyon2/hugo_gh_blog&lt;/a&gt; のレポジトリに deploy.sh
 があるので　DL してきて修正するのがはやいかも。&lt;/p&gt;
 
 &lt;p&gt;deploy.sh を yourblog ディレクトリに保存したのち、実行できるように以下を実行する。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ chmod +x deploy.sh
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ chmod +x deploy.sh
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;これで新しい記事を書いて github.io に公開（ Deploy ）する際は、以下のコマンドを実行するのみで良い。&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ ./deploy.sh
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./deploy.sh
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -505,91 +448,91 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 
 &lt;h2 id=&#34;osx-の場合:21ff63570566c64813270f2340abd251&#34;&gt;OSX の場合&lt;/h2&gt;
 
-&lt;p&gt;以下のコマンドでおしまい。
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ brew install hugo
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;以下のコマンドでおしまい。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install hugo
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;ubuntu-の場合:21ff63570566c64813270f2340abd251&#34;&gt;Ubuntu の場合&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;Hugo relase&lt;/a&gt; から適したものをDLして以下のコマンドを実行する。
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ sudo dpkg -i hugo_0.14_amd64.deb　# 自分に適したパッケージを選んでね
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;Hugo relase&lt;/a&gt; から適したものをDLして以下のコマンドを実行する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo dpkg -i hugo_0.14_amd64.deb　# 自分に適したパッケージを選んでね
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;step-2-ブログをつくろう:21ff63570566c64813270f2340abd251&#34;&gt;Step 2 ブログをつくろう&lt;/h1&gt;
 
-&lt;p&gt;以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ hugo new site ./yourblog
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。&lt;/p&gt;
 
-&lt;p&gt;雛形はこんな感じになる。
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-yourblog/
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ hugo new site ./yourblog
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;雛形はこんな感じになる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;yourblog/
 ├── archetypes  # 新規記事を作成した際に利用される雛形を置く場所
 ├── config.toml # 設定を書くファイル
 ├── content     # 記事などが入る場所
-├── data        # 今回は利用しない（サイトを生成するときに利用する DATA などを置く。詳しくは &lt;a href=&#34;http://gohugo.io/extras/datafiles/&#34;&gt;http://gohugo.io/extras/datafiles/&lt;/a&gt; ）
+├── data        # 今回は利用しない（サイトを生成するときに利用する DATA などを置く。詳しくは http://gohugo.io/extras/datafiles/ ）
 ├── layouts     # 今回は利用しない（サイトを生成するときの雛形）
 └── static      # 今回は利用しない（サイトで利用する js, css, images などを置く）
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;step-3-新しい記事をつくろう:21ff63570566c64813270f2340abd251&#34;&gt;Step 3 新しい記事をつくろう&lt;/h1&gt;
 
-&lt;p&gt;yourblog ディレクトリで以下のコマンド実行して、新規記事を作成する。
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ hugo new post/hello.md
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;yourblog ディレクトリで以下のコマンド実行して、新規記事を作成する。&lt;/p&gt;
 
-&lt;p&gt;こんな感じで新規記事が作成される。
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-content/
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ hugo new post/hello.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じで新規記事が作成される。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;content/
 └── post
     └── hello.md
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;hello.md の中身はこんな感じ。
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;
+&lt;p&gt;hello.md の中身はこんな感じ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;+++
+date = &amp;quot;2015-06-05T23:04:20+09:00&amp;quot;
+draft = true # この行を消せば step 5 の -\-buildDrafts オプションはいりません
+title = &amp;quot;hello&amp;quot;
+
 +++
-date = &amp;ldquo;2015-06-05T23:04:20+09:00&amp;rdquo;
-draft = true # この行を消せば step 5 の --buildDrafts オプションはいりません
-title = &amp;ldquo;hello&amp;rdquo;&lt;/p&gt;
 
-&lt;p&gt;+++&lt;/p&gt;
-
-&lt;p&gt;&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;step-4-テーマをインストールしよう:21ff63570566c64813270f2340abd251&#34;&gt;Step 4 テーマをインストールしよう&lt;/h1&gt;
 
-&lt;p&gt;自分好みのテーマをさがすために、テーマ一式いれてみる。yourblog ディレクトリで以下のコマンドを実行する。
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ git clone --recursive &lt;a href=&#34;https://github.com/spf13/hugoThemes&#34;&gt;https://github.com/spf13/hugoThemes&lt;/a&gt; themes
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;自分好みのテーマをさがすために、テーマ一式いれてみる。yourblog ディレクトリで以下のコマンドを実行する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git clone -\-recursive https://github.com/spf13/hugoThemes themes
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;step-5-ブログを見てみよう:21ff63570566c64813270f2340abd251&#34;&gt;Step 5 ブログを見てみよう&lt;/h1&gt;
 
-&lt;p&gt;とりあえず準備はととのったので、サーバーを立ち上げてブログを見てみる。
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ hugo server --theme=hyde --buildDrafts&lt;/p&gt;
+&lt;p&gt;とりあえず準備はととのったので、サーバーを立ち上げてブログを見てみる。&lt;/p&gt;
 
-&lt;p&gt;1 of 1 draft rendered
-0 future content
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ hugo server -\-theme=hyde -\-buildDrafts
+
+1 of 1 draft rendered
+0 future content 
 1 pages created
 0 paginator pages created
 0 tags created
 0 categories created
 in 7 ms
 Serving pages from /home/mizuki-y/Documents/yourblog/public
-Web Server is available at &lt;a href=&#34;http://127.0.0.1:1313/&#34;&gt;http://127.0.0.1:1313/&lt;/a&gt;
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+Web Server is available at http://127.0.0.1:1313/
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://127.0.0.1:1313/&#34;&gt;http://127.0.0.1:1313/&lt;/a&gt; にアクセスするとブログが見れるようになっている。&lt;/p&gt;
 
-&lt;p&gt;theme を以下のように変更して、自分の好きなものを選ぼう。
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ hugo server --theme=slim --buildDrafts
-&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;theme を以下のように変更して、自分の好きなものを選ぼう。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ hugo server -\-theme=slim -\-buildDrafts
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
 &lt;li&gt;コマンドオプションについて
@@ -629,8 +572,7 @@ $ hugo server --theme=slim --buildDrafts
 &lt;li&gt;node &amp;amp; npm&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ sudo apt-get install nodejs
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get install nodejs
 $ sudo apt-get install npm
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -640,8 +582,7 @@ $ sudo apt-get install npm
 &lt;li&gt;node &amp;amp; npm&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ brew install node
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install node
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;共通:d28091e7273529f0913311111ae23332&#34;&gt;共通&lt;/h2&gt;
@@ -650,54 +591,48 @@ $ brew install node
 &lt;li&gt;bower&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ sudo npm install -g bower
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo npm install -g bower
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
 &lt;li&gt;karma&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ sudo npm install -g karma-cli
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo npm install -g karma-cli
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332&#34;&gt;実施：サンプルを CLONE して TEST&lt;/h1&gt;
 
-&lt;p&gt;github にサンプルを書いたので clone する。
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ git clone git@github.com:Syati/angular-test-sample.git
-&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;github にサンプルを書いたので clone する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git clone git@github.com:Syati/angular-test-sample.git
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;prj-依存環境を入れる:d28091e7273529f0913311111ae23332&#34;&gt;prj 依存環境を入れる&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ cd your_clone_path/angular-test-sample/controller/recipe1
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd your_clone_path/angular-test-sample/controller/recipe1
 $ npm install
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;test-実行する:d28091e7273529f0913311111ae23332&#34;&gt;test 実行する&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ npm test
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm test
 &lt;/code&gt;&lt;/pre&gt;
-    
 
-&lt;p&gt;以下のような出力で、テストが成功する。
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-WARN [karma]: Port 9876 in use
-INFO [karma]: Karma v0.12.24 server started at &lt;a href=&#34;http://localhost:9877/&#34;&gt;http://localhost:9877/&lt;/a&gt;
+&lt;p&gt;以下のような出力で、テストが成功する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;WARN [karma]: Port 9876 in use
+INFO [karma]: Karma v0.12.24 server started at http://localhost:9877/
 INFO [launcher]: Starting browser PhantomJS
 INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id 62869514
 PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
-&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;説明:d28091e7273529f0913311111ae23332&#34;&gt;説明&lt;/h1&gt;
 
 &lt;h2 id=&#34;directory:d28091e7273529f0913311111ae23332&#34;&gt;directory&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-    recipe1
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;    recipe1
     ├── app
     │   ├── bower_compornents #1 bower js lib install dir
     │   ├── css
@@ -712,17 +647,14 @@ PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
     ├── package.json  #2 npm lib などの設定 
     └── node_modules  #2 npm lib install dir
 &lt;/code&gt;&lt;/pre&gt;
-    
 
 &lt;h2 id=&#34;1-bower:d28091e7273529f0913311111ae23332&#34;&gt;#1 bower&lt;/h2&gt;
 
 &lt;p&gt;js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ bower init  # コマンドで初期設定 bower.json を作成
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ bower init  # コマンドで初期設定 bower.json を作成
 $ bower install angular --save　# または --save-dev
 &lt;/code&gt;&lt;/pre&gt;
- 
 
 &lt;p&gt;デフォルトは &lt;strong&gt;bower.json&lt;/strong&gt; がある場所がインストール先になるので &lt;strong&gt;.bowerrc&lt;/strong&gt; にインストール先を書いておく。
 上記を実施することで以下のファイルを作成する。&lt;/p&gt;
@@ -751,8 +683,7 @@ $ bower install angular --save　# または --save-dev
 
 &lt;h2 id=&#34;2-npm:d28091e7273529f0913311111ae23332&#34;&gt;#2 npm&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-$ npm init 
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm init 
 $ npm install jasmine --save-dev　# または --save
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -781,8 +712,7 @@ $ npm install jasmine --save-dev　# または --save
 
 &lt;h2 id=&#34;3-karma-angular-の-unit-test-の設定:d28091e7273529f0913311111ae23332&#34;&gt;#3 karma  angular の unit test の設定&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-karma init  # コマンドで初期設定 karma.conf.js を作成できる
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;karma init  # コマンドで初期設定 karma.conf.js を作成できる
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;今回特に意識する場所としては以下の通り。&lt;/p&gt;
@@ -831,8 +761,7 @@ index.html をローカルで開けばわかると思うが button click で &am
 
 &lt;p&gt;テストコードにコメント付与した。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;
-&#39;use strict&#39;;
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;&#39;use strict&#39;;
  
 describe(&#39;Unit: app moudle &#39;, function(){
   var scope; # scope がどこからでも呼べるように定義しておく
@@ -1025,13 +954,12 @@ cygwin をインストールしたディレクトリの F:/usr/local/ に上書�
 &lt;li&gt;&lt;p&gt;修正するには、emacs の設定ファイルに以下のように PATH と exec-path を記述する。&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;pre&gt;&lt;code class=&#39;language-clike&#39;&gt;
-(let ((my-emacs-path
-       (list &#34;/bin&#34;
-             &#34;/usr/bin&#34;
-             &#34;/usr/local/bin&#34;)))
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(let ((my-emacs-path
+       (list &amp;quot;/bin&amp;quot;
+             &amp;quot;/usr/bin&amp;quot;
+             &amp;quot;/usr/local/bin&amp;quot;)))
   (setq exec-path my-emacs-path)
-  (setenv &#34;PATH&#34; (mapconcat &#39;identity my-emacs-path &#34;;&#34;)))
+  (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
@@ -1062,12 +990,10 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 &lt;p&gt;そのため、&lt;strong&gt;設定ファイルに以下を書き込む&lt;/strong&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#39;language-clike&#39;&gt;
-(setq shell-file-name &#34;zsh&#34;)
-(setenv &#34;SHELL&#34; shell-file-name) 
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(setq shell-file-name &amp;quot;zsh&amp;quot;)
+(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
 (setq explicit-shell-file-name shell-file-name)
 &lt;/code&gt;&lt;/pre&gt;
-        
 
 &lt;ul&gt;
 &lt;li&gt;参考
@@ -1088,8 +1014,7 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;pre&gt;&lt;code class=&#39;language-clike&#39;&gt;
-(let ((default-directory &#34;~/.emacs.d/lisp/&#34;))
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
   (normal-top-level-add-subdirs-to-load-path))
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -1105,22 +1030,21 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 &lt;p&gt;以下にここまで記述した init.el の設定を残しておく。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#39;language-clike&#39;&gt;
-;; Set PATH and exec-path
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;;; Set PATH and exec-path
 (let ((my-emacs-path (list
-                      &#34;/bin&#34;
-                      &#34;/usr/bin&#34;
-                      &#34;/usr/local/bin&#34;)))
+                      &amp;quot;/bin&amp;quot;
+                      &amp;quot;/usr/bin&amp;quot;
+                      &amp;quot;/usr/local/bin&amp;quot;)))
   (setq exec-path my-emacs-path)
-  (setenv &#34;PATH&#34; (mapconcat &#39;identity my-emacs-path &#34;;&#34;)))
+  (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
 
 ;; Add my lisp dir to load-path
-(let ((default-directory &#34;~/.emacs.d/lisp/&#34;))
+(let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
   (normal-top-level-add-subdirs-to-load-path))            
 
 ;; Set SHELL Value
-(setq shell-file-name &#34;zsh&#34;)
-(setenv &#34;SHELL&#34; shell-file-name) 
+(setq shell-file-name &amp;quot;zsh&amp;quot;)
+(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
 (setq explicit-shell-file-name shell-file-name)
 &lt;/code&gt;&lt;/pre&gt;
 
