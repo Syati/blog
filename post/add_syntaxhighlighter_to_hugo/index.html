@@ -114,16 +114,6 @@
 というこで <a href="http://gohugo.io/extras/highlighting/">Syntax Highlighting</a> を
 参考にして早速導入する。</p>
 
-<ul>
-<li><strong>※注意</strong>
-
-<ul>
-<li><a href="http://syati.github.io/blog/post/add_disqus_to_hugo/">Hugo にコメント欄をいれる</a> を実施したとして記す。</li>
-<li>ソースコード内の <strong>&quot;</strong> が、二重引用符（始）、二重引用符（終）に 変わっているので<br />
-コピペしてもバグります。コピペする場合は修正してください。</li>
-</ul></li>
-</ul>
-
 <h1 id="step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf">Step 1 Client-side の SyntaxHighlighter ライブラリ取得</h1>
 
 <p>導入方法として <strong>Server-side</strong> と <strong>Client-side</strong> の方法がありますが、
@@ -138,18 +128,16 @@
 
 <p>DL したファイルを以下のようにコピーしてあげる。</p>
 
-<p><pre><code class="language-bash">
-$ cp prism.js yourblog/static/js/
+<pre><code class="language-bash">$ cp prism.js yourblog/static/js/
 $ cp prism.css yourblog/static/css/
-</pre></code></p>
+</code></pre>
 
 <h1 id="step-3-custom-設定を加える:25f7dcbfc05249f56e29c36f92828fdf">Step 3 custom 設定を加える</h1>
 
 <p>以下のように yourblog/layouts/partials/custom に移動して
 <strong>対象ファイル１</strong>と<strong>対象ファイル２</strong>を編集します。</p>
 
-<p><pre><code class="language-bash">
-$ cd yourblog/layouts/partials/custom
+<pre><code class="language-bash">$ cd yourblog/layouts/partials/custom
 $ tree -L 1
 .
 ├── after_footer.html  # 対象ファイル１
@@ -158,57 +146,46 @@ $ tree -L 1
 ├── head.html          # 対象ファイル２
 ├── header.html
 └── navigation.html
-</pre></code></p>
+</code></pre>
 
 <p>以下のように対象ファイル１に１行追加。</p>
 
-<p><pre><code class="language-markup">
-&lt;script src=&ldquo;{{ .Site.BaseUrl }}/js/prism.js&rdquo;&gt;&lt;/script&gt;
-</pre></code></p>
+<pre><code class="language-markup">&lt;script src=&quot;{{ .Site.BaseURL }}/js/prism.js&quot;&gt;&lt;/script&gt;
+</code></pre>
 
 <p>以下のように対象ファイル２に１行追加。</p>
 
-<p><pre><code class="language-markup">
-&lt;link href=&ldquo;{{ .Site.BaseUrl }}/css/prism.css&rdquo; media=&ldquo;screen, projection&rdquo; rel=&ldquo;stylesheet&rdquo; type=&ldquo;text/css&rdquo;&gt;
-</pre></code></p>
+<pre><code class="language-markup">&lt;link href=&quot;{{ .Site.BaseURL }}/css/prism.css&quot; media=&quot;screen, projection&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+</code></pre>
 
 <p>これで設定は終了。</p>
 
 <h1 id="step-4-コードをいれてみる:25f7dcbfc05249f56e29c36f92828fdf">Step 4 コードをいれてみる</h1>
 
-<p>新しい記事でも作成して、以下のような感じでコードをいれると</p>
+<p>新しい記事でも作成して、以下のような感じでコードをいれると。
+~ 半角でいれると解釈されるため 〜 全角で入れています。</p>
 
-<p><pre><code class="language-markup">
-&lt;pre&gt;&lt;code class=&ldquo;language-c&rdquo;&gt;
-#include &lt;stdio.h&gt;</p>
+<pre><code class="language-markup">〜〜〜c
+#include &lt;stdio.h&gt;
 
-<p>int main(void)
+int main(void)
 {
-    printf(&ldquo;hello, world\n&rdquo;);
+    printf(&quot;hello, world\n&quot;);
     return;
 }
-&lt;/pre&gt;&lt;/code&gt;
-</pre></code></p>
+〜〜〜
+</code></pre>
 
 <p>あら素敵！！というふうになる。</p>
 
-<p><pre><code class=“language-c”>
-#include &lt;stdio.h&gt;</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
 
-<p>int main(void)
+int main(void)
 {
-    printf(&ldquo;hello, world\n&rdquo;);
+    printf(&quot;hello, world\n&quot;);
     return;
 }
-</pre></code></p>
-
-<ul>
-<li>注意
-
-<ul>
-<li>markdown で利用されている <strong>#</strong> などは <strong>\#</strong> でエスケープする必要があります</li>
-</ul></li>
-</ul>
+</code></pre>
 </div></article>
 					
 						<div class="share">

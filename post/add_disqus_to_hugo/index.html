@@ -118,16 +118,6 @@ Hugo を用いて github.io にブログを立ち上げましたが、コメン�
 
 <p>全てが終われば <a href="http://syati.github.io/yourblog/">yourblog</a> のようにコメント欄が作成できる。</p>
 
-<ul>
-<li><strong>※注意</strong>
-
-<ul>
-<li>part 1 で作成した yourblog があるものとして記す</li>
-<li>ソースコード内の <strong>&quot;</strong> が、二重引用符（始）、二重引用符（終）に 変わっているので<br />
-コピペしてもバグります。コピペする場合は修正してください。</li>
-</ul></li>
-</ul>
-
 <h1 id="step-1-theme-を変える:d75fd18943ec8adafe7501d2e4ec3936">Step 1 theme を変える</h1>
 
 <p>今まで通り、themes に中に theme を git clone してもいいのだが、
@@ -135,37 +125,35 @@ Hugo を用いて github.io にブログを立ち上げましたが、コメン�
 
 <p>なので <strong>config.toml</strong> の<strong>theme</strong> 設定を削除する</p>
 
-<p><pre><code class="language-clike">
-title = &ldquo;My New Hugo Site&rdquo;
-baseurl = &ldquo;<a href="http://syati.github.io/yourblog&quot;">http://syati.github.io/yourblog&quot;</a>
-languageCode = &ldquo;ja-jp&rdquo;
-theme = &ldquo;hyde&rdquo;  //この行はもう不要なので削除する</p>
+<pre><code class="language-clike">title = &quot;My New Hugo Site&quot;
+baseurl = &quot;http://syati.github.io/yourblog&quot;
+languageCode = &quot;ja-jp&quot;
+theme = &quot;hyde&quot;  //この行はもう不要なので削除する
 
-<p>[params]
-  description = &ldquo;This is yourblog&rdquo;
-  author = &ldquo;your name&rdquo;</p>
+[params]
+  description = &quot;This is yourblog&quot;
+  author = &quot;your name&quot;
 
-<p>[taxonomies]
-  category = &ldquo;categories&rdquo;
-  tag = &ldquo;tags&rdquo;
-</pre></code></p>
+[taxonomies]
+  category = &quot;categories&quot;
+  tag = &quot;tags&quot;
+</code></pre>
 
 <p>theme を <a href="https://github.com/Syati/greyshade">Syati/greyshade</a> に変更する。
 git clone して yourblog のメインテーマにする</p>
 
-<p><pre><code class="language-bash">
-$ git clone git@github.com:Syati/greyshade.git
+<pre><code class="language-bash">$ git clone git@github.com:Syati/greyshade.git
 $ tree -L 1 #こんなディレクトリ構成
 .
 ├── greyshade
-└── yourblog</p>
+└── yourblog
 
-<p>$ cd greyshade
+$ cd greyshade
 $ cp -R archetypes images layouts static ../yourblog
 $ cd ../yourblog
 $ rm -rf themes # 必要無いのでとりあえず削除
 $ hugo server # テーマが変わっていることが確認できる
-</pre></code></p>
+</code></pre>
 
 <h1 id="step-2-disqus-を導入:d75fd18943ec8adafe7501d2e4ec3936">Step 2 Disqus を導入</h1>
 
@@ -176,81 +164,77 @@ $ hugo server # テーマが変わっていることが確認できる
 <strong>Universal Code</strong> をクリックすると、以下のコードをコメント欄を表示
 させたいところに入れてね！と記載があるが、以下の <strong>[disqus_shortname]</strong> だけ覚えておく。</p>
 
-<p><pre><code class="language-markup">
-&lt;div id=&ldquo;disqus_thread&rdquo;&gt;&lt;/div&gt;
-&lt;script type=&ldquo;text/javascript&rdquo;&gt;
+<pre><code class="language-markup">&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
     /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = [disqus_shortname];</p>
-
-<pre><code>/* * * DON'T EDIT BELOW THIS LINE * * */
-(function() {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
+    var disqus_shortname = [disqus_shortname];
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+&lt;/script&gt;
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot; rel=&quot;nofollow&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
 </code></pre>
-
-<p>&lt;/script&gt;
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&ldquo;<a href="https://disqus.com/?ref_noscript&quot;">https://disqus.com/?ref_noscript&quot;</a> rel=&ldquo;nofollow&rdquo;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
-</pre></code></p>
 
 <h1 id="step-3-config-toml-を変更する:d75fd18943ec8adafe7501d2e4ec3936">Step 3 config.toml を変更する</h1>
 
 <p><a href="https://github.com/Syati/greyshade#setup">テーマの設定</a> を config.toml にコピペして、編集。
 Step 2 で覚えておいた <strong>[disqus_shortname]</strong> を設定に入れる。以下サンプル</p>
 
-<p><pre><code class="language-bash">
-title = &ldquo;My New Hugo Site&rdquo;
-baseurl = &ldquo;<a href="http://syati.github.io/yourblog&quot;">http://syati.github.io/yourblog&quot;</a>
-languageCode = &ldquo;ja-jp&rdquo;
-canonifyurls = true</p>
+<pre><code class="language-bash">title = &quot;My New Hugo Site&quot;
+baseurl = &quot;http://syati.github.io/yourblog&quot;
+languageCode = &quot;ja-jp&quot;
+canonifyurls = true
 
-<p>[author]
-name = &ldquo;your name&rdquo;
+[author]
+name = &quot;your name&quot;
 # email will use for gravatar
-email = &ldquo;&rdquo;</p>
+email = &quot;&quot;
 
-<p>[taxonomies]
-category = &ldquo;categories&rdquo;</p>
+[taxonomies]
+category = &quot;categories&quot;
 
-<p>[params]
+[params]
 # site description, will show under navigation
-description = &ldquo;This is yourblog&rdquo;</p>
+description = &quot;This is yourblog&quot;
 
-<p># RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss = &ldquo;/index.xml&rdquo;
-subscribe_email = &ldquo;&rdquo;</p>
+# RSS / Email (optional) subscription links (change if using something like Feedburner)
+subscribe_rss = &quot;/index.xml&quot;
+subscribe_email = &quot;&quot;
 
-<p># social links
-facebook_user = &ldquo;&rdquo;
-googleplus_user = &ldquo;&rdquo;
-twitter_user = &ldquo;&rdquo;
-github_user = &ldquo;&rdquo;
-coderwall_user = &ldquo;&rdquo;
-stackoverflow_user = &ldquo;&rdquo;
-stackoverflow_user_id = &ldquo;&rdquo;
-linkedin_user = &ldquo;&rdquo;
-pinterest_user = &ldquo;&rdquo;
-delicious_user = &ldquo;&rdquo;
-pinboard_user = &ldquo;&rdquo;
-quora_user = &ldquo;&rdquo;
-instagram_user = &ldquo;&rdquo;
-behance_user = &ldquo;&rdquo;
-douban_user = &ldquo;&rdquo;</p>
+# social links
+facebook_user = &quot;&quot;
+googleplus_user = &quot;&quot;
+twitter_user = &quot;&quot;
+github_user = &quot;&quot;
+coderwall_user = &quot;&quot;
+stackoverflow_user = &quot;&quot;
+stackoverflow_user_id = &quot;&quot;
+linkedin_user = &quot;&quot;
+pinterest_user = &quot;&quot;
+delicious_user = &quot;&quot;
+pinboard_user = &quot;&quot;
+quora_user = &quot;&quot;
+instagram_user = &quot;&quot;
+behance_user = &quot;&quot;
+douban_user = &quot;&quot;
 
-<p># share links
+# share links
 facebook_like = true
 twitter_tweet_button = true
-google_plus_one = &ldquo;true&rdquo;
-addthis_profile_id = &ldquo;&rdquo;</p>
+google_plus_one = &quot;true&quot;
+addthis_profile_id = &quot;&quot;
 
-<p># Disqus Comments
-disqus_short_name = &ldquo;[disqus_shortname]&rdquo; #ここに part2 で覚えた[disqus_shortname]を入れる
-disqus_show_comment_count = false</p>
+# Disqus Comments
+disqus_short_name = &quot;[disqus_shortname]&quot; #ここに part2 で覚えた[disqus_shortname]を入れる
+disqus_show_comment_count = false
 
-<p># google analytics
-google_analytics_tracking_id = &ldquo;&rdquo;
-</pre></code></p>
+# google analytics
+google_analytics_tracking_id = &quot;&quot;
+</code></pre>
 
 <h1 id="step-4-記事にパラメータを加える:d75fd18943ec8adafe7501d2e4ec3936">Step 4 記事にパラメータを加える</h1>
 
@@ -258,16 +242,15 @@ google_analytics_tracking_id = &ldquo;&rdquo;
 ただし、localhost では読み込まないようにしているので、記事ページ下部 に <strong>Comments</strong>
 とだけでてくる。</p>
 
-<p><pre><code class="language-markup">
+<pre><code class="language-markup">+++
+date = &quot;2015-06-06T17:20:38+09:00&quot;
+title = &quot;first&quot;
+comments = true
+
 +++
-date = &ldquo;2015-06-06T17:20:38+09:00&rdquo;
-title = &ldquo;first&rdquo;
-comments = true</p>
 
-<p>+++</p>
-
-<p>first page.
-</pre></code></p>
+first page.
+</code></pre>
 
 <h1 id="step-5-新規記事のテンプレートを変更しておく:d75fd18943ec8adafe7501d2e4ec3936">Step 5 新規記事のテンプレートを変更しておく</h1>
 
@@ -275,14 +258,13 @@ comments = true</p>
 comments = true とパラメータ設定するのは面倒くさいので
 yourblog/archetypes/default.md を以下のように変更しておくと楽ができる</p>
 
-<p><pre><code class="language-markup">
-+++
-Description = &ldquo;&rdquo;
+<pre><code class="language-markup">+++
+Description = &quot;&quot;
 Tags = []
 Categories = []
 comments = true
 +++
-</pre></code></p>
+</code></pre>
 </div></article>
 					
 						<div class="share">

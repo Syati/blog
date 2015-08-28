@@ -128,91 +128,91 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 
 <h2 id="osx-の場合:21ff63570566c64813270f2340abd251">OSX の場合</h2>
 
-<p>以下のコマンドでおしまい。
-<pre><code class="language-bash">
-$ brew install hugo
-</pre></code></p>
+<p>以下のコマンドでおしまい。</p>
+
+<pre><code class="language-bash">$ brew install hugo
+</code></pre>
 
 <h2 id="ubuntu-の場合:21ff63570566c64813270f2340abd251">Ubuntu の場合</h2>
 
-<p><a href="https://github.com/spf13/hugo/releases">Hugo relase</a> から適したものをDLして以下のコマンドを実行する。
-<pre><code class="language-bash">
-$ sudo dpkg -i hugo_0.14_amd64.deb　# 自分に適したパッケージを選んでね
-</pre></code></p>
+<p><a href="https://github.com/spf13/hugo/releases">Hugo relase</a> から適したものをDLして以下のコマンドを実行する。</p>
+
+<pre><code class="language-bash">$ sudo dpkg -i hugo_0.14_amd64.deb　# 自分に適したパッケージを選んでね
+</code></pre>
 
 <h1 id="step-2-ブログをつくろう:21ff63570566c64813270f2340abd251">Step 2 ブログをつくろう</h1>
 
-<p>以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。
-<pre><code class="language-bash">
-$ hugo new site ./yourblog
-</pre></code></p>
+<p>以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。</p>
 
-<p>雛形はこんな感じになる。
-<pre><code class="language-bash">
-yourblog/
+<pre><code class="language-bash">$ hugo new site ./yourblog
+</code></pre>
+
+<p>雛形はこんな感じになる。</p>
+
+<pre><code class="language-bash">yourblog/
 ├── archetypes  # 新規記事を作成した際に利用される雛形を置く場所
 ├── config.toml # 設定を書くファイル
 ├── content     # 記事などが入る場所
-├── data        # 今回は利用しない（サイトを生成するときに利用する DATA などを置く。詳しくは <a href="http://gohugo.io/extras/datafiles/">http://gohugo.io/extras/datafiles/</a> ）
+├── data        # 今回は利用しない（サイトを生成するときに利用する DATA などを置く。詳しくは http://gohugo.io/extras/datafiles/ ）
 ├── layouts     # 今回は利用しない（サイトを生成するときの雛形）
 └── static      # 今回は利用しない（サイトで利用する js, css, images などを置く）
-</pre></code></p>
+</code></pre>
 
 <h1 id="step-3-新しい記事をつくろう:21ff63570566c64813270f2340abd251">Step 3 新しい記事をつくろう</h1>
 
-<p>yourblog ディレクトリで以下のコマンド実行して、新規記事を作成する。
-<pre><code class="language-bash">
-$ hugo new post/hello.md
-</pre></code></p>
+<p>yourblog ディレクトリで以下のコマンド実行して、新規記事を作成する。</p>
 
-<p>こんな感じで新規記事が作成される。
-<pre><code class="language-bash">
-content/
+<pre><code class="language-bash">$ hugo new post/hello.md
+</code></pre>
+
+<p>こんな感じで新規記事が作成される。</p>
+
+<pre><code class="language-bash">content/
 └── post
     └── hello.md
-</pre></code></p>
+</code></pre>
 
-<p>hello.md の中身はこんな感じ。
-<pre><code class="language-markdown">
+<p>hello.md の中身はこんな感じ。</p>
+
+<pre><code class="language-markdown">+++
+date = &quot;2015-06-05T23:04:20+09:00&quot;
+draft = true # この行を消せば step 5 の -\-buildDrafts オプションはいりません
+title = &quot;hello&quot;
+
 +++
-date = &ldquo;2015-06-05T23:04:20+09:00&rdquo;
-draft = true # この行を消せば step 5 の --buildDrafts オプションはいりません
-title = &ldquo;hello&rdquo;</p>
 
-<p>+++</p>
-
-<p></pre></code></p>
+</code></pre>
 
 <h1 id="step-4-テーマをインストールしよう:21ff63570566c64813270f2340abd251">Step 4 テーマをインストールしよう</h1>
 
-<p>自分好みのテーマをさがすために、テーマ一式いれてみる。yourblog ディレクトリで以下のコマンドを実行する。
-<pre><code class="language-bash">
-$ git clone --recursive <a href="https://github.com/spf13/hugoThemes">https://github.com/spf13/hugoThemes</a> themes
-</pre></code></p>
+<p>自分好みのテーマをさがすために、テーマ一式いれてみる。yourblog ディレクトリで以下のコマンドを実行する。</p>
+
+<pre><code class="language-bash">$ git clone -\-recursive https://github.com/spf13/hugoThemes themes
+</code></pre>
 
 <h1 id="step-5-ブログを見てみよう:21ff63570566c64813270f2340abd251">Step 5 ブログを見てみよう</h1>
 
-<p>とりあえず準備はととのったので、サーバーを立ち上げてブログを見てみる。
-<pre><code class="language-bash">
-$ hugo server --theme=hyde --buildDrafts</p>
+<p>とりあえず準備はととのったので、サーバーを立ち上げてブログを見てみる。</p>
 
-<p>1 of 1 draft rendered
-0 future content
+<pre><code class="language-bash">$ hugo server -\-theme=hyde -\-buildDrafts
+
+1 of 1 draft rendered
+0 future content 
 1 pages created
 0 paginator pages created
 0 tags created
 0 categories created
 in 7 ms
 Serving pages from /home/mizuki-y/Documents/yourblog/public
-Web Server is available at <a href="http://127.0.0.1:1313/">http://127.0.0.1:1313/</a>
-</pre></code></p>
+Web Server is available at http://127.0.0.1:1313/
+</code></pre>
 
 <p><a href="http://127.0.0.1:1313/">http://127.0.0.1:1313/</a> にアクセスするとブログが見れるようになっている。</p>
 
-<p>theme を以下のように変更して、自分の好きなものを選ぼう。
-<pre><code class="language-bash">
-$ hugo server --theme=slim --buildDrafts
-</pre></code></p>
+<p>theme を以下のように変更して、自分の好きなものを選ぼう。</p>
+
+<pre><code class="language-bash">$ hugo server -\-theme=slim -\-buildDrafts
+</code></pre>
 
 <ul>
 <li>コマンドオプションについて
