@@ -7,7 +7,46 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Thu, 04 Jun 2015 23:09:38 JST</updated>
+    <updated>Sun, 30 Aug 2015 13:38:35 JST</updated>
+    
+    <item>
+      <title>Mac の Terminal で ALT KEY </title>
+      <link>http://blog.syati.info/post/altkey_in_osx-terminal/</link>
+      <pubDate>Sun, 30 Aug 2015 13:38:35 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/altkey_in_osx-terminal/</guid>
+      <description>
+
+&lt;p&gt;Mac の環境を新しく作ることになったので、以前の環境が出来るまでメモしていく。&lt;/p&gt;
+
+&lt;p&gt;バックアップからの復元を使えば楽なのだが、ゴミが入るのは・・・。&lt;/p&gt;
+
+&lt;p&gt;ただし、意外とハマる。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ターミナルで alt key が使えないよ！！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;メタキーとして-option-キーを使用-にチェック:784ef5322b7ad8a18c627bd23e19b9ed&#34;&gt;&amp;ldquo;メタキーとして Option キーを使用&amp;rdquo; にチェック&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;ターミナル -&amp;gt; 環境設定 -&amp;gt; プロファイルタブ を開く。&lt;/li&gt;
+&lt;li&gt;以下の図のように &amp;ldquo;メタキーとして Option キーを使用&amp;rdquo; にチェックが入っていないと思うで、チェックする。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;settings.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;ターミナル -&amp;gt; 環境設定 -&amp;gt; プロファイルタブ&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Development Environment in my OSX</title>
