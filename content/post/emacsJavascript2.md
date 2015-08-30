@@ -2,7 +2,7 @@
 Categories = ["Emacs", "JavaScript"]
 Description = "Emacs で Javascript なら js2-mode, tern-mode"
 Tags = ["Env"]
-date = "2015-06-04T23:09:38+09:00"
+date = "2015-08-31T13:38:35+09:00"
 title = "Emacs で Javascript なら js2-mode, tern-mode"
 
 +++
