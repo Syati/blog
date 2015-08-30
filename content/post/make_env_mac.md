@@ -1,7 +1,7 @@
 +++
 Categories = ["OSX"]
 Description = "私の OSX の環境をメモっておく"
-Tags = ["DevEnv"]
+Tags = ["Env"]
 date = "2015-06-04T23:09:38+09:00"
 title = "Development Environment in my OSX"
 

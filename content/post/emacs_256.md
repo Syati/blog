@@ -1,7 +1,7 @@
 +++
 Categories = ["Emacs"]
 Description = "Emacs を 256色で起動するメモ"
-Tags = ["DevEnv"]
+Tags = ["Env"]
 date = "2015-06-04T23:09:38+09:00"
 title = "Emacs を 256色で起動する"
 

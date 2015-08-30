@@ -1,7 +1,7 @@
 +++
 Categories = ["Emacs", "CoffeeScript"]
 Description = "Emacs で CoffeeScript を AutoComplete するメモ"
-Tags = ["DevEnv"]
+Tags = ["Env"]
 date = "2015-06-04T23:09:38+09:00"
 title = "Emacs で CoffeeScript を AutoComplete する"
 

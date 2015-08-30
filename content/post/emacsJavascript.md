@@ -1,7 +1,7 @@
 +++
 Categories = ["Emacs", "JavaScript"]
 Description = "Emacs で JavaScript の開発環境を整えるメモ"
-Tags = ["DevEnv"]
+Tags = ["Env"]
 date = "2015-06-04T23:09:38+09:00"
 title = "Emacs で JavaScript の開発環境を整える"
 

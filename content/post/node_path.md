@@ -1,7 +1,7 @@
 +++
 Categories = ["JavaScript", "Node"]
 Description = "node で REPLを利用する際の環境パス"
-Tags = ["DevEnv", "REPL"]
+Tags = ["Env", "REPL"]
 date = "2015-06-04T23:09:38+09:00"
 title = "node 利用するなら、まずは環境変数を設定しましょう"
 
