@@ -76,7 +76,7 @@ Emacs で設定する環境変数は、以下の通り３つある。本設定�
 1.  PATH
     -   emacs で shell (M-x shell)を利用する際に使う。端末(cmd, minttyなど)で利用する場合と同じ。
     -   ※ M は Alt キー のこと
-    
+
 2.  exec-path
     -   emacs のコマンド（grep, shell, diff, dired-mode 中の圧縮/解凍など）を利用する際に使う。
 
@@ -92,7 +92,7 @@ cygwin から emacs を立ち上げた場合と、GUIから emacs を立ち上�
     それぞれの行末で（Ctrl-j) をタイプして式を評価して見ましょう。
     1.  (getenv "PATH")　
     2.  exec-path
-    
+
 2.  修正するには、emacs の設定ファイルに以下のように PATH と exec-path を記述する。
 
 ~~~clike
@@ -127,14 +127,14 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 ~~~clike
 (setq shell-file-name "zsh")
-(setenv "SHELL" shell-file-name) 
+(setenv "SHELL" shell-file-name)
 (setq explicit-shell-file-name shell-file-name)
 ~~~
-        
+
 - 参考
     -  [NTEmacsWithCygwin](http://emacswiki.org/emacs/NTEmacsWithCygwin)
     -  <http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html>
-    
+
 ## 4.3. load-path に自分がインストールする emacs-lisp（\*.el、\*.elc) 置場を追記
 
 1. ~/.emacs.d/lisp を自分がインストールする emacs-lisp（\*.el、\*.elc) 置場として、load-path に追加する。
@@ -164,11 +164,11 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 ;; Add my lisp dir to load-path
 (let ((default-directory "~/.emacs.d/lisp/"))
-  (normal-top-level-add-subdirs-to-load-path))            
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; Set SHELL Value
 (setq shell-file-name "zsh")
-(setenv "SHELL" shell-file-name) 
+(setenv "SHELL" shell-file-name)
 (setq explicit-shell-file-name shell-file-name)
 ~~~
 
