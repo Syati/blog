@@ -878,20 +878,88 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
-      <title>Emacs を 256色で起動する</title>
-      <link>http://blog.syati.info/post/emacs_256/</link>
+      <title>Emacs で Javascript なら js2-mode, tern-mode</title>
+      <link>http://blog.syati.info/post/emacsJavascript2/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://blog.syati.info/post/emacs_256/</guid>
-      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
+      <guid>http://blog.syati.info/post/emacsJavascript2/</guid>
+      <description>
 
-&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/emacsJavascript/&#34;&gt;&amp;ldquo;Emacs で JavaScript の開発環境を整える&amp;rdquo;&lt;/a&gt; で、
+Emacs と Javascript の開発環境を記しましたが、さらに改善できたので、メモメモ。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
+&lt;p&gt;ドットで jquery も underscore も browser もしてくれる。 angular も!!&lt;/p&gt;
+
+&lt;h1 id=&#34;step-1-tern-のインストール:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 1 tern のインストール&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install -g tern
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
-以下のコマンドを実行しましょう。&lt;/p&gt;
+&lt;h1 id=&#34;step-2-emacs-の-package-をインストール:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 2 emacs の package をインストール&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;M-x package-list-package で以下の2点をインストールする（該当箇所で &lt;strong&gt;i&lt;/strong&gt; をタイプしてマークをつけて &lt;strong&gt;x&lt;/strong&gt; でインストールする）&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;tern&lt;/li&gt;
+&lt;li&gt;js2-mode&lt;/li&gt;
+&lt;li&gt;tern-auto-complete&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~~~clike
+(autoload &#39;js2-mode &amp;quot;js2-mode&amp;quot; nil t)
+(add-to-list &#39;auto-mode-alist &#39;(&amp;quot;\\.js\\&#39;&amp;quot; . js2-mode))
+
+
+(add-hook &#39;js2-mode-hook
+(lambda ()
+    (tern-mode t)))
+
+
+(eval-after-load &#39;tern
+    &#39;(progn
+        (require &#39;tern-auto-complete)
+        (tern-ac-setup)))
+~~~
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;step-2-tern-config-の作成:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 2 tern config の作成&lt;/h1&gt;
+
+&lt;p&gt;~/.tern-config を以下のような感じで作成&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  &amp;quot;libs&amp;quot;: [
+    &amp;quot;browser&amp;quot;,
+    &amp;quot;jquery&amp;quot;,
+    &amp;quot;ecma5&amp;quot;,
+    &amp;quot;underscore&amp;quot;
+  ],
+  &amp;quot;plugins&amp;quot;: {
+    &amp;quot;angular&amp;quot;: {},
+    &amp;quot;node&amp;quot;: {}
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-3-試す:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 3 試す&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;angular
+  .module(&#39;MyApp&#39;, [])
+  .controller(&#39;SomeCtrl&#39;, function($scope, $http) {
+    # ここで $scope. とでも入れてみる
+  })
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;参考:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ternjs.net/doc/manual.html&#34;&gt;tern&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -920,7 +988,7 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;(require &#39;package)
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(require &#39;package)
 (add-to-list &#39;package-archives
   &#39;(&amp;quot;melpa&amp;quot; . &amp;quot;http://melpa.milkbox.net/packages/&amp;quot;) t)
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
@@ -938,27 +1006,33 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 
 &lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;(add-hook &#39;after-init-hook #&#39;global-flycheck-mode)
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(add-hook &#39;after-init-hook #&#39;global-flycheck-mode)
 (add-to-list &#39;auto-mode-alist &#39;(&amp;quot;\\.js\\&#39;&amp;quot; . js2-mode))
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;jshint をインストール&lt;/h2&gt;
 
-&lt;p&gt;上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。
--   npm をインストール
-    -   ubuntu の場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;        sudo apt-get install npm
--   OSX の場合
-
-        brew install npm
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。&lt;/p&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;npm をインストール&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ubuntu の場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get install npm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;OSX の場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install npm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
 &lt;li&gt;&lt;p&gt;jshint をインストール&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo npm install jshint -g
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo npm install jshint -g
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
@@ -978,6 +1052,24 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 &lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Emacs を 256色で起動する</title>
+      <link>http://blog.syati.info/post/emacs_256/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/emacs_256/</guid>
+      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
+
+&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
+以下のコマンドを実行しましょう。&lt;/p&gt;
 </description>
     </item>
     
@@ -1268,6 +1360,55 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
+      <title>nkf で直す文字化け</title>
+      <link>http://blog.syati.info/post/nkf/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/nkf/</guid>
+      <description>
+
+&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
+開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
+
+&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
+
+&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
+
+&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
+
+&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
+output: Shift_JIS
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
       <link>http://blog.syati.info/post/make_windows_emacs/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1454,7 +1595,7 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 &lt;p&gt;そのため、&lt;strong&gt;設定ファイルに以下を書き込む&lt;/strong&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(setq shell-file-name &amp;quot;zsh&amp;quot;)
-(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
+(setenv &amp;quot;SHELL&amp;quot; shell-file-name)
 (setq explicit-shell-file-name shell-file-name)
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -1503,65 +1644,16 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 ;; Add my lisp dir to load-path
 (let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
-  (normal-top-level-add-subdirs-to-load-path))            
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; Set SHELL Value
 (setq shell-file-name &amp;quot;zsh&amp;quot;)
-(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
+(setenv &amp;quot;SHELL&amp;quot; shell-file-name)
 (setq explicit-shell-file-name shell-file-name)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;日本語の設定や、キーカスタマイズなど、その他設定することは、まだまだたくさんありますが、
 それはまた次回ということで Windows に Linux環境の構築を〆る。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>nkf で直す文字化け</title>
-      <link>http://blog.syati.info/post/nkf/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/nkf/</guid>
-      <description>
-
-&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
-開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
-
-&lt;h1 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
-
-&lt;h1 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h1&gt;
-
-&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
-
-&lt;h1 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
-output: Shift_JIS
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
@@ -1614,202 +1706,6 @@ Error: Cannot find module &#39;underscore&#39;
 &lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>org2blog の記事にコードブロックを入れる</title>
-      <link>http://blog.syati.info/post/org2blogInsertSourceCode/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/org2blogInsertSourceCode/</guid>
-      <description>
-
-&lt;p&gt;org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 &lt;a href=&#34;http://syati.info/?p=1746&#34;&gt;org2blogからの投稿&lt;/a&gt; の続き。&lt;/p&gt;
-
-&lt;h1 id=&#34;必要なもの:c443d59d4160338c2614fe779a49a87f&#34;&gt;必要なもの&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;htmlize.el を load-path の通ったところに入れる。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;htmlize.el は &lt;a href=&#34;http://orgmode.org/ja/index.html&#34;&gt;org-mode&lt;/a&gt; をDLして、解凍した contrib/lisp に入っている。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://wordpress.org/extend/plugins/syntaxhighlighter/&#34;&gt;SyntaxHighlighter Evolved&lt;/a&gt; をワードプレスに入れて有効化しておく。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に &lt;strong&gt;:wp-code t&lt;/strong&gt; を書き加える。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;以下が .emacs.d/init.el に書き込んだ私の org2blog の設定&lt;/p&gt;
-
-&lt;p&gt;;;org2blog
-(require &amp;lsquo;org2blog)
-(setq org2blog/wp-blog-alist
-      &amp;lsquo;((&amp;ldquo;wordpress&amp;rdquo;
-         :url &amp;ldquo;your wordpress url&amp;rdquo;
-         :username &amp;ldquo;login name&amp;rdquo;
-         :wp-code t))) ;; insert this line&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;使ってみる:c443d59d4160338c2614fe779a49a87f&#34;&gt;使ってみる&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;org2blog/wp-new-entry で投稿記事を作成する。&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;表記 &lt;strong&gt;#+BEGIN_SRC 言語　:syntaxhl [利用したいパラメータ（任意）] ソースコード #+END_SRC&lt;/strong&gt;
-
-&lt;ul&gt;
-&lt;li&gt;:syntaxhl にパラメータを与えない場合は、ワードプレスの管理画面-&amp;gt;設定 SyntaxHighlighter の一般設定が用いられる。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.support.wordpress.com/code/posting-source-code/#configuration-parameters&#34;&gt;パラメータはこちら&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;
-＃+BEGIN_SRC bash :syntaxhl
-echo &#34;hoge&#34; 
-＃+END_SRC
-&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;これで org2blog の記事投稿でコードも綺麗に投稿できる。&lt;/p&gt;
-
-&lt;h1 id=&#34;補足:c443d59d4160338c2614fe779a49a87f&#34;&gt;補足&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;必要なもの 3. の設定を加えるのは、以下の通り &lt;pre&gt; タグが挿入されるため SyntaxHighlighter の表記方法 [language] code [/language] と合致しなくなるため。（以下は org2blog.el 内のコード）&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;参考 &lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;(defcustom org2blog/wp-use-sourcecode-shortcode nil
-   &amp;ldquo;Non-nil means convert &lt;pre&gt; tags to WP sourcecode blocks.
- NOTE: htmlize.el available in org-mode&amp;rsquo;s contrib directory should
- be on your emacs load-path for this to work.&amp;rdquo;
-   :group &amp;lsquo;org2blog/wp
-   :type &amp;lsquo;boolean)&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;覚えておくと良いショートカット:c443d59d4160338c2614fe779a49a87f&#34;&gt;覚えておくと良いショートカット&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;コードブロックを挿入する際は &lt;strong&gt;&amp;lt;キー&lt;TAB&gt;&lt;/strong&gt; をタイプするべし。
-
-&lt;ul&gt;
-&lt;li&gt;以下は、挿入したいテンプレートのキー一覧
-
-&lt;ul&gt;
-&lt;li&gt;参考 &lt;a href=&#34;http://emacsclub.github.com/html/org_tutorial.html&#34;&gt;Org-mode Tutorial / Cheat Sheet&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;table border=&#34;2&#34; cellspacing=&#34;0&#34; cellpadding=&#34;6&#34; rules=&#34;groups&#34; frame=&#34;hsides&#34;&gt;
-
-
-&lt;colgroup&gt;
-&lt;col  class=&#34;left&#34; /&gt;
-
-&lt;col  class=&#34;left&#34; /&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope=&#34;col&#34; class=&#34;left&#34;&gt;キー　&lt;/th&gt;
-&lt;th scope=&#34;col&#34; class=&#34;left&#34;&gt;挿入したいテンプレート&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;s&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_src &amp;#x2026; #+end\_src&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;e&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_example &amp;#x2026; #+end\_example&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;q&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_quote &amp;#x2026; #+end\_quote&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;v&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_verse &amp;#x2026; #+end\_verse&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;c&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_center &amp;#x2026; #+end\_center&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;l&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_latex &amp;#x2026; #+end\_latex&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;L&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+latex:&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;h&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_html &amp;#x2026; #+end\_html&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;H&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+html:&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;a&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+begin\_ascii &amp;#x2026; #+end\_ascii&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+ascii:&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;i&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+index: line&lt;/td&gt;
-&lt;/tr&gt;
-
-
-&lt;tr&gt;
-&lt;td class=&#34;left&#34;&gt;I&lt;/td&gt;
-&lt;td class=&#34;left&#34;&gt;#+include: line&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&#34;その他-参考サイト:c443d59d4160338c2614fe779a49a87f&#34;&gt;その他、参考サイト&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://orgmode.org/worg/org-contrib/babel/intro.html&#34;&gt;Babel: Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/tamura70/20100304/org&#34;&gt;Emacs org-modeを使ってみる: (29) エクスポートオプション一覧&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     

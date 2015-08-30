@@ -290,7 +290,7 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 <p>そのため、<strong>設定ファイルに以下を書き込む</strong></p>
 
 <pre><code class="language-clike">(setq shell-file-name &quot;zsh&quot;)
-(setenv &quot;SHELL&quot; shell-file-name) 
+(setenv &quot;SHELL&quot; shell-file-name)
 (setq explicit-shell-file-name shell-file-name)
 </code></pre>
 
@@ -339,11 +339,11 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 ;; Add my lisp dir to load-path
 (let ((default-directory &quot;~/.emacs.d/lisp/&quot;))
-  (normal-top-level-add-subdirs-to-load-path))            
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; Set SHELL Value
 (setq shell-file-name &quot;zsh&quot;)
-(setenv &quot;SHELL&quot; shell-file-name) 
+(setenv &quot;SHELL&quot; shell-file-name)
 (setq explicit-shell-file-name shell-file-name)
 </code></pre>
 

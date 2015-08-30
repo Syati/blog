@@ -118,6 +118,34 @@
 
 	
 	
+	    <a href="http://blog.syati.info//categories/osx"> OSX </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://blog.syati.info/post/make_env_mac/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/make_env_mac/" itemprop="url">Development Environment in my OSX</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。
+ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。</p>
+
+		<a href="http://blog.syati.info/post/make_env_mac/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
 		<a href="http://blog.syati.info//categories/emacs"> Emacs </a>,
 	
 
@@ -137,6 +165,34 @@
 		<p>ubuntu で scala の開発環境を構築するメモ</p>
 
 		<a href="http://blog.syati.info/post/make_scala_env/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="http://blog.syati.info//categories/shell"> Shell </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://blog.syati.info/post/nkf/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/nkf/" itemprop="url">nkf で直す文字化け</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
+開いてびっくり文字化け。全部 utf-8 に修正してしまいます。</p>
+
+		<a href="http://blog.syati.info/post/nkf/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -179,34 +235,6 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 <p>今回は、Cygwin、Zsh、NTEmacs でWindows に Linux環境を構築をする。</p>
 
 		<a href="http://blog.syati.info/post/make_windows_emacs/" class="more-link">Read on →</a>
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-	    <a href="http://blog.syati.info//categories/shell"> Shell </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://blog.syati.info/post/nkf/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/nkf/" itemprop="url">nkf で直す文字化け</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
-開いてびっくり文字化け。全部 utf-8 に修正してしまいます。</p>
-
-		<a href="http://blog.syati.info/post/nkf/" class="more-link">Read on →</a>
 	</div>
 </article>
 
@@ -303,6 +331,37 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 
 	
 	
+		<a href="http://blog.syati.info//categories/shell"> Shell </a>,
+	
+
+	
+	
+	    <a href="http://blog.syati.info//categories/osx"> OSX </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/" itemprop="url">reattach-to-user-namespace: unsupported new OS を解決する</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。 手順 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard ここにいってソースコードをDLしてくる（git cloneでもOK） ダウンロードしたファイルのディレクトリで make する cd ~/Downloads/tmux-MacOSX-pasteboard make reattach-to-user-namespace パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく which reattach-to-user-namespace makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする これでワーニングもサヨウナラ 参考 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
+		
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
 	    <a href="http://blog.syati.info//categories/design"> Design </a>
 	
 
@@ -346,63 +405,6 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/vagrant_css_problem/" itemprop="url">vagrant、chef-solo で開発環境を構築する</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		最近、vagrant、chef-solo で開発環境を構築するのがブームなSyatiです。xampp、mamp とかで？？ができないとかよくありますが、面倒くさいので皆サーバーと同じ環境にして開発しましょうよ。そしたら、？？ができないなんてことがなくなりますので。 今回はまったのは、vagrant の共有フォルダに apache のバーチャルホストのドキュメントルートを設定して、ローカルでソースコードをいじり、ブラウザで確認している時である。 CSSをいじって、ブラウザで確認しても反映されないのである。もちろんキャッシュクリア済み。やむなくvagrantを再起動すると反映されるのである 原因 httpd.conf の設定に問題があった。 以下の設定を加えるのである。EnableSendfile なんて httpd.conf 中のどこにも記述が無いんだが、デフォルトが On のため、明示的に加えてあげる必要がある。 EnableSendfile Off 以下 EnableSendfileより引用 このディレクティブはクライアンにファイルの内容を送るときに httpd がカーネルの sendfile サポートを使うかどうかを制御します。デフォルトでは、 例えば静的なファイルの配送のように、リクエストの処理にファイルの 途中のデータのアクセスを必要としないときには、Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。 sendfile は read と send を別々に行なうことと、バッファの割り当てを 回避します。しかし、プラットフォームやファイルシステムの中には 運用上の問題を避けるためにこの機能を使用不可にした方が良い場合があります おそらく、以下の部分が原因か！？それでファイルを変更しても、逐次更新されないんでしょう。 - Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。 参考 http://qiita.com/shoyan/items/12389d5beaa8695b1a53 上記に nginx の場合も書いて有りますね。
-		
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-		<a href="http://blog.syati.info//categories/shell"> Shell </a>,
-	
-
-	
-	
-	    <a href="http://blog.syati.info//categories/osx"> OSX </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/" itemprop="url">reattach-to-user-namespace: unsupported new OS を解決する</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。 手順 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard ここにいってソースコードをDLしてくる（git cloneでもOK） ダウンロードしたファイルのディレクトリで make する cd ~/Downloads/tmux-MacOSX-pasteboard make reattach-to-user-namespace パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく which reattach-to-user-namespace makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする これでワーニングもサヨウナラ 参考 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
-		
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Sun, Mar 1, 2015' data-updated="true" itemprop="datePublished">Sun, Mar 1, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-	    <a href="http://blog.syati.info//categories/ubuntu"> Ubuntu </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://blog.syati.info/post/autostart_synerge_ubuntu/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/autostart_synerge_ubuntu/" itemprop="url">synerge ubuntu</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		Windows 7 と Ubuntu 12.04 のマシンを利用している Syati ですが、毎回 Ubuntu を立ち上げてログイン、synergy を立ち上げるのは面倒くさいので Ubuntu ログイン画面で自動で起動させるようにした。 方法 /etc/lightdm/lightdm に一行加える 1 [SeatDefaults] 2 greeter-session=unity-greeter 3 greeter-setup-script=/usr/bin/synergyc シナジーサーバーが起動しているIP /* この行を加えた */ 参考サイト Ubuntu11.10でSynergyを自動起動
 		
 	</div>
 </article>
