@@ -7,7 +7,46 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Wed, 17 Jun 2015 22:42:39 JST</updated>
+    <updated>Sun, 30 Aug 2015 13:38:35 JST</updated>
+    
+    <item>
+      <title>Mac の Terminal で ALT KEY </title>
+      <link>http://blog.syati.info/post/altkey_in_osx-terminal/</link>
+      <pubDate>Sun, 30 Aug 2015 13:38:35 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/altkey_in_osx-terminal/</guid>
+      <description>
+
+&lt;p&gt;Mac の環境を新しく作ることになったので、以前の環境が出来るまでメモしていく。&lt;/p&gt;
+
+&lt;p&gt;バックアップからの復元を使えば楽なのだが、ゴミが入るのは・・・。&lt;/p&gt;
+
+&lt;p&gt;ただし、意外とハマる。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ターミナルで alt key が使えないよ！！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;メタキーとして-option-キーを使用-にチェック:784ef5322b7ad8a18c627bd23e19b9ed&#34;&gt;&amp;ldquo;メタキーとして Option キーを使用&amp;rdquo; にチェック&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;ターミナル -&amp;gt; 環境設定 -&amp;gt; プロファイルタブ を開く。&lt;/li&gt;
+&lt;li&gt;以下の図のように &amp;ldquo;メタキーとして Option キーを使用&amp;rdquo; にチェックが入っていないと思うで、チェックする。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;settings.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;ターミナル -&amp;gt; 環境設定 -&amp;gt; プロファイルタブ&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Hugo に SyntaxHighlighter を導入</title>
@@ -1615,50 +1654,6 @@ Error: Cannot find module &#39;underscore&#39;
 &lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>org2blog でブログに接続する際のパスワードを .netrc に保存しておく</title>
-      <link>http://blog.syati.info/post/org2blogNetrc/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/org2blogNetrc/</guid>
-      <description>
-
-&lt;p&gt;org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&amp;#x2026;とおもっている場合は、.netrc を使うのがお勧め&lt;/p&gt;
-
-&lt;h1 id=&#34;手順:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;手順&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;ホームに以下のコマンドで .netrc を作成する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;echo &amp;quot;machine myblog login myusername password myrealpassword&amp;quot; &amp;gt; ~/.netrc
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;myusername と myrealpassword を自分がログインするときのユーザー名とパスワードに書き換える&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;emacs の設定ファイル（ .emacs.d/init.el ) に以下を書き加える&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;;; org2blog
-(require &#39;org2blog-autoloads)
-(require &#39;netrc) ;; or nothing if already in the load-path
-(setq org2blog/wp-use-sourcecode-shortcode t) ;;syntaxhl
-(setq blog (netrc-machine (netrc-parse &amp;quot;~/.netrc&amp;quot;) &amp;quot;myblog&amp;quot; t))
-(setq org2blog/wp-blog-alist
-       &#39;((&amp;quot;my-blog&amp;quot;
-          :url &amp;quot;your wordpress url&amp;quot;
-          :username (netrc-get blog &amp;quot;login&amp;quot;)
-          :password (netrc-get blog &amp;quot;password&amp;quot;)
-          :tags-as-categories nil)))
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;参考:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
