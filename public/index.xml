@@ -1171,6 +1171,103 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
+      <title>Scala の開発環境</title>
+      <link>http://blog.syati.info/post/make_scala_env/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/make_scala_env/</guid>
+      <description>
+
+&lt;p&gt;ubuntu で scala の開発環境を構築するメモ&lt;/p&gt;
+
+&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ubuntu 12.04&lt;/li&gt;
+&lt;li&gt;emacs 24.3.1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
+
+&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;jdk をインストール
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;以下のコマンドでエラーが無いことを確認
+
+&lt;ul&gt;
+&lt;li&gt;java -version&lt;/li&gt;
+&lt;li&gt;javac -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;scala のダウンロード
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
+&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
+
+&lt;ul&gt;
+&lt;li&gt;scala -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
+
+&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;以下から tool を clone する
+
+&lt;ul&gt;
+&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;コピーした scala-mode に移動して make コマンドする
+
+&lt;ul&gt;
+&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
+(require &#39;scala-mode2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;yasnipet がない場合は、以下から clone する
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
       <link>http://blog.syati.info/post/make_windows_emacs/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1420,103 +1517,6 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
     </item>
     
     <item>
-      <title>Scala の開発環境</title>
-      <link>http://blog.syati.info/post/make_scala_env/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/make_scala_env/</guid>
-      <description>
-
-&lt;p&gt;ubuntu で scala の開発環境を構築するメモ&lt;/p&gt;
-
-&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ubuntu 12.04&lt;/li&gt;
-&lt;li&gt;emacs 24.3.1&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
-
-&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;jdk をインストール
-
-&lt;ul&gt;
-&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;以下のコマンドでエラーが無いことを確認
-
-&lt;ul&gt;
-&lt;li&gt;java -version&lt;/li&gt;
-&lt;li&gt;javac -version&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;scala のダウンロード
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
-&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
-
-&lt;ul&gt;
-&lt;li&gt;scala -version&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
-
-&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;以下から tool を clone する
-
-&lt;ul&gt;
-&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;コピーした scala-mode に移動して make コマンドする
-
-&lt;ul&gt;
-&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
-(require &#39;scala-mode2)
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;yasnipet がない場合は、以下から clone する
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>nkf で直す文字化け</title>
       <link>http://blog.syati.info/post/nkf/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1618,45 +1618,197 @@ Error: Cannot find module &#39;underscore&#39;
     </item>
     
     <item>
-      <title>org2blog でブログに接続する際のパスワードを .netrc に保存しておく</title>
-      <link>http://blog.syati.info/post/org2blogNetrc/</link>
+      <title>org2blog の記事にコードブロックを入れる</title>
+      <link>http://blog.syati.info/post/org2blogInsertSourceCode/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://blog.syati.info/post/org2blogNetrc/</guid>
+      <guid>http://blog.syati.info/post/org2blogInsertSourceCode/</guid>
       <description>
 
-&lt;p&gt;org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&amp;#x2026;とおもっている場合は、.netrc を使うのがお勧め&lt;/p&gt;
+&lt;p&gt;org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 &lt;a href=&#34;http://syati.info/?p=1746&#34;&gt;org2blogからの投稿&lt;/a&gt; の続き。&lt;/p&gt;
 
-&lt;h1 id=&#34;手順:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;手順&lt;/h1&gt;
+&lt;h1 id=&#34;必要なもの:c443d59d4160338c2614fe779a49a87f&#34;&gt;必要なもの&lt;/h1&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;ホームに以下のコマンドで .netrc を作成する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;echo &amp;quot;machine myblog login myusername password myrealpassword&amp;quot; &amp;gt; ~/.netrc
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;myusername と myrealpassword を自分がログインするときのユーザー名とパスワードに書き換える&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;emacs の設定ファイル（ .emacs.d/init.el ) に以下を書き加える&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;;; org2blog
-(require &#39;org2blog-autoloads)
-(require &#39;netrc) ;; or nothing if already in the load-path
-(setq org2blog/wp-use-sourcecode-shortcode t) ;;syntaxhl
-(setq blog (netrc-machine (netrc-parse &amp;quot;~/.netrc&amp;quot;) &amp;quot;myblog&amp;quot; t))
-(setq org2blog/wp-blog-alist
-       &#39;((&amp;quot;my-blog&amp;quot;
-          :url &amp;quot;your wordpress url&amp;quot;
-          :username (netrc-get blog &amp;quot;login&amp;quot;)
-          :password (netrc-get blog &amp;quot;password&amp;quot;)
-          :tags-as-categories nil)))
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;参考:dc7afff74f7fc41e8b014d8031c366a0&#34;&gt;参考&lt;/h1&gt;
+&lt;li&gt;&lt;p&gt;htmlize.el を load-path の通ったところに入れる。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;htmlize.el は &lt;a href=&#34;http://orgmode.org/ja/index.html&#34;&gt;org-mode&lt;/a&gt; をDLして、解凍した contrib/lisp に入っている。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://wordpress.org/extend/plugins/syntaxhighlighter/&#34;&gt;SyntaxHighlighter Evolved&lt;/a&gt; をワードプレスに入れて有効化しておく。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に &lt;strong&gt;:wp-code t&lt;/strong&gt; を書き加える。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;以下が .emacs.d/init.el に書き込んだ私の org2blog の設定&lt;/p&gt;
+
+&lt;p&gt;;;org2blog
+(require &amp;lsquo;org2blog)
+(setq org2blog/wp-blog-alist
+      &amp;lsquo;((&amp;ldquo;wordpress&amp;rdquo;
+         :url &amp;ldquo;your wordpress url&amp;rdquo;
+         :username &amp;ldquo;login name&amp;rdquo;
+         :wp-code t))) ;; insert this line&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;使ってみる:c443d59d4160338c2614fe779a49a87f&#34;&gt;使ってみる&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;org2blog/wp-new-entry で投稿記事を作成する。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;表記 &lt;strong&gt;#+BEGIN_SRC 言語　:syntaxhl [利用したいパラメータ（任意）] ソースコード #+END_SRC&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;:syntaxhl にパラメータを与えない場合は、ワードプレスの管理画面-&amp;gt;設定 SyntaxHighlighter の一般設定が用いられる。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.support.wordpress.com/code/posting-source-code/#configuration-parameters&#34;&gt;パラメータはこちら&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;
+＃+BEGIN_SRC bash :syntaxhl
+echo &#34;hoge&#34; 
+＃+END_SRC
+&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;これで org2blog の記事投稿でコードも綺麗に投稿できる。&lt;/p&gt;
+
+&lt;h1 id=&#34;補足:c443d59d4160338c2614fe779a49a87f&#34;&gt;補足&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;必要なもの 3. の設定を加えるのは、以下の通り &lt;pre&gt; タグが挿入されるため SyntaxHighlighter の表記方法 [language] code [/language] と合致しなくなるため。（以下は org2blog.el 内のコード）&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;参考 &lt;a href=&#34;https://github.com/punchagan/org2blog#posting-source-code-blocks&#34;&gt;org2blog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;(defcustom org2blog/wp-use-sourcecode-shortcode nil
+   &amp;ldquo;Non-nil means convert &lt;pre&gt; tags to WP sourcecode blocks.
+ NOTE: htmlize.el available in org-mode&amp;rsquo;s contrib directory should
+ be on your emacs load-path for this to work.&amp;rdquo;
+   :group &amp;lsquo;org2blog/wp
+   :type &amp;lsquo;boolean)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;覚えておくと良いショートカット:c443d59d4160338c2614fe779a49a87f&#34;&gt;覚えておくと良いショートカット&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;コードブロックを挿入する際は &lt;strong&gt;&amp;lt;キー&lt;TAB&gt;&lt;/strong&gt; をタイプするべし。
+
+&lt;ul&gt;
+&lt;li&gt;以下は、挿入したいテンプレートのキー一覧
+
+&lt;ul&gt;
+&lt;li&gt;参考 &lt;a href=&#34;http://emacsclub.github.com/html/org_tutorial.html&#34;&gt;Org-mode Tutorial / Cheat Sheet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table border=&#34;2&#34; cellspacing=&#34;0&#34; cellpadding=&#34;6&#34; rules=&#34;groups&#34; frame=&#34;hsides&#34;&gt;
+
+
+&lt;colgroup&gt;
+&lt;col  class=&#34;left&#34; /&gt;
+
+&lt;col  class=&#34;left&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope=&#34;col&#34; class=&#34;left&#34;&gt;キー　&lt;/th&gt;
+&lt;th scope=&#34;col&#34; class=&#34;left&#34;&gt;挿入したいテンプレート&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;s&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_src &amp;#x2026; #+end\_src&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;e&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_example &amp;#x2026; #+end\_example&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;q&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_quote &amp;#x2026; #+end\_quote&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;v&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_verse &amp;#x2026; #+end\_verse&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;c&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_center &amp;#x2026; #+end\_center&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;l&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_latex &amp;#x2026; #+end\_latex&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;L&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+latex:&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;h&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_html &amp;#x2026; #+end\_html&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;H&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+html:&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;a&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+begin\_ascii &amp;#x2026; #+end\_ascii&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;A&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+ascii:&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;i&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+index: line&lt;/td&gt;
+&lt;/tr&gt;
+
+
+&lt;tr&gt;
+&lt;td class=&#34;left&#34;&gt;I&lt;/td&gt;
+&lt;td class=&#34;left&#34;&gt;#+include: line&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&#34;その他-参考サイト:c443d59d4160338c2614fe779a49a87f&#34;&gt;その他、参考サイト&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://orgmode.org/worg/org-contrib/babel/intro.html&#34;&gt;Babel: Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/tamura70/20100304/org&#34;&gt;Emacs org-modeを使ってみる: (29) エクスポートオプション一覧&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
