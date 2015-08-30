@@ -1030,7 +1030,7 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 &lt;p&gt;そのため、&lt;strong&gt;設定ファイルに以下を書き込む&lt;/strong&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(setq shell-file-name &amp;quot;zsh&amp;quot;)
-(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
+(setenv &amp;quot;SHELL&amp;quot; shell-file-name)
 (setq explicit-shell-file-name shell-file-name)
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -1079,11 +1079,11 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 ;; Add my lisp dir to load-path
 (let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
-  (normal-top-level-add-subdirs-to-load-path))            
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; Set SHELL Value
 (setq shell-file-name &amp;quot;zsh&amp;quot;)
-(setenv &amp;quot;SHELL&amp;quot; shell-file-name) 
+(setenv &amp;quot;SHELL&amp;quot; shell-file-name)
 (setq explicit-shell-file-name shell-file-name)
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -1340,7 +1340,7 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;(require &#39;package)
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(require &#39;package)
 (add-to-list &#39;package-archives
   &#39;(&amp;quot;melpa&amp;quot; . &amp;quot;http://melpa.milkbox.net/packages/&amp;quot;) t)
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
@@ -1358,27 +1358,33 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 
 &lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;(add-hook &#39;after-init-hook #&#39;global-flycheck-mode)
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(add-hook &#39;after-init-hook #&#39;global-flycheck-mode)
 (add-to-list &#39;auto-mode-alist &#39;(&amp;quot;\\.js\\&#39;&amp;quot; . js2-mode))
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;jshint をインストール&lt;/h2&gt;
 
-&lt;p&gt;上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。
--   npm をインストール
-    -   ubuntu の場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;        sudo apt-get install npm
--   OSX の場合
-
-        brew install npm
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。&lt;/p&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;npm をインストール&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ubuntu の場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get install npm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;OSX の場合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install npm
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
 &lt;li&gt;&lt;p&gt;jshint をインストール&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo npm install jshint -g
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo npm install jshint -g
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
@@ -1395,6 +1401,92 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://melpa.milkbox.net/#/getting-started&#34;&gt;melpa&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Emacs で Javascript なら js2-mode, tern-mode</title>
+      <link>http://blog.syati.info/post/emacsJavascript2/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/emacsJavascript2/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/emacsJavascript/&#34;&gt;&amp;ldquo;Emacs で JavaScript の開発環境を整える&amp;rdquo;&lt;/a&gt; で、
+Emacs と Javascript の開発環境を記しましたが、さらに改善できたので、メモメモ。&lt;/p&gt;
+
+&lt;p&gt;ドットで jquery も underscore も browser もしてくれる。 angular も!!&lt;/p&gt;
+
+&lt;h1 id=&#34;step-1-tern-のインストール:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 1 tern のインストール&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install -g tern
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-2-emacs-の-package-をインストール:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 2 emacs の package をインストール&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;M-x package-list-package で以下の2点をインストールする（該当箇所で &lt;strong&gt;i&lt;/strong&gt; をタイプしてマークをつけて &lt;strong&gt;x&lt;/strong&gt; でインストールする）&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;tern&lt;/li&gt;
+&lt;li&gt;js2-mode&lt;/li&gt;
+&lt;li&gt;tern-auto-complete&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~~~clike
+(autoload &#39;js2-mode &amp;quot;js2-mode&amp;quot; nil t)
+(add-to-list &#39;auto-mode-alist &#39;(&amp;quot;\\.js\\&#39;&amp;quot; . js2-mode))
+
+
+(add-hook &#39;js2-mode-hook
+(lambda ()
+    (tern-mode t)))
+
+
+(eval-after-load &#39;tern
+    &#39;(progn
+        (require &#39;tern-auto-complete)
+        (tern-ac-setup)))
+~~~
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;step-2-tern-config-の作成:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 2 tern config の作成&lt;/h1&gt;
+
+&lt;p&gt;~/.tern-config を以下のような感じで作成&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  &amp;quot;libs&amp;quot;: [
+    &amp;quot;browser&amp;quot;,
+    &amp;quot;jquery&amp;quot;,
+    &amp;quot;ecma5&amp;quot;,
+    &amp;quot;underscore&amp;quot;
+  ],
+  &amp;quot;plugins&amp;quot;: {
+    &amp;quot;angular&amp;quot;: {},
+    &amp;quot;node&amp;quot;: {}
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-3-試す:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 3 試す&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;angular
+  .module(&#39;MyApp&#39;, [])
+  .controller(&#39;SomeCtrl&#39;, function($scope, $http) {
+    # ここで $scope. とでも入れてみる
+  })
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;参考:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ternjs.net/doc/manual.html&#34;&gt;tern&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1602,58 +1694,6 @@ output: Shift_JIS
 &lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
-      <link>http://blog.syati.info/post/node_path/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/node_path/</guid>
-      <description>
-
-&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
-
-&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
-
-&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
-Syati% node 
-
-require(&#39;underscore&#39;); 
-Error: Cannot find module &#39;underscore&#39;
-    at Function.Module._resolveFilename (module.js:338:15)
-    at Function.Module._load (module.js:280:25)
-    at Module.require (module.js:362:17)
-    at require (module.js:378:17)
-    at repl:1:1
-    at REPLServer.self.eval (repl.js:109:21)
-    at rli.on.self.bufferedCmd (repl.js:258:20)
-    at REPLServer.self.eval (repl.js:116:5)
-    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
-    at Interface.EventEmitter.emit (events.js:96:17)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
-
-&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
-
-&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm root -g
-// output =&amp;gt; /usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
 </description>
     </item>
     

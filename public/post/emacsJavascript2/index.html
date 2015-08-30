@@ -4,12 +4,12 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Emacs で JavaScript の開発環境を整える - Syati.info</title>
+	<title>Emacs で Javascript なら js2-mode, tern-mode - Syati.info</title>
 	<meta name="author" content="map[author:mizuki-y]">
 
 	
 	  
-	<meta name="description" content="Emacs で JavaScript の開発環境を整えるメモ">
+	<meta name="description" content="Emacs で Javascript なら js2-mode, tern-mode">
 	
 
 	
@@ -19,7 +19,7 @@
     
 	<link href='http://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://blog.syati.info/post/emacsJavascript/">
+	<link rel="canonical" href="http://blog.syati.info/post/emacsJavascript2/">
 	<link href="http://blog.syati.info//favicon.png" rel="shortcut icon">
 	<link href="http://blog.syati.info//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<link href="http://blog.syati.info//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -108,87 +108,81 @@
 				<div id="content" class="inner">
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-    <h1 class="title" itemprop="name">Emacs で JavaScript の開発環境を整える</h1>
+    <h1 class="title" itemprop="name">Emacs で Javascript なら js2-mode, tern-mode</h1>
 	<div class="entry-content" itemprop="articleBody">
 
-<p>開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
-ということで私の環境を忘れないうちにメモ！！</p>
+<p><a href="http://blog.syati.info/post/emacsJavascript/">&ldquo;Emacs で JavaScript の開発環境を整える&rdquo;</a> で、
+Emacs と Javascript の開発環境を記しましたが、さらに改善できたので、メモメモ。</p>
 
-<h1 id="前提:1a9908f99c55ee21878c3c149440fb4d">前提</h1>
+<p>ドットで jquery も underscore も browser もしてくれる。 angular も!!</p>
 
-<ul>
-<li>ubuntu 12.04 or OSX</li>
-<li>emacs &gt;= 24</li>
-</ul>
+<h1 id="step-1-tern-のインストール:3f7d9efd2043d47de4f96647460d1d8a">Step 1 tern のインストール</h1>
 
-<h1 id="構築:1a9908f99c55ee21878c3c149440fb4d">構築</h1>
+<pre><code class="language-bash">$ npm install -g tern
+</code></pre>
 
-<h2 id="パッケージ管理にmelpa追加:1a9908f99c55ee21878c3c149440fb4d">パッケージ管理にmelpa追加</h2>
-
-<ul>
-<li><p>~/.emacs.d/init.el に以下を追加</p>
-
-<pre><code class="language-clike">(require 'package)
-(add-to-list 'package-archives
-  '(&quot;melpa&quot; . &quot;http://melpa.milkbox.net/packages/&quot;) t)
-</code></pre></li>
-</ul>
-
-<h2 id="パッケージ管理からインストール:1a9908f99c55ee21878c3c149440fb4d">パッケージ管理からインストール</h2>
-
-<ul>
-<li>M-x package-list-package で以下の2点をインストールする（該当箇所で <strong>i</strong> をタイプしてマークをつけて <strong>x</strong> でインストールする）
+<h1 id="step-2-emacs-の-package-をインストール:3f7d9efd2043d47de4f96647460d1d8a">Step 2 emacs の package をインストール</h1>
 
 <ol>
-<li>flycheck</li>
+<li><p>M-x package-list-package で以下の2点をインストールする（該当箇所で <strong>i</strong> をタイプしてマークをつけて <strong>x</strong> でインストールする）</p>
+
+<ol>
+<li>tern</li>
 <li>js2-mode</li>
+<li>tern-auto-complete</li>
 </ol></li>
 
 <li><p>~/.emacs.d/init.el に以下を追加</p>
 
-<pre><code class="language-clike">(add-hook 'after-init-hook #'global-flycheck-mode)
+<pre><code>~~~clike
+(autoload 'js2-mode &quot;js2-mode&quot; nil t)
 (add-to-list 'auto-mode-alist '(&quot;\\.js\\'&quot; . js2-mode))
+
+
+(add-hook 'js2-mode-hook
+(lambda ()
+    (tern-mode t)))
+
+
+(eval-after-load 'tern
+    '(progn
+        (require 'tern-auto-complete)
+        (tern-ac-setup)))
+~~~
 </code></pre></li>
-</ul>
+</ol>
 
-<h2 id="jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d">jshint をインストール</h2>
+<h1 id="step-2-tern-config-の作成:3f7d9efd2043d47de4f96647460d1d8a">Step 2 tern config の作成</h1>
 
-<p>上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。</p>
+<p>~/.tern-config を以下のような感じで作成</p>
 
-<ul>
-<li><p>npm をインストール</p>
-
-<ul>
-<li><p>ubuntu の場合</p>
-
-<pre><code class="language-bash">$ sudo apt-get install npm
-</code></pre></li>
-
-<li><p>OSX の場合</p>
-
-<pre><code class="language-bash">$ brew install npm
-</code></pre></li>
-</ul></li>
-
-<li><p>jshint をインストール</p>
-
-<pre><code class="language-bash">$ sudo npm install jshint -g
+<pre><code class="language-javascript">{
+  &quot;libs&quot;: [
+    &quot;browser&quot;,
+    &quot;jquery&quot;,
+    &quot;ecma5&quot;,
+    &quot;underscore&quot;
+  ],
+  &quot;plugins&quot;: {
+    &quot;angular&quot;: {},
+    &quot;node&quot;: {}
+  }
+}
 </code></pre>
 
+<h1 id="step-3-試す:3f7d9efd2043d47de4f96647460d1d8a">Step 3 試す</h1>
+
+<pre><code class="language-javascript">angular
+  .module('MyApp', [])
+  .controller('SomeCtrl', function($scope, $http) {
+    # ここで $scope. とでも入れてみる
+  })
+</code></pre>
+
+<h1 id="参考:3f7d9efd2043d47de4f96647460d1d8a">参考</h1>
+
 <ul>
-<li>オプション -g でグローバルで利用するということ。付けない場合は、カレントディレクトリにインストールされる。</li>
-</ul></li>
-</ul>
-
-<h1 id="試す:1a9908f99c55ee21878c3c149440fb4d">試す</h1>
-
-<p>a.js とでもファイルを作ってみると emacsの下の帯に　(javascript-IDE FlyC) となっていることが確認できる。
-後は適当にプログラムを書けば jshint がはしり、文法エラーなどを教えてくれる。</p>
-
-<h1 id="参考:1a9908f99c55ee21878c3c149440fb4d">参考</h1>
-
-<ul>
-<li><a href="http://melpa.milkbox.net/#/getting-started">melpa</a></li>
+<li><a href="http://ternjs.net/doc/manual.html">tern</a></li>
 <li><a href="http://code.google.com/p/js2-mode/">js2-mode</a></li>
 <li><a href="https://npmjs.org/">npm</a></li>
 </ul>
