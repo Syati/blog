@@ -111,50 +111,20 @@
     <h1 class="title" itemprop="name">Emacs で Javascript なら js2-mode, tern-mode</h1>
 	<div class="entry-content" itemprop="articleBody">
 
-<p><a href="http://blog.syati.info/post/emacsJavascript/">&ldquo;Emacs で JavaScript の開発環境を整える&rdquo;</a> で、
+<p><a href="http://blog.syati.info/post/emacsJavascript/">Emacs で JavaScript の開発環境を整える</a> で、
 Emacs と Javascript の開発環境を記しましたが、さらに改善できたので、メモメモ。</p>
 
 <p>ドットで jquery も underscore も browser もしてくれる。 angular も!!</p>
 
-<h1 id="step-1-tern-のインストール:3f7d9efd2043d47de4f96647460d1d8a">Step 1 tern のインストール</h1>
+<h1 id="step-1-tern-のインストール-設定:3f7d9efd2043d47de4f96647460d1d8a">Step 1 tern のインストール・設定</h1>
+
+<ol>
+<li><p>npm で tern をインストールする</p>
 
 <pre><code class="language-bash">$ npm install -g tern
-</code></pre>
-
-<h1 id="step-2-emacs-の-package-をインストール:3f7d9efd2043d47de4f96647460d1d8a">Step 2 emacs の package をインストール</h1>
-
-<ol>
-<li><p>M-x package-list-package で以下の2点をインストールする（該当箇所で <strong>i</strong> をタイプしてマークをつけて <strong>x</strong> でインストールする）</p>
-
-<ol>
-<li>tern</li>
-<li>js2-mode</li>
-<li>tern-auto-complete</li>
-</ol></li>
-
-<li><p>~/.emacs.d/init.el に以下を追加</p>
-
-<pre><code>~~~clike
-(autoload 'js2-mode &quot;js2-mode&quot; nil t)
-(add-to-list 'auto-mode-alist '(&quot;\\.js\\'&quot; . js2-mode))
-
-
-(add-hook 'js2-mode-hook
-(lambda ()
-    (tern-mode t)))
-
-
-(eval-after-load 'tern
-    '(progn
-        (require 'tern-auto-complete)
-        (tern-ac-setup)))
-~~~
 </code></pre></li>
-</ol>
 
-<h1 id="step-2-tern-config-の作成:3f7d9efd2043d47de4f96647460d1d8a">Step 2 tern config の作成</h1>
-
-<p>~/.tern-config を以下のような感じで作成</p>
+<li><p>~/.tern-config を以下のような感じで作成</p>
 
 <pre><code class="language-javascript">{
   &quot;libs&quot;: [
@@ -165,10 +135,40 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
   ],
   &quot;plugins&quot;: {
     &quot;angular&quot;: {},
-    &quot;node&quot;: {}
+    &quot;Node&quot;: {}
   }
 }
-</code></pre>
+</code></pre></li>
+</ol>
+
+<h1 id="step-2-emacs-の-package-をインストール:3f7d9efd2043d47de4f96647460d1d8a">Step 2 emacs の package をインストール</h1>
+
+<ol>
+<li>M-x package-list-package で以下の2点をインストールする（該当箇所で <strong>i</strong> をタイプしてマークをつけて <strong>x</strong> でインストールする）
+
+<ol>
+<li>tern</li>
+<li>js2-mode</li>
+<li>tern-auto-complete</li>
+</ol></li>
+
+<li><p>~/.emacs.d/init.el に以下を追加</p>
+
+<pre><code class="language-clike">(autoload 'js2-mode &quot;js2-mode&quot; nil t)
+(add-to-list 'auto-mode-alist '(&quot;\\.js\\'&quot; . js2-mode))
+
+
+(add-hook 'js2-mode-hook
+    (lambda ()
+        (tern-mode t)))
+
+
+(eval-after-load 'tern
+    '(progn
+        (require 'tern-auto-complete)
+        (tern-ac-setup)))
+</code></pre></li>
+</ol>
 
 <h1 id="step-3-試す:3f7d9efd2043d47de4f96647460d1d8a">Step 3 試す</h1>
 
