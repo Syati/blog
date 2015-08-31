@@ -1430,255 +1430,6 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
-      <title>Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</title>
-      <link>http://blog.syati.info/post/make_windows_emacs/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/make_windows_emacs/</guid>
-      <description>
-
-&lt;p&gt;最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、
-否応なく Windows を利用しなければいけない時がある Syati です。
-そんな時、欠かせないのが Cygwin、Zsh、NTEmacs です。もっと欲を言えば
-AutoHotkey もあるのですが、それは、また次の機会に。&lt;/p&gt;
-
-&lt;p&gt;今回は、Cygwin、Zsh、NTEmacs でWindows に Linux環境を構築をする。&lt;/p&gt;
-
-&lt;h1 id=&#34;1-インストール:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;1. インストール&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.cygwin.com/&#34;&gt;cygwin&lt;/a&gt; のインストール&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;注意がでるけどインストールディレクトリをドライブのRoot( F:/ ) にでもする&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;デフォルトから追加で、とりあえずインストールするパッケージは
-以下の通り（あとは好きなパッケケージを入れる）&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Archive&lt;/strong&gt;
-
-&lt;ol&gt;
-&lt;li&gt;p7zip&lt;/li&gt;
-&lt;li&gt;unzip&lt;/li&gt;
-&lt;li&gt;zip&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Devel&lt;/strong&gt;
-
-&lt;ol&gt;
-&lt;li&gt;gcc-core&lt;/li&gt;
-&lt;li&gt;gcc-g++&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Net&lt;/strong&gt;
-
-&lt;ol&gt;
-&lt;li&gt;openssh&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Shells&lt;/strong&gt;
-
-&lt;ol&gt;
-&lt;li&gt;zsh&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Web&lt;/strong&gt;
-
-&lt;ol&gt;
-&lt;li&gt;wget&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://sourceforge.jp/projects/gnupack/&#34;&gt;gnupack emacs only&lt;/a&gt; でインストール&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;ダウンロードしたファイルを解凍&lt;/li&gt;
-&lt;li&gt;解凍されたディレクトリの中身(bin,etc,info などなど）をすべてコピーして
-cygwin をインストールしたディレクトリの F:/usr/local/ に上書きする&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;2-cygwin-のデフォルト-shell-を-zsh-に切り替え-初期設定:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;2. cygwin のデフォルト Shell を zsh に切り替え、初期設定&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;/etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Cygwin が MS-DOS形式のパスに対して Warning を出力するので消しておく&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/takuya_1st/20110423/1303586388&#34;&gt;cygwin がMS-DOS形式のパスをWarningするので消した&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Cygwin Terminal ショートカットから Terminal を起動すると zsh startup
-が立ち上がるので (0) Exit, creating the &amp;#x2026;.. を選択（0 をタイプする）&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;HOME に .zshrc が作成されていると思うが、中身を消して以下のサイトから設定ファイルをコピペして利用する&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://news.mynavi.jp/column/zsh/024/index.html&#34;&gt;漢のzsh 24 グッバイ野郎ども! コピペではじめるzshファイナル&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;zsh についても詳しく書かれているので、勉強しておく&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;3-emacs-の作業場所-home-を設定:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;3. Emacs の作業場所(HOME) を設定&lt;/h1&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;F:/usr/local/bin の中にある runemacs.exe のショートカットを作成 Desktop にでも貼り付ける&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;My Computer で &lt;strong&gt;右クリック -&amp;gt; プロパティ -&amp;gt; 詳細設定タブ -&amp;gt; 環境変数 -&amp;gt; ○○のユーザー環境変数&lt;/strong&gt;
-の新規でHOMEを作成する&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;変数名： HOME&lt;/li&gt;
-&lt;li&gt;変数値： F:/home/ユーザー名/&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;1.で作成したショートカットを右クリックしてプロパティから、&lt;strong&gt;作業フォルダを %HOME%&lt;/strong&gt;
-と入力する（%HOME% は 2. 作成した変数名HOMEの変数値を入れるという意味）&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;emacsを起動して Ctrl + x, Ctrl + f をタイプしたあとに ~/ を入力して、HOME に移動するか確認して終了&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;4-emacs-の環境を設定-設定ファイル-emacs-d-init-el:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;4. Emacs の環境を設定 (設定ファイル ~/.emacs.d/init.el )&lt;/h1&gt;
-
-&lt;p&gt;Emacs で設定する環境変数は、以下の通り３つある。本設定が上手くいっていない/理解していないと command not found で悩むかも。&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;PATH&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;emacs で shell (M-x shell)を利用する際に使う。端末(cmd, minttyなど)で利用する場合と同じ。&lt;/li&gt;
-&lt;li&gt;※ M は Alt キー のこと&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;exec-path&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;emacs のコマンド（grep, shell, diff, dired-mode 中の圧縮/解凍など）を利用する際に使う。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;load-path&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;emacs-lisp（*.el、*.elc) を利用する際に使う。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;4-1-path-exec-path-を設定:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;4.1. PATH, exec-path を設定&lt;/h2&gt;
-
-&lt;p&gt;cygwin から emacs を立ち上げた場合と、GUIから emacs を立ち上げた場合は、
-異なる環境変数が利用されるため、混乱を避けるためにも PATH, exec-path に同じ設定をする。&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;違いを確かめて見たい場合は、双方で立ち上げた emacs の &lt;strong&gt;scratch&lt;/strong&gt; で以下をタイプして、
-それぞれの行末で（Ctrl-j) をタイプして式を評価して見ましょう。&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;(getenv &amp;ldquo;PATH&amp;rdquo;)　&lt;/li&gt;
-&lt;li&gt;exec-path&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;修正するには、emacs の設定ファイルに以下のように PATH と exec-path を記述する。&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(let ((my-emacs-path
-       (list &amp;quot;/bin&amp;quot;
-             &amp;quot;/usr/bin&amp;quot;
-             &amp;quot;/usr/local/bin&amp;quot;)))
-  (setq exec-path my-emacs-path)
-  (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;補足
-
-&lt;ul&gt;
-&lt;li&gt;cygwin から呼び出した場合は、/etc/profile の PATH に加えて、Windows の環境変数 PATH
-/home/ユーザー名/シェル設定ファイル（ .zshrc または .bashrc ) のPATH が読み込まれる
-（優先されるのは、先に記述されている方）。GUIからの場合は、Windows の環境変数 PATH が
-exec-path にも適用される。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;参考
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://ergoemacs.org/emacs/emacs_env_var_paths.html&#34;&gt;http://ergoemacs.org/emacs/emacs_env_var_paths.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;4-2-gui-の-emacs-の-m-x-shell-を-コマンドプロンプトから-zsh-にする:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;4.2. GUI の Emacs の M-x shell を コマンドプロンプトから zsh にする&lt;/h2&gt;
-
-&lt;p&gt;cygwin から emacs を立ち上げて、 M-x shell で呼び出されるのは、
-&lt;strong&gt;2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する&lt;/strong&gt;
-を設定していた場合 zsh が呼び出されるが GUI の emacs から M-x shell で
-呼び出されるのはコマンドプロンプトになる。&lt;/p&gt;
-
-&lt;p&gt;理由は、cygwin からの場合は、cygwinの環境変数のSHELL(zsh.exe)が利用される一方、
-GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が利用されるため。&lt;/p&gt;
-
-&lt;p&gt;そのため、&lt;strong&gt;設定ファイルに以下を書き込む&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(setq shell-file-name &amp;quot;zsh&amp;quot;)
-(setenv &amp;quot;SHELL&amp;quot; shell-file-name)
-(setq explicit-shell-file-name shell-file-name)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;参考
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/NTEmacsWithCygwin&#34;&gt;NTEmacsWithCygwin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&#34;&gt;http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;4-3-load-path-に自分がインストールする-emacs-lisp-el-elc-置場を追記:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;4.3. load-path に自分がインストールする emacs-lisp（*.el、*.elc) 置場を追記&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;~/.emacs.d/lisp を自分がインストールする emacs-lisp（*.el、*.elc) 置場として、load-path に追加する。
-
-&lt;ul&gt;
-&lt;li&gt;~/.emacs.d/lisp 以下のサブディレクトリも自動で追記してくれる&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
-  (normal-top-level-add-subdirs-to-load-path))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;参考
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://emacswiki.org/emacs/LoadPath&#34;&gt;http://emacswiki.org/emacs/LoadPath&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;5-まとめ:3fe13699b17e7d89255f6cf2ef9bd8e3&#34;&gt;5. まとめ&lt;/h1&gt;
-
-&lt;p&gt;以下にここまで記述した init.el の設定を残しておく。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;;; Set PATH and exec-path
-(let ((my-emacs-path (list
-                      &amp;quot;/bin&amp;quot;
-                      &amp;quot;/usr/bin&amp;quot;
-                      &amp;quot;/usr/local/bin&amp;quot;)))
-  (setq exec-path my-emacs-path)
-  (setenv &amp;quot;PATH&amp;quot; (mapconcat &#39;identity my-emacs-path &amp;quot;;&amp;quot;)))
-
-;; Add my lisp dir to load-path
-(let ((default-directory &amp;quot;~/.emacs.d/lisp/&amp;quot;))
-  (normal-top-level-add-subdirs-to-load-path))
-
-;; Set SHELL Value
-(setq shell-file-name &amp;quot;zsh&amp;quot;)
-(setenv &amp;quot;SHELL&amp;quot; shell-file-name)
-(setq explicit-shell-file-name shell-file-name)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;日本語の設定や、キーカスタマイズなど、その他設定することは、まだまだたくさんありますが、
-それはまた次回ということで Windows に Linux環境の構築を〆る。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>nkf で直す文字化け</title>
       <link>http://blog.syati.info/post/nkf/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1724,6 +1475,58 @@ output: Shift_JIS
 &lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>node 利用するなら、まずは環境変数を設定しましょう</title>
+      <link>http://blog.syati.info/post/node_path/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/node_path/</guid>
+      <description>
+
+&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
+
+&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
+
+&lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
+Syati% node 
+
+require(&#39;underscore&#39;); 
+Error: Cannot find module &#39;underscore&#39;
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:362:17)
+    at require (module.js:378:17)
+    at repl:1:1
+    at REPLServer.self.eval (repl.js:109:21)
+    at rli.on.self.bufferedCmd (repl.js:258:20)
+    at REPLServer.self.eval (repl.js:116:5)
+    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
+    at Interface.EventEmitter.emit (events.js:96:17)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
+
+&lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
+
+&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm root -g
+// output =&amp;gt; /usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
     </item>
     

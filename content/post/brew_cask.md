@@ -1,6 +1,6 @@
 +++
 Categories = ["OSX"]
-Description = ""
+Description = "OSX の App のインストールは cask が便利"
 Tags = ["Env"]
 comments = true
 date = "2015-08-31T18:44:21+09:00"
