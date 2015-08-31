@@ -7,7 +7,77 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Sun, 30 Aug 2015 13:38:35 JST</updated>
+    <updated>Mon, 31 Aug 2015 18:44:21 JST</updated>
+    
+    <item>
+      <title>brew cask が便利</title>
+      <link>http://blog.syati.info/post/brew_cask/</link>
+      <pubDate>Mon, 31 Aug 2015 18:44:21 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/brew_cask/</guid>
+      <description>
+
+&lt;p&gt;Web ページや App Store から App をダブルクリックしてインストールは面倒くさいので &lt;strong&gt;cask&lt;/strong&gt; をいれて解決する。&lt;/p&gt;
+
+&lt;h1 id=&#34;インストールとコマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;インストールとコマンド&lt;/h1&gt;
+
+&lt;h2 id=&#34;インストール:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;インストール&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;cask&lt;/strong&gt; コマンドを使えるようにするために以下のコマンドを実行する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install caskroom/cask/brew-cask
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;コマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;コマンド&lt;/h2&gt;
+
+&lt;p&gt;検索&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew cask search chrome
+
+==&amp;gt; Partial matches
+chrome-devtools                    google-chrome                      google-chrome-dev
+chrome-remote-desktop-host         google-chrome-beta
+chromecast                         google-chrome-canary
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;インストール&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew cask install google-chrome
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;アンインストール&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew cask uninstall google-chrome
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;その他:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;その他&lt;/h1&gt;
+
+&lt;p&gt;cask でインストールしたアプリは以下にインストールされ、ホームフォルダ(~/)の Applications からアプリへのシンボリックリンクが作成される。ルート(/)にインストールが必要なものはパスワードが求められる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/opt/homebrew-cask/Caskroom/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以下、~/Applications の例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;~/Applications
+├── Alfred 2.app -&amp;gt; /opt/homebrew-cask/Caskroom/alfred/2.7.2_400/Alfred 2.app
+├── Alfred Preferences.app -&amp;gt; /opt/homebrew-cask/Caskroom/alfred/2.7.2_400/Alfred 2.app/Contents/Preferences/Alfred Preferences.app
+├── Chrome Apps.localized
+├── Emacs.app -&amp;gt; /opt/homebrew-cask/Caskroom/emacs/24.5-1/Emacs.app
+├── Firefox.app -&amp;gt; /opt/homebrew-cask/Caskroom/firefox/40.0.3/Firefox.app
+├── FirefoxDeveloperEdition.app -&amp;gt; /opt/homebrew-cask/Caskroom/firefoxdeveloperedition-ja/latest/FirefoxDeveloperEdition.app
+├── Google Chrome.app -&amp;gt; /opt/homebrew-cask/Caskroom/google-chrome/latest/Google Chrome.app
+├── ShiftIt.app -&amp;gt; /opt/homebrew-cask/Caskroom/shiftit/1.6.3/ShiftIt.app
+└── Visual Studio Code.app -&amp;gt; /opt/homebrew-cask/Caskroom/visual-studio-code/0.7.0/Visual Studio Code.app
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;参考:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://caskroom.io/&#34;&gt;Homebrew Cask&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Mac の Terminal で ALT KEY </title>

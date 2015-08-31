@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Docker on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://localhost:1313/categories/docker/</link>
+    <language>ja-JP</language>
+    
+    <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
+    <updated>Mon, 31 Aug 2015 18:39:00 JST</updated>
+    
+    <item>
+      <title>Docker をインストールする</title>
+      <link>http://localhost:1313/post/setup_docker/</link>
+      <pubDate>Mon, 31 Aug 2015 18:39:00 JST</pubDate>
+      
+      <guid>http://localhost:1313/post/setup_docker/</guid>
+      <description>
+
+&lt;p&gt;巷で Docker と騒がれて随分経ったでしょうか。私の Mac が新しくなったのを気に、 Docker に入門したいと思います。何か新しい開発の度にゴミが入るのはちょっとね・・・・。&lt;/p&gt;
+
+&lt;p&gt;昔、Vagrant と Chef でローカル開発環境を構築していたこともありましたが provison が遅く、何だかなぁ〜と思っているうちに遠ざかっていました。Docker はコンテナ型で、さぞ軽いのだろうと思い、さっそくインストール。&lt;/p&gt;
+
+&lt;h1 id=&#34;前提:73eb6127aa2284cfd6a6c31b18d85d8b&#34;&gt;前提&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;OSX 10.10.5&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;step-1-install-virtualbox:73eb6127aa2284cfd6a6c31b18d85d8b&#34;&gt;Step 1 Install VirtualBox&lt;/h1&gt;
+
+&lt;p&gt;VirtualBox5.0.2 だと動かないので、以下からテストビルドを入れる&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.virtualbox.org/wiki/Testbuilds&#34;&gt;https://www.virtualbox.org/wiki/Testbuilds&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;5.0.2 の場合
+&lt;a href=&#34;#aaa-1:73eb6127aa2284cfd6a6c31b18d85d8b&#34;&gt;エラー１&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/tukiyo3/items/c912fe9e403706964995&#34;&gt;Docker Toolbox付属のVirtualBox5.0.2では動かないので5.0.3を手動で入れること&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;error:73eb6127aa2284cfd6a6c31b18d85d8b&#34;&gt;Error&lt;/h1&gt;
+
+&lt;h2 id=&#34;aaa-1:73eb6127aa2284cfd6a6c31b18d85d8b&#34;&gt;virtualBox 5.0.2 時の start.sh を叩いた場合&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
+
+Setting environment variables for machine default...
+
+
+                        ##         .
+                  ## ## ##        ==
+               ## ## ## ## ##    ===
+           /&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;\___/ ===
+      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
+           \______ o           __/
+             \    \         __/
+              \____\_______/
+
+
+host is not running
+docker is configured to use the default machine with IP
+For help getting started, check out the docs at https://docs.docker.com
+
+default is not running. Please start this with docker-machine start default
+
+$ docker-machine start default
+exit status 1
+Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;virtualbox-5-0-3-にした後-以前作成した-vm-のエラー:73eb6127aa2284cfd6a6c31b18d85d8b&#34;&gt;virtualBox 5.0.3 にした後、以前作成した vm のエラー&lt;/h2&gt;
+
+&lt;p&gt;以前、作成したのは削除して、あらためて start.sh を叩きましょう。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker-machine env default
+open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or directory
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
