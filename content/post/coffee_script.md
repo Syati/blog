@@ -19,8 +19,10 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 
 [Coffee-modeでauto-completeを使えるようにする](http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/) を参考にして以下の部分を変更してあげる
 
-    (add-hook 'coffee-mode-hook
-              '(lambda ()
-                 (jquery-doc-setup) ;; ここに jquery-doc を追加する
-                 (add-to-list 'ac-dictionary-files "~/.emacs.d/ac-dict/js2-mode") ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
-                 ))
+~~~clike
+(add-hook 'coffee-mode-hook
+    '(lambda ()
+        (jquery-doc-setup) ;; ここに jquery-doc を追加する
+        (add-to-list 'ac-dictionary-files "~/.emacs.d/ac-dict/js2-mode") ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
+     ))
+~~~

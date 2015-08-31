@@ -129,11 +129,11 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 
 <p><a href="http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/">Coffee-modeでauto-completeを使えるようにする</a> を参考にして以下の部分を変更してあげる</p>
 
-<pre><code>(add-hook 'coffee-mode-hook
-          '(lambda ()
-             (jquery-doc-setup) ;; ここに jquery-doc を追加する
-             (add-to-list 'ac-dictionary-files &quot;~/.emacs.d/ac-dict/js2-mode&quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
-             ))
+<pre><code class="language-clike">(add-hook 'coffee-mode-hook
+    '(lambda ()
+        (jquery-doc-setup) ;; ここに jquery-doc を追加する
+        (add-to-list 'ac-dictionary-files &quot;~/.emacs.d/ac-dict/js2-mode&quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
+     ))
 </code></pre>
 </div></article>
 					
