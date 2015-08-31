@@ -233,37 +233,6 @@
 
 	
 	
-		<a href="http://blog.syati.info//categories/javascript"> JavaScript </a>,
-	
-
-	
-	
-	    <a href="http://blog.syati.info//categories/node"> Node </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://blog.syati.info/post/node_path/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/node_path/" itemprop="url">node 利用するなら、まずは環境変数を設定しましょう</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		javascript を REPL で利用できるといえば node 。underscore.js を試したいと思いハマったメモ。 はまった事 以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。 Syati% sudo npm install undersocre -g Syati% node require('underscore'); Error: Cannot find module 'underscore' at Function.Module._resolveFilename (module.js:338:15) at Function.Module._load (module.js:280:25) at Module.require (module.js:362:17) at require (module.js:378:17) at repl:1:1 at REPLServer.self.eval (repl.js:109:21) at rli.on.self.bufferedCmd (repl.js:258:20) at REPLServer.self.eval (repl.js:116:5) at Interface.&lt;anonymous&gt; (repl.js:248:12) at Interface.EventEmitter.emit (events.js:96:17) 原因 npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。 解決 設定するパスを確認する npm root -g // output =&gt; /usr/local/lib/node_modules 利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了 export
-		<a href="http://blog.syati.info/post/node_path/" class="more-link">Read on →</a>
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
 		<a href="http://blog.syati.info//categories/windows"> Windows </a>,
 	
 
@@ -293,6 +262,37 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 <p>今回は、Cygwin、Zsh、NTEmacs でWindows に Linux環境を構築をする。</p>
 
 		<a href="http://blog.syati.info/post/make_windows_emacs/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+		<a href="http://blog.syati.info//categories/javascript"> JavaScript </a>,
+	
+
+	
+	
+	    <a href="http://blog.syati.info//categories/node"> Node </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://blog.syati.info/post/node_path/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/node_path/" itemprop="url">node 利用するなら、まずは環境変数を設定しましょう</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		javascript を REPL で利用できるといえば node 。underscore.js を試したいと思いハマったメモ。 はまった事 以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。 Syati% sudo npm install undersocre -g Syati% node require('underscore'); Error: Cannot find module 'underscore' at Function.Module._resolveFilename (module.js:338:15) at Function.Module._load (module.js:280:25) at Module.require (module.js:362:17) at require (module.js:378:17) at repl:1:1 at REPLServer.self.eval (repl.js:109:21) at rli.on.self.bufferedCmd (repl.js:258:20) at REPLServer.self.eval (repl.js:116:5) at Interface.&lt;anonymous&gt; (repl.js:248:12) at Interface.EventEmitter.emit (events.js:96:17) 原因 npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。 解決 設定するパスを確認する npm root -g // output =&gt; /usr/local/lib/node_modules 利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了 export
+		<a href="http://blog.syati.info/post/node_path/" class="more-link">Read on →</a>
 	</div>
 </article>
 
