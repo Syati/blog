@@ -7,7 +7,35 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Mon, 31 Aug 2015 18:44:21 JST</updated>
+    <updated>Wed, 02 Sep 2015 17:58:56 JST</updated>
+    
+    <item>
+      <title>Emacs で dockerfile を編集する</title>
+      <link>http://blog.syati.info/post/emacs_dockerfilemode/</link>
+      <pubDate>Wed, 02 Sep 2015 17:58:56 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/emacs_dockerfilemode/</guid>
+      <description>
+
+&lt;p&gt;Docker に入門して、Dockerfile を書くことになったので、とりあえず dockerfile-mode 。&lt;/p&gt;
+
+&lt;h1 id=&#34;install:2ed0ba6269ab29d148cbcf4c83fce2a2&#34;&gt;Install&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;M-x package-list-package で以下をインストールする&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;dockerfile-mode&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(autoload &#39;dockerfile-mode &amp;quot;dockerfile-mode&amp;quot; nil t)
+(add-to-list &#39;auto-mode-alist &#39;(&amp;quot;Dockerfile\\&#39;&amp;quot; . dockerfile-mode))
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>brew cask が便利</title>
@@ -1617,103 +1645,6 @@ sudo apt-get install typecatcher
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&#34;&gt;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Scala の開発環境</title>
-      <link>http://blog.syati.info/post/make_scala_env/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/make_scala_env/</guid>
-      <description>
-
-&lt;p&gt;ubuntu で scala の開発環境を構築するメモ&lt;/p&gt;
-
-&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ubuntu 12.04&lt;/li&gt;
-&lt;li&gt;emacs 24.3.1&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
-
-&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;jdk をインストール
-
-&lt;ul&gt;
-&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;以下のコマンドでエラーが無いことを確認
-
-&lt;ul&gt;
-&lt;li&gt;java -version&lt;/li&gt;
-&lt;li&gt;javac -version&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;scala のダウンロード
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
-&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
-
-&lt;ul&gt;
-&lt;li&gt;scala -version&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
-
-&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;以下から tool を clone する
-
-&lt;ul&gt;
-&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;コピーした scala-mode に移動して make コマンドする
-
-&lt;ul&gt;
-&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
-(require &#39;scala-mode2)
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;yasnipet がない場合は、以下から clone する
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
