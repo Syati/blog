@@ -7,7 +7,35 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Mon, 31 Aug 2015 13:38:35 JST</updated>
+    <updated>Wed, 02 Sep 2015 17:58:56 JST</updated>
+    
+    <item>
+      <title>Emacs で dockerfile を編集する</title>
+      <link>http://blog.syati.info/post/emacs_dockerfilemode/</link>
+      <pubDate>Wed, 02 Sep 2015 17:58:56 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/emacs_dockerfilemode/</guid>
+      <description>
+
+&lt;p&gt;Docker に入門して、Dockerfile を書くことになったので、とりあえず dockerfile-mode 。&lt;/p&gt;
+
+&lt;h1 id=&#34;install:2ed0ba6269ab29d148cbcf4c83fce2a2&#34;&gt;Install&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;M-x package-list-package で以下をインストールする&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;dockerfile-mode&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(autoload &#39;dockerfile-mode &amp;quot;dockerfile-mode&amp;quot; nil t)
+(add-to-list &#39;auto-mode-alist &#39;(&amp;quot;Dockerfile\\&#39;&amp;quot; . dockerfile-mode))
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Emacs で Javascript なら js2-mode, tern-mode</title>
