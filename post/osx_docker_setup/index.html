@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head>
+	<meta charset="utf-8">
+	<title>Mac に Docker をインストールする - Syati.info</title>
+	<meta name="author" content="map[author:mizuki-y]">
+
+	
+	  
+	<meta name="description" content="Mac に Docker Toolbox をインストールして Docker を学ぶ">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='http://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://blog.syati.info/post/osx_docker_setup/">
+	<link href="http://blog.syati.info//favicon.png" rel="shortcut icon">
+	<link href="http://blog.syati.info//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://blog.syati.info//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href="http://blog.syati.info//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-9380531-6', 'auto', {'allowLinker': true});
+  ga('require', 'linker');
+  ga('linker:autoLink', ['syati.info'] );
+  ga('send', 'pageview');
+</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	
+	
+</div>
+
+<nav id="main-nav"><ul class="main">
+    <li><a href="http://blog.syati.info/">Blog</a></li>
+    <li><a href="http://blog.syati.info/about/">About</a></li>
+    <li><a href="http://blog.syati.info/post/">Archives</a></li>
+</ul>
+
+
+
+<section class="aboutme">
+  <p>
+    かんがえるさかな
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='http://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+			<a class="google" href='https://plus.google.com/&#43;mizukiyamamoto' rel="author" title="Google+">Google+</a>
+		
+		
+			<a class="twitter" href='http://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='http://blog.syati.info/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title" itemprop="name">Mac に Docker をインストールする</h1>
+	<div class="entry-content" itemprop="articleBody">
+
+<p>巷で Docker と騒がれて随分経ったでしょうか。私の Mac が新しくなったのを気に Docker に入門したいと思います。何か新しい開発の度にゴミが入るのはちょっと・・・、とも思いますしね。</p>
+
+<p>昔、Vagrant と Chef でローカル開発環境を構築していたこともありましたが provison が遅く、何だかなぁ〜と思っているうちに遠ざかっていました。Docker はコンテナ型で、vagrant より軽いのかな。</p>
+
+<h1 id="前提:721a6b0475e6190575ce57e1a6fd89e9">前提</h1>
+
+<ul>
+<li>OSX 10.10.5</li>
+</ul>
+
+<h1 id="step-1-install-virtualbox:721a6b0475e6190575ce57e1a6fd89e9">Step 1 Install VirtualBox</h1>
+
+<p>VirtualBox5.0.2 だと Step 3 で動かなくなるので、<a href="https://www.virtualbox.org/wiki/Testbuilds">テストビルド</a>から入れる。5.0.2 だった場合、 <a href="#error-1:721a6b0475e6190575ce57e1a6fd89e9">エラー1</a>が出る。</p>
+
+<ul>
+<li>参考
+
+<ul>
+<li><a href="http://qiita.com/tukiyo3/items/c912fe9e403706964995">Docker Toolbox付属のVirtualBox5.0.2では動かないので5.0.3を手動で入れること</a></li>
+</ul></li>
+</ul>
+
+<h1 id="step-2-install-docker-toolbox:721a6b0475e6190575ce57e1a6fd89e9">Step 2 Install Docker Toolbox</h1>
+
+<pre><code class="language-bash">$ brew cask install dockertoolbox
+</code></pre>
+
+<p><a href="(http://blog.syati.info/post/brew_cask/">cask</a> って思う方は、公式から <a href="https://www.docker.com/toolbox">Docker Toolbox</a> をインストールしましょう。詳しい説明は、<a href="https://docs.docker.com/mac/step_one/">Install Docker Mac OS X</a> 。インストールされる場所は以下のとおり、/usr/local/bin なので、path が通っていればコマンドが通るはずです。</p>
+
+<blockquote>
+<p>By default, the standard Docker Toolbox installation:
+   installs binaries for the Docker tools in /usr/local/bin</p>
+</blockquote>
+
+<p>コマンド例</p>
+
+<pre><code class="language-bash">$ docker --version
+Docker version 1.8.1, build d12ea79
+</code></pre>
+
+<h1 id="step-3-とりあえず起動:721a6b0475e6190575ce57e1a6fd89e9">Step 3 とりあえず起動</h1>
+
+<p><a href="http://docs.docker.com/mac/step_one/#step-3-verify-your-installation">Installation</a> に書いてあるとおり、以下のコマンドで、とりあえず起動、コマンドを実行してみる。<a href="#error:721a6b0475e6190575ce57e1a6fd89e9">エラー</a>が無いことをもって、インストール・起動ができたことの確認を終了する。</p>
+
+<pre><code class="language-bash">$ bash '/Applications/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'
+$ docker run hello-world
+
+Hello from Docker.
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker Hub account:
+ https://hub.docker.com
+
+For more examples and ideas, visit:
+  https://docs.docker.com/userguide/
+</code></pre>
+
+<h1 id="error:721a6b0475e6190575ce57e1a6fd89e9">Error</h1>
+
+<h2 id="error-1:721a6b0475e6190575ce57e1a6fd89e9">VirtualBox 5.0.2 時で start.sh を叩いた場合</h2>
+
+<p>以下のとおり、vm が立ち上がってくれない。</p>
+
+<pre><code class="language-bash">
+Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
+
+Setting environment variables for machine default...
+
+
+                        ##         .
+                  ## ## ##        ==
+               ## ## ## ## ##    ===
+           /&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;\___/ ===
+      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
+           \______ o           __/
+             \    \         __/
+              \____\_______/
+
+
+host is not running
+docker is configured to use the default machine with IP
+For help getting started, check out the docs at https://docs.docker.com
+
+default is not running. Please start this with docker-machine start default
+
+$ docker-machine start default
+exit status 1
+Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
+</code></pre>
+
+<h2 id="error-2:721a6b0475e6190575ce57e1a6fd89e9">VirtualBox 5.0.3 にした後、以前作成した vm のエラー</h2>
+
+<p>設定が取れないので、以前作成した vm は削除して、あらためて start.sh を叩きましょう。</p>
+
+<pre><code class="language-bash">$ docker-machine env default
+open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or directory
+</code></pre>
+</div></article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size=''></a>
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					<section id="comment">
+					    <h1 class="title">Comments</h1>
+					    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+					</section>
+					
+					
+
+<script type="text/javascript">
+    
+    var disqus_shortname = 'blogsyatiinfo';
+
+    
+    
+
+    
+    (function () {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+    
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+    
+</script>
+
+
+				    </div>
+				</div>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8331825501555489"
+                     data-ad-slot="1897822451"
+                     data-ad-format="auto"></ins>
+                <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2015
+
+    Syati.info
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="http://blog.syati.info//js/slash.js"></script>
+<script src="http://blog.syati.info//js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script>
+</footer>
+		</div>
+	</div>
+	<script src="http://blog.syati.info//js/prism.js"></script>
+
+</body>
+</html>
