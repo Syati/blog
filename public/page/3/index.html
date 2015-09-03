@@ -150,6 +150,32 @@
 
 	
 	
+	    <a href="http://blog.syati.info//categories/design"> Design </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://blog.syati.info/post/typecatchar/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/typecatchar/" itemprop="url">Google Fonts をローカルで利用する</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		Google Fonts をローカル環境で使いたいと思い調べたら、意外と簡単だった。以下は参考のほぼ転記。 環境 OS:ubuntu 12.04 インストール sudo add-apt-repository ppa:andrewsomething/typecatcher sudo apt-get update sudo apt-get install typecatcher メニュー -&gt; アクセサリー -&gt; TypeCatchar で起動した後、好きなフォントを選んでインストール その他 ubuntu 13.10 以上は、以下の通り sudo apt-get install typecatcher 参考 http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html
+		
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
 		<a href="http://blog.syati.info//categories/linux"> Linux </a>,
 	
 
@@ -181,18 +207,18 @@
 
 	
 	
-	    <a href="http://blog.syati.info//categories/ubuntu"> Ubuntu </a>
+	    <a href="http://blog.syati.info//categories/javascript"> JavaScript </a>
 	
 
 
 </div>
 		
-			<span class="comments"><a href="http://blog.syati.info/post/autostart_synerge_ubuntu/#disqus_thread">Comments</a></span>
+			<span class="comments"><a href="http://blog.syati.info/post/bowerrc/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/autostart_synerge_ubuntu/" itemprop="url">synerge ubuntu</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/bowerrc/" itemprop="url">bowerrc で install ディレクトリを変更する</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		Windows 7 と Ubuntu 12.04 のマシンを利用している Syati ですが、毎回 Ubuntu を立ち上げてログイン、synergy を立ち上げるのは面倒くさいので Ubuntu ログイン画面で自動で起動させるようにした。 方法 /etc/lightdm/lightdm に一行加える 1 [SeatDefaults] 2 greeter-session=unity-greeter 3 greeter-setup-script=/usr/bin/synergyc シナジーサーバーが起動しているIP /* この行を加えた */ 参考サイト Ubuntu11.10でSynergyを自動起動
+		bower install をしたはいいが、デフォルトでインストールされるディレクトリ(bower_components)を以下の例のように変えたい、そんな時は。 例 project/ js bower_components jquery img css index.html bower.json 解決策 以下のように .bowerrc を project ルートに作成してあげる。これを自分の好きなように書き換えることで、インストールディレクトリを変更できる。 // .bowerrc { &quot;directory&quot; : &quot;js/bower_components&quot; } 以降、bower install すれば希望通り .bowerrc作成後 project/ js bower_components jquery img css index.html bower.json .bowerrc 参考 デフォルトの動作 初期ディレクトリ構成 project/ js img css index.html コマンド project ルートで 以下のように bower コマンドを入れる bower init bower install jquery -save コマンド後のディレクトリ構成 ディレクトリは以下のようになる。 project/ bower_components jquery js img css index.html bower.json
 		
 	</div>
 </article>
@@ -207,18 +233,18 @@
 
 	
 	
-	    <a href="http://blog.syati.info//categories/javascript"> JavaScript </a>
+	    <a href="http://blog.syati.info//categories/ubuntu"> Ubuntu </a>
 	
 
 
 </div>
 		
-			<span class="comments"><a href="http://blog.syati.info/post/bowerrc/#disqus_thread">Comments</a></span>
+			<span class="comments"><a href="http://blog.syati.info/post/autostart_synerge_ubuntu/#disqus_thread">Comments</a></span>
 		
 	</div>
-	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/bowerrc/" itemprop="url">bowerrc で install ディレクトリを変更する</a></h1>
+	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/autostart_synerge_ubuntu/" itemprop="url">synerge ubuntu</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		bower install をしたはいいが、デフォルトでインストールされるディレクトリ(bower_components)を以下の例のように変えたい、そんな時は。 例 project/ js bower_components jquery img css index.html bower.json 解決策 以下のように .bowerrc を project ルートに作成してあげる。これを自分の好きなように書き換えることで、インストールディレクトリを変更できる。 // .bowerrc { &quot;directory&quot; : &quot;js/bower_components&quot; } 以降、bower install すれば希望通り .bowerrc作成後 project/ js bower_components jquery img css index.html bower.json .bowerrc 参考 デフォルトの動作 初期ディレクトリ構成 project/ js img css index.html コマンド project ルートで 以下のように bower コマンドを入れる bower init bower install jquery -save コマンド後のディレクトリ構成 ディレクトリは以下のようになる。 project/ bower_components jquery js img css index.html bower.json
+		Windows 7 と Ubuntu 12.04 のマシンを利用している Syati ですが、毎回 Ubuntu を立ち上げてログイン、synergy を立ち上げるのは面倒くさいので Ubuntu ログイン画面で自動で起動させるようにした。 方法 /etc/lightdm/lightdm に一行加える 1 [SeatDefaults] 2 greeter-session=unity-greeter 3 greeter-setup-script=/usr/bin/synergyc シナジーサーバーが起動しているIP /* この行を加えた */ 参考サイト Ubuntu11.10でSynergyを自動起動
 		
 	</div>
 </article>

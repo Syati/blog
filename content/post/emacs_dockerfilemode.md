@@ -4,7 +4,7 @@ Description = "Emacs で dockerfile を編集するなら dockerfile-mode"
 Tags = ["Env"]
 comments = true
 date = "2015-09-02T17:58:56+09:00"
-title = "Emacs で dockerfile を編集する"
+title = "Emacs で Dockerfile を編集する"
 
 +++
 

@@ -7,7 +7,126 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Mon, 31 Aug 2015 18:44:21 JST</updated>
+    <updated>Thu, 03 Sep 2015 16:00:00 JST</updated>
+    
+    <item>
+      <title>Mac に Docker をインストールする</title>
+      <link>http://blog.syati.info/post/osx_docker_setup/</link>
+      <pubDate>Thu, 03 Sep 2015 16:00:00 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/osx_docker_setup/</guid>
+      <description>
+
+&lt;p&gt;巷で Docker と騒がれて随分経ったでしょうか。私の Mac が新しくなったのを気に Docker に入門したいと思います。何か新しい開発の度にゴミが入るのはちょっと・・・、とも思いますしね。&lt;/p&gt;
+
+&lt;p&gt;昔、Vagrant と Chef でローカル開発環境を構築していたこともありましたが provison が遅く、何だかなぁ〜と思っているうちに遠ざかっていました。Docker はコンテナ型で、vagrant より軽いのかな。&lt;/p&gt;
+
+&lt;h1 id=&#34;前提:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;前提&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;OSX 10.10.5&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;step-1-install-virtualbox:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 1 Install VirtualBox&lt;/h1&gt;
+
+&lt;p&gt;VirtualBox5.0.2 だと Step 3 で動かなくなるので、&lt;a href=&#34;https://www.virtualbox.org/wiki/Testbuilds&#34;&gt;テストビルド&lt;/a&gt;から入れる。5.0.2 だった場合、 &lt;a href=&#34;#error-1:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;エラー1&lt;/a&gt;が出る。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;参考
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/tukiyo3/items/c912fe9e403706964995&#34;&gt;Docker Toolbox付属のVirtualBox5.0.2では動かないので5.0.3を手動で入れること&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;step-2-install-docker-toolbox:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 2 Install Docker Toolbox&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew cask install dockertoolbox
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;(http://blog.syati.info/post/brew_cask/&#34;&gt;cask&lt;/a&gt; って思う方は、公式から &lt;a href=&#34;https://www.docker.com/toolbox&#34;&gt;Docker Toolbox&lt;/a&gt; をインストールしましょう。詳しい説明は、&lt;a href=&#34;https://docs.docker.com/mac/step_one/&#34;&gt;Install Docker Mac OS X&lt;/a&gt; 。インストールされる場所は以下のとおり、/usr/local/bin なので、path が通っていればコマンドが通るはずです。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;By default, the standard Docker Toolbox installation:
+   installs binaries for the Docker tools in /usr/local/bin&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;コマンド例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker --version
+Docker version 1.8.1, build d12ea79
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-3-とりあえず起動:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 3 とりあえず起動&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://docs.docker.com/mac/step_one/#step-3-verify-your-installation&#34;&gt;Installation&lt;/a&gt; に書いてあるとおり、以下のコマンドで、とりあえず起動、コマンドを実行してみる。&lt;a href=&#34;#error:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;エラー&lt;/a&gt;が無いことをもって、インストール・起動ができたことの確認を終了する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ bash &#39;/Applications/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh&#39;
+$ docker run hello-world
+
+Hello from Docker.
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the &amp;quot;hello-world&amp;quot; image from the Docker Hub.
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker Hub account:
+ https://hub.docker.com
+
+For more examples and ideas, visit:
+  https://docs.docker.com/userguide/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;error:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Error&lt;/h1&gt;
+
+&lt;h2 id=&#34;error-1:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;VirtualBox 5.0.2 時で start.sh を叩いた場合&lt;/h2&gt;
+
+&lt;p&gt;以下のとおり、vm が立ち上がってくれない。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
+Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
+
+Setting environment variables for machine default...
+
+
+                        ##         .
+                  ## ## ##        ==
+               ## ## ## ## ##    ===
+           /&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;&amp;quot;\___/ ===
+      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
+           \______ o           __/
+             \    \         __/
+              \____\_______/
+
+
+host is not running
+docker is configured to use the default machine with IP
+For help getting started, check out the docs at https://docs.docker.com
+
+default is not running. Please start this with docker-machine start default
+
+$ docker-machine start default
+exit status 1
+Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;error-2:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;VirtualBox 5.0.3 にした後、以前作成した vm のエラー&lt;/h2&gt;
+
+&lt;p&gt;設定が取れないので、以前作成した vm は削除して、あらためて start.sh を叩きましょう。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker-machine env default
+open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or directory
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>brew cask が便利</title>
