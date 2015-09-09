@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head>
+	<meta charset="utf-8">
+	<title>docker-machine コマンドの使用方法・流れ - Syati.info</title>
+	<meta name="author" content="map[author:mizuki-y]">
+
+	
+	  
+	<meta name="description" content="docker-machine コマンドの使用方法・流れ">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='http://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://blog.syati.info/post/docker_machine/">
+	<link href="http://blog.syati.info//favicon.png" rel="shortcut icon">
+	<link href="http://blog.syati.info//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://blog.syati.info//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href="http://blog.syati.info//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-9380531-6', 'auto', {'allowLinker': true});
+  ga('require', 'linker');
+  ga('linker:autoLink', ['syati.info'] );
+  ga('send', 'pageview');
+</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	
+	
+</div>
+
+<nav id="main-nav"><ul class="main">
+    <li><a href="http://blog.syati.info/">Blog</a></li>
+    <li><a href="http://blog.syati.info/about/">About</a></li>
+    <li><a href="http://blog.syati.info/post/">Archives</a></li>
+</ul>
+
+
+
+<section class="aboutme">
+  <p>
+    かんがえるさかな
+  </p>
+</section>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='http://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+			<a class="google" href='https://plus.google.com/&#43;mizukiyamamoto' rel="author" title="Google+">Google+</a>
+		
+		
+			<a class="twitter" href='http://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='http://blog.syati.info/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title" itemprop="name">docker-machine コマンドの使用方法・流れ</h1>
+	<div class="entry-content" itemprop="articleBody">
+
+<p>Docker すごい。 何がすごいって環境構築が楽すぎる。以前は、Vagrant と Chef でゴリゴリ書いてアプリケーションが動くように頑張ってましたが、そんな事しなくても大方用意されてる。あとはその組み合わせ環境を構築するだけ。懸念点であった Vagrant 、Chef のような provision が、遅いということは今のところ無い。最初にイメージを DL してコンテナ化するので、若干の時間はかかるものの、それでも早い。 具体的な環境構築については、後日記そうと思う。</p>
+
+<p>今回は <strong>docker-machine コマンド</strong>（コンテナを動かす vm を管理するコマンド）の使用方法、流れを記す。</p>
+
+<h1 id="前提:7c5114aaedd3fb4e06a20334e7806cc9">前提</h1>
+
+<ul>
+<li>OSX 10.10.5</li>
+<li>Docker Toolbox
+
+<ul>
+<li>Docker version 1.8.1, build d12ea79</li>
+<li>docker-machine version 0.4.1 (e2c88d6)</li>
+</ul></li>
+<li>Virtual Box 5.0.3</li>
+</ul>
+
+<h1 id="docker-machine-コマンド-流れ:7c5114aaedd3fb4e06a20334e7806cc9">docker-machine コマンド、流れ</h1>
+
+<p>以下のレイヤーと対応するコマンドを覚えておくと、スムーズかもしれない。</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">レイヤー</th>
+<th align="left">対応コマンド</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Docker Container</td>
+<td align="left">docker</td>
+</tr>
+
+<tr>
+<td align="left">Docker VM</td>
+<td align="left">docker-machine</td>
+</tr>
+
+<tr>
+<td align="left">OSX</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="step-1-docker-vm-を確認する:7c5114aaedd3fb4e06a20334e7806cc9">Step 1 docker vm を確認する</h2>
+
+<p>作成した docker vm を確認する。普段の <strong>ls</strong> と同じ感じで使う頻度が高い。はじめは何もないので空である。</p>
+
+<pre><code class="language-bash">$ docker-machine ls
+
+NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
+</code></pre>
+
+<h2 id="step-2-docker-vm-を作成する:7c5114aaedd3fb4e06a20334e7806cc9">Step 2 docker vm を作成する</h2>
+
+<p>docker vm を作成する。 以下のコマンドは、オプション driver で virtualbox を指定して、 vm 名を sample にしている。色々オプションがあるので、もっと詳しくという方は、<a href="https://docs.docker.com/machine/reference/create/">create</a> を参考にしてください。</p>
+
+<pre><code class="language-bash">$ docker-machine create --driver virtualbox sample
+
+Creating VirtualBox VM...
+Creating SSH key...
+Starting VirtualBox VM...
+Starting VM...
+To see how to connect Docker to this machine, run: docker-machine env sample
+</code></pre>
+
+<p>Step 1 の通り、作成した docker vm を確認してみる。vm が作成されているとともに、STATE を見ることで動作していること、URL を見ることで IP が割り振られていることが確認できる。</p>
+
+<pre><code class="language-bash">$ docker-machine ls
+
+NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
+sample             virtualbox   Running   tcp://192.168.99.103:2376
+</code></pre>
+
+<h2 id="step-3-docker-vm-を利用する:7c5114aaedd3fb4e06a20334e7806cc9">Step 3 docker vm を利用する</h2>
+
+<p>Step 2 まででは、対象の docker vm にコンテナを操作するコマンド(docker ps など)を実行できない。SSH で対象 vm に入れば可能だが、そんな面倒くさいことは毎回したくない。
+そこで、以下のように env -&gt; eval コマンドを実行して、利用する docker vm の環境変数を設定する。</p>
+
+<pre><code class="language-bash">$ docker-machine env sample
+
+export DOCKER_TLS_VERIFY=&quot;1&quot;
+export DOCKER_HOST=&quot;tcp://192.168.99.103:2376&quot;
+export DOCKER_CERT_PATH=&quot;/Users/mizuki-y/.docker/machine/machines/sample&quot;
+export DOCKER_MACHINE_NAME=&quot;sample&quot;
+# Run this command to configure your shell:
+# eval &quot;$(docker-machine env sample)&quot;
+</code></pre>
+
+<pre><code class="language-bash">$ eval &quot;$(docker-machine env sample)&quot;
+$ docker-machine ls
+
+NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
+sample    *        virtualbox   Running   tcp://192.168.99.103:2376
+</code></pre>
+
+<p>これで今後利用する docker コマンドは docker vm である sample に発行される。</p>
+
+<h1 id="その他:7c5114aaedd3fb4e06a20334e7806cc9">その他</h1>
+
+<h2 id="docker-vm-の中身を確認する-ssh-で入る:7c5114aaedd3fb4e06a20334e7806cc9">docker vm の中身を確認する ssh で入る</h2>
+
+<pre><code class="language-bash">$ docker-machine ssh sample
+
+                        ##         .
+                  ## ## ##        ==
+               ## ## ## ## ##    ===
+           /&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;\___/ ===
+      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
+           \______ o           __/
+             \    \         __/
+              \____\_______/
+ _                 _   ____     _            _
+| |__   ___   ___ | |_|___ \ __| | ___   ___| | _____ _ __
+| '_ \ / _ \ / _ \| __| __) / _` |/ _ \ / __| |/ / _ \ '__|
+| |_) | (_) | (_) | |_ / __/ (_| | (_) | (__|   &lt;  __/ |
+|_.__/ \___/ \___/ \__|_____\__,_|\___/ \___|_|\_\___|_|
+Boot2Docker version 1.8.1, build master : 7f12e95 - Thu Aug 13 03:24:56 UTC 2015
+Docker version 1.8.1, build d12ea79
+</code></pre>
+</div></article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size=''></a>
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					<section id="comment">
+					    <h1 class="title">Comments</h1>
+					    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+					</section>
+					
+					
+
+<script type="text/javascript">
+    
+    var disqus_shortname = 'blogsyatiinfo';
+
+    
+    
+
+    
+    (function () {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+    
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+    
+</script>
+
+
+				    </div>
+				</div>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8331825501555489"
+                     data-ad-slot="1897822451"
+                     data-ad-format="auto"></ins>
+                <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2015
+
+    Syati.info
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="http://blog.syati.info//js/slash.js"></script>
+<script src="http://blog.syati.info//js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script>
+</footer>
+		</div>
+	</div>
+	<script src="http://blog.syati.info//js/prism.js"></script>
+
+</body>
+</html>
