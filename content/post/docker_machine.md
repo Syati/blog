@@ -69,7 +69,7 @@ sample             virtualbox   Running   tcp://192.168.99.103:2376
 ## Step 3 docker vm を利用する
 
 Step 2 まででは、対象の docker vm にコンテナを操作するコマンド(docker ps など)を実行できない。SSH で対象 vm に入れば可能だが、そんな面倒くさいことは毎回したくない。
-そこで、以下のように env -> eval コマンドを実行して、利用する docker vm の環境変数を設定する。
+そこで、以下のように env -> eval コマンドを実行して、利用する docker vm の環境変数を設定する。設定した docker vm の ACTIVE に * が記される。
 
 
 ~~~bash
@@ -90,6 +90,7 @@ $ docker-machine ls
 NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
 sample    *        virtualbox   Running   tcp://192.168.99.103:2376
 ~~~
+
 
 これで今後利用する docker コマンドは docker vm である sample に発行される。
 
