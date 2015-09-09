@@ -97,7 +97,7 @@ sample             virtualbox   Running   tcp://192.168.99.103:2376
 &lt;h2 id=&#34;step-3-docker-vm-を利用する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 3 docker vm を利用する&lt;/h2&gt;
 
 &lt;p&gt;Step 2 まででは、対象の docker vm にコンテナを操作するコマンド(docker ps など)を実行できない。SSH で対象 vm に入れば可能だが、そんな面倒くさいことは毎回したくない。
-そこで、以下のように env -&amp;gt; eval コマンドを実行して、利用する docker vm の環境変数を設定する。&lt;/p&gt;
+そこで、以下のように env -&amp;gt; eval コマンドを実行して、利用する docker vm の環境変数を設定する。設定した docker vm の ACTIVE に * が記される。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker-machine env sample
 

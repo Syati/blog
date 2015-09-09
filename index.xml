@@ -97,7 +97,7 @@ sample             virtualbox   Running   tcp://192.168.99.103:2376
 &lt;h2 id=&#34;step-3-docker-vm-を利用する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 3 docker vm を利用する&lt;/h2&gt;
 
 &lt;p&gt;Step 2 まででは、対象の docker vm にコンテナを操作するコマンド(docker ps など)を実行できない。SSH で対象 vm に入れば可能だが、そんな面倒くさいことは毎回したくない。
-そこで、以下のように env -&amp;gt; eval コマンドを実行して、利用する docker vm の環境変数を設定する。&lt;/p&gt;
+そこで、以下のように env -&amp;gt; eval コマンドを実行して、利用する docker vm の環境変数を設定する。設定した docker vm の ACTIVE に * が記される。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker-machine env sample
 
@@ -1315,24 +1315,6 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
-      <title>Emacs を 256色で起動する</title>
-      <link>http://blog.syati.info/post/emacs_256/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/emacs_256/</guid>
-      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
-
-&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
-以下のコマンドを実行しましょう。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Emacs で JavaScript の開発環境を整える</title>
       <link>http://blog.syati.info/post/emacsJavascript/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
@@ -1421,6 +1403,24 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 &lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Emacs を 256色で起動する</title>
+      <link>http://blog.syati.info/post/emacs_256/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/emacs_256/</guid>
+      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
+
+&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
+以下のコマンドを実行しましょう。&lt;/p&gt;
 </description>
     </item>
     
