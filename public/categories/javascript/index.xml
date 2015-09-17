@@ -456,21 +456,21 @@ describe(&#39;Unit: app moudle &#39;, function(){
 
 &lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;Syati% sudo npm install undersocre -g
-Syati% node 
-
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo npm install undersocre -g
+$ node 
+    
 require(&#39;underscore&#39;); 
 Error: Cannot find module &#39;underscore&#39;
-    at Function.Module._resolveFilename (module.js:338:15)
-    at Function.Module._load (module.js:280:25)
-    at Module.require (module.js:362:17)
-    at require (module.js:378:17)
-    at repl:1:1
-    at REPLServer.self.eval (repl.js:109:21)
-    at rli.on.self.bufferedCmd (repl.js:258:20)
-    at REPLServer.self.eval (repl.js:116:5)
-    at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
-    at Interface.EventEmitter.emit (events.js:96:17)
+  at Function.Module._resolveFilename (module.js:338:15)
+  at Function.Module._load (module.js:280:25)
+  at Module.require (module.js:362:17)
+  at require (module.js:378:17)
+  at repl:1:1
+  at REPLServer.self.eval (repl.js:109:21)
+  at rli.on.self.bufferedCmd (repl.js:258:20)
+  at REPLServer.self.eval (repl.js:116:5)
+  at Interface.&amp;lt;anonymous&amp;gt; (repl.js:248:12)
+  at Interface.EventEmitter.emit (events.js:96:17)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
@@ -480,17 +480,19 @@ Error: Cannot find module &#39;underscore&#39;
 &lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;設定するパスを確認する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm root -g
-// output =&amp;gt; /usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;export NODE_PATH=/usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;設定するパスを確認する&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;npm root -g
+/usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export NODE_PATH=/usr/local/lib/node_modules
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

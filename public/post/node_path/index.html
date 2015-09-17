@@ -118,21 +118,21 @@
 
 <p>以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。</p>
 
-<pre><code>Syati% sudo npm install undersocre -g
-Syati% node 
-
+<pre><code class="language-bash">$ sudo npm install undersocre -g
+$ node 
+    
 require('underscore'); 
 Error: Cannot find module 'underscore'
-    at Function.Module._resolveFilename (module.js:338:15)
-    at Function.Module._load (module.js:280:25)
-    at Module.require (module.js:362:17)
-    at require (module.js:378:17)
-    at repl:1:1
-    at REPLServer.self.eval (repl.js:109:21)
-    at rli.on.self.bufferedCmd (repl.js:258:20)
-    at REPLServer.self.eval (repl.js:116:5)
-    at Interface.&lt;anonymous&gt; (repl.js:248:12)
-    at Interface.EventEmitter.emit (events.js:96:17)
+  at Function.Module._resolveFilename (module.js:338:15)
+  at Function.Module._load (module.js:280:25)
+  at Module.require (module.js:362:17)
+  at require (module.js:378:17)
+  at repl:1:1
+  at REPLServer.self.eval (repl.js:109:21)
+  at rli.on.self.bufferedCmd (repl.js:258:20)
+  at REPLServer.self.eval (repl.js:116:5)
+  at Interface.&lt;anonymous&gt; (repl.js:248:12)
+  at Interface.EventEmitter.emit (events.js:96:17)
 </code></pre>
 
 <h1 id="原因:27ef1157700a533f7be8bb419ba8b42a">原因</h1>
@@ -142,17 +142,19 @@ Error: Cannot find module 'underscore'
 <h1 id="解決:27ef1157700a533f7be8bb419ba8b42a">解決</h1>
 
 <ol>
-<li><p>設定するパスを確認する</p>
-
-<pre><code>npm root -g
-// output =&gt; /usr/local/lib/node_modules
-</code></pre></li>
-
-<li><p>利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了</p>
-
-<pre><code>export NODE_PATH=/usr/local/lib/node_modules
-</code></pre></li>
+<li>設定するパスを確認する</li>
 </ol>
+
+<pre><code class="language-bash">npm root -g
+/usr/local/lib/node_modules
+</code></pre>
+
+<ol>
+<li>利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了</li>
+</ol>
+
+<pre><code class="language-bash">export NODE_PATH=/usr/local/lib/node_modules
+</code></pre>
 </div></article>
 					
 						<div class="share">
