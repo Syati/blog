@@ -1425,190 +1425,98 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
     </item>
     
     <item>
-      <title>Development Environment in my OSX</title>
-      <link>http://blog.syati.info/post/make_env_mac/</link>
+      <title>Scala の開発環境</title>
+      <link>http://blog.syati.info/post/make_scala_env/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://blog.syati.info/post/make_env_mac/</guid>
+      <guid>http://blog.syati.info/post/make_scala_env/</guid>
       <description>
 
-&lt;p&gt;仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。
-ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。&lt;/p&gt;
+&lt;p&gt;ubuntu で scala の開発環境を構築するメモ&lt;/p&gt;
 
-&lt;h1 id=&#34;開発環境:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;開発環境&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;xcode:開発環境
+&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;プラグイン
+&lt;li&gt;ubuntu 12.04&lt;/li&gt;
+&lt;li&gt;emacs 24.3.1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
+
+&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;jdk をインストール
 
 &lt;ul&gt;
-&lt;li&gt;command line tools (os x mountain lion) for xcode&lt;/li&gt;
+&lt;li&gt;sudo apt-get install default-jdk&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;以下のコマンドでエラーが無いことを確認
+
+&lt;ul&gt;
+&lt;li&gt;java -version&lt;/li&gt;
+&lt;li&gt;javac -version&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;scala のダウンロード
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.scala-lang.org/download/&#34;&gt;http://www.scala-lang.org/download/&lt;/a&gt;&lt;br /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install scala でも可能だが version が古い&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;fink:package management のソフト
+&lt;li&gt;解凍ファイルを usr/local に上書きする&lt;/li&gt;
+&lt;li&gt;ターミナルから以下のコマンドで、インストールできているか確認する
 
 &lt;ul&gt;
-&lt;li&gt;上記を用いて入れたソフトウェア
-
-&lt;ul&gt;
-&lt;li&gt;coreutil-default
-
-&lt;ul&gt;
-&lt;li&gt;prefix に g がない方&lt;/li&gt;
-&lt;li&gt;/sw/bin にコマンドが入るので、パスの優先度を上げておく&lt;/li&gt;
+&lt;li&gt;scala -version&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;wget&lt;/li&gt;
-&lt;li&gt;tmux&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;問題：mac の tmux では pbcopy/pbpaste で クリップボードの共有ができない&lt;/li&gt;
-&lt;li&gt;解決：&lt;a href=&#34;http://d.hatena.ne.jp/tmatsuu/20111220/1324399472&#34;&gt;X環境のクリップボードやOS Xのペーストボードとtmuxのバッファを連携する方法&lt;/a&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
+
+&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;autoconf
+&lt;li&gt;以下から tool を clone する
 
 &lt;ul&gt;
-&lt;li&gt;古かったので結局自分で入れた&lt;/li&gt;
+&lt;li&gt;git clone &lt;a href=&#34;https://github.com/hvesalai/scala-mode2.git&#34;&gt;https://github.com/hvesalai/scala-mode2.git&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;emacs24.2:エディター
+&lt;li&gt;コピーした scala-mode に移動して make コマンドする
 
 &lt;ul&gt;
-&lt;li&gt;デフォルトは emacs22.1 のため導入する。ただし、パッチを入れないと最大化等できない。以下のサイト参照のこと
+&lt;li&gt;カレントディレクトリで .elc ファイルを作成される&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;init.el に書く加える&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(add-to-list &#39;load-path &amp;quot;/path/to/scala-mode2/&amp;quot;)
+(require &#39;scala-mode2)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://mgrace.info/?p=1032&#34;&gt;http://mgrace.info/?p=1032&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://sakito.jp/emacs/emacs24.html&#34;&gt;http://sakito.jp/emacs/emacs24.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;デフォルトターミナルの変更
+&lt;li&gt;yasnipet がない場合は、以下から clone する
 
 &lt;ul&gt;
-&lt;li&gt;コマンド &lt;strong&gt;chsh&lt;/strong&gt; で zsh にする&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;iTerm2：ターミナル
-
-&lt;ul&gt;
-&lt;li&gt;デフォルトのターミナルに比べて、なんか見やすかったから入れといた
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.iterm2.com/#/section/home&#34;&gt;http://www.iterm2.com/#/section/home&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;meta-key が使えるように以下を実施する
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://d.hatena.ne.jp/kitokitoki/20111129/p1&#34;&gt;http://d.hatena.ne.jp/kitokitoki/20111129/p1&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;zsh + tmux を使っていると、当該ソフトの autocomplete とか tab とか、あまり必要性を感じないんだが、どうなんだろうか。なんかメリットあったら教えて下さい。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/capitaomorte/yasnippet&#34;&gt;https://github.com/capitaomorte/yasnippet&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;ブラウジング:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;ブラウジング&lt;/h1&gt;
+&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
 
 &lt;ul&gt;
-&lt;li&gt;adobe pdf&lt;/li&gt;
-&lt;li&gt;adobe flash&lt;/li&gt;
-&lt;li&gt;firefox:ブラウザ
-
-&lt;ul&gt;
-&lt;li&gt;meta key が効かない問題あり・・・。現在対処不明&lt;/li&gt;
-&lt;li&gt;アドオンのインストール
-
-&lt;ul&gt;
-&lt;li&gt;keysnail&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;plugin(従来と異なる点だけ)
-
-&lt;ul&gt;
-&lt;li&gt;Set Mac
-
-&lt;ul&gt;
-&lt;li&gt;firefox で Ctl + space が利用できるようになる
-
-&lt;ul&gt;
-&lt;li&gt;導入しない場合 Ctrl + space では、 右クリックになる&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;問題：acrobat reader をインストールしたのに、firefox から pdf の DL がされない、見れない、見れたと思ったら文字化けして困った&lt;/li&gt;
-&lt;li&gt;解決：firefox を選択した後、上部のメニューバーの「 firefox 」-&amp;gt; 「環境設定」-&amp;gt; 「アプリケーションタブ」を選択して以下の通りする
-
-&lt;ul&gt;
-&lt;li&gt;ファイルの種類：Adobe Pdf document&lt;/li&gt;
-&lt;li&gt;取り扱い方法　：Adobe Readerを使用（標準設定）&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;ここが、Adobe Acrobat NPAPI Plug-in &lt;code&gt;~&lt;/code&gt; とかになっていたのが原因だった&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;キーバインド設定:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;キーバインド設定&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;HyperSwitch：ウィンドウ切り替え
-
-&lt;ul&gt;
-&lt;li&gt;mac の command + tab だと、アプリケーション単位の切り替えしかできないことに加えて、main os の ubuntu とキーバインド alt + tab で揃えたいので導入する
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://bahoom.com/hyperswitch&#34;&gt;http://bahoom.com/hyperswitch&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;問題：HyperSwitch の設定から command + tab -&amp;gt; alt + tab に変更したが、ターミナルではうまく働かない&lt;/li&gt;
-&lt;li&gt;解決：ターミナルを選択した後、上部のメニューバーの「ターミナル」 -&amp;gt; 「キーボード入力のセキュリティを保護」のチェックを外す
-
-&lt;ul&gt;
-&lt;li&gt;「キーボード入力のセキュリティを保護」が原因だったけど、これ何？&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;KeyRemap4MacBook:キーバインド変更
-
-&lt;ul&gt;
-&lt;li&gt;キーボードの「英数」「かな」がうざいので、 以下の通り違うキーに変更する
-
-&lt;ol&gt;
-&lt;li&gt;KeyRemap4MacBookを立ち上げて、Change Key タブから For Japanese メニューを選択する&lt;/li&gt;
-&lt;li&gt;Change EISUU Key メニュー選択して、好きなキーバインドに変更する&lt;/li&gt;
-&lt;li&gt;Change KANA key も同様に実施する&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;IMEの変換（ひらがなと英数）を Ctrl + / にしたいので以下を実施する
-
-&lt;ol&gt;
-&lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「キーボード」-&amp;gt; 「キーボードショートカット」 -&amp;gt; 「キーボードと文字入力」を選択する&lt;/li&gt;
-&lt;li&gt;「前の入力ソース」をダブルクリック後、Ctrl + / をタイプする&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;その他:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;その他&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;inconsolate:フォント&lt;/li&gt;
-&lt;li&gt;takao:フォント&lt;/li&gt;
-&lt;li&gt;QuickSilver：ランチャー
-
-&lt;ul&gt;
-&lt;li&gt;どこからでもキーボードでアプリケーションを起動したいため導入する
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://quicksilver.en.softonic.com/mac&#34;&gt;http://quicksilver.en.softonic.com/mac&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;ShifIt:ウィンドウサイズ変更アプリ
-
-&lt;ul&gt;
-&lt;li&gt;Windows の windowボタン + カーソル で ウィンドを半分にしたり拡大したり出来たと思いますが、それを可能にする。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://code.google.com/p/shiftit/&#34;&gt;http://code.google.com/p/shiftit/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://veadardiary.blog29.fc2.com/blog-entry-2764.html&#34;&gt;ウィンドウのサイズ変更や移動をホットキーから『ShiftIt』&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;マウスのホイール操作が逆なので戻す
-
-&lt;ol&gt;
-&lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「マウス」-&amp;gt; 「スクロールの方向：ナチュラル」のチェックを外す&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.iss.ms/2012/06/02/101357&#34;&gt;Scalaの入門にあたってscala-modeを入れてみた&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
