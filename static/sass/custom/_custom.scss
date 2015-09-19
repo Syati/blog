@@ -2,3 +2,16 @@
     width: 50%;
     margin: 0 auto;
 }
+
+.search-nav {
+    margin: 10px 0 0 0;
+    overflow: hidden;
+
+    #search {
+        min-width: 85%;
+        border-radius: 4px;
+        border: 1px solid #CCC;
+        padding: 4px 12px;
+        font-size: 14px;
+    }
+}

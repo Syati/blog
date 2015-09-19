@@ -1,0 +1,24 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "for search",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Syati/blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Syati/blog/issues"
+  },
+  "homepage": "https://github.com/Syati/blog#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "string": "^3.3.1",
+    "toml": "^2.3.0"
+  }
+}
