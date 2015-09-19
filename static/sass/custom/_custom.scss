@@ -6,7 +6,7 @@
 .search-nav {
     margin: 10px 0 0 0;
     overflow: hidden;
-
+    
     #search {
         min-width: 85%;
         border-radius: 4px;
@@ -14,4 +14,11 @@
         padding: 4px 12px;
         font-size: 14px;
     }
+    
+    #results {
+        li {
+            display: block !important;
+        }
+    }
 }
+    
