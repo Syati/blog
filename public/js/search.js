@@ -1,6 +1,9 @@
+// The code is based on the below gist
+// https://gist.github.com/sebz/efddfc8fdcb6b480f567
+
 $(document).ready(function() {
   'use strict';
-  
+
   var lunrIndex,
       $results,
       pagesIndex;
@@ -12,7 +15,6 @@ $(document).ready(function() {
     $.getJSON(jsonPath)
       .done(function(index) {
         pagesIndex = index;
-        console.log("index:", pagesIndex);
 
         // Set up lunrjs by declaring the fields we use
         // Also provide their boost level for the ranking
@@ -66,7 +68,7 @@ $(document).ready(function() {
    */
   function search(query) {
     // Find the item in our index corresponding to the lunr one to have more info
-    // Lunr result: 
+    // Lunr result:
     //  {ref: "/section/page1", score: 0.2725657778206127}
     // Our result:
     //  {title:"Page1", href:"/section/page1", ...}
@@ -102,4 +104,3 @@ $(document).ready(function() {
   initLunr();
   initUI();
 });
-
