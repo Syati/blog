@@ -73,6 +73,11 @@
   </url>
   
   <url>
+    <loc>http://blog.syati.info/post/emacsJavascript/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.syati.info/post/emacs_256/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
@@ -93,11 +98,6 @@
   </url>
   
   <url>
-    <loc>http://blog.syati.info/post/make_windows_emacs/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://blog.syati.info/post/node_path/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
@@ -113,12 +113,12 @@
   </url>
   
   <url>
-    <loc>http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/</loc>
+    <loc>http://blog.syati.info/post/make_windows_emacs/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.syati.info/post/vagrant_css_problem/</loc>
+    <loc>http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>http://blog.syati.info/post/emacsJavascript/</loc>
+    <loc>http://blog.syati.info/post/vagrant_css_problem/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
