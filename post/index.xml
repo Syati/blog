@@ -658,7 +658,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
     </item>
     
     <item>
-      <title>Hugo に SyntaxHighlighter を導入</title>
+      <title>Hugo Part 4 - Hugo に SyntaxHighlighter を導入</title>
       <link>http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</link>
       <pubDate>Wed, 17 Jun 2015 22:42:39 JST</pubDate>
       
@@ -745,7 +745,7 @@ int main(void)
     </item>
     
     <item>
-      <title>Hugo にコメント欄を導入</title>
+      <title>Hugo Part 3 - Hugo にコメント欄を導入</title>
       <link>http://blog.syati.info/post/add_disqus_to_hugo/</link>
       <pubDate>Tue, 09 Jun 2015 00:02:04 JST</pubDate>
       
@@ -911,7 +911,7 @@ comments = true
     </item>
     
     <item>
-      <title>Hugo で github にブログを立ち上げる Part 2</title>
+      <title>Hugo Part 2 - Hugo で github にブログを立ち上げる</title>
       <link>http://blog.syati.info/post/create_hugo_2/</link>
       <pubDate>Sun, 07 Jun 2015 21:55:31 JST</pubDate>
       
@@ -1071,7 +1071,7 @@ git subtree push --prefix=public git@github.com:[username]/yourblog.git gh-pages
     </item>
     
     <item>
-      <title>Hugo で github にブログを立ち上げる Part 1</title>
+      <title>Hugo Part 1 - Hugo で github にブログを立ち上げる</title>
       <link>http://blog.syati.info/post/create_hugo/</link>
       <pubDate>Fri, 05 Jun 2015 21:55:31 JST</pubDate>
       
