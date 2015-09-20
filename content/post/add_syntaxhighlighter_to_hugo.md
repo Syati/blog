@@ -4,7 +4,7 @@ Description = "Hugo に SyntaxHighlighter を導入"
 Tags = ["Blog", "github.io"]
 comments = true
 date = "2015-06-17T22:42:39+09:00"
-title = "Hugo に SyntaxHighlighter を導入"
+title = "Hugo Part 4 - Hugo に SyntaxHighlighter を導入"
 
 +++
 
