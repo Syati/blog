@@ -1,0 +1,369 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head>
+	<meta charset="utf-8">
+	<title>Docker Part 3 - Docker で nginx を構築する - Syati.info</title>
+	<meta name="author" content="map[author:mizuki-y]">
+
+	
+	  
+	<meta name="description" content="Docker で nginx を構築する">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='http://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://blog.syati.info/post/docker_tutorial_nginx/">
+	<link href="http://blog.syati.info/favicon.png" rel="shortcut icon">
+	<link href="http://blog.syati.info/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://blog.syati.info/css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-9380531-6', 'auto', {'allowLinker': true});
+  ga('require', 'linker');
+  ga('linker:autoLink', ['syati.info'] );
+  ga('send', 'pageview');
+</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner">
+<h1>
+    Syati.info
+</h1>
+
+
+<p>
+    かんがえるさかな
+</p>
+</section>
+
+
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='http://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+			<a class="google" href='https://plus.google.com/&#43;mizukiyamamoto' rel="author" title="Google+">Google+</a>
+		
+		
+			<a class="twitter" href='http://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='http://blog.syati.info/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+<nav id="main-nav">
+    <ul class="main">
+    <li><a href="http://blog.syati.info/">Blog</a></li>
+    <li><a href="http://blog.syati.info/about/">About</a></li>
+    <li><a href="http://blog.syati.info/post/">Archives</a></li>
+</ul>
+<div class="search-nav">
+    <label for="search">Search</label>
+    <input id="search" type="text">
+    <ul id="results">
+    </ul>
+</div>
+
+
+
+</nav>
+
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title" itemprop="name">Docker Part 3 - Docker で nginx を構築する</h1>
+	<div class="entry-content" itemprop="articleBody">
+
+<p><a href="http://blog.syati.info/post/docker_machine/">docker-machine コマンドの使用方法・流れ</a> で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。</p>
+
+<p>以前、何度か <a href="http://dotinstall.com/lessons/basic_docker">Docker入門 (全11回)</a> で docker に入門しましたが、その後挫折。 入門して nginx 構築を出来たはいいが、 MEAN とか LAMP の開発環境構築するのがすごく困難な感じがして。<a href="https://docs.docker.com/reference/commandline/cli/">docker コマンド</a> たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。</p>
+
+<p>が、時が経過した今、楽になってますよ。情報も増えてるし、何より docker-compose （複数コンテナの構築）が便利だった。復習も兼ねて、まずは nginx を構築!!</p>
+
+<p>ただし、以下を読むより動画 <a href="http://dotinstall.com/lessons/basic_docker">Docker入門 (全11回)</a> で学ぶほうが分かりやすい。</p>
+
+<h1 id="step1-docker-vm-の作成-復習:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step1 docker vm の作成(復習)</h1>
+
+<p>とりあえず docker vm を作成・利用する。忘れた方は、こちらで<a href="http://blog.syati.info/post/docker_machine/">docker-machine コマンドの使用方法・流れ</a></p>
+
+<pre><code class="language-bash">$ docker-machine create --driver virtualbox mynginx
+$ eval &quot;$(docker-machine env mynginx)&quot;
+$ docker-machine ls
+NAME            ACTIVE   DRIVER       STATE     URL                         SWARM
+mynginx         *        virtualbox   Running   tcp://192.168.99.100:2376
+</code></pre>
+
+<p>これで上記の vm にたいして docker コマンドを発行できので、叩いてみる。コンテナがないので何も表示されない。</p>
+
+<pre><code class="language-bash">$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+# 参考）eval で vm を指定しなかった場合
+$ docker ps
+Get http:///var/run/docker.sock/v1.20/containers/json: dial unix /var/run/docker.sock: no such file or directory.
+* Are you trying to connect to a TLS-enabled daemon without TLS?
+* Is your docker daemon up and running?
+</code></pre>
+
+<h1 id="step1-5-簡単な全体イメージ:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step1.5 簡単な全体イメージ</h1>
+
+<p>以下で使用する用語の全体イメージは以下のような感じである。</p>
+
+<p><strong>Dockerfile</strong> から <strong>Image</strong> を作成、Image から <strong>Container</strong> を立ち上げる</p>
+
+<h1 id="step2-dockerfile-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step2 Dockerfile の作成</h1>
+
+<p>Dockerfile （ Image 作成の手順書）を作成する。dir 構成は以下の通り。</p>
+
+<pre><code class="language-bash">mynginx/
+└── Dockerfile
+</code></pre>
+
+<p>Dockerfile は以下の通り。</p>
+
+<pre><code class="language-bash"># Docker file
+FROM nginx:latest                        # イメージの指定
+MAINTAINER mizuki-y&lt;mizuki-y@syati.info&gt; # 作成者の情報
+</code></pre>
+
+<p>上記で手順書と書いたが、２行しかない手順書である。
+ただ単に、Image に<a href="https://hub.docker.com/_/nginx/">Official Repository nginx</a>を利用しますと記述しただけ。
+<strong>RUN</strong>、<strong>CMD</strong> とか他にも命令はあるが、今回はシンプルに。いますぐ知りたい！！という場合は、以下を参考に。</p>
+
+<ul>
+<li><a href="http://www.atmarkit.co.jp/ait/articles/1407/08/news031.html">Dockerfileとdocker buildコマンドでDockerイメージの作成</a></li>
+<li><a href="https://docs.docker.com/reference/builder/">Dockerfile reference</a></li>
+</ul>
+
+<h1 id="step3-image-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step3 Image の作成</h1>
+
+<p>Dockerfile から Image を 作成するため <strong>build</strong> コマンドを実施する。</p>
+
+<pre><code class="language-bash"># build コマンドのヘルプ見てみる
+$ docker build --help
+
+Usage:  docker build [OPTIONS] PATH | URL | -
+
+Build a new image from the source code at PATH
+## 多いので省略して、今回利用するものだけ
+  -t, --tag=                      Repository name (and optionally a tag) for the image
+
+# いろいろありますが、とりあえず OPTIONS -t （名前付け）だけ覚えればいいでしょう。PATH には Dockerfile パスを。
+$ docker build -t syati:nginx .
+</code></pre>
+
+<h1 id="step4-image-の確認:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step4 Image の確認</h1>
+
+<p>作成した Image を確認するため <strong>images</strong> コマンドを実施する。 Step2 で FROM しか指定していないので何も変わっていない（SIZE 同じ）が Dockerfile から Image を作成できている。</p>
+
+<pre><code class="language-bash">$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+syati               nginx               a232c3216f20        9 seconds ago       132.9 MB
+nginx               latest              0b354d33906d        10 days ago         132.9 MB　   # ベースとなったイメージ
+
+# 参考） -t オプションつけないと &lt;none&gt; になる
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+&lt;none&gt;              &lt;none&gt;              dd06038a778d        10 minutes ago      132.9 MB
+nginx               latest              0b354d33906d        10 days ago         132.9 MB
+</code></pre>
+
+<h1 id="step5-container-の動作を確認する:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step5 Container の動作を確認する</h1>
+
+<p>作成した Image から Container を立ち上げるために <strong>run</strong> コマンドを実施する</p>
+
+<pre><code class="language-bash"># run コマンドのヘルプ見てみる
+$ docker run --help
+
+Usage:	docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run a command in a new container
+## 多いので省略して、今回利用するものだけ
+  -d, --detach=false              Run container in background and print container ID
+  -i, --interactive=false         Keep STDIN open even if not attached
+  -P, --publish-all=false         Publish all exposed ports to random ports
+  -p, --publish=[]                Publish a container's port(s) to the host
+
+# コンテナを立ち上げる
+$ docker run -P -d syati:nginx
+5c70e0b84c91dc04d56fab9b9967765716008bfcb4d1fe102ba34d305994541b
+## -P は コンテナで開いているポートと docker vm のポートをランダムにリンクする(以下の PORTS を見るとわかる）
+## -d は コンテナをバックグラウンドで実行する(バックグラウンドで実行しないと次のコマンド打てなくなるから大事)
+
+# ps コマンドで 動作を確認する
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                           NAMES
+5c70e0b84c91        syati:nginx       &quot;nginx -g 'daemon off&quot;   46 seconds ago      Up 45 seconds       0.0.0.0:32771-&gt;80/tcp, 0.0.0.0:32770-&gt;443/tcp   trusting_lumiere
+
+
+# 参考) -P でランダムなポートでリンクされても困っちゃうという場合は、以下のとおり -p を使って指定してあげる
+$ docker run -p 8000:80 -d syati:nginx
+2ac58799de9cfdceb02abf2b6050761801641b93c820097048cb46a9c0be3e6a
+
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                           NAMES
+2ac58799de9c        syati:nginx       &quot;nginx -g 'daemon off&quot;   3 seconds ago       Up 3 seconds        443/tcp, 0.0.0.0:8000-&gt;80/tcp   backstabbing_einstein
+</code></pre>
+
+<p>Dockerfile のことを少しでも知っていたら、以下の点を疑問に思うかもしれない。</p>
+
+<ol>
+<li>Dockerfile に CMD を記述していないのに、 COMMAND に nginx -g って・・。</li>
+<li>Dockerfile に EXPOSE を記述していないのに、 PORTSに 80 443 って・・。</li>
+</ol>
+
+<p>これは利用イメージが <a href="https://hub.docker.com/_/nginx/">Official Repository nginx</a> この <a href="https://github.com/nginxinc/docker-nginx/blob/7f3ef0927ec619d20181e677c97f991df0d7d446/Dockerfile">Dockerfile</a> を利用して作成されているためである。</p>
+
+<h1 id="step6-nginx-のデフォルトページを見る:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step6 nginx のデフォルトページを見る</h1>
+
+<p>Step1 で docker vm の ip を確認してポートを付与してあげる。 -p オプションでポートをした場合で考えると以下にアクセスすれば <strong>Welcome to nginx!</strong> が見れるはず</p>
+
+<pre><code class="language-bash">http://192.168.99.100:8000
+</code></pre>
+
+<h1 id="その他:70cfd8bcb00d2acafeb3ae1cc961ca2c">その他</h1>
+
+<h2 id="container-の中身を確認する:70cfd8bcb00d2acafeb3ae1cc961ca2c">container の中身を確認する</h2>
+
+<pre><code class="language-bash">$ docker run -t -i syati:nginx /bin/bash
+
+# -t -i オプションは以下の通り
+$ docker run --help
+Usage:	docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run a command in a new container
+  -i, --interactive=false         Keep STDIN open even if not attached
+  -t, --tty=false                 Allocate a pseudo-TTY
+</code></pre>
+</div></article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size=''></a>
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					<section id="comment">
+					    <h1 class="title">Comments</h1>
+					    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+					</section>
+					
+					
+
+<script type="text/javascript">
+    
+    var disqus_shortname = 'blogsyatiinfo';
+
+    
+    
+
+    
+    (function () {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+    
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+    
+</script>
+
+
+				    </div>
+				</div>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8331825501555489"
+                     data-ad-slot="1897822451"
+                     data-ad-format="auto"></ins>
+                <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2015
+
+    Syati.info
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="http://blog.syati.info/js/slash.js"></script>
+<script src="http://blog.syati.info/js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script>
+</footer>
+		</div>
+	</div>
+	<script src="http://blog.syati.info/js/prism.js"></script>
+<script src="http://blog.syati.info/js/lunr.min.js"></script>
+<script src="http://blog.syati.info/js/search.js"></script>
+
+</body>
+</html>

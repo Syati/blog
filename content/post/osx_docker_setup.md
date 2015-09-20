@@ -2,8 +2,9 @@
 Categories = ["Docker", "OSX"]
 Description = "Mac に Docker Toolbox をインストールして Docker を学ぶ"
 Tags = ["Env", "Infra"]
+comments = true
 date = "2015-09-03T16:00:00+09:00"
-title = "Mac に Docker をインストールする"
+title = "Docker Part 1 - Mac に Docker をインストールする"
 
 +++
 
