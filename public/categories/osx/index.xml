@@ -111,7 +111,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 nginx               latest              0b354d33906d        10 days ago         132.9 MB
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step5-container-の動作を確認する:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step5 Container の動作を確認する&lt;/h1&gt;
+&lt;h1 id=&#34;step5-container-を立ち上げる:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step5 Container を立ち上げる&lt;/h1&gt;
 
 &lt;p&gt;作成した Image から Container を立ち上げるために &lt;strong&gt;run&lt;/strong&gt; コマンドを実施する&lt;/p&gt;
 

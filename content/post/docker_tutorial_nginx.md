@@ -108,7 +108,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 nginx               latest              0b354d33906d        10 days ago         132.9 MB
 ~~~
 
-# Step5 Container の動作を確認する
+# Step5 Container を立ち上げる
 
 作成した Image から Container を立ち上げるために **run** コマンドを実施する
 
