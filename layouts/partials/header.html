@@ -1,12 +1,14 @@
 {{ if $.Site.Title }}
-<h1>
-    {{ $.Site.Title }}
-</h1>
-{{ end }}
-{{ if $.Site.Params.description }}
-<p>
-    {{ $.Site.Params.description }}
-</p>
+<a href="{{ $.Site.BaseURL }}">    
+    <div>
+        <h1>
+            {{ $.Site.Title }}
+        </h1>
+        <p>
+            {{ $.Site.Params.description }}
+        </p>
+    </div>
+</a>
 </section>
 {{ end }}
 {{ partial "custom/header.html" . }}
