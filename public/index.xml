@@ -7,7 +7,140 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Sun, 20 Sep 2015 15:49:48 JST</updated>
+    <updated>Mon, 21 Sep 2015 16:25:47 JST</updated>
+    
+    <item>
+      <title>Hugo Part 5 - Hugo に Google カスタム検索エンジンを導入</title>
+      <link>http://blog.syati.info/post/hugo_search/</link>
+      <pubDate>Mon, 21 Sep 2015 16:25:47 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/hugo_search/</guid>
+      <description>
+
+&lt;p&gt;記事が多くなってくると、やっぱり検索したくなるもんです。Hugo で検索を使うには、&lt;a href=&#34;https://gohugo.io/tools&#34;&gt;Tools&lt;/a&gt; に書いてある通り以下の方法があります。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;自前でインデックスを作成して提供する方法
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/hugoidx&#34;&gt;Hugoidx&lt;/a&gt;: Bleve を用いる&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gist.github.com/sebz/efddfc8fdcb6b480f567&#34;&gt;Github Gist&lt;/a&gt;: grunt と lunr.js を用いる&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;当ページでは、&lt;a href=&#34;https://gist.github.com/sebz/efddfc8fdcb6b480f567&#34;&gt;Github Gist&lt;/a&gt;  を用いて検索を実現していますが、お手軽さでいうと、&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; ですね。なので今回は、&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; の導入方法を紹介。&lt;/p&gt;
+
+&lt;h1 id=&#34;step-1-登録する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 1 登録する&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; にアクセスして登録しましょう。&lt;/p&gt;
+
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;step1.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;カスタム検索エンジンの登録&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h1 id=&#34;step-2-作成する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 2 作成する&lt;/h1&gt;
+
+&lt;p&gt;必要情報を入力しましょう。&lt;strong&gt;検索するサイト&lt;/strong&gt;を入力すると、&lt;strong&gt;検索エンジンの名前&lt;/strong&gt; も入力されるため枠で囲っていません。&lt;/p&gt;
+
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;step2.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;カスタム検索エンジンの作成&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h1 id=&#34;step-3-確認する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 3 確認する&lt;/h1&gt;
+
+&lt;p&gt;作成された検索エンジンを確認しましょう。&lt;/p&gt;
+
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;step3.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;カスタム検索エンジンの確認&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h1 id=&#34;step-4-設定する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 4 設定する&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;対象&lt;/strong&gt; のリストメニューの &lt;strong&gt;デザイン&lt;/strong&gt; をえらんで、レイアウトやテーマなど色々設定しましょう。設定すると、&lt;strong&gt;プレビュー&lt;/strong&gt;で確認できます。最後に&lt;strong&gt;保存してコードを取得&lt;/strong&gt;します。&lt;/p&gt;
+
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;step4.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;カスタム検索エンジンの設定&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h1 id=&#34;step-5-取得する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 5 取得する&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;コード&lt;/strong&gt; をコピーしときましょう。&lt;/p&gt;
+
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;step5.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;カスタム検索エンジンのコードを取得&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h1 id=&#34;step-6-設置する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 6 設置する&lt;/h1&gt;
+
+&lt;p&gt;コピーしたコードを layouts の任意の html に貼り付けましょう。完成すると以下のように検索が可能になります。&lt;/p&gt;
+
+&lt;p&gt;&lt;script&gt;
+  (function() {
+    var cx = &#39;004743453564496319247:9t8ean_mgiw&#39;;
+    var gcse = document.createElement(&#39;script&#39;);
+    gcse.type = &#39;text/javascript&#39;;
+    gcse.async = true;
+    gcse.src = (document.location.protocol == &#39;https:&#39; ? &#39;https:&#39; : &#39;http:&#39;) +
+        &#39;//cse.google.com/cse.js?cx=&#39; + cx;
+    var s = document.getElementsByTagName(&#39;script&#39;)[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+&lt;/script&gt;
+&lt;gcse:search&gt;&lt;/gcse:search&gt;
+&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Docker Part 3 - Docker で nginx を構築する</title>
@@ -19,9 +152,9 @@
 
 &lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/docker_machine/&#34;&gt;docker-machine コマンドの使用方法・流れ&lt;/a&gt; で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。&lt;/p&gt;
 
-&lt;p&gt;以前、何度か &lt;a href=&#34;http://dotinstall.com/lessons/basic_docker&#34;&gt;Docker入門 (全11回)&lt;/a&gt; で docker に入門しましたが、その後挫折。 入門して nginx 構築を出来たはいいが、 MEAN とか LAMP の開発環境構築するのがすごく困難な感じがして。&lt;a href=&#34;https://docs.docker.com/reference/commandline/cli/&#34;&gt;docker コマンド&lt;/a&gt; たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。&lt;/p&gt;
+&lt;p&gt;以前、何度か &lt;a href=&#34;http://dotinstall.com/lessons/basic_docker&#34;&gt;Docker入門 (全11回)&lt;/a&gt; で docker に入門しましたが、その後挫折。 入門して nginx を構築を出来たはいいが、 MEAN とか LAMP の開発環境を構築するのがすごく困難な感じがして。&lt;a href=&#34;https://docs.docker.com/reference/commandline/cli/&#34;&gt;docker コマンド&lt;/a&gt; たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。&lt;/p&gt;
 
-&lt;p&gt;が、時が経過した今、楽になってますよ。情報も増えてるし、何より docker-compose （複数コンテナの構築）が便利だった。復習も兼ねて、まずは nginx を構築!!&lt;/p&gt;
+&lt;p&gt;が、時が経過した今、楽になってますよ。情報も増えてるし、何より docker-compose （複数コンテナの構築）が便利だった。それでは nginx を構築!!&lt;/p&gt;
 
 &lt;p&gt;ただし、以下を読むより動画 &lt;a href=&#34;http://dotinstall.com/lessons/basic_docker&#34;&gt;Docker入門 (全11回)&lt;/a&gt; で学ぶほうが分かりやすい。&lt;/p&gt;
 
@@ -668,6 +801,14 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 &lt;p&gt;ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
 というこで &lt;a href=&#34;http://gohugo.io/extras/highlighting/&#34;&gt;Syntax Highlighting&lt;/a&gt; を
 参考にして早速導入する。&lt;/p&gt;
+
+&lt;p&gt;dir 構成等は、以下の記事参照のこと&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.syati.info/post/add_disqus_to_hugo/&#34;&gt;Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&#34;step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 1 Client-side の SyntaxHighlighter ライブラリ取得&lt;/h1&gt;
 
@@ -1575,24 +1716,6 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 &lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Emacs を 256色で起動する</title>
-      <link>http://blog.syati.info/post/emacs_256/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/emacs_256/</guid>
-      <description>&lt;p&gt;最近は、さくらVPSで色々と遊んでいますので、そのメモ。&lt;/p&gt;
-
-&lt;p&gt;.bashrc 又は .zshrc に以下を書き込むことで、emacs を256色で起動できる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;alias emacs=&#39;TERM=xterm-256color emacs&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;emacs が256色で起動出来ているかどうか確認するには、 emacs M-x から
-以下のコマンドを実行しましょう。&lt;/p&gt;
 </description>
     </item>
     

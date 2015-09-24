@@ -13,6 +13,12 @@ title = "Hugo Part 4 - Hugo に SyntaxHighlighter を導入"
 参考にして早速導入する。
 
 
+dir 構成等は、以下の記事参照のこと
+
+- [Part 1]({{< ref "post/create_hugo.md" >}})
+- [Part 2]({{< ref "post/create_hugo_2.md" >}})
+- [Part 3]({{< ref "post/add_disqus_to_hugo.md" >}})
+
 <!--more-->
 
 # Step 1 Client-side の SyntaxHighlighter ライブラリ取得

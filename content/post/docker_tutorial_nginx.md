@@ -1,6 +1,6 @@
 +++
 Categories = ["Docker", "OSX"]
-Description = "Docker で nginx を構築する"
+Description = "今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。"
 Tags = ["Env", "Infra"]
 comments = true
 date = "2015-09-20T15:49:48+09:00"
@@ -10,9 +10,9 @@ title = "Docker Part 3 - Docker で nginx を構築する"
 
 [docker-machine コマンドの使用方法・流れ]({{< ref "post/docker_machine.md" >}}) で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。
 
-以前、何度か [Docker入門 (全11回)]( http://dotinstall.com/lessons/basic_docker) で docker に入門しましたが、その後挫折。 入門して nginx 構築を出来たはいいが、 MEAN とか LAMP の開発環境構築するのがすごく困難な感じがして。[docker コマンド](https://docs.docker.com/reference/commandline/cli/) たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。
+以前、何度か [Docker入門 (全11回)]( http://dotinstall.com/lessons/basic_docker) で docker に入門しましたが、その後挫折。 入門して nginx を構築を出来たはいいが、 MEAN とか LAMP の開発環境を構築するのがすごく困難な感じがして。[docker コマンド](https://docs.docker.com/reference/commandline/cli/) たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。
 
-が、時が経過した今、楽になってますよ。情報も増えてるし、何より docker-compose （複数コンテナの構築）が便利だった。復習も兼ねて、まずは nginx を構築!!
+が、時が経過した今、楽になってますよ。情報も増えてるし、何より docker-compose （複数コンテナの構築）が便利だった。それでは nginx を構築!!
 
 ただし、以下を読むより動画 [Docker入門 (全11回)]( http://dotinstall.com/lessons/basic_docker) で学ぶほうが分かりやすい。
 

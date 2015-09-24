@@ -4,12 +4,12 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Hugo Part 4 - Hugo に SyntaxHighlighter を導入 - Syati.info</title>
+	<title>Hugo Part 5 - Hugo に Google カスタム検索エンジンを導入 - Syati.info</title>
 	<meta name="author" content="map[author:mizuki-y]">
 
 	
 	  
-	<meta name="description" content="Hugo に SyntaxHighlighter を導入">
+	<meta name="description" content="Hugo に google カスタム検索エンジンを導入して、記事検索を可能にする">
 	
 
 	
@@ -19,7 +19,7 @@
     
 	<link href='http://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/">
+	<link rel="canonical" href="http://blog.syati.info/post/hugo_search/">
 	<link href="http://blog.syati.info/favicon.png" rel="shortcut icon">
 	<link href="http://blog.syati.info/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<link href="http://blog.syati.info/css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -118,93 +118,131 @@
 				<div id="content" class="inner">
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-    <h1 class="title" itemprop="name">Hugo Part 4 - Hugo に SyntaxHighlighter を導入</h1>
+    <h1 class="title" itemprop="name">Hugo Part 5 - Hugo に Google カスタム検索エンジンを導入</h1>
 	<div class="entry-content" itemprop="articleBody">
 
-<p>ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
-というこで <a href="http://gohugo.io/extras/highlighting/">Syntax Highlighting</a> を
-参考にして早速導入する。</p>
-
-<p>dir 構成等は、以下の記事参照のこと</p>
+<p>記事が多くなってくると、やっぱり検索したくなるもんです。Hugo で検索を使うには、<a href="https://gohugo.io/tools">Tools</a> に書いてある通り以下の方法があります。</p>
 
 <ul>
-<li><a href="http://blog.syati.info/post/create_hugo/">Part 1</a></li>
-<li><a href="http://blog.syati.info/post/create_hugo_2/">Part 2</a></li>
-<li><a href="http://blog.syati.info/post/add_disqus_to_hugo/">Part 3</a></li>
+<li><a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a></li>
+<li>自前でインデックスを作成して提供する方法
+
+<ul>
+<li><a href="https://github.com/blevesearch/hugoidx">Hugoidx</a>: Bleve を用いる</li>
+<li><a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">Github Gist</a>: grunt と lunr.js を用いる</li>
+</ul></li>
 </ul>
 
-<h1 id="step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf">Step 1 Client-side の SyntaxHighlighter ライブラリ取得</h1>
+<p>当ページでは、<a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">Github Gist</a>  を用いて検索を実現していますが、お手軽さでいうと、<a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> ですね。なので今回は、<a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> の導入方法を紹介。</p>
 
-<p>導入方法として <strong>Server-side</strong> と <strong>Client-side</strong> の方法がありますが、
-今回は後者を利用します。また、ライブラリーはたくさんありますが、<strong><a href="http://prismjs.com/">Prism</a></strong>
-を利用します。</p>
+<h1 id="step-1-登録する:c6d03d0bc6493d1eda9beabc92f669d7">Step 1 登録する</h1>
 
-<p>Prism のHPにいって利用したい好きな Themes と Languages にチェックをいれて、
-ページ下部の DOWNLOAD JS と DOWNLOAD CSS から DL しましょう。
-ちなみに当ページの Prism のテーマは Default(Okaidia) を利用しています。</p>
+<p><a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> にアクセスして登録しましょう。</p>
 
-<h1 id="step-2-対象ファイルコピー:25f7dcbfc05249f56e29c36f92828fdf">Step 2 対象ファイルコピー</h1>
+<p>
+<figure >
+    
+        <img src="step1.png" />
+    
+    
+    <figcaption>
+        <h4>カスタム検索エンジンの登録</h4>
+        
+    </figcaption>
+    
+</figure>
+</p>
 
-<p>DL したファイルを以下のようにコピーしてあげる。</p>
+<h1 id="step-2-作成する:c6d03d0bc6493d1eda9beabc92f669d7">Step 2 作成する</h1>
 
-<pre><code class="language-bash">$ cp prism.js yourblog/static/js/
-$ cp prism.css yourblog/static/css/
-</code></pre>
+<p>必要情報を入力しましょう。<strong>検索するサイト</strong>を入力すると、<strong>検索エンジンの名前</strong> も入力されるため枠で囲っていません。</p>
 
-<h1 id="step-3-custom-設定を加える:25f7dcbfc05249f56e29c36f92828fdf">Step 3 custom 設定を加える</h1>
+<p>
+<figure >
+    
+        <img src="step2.png" />
+    
+    
+    <figcaption>
+        <h4>カスタム検索エンジンの作成</h4>
+        
+    </figcaption>
+    
+</figure>
+</p>
 
-<p>以下のように yourblog/layouts/partials/custom に移動して
-<strong>対象ファイル１</strong>と<strong>対象ファイル２</strong>を編集します。</p>
+<h1 id="step-3-確認する:c6d03d0bc6493d1eda9beabc92f669d7">Step 3 確認する</h1>
 
-<pre><code class="language-bash">$ cd yourblog/layouts/partials/custom
-$ tree -L 1
-.
-├── after_footer.html  # 対象ファイル１
-├── asides
-├── footer.html
-├── head.html          # 対象ファイル２
-├── header.html
-└── navigation.html
-</code></pre>
+<p>作成された検索エンジンを確認しましょう。</p>
 
-<p>以下のように対象ファイル１に１行追加。</p>
+<p>
+<figure >
+    
+        <img src="step3.png" />
+    
+    
+    <figcaption>
+        <h4>カスタム検索エンジンの確認</h4>
+        
+    </figcaption>
+    
+</figure>
+</p>
 
-<pre><code class="language-markup">&lt;script src=&quot;{{ .Site.BaseURL }}/js/prism.js&quot;&gt;&lt;/script&gt;
-</code></pre>
+<h1 id="step-4-設定する:c6d03d0bc6493d1eda9beabc92f669d7">Step 4 設定する</h1>
 
-<p>以下のように対象ファイル２に１行追加。</p>
+<p><strong>対象</strong> のリストメニューの <strong>デザイン</strong> をえらんで、レイアウトやテーマなど色々設定しましょう。設定すると、<strong>プレビュー</strong>で確認できます。最後に<strong>保存してコードを取得</strong>します。</p>
 
-<pre><code class="language-markup">&lt;link href=&quot;{{ .Site.BaseURL }}/css/prism.css&quot; media=&quot;screen, projection&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
-</code></pre>
+<p>
+<figure >
+    
+        <img src="step4.png" />
+    
+    
+    <figcaption>
+        <h4>カスタム検索エンジンの設定</h4>
+        
+    </figcaption>
+    
+</figure>
+</p>
 
-<p>これで設定は終了。</p>
+<h1 id="step-5-取得する:c6d03d0bc6493d1eda9beabc92f669d7">Step 5 取得する</h1>
 
-<h1 id="step-4-コードをいれてみる:25f7dcbfc05249f56e29c36f92828fdf">Step 4 コードをいれてみる</h1>
+<p><strong>コード</strong> をコピーしときましょう。</p>
 
-<p>新しい記事でも作成して、以下のような感じでコードをいれると。
-~ 半角でいれると解釈されるため 〜 全角で入れています。</p>
+<p>
+<figure >
+    
+        <img src="step5.png" />
+    
+    
+    <figcaption>
+        <h4>カスタム検索エンジンのコードを取得</h4>
+        
+    </figcaption>
+    
+</figure>
+</p>
 
-<pre><code class="language-markup">〜〜〜c
-#include &lt;stdio.h&gt;
+<h1 id="step-6-設置する:c6d03d0bc6493d1eda9beabc92f669d7">Step 6 設置する</h1>
 
-int main(void)
-{
-    printf(&quot;hello, world\n&quot;);
-    return;
-}
-〜〜〜
-</code></pre>
+<p>コピーしたコードを layouts の任意の html に貼り付けましょう。完成すると以下のように検索が可能になります。</p>
 
-<p>あら素敵！！というふうになる。</p>
-
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-
-int main(void)
-{
-    printf(&quot;hello, world\n&quot;);
-    return;
-}
-</code></pre>
+<p><script>
+  (function() {
+    var cx = '004743453564496319247:9t8ean_mgiw';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</p>
 </div></article>
 					
 						<div class="share">
