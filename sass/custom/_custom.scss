@@ -3,6 +3,14 @@
     margin: 0 auto;
 }
 
+figure {
+    padding: 20px;
+}
+    
+figcaption {
+    text-align: center;
+}           
+
 .search-nav {
     margin: 10px 0 0 0;
     overflow: hidden;
@@ -22,3 +30,10 @@
     }
 }
     
+.gsc-above-wrapper-area-container,
+.gcsc-branding,
+.gsc-search-box,
+.gsc-table-result {
+    background: none !important;
+    border: none !important;
+}

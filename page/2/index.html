@@ -111,7 +111,7 @@
 
 </header>
 			</div>
-		</div>
+		</div>     
 		<div class="mid-col">
 			
 			<div class="mid-col-container">
@@ -119,6 +119,34 @@
 					
 					<div itemscope itemtype="http://schema.org/Blog">
 					
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Sun, Jun 7, 2015' data-updated="true" itemprop="datePublished">Sun, Jun 7, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="http://blog.syati.info/categories/hugo"> Hugo </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://blog.syati.info/post/create_hugo_2/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/create_hugo_2/" itemprop="url">Hugo Part 2 - Hugo で github にブログを立ち上げる</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p><a href="http://blog.syati.info/post/create_hugo/">Part 1</a> では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
+<a href="http://gohugo.io/tutorials/github-pages-blog/">Hosting on GitHub Pages</a> を参考にして、セットアップ手順を記していく。</p>
+
+		<a href="http://blog.syati.info/post/create_hugo_2/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
 				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
     <div class="meta">
 		<div class="date"><time datetime='Fri, Jun 5, 2015' data-updated="true" itemprop="datePublished">Fri, Jun 5, 2015</time>
@@ -392,32 +420,6 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/node_path/" itemprop="url">node 利用するなら、まずは環境変数を設定しましょう</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		javascript を REPL で利用できるといえば node 。underscore.js を試したいと思いハマったメモ。 はまった事 以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。 $ sudo npm install undersocre -g $ node require('underscore'); Error: Cannot find module 'underscore' at Function.Module._resolveFilename (module.js:338:15) at Function.Module._load (module.js:280:25) at Module.require (module.js:362:17) at require (module.js:378:17) at repl:1:1 at REPLServer.self.eval (repl.js:109:21) at rli.on.self.bufferedCmd (repl.js:258:20) at REPLServer.self.eval (repl.js:116:5) at Interface.&lt;anonymous&gt; (repl.js:248:12) at Interface.EventEmitter.emit (events.js:96:17) 原因 npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。 解決 設定するパスを確認する npm root -g /usr/local/lib/node_modules 利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了 export NODE_PATH=/usr/local/lib/node_modules
-		
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-	    <a href="http://blog.syati.info/categories/emacs"> Emacs </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://blog.syati.info/post/org2blogNetrc/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/org2blogNetrc/" itemprop="url">org2blog でブログに接続する際のパスワードを .netrc に保存しておく</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&#x2026;とおもっている場合は、.netrc を使うのがお勧め 手順 ホームに以下のコマンドで .netrc を作成する echo &quot;machine myblog login myusername password myrealpassword&quot; &gt; ~/.netrc myusername と myrealpassword を自分がログインするときのユーザー名とパスワードに書き換える emacs の設定ファイル（ .emacs.d/init.el ) に以下を書き加える ;; org2blog (require 'org2blog-autoloads) (require 'netrc) ;; or nothing if already in the load-path (setq org2blog/wp-use-sourcecode-shortcode t) ;;syntaxhl (setq blog (netrc-machine (netrc-parse &quot;~/.netrc&quot;) &quot;myblog&quot; t)) (setq org2blog/wp-blog-alist '((&quot;my-blog&quot; :url &quot;your wordpress url&quot; :username (netrc-get blog &quot;login&quot;) :password (netrc-get blog &quot;password&quot;) :tags-as-categories nil))) 参考 org2blog
 		
 	</div>
 </article>

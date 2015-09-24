@@ -19,9 +19,9 @@
 
 &lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/docker_machine/&#34;&gt;docker-machine コマンドの使用方法・流れ&lt;/a&gt; で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。&lt;/p&gt;
 
-&lt;p&gt;以前、何度か &lt;a href=&#34;http://dotinstall.com/lessons/basic_docker&#34;&gt;Docker入門 (全11回)&lt;/a&gt; で docker に入門しましたが、その後挫折。 入門して nginx 構築を出来たはいいが、 MEAN とか LAMP の開発環境構築するのがすごく困難な感じがして。&lt;a href=&#34;https://docs.docker.com/reference/commandline/cli/&#34;&gt;docker コマンド&lt;/a&gt; たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。&lt;/p&gt;
+&lt;p&gt;以前、何度か &lt;a href=&#34;http://dotinstall.com/lessons/basic_docker&#34;&gt;Docker入門 (全11回)&lt;/a&gt; で docker に入門しましたが、その後挫折。 入門して nginx を構築を出来たはいいが、 MEAN とか LAMP の開発環境を構築するのがすごく困難な感じがして。&lt;a href=&#34;https://docs.docker.com/reference/commandline/cli/&#34;&gt;docker コマンド&lt;/a&gt; たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。&lt;/p&gt;
 
-&lt;p&gt;が、時が経過した今、楽になってますよ。情報も増えてるし、何より docker-compose （複数コンテナの構築）が便利だった。復習も兼ねて、まずは nginx を構築!!&lt;/p&gt;
+&lt;p&gt;が、時が経過した今、楽になってますよ。情報も増えてるし、何より docker-compose （複数コンテナの構築）が便利だった。それでは nginx を構築!!&lt;/p&gt;
 
 &lt;p&gt;ただし、以下を読むより動画 &lt;a href=&#34;http://dotinstall.com/lessons/basic_docker&#34;&gt;Docker入門 (全11回)&lt;/a&gt; で学ぶほうが分かりやすい。&lt;/p&gt;
 

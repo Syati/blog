@@ -111,7 +111,7 @@
 
 </header>
 			</div>
-		</div>
+		</div>     
 		<div class="mid-col">
 			
 			<div class="mid-col-container">
@@ -119,6 +119,45 @@
 					
 					<div itemscope itemtype="http://schema.org/Blog">
 					
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Mon, Sep 21, 2015' data-updated="true" itemprop="datePublished">Mon, Sep 21, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="http://blog.syati.info/categories/hugo"> Hugo </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://blog.syati.info/post/hugo_search/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/hugo_search/" itemprop="url">Hugo Part 5 - Hugo に Google カスタム検索エンジンを導入</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>記事が多くなってくると、やっぱり検索したくなるもんです。Hugo で検索を使うには、<a href="https://gohugo.io/tools">Tools</a> に書いてある通り以下の方法があります。</p>
+
+<ul>
+<li><a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a></li>
+<li>自前でインデックスを作成して提供する方法
+
+<ul>
+<li><a href="https://github.com/blevesearch/hugoidx">Hugoidx</a>: Bleve を用いる</li>
+<li><a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">Github Gist</a>: grunt と lunr.js を用いる</li>
+</ul></li>
+</ul>
+
+<p>当ページでは、<a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">Github Gist</a>  を用いて検索を実現していますが、お手軽さでいうと、<a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> ですね。なので今回は、<a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> の導入方法を紹介。</p>
+
+		<a href="http://blog.syati.info/post/hugo_search/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
 				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
     <div class="meta">
 		<div class="date"><time datetime='Sun, Sep 20, 2015' data-updated="true" itemprop="datePublished">Sun, Sep 20, 2015</time>
@@ -146,9 +185,9 @@
 	<div class="entry-content" itemprop="articleBody">
 		<p><a href="http://blog.syati.info/post/docker_machine/">docker-machine コマンドの使用方法・流れ</a> で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。</p>
 
-<p>以前、何度か <a href="http://dotinstall.com/lessons/basic_docker">Docker入門 (全11回)</a> で docker に入門しましたが、その後挫折。 入門して nginx 構築を出来たはいいが、 MEAN とか LAMP の開発環境構築するのがすごく困難な感じがして。<a href="https://docs.docker.com/reference/commandline/cli/">docker コマンド</a> たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。</p>
+<p>以前、何度か <a href="http://dotinstall.com/lessons/basic_docker">Docker入門 (全11回)</a> で docker に入門しましたが、その後挫折。 入門して nginx を構築を出来たはいいが、 MEAN とか LAMP の開発環境を構築するのがすごく困難な感じがして。<a href="https://docs.docker.com/reference/commandline/cli/">docker コマンド</a> たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。</p>
 
-<p>が、時が経過した今、楽になってますよ。情報も増えてるし、何より docker-compose （複数コンテナの構築）が便利だった。復習も兼ねて、まずは nginx を構築!!</p>
+<p>が、時が経過した今、楽になってますよ。情報も増えてるし、何より docker-compose （複数コンテナの構築）が便利だった。それでは nginx を構築!!</p>
 
 <p>ただし、以下を読むより動画 <a href="http://dotinstall.com/lessons/basic_docker">Docker入門 (全11回)</a> で学ぶほうが分かりやすい。</p>
 
@@ -376,6 +415,14 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 というこで <a href="http://gohugo.io/extras/highlighting/">Syntax Highlighting</a> を
 参考にして早速導入する。</p>
 
+<p>dir 構成等は、以下の記事参照のこと</p>
+
+<ul>
+<li><a href="http://blog.syati.info/post/create_hugo/">Part 1</a></li>
+<li><a href="http://blog.syati.info/post/create_hugo_2/">Part 2</a></li>
+<li><a href="http://blog.syati.info/post/add_disqus_to_hugo/">Part 3</a></li>
+</ul>
+
 		<a href="http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/" class="more-link">Read on →</a>
 	</div>
 </article>
@@ -410,34 +457,6 @@ Hugo を用いて github.io にブログを立ち上げましたが、コメン�
 <p>全てが終われば <a href="http://syati.github.io/yourblog/">yourblog</a> のようにコメント欄が作成できる。</p>
 
 		<a href="http://blog.syati.info/post/add_disqus_to_hugo/" class="more-link">Read on →</a>
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Sun, Jun 7, 2015' data-updated="true" itemprop="datePublished">Sun, Jun 7, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-	    <a href="http://blog.syati.info/categories/hugo"> Hugo </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://blog.syati.info/post/create_hugo_2/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/create_hugo_2/" itemprop="url">Hugo Part 2 - Hugo で github にブログを立ち上げる</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p><a href="http://blog.syati.info/post/create_hugo/">Part 1</a> では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
-<a href="http://gohugo.io/tutorials/github-pages-blog/">Hosting on GitHub Pages</a> を参考にして、セットアップ手順を記していく。</p>
-
-		<a href="http://blog.syati.info/post/create_hugo_2/" class="more-link">Read on →</a>
 	</div>
 </article>
 
