@@ -7,7 +7,45 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Fri, 25 Sep 2015 08:49:12 JST</updated>
+    <updated>Wed, 07 Oct 2015 22:00:32 JST</updated>
+    
+    <item>
+      <title>package.json を一括更新</title>
+      <link>http://blog.syati.info/post/upgrade_package_json/</link>
+      <pubDate>Wed, 07 Oct 2015 22:00:32 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/upgrade_package_json/</guid>
+      <description>
+
+&lt;p&gt;package.json の dependencies どうやって一括で更新するのかなと思ってたらあった！！&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/npm-check-updates&#34;&gt;npm-check-updates&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;これで簡単に更新できる！！&lt;/p&gt;
+
+&lt;h1 id=&#34;更新する:fa2289da0f3da34235594a1a0c6afa63&#34;&gt;更新する&lt;/h1&gt;
+
+&lt;p&gt;以下の通り。すごく簡単だね。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install -g npm-check-updates
+# package.json のあるフォルダで
+$ ncu -u
+ body-parser    ~1.8.1  →  ~1.14.1 
+ cookie-parser  ~1.3.3  →   ~1.4.0 
+ debug          ~2.0.0  →   ~2.2.0 
+ jade           ~1.6.0  →  ~1.11.0 
+ mongoose       ~4.0.8  →  ~4.1.10 
+ morgan         ~1.3.0  →   ~1.6.1 
+ serve-favicon  ~2.1.3  →   ~2.3.0
+ 
+Upgraded /your/path/package.json
+ 
+$ npm install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一括更新完了！！&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>LiveReload with Firefox</title>
@@ -1658,40 +1696,6 @@ describe(&#39;Unit: app moudle &#39;, function(){
 &lt;h1 id=&#34;まとめ:d28091e7273529f0913311111ae23332&#34;&gt;まとめ&lt;/h1&gt;
 
 &lt;p&gt;controller のテストは意外と簡単。ただし、DI が増えてくるとハマるポイントも多くなってくるので、次はそんなサンプルを書いていくつもり。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Emacs で CoffeeScript を AutoComplete する</title>
-      <link>http://blog.syati.info/post/coffee_script/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/coffee_script/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、
-coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。&lt;/p&gt;
-
-&lt;h1 id=&#34;必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;必要なパッケージ&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;M-x package-list-package から 以下をインストールする
-
-&lt;ul&gt;
-&lt;li&gt;jquery-doc&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;設定:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;設定&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考にして以下の部分を変更してあげる&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(add-hook &#39;coffee-mode-hook
-    &#39;(lambda ()
-        (jquery-doc-setup) ;; ここに jquery-doc を追加する
-        (add-to-list &#39;ac-dictionary-files &amp;quot;~/.emacs.d/ac-dict/js2-mode&amp;quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
-     ))
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
