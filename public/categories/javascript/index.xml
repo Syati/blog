@@ -17,7 +17,7 @@
       <guid>http://blog.syati.info/post/upgrade_package_json/</guid>
       <description>
 
-&lt;p&gt;package.json の dependencies どうやって一括で更新するのかなと思ってたらあった！！&lt;/p&gt;
+&lt;p&gt;package.json の dependencies を、どうやって一括で更新するのかなと思ってたら！！&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/npm-check-updates&#34;&gt;npm-check-updates&lt;/a&gt;&lt;/p&gt;
 

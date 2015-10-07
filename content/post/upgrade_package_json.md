@@ -8,7 +8,7 @@ title = "package.json を一括更新"
 
 +++
 
-package.json の dependencies どうやって一括で更新するのかなと思ってたらあった！！
+package.json の dependencies を、どうやって一括で更新するのかなと思ってたら！！
 
 [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
 
