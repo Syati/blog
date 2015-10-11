@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Typescript on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://blog.syati.info/categories/typescript/</link>
+    <language>ja-JP</language>
+    
+    <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
+    <updated>Sat, 10 Oct 2015 18:37:23 JST</updated>
+    
+    <item>
+      <title>TypeScript でフロントエンドを実装する</title>
+      <link>http://blog.syati.info/post/typescript_webpack/</link>
+      <pubDate>Sat, 10 Oct 2015 18:37:23 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/typescript_webpack/</guid>
+      <description>
+
+&lt;p&gt;型が恋しいのです。仮引数見た時に、何が入るか簡単に知りたいのです。実引数の型が違った時には教えてほしいのです。そんなこんなで、TypeScript がお気に入りです。&lt;/p&gt;
+
+&lt;p&gt;今回は、どうやってフロントエンドで TypeScript を利用するか記していこうと思います。本記事のコードは以下のURLにあります。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/webpack&#34;&gt;https://github.com/Syati/typescript-sample/tree/master/webpack&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-0-事前準備:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 0: 事前準備&lt;/h1&gt;
+
+&lt;p&gt;以下のコマンドを使用するのでグローバルにインストールしておく。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Package managers&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt;: プロジェクトで利用するライブラリをインストールするために利用する。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://definitelytyped.org/tsd/&#34;&gt;tsd&lt;/a&gt;: プロジェクトで利用するライブラリの定義ファイルをインストールするために利用する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;npm install tsd -g
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;typescript compiler&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.typescriptlang.org/&#34;&gt;tsc&lt;/a&gt;: ts ファイルをコンパイルするために利用する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;npm install typescript -g
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Build tools&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://webpack.github.io/docs/&#34;&gt;webpack&lt;/a&gt;: フロントエンドでモジュールをロードするために利用する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;npm install webpack -g
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;step-1-いろいろ初期化-プロジェクトの作成:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 1: いろいろ初期化(プロジェクトの作成)&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mkdir app
+$ tsd init  # いろいろ尋ねてくるけど enter 連打
+$ npm init
+
+$ tree ./ -L 1
+./
+├── app             # ここに html, ts などを入れる
+├── package.json    # npm init で作成される（ライブラリ管理）
+├── tsd.json        # tsd init で作成される（ライブラリの定義を管理）
+└── typings         # tsd init で作成される（ライブラリの定義のソースコードが入る）
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-2-ライブラリのインストール:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 2: ライブラリのインストール&lt;/h1&gt;
+
+&lt;p&gt;npm と tsd を利用して、ライブラリ、ライブラリの定義をインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# step 1 ./ で以下のコマンドを実行
+## プロジェクトで利用するライブラリのインストール
+$ npm install typescript --save
+$ npm install jquery --save
+## TypeScript で利用するにはもちろん定義が必要なので、tsd で jquery をインストール
+$ tsd install jquery --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-3-app-を作成:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 3: app を作成&lt;/h1&gt;
+
+&lt;p&gt;app の下に app.ts として以下を作成。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-typescript&#34;&gt;import * as $ from &#39;jquery&#39;;
+
+$(() =&amp;gt; {
+    $(document.body).html(&amp;quot;hello&amp;quot;);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;app の下に index.html として以下を作成。 後に app.ts から bundle.js を作成するため、この段階で script を埋め込んでおく。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+    &amp;lt;head&amp;gt;
+        &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;/&amp;gt;
+        &amp;lt;script src=&amp;quot;build/bundle.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;/head&amp;gt;
+    &amp;lt;body&amp;gt;
+    &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-4-コンパイルする:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 4: コンパイルする&lt;/h1&gt;
+
+&lt;p&gt;step 3 で作成した app.ts を js に変換するために tsc の設定を作成する。
+&lt;strong&gt;step 1 ./&lt;/strong&gt; で tsconfig.json として以下のように作成。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  &amp;quot;compilerOptions&amp;quot;: {
+    &amp;quot;sourceMap&amp;quot;: false,     # ソースマップ作成の有無
+    &amp;quot;target&amp;quot;: &amp;quot;ES5&amp;quot;,        # target の設定
+    &amp;quot;outDir&amp;quot;: &amp;quot;app/build&amp;quot;,  # 出力先
+    &amp;quot;module&amp;quot;: &amp;quot;commonjs&amp;quot;    # module のスタイル
+  },
+  &amp;quot;files&amp;quot;: [                # ファイル
+    &amp;quot;typings/tsd.d.ts&amp;quot;,
+    &amp;quot;app/app.ts&amp;quot;
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とりあえずコンパイルしてみる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# step 1 ./ で以下のコマンドを実行
+tsc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;app/build に app.js が作成されているので覗いてみる。&lt;strong&gt;require&lt;/strong&gt; の記述があるが、もちろんフロントではつかえない。そこで、フロントでも require を利用するために、&lt;strong&gt;webpack&lt;/strong&gt; を用いる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var $ = require(&#39;jquery&#39;);
+$(function () {
+    $(document.body).html(&amp;quot;hello&amp;quot;);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ここまでのプロジェクトディレクトリは以下のとおり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./
+├── package.json
+├── tsconfig.json
+├── tsd.json
+├── app
+│   ├── index.html
+│   ├── app.ts
+│   └── build
+│       └── app.js
+├── node_modules
+│   └── jquery
+│   └── typescript
+└── typings
+    ├── jquery
+    │   └── jquery.d.ts
+    └── tsd.d.ts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-5-webpack-導入:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 5: webpack 導入&lt;/h1&gt;
+
+&lt;p&gt;フロントでも require を利用するために、&lt;strong&gt;webpack&lt;/strong&gt; をインストールして、ついでに、TypeScript のファイルを処理できるように loader をいれる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# webpack のインストールは、step 0 でインストールしたものとする
+# typescript ファイルを処理できるように以下の webpack 用の loader をプロジェクトのライブラリに追加する
+npm install ts-loader --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;webpack コマンドをたたけば require などの依存関係を解決してくれるのだが、いろいろとオプションを指定する必要がある。毎回コマンドの度に、それらを打ち込むのは面倒くさいので、設定ファイルに書いておいてあげる。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;step 1 ./&lt;/strong&gt; で webpack.config.js として以下のように webpack の設定を作成する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;module.exports = {
+  entry: &#39;./app/app.ts&#39;,
+  output: {
+    filename: &#39;./app/build/bundle.js&#39;
+  },
+  resolve: {
+    // Add `.ts` and `.tsx` as a resolvable extension.
+    extensions: [&#39;&#39;, &#39;.webpack.js&#39;, &#39;.web.js&#39;, &#39;.ts&#39;, &#39;.tsx&#39;, &#39;.js&#39;]
+  },
+  module: {
+    loaders: [
+      // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
+      { test: /\.tsx?$/, loader: &#39;ts-loader&#39; }
+    ]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで簡単に webpack とコマンドをたたくだけ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# step 1 ./ で以下のコマンドを実行
+$ webpack
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;app/build に bundle.js が作成されているので覗いてみる。require が解決され、単一の js ファイルとして出力されていることがわかる。&lt;/p&gt;
+
+&lt;p&gt;これで index.html をブラウザーで覗いてみると、&lt;strong&gt;hello&lt;/strong&gt; の文字が出力されている。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/webpack&#34;&gt;ソースはこちらから&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;参考:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.jbrantly.com/typescript-and-webpack/&#34;&gt;TypeScript and webpack&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -7,7 +7,210 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Wed, 07 Oct 2015 22:00:32 JST</updated>
+    <updated>Sat, 10 Oct 2015 18:37:23 JST</updated>
+    
+    <item>
+      <title>TypeScript でフロントエンドを実装する</title>
+      <link>http://blog.syati.info/post/typescript_webpack/</link>
+      <pubDate>Sat, 10 Oct 2015 18:37:23 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/typescript_webpack/</guid>
+      <description>
+
+&lt;p&gt;型が恋しいのです。仮引数見た時に、何が入るか簡単に知りたいのです。実引数の型が違った時には教えてほしいのです。そんなこんなで、TypeScript がお気に入りです。&lt;/p&gt;
+
+&lt;p&gt;今回は、どうやってフロントエンドで TypeScript を利用するか記していこうと思います。本記事のコードは以下のURLにあります。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/webpack&#34;&gt;https://github.com/Syati/typescript-sample/tree/master/webpack&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-0-事前準備:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 0: 事前準備&lt;/h1&gt;
+
+&lt;p&gt;以下のコマンドを使用するのでグローバルにインストールしておく。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Package managers&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.npmjs.com/&#34;&gt;npm&lt;/a&gt;: プロジェクトで利用するライブラリをインストールするために利用する。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://definitelytyped.org/tsd/&#34;&gt;tsd&lt;/a&gt;: プロジェクトで利用するライブラリの定義ファイルをインストールするために利用する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;npm install tsd -g
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;typescript compiler&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.typescriptlang.org/&#34;&gt;tsc&lt;/a&gt;: ts ファイルをコンパイルするために利用する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;npm install typescript -g
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Build tools&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://webpack.github.io/docs/&#34;&gt;webpack&lt;/a&gt;: フロントエンドでモジュールをロードするために利用する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;npm install webpack -g
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;step-1-いろいろ初期化-プロジェクトの作成:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 1: いろいろ初期化(プロジェクトの作成)&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mkdir app
+$ tsd init  # いろいろ尋ねてくるけど enter 連打
+$ npm init
+
+$ tree ./ -L 1
+./
+├── app             # ここに html, ts などを入れる
+├── package.json    # npm init で作成される（ライブラリ管理）
+├── tsd.json        # tsd init で作成される（ライブラリの定義を管理）
+└── typings         # tsd init で作成される（ライブラリの定義のソースコードが入る）
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-2-ライブラリのインストール:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 2: ライブラリのインストール&lt;/h1&gt;
+
+&lt;p&gt;npm と tsd を利用して、ライブラリ、ライブラリの定義をインストール。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# step 1 ./ で以下のコマンドを実行
+## プロジェクトで利用するライブラリのインストール
+$ npm install typescript --save
+$ npm install jquery --save
+## TypeScript で利用するにはもちろん定義が必要なので、tsd で jquery をインストール
+$ tsd install jquery --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-3-app-を作成:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 3: app を作成&lt;/h1&gt;
+
+&lt;p&gt;app の下に app.ts として以下を作成。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-typescript&#34;&gt;import * as $ from &#39;jquery&#39;;
+
+$(() =&amp;gt; {
+    $(document.body).html(&amp;quot;hello&amp;quot;);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;app の下に index.html として以下を作成。 後に app.ts から bundle.js を作成するため、この段階で script を埋め込んでおく。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+    &amp;lt;head&amp;gt;
+        &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;/&amp;gt;
+        &amp;lt;script src=&amp;quot;build/bundle.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;/head&amp;gt;
+    &amp;lt;body&amp;gt;
+    &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-4-コンパイルする:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 4: コンパイルする&lt;/h1&gt;
+
+&lt;p&gt;step 3 で作成した app.ts を js に変換するために tsc の設定を作成する。
+&lt;strong&gt;step 1 ./&lt;/strong&gt; で tsconfig.json として以下のように作成。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  &amp;quot;compilerOptions&amp;quot;: {
+    &amp;quot;sourceMap&amp;quot;: false,     # ソースマップ作成の有無
+    &amp;quot;target&amp;quot;: &amp;quot;ES5&amp;quot;,        # target の設定
+    &amp;quot;outDir&amp;quot;: &amp;quot;app/build&amp;quot;,  # 出力先
+    &amp;quot;module&amp;quot;: &amp;quot;commonjs&amp;quot;    # module のスタイル
+  },
+  &amp;quot;files&amp;quot;: [                # ファイル
+    &amp;quot;typings/tsd.d.ts&amp;quot;,
+    &amp;quot;app/app.ts&amp;quot;
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とりあえずコンパイルしてみる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# step 1 ./ で以下のコマンドを実行
+tsc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;app/build に app.js が作成されているので覗いてみる。&lt;strong&gt;require&lt;/strong&gt; の記述があるが、もちろんフロントではつかえない。そこで、フロントでも require を利用するために、&lt;strong&gt;webpack&lt;/strong&gt; を用いる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var $ = require(&#39;jquery&#39;);
+$(function () {
+    $(document.body).html(&amp;quot;hello&amp;quot;);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ここまでのプロジェクトディレクトリは以下のとおり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./
+├── package.json
+├── tsconfig.json
+├── tsd.json
+├── app
+│   ├── index.html
+│   ├── app.ts
+│   └── build
+│       └── app.js
+├── node_modules
+│   └── jquery
+│   └── typescript
+└── typings
+    ├── jquery
+    │   └── jquery.d.ts
+    └── tsd.d.ts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-5-webpack-導入:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 5: webpack 導入&lt;/h1&gt;
+
+&lt;p&gt;フロントでも require を利用するために、&lt;strong&gt;webpack&lt;/strong&gt; をインストールして、ついでに、TypeScript のファイルを処理できるように loader をいれる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# webpack のインストールは、step 0 でインストールしたものとする
+# typescript ファイルを処理できるように以下の webpack 用の loader をプロジェクトのライブラリに追加する
+npm install ts-loader --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;webpack コマンドをたたけば require などの依存関係を解決してくれるのだが、いろいろとオプションを指定する必要がある。毎回コマンドの度に、それらを打ち込むのは面倒くさいので、設定ファイルに書いておいてあげる。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;step 1 ./&lt;/strong&gt; で webpack.config.js として以下のように webpack の設定を作成する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;module.exports = {
+  entry: &#39;./app/app.ts&#39;,
+  output: {
+    filename: &#39;./app/build/bundle.js&#39;
+  },
+  resolve: {
+    // Add `.ts` and `.tsx` as a resolvable extension.
+    extensions: [&#39;&#39;, &#39;.webpack.js&#39;, &#39;.web.js&#39;, &#39;.ts&#39;, &#39;.tsx&#39;, &#39;.js&#39;]
+  },
+  module: {
+    loaders: [
+      // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
+      { test: /\.tsx?$/, loader: &#39;ts-loader&#39; }
+    ]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで簡単に webpack とコマンドをたたくだけ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# step 1 ./ で以下のコマンドを実行
+$ webpack
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;app/build に bundle.js が作成されているので覗いてみる。require が解決され、単一の js ファイルとして出力されていることがわかる。&lt;/p&gt;
+
+&lt;p&gt;これで index.html をブラウザーで覗いてみると、&lt;strong&gt;hello&lt;/strong&gt; の文字が出力されている。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/webpack&#34;&gt;ソースはこちらから&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;参考:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;参考&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.jbrantly.com/typescript-and-webpack/&#34;&gt;TypeScript and webpack&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>package.json を一括更新</title>
@@ -1441,261 +1644,6 @@ Web Server is available at http://127.0.0.1:1313/
 &lt;p&gt;ブログ構築完成。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Angular test sample 1</title>
-      <link>http://blog.syati.info/post/angular-test-sample-recipe1/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/angular-test-sample-recipe1/</guid>
-      <description>
-
-&lt;p&gt;js ってテストしにくいよねってことで今流行りの angular で unit test する。
-最初なので、事細かに説明するつもりで書いてみる。&lt;/p&gt;
-
-&lt;p&gt;サンプルは以下から git clone してください。ソースと突き合わせながら見るといいかも。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/angular-test-sample&#34;&gt;https://github.com/Syati/angular-test-sample&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;準備:d28091e7273529f0913311111ae23332&#34;&gt;準備&lt;/h1&gt;
-
-&lt;h2 id=&#34;ubuntu:d28091e7273529f0913311111ae23332&#34;&gt;ubuntu&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;node &amp;amp; npm&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get install nodejs
-$ sudo apt-get install npm
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;mac:d28091e7273529f0913311111ae23332&#34;&gt;mac&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;node &amp;amp; npm&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install node
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;共通:d28091e7273529f0913311111ae23332&#34;&gt;共通&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;bower&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo npm install -g bower
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;karma&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo npm install -g karma-cli
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332&#34;&gt;実施：サンプルを CLONE して TEST&lt;/h1&gt;
-
-&lt;p&gt;github にサンプルを書いたので clone する。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git clone git@github.com:Syati/angular-test-sample.git
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;prj-依存環境を入れる:d28091e7273529f0913311111ae23332&#34;&gt;prj 依存環境を入れる&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd your_clone_path/angular-test-sample/controller/recipe1
-$ npm install
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;test-実行する:d28091e7273529f0913311111ae23332&#34;&gt;test 実行する&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm test
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;以下のような出力で、テストが成功する。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;WARN [karma]: Port 9876 in use
-INFO [karma]: Karma v0.12.24 server started at http://localhost:9877/
-INFO [launcher]: Starting browser PhantomJS
-INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id 62869514
-PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;説明:d28091e7273529f0913311111ae23332&#34;&gt;説明&lt;/h1&gt;
-
-&lt;h2 id=&#34;directory:d28091e7273529f0913311111ae23332&#34;&gt;directory&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;    recipe1
-    ├── app
-    │   ├── bower_compornents #1 bower js lib install dir
-    │   ├── css
-    │   ├── index.html
-    │   ├── js
-    │   │   └── app.js       #4 target js
-    │   └── test              #2 test files
-    │        └── app.spec.js  #4 test js
-    ├── .bowerrc      #1 bower install dir 設定
-    ├── bower.json    #1 bower install する js lib などの設定
-    ├── karma.conf.js #3 angular のテスト設定
-    ├── package.json  #2 npm lib などの設定 
-    └── node_modules  #2 npm lib install dir
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;1-bower:d28091e7273529f0913311111ae23332&#34;&gt;#1 bower&lt;/h2&gt;
-
-&lt;p&gt;js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ bower init  # コマンドで初期設定 bower.json を作成
-$ bower install angular --save　# または --save-dev
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;デフォルトは &lt;strong&gt;bower.json&lt;/strong&gt; がある場所がインストール先になるので &lt;strong&gt;.bowerrc&lt;/strong&gt; にインストール先を書いておく。
-上記を実施することで以下のファイルを作成する。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;bower.json&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;.bowerrc&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;その他&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;.gitignore に bower_components を入れておく（bower install でいつでも同じ環境を構築できるので）。&lt;/li&gt;
-&lt;li&gt;bower のオプション &lt;strong&gt;&amp;#x2013;save&lt;/strong&gt; または &lt;strong&gt;&amp;#x2013;save-dev&lt;/strong&gt; を分けることで、本番用と開発用を分けることが出来る。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;bower install &amp;#x2013;production&lt;/strong&gt; で &amp;#x2013;save-dev で入れたパッケージはインストールせずに済むのである。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;参考
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://bower.io/docs/api&#34;&gt;http://bower.io/docs/api&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;2-npm:d28091e7273529f0913311111ae23332&#34;&gt;#2 npm&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm init 
-$ npm install jasmine --save-dev　# または --save
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上記を実施することで以下のファイルを作成する。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;package.json&lt;/li&gt;
-&lt;li&gt;その他
-
-&lt;ul&gt;
-&lt;li&gt;.gitignore に node_modules を入れておく（npm install でいつでも同じ環境を構築できるので）。&lt;/li&gt;
-&lt;li&gt;npm のオプション &lt;strong&gt;&amp;#x2013;save&lt;/strong&gt; または &lt;strong&gt;&amp;#x2013;save-dev&lt;/strong&gt; を分けることで、本番用と開発用を分けることが出来る(bower と同様ですね)。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;npm install &amp;#x2013;production&lt;/strong&gt; で &amp;#x2013;save-dev で入れたパッケージはインストールせずに済むのである。&lt;/li&gt;
-&lt;li&gt;今回は test 用しかないので &amp;#x2013;save-dev ですべてインストールする。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;package.json 内の scripts って便利&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;参考
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.npmjs.org/doc/cli/npm-install.html&#34;&gt;https://www.npmjs.org/doc/cli/npm-install.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;3-karma-angular-の-unit-test-の設定:d28091e7273529f0913311111ae23332&#34;&gt;#3 karma  angular の unit test の設定&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;karma init  # コマンドで初期設定 karma.conf.js を作成できる
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;今回特に意識する場所としては以下の通り。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;basePath
-
-&lt;ul&gt;
-&lt;li&gt;基準とするパスなので設定ファイルのある場所 &lt;strong&gt;./&lt;/strong&gt; にする。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;files
-
-&lt;ul&gt;
-&lt;li&gt;ここで必要な js lib と テストのターゲット js とテスト js を読み込ませてあげる。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;browsers
-
-&lt;ul&gt;
-&lt;li&gt;init のデフォルトだと Chrome だが、テストするたびに Chrome が開くのは邪魔なので、PhantomJS にする。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://phantomjs.org/&#34;&gt;PhantomJS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;plugins
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://jasmine.github.io&#34;&gt;jasmine&lt;/a&gt; を利用するために以下を追加する。
-
-&lt;ul&gt;
-&lt;li&gt;karma-jasmine&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;karma から PhantomJS を呼べるようにするために以下を追加する。
-
-&lt;ul&gt;
-&lt;li&gt;karma-phantomjs-launcher&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;4-test-を書く:d28091e7273529f0913311111ae23332&#34;&gt;#4 test を書く&lt;/h2&gt;
-
-&lt;p&gt;テストするうえで jasmine の理解は必須なので &lt;a href=&#34;http://jasmine.github.io/2.1/introduction.html&#34;&gt;tutorial&lt;/a&gt; で勉強しておく。
-index.html をローカルで開けばわかると思うが button click で &amp;lsquo;hello&amp;rsquo; とでてくるだけのもの。
-テストする js は app.js である。&lt;/p&gt;
-
-&lt;p&gt;テストコードにコメント付与した。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;&#39;use strict&#39;;
- 
-describe(&#39;Unit: app moudle &#39;, function(){
-  var scope; # scope がどこからでも呼べるように定義しておく
-
-  beforeEach(function(){
-    angular.mock.module(&#39;app&#39;); # モジュールのモックを作成する
-  });
-
-  describe(&#39;MainCtrl&#39;, function(){
-    # ここで DI する。今回は MainCtrl cotroller で GET, POST など何もしていないので
-    # $rootScope と $controller のみ
-    beforeEach(inject(function($rootScope, $controller){ 
-      scope = $rootScope.$new(); # scope を作成して、上記で定義した scope に代入する
-
-      # scope を渡してコントローラを作成する
-      # これで scope に controller 内に定義した sayHello 関数などが入る 
-      $controller(&#39;MainCtrl&#39;, {&#39;$scope&#39;: scope}); 
-    }));
-
-    it(&#39;sayHello&#39;, function(){
-      scope.sayHello();
-      # scope.message が &#39;hello&#39; となっているかテスト
-      expect(scope.message).toBe(&#39;hello&#39;);
-    });
-  });
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;その他
-
-&lt;ul&gt;
-&lt;li&gt;angular.mock.module を利用するうえで、bower.json に記述のある angular-mocks は必要。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;まとめ:d28091e7273529f0913311111ae23332&#34;&gt;まとめ&lt;/h1&gt;
-
-&lt;p&gt;controller のテストは意外と簡単。ただし、DI が増えてくるとハマるポイントも多くなってくるので、次はそんなサンプルを書いていくつもり。&lt;/p&gt;
 </description>
     </item>
     
