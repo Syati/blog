@@ -12,7 +12,7 @@ title = "TypeScript でフロントエンドを実装する"
 
 今回は、どうやってフロントエンドで TypeScript を利用するか記していこうと思います。本記事のコードは以下のURLにあります。
 
-https://github.com/Syati/typescript-sample/tree/master/webpack
+https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack
 
 <!--more-->
 
@@ -198,7 +198,7 @@ app/build に bundle.js が作成されているので覗いてみる。require 
 
 これで index.html をブラウザーで覗いてみると、**hello** の文字が出力されている。
 
-[ソースはこちらから](https://github.com/Syati/typescript-sample/tree/master/webpack)
+[ソースはこちらから](https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack)
 
 # 参考
 
