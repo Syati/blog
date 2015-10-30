@@ -21,7 +21,7 @@
 
 &lt;p&gt;今回は、どうやってフロントエンドで TypeScript を利用するか記していこうと思います。本記事のコードは以下のURLにあります。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/webpack&#34;&gt;https://github.com/Syati/typescript-sample/tree/master/webpack&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack&#34;&gt;https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;step-0-事前準備:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 0: 事前準備&lt;/h1&gt;
 
@@ -202,7 +202,7 @@ $ webpack
 
 &lt;p&gt;これで index.html をブラウザーで覗いてみると、&lt;strong&gt;hello&lt;/strong&gt; の文字が出力されている。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/webpack&#34;&gt;ソースはこちらから&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack&#34;&gt;ソースはこちらから&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;参考:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;参考&lt;/h1&gt;
 
