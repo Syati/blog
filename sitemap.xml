@@ -98,12 +98,12 @@
   </url>
   
   <url>
-    <loc>http://blog.syati.info/post/emacs_256/</loc>
+    <loc>http://blog.syati.info/post/emacsJavascript/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.syati.info/post/emacsJavascript/</loc>
+    <loc>http://blog.syati.info/post/emacs_256/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
@@ -113,12 +113,17 @@
   </url>
   
   <url>
-    <loc>http://blog.syati.info/post/make_scala_env/</loc>
+    <loc>http://blog.syati.info/post/nkf/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.syati.info/post/nkf/</loc>
+    <loc>http://blog.syati.info/post/make_windows_emacs/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/post/make_scala_env/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
@@ -133,22 +138,17 @@
   </url>
   
   <url>
-    <loc>http://blog.syati.info/post/make_windows_emacs/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/post/org2blogNetrc/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
     <loc>http://blog.syati.info/post/typecatchar/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/post/org2blogNetrc/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
