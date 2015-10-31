@@ -4,7 +4,7 @@ Description = "TypeScript でユニットテストする方法をメモる。加
 Tags = ["test", "coverage"]
 comments = true
 date = "2015-10-31T14:00:39+09:00"
-title = "Typescript でユニットテストする。カバレッジもねっ!!"
+title = "TypeScript でユニットテストする。カバレッジもねっ!!"
 
 +++
 
