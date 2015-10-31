@@ -7,7 +7,255 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Sat, 10 Oct 2015 18:37:23 JST</updated>
+    <updated>Sat, 31 Oct 2015 14:00:39 JST</updated>
+    
+    <item>
+      <title>Typescript でユニットテストする。カバレッジもねっ!!</title>
+      <link>http://blog.syati.info/post/typescript_coverage/</link>
+      <pubDate>Sat, 31 Oct 2015 14:00:39 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/typescript_coverage/</guid>
+      <description>
+
+&lt;p&gt;AltJs ってトランスパイルした後、テストを実行させる必要があるから・・、面倒くさいんだよね。なんか、あまり情報もないし、これだから AltJs は・・・と思うわけですが、やってみると案外大したことないもんです。&lt;/p&gt;
+
+&lt;p&gt;今回は、TypeScript のコードのユニットテスト、カバレッジを記していこうと思います。本記事のコードは以下のURLにあります。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/011_test_sample&#34;&gt;https://github.com/Syati/typescript-sample/tree/master/011_test_sample&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;step-0-事前準備:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 0: 事前準備&lt;/h1&gt;
+
+&lt;h2 id=&#34;流れ:134ba188964091106b5909c7aef27c8d&#34;&gt;流れ&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;ts でコードを書く&lt;/li&gt;
+&lt;li&gt;トランスパイルする（js と map を出力）&lt;/li&gt;
+&lt;li&gt;js をテストする&lt;/li&gt;
+&lt;li&gt;map を利用して&lt;strong&gt;ts カバレッジ&lt;/strong&gt;を測る&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;ライブラリ:134ba188964091106b5909c7aef27c8d&#34;&gt;ライブラリ&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;npm install -g mocha istanbul remap-istanbul&lt;/strong&gt; でそれぞれコマンドが利用できるようになります。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Test framework
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.npmjs.com/package/mocha&#34;&gt;mocha&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;テストフレームワークですね。他にも karma, jasmine など、たくさんありますがシンプルなので、とっつきやすかった。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Coverage
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.npmjs.com/package/istanbul&#34;&gt;istanbul&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;カバレッジを測定してくれる。カバレッジがあると、ユニットテストのモチベーションが上がりますよね！！&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.npmjs.com/package/remap-istanbul&#34;&gt;remap-istanbul&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;istanbul だけでは、トランスパイル後（js）のカバレッジしか測れないので、map を利用して、ts のカバレッジを測る&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;step-1-とりあえずテストを書く:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 1: とりあえずテストを書く&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/011_test_sample&#34;&gt;プロジェクト&lt;/a&gt; を確認しておく。全体が理解しやすくなると思う。&lt;/p&gt;
+
+&lt;p&gt;テストは、単にコンストラクタで与えられた値を保持しているかどうか。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-typescript&#34;&gt;// app/src/main.ts
+export default class TestTarget {
+    constructor(public name){
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-typescript&#34;&gt;// app/test/main.test.ts
+import assert from &#39;power-assert&#39;;
+import TestTarget from &#39;../src/main&#39;;
+
+describe(&amp;quot;TestTarget&amp;quot;, () =&amp;gt; {
+    it(&amp;quot;should have a name&amp;quot;, () =&amp;gt; {
+        let testTarget = new TestTarget(&amp;quot;test&amp;quot;);
+        assert.equal(testTarget.name, &amp;quot;test&amp;quot;);
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;すごいシンプルですね。&lt;/p&gt;
+
+&lt;h1 id=&#34;step-2-トランスパイルする:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 2: トランスパイルする&lt;/h1&gt;
+
+&lt;p&gt;tsc コマンドを叩く前に設定ファイルを書いときましょう。以下の tsconfig.json になります。
+とくに変わった点はないですね。重要なポイントとしては、&lt;strong&gt;&amp;ldquo;sourceMap&amp;rdquo;: true&lt;/strong&gt;です。
+後々、ts のカバレッジを測るために必要になってきます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  &amp;quot;version&amp;quot;: &amp;quot;1.6.2&amp;quot;,
+  &amp;quot;compilerOptions&amp;quot;: {
+    &amp;quot;module&amp;quot;: &amp;quot;commonjs&amp;quot;,
+    &amp;quot;target&amp;quot;: &amp;quot;es5&amp;quot;,
+    &amp;quot;sourceMap&amp;quot;: true
+  },
+  &amp;quot;exclude&amp;quot;: [
+    &amp;quot;dist&amp;quot;,
+    &amp;quot;node_modules&amp;quot;
+  ],
+  &amp;quot;files&amp;quot;: [
+    &amp;quot;typings/tsd.d.ts&amp;quot;,
+    &amp;quot;app/src/main.ts&amp;quot;,
+    &amp;quot;app/test/main.test.ts&amp;quot;
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;プロジェクトルートで tsc コマンドを叩きます&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ tsc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;step-3-テストする:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 3: テストする&lt;/h1&gt;
+
+&lt;p&gt;Step 2 でトランスパイル済みなので、ts ファイル以外に js、map ファイルが存在すると思います。ディレクトリが汚れてあたふたするかもしれませんが、package.json に clean スクリプトを書くことで解決できるので、今は我慢。&lt;/p&gt;
+
+&lt;p&gt;プロジェクトルートでテストコマンドを叩いてみます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mocha app/test/*.test.js | pbcopy
+
+  TestTarget
+
+    ✓ should have a name
+
+
+  1 passing (8ms)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;成功、終わりです。&lt;/p&gt;
+
+&lt;p&gt;味気ないですね。&lt;/p&gt;
+
+&lt;p&gt;ユニットテストのモチベーションをあげるためにも、やっぱりカバレッジですよ！！&lt;/p&gt;
+
+&lt;h1 id=&#34;step-4-カバレッジを測る:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 4: カバレッジを測る&lt;/h1&gt;
+
+&lt;p&gt;とくに必要なことはありません。Step 0 で説明したとおり &lt;strong&gt;istanbul&lt;/strong&gt; を利用するだけ。
+すこし異なっているのは、 mocha が _mocha を利用するということです。理由は、以下のとおり。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/gotwarlost/istanbul/issues/44#issuecomment-16093330&#34;&gt;https://github.com/gotwarlost/istanbul/issues/44#issuecomment-16093330&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ istanbul cover _mocha -- ./app/test/*.test.js
+
+  TestTarget
+
+    ✓ should have a name
+
+
+  1 passing (5ms)
+
+
+=============================== Coverage summary ===============================
+Statements   : 100% ( 6/6 )
+Branches     : 100% ( 0/0 )
+Functions    : 100% ( 2/2 )
+Lines        : 100% ( 6/6 )
+================================================================================
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;出力に、&lt;strong&gt;coverage summary&lt;/strong&gt; が増えましたね。また、プロジェクトルートに &lt;strong&gt;coverage&lt;/strong&gt; ディレクトリが出力されているので、中の index.html を見ましょう。通過したコード、100% の数字にやる気が出てきますね。ただし、これはトランスパイル後の js のカバレッジなので、あと一手間かけてあげましょう。&lt;/p&gt;
+
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;coverage_js.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;トランスパイル後のカバレッジ&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h1 id=&#34;step-5-ソースマップから-ts-のカバレッジを測る:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 5: ソースマップから ts のカバレッジを測る&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;coverage&lt;/strong&gt; ディレクトリにて以下のコマンドたたいてあげるだけです。ts のカバレッジが html-repot ディレクトリに出力されます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ remap-istanbul -i coverage.json -o html-report -t html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;coverage_ts.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;ts のカバレッジ&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;p&gt;ts のカバレッジが測れました。ただ、一連のコマンドを毎回叩くのは疲れるので、&lt;strong&gt;package.json&lt;/strong&gt; を用いて楽にしましょう。&lt;/p&gt;
+
+&lt;p&gt;＊図が Step 4 とデザインが違うのは、remap-istanbul で利用している istanbul のバージョンが古いからだと思われる&lt;/p&gt;
+
+&lt;h1 id=&#34;step-6-package-json-で楽する:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 6: package.json で楽する&lt;/h1&gt;
+
+&lt;p&gt;一連のコマンドを &lt;strong&gt;package.json&lt;/strong&gt; に書いておきましょう。以下サンプル。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;{
+  ...
+
+  &amp;quot;scripts&amp;quot;: {
+    &amp;quot;postinstall&amp;quot;: &amp;quot;tsd install&amp;quot;,
+    &amp;quot;clean&amp;quot;: &amp;quot;find -E . -regex &#39;./app/.+\\.(js|map)$&#39; -type f | xargs rm &amp;amp;&amp;amp; rm -rf ./build&amp;quot;,
+    &amp;quot;pretest&amp;quot;: &amp;quot;tsc&amp;quot;,
+    &amp;quot;test&amp;quot;: &amp;quot;istanbul cover _mocha -- ./app/test/*.test.js&amp;quot;,
+    &amp;quot;posttest&amp;quot;: &amp;quot;cd coverage &amp;amp;&amp;amp; remap-istanbul -i coverage.json -o html-report -t html&amp;quot;
+    },
+    
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;大事なのは、 &lt;strong&gt;1. pretest、&lt;/strong&gt; &lt;strong&gt;2. test、&lt;/strong&gt; &lt;strong&gt;3. posttest&lt;/strong&gt; です。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;npm test&lt;/strong&gt; を実行することで &lt;strong&gt;1. 2. 3.&lt;/strong&gt;の順番で実行してくれます。今回の step2 - step5 をコマンド１つで済せられるということですね。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 次回からはこれだけでよい
+$ npm test 
+
+# js とか map 削除したいとおもったら
+$ npm clean
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;その他:134ba188964091106b5909c7aef27c8d&#34;&gt;その他&lt;/h1&gt;
+
+&lt;h2 id=&#34;istanbul-yml-でカバレッジレポートのディレクトリ指定する:134ba188964091106b5909c7aef27c8d&#34;&gt;.istanbul.yml でカバレッジレポートのディレクトリ指定する&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;.istanbul.yml&lt;/strong&gt; に以下のように書いてあげることで、レポートの出力先を変えることが出来る。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;#.istanbul.yml
+reporting:
+    dir: ./docs/coverage
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;もっとカスタマイズしたい場合は、以下のコマンドからデフォルト設定など説明をみるといいかも。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ istanbul help config
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>TypeScript でフロントエンドを実装する</title>
