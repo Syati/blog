@@ -108,7 +108,7 @@ Step 2 でトランスパイル済みなので、ts ファイル以外に js、m
 プロジェクトルートでテストコマンドを叩いてみます。
 
 ~~~bash
-$ mocha app/test/*.test.js | pbcopy
+$ mocha app/test/*.test.js
 
   TestTarget
 

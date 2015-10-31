@@ -127,7 +127,7 @@ describe(&amp;quot;TestTarget&amp;quot;, () =&amp;gt; {
 
 &lt;p&gt;プロジェクトルートでテストコマンドを叩いてみます。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mocha app/test/*.test.js | pbcopy
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mocha app/test/*.test.js
 
   TestTarget
 
