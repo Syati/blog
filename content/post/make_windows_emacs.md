@@ -15,7 +15,7 @@ AutoHotkey もあるのですが、それは、また次の機会に。
 
 今回は、Cygwin、Zsh、NTEmacs でWindows に Linux環境を構築をする。
  <!--more-->
-# 1. インストール
+## 1. インストール
 
 1.  [cygwin](http://www.cygwin.com/) のインストール
     1.  注意がでるけどインストールディレクトリをドライブのRoot( F:/ ) にでもする
@@ -41,7 +41,7 @@ AutoHotkey もあるのですが、それは、また次の機会に。
     2.  解凍されたディレクトリの中身(bin,etc,info などなど）をすべてコピーして
         cygwin をインストールしたディレクトリの F:/usr/local/ に上書きする
 
-# 2. cygwin のデフォルト Shell を zsh に切り替え、初期設定
+## 2. cygwin のデフォルト Shell を zsh に切り替え、初期設定
 
 1.  /etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する
 
@@ -55,7 +55,7 @@ AutoHotkey もあるのですが、それは、また次の機会に。
     1.  [漢のzsh 24 グッバイ野郎ども! コピペではじめるzshファイナル](http://news.mynavi.jp/column/zsh/024/index.html)
     2.  zsh についても詳しく書かれているので、勉強しておく
 
-# 3. Emacs の作業場所(HOME) を設定
+## 3. Emacs の作業場所(HOME) を設定
 
 1.  F:/usr/local/bin の中にある runemacs.exe のショートカットを作成 Desktop にでも貼り付ける
 
@@ -69,7 +69,7 @@ AutoHotkey もあるのですが、それは、また次の機会に。
 
 4.  emacsを起動して Ctrl + x, Ctrl + f をタイプしたあとに ~/ を入力して、HOME に移動するか確認して終了
 
-# 4. Emacs の環境を設定 (設定ファイル ~/.emacs.d/init.el )
+## 4. Emacs の環境を設定 (設定ファイル ~/.emacs.d/init.el )
 
 Emacs で設定する環境変数は、以下の通り３つある。本設定が上手くいっていない/理解していないと command not found で悩むかも。
 
@@ -83,7 +83,7 @@ Emacs で設定する環境変数は、以下の通り３つある。本設定�
 3.  load-path
     -   emacs-lisp（\*.el、\*.elc) を利用する際に使う。
 
-## 4.1. PATH, exec-path を設定
+### 4.1. PATH, exec-path を設定
 
 cygwin から emacs を立ち上げた場合と、GUIから emacs を立ち上げた場合は、
 異なる環境変数が利用されるため、混乱を避けるためにも PATH, exec-path に同じ設定をする。
@@ -113,7 +113,7 @@ cygwin から emacs を立ち上げた場合と、GUIから emacs を立ち上�
 - 参考
    - http://ergoemacs.org/emacs/emacs_env_var_paths.html
 
-## 4.2. GUI の Emacs の M-x shell を コマンドプロンプトから zsh にする
+### 4.2. GUI の Emacs の M-x shell を コマンドプロンプトから zsh にする
 
 cygwin から emacs を立ち上げて、 M-x shell で呼び出されるのは、
 **2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する**
@@ -135,7 +135,7 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
     -  [NTEmacsWithCygwin](http://emacswiki.org/emacs/NTEmacsWithCygwin)
     -  <http://flex.ee.uec.ac.jp/texi/emacs-jp/emacs-jp_202.html>
 
-## 4.3. load-path に自分がインストールする emacs-lisp（\*.el、\*.elc) 置場を追記
+### 4.3. load-path に自分がインストールする emacs-lisp（\*.el、\*.elc) 置場を追記
 
 1. ~/.emacs.d/lisp を自分がインストールする emacs-lisp（\*.el、\*.elc) 置場として、load-path に追加する。
     -  ~/.emacs.d/lisp 以下のサブディレクトリも自動で追記してくれる
@@ -149,7 +149,7 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 - 参考
   - http://emacswiki.org/emacs/LoadPath
 
-# 5. まとめ
+## 5. まとめ
 
 以下にここまで記述した init.el の設定を残しておく。
 

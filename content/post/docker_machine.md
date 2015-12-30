@@ -15,7 +15,7 @@ Docker すごい。 何がすごいって環境構築が楽すぎる。以前は
 
 <!--more-->
 
-# 前提
+## 前提
 
 - OSX 10.10.5
 - Docker Toolbox
@@ -23,7 +23,7 @@ Docker すごい。 何がすごいって環境構築が楽すぎる。以前は
     - docker-machine version 0.4.1 (e2c88d6)
 - Virtual Box 5.0.3
 
-# docker-machine コマンド、流れ
+## docker-machine コマンド、流れ
 
 以下のレイヤーと対応するコマンドを覚えておくと、スムーズかもしれない。
 
@@ -33,7 +33,7 @@ Docker すごい。 何がすごいって環境構築が楽すぎる。以前は
 | Docker VM           | docker-machine |
 | OSX                 |                |
 
-## Step 1 docker vm を確認する
+### Step 1 docker vm を確認する
 
 作成した docker vm を確認する。普段の **ls** と同じ感じで使う頻度が高い。はじめは何もないので空である。
 
@@ -43,7 +43,7 @@ $ docker-machine ls
 NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
 ~~~
 
-## Step 2 docker vm を作成する
+### Step 2 docker vm を作成する
 
 docker vm を作成する。 以下のコマンドは、オプション driver で virtualbox を指定して、 vm 名を sample にしている。色々オプションがあるので、もっと詳しくという方は、[create](https://docs.docker.com/machine/reference/create/) を参考にしてください。
 
@@ -66,7 +66,7 @@ NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
 sample             virtualbox   Running   tcp://192.168.99.103:2376
 ~~~
 
-## Step 3 docker vm を利用する
+### Step 3 docker vm を利用する
 
 Step 2 まででは、対象の docker vm にコンテナを操作するコマンド(docker ps など)を実行できない。SSH で対象 vm に入れば可能だが、そんな面倒くさいことは毎回したくない。
 そこで、以下のように env -> eval コマンドを実行して、利用する docker vm の環境変数を設定する。設定した docker vm の ACTIVE に * が記される。
@@ -94,9 +94,9 @@ sample    *        virtualbox   Running   tcp://192.168.99.103:2376
 
 これで今後利用する docker コマンドは docker vm である sample に発行される。
 
-# その他
+## その他
 
-## docker vm の中身を確認する ssh で入る
+### docker vm の中身を確認する ssh で入る
 
 ~~~bash
 $ docker-machine ssh sample

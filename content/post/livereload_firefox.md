@@ -23,17 +23,17 @@ Firefox LiveReload + grunt-contrib-watch LiveReload で以下の warning メッ�
 
 <!--more-->
 
-# Warning
+## Warning
 
 {{< figure class="image-half__center" src="livereload_warning.png" title="LiveReload Warning" >}}
 
-# Extension (old)
+## Extension (old)
 
 これではない。
 
 {{< figure class="image-half__center" src="livereload_extension.png" title="LiveReload extension (old)" >}}
 
-# Extension (new)
+## Extension (new)
 
 以下のURLから入れましょう。
 

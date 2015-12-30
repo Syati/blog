@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,12 +121,26 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">Hugo Part 2 - Hugo で github にブログを立ち上げる</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#step-1-github-に-blog-repository-をつくる:a830f51eecde66402e29d75bcb0532ee">Step 1 github に blog repository をつくる</a></li>
+<li><a href="#step-2-blog-の設定をかいておく:a830f51eecde66402e29d75bcb0532ee">Step 2 blog の設定をかいておく</a></li>
+<li><a href="#step-3-repository-に-push-する:a830f51eecde66402e29d75bcb0532ee">Step 3 repository に push する</a></li>
+<li><a href="#step-4-gh-pages-ブランチを作成する:a830f51eecde66402e29d75bcb0532ee">Step 4 gh-pages ブランチを作成する</a></li>
+<li><a href="#step-5-めんどさい-deploy-はスクリプトを利用する:a830f51eecde66402e29d75bcb0532ee">Step 5 めんどさい Deploy はスクリプトを利用する</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p><a href="http://blog.syati.info/post/create_hugo/">Part 1</a> では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
 <a href="http://gohugo.io/tutorials/github-pages-blog/">Hosting on GitHub Pages</a> を参考にして、セットアップ手順を記していく。</p>
 
-<h1 id="step-1-github-に-blog-repository-をつくる:a830f51eecde66402e29d75bcb0532ee">Step 1 github に blog repository をつくる</h1>
+<h2 id="step-1-github-に-blog-repository-をつくる:a830f51eecde66402e29d75bcb0532ee">Step 1 github に blog repository をつくる</h2>
 
 <p>github にアクセスして、repository をつくる。repository name がそのまま URL になる（以下のようなURL）。</p>
 
@@ -141,7 +155,7 @@
 </ul></li>
 </ul>
 
-<h1 id="step-2-blog-の設定をかいておく:a830f51eecde66402e29d75bcb0532ee">Step 2 blog の設定をかいておく</h1>
+<h2 id="step-2-blog-の設定をかいておく:a830f51eecde66402e29d75bcb0532ee">Step 2 blog の設定をかいておく</h2>
 
 <p><strong>※以降、github に yourblog として repostitory を作成したとして記す。また、part 1 で作成した yourblog があるものとする</strong></p>
 
@@ -172,7 +186,7 @@ canonifyurls = true # 相対パスではなく baseurl を基点とした絶対�
 </ul></li>
 </ul>
 
-<h1 id="step-3-repository-に-push-する:a830f51eecde66402e29d75bcb0532ee">Step 3 repository に push する</h1>
+<h2 id="step-3-repository-に-push-する:a830f51eecde66402e29d75bcb0532ee">Step 3 repository に push する</h2>
 
 <p>yourblog ディレクトリで以下のコマンドを実行する。</p>
 
@@ -186,7 +200,7 @@ $ git commit -m &quot;Add hugo template&quot;
 $ git push origin master
 </code></pre>
 
-<h1 id="step-4-gh-pages-ブランチを作成する:a830f51eecde66402e29d75bcb0532ee">Step 4 gh-pages ブランチを作成する</h1>
+<h2 id="step-4-gh-pages-ブランチを作成する:a830f51eecde66402e29d75bcb0532ee">Step 4 gh-pages ブランチを作成する</h2>
 
 <p>gh-pages ブランチには hugo で作成されたコンテンツ（ public ）のみ置いて、
 関係のないもの（ archetypes, themes, etc ）は紛らわしいので管理したくない。</p>
@@ -233,7 +247,7 @@ $ git subtree push --prefix=public git@github.com:Syati/yourblog.git gh-pages
 </ul></li>
 </ul>
 
-<h1 id="step-5-めんどさい-deploy-はスクリプトを利用する:a830f51eecde66402e29d75bcb0532ee">Step 5 めんどさい Deploy はスクリプトを利用する</h1>
+<h2 id="step-5-めんどさい-deploy-はスクリプトを利用する:a830f51eecde66402e29d75bcb0532ee">Step 5 めんどさい Deploy はスクリプトを利用する</h2>
 
 <p><a href="http://gohugo.io/tutorials/github-pages-blog/">Hosting on GitHub Pages</a> の <strong>deploy.sh</strong> に書かれている以下を利用する。</p>
 
@@ -272,7 +286,8 @@ git subtree push --prefix=public git@github.com:[username]/yourblog.git gh-pages
 
 <pre><code class="language-bash">$ ./deploy.sh
 </code></pre>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

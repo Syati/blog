@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,6 +121,30 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">TypeScript でユニットテストする。カバレッジもねっ!!</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#step-0-事前準備:134ba188964091106b5909c7aef27c8d">Step 0: 事前準備</a>
+<ul>
+<li><a href="#流れ:134ba188964091106b5909c7aef27c8d">流れ</a></li>
+<li><a href="#ライブラリ:134ba188964091106b5909c7aef27c8d">ライブラリ</a></li>
+</ul></li>
+<li><a href="#step-1-とりあえずテストを書く:134ba188964091106b5909c7aef27c8d">Step 1: とりあえずテストを書く</a></li>
+<li><a href="#step-2-トランスパイルする:134ba188964091106b5909c7aef27c8d">Step 2: トランスパイルする</a></li>
+<li><a href="#step-3-テストする:134ba188964091106b5909c7aef27c8d">Step 3: テストする</a></li>
+<li><a href="#step-4-カバレッジを測る:134ba188964091106b5909c7aef27c8d">Step 4: カバレッジを測る</a></li>
+<li><a href="#step-5-ソースマップから-ts-のカバレッジを測る:134ba188964091106b5909c7aef27c8d">Step 5: ソースマップから ts のカバレッジを測る</a></li>
+<li><a href="#step-6-package-json-で楽する:134ba188964091106b5909c7aef27c8d">Step 6: package.json で楽する</a></li>
+<li><a href="#その他:134ba188964091106b5909c7aef27c8d">その他</a>
+<ul>
+<li><a href="#istanbul-yml-でカバレッジレポートのディレクトリ指定する:134ba188964091106b5909c7aef27c8d">.istanbul.yml でカバレッジレポートのディレクトリ指定する</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p>AltJs ってトランスパイルした後、テストを実行させる必要があるから・・、面倒くさいんだよね。なんか、あまり情報もないし、これだから AltJs は・・・と思うわけですが、やってみると案外大したことないもんです。</p>
@@ -129,9 +153,9 @@
 
 <p><a href="https://github.com/Syati/typescript-sample/tree/master/011_test_sample">https://github.com/Syati/typescript-sample/tree/master/011_test_sample</a></p>
 
-<h1 id="step-0-事前準備:134ba188964091106b5909c7aef27c8d">Step 0: 事前準備</h1>
+<h2 id="step-0-事前準備:134ba188964091106b5909c7aef27c8d">Step 0: 事前準備</h2>
 
-<h2 id="流れ:134ba188964091106b5909c7aef27c8d">流れ</h2>
+<h3 id="流れ:134ba188964091106b5909c7aef27c8d">流れ</h3>
 
 <ol>
 <li>ts でコードを書く</li>
@@ -140,7 +164,7 @@
 <li>map を利用して<strong>ts カバレッジ</strong>を測る</li>
 </ol>
 
-<h2 id="ライブラリ:134ba188964091106b5909c7aef27c8d">ライブラリ</h2>
+<h3 id="ライブラリ:134ba188964091106b5909c7aef27c8d">ライブラリ</h3>
 
 <p><strong>npm install -g mocha istanbul remap-istanbul</strong> でそれぞれコマンドが利用できるようになります。</p>
 
@@ -170,7 +194,7 @@
 </ul></li>
 </ul>
 
-<h1 id="step-1-とりあえずテストを書く:134ba188964091106b5909c7aef27c8d">Step 1: とりあえずテストを書く</h1>
+<h2 id="step-1-とりあえずテストを書く:134ba188964091106b5909c7aef27c8d">Step 1: とりあえずテストを書く</h2>
 
 <p><a href="https://github.com/Syati/typescript-sample/tree/master/011_test_sample">プロジェクト</a> を確認しておく。全体が理解しやすくなると思う。</p>
 
@@ -197,7 +221,7 @@ describe(&quot;TestTarget&quot;, () =&gt; {
 
 <p>すごいシンプルですね。</p>
 
-<h1 id="step-2-トランスパイルする:134ba188964091106b5909c7aef27c8d">Step 2: トランスパイルする</h1>
+<h2 id="step-2-トランスパイルする:134ba188964091106b5909c7aef27c8d">Step 2: トランスパイルする</h2>
 
 <p>tsc コマンドを叩く前に設定ファイルを書いときましょう。以下の tsconfig.json になります。
 とくに変わった点はないですね。重要なポイントとしては、<strong>&ldquo;sourceMap&rdquo;: true</strong>です。
@@ -227,7 +251,7 @@ describe(&quot;TestTarget&quot;, () =&gt; {
 <pre><code class="language-bash">$ tsc
 </code></pre>
 
-<h1 id="step-3-テストする:134ba188964091106b5909c7aef27c8d">Step 3: テストする</h1>
+<h2 id="step-3-テストする:134ba188964091106b5909c7aef27c8d">Step 3: テストする</h2>
 
 <p>Step 2 でトランスパイル済みなので、ts ファイル以外に js、map ファイルが存在すると思います。ディレクトリが汚れてあたふたするかもしれませんが、package.json に clean スクリプトを書くことで解決できるので、今は我慢。</p>
 
@@ -249,7 +273,7 @@ describe(&quot;TestTarget&quot;, () =&gt; {
 
 <p>ユニットテストのモチベーションをあげるためにも、やっぱりカバレッジですよ！！</p>
 
-<h1 id="step-4-カバレッジを測る:134ba188964091106b5909c7aef27c8d">Step 4: カバレッジを測る</h1>
+<h2 id="step-4-カバレッジを測る:134ba188964091106b5909c7aef27c8d">Step 4: カバレッジを測る</h2>
 
 <p>とくに必要なことはありません。Step 0 で説明したとおり <strong>istanbul</strong> を利用するだけ。
 すこし異なっているのは、 mocha が _mocha を利用するということです。理由は、以下のとおり。</p>
@@ -276,7 +300,7 @@ Lines        : 100% ( 6/6 )
 
 <p>出力に、<strong>coverage summary</strong> が増えましたね。また、プロジェクトルートに <strong>coverage</strong> ディレクトリが出力されているので、中の index.html を見ましょう。通過したコード、100% の数字にやる気が出てきますね。ただし、これはトランスパイル後の js のカバレッジなので、あと一手間かけてあげましょう。</p>
 
-<p>
+
 <figure >
     
         <img src="coverage_js.png" />
@@ -288,16 +312,16 @@ Lines        : 100% ( 6/6 )
     </figcaption>
     
 </figure>
-</p>
 
-<h1 id="step-5-ソースマップから-ts-のカバレッジを測る:134ba188964091106b5909c7aef27c8d">Step 5: ソースマップから ts のカバレッジを測る</h1>
+
+<h2 id="step-5-ソースマップから-ts-のカバレッジを測る:134ba188964091106b5909c7aef27c8d">Step 5: ソースマップから ts のカバレッジを測る</h2>
 
 <p><strong>coverage</strong> ディレクトリにて以下のコマンドたたいてあげるだけです。ts のカバレッジが html-repot ディレクトリに出力されます。</p>
 
 <pre><code class="language-bash">$ remap-istanbul -i coverage.json -o html-report -t html
 </code></pre>
 
-<p>
+
 <figure >
     
         <img src="coverage_ts.png" />
@@ -309,13 +333,13 @@ Lines        : 100% ( 6/6 )
     </figcaption>
     
 </figure>
-</p>
+
 
 <p>ts のカバレッジが測れました。ただ、一連のコマンドを毎回叩くのは疲れるので、<strong>package.json</strong> を用いて楽にしましょう。</p>
 
 <p>＊図が Step 4 とデザインが違うのは、remap-istanbul で利用している istanbul のバージョンが古いからだと思われる</p>
 
-<h1 id="step-6-package-json-で楽する:134ba188964091106b5909c7aef27c8d">Step 6: package.json で楽する</h1>
+<h2 id="step-6-package-json-で楽する:134ba188964091106b5909c7aef27c8d">Step 6: package.json で楽する</h2>
 
 <p>一連のコマンドを <strong>package.json</strong> に書いておきましょう。以下サンプル。</p>
 
@@ -345,9 +369,9 @@ $ npm test
 $ npm clean
 </code></pre>
 
-<h1 id="その他:134ba188964091106b5909c7aef27c8d">その他</h1>
+<h2 id="その他:134ba188964091106b5909c7aef27c8d">その他</h2>
 
-<h2 id="istanbul-yml-でカバレッジレポートのディレクトリ指定する:134ba188964091106b5909c7aef27c8d">.istanbul.yml でカバレッジレポートのディレクトリ指定する</h2>
+<h3 id="istanbul-yml-でカバレッジレポートのディレクトリ指定する:134ba188964091106b5909c7aef27c8d">.istanbul.yml でカバレッジレポートのディレクトリ指定する</h3>
 
 <p><strong>.istanbul.yml</strong> に以下のように書いてあげることで、レポートの出力先を変えることが出来る。</p>
 
@@ -360,7 +384,8 @@ reporting:
 
 <pre><code class="language-bash">$ istanbul help config
 </code></pre>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

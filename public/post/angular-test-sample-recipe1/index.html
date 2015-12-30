@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,6 +121,35 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">Angular test sample 1</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#準備:d28091e7273529f0913311111ae23332">準備</a>
+<ul>
+<li><a href="#ubuntu:d28091e7273529f0913311111ae23332">ubuntu</a></li>
+<li><a href="#mac:d28091e7273529f0913311111ae23332">mac</a></li>
+<li><a href="#共通:d28091e7273529f0913311111ae23332">共通</a></li>
+</ul></li>
+<li><a href="#実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332">実施：サンプルを CLONE して TEST</a>
+<ul>
+<li><a href="#prj-依存環境を入れる:d28091e7273529f0913311111ae23332">prj 依存環境を入れる</a></li>
+<li><a href="#test-実行する:d28091e7273529f0913311111ae23332">test 実行する</a></li>
+</ul></li>
+<li><a href="#説明:d28091e7273529f0913311111ae23332">説明</a>
+<ul>
+<li><a href="#directory:d28091e7273529f0913311111ae23332">directory</a></li>
+<li><a href="#1-bower:d28091e7273529f0913311111ae23332">#1 bower</a></li>
+<li><a href="#2-npm:d28091e7273529f0913311111ae23332">#2 npm</a></li>
+<li><a href="#3-karma-angular-の-unit-test-の設定:d28091e7273529f0913311111ae23332">#3 karma  angular の unit test の設定</a></li>
+<li><a href="#4-test-を書く:d28091e7273529f0913311111ae23332">#4 test を書く</a></li>
+</ul></li>
+<li><a href="#まとめ:d28091e7273529f0913311111ae23332">まとめ</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p>js ってテストしにくいよねってことで今流行りの angular で unit test する。
@@ -130,9 +159,9 @@
 
 <p><a href="https://github.com/Syati/angular-test-sample">https://github.com/Syati/angular-test-sample</a></p>
 
-<h1 id="準備:d28091e7273529f0913311111ae23332">準備</h1>
+<h2 id="準備:d28091e7273529f0913311111ae23332">準備</h2>
 
-<h2 id="ubuntu:d28091e7273529f0913311111ae23332">ubuntu</h2>
+<h3 id="ubuntu:d28091e7273529f0913311111ae23332">ubuntu</h3>
 
 <ul>
 <li>node &amp; npm</li>
@@ -142,7 +171,7 @@
 $ sudo apt-get install npm
 </code></pre>
 
-<h2 id="mac:d28091e7273529f0913311111ae23332">mac</h2>
+<h3 id="mac:d28091e7273529f0913311111ae23332">mac</h3>
 
 <ul>
 <li>node &amp; npm</li>
@@ -151,7 +180,7 @@ $ sudo apt-get install npm
 <pre><code class="language-bash">$ brew install node
 </code></pre>
 
-<h2 id="共通:d28091e7273529f0913311111ae23332">共通</h2>
+<h3 id="共通:d28091e7273529f0913311111ae23332">共通</h3>
 
 <ul>
 <li>bower</li>
@@ -167,20 +196,20 @@ $ sudo apt-get install npm
 <pre><code class="language-bash">$ sudo npm install -g karma-cli
 </code></pre>
 
-<h1 id="実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332">実施：サンプルを CLONE して TEST</h1>
+<h2 id="実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332">実施：サンプルを CLONE して TEST</h2>
 
 <p>github にサンプルを書いたので clone する。</p>
 
 <pre><code class="language-bash">$ git clone git@github.com:Syati/angular-test-sample.git
 </code></pre>
 
-<h2 id="prj-依存環境を入れる:d28091e7273529f0913311111ae23332">prj 依存環境を入れる</h2>
+<h3 id="prj-依存環境を入れる:d28091e7273529f0913311111ae23332">prj 依存環境を入れる</h3>
 
 <pre><code class="language-bash">$ cd your_clone_path/angular-test-sample/controller/recipe1
 $ npm install
 </code></pre>
 
-<h2 id="test-実行する:d28091e7273529f0913311111ae23332">test 実行する</h2>
+<h3 id="test-実行する:d28091e7273529f0913311111ae23332">test 実行する</h3>
 
 <pre><code class="language-bash">$ npm test
 </code></pre>
@@ -194,9 +223,9 @@ INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id
 PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
 </code></pre>
 
-<h1 id="説明:d28091e7273529f0913311111ae23332">説明</h1>
+<h2 id="説明:d28091e7273529f0913311111ae23332">説明</h2>
 
-<h2 id="directory:d28091e7273529f0913311111ae23332">directory</h2>
+<h3 id="directory:d28091e7273529f0913311111ae23332">directory</h3>
 
 <pre><code class="language-bash">    recipe1
     ├── app
@@ -214,7 +243,7 @@ PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
     └── node_modules  #2 npm lib install dir
 </code></pre>
 
-<h2 id="1-bower:d28091e7273529f0913311111ae23332">#1 bower</h2>
+<h3 id="1-bower:d28091e7273529f0913311111ae23332">#1 bower</h3>
 
 <p>js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。</p>
 
@@ -247,7 +276,7 @@ $ bower install angular --save　# または --save-dev
 </ul></li>
 </ul>
 
-<h2 id="2-npm:d28091e7273529f0913311111ae23332">#2 npm</h2>
+<h3 id="2-npm:d28091e7273529f0913311111ae23332">#2 npm</h3>
 
 <pre><code class="language-bash">$ npm init 
 $ npm install jasmine --save-dev　# または --save
@@ -276,7 +305,7 @@ $ npm install jasmine --save-dev　# または --save
 </ul></li>
 </ul>
 
-<h2 id="3-karma-angular-の-unit-test-の設定:d28091e7273529f0913311111ae23332">#3 karma  angular の unit test の設定</h2>
+<h3 id="3-karma-angular-の-unit-test-の設定:d28091e7273529f0913311111ae23332">#3 karma  angular の unit test の設定</h3>
 
 <pre><code class="language-bash">karma init  # コマンドで初期設定 karma.conf.js を作成できる
 </code></pre>
@@ -319,7 +348,7 @@ $ npm install jasmine --save-dev　# または --save
 </ul></li>
 </ul>
 
-<h2 id="4-test-を書く:d28091e7273529f0913311111ae23332">#4 test を書く</h2>
+<h3 id="4-test-を書く:d28091e7273529f0913311111ae23332">#4 test を書く</h3>
 
 <p>テストするうえで jasmine の理解は必須なので <a href="http://jasmine.github.io/2.1/introduction.html">tutorial</a> で勉強しておく。
 index.html をローカルで開けばわかると思うが button click で &lsquo;hello&rsquo; とでてくるだけのもの。
@@ -364,10 +393,11 @@ describe('Unit: app moudle ', function(){
 </ul></li>
 </ul>
 
-<h1 id="まとめ:d28091e7273529f0913311111ae23332">まとめ</h1>
+<h2 id="まとめ:d28091e7273529f0913311111ae23332">まとめ</h2>
 
 <p>controller のテストは意外と簡単。ただし、DI が増えてくるとハマるポイントも多くなってくるので、次はそんなサンプルを書いていくつもり。</p>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

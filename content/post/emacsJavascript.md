@@ -11,14 +11,14 @@ title = "Emacs で JavaScript の開発環境を整える"
 ということで私の環境を忘れないうちにメモ！！
 <!--more-->
 
-# 前提
+## 前提
 
 -   ubuntu 12.04 or OSX
 -   emacs >= 24
 
-# 構築
+## 構築
 
-## パッケージ管理にmelpa追加
+### パッケージ管理にmelpa追加
 
 -   ~/.emacs.d/init.el に以下を追加
 
@@ -28,7 +28,7 @@ title = "Emacs で JavaScript の開発環境を整える"
       '("melpa" . "http://melpa.milkbox.net/packages/") t)
     ~~~
 
-## パッケージ管理からインストール
+### パッケージ管理からインストール
 
 -   M-x package-list-package で以下の2点をインストールする（該当箇所で **i** をタイプしてマークをつけて **x** でインストールする）
     1.  flycheck
@@ -40,7 +40,7 @@ title = "Emacs で JavaScript の開発環境を整える"
     (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
     ~~~
 
-## jshint をインストール
+### jshint をインストール
 
 上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。
 
@@ -65,12 +65,12 @@ title = "Emacs で JavaScript の開発環境を整える"
 
     -   オプション -g でグローバルで利用するということ。付けない場合は、カレントディレクトリにインストールされる。
 
-# 試す
+## 試す
 
 a.js とでもファイルを作ってみると emacsの下の帯に　(javascript-IDE FlyC) となっていることが確認できる。
 後は適当にプログラムを書けば jshint がはしり、文法エラーなどを教えてくれる。
 
-# 参考
+## 参考
 
 -   [melpa](http://melpa.milkbox.net/#/getting-started)
 -   [js2-mode](http://code.google.com/p/js2-mode/)

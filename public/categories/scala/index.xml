@@ -19,16 +19,16 @@
 
 &lt;p&gt;ubuntu で scala の開発環境を構築するメモ&lt;/p&gt;
 
-&lt;h1 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h1&gt;
+&lt;h2 id=&#34;os:62bd7fcf4950578adf2609faef63955b&#34;&gt;os&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;ubuntu 12.04&lt;/li&gt;
 &lt;li&gt;emacs 24.3.1&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h1&gt;
+&lt;h2 id=&#34;scala-開発環境:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala 開発環境&lt;/h2&gt;
 
-&lt;h2 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h2&gt;
+&lt;h3 id=&#34;java-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;java のインストール&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;jdk をインストール
@@ -44,7 +44,7 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h2&gt;
+&lt;h3 id=&#34;scala-のインストール:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala のインストール&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;scala のダウンロード
@@ -64,9 +64,9 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h1 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h1&gt;
+&lt;h2 id=&#34;ensime-導入:62bd7fcf4950578adf2609faef63955b&#34;&gt;ENSIME 導入&lt;/h2&gt;
 
-&lt;h2 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h2&gt;
+&lt;h3 id=&#34;scala-mode2:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode2&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;以下から tool を clone する
@@ -87,7 +87,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h2&gt;
+&lt;h3 id=&#34;scala-mode-補助:62bd7fcf4950578adf2609faef63955b&#34;&gt;scala-mode 補助&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;yasnipet がない場合は、以下から clone する
@@ -97,7 +97,7 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h1&gt;
+&lt;h2 id=&#34;参考サイト:62bd7fcf4950578adf2609faef63955b&#34;&gt;参考サイト&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html&#34;&gt;Scalaプログラミング入門&lt;/a&gt;&lt;/li&gt;

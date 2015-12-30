@@ -23,9 +23,9 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 [Part 2]({{< ref "post/create_hugo_2.md" >}}) で、github.io にブログを立ち上げる。
 
 
-# Step 1 インストールしましょう
+## Step 1 インストールしましょう
 
-## OSX の場合
+### OSX の場合
  
 以下のコマンドでおしまい。
 
@@ -33,7 +33,7 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 $ brew install hugo
 ~~~
 
-## Ubuntu の場合
+### Ubuntu の場合
 
 [Hugo relase](https://github.com/spf13/hugo/releases) から適したものをDLして以下のコマンドを実行する。
 
@@ -42,7 +42,7 @@ $ sudo dpkg -i hugo_0.14_amd64.deb　# 自分に適したパッケージを選�
 ~~~
 
 
-# Step 2 ブログをつくろう
+## Step 2 ブログをつくろう
 
 以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。
 
@@ -62,7 +62,7 @@ yourblog/
 └── static      # 今回は利用しない（サイトで利用する js, css, images などを置く）
 ~~~
 
-# Step 3 新しい記事をつくろう
+## Step 3 新しい記事をつくろう
 
 yourblog ディレクトリで以下のコマンド実行して、新規記事を作成する。
 
@@ -91,7 +91,7 @@ title = "hello"
 
 ~~~
 
-# Step 4 テーマをインストールしよう
+## Step 4 テーマをインストールしよう
 
 自分好みのテーマをさがすために、テーマ一式いれてみる。yourblog ディレクトリで以下のコマンドを実行する。
 
@@ -99,7 +99,7 @@ title = "hello"
 $ git clone -\-recursive https://github.com/spf13/hugoThemes themes
 ~~~
 
-# Step 5 ブログを見てみよう
+## Step 5 ブログを見てみよう
 
 とりあえず準備はととのったので、サーバーを立ち上げてブログを見てみる。
 

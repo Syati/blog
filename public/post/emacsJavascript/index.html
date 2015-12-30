@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,21 +121,39 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">Emacs で JavaScript の開発環境を整える</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#前提:1a9908f99c55ee21878c3c149440fb4d">前提</a></li>
+<li><a href="#構築:1a9908f99c55ee21878c3c149440fb4d">構築</a>
+<ul>
+<li><a href="#パッケージ管理にmelpa追加:1a9908f99c55ee21878c3c149440fb4d">パッケージ管理にmelpa追加</a></li>
+<li><a href="#パッケージ管理からインストール:1a9908f99c55ee21878c3c149440fb4d">パッケージ管理からインストール</a></li>
+<li><a href="#jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d">jshint をインストール</a></li>
+</ul></li>
+<li><a href="#試す:1a9908f99c55ee21878c3c149440fb4d">試す</a></li>
+<li><a href="#参考:1a9908f99c55ee21878c3c149440fb4d">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p>開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
 ということで私の環境を忘れないうちにメモ！！</p>
 
-<h1 id="前提:1a9908f99c55ee21878c3c149440fb4d">前提</h1>
+<h2 id="前提:1a9908f99c55ee21878c3c149440fb4d">前提</h2>
 
 <ul>
 <li>ubuntu 12.04 or OSX</li>
 <li>emacs &gt;= 24</li>
 </ul>
 
-<h1 id="構築:1a9908f99c55ee21878c3c149440fb4d">構築</h1>
+<h2 id="構築:1a9908f99c55ee21878c3c149440fb4d">構築</h2>
 
-<h2 id="パッケージ管理にmelpa追加:1a9908f99c55ee21878c3c149440fb4d">パッケージ管理にmelpa追加</h2>
+<h3 id="パッケージ管理にmelpa追加:1a9908f99c55ee21878c3c149440fb4d">パッケージ管理にmelpa追加</h3>
 
 <ul>
 <li><p>~/.emacs.d/init.el に以下を追加</p>
@@ -146,7 +164,7 @@
 </code></pre></li>
 </ul>
 
-<h2 id="パッケージ管理からインストール:1a9908f99c55ee21878c3c149440fb4d">パッケージ管理からインストール</h2>
+<h3 id="パッケージ管理からインストール:1a9908f99c55ee21878c3c149440fb4d">パッケージ管理からインストール</h3>
 
 <ul>
 <li>M-x package-list-package で以下の2点をインストールする（該当箇所で <strong>i</strong> をタイプしてマークをつけて <strong>x</strong> でインストールする）
@@ -163,7 +181,7 @@
 </code></pre></li>
 </ul>
 
-<h2 id="jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d">jshint をインストール</h2>
+<h3 id="jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d">jshint をインストール</h3>
 
 <p>上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。</p>
 
@@ -192,19 +210,20 @@
 </ul></li>
 </ul>
 
-<h1 id="試す:1a9908f99c55ee21878c3c149440fb4d">試す</h1>
+<h2 id="試す:1a9908f99c55ee21878c3c149440fb4d">試す</h2>
 
 <p>a.js とでもファイルを作ってみると emacsの下の帯に　(javascript-IDE FlyC) となっていることが確認できる。
 後は適当にプログラムを書けば jshint がはしり、文法エラーなどを教えてくれる。</p>
 
-<h1 id="参考:1a9908f99c55ee21878c3c149440fb4d">参考</h1>
+<h2 id="参考:1a9908f99c55ee21878c3c149440fb4d">参考</h2>
 
 <ul>
 <li><a href="http://melpa.milkbox.net/#/getting-started">melpa</a></li>
 <li><a href="http://code.google.com/p/js2-mode/">js2-mode</a></li>
 <li><a href="https://npmjs.org/">npm</a></li>
 </ul>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

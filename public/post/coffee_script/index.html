@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,12 +121,23 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">Emacs で CoffeeScript を AutoComplete する</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd">必要なパッケージ</a></li>
+<li><a href="#設定:39085f89ce5df764c9a96e79f52fa5cd">設定</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p><a href="http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/">Coffee-modeでauto-completeを使えるようにする</a> を参考に、
 coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。</p>
 
-<h1 id="必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd">必要なパッケージ</h1>
+<h2 id="必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd">必要なパッケージ</h2>
 
 <ul>
 <li>M-x package-list-package から 以下をインストールする
@@ -136,7 +147,7 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 </ul></li>
 </ul>
 
-<h1 id="設定:39085f89ce5df764c9a96e79f52fa5cd">設定</h1>
+<h2 id="設定:39085f89ce5df764c9a96e79f52fa5cd">設定</h2>
 
 <p><a href="http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/">Coffee-modeでauto-completeを使えるようにする</a> を参考にして以下の部分を変更してあげる</p>
 
@@ -146,7 +157,8 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
         (add-to-list 'ac-dictionary-files &quot;~/.emacs.d/ac-dict/js2-mode&quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
      ))
 </code></pre>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

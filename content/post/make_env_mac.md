@@ -11,7 +11,7 @@ title = "Development Environment in my OSX"
 ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。
 <!--more-->
 
-# 開発環境
+## 開発環境
 
 -   xcode:開発環境
     -   プラグイン
@@ -58,7 +58,7 @@ title = "Development Environment in my OSX"
         -   取り扱い方法　：Adobe Readerを使用（標準設定）
     -   ここが、Adobe Acrobat NPAPI Plug-in `~` とかになっていたのが原因だった
 
-# キーバインド設定
+## キーバインド設定
 
 -   HyperSwitch：ウィンドウ切り替え
     -   mac の command + tab だと、アプリケーション単位の切り替えしかできないことに加えて、main os の ubuntu とキーバインド alt + tab で揃えたいので導入する
@@ -75,7 +75,7 @@ title = "Development Environment in my OSX"
     1.  「アップルボタン」 -> 「システム環境設定」 -> 「キーボード」-> 「キーボードショートカット」 -> 「キーボードと文字入力」を選択する
     2.  「前の入力ソース」をダブルクリック後、Ctrl + / をタイプする
 
-# その他
+## その他
 
 -   inconsolate:フォント
 -   takao:フォント

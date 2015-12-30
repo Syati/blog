@@ -16,7 +16,7 @@ https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb0
 
 <!--more-->
 
-# Step 0: 事前準備
+## Step 0: 事前準備
 
 以下のコマンドを使用するのでグローバルにインストールしておく。
 
@@ -43,7 +43,7 @@ https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb0
         ~~~
 
 
-# Step 1: いろいろ初期化(プロジェクトの作成)
+## Step 1: いろいろ初期化(プロジェクトの作成)
 
 ~~~bash
 $ mkdir app
@@ -58,7 +58,7 @@ $ tree ./ -L 1
 └── typings         # tsd init で作成される（ライブラリの定義のソースコードが入る）
 ~~~
 
-# Step 2: ライブラリのインストール
+## Step 2: ライブラリのインストール
 
 npm と tsd を利用して、ライブラリ、ライブラリの定義をインストール。
 
@@ -71,7 +71,7 @@ $ npm install jquery --save
 $ tsd install jquery --save
 ~~~
 
-# Step 3: app を作成
+## Step 3: app を作成
 
 app の下に app.ts として以下を作成。
 
@@ -97,7 +97,7 @@ app の下に index.html として以下を作成。 後に app.ts から bundle
 </html>
 ~~~
 
-# Step 4: コンパイルする
+## Step 4: コンパイルする
 
 step 3 で作成した app.ts を js に変換するために tsc の設定を作成する。
 **step 1 ./** で tsconfig.json として以下のように作成。
@@ -154,7 +154,7 @@ $(function () {
     └── tsd.d.ts
 ~~~
 
-# Step 5: webpack 導入
+## Step 5: webpack 導入
 
 フロントでも require を利用するために、**webpack** をインストールして、ついでに、TypeScript のファイルを処理できるように loader をいれる。
 
@@ -200,6 +200,6 @@ app/build に bundle.js が作成されているので覗いてみる。require 
 
 [ソースはこちらから](https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack)
 
-# 参考
+## 参考
 
 - [TypeScript and webpack](http://www.jbrantly.com/typescript-and-webpack/)

@@ -10,12 +10,13 @@ title = "Emacs で CoffeeScript を AutoComplete する"
 [Coffee-modeでauto-completeを使えるようにする](http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/) を参考に、
 coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。
 <!--more-->
-# 必要なパッケージ
+
+## 必要なパッケージ
 
 -   M-x package-list-package から 以下をインストールする
     -   jquery-doc
 
-# 設定
+## 設定
 
 [Coffee-modeでauto-completeを使えるようにする](http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/) を参考にして以下の部分を変更してあげる
 

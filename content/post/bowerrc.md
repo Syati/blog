@@ -7,7 +7,6 @@ title = "bowerrc で install ディレクトリを変更する"
 
 +++
 
-
 bower install をしたはいいが、デフォルトでインストールされるディレクトリ(bower\_components)を以下の例のように変えたい、そんな時は。
 
 **例** 
@@ -21,18 +20,22 @@ bower install をしたはいいが、デフォルトでインストールされ
     -   index.html
     -   bower.json
 
-# 解決策
+<!--more-->
+
+## 解決策
 
 以下のように **.bowerrc** を project ルートに作成してあげる。これを自分の好きなように書き換えることで、インストールディレクトリを変更できる。
 
-    // .bowerrc
-    {
-        "directory" : "js/bower_components"
-    }
+~~~javascript
+// .bowerrc
+{
+    "directory" : "js/bower_components"
+}
+~~~
 
 以降、bower install すれば希望通り
 
-## .bowerrc作成後
+### .bowerrc作成後
 
 -   project/
     -   js
@@ -44,11 +47,11 @@ bower install をしたはいいが、デフォルトでインストールされ
     -   bower.json
     -   .bowerrc
 
-# 参考
+## 参考
 
-## デフォルトの動作
+### デフォルトの動作
 
-### 初期ディレクトリ構成
+#### 初期ディレクトリ構成
 
 -   project/
     -   js
@@ -56,14 +59,14 @@ bower install をしたはいいが、デフォルトでインストールされ
     -   css
     -   index.html
 
-### コマンド
+#### コマンド
 
 project ルートで 以下のように bower コマンドを入れる
 
     bower init
     bower install jquery -save
 
-### コマンド後のディレクトリ構成
+#### コマンド後のディレクトリ構成
 
 ディレクトリは以下のようになる。
 

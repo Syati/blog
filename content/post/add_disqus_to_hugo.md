@@ -18,7 +18,7 @@ Hugo を用いて github.io にブログを立ち上げましたが、コメン�
 
 <!--more-->
 
-# Step 1 theme を変える
+## Step 1 theme を変える
 
 今まで通り、themes に中に theme を git clone してもいいのだが、
 とりあえず今回は themes ディレクトリを利用しないことにする。
@@ -57,7 +57,7 @@ $ rm -rf themes # 必要無いのでとりあえず削除
 $ hugo server # テーマが変わっていることが確認できる
 ~~~
 
-# Step 2 Disqus を導入
+## Step 2 Disqus を導入
 
 導入が楽なので [Disqus](https://disqus.com) を利用する。
 
@@ -83,7 +83,7 @@ Disqus に Sign up して http://[username].github.io でサイトを登録し�
 ~~~
 
 
-# Step 3 config.toml を変更する
+## Step 3 config.toml を変更する
 
 [テーマの設定](https://github.com/Syati/greyshade#setup) を config.toml にコピペして、編集。
 Step 2 で覚えておいた **[disqus_shortname]** を設定に入れる。以下サンプル
@@ -141,7 +141,7 @@ disqus_show_comment_count = false
 google_analytics_tracking_id = ""
 ~~~
 
-# Step 4 記事にパラメータを加える
+## Step 4 記事にパラメータを加える
 
 最後に記事のパラメータに **comments = true** といれれば、disqus を読み込んでコメント欄が入る。
 ただし、localhost では読み込まないようにしているので、記事ページ下部 に **Comments**
@@ -158,7 +158,7 @@ comments = true
 first page.
 ~~~
 
-# Step 5 新規記事のテンプレートを変更しておく
+## Step 5 新規記事のテンプレートを変更しておく
 
 毎回コマンド（ **hugo new post/new_post.md** ） で新規記事作成後に、
 comments = true とパラメータ設定するのは面倒くさいので

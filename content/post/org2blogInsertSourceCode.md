@@ -9,7 +9,7 @@ title = "org2blog の記事にコードブロックを入れる"
 
 org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 [org2blogからの投稿](http://syati.info/?p=1746) の続き。
 
-# 必要なもの
+## 必要なもの
 
 1.  htmlize.el を load-path の通ったところに入れる。
     -   htmlize.el は [org-mode](http://orgmode.org/ja/index.html) をDLして、解凍した contrib/lisp に入っている。
@@ -27,7 +27,7 @@ org2blog の記事投稿でコードも綺麗に投稿したい。ってこと�
                  :username "login name"
                  :wp-code t))) ;; insert this line
 
-# 使ってみる
+## 使ってみる
 
 1.  org2blog/wp-new-entry で投稿記事を作成する。
 2.  以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。
@@ -43,7 +43,7 @@ org2blog の記事投稿でコードも綺麗に投稿したい。ってこと�
 
 これで org2blog の記事投稿でコードも綺麗に投稿できる。
 
-# 補足
+## 補足
 
 -   必要なもの 3. の設定を加えるのは、以下の通り <pre> タグが挿入されるため SyntaxHighlighter の表記方法 [language] code [/language] と合致しなくなるため。（以下は org2blog.el 内のコード）
     -   参考 [org2blog](https://github.com/punchagan/org2blog#posting-source-code-blocks)
@@ -55,7 +55,7 @@ org2blog の記事投稿でコードも綺麗に投稿したい。ってこと�
            :group 'org2blog/wp
            :type 'boolean)
 
-# 覚えておくと良いショートカット
+## 覚えておくと良いショートカット
 
 -   コードブロックを挿入する際は **<キー<TAB>** をタイプするべし。
     -   以下は、挿入したいテンプレートのキー一覧
@@ -156,7 +156,7 @@ org2blog の記事投稿でコードも綺麗に投稿したい。ってこと�
 </tbody>
 </table>
 
-# その他、参考サイト
+## その他、参考サイト
 
 -   [Babel: Introduction](http://orgmode.org/worg/org-contrib/babel/intro.html)
 -   [Emacs org-modeを使ってみる: (29) エクスポートオプション一覧](http://d.hatena.ne.jp/tamura70/20100304/org)

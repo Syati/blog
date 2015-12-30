@@ -9,14 +9,14 @@ title = "Scala の開発環境"
 
 ubuntu で scala の開発環境を構築するメモ
  <!--more-->
-# os
+## os
 
 -   ubuntu 12.04
 -   emacs 24.3.1
 
-# scala 開発環境
+## scala 開発環境
 
-## java のインストール
+### java のインストール
 
 1.  jdk をインストール
     -   sudo apt-get install default-jdk
@@ -24,7 +24,7 @@ ubuntu で scala の開発環境を構築するメモ
     -   java -version
     -   javac -version
 
-## scala のインストール
+### scala のインストール
 
 1.  scala のダウンロード
     -   <http://www.scala-lang.org/download/>   
@@ -33,9 +33,9 @@ ubuntu で scala の開発環境を構築するメモ
 3.  ターミナルから以下のコマンドで、インストールできているか確認する
     -   scala -version
 
-# ENSIME 導入
+## ENSIME 導入
 
-## scala-mode2
+### scala-mode2
 
 -   以下から tool を clone する
     -   git clone <https://github.com/hvesalai/scala-mode2.git>
@@ -46,12 +46,12 @@ ubuntu で scala の開発環境を構築するメモ
         (add-to-list 'load-path "/path/to/scala-mode2/")
         (require 'scala-mode2)
 
-## scala-mode 補助
+### scala-mode 補助
 
 -   yasnipet がない場合は、以下から clone する
     -   <https://github.com/capitaomorte/yasnippet>
 
-# 参考サイト
+## 参考サイト
 
 -   [Scalaプログラミング入門](http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html)
 -   [Scalaの入門にあたってscala-modeを入れてみた](http://blog.iss.ms/2012/06/02/101357)

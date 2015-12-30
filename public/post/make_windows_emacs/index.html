@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,6 +121,25 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">Cygwin &#43; Zsh &#43; NTEmacs で作る Linux環境 in Windows</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-インストール:3fe13699b17e7d89255f6cf2ef9bd8e3">1. インストール</a></li>
+<li><a href="#2-cygwin-のデフォルト-shell-を-zsh-に切り替え-初期設定:3fe13699b17e7d89255f6cf2ef9bd8e3">2. cygwin のデフォルト Shell を zsh に切り替え、初期設定</a></li>
+<li><a href="#3-emacs-の作業場所-home-を設定:3fe13699b17e7d89255f6cf2ef9bd8e3">3. Emacs の作業場所(HOME) を設定</a></li>
+<li><a href="#4-emacs-の環境を設定-設定ファイル-emacs-d-init-el:3fe13699b17e7d89255f6cf2ef9bd8e3">4. Emacs の環境を設定 (設定ファイル ~/.emacs.d/init.el )</a>
+<ul>
+<li><a href="#4-1-path-exec-path-を設定:3fe13699b17e7d89255f6cf2ef9bd8e3">4.1. PATH, exec-path を設定</a></li>
+<li><a href="#4-2-gui-の-emacs-の-m-x-shell-を-コマンドプロンプトから-zsh-にする:3fe13699b17e7d89255f6cf2ef9bd8e3">4.2. GUI の Emacs の M-x shell を コマンドプロンプトから zsh にする</a></li>
+<li><a href="#4-3-load-path-に自分がインストールする-emacs-lisp-el-elc-置場を追記:3fe13699b17e7d89255f6cf2ef9bd8e3">4.3. load-path に自分がインストールする emacs-lisp（*.el、*.elc) 置場を追記</a></li>
+</ul></li>
+<li><a href="#5-まとめ:3fe13699b17e7d89255f6cf2ef9bd8e3">5. まとめ</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p>最近のメインOSは、Ubuntu で Windows とはお別れしているのですが、
@@ -130,7 +149,7 @@ AutoHotkey もあるのですが、それは、また次の機会に。</p>
 
 <p>今回は、Cygwin、Zsh、NTEmacs でWindows に Linux環境を構築をする。</p>
 
-<h1 id="1-インストール:3fe13699b17e7d89255f6cf2ef9bd8e3">1. インストール</h1>
+<h2 id="1-インストール:3fe13699b17e7d89255f6cf2ef9bd8e3">1. インストール</h2>
 
 <ol>
 <li><p><a href="http://www.cygwin.com/">cygwin</a> のインストール</p>
@@ -182,7 +201,7 @@ cygwin をインストールしたディレクトリの F:/usr/local/ に上書�
 </ol></li>
 </ol>
 
-<h1 id="2-cygwin-のデフォルト-shell-を-zsh-に切り替え-初期設定:3fe13699b17e7d89255f6cf2ef9bd8e3">2. cygwin のデフォルト Shell を zsh に切り替え、初期設定</h1>
+<h2 id="2-cygwin-のデフォルト-shell-を-zsh-に切り替え-初期設定:3fe13699b17e7d89255f6cf2ef9bd8e3">2. cygwin のデフォルト Shell を zsh に切り替え、初期設定</h2>
 
 <ol>
 <li><p>/etc/passwd をエディタで開いて /bin/bash を /bin/zsh に置換する</p></li>
@@ -204,7 +223,7 @@ cygwin をインストールしたディレクトリの F:/usr/local/ に上書�
 </ol></li>
 </ol>
 
-<h1 id="3-emacs-の作業場所-home-を設定:3fe13699b17e7d89255f6cf2ef9bd8e3">3. Emacs の作業場所(HOME) を設定</h1>
+<h2 id="3-emacs-の作業場所-home-を設定:3fe13699b17e7d89255f6cf2ef9bd8e3">3. Emacs の作業場所(HOME) を設定</h2>
 
 <ol>
 <li><p>F:/usr/local/bin の中にある runemacs.exe のショートカットを作成 Desktop にでも貼り付ける</p></li>
@@ -223,7 +242,7 @@ cygwin をインストールしたディレクトリの F:/usr/local/ に上書�
 <li><p>emacsを起動して Ctrl + x, Ctrl + f をタイプしたあとに ~/ を入力して、HOME に移動するか確認して終了</p></li>
 </ol>
 
-<h1 id="4-emacs-の環境を設定-設定ファイル-emacs-d-init-el:3fe13699b17e7d89255f6cf2ef9bd8e3">4. Emacs の環境を設定 (設定ファイル ~/.emacs.d/init.el )</h1>
+<h2 id="4-emacs-の環境を設定-設定ファイル-emacs-d-init-el:3fe13699b17e7d89255f6cf2ef9bd8e3">4. Emacs の環境を設定 (設定ファイル ~/.emacs.d/init.el )</h2>
 
 <p>Emacs で設定する環境変数は、以下の通り３つある。本設定が上手くいっていない/理解していないと command not found で悩むかも。</p>
 
@@ -248,7 +267,7 @@ cygwin をインストールしたディレクトリの F:/usr/local/ に上書�
 </ul></li>
 </ol>
 
-<h2 id="4-1-path-exec-path-を設定:3fe13699b17e7d89255f6cf2ef9bd8e3">4.1. PATH, exec-path を設定</h2>
+<h3 id="4-1-path-exec-path-を設定:3fe13699b17e7d89255f6cf2ef9bd8e3">4.1. PATH, exec-path を設定</h3>
 
 <p>cygwin から emacs を立ち上げた場合と、GUIから emacs を立ち上げた場合は、
 異なる環境変数が利用されるため、混乱を避けるためにも PATH, exec-path に同じ設定をする。</p>
@@ -289,7 +308,7 @@ exec-path にも適用される。</li>
 </ul></li>
 </ul>
 
-<h2 id="4-2-gui-の-emacs-の-m-x-shell-を-コマンドプロンプトから-zsh-にする:3fe13699b17e7d89255f6cf2ef9bd8e3">4.2. GUI の Emacs の M-x shell を コマンドプロンプトから zsh にする</h2>
+<h3 id="4-2-gui-の-emacs-の-m-x-shell-を-コマンドプロンプトから-zsh-にする:3fe13699b17e7d89255f6cf2ef9bd8e3">4.2. GUI の Emacs の M-x shell を コマンドプロンプトから zsh にする</h3>
 
 <p>cygwin から emacs を立ち上げて、 M-x shell で呼び出されるのは、
 <strong>2. cygwin のデフォルト Shell を zsh に切り替え、初期設定する</strong>
@@ -315,7 +334,7 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 </ul></li>
 </ul>
 
-<h2 id="4-3-load-path-に自分がインストールする-emacs-lisp-el-elc-置場を追記:3fe13699b17e7d89255f6cf2ef9bd8e3">4.3. load-path に自分がインストールする emacs-lisp（*.el、*.elc) 置場を追記</h2>
+<h3 id="4-3-load-path-に自分がインストールする-emacs-lisp-el-elc-置場を追記:3fe13699b17e7d89255f6cf2ef9bd8e3">4.3. load-path に自分がインストールする emacs-lisp（*.el、*.elc) 置場を追記</h3>
 
 <ol>
 <li>~/.emacs.d/lisp を自分がインストールする emacs-lisp（*.el、*.elc) 置場として、load-path に追加する。
@@ -337,7 +356,7 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 </ul></li>
 </ul>
 
-<h1 id="5-まとめ:3fe13699b17e7d89255f6cf2ef9bd8e3">5. まとめ</h1>
+<h2 id="5-まとめ:3fe13699b17e7d89255f6cf2ef9bd8e3">5. まとめ</h2>
 
 <p>以下にここまで記述した init.el の設定を残しておく。</p>
 
@@ -361,7 +380,8 @@ GUIからは、NT-emacs のデフォルト環境変数SHELL（cmdproxy.exe）が
 
 <p>日本語の設定や、キーカスタマイズなど、その他設定することは、まだまだたくさんありますが、
 それはまた次回ということで Windows に Linux環境の構築を〆る。</p>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,6 +121,22 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">TypeScript でフロントエンドを実装する</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#step-0-事前準備:949a9ea0a4a82c7fd7909a699c67654c">Step 0: 事前準備</a></li>
+<li><a href="#step-1-いろいろ初期化-プロジェクトの作成:949a9ea0a4a82c7fd7909a699c67654c">Step 1: いろいろ初期化(プロジェクトの作成)</a></li>
+<li><a href="#step-2-ライブラリのインストール:949a9ea0a4a82c7fd7909a699c67654c">Step 2: ライブラリのインストール</a></li>
+<li><a href="#step-3-app-を作成:949a9ea0a4a82c7fd7909a699c67654c">Step 3: app を作成</a></li>
+<li><a href="#step-4-コンパイルする:949a9ea0a4a82c7fd7909a699c67654c">Step 4: コンパイルする</a></li>
+<li><a href="#step-5-webpack-導入:949a9ea0a4a82c7fd7909a699c67654c">Step 5: webpack 導入</a></li>
+<li><a href="#参考:949a9ea0a4a82c7fd7909a699c67654c">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p>型が恋しいのです。仮引数見た時に、何が入るか簡単に知りたいのです。実引数の型が違った時には教えてほしいのです。そんなこんなで、TypeScript がお気に入りです。</p>
@@ -129,7 +145,7 @@
 
 <p><a href="https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack">https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack</a></p>
 
-<h1 id="step-0-事前準備:949a9ea0a4a82c7fd7909a699c67654c">Step 0: 事前準備</h1>
+<h2 id="step-0-事前準備:949a9ea0a4a82c7fd7909a699c67654c">Step 0: 事前準備</h2>
 
 <p>以下のコマンドを使用するのでグローバルにインストールしておく。</p>
 
@@ -164,7 +180,7 @@
 </ul></li>
 </ul>
 
-<h1 id="step-1-いろいろ初期化-プロジェクトの作成:949a9ea0a4a82c7fd7909a699c67654c">Step 1: いろいろ初期化(プロジェクトの作成)</h1>
+<h2 id="step-1-いろいろ初期化-プロジェクトの作成:949a9ea0a4a82c7fd7909a699c67654c">Step 1: いろいろ初期化(プロジェクトの作成)</h2>
 
 <pre><code class="language-bash">$ mkdir app
 $ tsd init  # いろいろ尋ねてくるけど enter 連打
@@ -178,7 +194,7 @@ $ tree ./ -L 1
 └── typings         # tsd init で作成される（ライブラリの定義のソースコードが入る）
 </code></pre>
 
-<h1 id="step-2-ライブラリのインストール:949a9ea0a4a82c7fd7909a699c67654c">Step 2: ライブラリのインストール</h1>
+<h2 id="step-2-ライブラリのインストール:949a9ea0a4a82c7fd7909a699c67654c">Step 2: ライブラリのインストール</h2>
 
 <p>npm と tsd を利用して、ライブラリ、ライブラリの定義をインストール。</p>
 
@@ -190,7 +206,7 @@ $ npm install jquery --save
 $ tsd install jquery --save
 </code></pre>
 
-<h1 id="step-3-app-を作成:949a9ea0a4a82c7fd7909a699c67654c">Step 3: app を作成</h1>
+<h2 id="step-3-app-を作成:949a9ea0a4a82c7fd7909a699c67654c">Step 3: app を作成</h2>
 
 <p>app の下に app.ts として以下を作成。</p>
 
@@ -214,7 +230,7 @@ $(() =&gt; {
 &lt;/html&gt;
 </code></pre>
 
-<h1 id="step-4-コンパイルする:949a9ea0a4a82c7fd7909a699c67654c">Step 4: コンパイルする</h1>
+<h2 id="step-4-コンパイルする:949a9ea0a4a82c7fd7909a699c67654c">Step 4: コンパイルする</h2>
 
 <p>step 3 で作成した app.ts を js に変換するために tsc の設定を作成する。
 <strong>step 1 ./</strong> で tsconfig.json として以下のように作成。</p>
@@ -267,7 +283,7 @@ $(function () {
     └── tsd.d.ts
 </code></pre>
 
-<h1 id="step-5-webpack-導入:949a9ea0a4a82c7fd7909a699c67654c">Step 5: webpack 導入</h1>
+<h2 id="step-5-webpack-導入:949a9ea0a4a82c7fd7909a699c67654c">Step 5: webpack 導入</h2>
 
 <p>フロントでも require を利用するために、<strong>webpack</strong> をインストールして、ついでに、TypeScript のファイルを処理できるように loader をいれる。</p>
 
@@ -310,12 +326,13 @@ $ webpack
 
 <p><a href="https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack">ソースはこちらから</a></p>
 
-<h1 id="参考:949a9ea0a4a82c7fd7909a699c67654c">参考</h1>
+<h2 id="参考:949a9ea0a4a82c7fd7909a699c67654c">参考</h2>
 
 <ul>
 <li><a href="http://www.jbrantly.com/typescript-and-webpack/">TypeScript and webpack</a></li>
 </ul>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

@@ -10,7 +10,7 @@ title = "node 利用するなら、まずは環境変数を設定しましょう
 
 javascript を REPL で利用できるといえば **node** 。underscore.js を試したいと思いハマったメモ。
 
-# はまった事
+## はまった事
 
 以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。
 
@@ -32,11 +32,11 @@ Error: Cannot find module 'underscore'
   at Interface.EventEmitter.emit (events.js:96:17)
 ~~~
 
-# 原因
+## 原因
 
 npmでインストールしたnode\_modulesのパスを環境変数に設定していなかっただけ。
 
-# 解決
+## 解決
 
 1.  設定するパスを確認する
 

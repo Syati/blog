@@ -10,7 +10,7 @@ title = "reattach-to-user-namespace: unsupported new OS を解決する"
 
 ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。
 
-# 手順
+## 手順
 
 1.  <https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard> ここにいってソースコードをDLしてくる（git cloneでもOK）
 2.  ダウンロードしたファイルのディレクトリで make する
@@ -24,6 +24,6 @@ title = "reattach-to-user-namespace: unsupported new OS を解決する"
 
 これでワーニングもサヨウナラ
 
-# 参考
+## 参考
 
 -   <https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard>

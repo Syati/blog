@@ -13,7 +13,7 @@ comments = true
 
  <!--more-->
 
-# Step 1 github に blog repository をつくる
+## Step 1 github に blog repository をつくる
 
 github にアクセスして、repository をつくる。repository name がそのまま URL になる（以下のようなURL）。
 
@@ -23,7 +23,7 @@ github にアクセスして、repository をつくる。repository name がそ�
     - [username] : github の username
     - [repo] : github に作成する repository name
 
-# Step 2 blog の設定をかいておく
+## Step 2 blog の設定をかいておく
 
 **※以降、github に yourblog として repostitory を作成したとして記す。また、part 1 で作成した yourblog があるものとする**
 
@@ -51,7 +51,7 @@ canonifyurls = true # 相対パスではなく baseurl を基点とした絶対�
     - [toml-lang/toml](https://github.com/toml-lang/toml)
 
 
-# Step 3 repository に push する
+## Step 3 repository に push する
 
 yourblog ディレクトリで以下のコマンドを実行する。
 
@@ -66,7 +66,7 @@ $ git commit -m "Add hugo template"
 $ git push origin master
 ~~~
 
-# Step 4 gh-pages ブランチを作成する
+## Step 4 gh-pages ブランチを作成する
 
 gh-pages ブランチには hugo で作成されたコンテンツ（ public ）のみ置いて、
 関係のないもの（ archetypes, themes, etc ）は紛らわしいので管理したくない。
@@ -112,7 +112,7 @@ $ git subtree push --prefix=public git@github.com:Syati/yourblog.git gh-pages
     - [submoduleとsubtree-mergingの使い分け](http://qiita.com/marutanm/items/d02e7d5ff8ed7c2c4b95)
 
 
-# Step 5 めんどさい Deploy はスクリプトを利用する
+## Step 5 めんどさい Deploy はスクリプトを利用する
 
 [Hosting on GitHub Pages](http://gohugo.io/tutorials/github-pages-blog/) の **deploy.sh** に書かれている以下を利用する。
 

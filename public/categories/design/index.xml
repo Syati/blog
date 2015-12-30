@@ -19,29 +19,29 @@
 
 &lt;p&gt;Google Fonts をローカル環境で使いたいと思い調べたら、意外と簡単だった。以下は参考のほぼ転記。&lt;/p&gt;
 
-&lt;h1 id=&#34;環境:68568d62e9a876d6a56009578931cad6&#34;&gt;環境&lt;/h1&gt;
+&lt;h2 id=&#34;環境:68568d62e9a876d6a56009578931cad6&#34;&gt;環境&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;OS:ubuntu 12.04&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;インストール:68568d62e9a876d6a56009578931cad6&#34;&gt;インストール&lt;/h1&gt;
+&lt;h2 id=&#34;インストール:68568d62e9a876d6a56009578931cad6&#34;&gt;インストール&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:andrewsomething/typecatcher
-sudo apt-get update
-sudo apt-get install typecatcher
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo add-apt-repository ppa:andrewsomething/typecatcher
+$ sudo apt-get update
+$ sudo apt-get install typecatcher
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;メニュー　-&amp;gt; アクセサリー -&amp;gt; TypeCatchar で起動した後、好きなフォントを選んでインストール&lt;/p&gt;
 
-&lt;h1 id=&#34;その他:68568d62e9a876d6a56009578931cad6&#34;&gt;その他&lt;/h1&gt;
+&lt;h2 id=&#34;その他:68568d62e9a876d6a56009578931cad6&#34;&gt;その他&lt;/h2&gt;
 
 &lt;p&gt;ubuntu 13.10 以上は、以下の通り&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install typecatcher
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo apt-get install typecatcher
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;参考:68568d62e9a876d6a56009578931cad6&#34;&gt;参考&lt;/h1&gt;
+&lt;h2 id=&#34;参考:68568d62e9a876d6a56009578931cad6&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&#34;&gt;http://www.webupd8.org/2013/08/easily-download-and-install-google-web.html&lt;/a&gt;&lt;/li&gt;

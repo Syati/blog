@@ -21,7 +21,7 @@ dir 構成等は、以下の記事参照のこと
 
 <!--more-->
 
-# Step 1 Client-side の SyntaxHighlighter ライブラリ取得
+## Step 1 Client-side の SyntaxHighlighter ライブラリ取得
 
 導入方法として **Server-side** と **Client-side** の方法がありますが、
 今回は後者を利用します。また、ライブラリーはたくさんありますが、**[Prism](http://prismjs.com/)**
@@ -31,7 +31,7 @@ Prism のHPにいって利用したい好きな Themes と Languages にチェ�
 ページ下部の DOWNLOAD JS と DOWNLOAD CSS から DL しましょう。
 ちなみに当ページの Prism のテーマは Default(Okaidia) を利用しています。
 
-# Step 2 対象ファイルコピー
+## Step 2 対象ファイルコピー
 
 DL したファイルを以下のようにコピーしてあげる。
 
@@ -40,7 +40,7 @@ $ cp prism.js yourblog/static/js/
 $ cp prism.css yourblog/static/css/
 ~~~
 
-# Step 3 custom 設定を加える
+## Step 3 custom 設定を加える
 
 以下のように yourblog/layouts/partials/custom に移動して
 **対象ファイル１**と**対象ファイル２**を編集します。
@@ -73,7 +73,7 @@ $ tree -L 1
 
 これで設定は終了。
 
-# Step 4 コードをいれてみる
+## Step 4 コードをいれてみる
 
 新しい記事でも作成して、以下のような感じでコードをいれると。
 ~ 半角でいれると解釈されるため 〜 全角で入れています。

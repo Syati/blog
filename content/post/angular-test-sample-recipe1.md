@@ -16,9 +16,9 @@ js ってテストしにくいよねってことで今流行りの angular で u
 <https://github.com/Syati/angular-test-sample>
 <!--more-->
 
-# 準備
+## 準備
 
-## ubuntu
+### ubuntu
 
 - node & npm
 
@@ -27,7 +27,7 @@ $ sudo apt-get install nodejs
 $ sudo apt-get install npm
 ~~~
 
-## mac
+### mac
 
 - node & npm
 
@@ -35,7 +35,7 @@ $ sudo apt-get install npm
 $ brew install node
 ~~~
 
-## 共通
+### 共通
 
 - bower
 
@@ -49,7 +49,7 @@ $ sudo npm install -g bower
 $ sudo npm install -g karma-cli
 ~~~
 
-# 実施：サンプルを CLONE して TEST
+## 実施：サンプルを CLONE して TEST
 
 github にサンプルを書いたので clone する。
 
@@ -57,14 +57,14 @@ github にサンプルを書いたので clone する。
 $ git clone git@github.com:Syati/angular-test-sample.git
 ~~~
 
-## prj 依存環境を入れる
+### prj 依存環境を入れる
 
 ~~~bash
 $ cd your_clone_path/angular-test-sample/controller/recipe1
 $ npm install
 ~~~
 
-## test 実行する
+### test 実行する
 
 ~~~bash
 $ npm test
@@ -80,9 +80,9 @@ INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id
 PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
 ~~~
     
-# 説明
+## 説明
 
-## directory
+### directory
 ~~~bash
     recipe1
     ├── app
@@ -100,7 +100,7 @@ PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
     └── node_modules  #2 npm lib install dir
 ~~~
     
-## #1 bower
+### #1 bower
 
 js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。
 
@@ -123,7 +123,7 @@ $ bower install angular --save　# または --save-dev
     - 参考
       -   <http://bower.io/docs/api>
 
-## #2 npm
+### #2 npm
 
 ~~~bash
 $ npm init 
@@ -142,7 +142,7 @@ $ npm install jasmine --save-dev　# または --save
     - 参考
         - <https://www.npmjs.org/doc/cli/npm-install.html>
 
-## #3 karma  angular の unit test の設定
+### #3 karma  angular の unit test の設定
 
 ~~~bash
 karma init  # コマンドで初期設定 karma.conf.js を作成できる
@@ -163,7 +163,7 @@ karma init  # コマンドで初期設定 karma.conf.js を作成できる
     - karma から PhantomJS を呼べるようにするために以下を追加する。
         - karma-phantomjs-launcher
 
-## #4 test を書く
+### #4 test を書く
 
 テストするうえで jasmine の理解は必須なので [tutorial](http://jasmine.github.io/2.1/introduction.html) で勉強しておく。
 index.html をローカルで開けばわかると思うが button click で 'hello' とでてくるだけのもの。
@@ -204,6 +204,6 @@ describe('Unit: app moudle ', function(){
 -   その他
     -   angular.mock.module を利用するうえで、bower.json に記述のある angular-mocks は必要。
 
-# まとめ
+## まとめ
 
 controller のテストは意外と簡単。ただし、DI が増えてくるとハマるポイントも多くなってくるので、次はそんなサンプルを書いていくつもり。

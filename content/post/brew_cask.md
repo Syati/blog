@@ -12,9 +12,9 @@ Web ページや App Store から App をダブルクリックしてインスト
 
 <!--more-->
 
-# インストールとコマンド
+## インストールとコマンド
 
-## インストール
+### インストール
 
 **cask** コマンドを使えるようにするために以下のコマンドを実行する。
 
@@ -22,7 +22,7 @@ Web ページや App Store から App をダブルクリックしてインスト
 $ brew install caskroom/cask/brew-cask
 ~~~
 
-## コマンド
+### コマンド
 
 検索
 
@@ -47,7 +47,7 @@ $ brew cask install google-chrome
 $ brew cask uninstall google-chrome
 ~~~
 
-# その他
+## その他
 
 cask でインストールしたアプリは以下にインストールされ、ホームフォルダ(~/)の Applications からアプリへのシンボリックリンクが作成される。ルート(/)にインストールが必要なものはパスワードが求められる。
 
@@ -70,6 +70,6 @@ cask でインストールしたアプリは以下にインストールされ、
 └── Visual Studio Code.app -> /opt/homebrew-cask/Caskroom/visual-studio-code/0.7.0/Visual Studio Code.app
 ~~~
 
-# 参考
+## 参考
 
 - [Homebrew Cask](http://caskroom.io/)

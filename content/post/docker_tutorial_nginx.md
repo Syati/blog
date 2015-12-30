@@ -18,7 +18,7 @@ title = "Docker Part 3 - Docker で nginx を構築する"
 
 <!--more-->
     
-# Step1 docker vm の作成(復習)
+## Step1 docker vm の作成(復習)
 
 とりあえず docker vm を作成・利用する。忘れた方は、こちらで[docker-machine コマンドの使用方法・流れ]({{< ref "post/docker_machine.md" >}})
 
@@ -43,13 +43,13 @@ Get http:///var/run/docker.sock/v1.20/containers/json: dial unix /var/run/docker
 * Is your docker daemon up and running?
 ~~~
 
-# Step1.5 簡単な全体イメージ
+## Step1.5 簡単な全体イメージ
 
 以下で使用する用語の全体イメージは以下のような感じである。
 
 **Dockerfile** から **Image** を作成、Image から **Container** を立ち上げる
 
-# Step2 Dockerfile の作成
+## Step2 Dockerfile の作成
 
 Dockerfile （ Image 作成の手順書）を作成する。dir 構成は以下の通り。
 
@@ -73,7 +73,7 @@ MAINTAINER mizuki-y<mizuki-y@syati.info> # 作成者の情報
 - [Dockerfileとdocker buildコマンドでDockerイメージの作成](http://www.atmarkit.co.jp/ait/articles/1407/08/news031.html)
 - [Dockerfile reference](https://docs.docker.com/reference/builder/)
 
-# Step3 Image の作成
+## Step3 Image の作成
 
 Dockerfile から Image を 作成するため **build** コマンドを実施する。
 
@@ -91,7 +91,7 @@ Build a new image from the source code at PATH
 $ docker build -t syati:nginx .
 ~~~
 
-# Step4 Image の確認
+## Step4 Image の確認
 
 作成した Image を確認するため **images** コマンドを実施する。 Step2 で FROM しか指定していないので何も変わっていない（SIZE 同じ）が Dockerfile から Image を作成できている。
 
@@ -108,7 +108,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 nginx               latest              0b354d33906d        10 days ago         132.9 MB
 ~~~
 
-# Step5 Container を立ち上げる
+## Step5 Container を立ち上げる
 
 作成した Image から Container を立ち上げるために **run** コマンドを実施する
 
@@ -153,7 +153,7 @@ Dockerfile のことを少しでも知っていたら、以下の点を疑問に
 
 これは利用イメージが [Official Repository nginx](https://hub.docker.com/_/nginx/) この [Dockerfile](https://github.com/nginxinc/docker-nginx/blob/7f3ef0927ec619d20181e677c97f991df0d7d446/Dockerfile) を利用して作成されているためである。
 
-# Step6 nginx のデフォルトページを見る
+## Step6 nginx のデフォルトページを見る
 
 Step1 で docker vm の ip を確認してポートを付与してあげる。 -p オプションでポートをした場合で考えると以下にアクセスすれば **Welcome to nginx!** が見れるはず
 
@@ -162,9 +162,9 @@ http://192.168.99.100:8000
 ~~~
 
 
-# その他
+## その他
 
-## container の中身を確認する
+### container の中身を確認する
 
 ~~~bash
 $ docker run -t -i syati:nginx /bin/bash

@@ -14,18 +14,18 @@ title = "Docker Part 1 - Mac に Docker をインストールする"
 
 <!--more-->
 
-# 前提
+## 前提
 
 - OSX 10.10.5
 
-# Step 1 Install VirtualBox
+## Step 1 Install VirtualBox
 
 VirtualBox5.0.2 だと Step 3 で動かなくなるので、[テストビルド](https://www.virtualbox.org/wiki/Testbuilds)から入れる。5.0.2 だった場合、 [エラー1]({{< ref "#error-1" >}})が出る。
 
 - 参考
     - [Docker Toolbox付属のVirtualBox5.0.2では動かないので5.0.3を手動で入れること](http://qiita.com/tukiyo3/items/c912fe9e403706964995)
 
-# Step 2 Install Docker Toolbox
+## Step 2 Install Docker Toolbox
 
 ~~~bash
 $ brew cask install dockertoolbox
@@ -43,7 +43,7 @@ $ docker --version
 Docker version 1.8.1, build d12ea79
 ~~~
 
-# Step 3 とりあえず起動
+## Step 3 とりあえず起動
 
 [Installation](http://docs.docker.com/mac/step_one/#step-3-verify-your-installation) に書いてあるとおり、以下のコマンドで、とりあえず起動、コマンドを実行してみる。[エラー]({{< ref "#error" >}})が無いことをもって、インストール・起動ができたことの確認を終了する。
 
@@ -72,9 +72,9 @@ For more examples and ideas, visit:
   https://docs.docker.com/userguide/
 ~~~
 
-# Error {#error}
+## Error {#error}
 
-## VirtualBox 5.0.2 時で start.sh を叩いた場合 {#error-1}
+### VirtualBox 5.0.2 時で start.sh を叩いた場合 {#error-1}
 
 以下のとおり、vm が立ち上がってくれない。
 
@@ -106,7 +106,7 @@ exit status 1
 Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
 ~~~
 
-## VirtualBox 5.0.3 にした後、以前作成した vm のエラー {#error-2}
+### VirtualBox 5.0.3 にした後、以前作成した vm のエラー {#error-2}
 
 設定が取れないので、以前作成した vm は削除して、あらためて start.sh を叩きましょう。
 

@@ -9,7 +9,7 @@ title = "org2blog でブログに接続する際のパスワードを .netrc に
 
 org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&#x2026;とおもっている場合は、.netrc を使うのがお勧め
 
-# 手順
+## 手順
 
 1.  ホームに以下のコマンドで .netrc を作成する
     
@@ -31,6 +31,6 @@ org2blog で毎回ログインする際に求められるパスワード入力�
                   :password (netrc-get blog "password")
                   :tags-as-categories nil)))
 
-# 参考
+## 参考
 
 -   [org2blog](https://github.com/punchagan/org2blog#posting-source-code-blocks)

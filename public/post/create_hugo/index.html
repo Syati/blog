@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,6 +121,24 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">Hugo Part 1 - Hugo で github にブログを立ち上げる</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#step-1-インストールしましょう:21ff63570566c64813270f2340abd251">Step 1 インストールしましょう</a>
+<ul>
+<li><a href="#osx-の場合:21ff63570566c64813270f2340abd251">OSX の場合</a></li>
+<li><a href="#ubuntu-の場合:21ff63570566c64813270f2340abd251">Ubuntu の場合</a></li>
+</ul></li>
+<li><a href="#step-2-ブログをつくろう:21ff63570566c64813270f2340abd251">Step 2 ブログをつくろう</a></li>
+<li><a href="#step-3-新しい記事をつくろう:21ff63570566c64813270f2340abd251">Step 3 新しい記事をつくろう</a></li>
+<li><a href="#step-4-テーマをインストールしよう:21ff63570566c64813270f2340abd251">Step 4 テーマをインストールしよう</a></li>
+<li><a href="#step-5-ブログを見てみよう:21ff63570566c64813270f2340abd251">Step 5 ブログを見てみよう</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p>WordPress でブログをつくっていましたが、記事投稿が面倒くさなって続かない。
@@ -137,23 +155,23 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 セットアップ手順を記していく。Part 1 では、まずはブログをローカルに構築する。
 <a href="http://blog.syati.info/post/create_hugo_2/">Part 2</a> で、github.io にブログを立ち上げる。</p>
 
-<h1 id="step-1-インストールしましょう:21ff63570566c64813270f2340abd251">Step 1 インストールしましょう</h1>
+<h2 id="step-1-インストールしましょう:21ff63570566c64813270f2340abd251">Step 1 インストールしましょう</h2>
 
-<h2 id="osx-の場合:21ff63570566c64813270f2340abd251">OSX の場合</h2>
+<h3 id="osx-の場合:21ff63570566c64813270f2340abd251">OSX の場合</h3>
 
 <p>以下のコマンドでおしまい。</p>
 
 <pre><code class="language-bash">$ brew install hugo
 </code></pre>
 
-<h2 id="ubuntu-の場合:21ff63570566c64813270f2340abd251">Ubuntu の場合</h2>
+<h3 id="ubuntu-の場合:21ff63570566c64813270f2340abd251">Ubuntu の場合</h3>
 
 <p><a href="https://github.com/spf13/hugo/releases">Hugo relase</a> から適したものをDLして以下のコマンドを実行する。</p>
 
 <pre><code class="language-bash">$ sudo dpkg -i hugo_0.14_amd64.deb　# 自分に適したパッケージを選んでね
 </code></pre>
 
-<h1 id="step-2-ブログをつくろう:21ff63570566c64813270f2340abd251">Step 2 ブログをつくろう</h1>
+<h2 id="step-2-ブログをつくろう:21ff63570566c64813270f2340abd251">Step 2 ブログをつくろう</h2>
 
 <p>以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。</p>
 
@@ -171,7 +189,7 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 └── static      # 今回は利用しない（サイトで利用する js, css, images などを置く）
 </code></pre>
 
-<h1 id="step-3-新しい記事をつくろう:21ff63570566c64813270f2340abd251">Step 3 新しい記事をつくろう</h1>
+<h2 id="step-3-新しい記事をつくろう:21ff63570566c64813270f2340abd251">Step 3 新しい記事をつくろう</h2>
 
 <p>yourblog ディレクトリで以下のコマンド実行して、新規記事を作成する。</p>
 
@@ -196,14 +214,14 @@ title = &quot;hello&quot;
 
 </code></pre>
 
-<h1 id="step-4-テーマをインストールしよう:21ff63570566c64813270f2340abd251">Step 4 テーマをインストールしよう</h1>
+<h2 id="step-4-テーマをインストールしよう:21ff63570566c64813270f2340abd251">Step 4 テーマをインストールしよう</h2>
 
 <p>自分好みのテーマをさがすために、テーマ一式いれてみる。yourblog ディレクトリで以下のコマンドを実行する。</p>
 
 <pre><code class="language-bash">$ git clone -\-recursive https://github.com/spf13/hugoThemes themes
 </code></pre>
 
-<h1 id="step-5-ブログを見てみよう:21ff63570566c64813270f2340abd251">Step 5 ブログを見てみよう</h1>
+<h2 id="step-5-ブログを見てみよう:21ff63570566c64813270f2340abd251">Step 5 ブログを見てみよう</h2>
 
 <p>とりあえず準備はととのったので、サーバーを立ち上げてブログを見てみる。</p>
 
@@ -239,7 +257,8 @@ Web Server is available at http://127.0.0.1:1313/
 <p>ブログ構築完成。</p>
 
 <p><a href="http://blog.syati.info/post/create_hugo_2/">Part 2</a> で、github.io にブログを立ち上げる。</p>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

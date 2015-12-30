@@ -16,16 +16,16 @@ https://github.com/Syati/typescript-sample/tree/master/011_test_sample
 
 <!--more-->
 
-# Step 0: 事前準備
+## Step 0: 事前準備
 
-## 流れ
+### 流れ
 
 1. ts でコードを書く
 2. トランスパイルする（js と map を出力）
 3. js をテストする
 4. map を利用して**ts カバレッジ**を測る
 
-## ライブラリ
+### ライブラリ
 
 **npm install -g mocha istanbul remap-istanbul** でそれぞれコマンドが利用できるようになります。
 
@@ -39,7 +39,7 @@ https://github.com/Syati/typescript-sample/tree/master/011_test_sample
       - istanbul だけでは、トランスパイル後（js）のカバレッジしか測れないので、map を利用して、ts のカバレッジを測る
 
 
-# Step 1: とりあえずテストを書く
+## Step 1: とりあえずテストを書く
 
 [プロジェクト](https://github.com/Syati/typescript-sample/tree/master/011_test_sample) を確認しておく。全体が理解しやすくなると思う。
 
@@ -69,7 +69,7 @@ describe("TestTarget", () => {
 すごいシンプルですね。
 
 
-# Step 2: トランスパイルする
+## Step 2: トランスパイルする
 
 tsc コマンドを叩く前に設定ファイルを書いときましょう。以下の tsconfig.json になります。
 とくに変わった点はないですね。重要なポイントとしては、**"sourceMap": true**です。
@@ -101,7 +101,7 @@ tsc コマンドを叩く前に設定ファイルを書いときましょう。�
 $ tsc
 ~~~
 
-# Step 3: テストする
+## Step 3: テストする
 
 Step 2 でトランスパイル済みなので、ts ファイル以外に js、map ファイルが存在すると思います。ディレクトリが汚れてあたふたするかもしれませんが、package.json に clean スクリプトを書くことで解決できるので、今は我慢。
 
@@ -124,7 +124,7 @@ $ mocha app/test/*.test.js
 
 ユニットテストのモチベーションをあげるためにも、やっぱりカバレッジですよ！！
 
-# Step 4: カバレッジを測る
+## Step 4: カバレッジを測る
 
 とくに必要なことはありません。Step 0 で説明したとおり **istanbul** を利用するだけ。
 すこし異なっているのは、 mocha が _mocha を利用するということです。理由は、以下のとおり。
@@ -154,7 +154,7 @@ Lines        : 100% ( 6/6 )
 
 {{< figure src="coverage_js.png" title="トランスパイル後のカバレッジ" >}}
 
-# Step 5: ソースマップから ts のカバレッジを測る
+## Step 5: ソースマップから ts のカバレッジを測る
 
 **coverage** ディレクトリにて以下のコマンドたたいてあげるだけです。ts のカバレッジが html-repot ディレクトリに出力されます。
 
@@ -170,7 +170,7 @@ ts のカバレッジが測れました。ただ、一連のコマンドを毎�
 
 ＊図が Step 4 とデザインが違うのは、remap-istanbul で利用している istanbul のバージョンが古いからだと思われる
 
-# Step 6: package.json で楽する
+## Step 6: package.json で楽する
 
 一連のコマンドを **package.json** に書いておきましょう。以下サンプル。
 
@@ -202,9 +202,9 @@ $ npm test
 $ npm clean
 ~~~
 
-# その他
+## その他
 
-## .istanbul.yml でカバレッジレポートのディレクトリ指定する
+### .istanbul.yml でカバレッジレポートのディレクトリ指定する
 
 **.istanbul.yml** に以下のように書いてあげることで、レポートの出力先を変えることが出来る。
 

@@ -12,7 +12,7 @@ Docker に入門して、Dockerfile を書くことになったので、とり�
 
 <!--more-->
 
-# Install
+## Install
 
 -   M-x package-list-package で以下をインストールする
     - dockerfile-mode

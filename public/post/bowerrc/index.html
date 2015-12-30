@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,6 +121,28 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">bowerrc で install ディレクトリを変更する</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#解決策:faaade8871e8a9add4cb3dea3150f715">解決策</a>
+<ul>
+<li><a href="#bowerrc作成後:faaade8871e8a9add4cb3dea3150f715">.bowerrc作成後</a></li>
+</ul></li>
+<li><a href="#参考:faaade8871e8a9add4cb3dea3150f715">参考</a>
+<ul>
+<li><a href="#デフォルトの動作:faaade8871e8a9add4cb3dea3150f715">デフォルトの動作</a>
+<ul>
+<li><a href="#初期ディレクトリ構成:faaade8871e8a9add4cb3dea3150f715">初期ディレクトリ構成</a></li>
+<li><a href="#コマンド:faaade8871e8a9add4cb3dea3150f715">コマンド</a></li>
+<li><a href="#コマンド後のディレクトリ構成:faaade8871e8a9add4cb3dea3150f715">コマンド後のディレクトリ構成</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p>bower install をしたはいいが、デフォルトでインストールされるディレクトリ(bower_components)を以下の例のように変えたい、そんな時は。</p>
@@ -147,11 +169,11 @@
 </ul></li>
 </ul>
 
-<h1 id="解決策:faaade8871e8a9add4cb3dea3150f715">解決策</h1>
+<h2 id="解決策:faaade8871e8a9add4cb3dea3150f715">解決策</h2>
 
 <p>以下のように <strong>.bowerrc</strong> を project ルートに作成してあげる。これを自分の好きなように書き換えることで、インストールディレクトリを変更できる。</p>
 
-<pre><code>// .bowerrc
+<pre><code class="language-javascript">// .bowerrc
 {
     &quot;directory&quot; : &quot;js/bower_components&quot;
 }
@@ -159,7 +181,7 @@
 
 <p>以降、bower install すれば希望通り</p>
 
-<h2 id="bowerrc作成後:faaade8871e8a9add4cb3dea3150f715">.bowerrc作成後</h2>
+<h3 id="bowerrc作成後:faaade8871e8a9add4cb3dea3150f715">.bowerrc作成後</h3>
 
 <ul>
 <li>project/
@@ -182,11 +204,11 @@
 </ul></li>
 </ul>
 
-<h1 id="参考:faaade8871e8a9add4cb3dea3150f715">参考</h1>
+<h2 id="参考:faaade8871e8a9add4cb3dea3150f715">参考</h2>
 
-<h2 id="デフォルトの動作:faaade8871e8a9add4cb3dea3150f715">デフォルトの動作</h2>
+<h3 id="デフォルトの動作:faaade8871e8a9add4cb3dea3150f715">デフォルトの動作</h3>
 
-<h3 id="初期ディレクトリ構成:faaade8871e8a9add4cb3dea3150f715">初期ディレクトリ構成</h3>
+<h4 id="初期ディレクトリ構成:faaade8871e8a9add4cb3dea3150f715">初期ディレクトリ構成</h4>
 
 <ul>
 <li>project/
@@ -199,7 +221,7 @@
 </ul></li>
 </ul>
 
-<h3 id="コマンド:faaade8871e8a9add4cb3dea3150f715">コマンド</h3>
+<h4 id="コマンド:faaade8871e8a9add4cb3dea3150f715">コマンド</h4>
 
 <p>project ルートで 以下のように bower コマンドを入れる</p>
 
@@ -207,7 +229,7 @@
 bower install jquery -save
 </code></pre>
 
-<h3 id="コマンド後のディレクトリ構成:faaade8871e8a9add4cb3dea3150f715">コマンド後のディレクトリ構成</h3>
+<h4 id="コマンド後のディレクトリ構成:faaade8871e8a9add4cb3dea3150f715">コマンド後のディレクトリ構成</h4>
 
 <p>ディレクトリは以下のようになる。</p>
 
@@ -227,7 +249,8 @@ bower install jquery -save
 <li>bower.json</li>
 </ul></li>
 </ul>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">
