@@ -346,10 +346,9 @@ models
 
 <h3 id="3-2-models-の-index-js-について:d0405ca9cb7f9fb6a32a84decaf220bd">3.2. models の index.js について</h3>
 
-<p>models dir には index.js が sequelize init によって作成されるが、これは models ディレクトリにある全ファイルを読み込んで、モデルを構築してくれる。その際に、モデル間のリレーションも一緒に構築する。利用する際には、index.js を読み込んで、該当モデルを利用することになる。(部分的に ES6 利用)</p>
+<p>models dir には index.js が sequelize init によって作成されるが、これは models ディレクトリにある全ファイルを読み込んで、モデルを構築してくれる。その際に、モデル間のリレーションも一緒に構築する。利用する際には、index.js を読み込んで、該当モデルを利用することになる。(ES6 利用)</p>
 
 <pre><code class="language-javascript">// 利用例
-
 const models = require('./models');
 
 const User = models.User;
