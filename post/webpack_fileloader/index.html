@@ -4,12 +4,12 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>node 利用するなら、まずは環境変数を設定しましょう - Syati.info</title>
+	<title>webpack_fileloader - Syati.info</title>
 	<meta name="author" content="map[author:mizuki-y]">
 
 	
-	  
-	<meta name="description" content="node で REPLを利用する際の環境パス">
+	
+	<meta name="description" content="">
 	
 
 	
@@ -17,16 +17,16 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     
-	<link href='http://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	<link href='http://localhost:1313/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://blog.syati.info/post/node_path/">
-	<link href="http://blog.syati.info/favicon.png" rel="shortcut icon">
-	<link href="http://blog.syati.info/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="http://blog.syati.info/css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="canonical" href="http://localhost:1313/post/webpack_fileloader/">
+	<link href="http://localhost:1313//favicon.png" rel="shortcut icon">
+	<link href="http://localhost:1313//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://localhost:1313//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
 	
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://localhost:1313//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
   
@@ -51,11 +51,11 @@
 		<div class="left-col">
 			<div class="intrude-less">
 			<header id="header" class="inner">
-<a href="http://blog.syati.info">    
+<a href="http://localhost:1313/">    
     <div>
         <h1>
             Syati.info
-        </h1>        
+        </h1>
         <p>
             かんがえるさかな
         </p>
@@ -90,15 +90,15 @@
 		
     	
     	
-			<a class="rss" href='http://blog.syati.info/index.xml' title="RSS">RSS</a>
+			<a class="rss" href='http://localhost:1313/index.xml' title="RSS">RSS</a>
 		
 	</div>
 </nav>
 <nav id="main-nav">
     <ul class="main">
-    <li><a href="http://blog.syati.info/">Blog</a></li>
-    <li><a href="http://blog.syati.info/about/">About</a></li>
-    <li><a href="http://blog.syati.info/post/">Archives</a></li>
+    <li><a href="http://localhost:1313/">Blog</a></li>
+    <li><a href="http://localhost:1313/about/">About</a></li>
+    <li><a href="http://localhost:1313/post/">Archives</a></li>
 </ul>
 <div class="search-nav">
     <label for="search">Search</label>
@@ -120,66 +120,8 @@
 				<div id="content" class="inner">
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-    <h1 class="title" itemprop="name">node 利用するなら、まずは環境変数を設定しましょう</h1>
-    <div id="toc">
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#はまった事:27ef1157700a533f7be8bb419ba8b42a">はまった事</a></li>
-<li><a href="#原因:27ef1157700a533f7be8bb419ba8b42a">原因</a></li>
-<li><a href="#解決:27ef1157700a533f7be8bb419ba8b42a">解決</a></li>
-</ul></li>
-</ul>
-</nav>
-    </div>    
-	<div class="entry-content" itemprop="articleBody">
-
-<p>javascript を REPL で利用できるといえば <strong>node</strong> 。underscore.js を試したいと思いハマったメモ。</p>
-
-<h2 id="はまった事:27ef1157700a533f7be8bb419ba8b42a">はまった事</h2>
-
-<p>以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。</p>
-
-<pre><code class="language-bash">$ sudo npm install undersocre -g
-$ node 
-    
-require('underscore'); 
-Error: Cannot find module 'underscore'
-  at Function.Module._resolveFilename (module.js:338:15)
-  at Function.Module._load (module.js:280:25)
-  at Module.require (module.js:362:17)
-  at require (module.js:378:17)
-  at repl:1:1
-  at REPLServer.self.eval (repl.js:109:21)
-  at rli.on.self.bufferedCmd (repl.js:258:20)
-  at REPLServer.self.eval (repl.js:116:5)
-  at Interface.&lt;anonymous&gt; (repl.js:248:12)
-  at Interface.EventEmitter.emit (events.js:96:17)
-</code></pre>
-
-<h2 id="原因:27ef1157700a533f7be8bb419ba8b42a">原因</h2>
-
-<p>npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。</p>
-
-<h2 id="解決:27ef1157700a533f7be8bb419ba8b42a">解決</h2>
-
-<ol>
-<li>設定するパスを確認する</li>
-</ol>
-
-<pre><code class="language-bash">npm root -g
-/usr/local/lib/node_modules
-</code></pre>
-
-<ol>
-<li>利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了</li>
-</ol>
-
-<pre><code class="language-bash">export NODE_PATH=/usr/local/lib/node_modules
-</code></pre>
-</div>
-</article>
+    <h1 class="title" itemprop="name">webpack_fileloader</h1>
+	<div class="entry-content" itemprop="articleBody"></div></article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">
@@ -248,8 +190,8 @@ Error: Cannot find module 'underscore'
     Syati.info
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
-<script src="http://blog.syati.info/js/slash.js"></script>
-<script src="http://blog.syati.info/js/jquery.fancybox.pack.js"></script>
+<script src="http://localhost:1313//js/slash.js"></script>
+<script src="http://localhost:1313//js/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
 	$('.fancybox').fancybox();
@@ -258,9 +200,12 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
 </footer>
 		</div>
 	</div>
-	<script src="http://blog.syati.info/js/prism.js"></script>
-<script src="http://blog.syati.info/js/lunr.min.js"></script>
-<script src="http://blog.syati.info/js/search.js"></script>
+	<script src="http://localhost:1313//js/prism.js"></script>
+<script src="http://localhost:1313//js/lunr.min.js"></script>
+<script src="http://localhost:1313//js/search.js"></script>
 
-</body>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>

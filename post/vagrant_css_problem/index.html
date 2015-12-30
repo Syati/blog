@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,6 +121,17 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">vagrant、chef-solo で開発環境を構築する</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#原因:5c1f1c5e88ff812515d1aa7457a96fee">原因</a></li>
+<li><a href="#参考:5c1f1c5e88ff812515d1aa7457a96fee">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p>最近、vagrant、chef-solo で開発環境を構築するのがブームなSyatiです。xampp、mamp とかで？？ができないとかよくありますが、面倒くさいので皆サーバーと同じ環境にして開発しましょうよ。そしたら、？？ができないなんてことがなくなりますので。</p>
@@ -129,7 +140,7 @@
 
 <p><strong>CSSをいじって、ブラウザで確認しても反映されないのである。もちろんキャッシュクリア済み。やむなくvagrantを再起動すると反映されるのである</strong></p>
 
-<h1 id="原因:5c1f1c5e88ff812515d1aa7457a96fee">原因</h1>
+<h2 id="原因:5c1f1c5e88ff812515d1aa7457a96fee">原因</h2>
 
 <p>httpd.conf の設定に問題があった。
 以下の設定を加えるのである。EnableSendfile なんて httpd.conf 中のどこにも記述が無いんだが、デフォルトが On のため、明示的に加えてあげる必要がある。</p>
@@ -147,14 +158,15 @@ sendfile は read と send を別々に行なうことと、バッファの割�
 <p>おそらく、以下の部分が原因か！？それでファイルを変更しても、逐次更新されないんでしょう。
 -   <strong>Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。</strong></p>
 
-<h1 id="参考:5c1f1c5e88ff812515d1aa7457a96fee">参考</h1>
+<h2 id="参考:5c1f1c5e88ff812515d1aa7457a96fee">参考</h2>
 
 <ul>
 <li><a href="http://qiita.com/shoyan/items/12389d5beaa8695b1a53">http://qiita.com/shoyan/items/12389d5beaa8695b1a53</a></li>
 </ul>
 
 <p>上記に nginx の場合も書いて有りますね。</p>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

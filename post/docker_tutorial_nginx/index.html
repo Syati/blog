@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,6 +121,26 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">Docker Part 3 - Docker で nginx を構築する</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#step1-docker-vm-の作成-復習:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step1 docker vm の作成(復習)</a></li>
+<li><a href="#step1-5-簡単な全体イメージ:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step1.5 簡単な全体イメージ</a></li>
+<li><a href="#step2-dockerfile-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step2 Dockerfile の作成</a></li>
+<li><a href="#step3-image-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step3 Image の作成</a></li>
+<li><a href="#step4-image-の確認:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step4 Image の確認</a></li>
+<li><a href="#step5-container-を立ち上げる:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step5 Container を立ち上げる</a></li>
+<li><a href="#step6-nginx-のデフォルトページを見る:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step6 nginx のデフォルトページを見る</a></li>
+<li><a href="#その他:70cfd8bcb00d2acafeb3ae1cc961ca2c">その他</a>
+<ul>
+<li><a href="#container-の中身を確認する:70cfd8bcb00d2acafeb3ae1cc961ca2c">container の中身を確認する</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p><a href="http://blog.syati.info/post/docker_machine/">docker-machine コマンドの使用方法・流れ</a> で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。</p>
@@ -131,7 +151,7 @@
 
 <p>ただし、以下を読むより動画 <a href="http://dotinstall.com/lessons/basic_docker">Docker入門 (全11回)</a> で学ぶほうが分かりやすい。</p>
 
-<h1 id="step1-docker-vm-の作成-復習:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step1 docker vm の作成(復習)</h1>
+<h2 id="step1-docker-vm-の作成-復習:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step1 docker vm の作成(復習)</h2>
 
 <p>とりあえず docker vm を作成・利用する。忘れた方は、こちらで<a href="http://blog.syati.info/post/docker_machine/">docker-machine コマンドの使用方法・流れ</a></p>
 
@@ -154,13 +174,13 @@ Get http:///var/run/docker.sock/v1.20/containers/json: dial unix /var/run/docker
 * Is your docker daemon up and running?
 </code></pre>
 
-<h1 id="step1-5-簡単な全体イメージ:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step1.5 簡単な全体イメージ</h1>
+<h2 id="step1-5-簡単な全体イメージ:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step1.5 簡単な全体イメージ</h2>
 
 <p>以下で使用する用語の全体イメージは以下のような感じである。</p>
 
 <p><strong>Dockerfile</strong> から <strong>Image</strong> を作成、Image から <strong>Container</strong> を立ち上げる</p>
 
-<h1 id="step2-dockerfile-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step2 Dockerfile の作成</h1>
+<h2 id="step2-dockerfile-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step2 Dockerfile の作成</h2>
 
 <p>Dockerfile （ Image 作成の手順書）を作成する。dir 構成は以下の通り。</p>
 
@@ -184,7 +204,7 @@ MAINTAINER mizuki-y&lt;mizuki-y@syati.info&gt; # 作成者の情報
 <li><a href="https://docs.docker.com/reference/builder/">Dockerfile reference</a></li>
 </ul>
 
-<h1 id="step3-image-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step3 Image の作成</h1>
+<h2 id="step3-image-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step3 Image の作成</h2>
 
 <p>Dockerfile から Image を 作成するため <strong>build</strong> コマンドを実施する。</p>
 
@@ -201,7 +221,7 @@ Build a new image from the source code at PATH
 $ docker build -t syati:nginx .
 </code></pre>
 
-<h1 id="step4-image-の確認:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step4 Image の確認</h1>
+<h2 id="step4-image-の確認:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step4 Image の確認</h2>
 
 <p>作成した Image を確認するため <strong>images</strong> コマンドを実施する。 Step2 で FROM しか指定していないので何も変わっていない（SIZE 同じ）が Dockerfile から Image を作成できている。</p>
 
@@ -217,7 +237,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 nginx               latest              0b354d33906d        10 days ago         132.9 MB
 </code></pre>
 
-<h1 id="step5-container-を立ち上げる:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step5 Container を立ち上げる</h1>
+<h2 id="step5-container-を立ち上げる:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step5 Container を立ち上げる</h2>
 
 <p>作成した Image から Container を立ち上げるために <strong>run</strong> コマンドを実施する</p>
 
@@ -263,16 +283,16 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 <p>これは利用イメージが <a href="https://hub.docker.com/_/nginx/">Official Repository nginx</a> この <a href="https://github.com/nginxinc/docker-nginx/blob/7f3ef0927ec619d20181e677c97f991df0d7d446/Dockerfile">Dockerfile</a> を利用して作成されているためである。</p>
 
-<h1 id="step6-nginx-のデフォルトページを見る:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step6 nginx のデフォルトページを見る</h1>
+<h2 id="step6-nginx-のデフォルトページを見る:70cfd8bcb00d2acafeb3ae1cc961ca2c">Step6 nginx のデフォルトページを見る</h2>
 
 <p>Step1 で docker vm の ip を確認してポートを付与してあげる。 -p オプションでポートをした場合で考えると以下にアクセスすれば <strong>Welcome to nginx!</strong> が見れるはず</p>
 
 <pre><code class="language-bash">http://192.168.99.100:8000
 </code></pre>
 
-<h1 id="その他:70cfd8bcb00d2acafeb3ae1cc961ca2c">その他</h1>
+<h2 id="その他:70cfd8bcb00d2acafeb3ae1cc961ca2c">その他</h2>
 
-<h2 id="container-の中身を確認する:70cfd8bcb00d2acafeb3ae1cc961ca2c">container の中身を確認する</h2>
+<h3 id="container-の中身を確認する:70cfd8bcb00d2acafeb3ae1cc961ca2c">container の中身を確認する</h3>
 
 <pre><code class="language-bash">$ docker run -t -i syati:nginx /bin/bash
 
@@ -284,7 +304,8 @@ Run a command in a new container
   -i, --interactive=false         Keep STDIN open even if not attached
   -t, --tty=false                 Allocate a pseudo-TTY
 </code></pre>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

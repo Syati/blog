@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,19 +121,37 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">Docker Part 1 - Mac に Docker をインストールする</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#前提:721a6b0475e6190575ce57e1a6fd89e9">前提</a></li>
+<li><a href="#step-1-install-virtualbox:721a6b0475e6190575ce57e1a6fd89e9">Step 1 Install VirtualBox</a></li>
+<li><a href="#step-2-install-docker-toolbox:721a6b0475e6190575ce57e1a6fd89e9">Step 2 Install Docker Toolbox</a></li>
+<li><a href="#step-3-とりあえず起動:721a6b0475e6190575ce57e1a6fd89e9">Step 3 とりあえず起動</a></li>
+<li><a href="#error:721a6b0475e6190575ce57e1a6fd89e9">Error</a>
+<ul>
+<li><a href="#error-1:721a6b0475e6190575ce57e1a6fd89e9">VirtualBox 5.0.2 時で start.sh を叩いた場合</a></li>
+<li><a href="#error-2:721a6b0475e6190575ce57e1a6fd89e9">VirtualBox 5.0.3 にした後、以前作成した vm のエラー</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p>巷で Docker と騒がれて随分経ったでしょうか。私の Mac が新しくなったのを気に Docker に入門したいと思います。何か新しい開発の度にゴミが入るのはちょっと・・・、とも思いますしね。</p>
 
 <p>昔、Vagrant と Chef でローカル開発環境を構築していたこともありましたが provison が遅く、何だかなぁ〜と思っているうちに遠ざかっていました。Docker はコンテナ型で、vagrant より軽いのかな。</p>
 
-<h1 id="前提:721a6b0475e6190575ce57e1a6fd89e9">前提</h1>
+<h2 id="前提:721a6b0475e6190575ce57e1a6fd89e9">前提</h2>
 
 <ul>
 <li>OSX 10.10.5</li>
 </ul>
 
-<h1 id="step-1-install-virtualbox:721a6b0475e6190575ce57e1a6fd89e9">Step 1 Install VirtualBox</h1>
+<h2 id="step-1-install-virtualbox:721a6b0475e6190575ce57e1a6fd89e9">Step 1 Install VirtualBox</h2>
 
 <p>VirtualBox5.0.2 だと Step 3 で動かなくなるので、<a href="https://www.virtualbox.org/wiki/Testbuilds">テストビルド</a>から入れる。5.0.2 だった場合、 <a href="#error-1:721a6b0475e6190575ce57e1a6fd89e9">エラー1</a>が出る。</p>
 
@@ -145,7 +163,7 @@
 </ul></li>
 </ul>
 
-<h1 id="step-2-install-docker-toolbox:721a6b0475e6190575ce57e1a6fd89e9">Step 2 Install Docker Toolbox</h1>
+<h2 id="step-2-install-docker-toolbox:721a6b0475e6190575ce57e1a6fd89e9">Step 2 Install Docker Toolbox</h2>
 
 <pre><code class="language-bash">$ brew cask install dockertoolbox
 </code></pre>
@@ -163,7 +181,7 @@
 Docker version 1.8.1, build d12ea79
 </code></pre>
 
-<h1 id="step-3-とりあえず起動:721a6b0475e6190575ce57e1a6fd89e9">Step 3 とりあえず起動</h1>
+<h2 id="step-3-とりあえず起動:721a6b0475e6190575ce57e1a6fd89e9">Step 3 とりあえず起動</h2>
 
 <p><a href="http://docs.docker.com/mac/step_one/#step-3-verify-your-installation">Installation</a> に書いてあるとおり、以下のコマンドで、とりあえず起動、コマンドを実行してみる。<a href="#error:721a6b0475e6190575ce57e1a6fd89e9">エラー</a>が無いことをもって、インストール・起動ができたことの確認を終了する。</p>
 
@@ -191,9 +209,9 @@ For more examples and ideas, visit:
   https://docs.docker.com/userguide/
 </code></pre>
 
-<h1 id="error:721a6b0475e6190575ce57e1a6fd89e9">Error</h1>
+<h2 id="error:721a6b0475e6190575ce57e1a6fd89e9">Error</h2>
 
-<h2 id="error-1:721a6b0475e6190575ce57e1a6fd89e9">VirtualBox 5.0.2 時で start.sh を叩いた場合</h2>
+<h3 id="error-1:721a6b0475e6190575ce57e1a6fd89e9">VirtualBox 5.0.2 時で start.sh を叩いた場合</h3>
 
 <p>以下のとおり、vm が立ち上がってくれない。</p>
 
@@ -224,14 +242,15 @@ exit status 1
 Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
 </code></pre>
 
-<h2 id="error-2:721a6b0475e6190575ce57e1a6fd89e9">VirtualBox 5.0.3 にした後、以前作成した vm のエラー</h2>
+<h3 id="error-2:721a6b0475e6190575ce57e1a6fd89e9">VirtualBox 5.0.3 にした後、以前作成した vm のエラー</h3>
 
 <p>設定が取れないので、以前作成した vm は削除して、あらためて start.sh を叩きましょう。</p>
 
 <pre><code class="language-bash">$ docker-machine env default
 open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or directory
 </code></pre>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

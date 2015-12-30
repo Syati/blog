@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,20 +121,36 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">brew cask が便利</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#インストールとコマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f">インストールとコマンド</a>
+<ul>
+<li><a href="#インストール:9d81b5a07e5dbce04a4ad1efcbd9ec2f">インストール</a></li>
+<li><a href="#コマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f">コマンド</a></li>
+</ul></li>
+<li><a href="#その他:9d81b5a07e5dbce04a4ad1efcbd9ec2f">その他</a></li>
+<li><a href="#参考:9d81b5a07e5dbce04a4ad1efcbd9ec2f">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p>Web ページや App Store から App をダブルクリックしてインストールは面倒くさいので <strong>cask</strong> をいれて解決する。</p>
 
-<h1 id="インストールとコマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f">インストールとコマンド</h1>
+<h2 id="インストールとコマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f">インストールとコマンド</h2>
 
-<h2 id="インストール:9d81b5a07e5dbce04a4ad1efcbd9ec2f">インストール</h2>
+<h3 id="インストール:9d81b5a07e5dbce04a4ad1efcbd9ec2f">インストール</h3>
 
 <p><strong>cask</strong> コマンドを使えるようにするために以下のコマンドを実行する。</p>
 
 <pre><code class="language-bash">$ brew install caskroom/cask/brew-cask
 </code></pre>
 
-<h2 id="コマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f">コマンド</h2>
+<h3 id="コマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f">コマンド</h3>
 
 <p>検索</p>
 
@@ -156,7 +172,7 @@ chromecast                         google-chrome-canary
 <pre><code class="language-bash">$ brew cask uninstall google-chrome
 </code></pre>
 
-<h1 id="その他:9d81b5a07e5dbce04a4ad1efcbd9ec2f">その他</h1>
+<h2 id="その他:9d81b5a07e5dbce04a4ad1efcbd9ec2f">その他</h2>
 
 <p>cask でインストールしたアプリは以下にインストールされ、ホームフォルダ(~/)の Applications からアプリへのシンボリックリンクが作成される。ルート(/)にインストールが必要なものはパスワードが求められる。</p>
 
@@ -177,12 +193,13 @@ chromecast                         google-chrome-canary
 └── Visual Studio Code.app -&gt; /opt/homebrew-cask/Caskroom/visual-studio-code/0.7.0/Visual Studio Code.app
 </code></pre>
 
-<h1 id="参考:9d81b5a07e5dbce04a4ad1efcbd9ec2f">参考</h1>
+<h2 id="参考:9d81b5a07e5dbce04a4ad1efcbd9ec2f">参考</h2>
 
 <ul>
 <li><a href="http://caskroom.io/">Homebrew Cask</a></li>
 </ul>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

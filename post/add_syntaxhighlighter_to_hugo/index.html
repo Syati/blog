@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,6 +121,19 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">Hugo Part 4 - Hugo に SyntaxHighlighter を導入</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf">Step 1 Client-side の SyntaxHighlighter ライブラリ取得</a></li>
+<li><a href="#step-2-対象ファイルコピー:25f7dcbfc05249f56e29c36f92828fdf">Step 2 対象ファイルコピー</a></li>
+<li><a href="#step-3-custom-設定を加える:25f7dcbfc05249f56e29c36f92828fdf">Step 3 custom 設定を加える</a></li>
+<li><a href="#step-4-コードをいれてみる:25f7dcbfc05249f56e29c36f92828fdf">Step 4 コードをいれてみる</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p>ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
@@ -135,7 +148,7 @@
 <li><a href="http://blog.syati.info/post/add_disqus_to_hugo/">Part 3</a></li>
 </ul>
 
-<h1 id="step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf">Step 1 Client-side の SyntaxHighlighter ライブラリ取得</h1>
+<h2 id="step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf">Step 1 Client-side の SyntaxHighlighter ライブラリ取得</h2>
 
 <p>導入方法として <strong>Server-side</strong> と <strong>Client-side</strong> の方法がありますが、
 今回は後者を利用します。また、ライブラリーはたくさんありますが、<strong><a href="http://prismjs.com/">Prism</a></strong>
@@ -145,7 +158,7 @@
 ページ下部の DOWNLOAD JS と DOWNLOAD CSS から DL しましょう。
 ちなみに当ページの Prism のテーマは Default(Okaidia) を利用しています。</p>
 
-<h1 id="step-2-対象ファイルコピー:25f7dcbfc05249f56e29c36f92828fdf">Step 2 対象ファイルコピー</h1>
+<h2 id="step-2-対象ファイルコピー:25f7dcbfc05249f56e29c36f92828fdf">Step 2 対象ファイルコピー</h2>
 
 <p>DL したファイルを以下のようにコピーしてあげる。</p>
 
@@ -153,7 +166,7 @@
 $ cp prism.css yourblog/static/css/
 </code></pre>
 
-<h1 id="step-3-custom-設定を加える:25f7dcbfc05249f56e29c36f92828fdf">Step 3 custom 設定を加える</h1>
+<h2 id="step-3-custom-設定を加える:25f7dcbfc05249f56e29c36f92828fdf">Step 3 custom 設定を加える</h2>
 
 <p>以下のように yourblog/layouts/partials/custom に移動して
 <strong>対象ファイル１</strong>と<strong>対象ファイル２</strong>を編集します。</p>
@@ -181,7 +194,7 @@ $ tree -L 1
 
 <p>これで設定は終了。</p>
 
-<h1 id="step-4-コードをいれてみる:25f7dcbfc05249f56e29c36f92828fdf">Step 4 コードをいれてみる</h1>
+<h2 id="step-4-コードをいれてみる:25f7dcbfc05249f56e29c36f92828fdf">Step 4 コードをいれてみる</h2>
 
 <p>新しい記事でも作成して、以下のような感じでコードをいれると。
 ~ 半角でいれると解釈されるため 〜 全角で入れています。</p>
@@ -207,7 +220,8 @@ int main(void)
     return;
 }
 </code></pre>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

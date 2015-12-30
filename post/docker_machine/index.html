@@ -55,7 +55,7 @@
     <div>
         <h1>
             Syati.info
-        </h1>
+        </h1>        
         <p>
             かんがえるさかな
         </p>
@@ -121,13 +121,33 @@
 					<div itemscope itemtype="http://schema.org/Blog">
 					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
     <h1 class="title" itemprop="name">Docker Part 2 - docker-machine コマンドの使用方法・流れ</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#前提:7c5114aaedd3fb4e06a20334e7806cc9">前提</a></li>
+<li><a href="#docker-machine-コマンド-流れ:7c5114aaedd3fb4e06a20334e7806cc9">docker-machine コマンド、流れ</a>
+<ul>
+<li><a href="#step-1-docker-vm-を確認する:7c5114aaedd3fb4e06a20334e7806cc9">Step 1 docker vm を確認する</a></li>
+<li><a href="#step-2-docker-vm-を作成する:7c5114aaedd3fb4e06a20334e7806cc9">Step 2 docker vm を作成する</a></li>
+<li><a href="#step-3-docker-vm-を利用する:7c5114aaedd3fb4e06a20334e7806cc9">Step 3 docker vm を利用する</a></li>
+</ul></li>
+<li><a href="#その他:7c5114aaedd3fb4e06a20334e7806cc9">その他</a>
+<ul>
+<li><a href="#docker-vm-の中身を確認する-ssh-で入る:7c5114aaedd3fb4e06a20334e7806cc9">docker vm の中身を確認する ssh で入る</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
 	<div class="entry-content" itemprop="articleBody">
 
 <p>Docker すごい。 何がすごいって環境構築が楽すぎる。以前は、Vagrant と Chef でゴリゴリ書いてアプリケーションが動くように頑張ってましたが、そんな事しなくても大方用意されてる。あとはその組み合わせ環境を構築するだけ。懸念点であった Vagrant 、Chef のような provision が、遅いということは今のところ無い。最初にイメージを DL してコンテナ化するので、若干の時間はかかるものの、それでも早い。 具体的な環境構築については、後日記そうと思う。</p>
 
 <p>今回は <strong>docker-machine コマンド</strong>（コンテナを動かす vm を管理するコマンド）の使用方法、流れを記す。</p>
 
-<h1 id="前提:7c5114aaedd3fb4e06a20334e7806cc9">前提</h1>
+<h2 id="前提:7c5114aaedd3fb4e06a20334e7806cc9">前提</h2>
 
 <ul>
 <li>OSX 10.10.5</li>
@@ -140,7 +160,7 @@
 <li>Virtual Box 5.0.3</li>
 </ul>
 
-<h1 id="docker-machine-コマンド-流れ:7c5114aaedd3fb4e06a20334e7806cc9">docker-machine コマンド、流れ</h1>
+<h2 id="docker-machine-コマンド-流れ:7c5114aaedd3fb4e06a20334e7806cc9">docker-machine コマンド、流れ</h2>
 
 <p>以下のレイヤーと対応するコマンドを覚えておくと、スムーズかもしれない。</p>
 
@@ -170,7 +190,7 @@
 </tbody>
 </table>
 
-<h2 id="step-1-docker-vm-を確認する:7c5114aaedd3fb4e06a20334e7806cc9">Step 1 docker vm を確認する</h2>
+<h3 id="step-1-docker-vm-を確認する:7c5114aaedd3fb4e06a20334e7806cc9">Step 1 docker vm を確認する</h3>
 
 <p>作成した docker vm を確認する。普段の <strong>ls</strong> と同じ感じで使う頻度が高い。はじめは何もないので空である。</p>
 
@@ -179,7 +199,7 @@
 NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
 </code></pre>
 
-<h2 id="step-2-docker-vm-を作成する:7c5114aaedd3fb4e06a20334e7806cc9">Step 2 docker vm を作成する</h2>
+<h3 id="step-2-docker-vm-を作成する:7c5114aaedd3fb4e06a20334e7806cc9">Step 2 docker vm を作成する</h3>
 
 <p>docker vm を作成する。 以下のコマンドは、オプション driver で virtualbox を指定して、 vm 名を sample にしている。色々オプションがあるので、もっと詳しくという方は、<a href="https://docs.docker.com/machine/reference/create/">create</a> を参考にしてください。</p>
 
@@ -200,7 +220,7 @@ NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
 sample             virtualbox   Running   tcp://192.168.99.103:2376
 </code></pre>
 
-<h2 id="step-3-docker-vm-を利用する:7c5114aaedd3fb4e06a20334e7806cc9">Step 3 docker vm を利用する</h2>
+<h3 id="step-3-docker-vm-を利用する:7c5114aaedd3fb4e06a20334e7806cc9">Step 3 docker vm を利用する</h3>
 
 <p>Step 2 まででは、対象の docker vm にコンテナを操作するコマンド(docker ps など)を実行できない。SSH で対象 vm に入れば可能だが、そんな面倒くさいことは毎回したくない。
 そこで、以下のように env -&gt; eval コマンドを実行して、利用する docker vm の環境変数を設定する。設定した docker vm の ACTIVE に * が記される。</p>
@@ -224,9 +244,9 @@ sample    *        virtualbox   Running   tcp://192.168.99.103:2376
 
 <p>これで今後利用する docker コマンドは docker vm である sample に発行される。</p>
 
-<h1 id="その他:7c5114aaedd3fb4e06a20334e7806cc9">その他</h1>
+<h2 id="その他:7c5114aaedd3fb4e06a20334e7806cc9">その他</h2>
 
-<h2 id="docker-vm-の中身を確認する-ssh-で入る:7c5114aaedd3fb4e06a20334e7806cc9">docker vm の中身を確認する ssh で入る</h2>
+<h3 id="docker-vm-の中身を確認する-ssh-で入る:7c5114aaedd3fb4e06a20334e7806cc9">docker vm の中身を確認する ssh で入る</h3>
 
 <pre><code class="language-bash">$ docker-machine ssh sample
 
@@ -246,7 +266,8 @@ sample    *        virtualbox   Running   tcp://192.168.99.103:2376
 Boot2Docker version 1.8.1, build master : 7f12e95 - Thu Aug 13 03:24:56 UTC 2015
 Docker version 1.8.1, build d12ea79
 </code></pre>
-</div></article>
+</div>
+</article>
 					
 						<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">

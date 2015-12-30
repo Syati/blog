@@ -7,7 +7,285 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Sat, 31 Oct 2015 14:00:39 JST</updated>
+    <updated>Tue, 29 Dec 2015 12:38:07 JST</updated>
+    
+    <item>
+      <title>Sequelize Part 1 - 導入してREPLで試してみる</title>
+      <link>http://blog.syati.info/post/sequelize_getting_started/</link>
+      <pubDate>Tue, 29 Dec 2015 12:38:07 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/sequelize_getting_started/</guid>
+      <description>
+
+&lt;p&gt;ちょっと前まで MEAN とか流行っていた気がするんですが、今はどうなんですかね？実際にちょっとしたWEBサービスで利用してみると、MongoDB が思った以上に厄介だった。トランザクションが無いのが、どうしても辛い。後々考えると面倒くさいことになるのは目に見えているのでヤメヤメ。ということで従来通り RDB を利用、そして、ORM は &lt;strong&gt;Sequelize&lt;/strong&gt; を利用したので、その辺をメモっていきたいと思う。&lt;/p&gt;
+
+&lt;p&gt;以降で説明するコードは、&lt;a href=&#34;https://github.com/Syati/sequelize-sample/tree/master/01_repl&#34;&gt;01_repl&lt;/a&gt; にあります。&lt;/p&gt;
+
+&lt;h2 id=&#34;環境:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;環境&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;OSX 10.10.5&lt;/li&gt;
+&lt;li&gt;Node 5.3.0&lt;/li&gt;
+&lt;li&gt;MariaDB 10.1.9&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;orm-導入に際して:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;ORM 導入に際して&lt;/h2&gt;
+
+&lt;p&gt;Node で RDB を利用するために、ORM のライブラリを検討。意外とあるもんですね。
+以下に github の star と fork 数をまとめる(2015/12/29 調べ)。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Lib&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Star&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Fork&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/balderdashy/waterline&#34;&gt;waterline&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2541&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;359&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/tgriesser/bookshelf&#34;&gt;bookshelf&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2824&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;228&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/dresende/node-orm2&#34;&gt;node-orm2&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1655&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;282&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/sequelize/sequelize&#34;&gt;sequelize&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5344&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1160&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;それぞれの Lib の差異はわかりませんが Star と Fork 数で判断して、&lt;strong&gt;Sequelize で決定&lt;/strong&gt;。ドキュメントも見やすかったのでいいかな。&lt;/p&gt;
+
+&lt;h2 id=&#34;1-db-orm-orm-cli-のインストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1. DB・ORM・ORM-CLI のインストール&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-1-db-インストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1.1. DB インストール&lt;/h3&gt;
+
+&lt;p&gt;mysql, posgre がある場合は不要。今回は mariadb を利用する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew update
+$ brew install mariadb 
+
+$ unset TMPDIR
+$ mysql_install_db
+
+## start mariadb
+$ mysql.server start
+
+## connect mariadb
+$ mysql -uroot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;参考
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://mariadb.com/kb/en/mariadb/building-mariadb-on-mac-os-x-using-homebrew/&#34;&gt;Building MariaDB on Mac OS X Using Homebrew&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;1-2-orm-sequelize-インストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1.2. ORM (Sequelize) インストール&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install --save sequelize
+$ npm install --save mysql // For both mysql and mariadb dialects
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-3-orm-cli-sequelize-cli-インストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1.3. ORM-CLI (Sequelize CLI) インストール&lt;/h3&gt;
+
+&lt;p&gt;初期設定、モデル作成、マイグレーション など便利なので CLI をいれる。
+コマンドラインをグローバルで利用したいので &lt;strong&gt;g&lt;/strong&gt; 付与する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install -g sequelize-cli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;2-各種設定:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2. 各種設定&lt;/h2&gt;
+
+&lt;p&gt;現状の dir 構成は以下のとおり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sample_prj
+├── node_modules
+└── package.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-1-db-作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2.1. DB 作成&lt;/h3&gt;
+
+&lt;p&gt;今回利用する DB を &lt;strong&gt;seq_dev&lt;/strong&gt; として、 mariadb に作成する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mysql -uroot
+## mariadb に接続後、今回利用するデータベースを作成する
+$ create database seq_dev character set utf8;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-2-初期設定する:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2.2. 初期設定する&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;1.3&lt;/strong&gt; でインストールした Sequelize CLI を用いて初期設定する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sequelize init #プロジェクトルートで実行。初期設定を作成する
+
+# dir 構成は以下になる
+sample_prj
+├── config     # config.json に DB の初期設定が書き出される
+├── migrations # cli で model:create した際、migration が自動作成される
+├── models     # cli で model:create した際、model が自動作成される
+├── node_modules
+├── package.json
+└── seeders    # cli で seed:create した際、seed が自動作成される
+
+# 基本的に上記は .sequelizerc にてカスタマイズ可能
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;config/config.json&lt;/strong&gt; に初期設定があるが、先ほど作成したデータベース名と異なっているので変更する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// サンプル config.json
+{
+  &amp;quot;development: {
+    &amp;quot;username&amp;quot;: &amp;quot;root&amp;quot;,
+    &amp;quot;password&amp;quot;: null,
+    &amp;quot;database&amp;quot;: &amp;quot;seq_dev&amp;quot;,
+    &amp;quot;host&amp;quot;: &amp;quot;127.0.0.1&amp;quot;,
+    &amp;quot;dialect&amp;quot;: &amp;quot;mysql&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;3-はじめてのモデル作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;3. はじめてのモデル作成&lt;/h2&gt;
+
+&lt;h3 id=&#34;3-1-model-の作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;3.1. model の作成&lt;/h3&gt;
+
+&lt;p&gt;models ディレクトリに model.js のように手動でモデルを作成しても良いのだが、CLI を利用してモデルを作成してあげると、マイグレーションも一緒に作成してくれるので、CLI を利用すると楽かもしれない。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;※ただし、&lt;a href=&#34;http://stackoverflow.com/questions/27835801/how-to-auto-generate-migrations-with-sequelize-cli-from-sequelize-models&#34;&gt;作成したモデルを変更しても該当マイグレーションを更新する術がない&lt;/a&gt;&lt;/strong&gt;ので、手動で変更してあげる必要がある。django みたいに model から migration が作成できたら良いんだけどな・・。&lt;/p&gt;
+
+&lt;p&gt;いざ、モデル作成。プロジェクトルートで以下のコマンドを叩く。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sequelize model:create --name User --attributes firstName:string,lastName:string
+
+## models が以下のようになる
+models
+├── index.js
+└── user.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記は、以下テーブルを作成することになる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Users
+
+&lt;ul&gt;
+&lt;li&gt;firstName&lt;/li&gt;
+&lt;li&gt;lastName&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;基本的に定義したモデルの複数形がテーブルになる。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;By default, sequelize will automatically transform all passed model names (first parameter of define) into plural.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;参考
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;docs.sequelizejs.com/en/latest/docs/models-definition&#34;&gt;Definition&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-2-models-の-index-js-について:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;3.2. models の index.js について&lt;/h3&gt;
+
+&lt;p&gt;models dir には index.js が sequelize init によって作成されるが、これは models ディレクトリにある全ファイルを読み込んで、モデルを構築してくれる。その際に、モデル間のリレーションも一緒に構築する。利用する際には、index.js を読み込んで、該当モデルを利用することになる。(部分的に ES6 利用)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// 利用例
+
+const models = require(&#39;./models&#39;);
+
+const User = models.User;
+User.findAll().then((users) =&amp;gt; console.log(users));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;4-試してみる:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;4. 試してみる&lt;/h2&gt;
+
+&lt;h3 id=&#34;4-1-エントリポイントの作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;4.1. エントリポイントの作成&lt;/h3&gt;
+
+&lt;p&gt;とりあえず色々試してみたいので、repl できるようにプロジェクトルートに &lt;strong&gt;repl.js&lt;/strong&gt; とでもしてエントリポイントを作成する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// repl.js
+const models = require(&#39;./models&#39;);
+
+models.sequelize.sync({force:true}).then(() =&amp;gt; {
+  console.log(&amp;quot;DEV DATA CREATED SUCCESSFULLY&amp;quot;);
+});
+
+module.exports = models;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記ですが、sync メソッドで、定義したモデルをDBに反映する。force:true オプションを与えることで、毎回 テーブルを Drop して Create してくれる。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;本番では migration を利用する&lt;/strong&gt;ことになると思いますが、開発環境や、とりあえず試めすくらいには 、スキームを変更するのが楽なので、force:true でも良い気がする。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;参考
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/sequelize/#sync&#34;&gt;sync&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;4-2-node-replで試す:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;4.2. Node REPLで試す&lt;/h3&gt;
+
+&lt;p&gt;REPL を起動する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ node
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以下を打ち込んで試してみる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// repl 内
+const models = require(&#39;./repl&#39;);
+const User = models.User;
+
+// ユーザ作成
+User.create({
+    firstName: &#39;Yamada&#39;, 
+    lastName: &#39;Tarou&#39;
+}).then((user) =&amp;gt; console.log(JSON.stringify(user)));
+// 出力
+// &amp;gt; Executing (default): INSERT INTO `Users` (`id`,`firstName`,`lastName`,`updatedAt`,`createdAt`) VALUES (DEFAULT,&#39;Yamada&#39;,&#39;Tarou&#39;,&#39;2015-12-30 03:10:38&#39;,&#39;2015-12-30 03:10:38&#39;);
+// {&amp;quot;id&amp;quot;:1,&amp;quot;firstName&amp;quot;:&amp;quot;Yamada&amp;quot;,&amp;quot;lastName&amp;quot;:&amp;quot;Tarou&amp;quot;,&amp;quot;updatedAt&amp;quot;:&amp;quot;2015-12-30T03:10:38.000Z&amp;quot;,&amp;quot;createdAt&amp;quot;:&amp;quot;2015-12-30T03:10:38.000Z&amp;quot;}
+
+// ユーザ取得
+User.findAll().then((users) =&amp;gt; console.log(JSON.stringify(users)));
+// 出力
+// &amp;gt; Executing (default): SELECT `id`, `firstName`, `lastName`, `createdAt`, `updatedAt` FROM `Users` AS `User`;
+// [{&amp;quot;id&amp;quot;:1,&amp;quot;firstName&amp;quot;:&amp;quot;Yamada&amp;quot;,&amp;quot;lastName&amp;quot;:&amp;quot;Tarou&amp;quot;,&amp;quot;createdAt&amp;quot;:&amp;quot;2015-12-30T03:10:38.000Z&amp;quot;,&amp;quot;updatedAt&amp;quot;:&amp;quot;2015-12-30T03:10:38.000Z&amp;quot;}]
+
+// ※出力を見やすくするため JSON.stringify しています
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;その他メソッド
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/model/&#34;&gt;http://docs.sequelizejs.com/en/latest/api/model/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>TypeScript でユニットテストする。カバレッジもねっ!!</title>
@@ -23,9 +301,9 @@
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/011_test_sample&#34;&gt;https://github.com/Syati/typescript-sample/tree/master/011_test_sample&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;step-0-事前準備:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 0: 事前準備&lt;/h1&gt;
+&lt;h2 id=&#34;step-0-事前準備:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 0: 事前準備&lt;/h2&gt;
 
-&lt;h2 id=&#34;流れ:134ba188964091106b5909c7aef27c8d&#34;&gt;流れ&lt;/h2&gt;
+&lt;h3 id=&#34;流れ:134ba188964091106b5909c7aef27c8d&#34;&gt;流れ&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;ts でコードを書く&lt;/li&gt;
@@ -34,7 +312,7 @@
 &lt;li&gt;map を利用して&lt;strong&gt;ts カバレッジ&lt;/strong&gt;を測る&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;ライブラリ:134ba188964091106b5909c7aef27c8d&#34;&gt;ライブラリ&lt;/h2&gt;
+&lt;h3 id=&#34;ライブラリ:134ba188964091106b5909c7aef27c8d&#34;&gt;ライブラリ&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;npm install -g mocha istanbul remap-istanbul&lt;/strong&gt; でそれぞれコマンドが利用できるようになります。&lt;/p&gt;
 
@@ -64,7 +342,7 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;step-1-とりあえずテストを書く:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 1: とりあえずテストを書く&lt;/h1&gt;
+&lt;h2 id=&#34;step-1-とりあえずテストを書く:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 1: とりあえずテストを書く&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/011_test_sample&#34;&gt;プロジェクト&lt;/a&gt; を確認しておく。全体が理解しやすくなると思う。&lt;/p&gt;
 
@@ -91,7 +369,7 @@ describe(&amp;quot;TestTarget&amp;quot;, () =&amp;gt; {
 
 &lt;p&gt;すごいシンプルですね。&lt;/p&gt;
 
-&lt;h1 id=&#34;step-2-トランスパイルする:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 2: トランスパイルする&lt;/h1&gt;
+&lt;h2 id=&#34;step-2-トランスパイルする:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 2: トランスパイルする&lt;/h2&gt;
 
 &lt;p&gt;tsc コマンドを叩く前に設定ファイルを書いときましょう。以下の tsconfig.json になります。
 とくに変わった点はないですね。重要なポイントとしては、&lt;strong&gt;&amp;ldquo;sourceMap&amp;rdquo;: true&lt;/strong&gt;です。
@@ -121,7 +399,7 @@ describe(&amp;quot;TestTarget&amp;quot;, () =&amp;gt; {
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ tsc
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step-3-テストする:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 3: テストする&lt;/h1&gt;
+&lt;h2 id=&#34;step-3-テストする:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 3: テストする&lt;/h2&gt;
 
 &lt;p&gt;Step 2 でトランスパイル済みなので、ts ファイル以外に js、map ファイルが存在すると思います。ディレクトリが汚れてあたふたするかもしれませんが、package.json に clean スクリプトを書くことで解決できるので、今は我慢。&lt;/p&gt;
 
@@ -143,7 +421,7 @@ describe(&amp;quot;TestTarget&amp;quot;, () =&amp;gt; {
 
 &lt;p&gt;ユニットテストのモチベーションをあげるためにも、やっぱりカバレッジですよ！！&lt;/p&gt;
 
-&lt;h1 id=&#34;step-4-カバレッジを測る:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 4: カバレッジを測る&lt;/h1&gt;
+&lt;h2 id=&#34;step-4-カバレッジを測る:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 4: カバレッジを測る&lt;/h2&gt;
 
 &lt;p&gt;とくに必要なことはありません。Step 0 で説明したとおり &lt;strong&gt;istanbul&lt;/strong&gt; を利用するだけ。
 すこし異なっているのは、 mocha が _mocha を利用するということです。理由は、以下のとおり。&lt;/p&gt;
@@ -170,7 +448,7 @@ Lines        : 100% ( 6/6 )
 
 &lt;p&gt;出力に、&lt;strong&gt;coverage summary&lt;/strong&gt; が増えましたね。また、プロジェクトルートに &lt;strong&gt;coverage&lt;/strong&gt; ディレクトリが出力されているので、中の index.html を見ましょう。通過したコード、100% の数字にやる気が出てきますね。ただし、これはトランスパイル後の js のカバレッジなので、あと一手間かけてあげましょう。&lt;/p&gt;
 
-&lt;p&gt;
+
 &lt;figure &gt;
     
         &lt;img src=&#34;coverage_js.png&#34; /&gt;
@@ -182,16 +460,16 @@ Lines        : 100% ( 6/6 )
     &lt;/figcaption&gt;
     
 &lt;/figure&gt;
-&lt;/p&gt;
 
-&lt;h1 id=&#34;step-5-ソースマップから-ts-のカバレッジを測る:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 5: ソースマップから ts のカバレッジを測る&lt;/h1&gt;
+
+&lt;h2 id=&#34;step-5-ソースマップから-ts-のカバレッジを測る:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 5: ソースマップから ts のカバレッジを測る&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;coverage&lt;/strong&gt; ディレクトリにて以下のコマンドたたいてあげるだけです。ts のカバレッジが html-repot ディレクトリに出力されます。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ remap-istanbul -i coverage.json -o html-report -t html
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;
+
 &lt;figure &gt;
     
         &lt;img src=&#34;coverage_ts.png&#34; /&gt;
@@ -203,13 +481,13 @@ Lines        : 100% ( 6/6 )
     &lt;/figcaption&gt;
     
 &lt;/figure&gt;
-&lt;/p&gt;
+
 
 &lt;p&gt;ts のカバレッジが測れました。ただ、一連のコマンドを毎回叩くのは疲れるので、&lt;strong&gt;package.json&lt;/strong&gt; を用いて楽にしましょう。&lt;/p&gt;
 
 &lt;p&gt;＊図が Step 4 とデザインが違うのは、remap-istanbul で利用している istanbul のバージョンが古いからだと思われる&lt;/p&gt;
 
-&lt;h1 id=&#34;step-6-package-json-で楽する:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 6: package.json で楽する&lt;/h1&gt;
+&lt;h2 id=&#34;step-6-package-json-で楽する:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 6: package.json で楽する&lt;/h2&gt;
 
 &lt;p&gt;一連のコマンドを &lt;strong&gt;package.json&lt;/strong&gt; に書いておきましょう。以下サンプル。&lt;/p&gt;
 
@@ -239,9 +517,9 @@ $ npm test
 $ npm clean
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;その他:134ba188964091106b5909c7aef27c8d&#34;&gt;その他&lt;/h1&gt;
+&lt;h2 id=&#34;その他:134ba188964091106b5909c7aef27c8d&#34;&gt;その他&lt;/h2&gt;
 
-&lt;h2 id=&#34;istanbul-yml-でカバレッジレポートのディレクトリ指定する:134ba188964091106b5909c7aef27c8d&#34;&gt;.istanbul.yml でカバレッジレポートのディレクトリ指定する&lt;/h2&gt;
+&lt;h3 id=&#34;istanbul-yml-でカバレッジレポートのディレクトリ指定する:134ba188964091106b5909c7aef27c8d&#34;&gt;.istanbul.yml でカバレッジレポートのディレクトリ指定する&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;.istanbul.yml&lt;/strong&gt; に以下のように書いてあげることで、レポートの出力先を変えることが出来る。&lt;/p&gt;
 
@@ -271,7 +549,7 @@ reporting:
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack&#34;&gt;https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;step-0-事前準備:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 0: 事前準備&lt;/h1&gt;
+&lt;h2 id=&#34;step-0-事前準備:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 0: 事前準備&lt;/h2&gt;
 
 &lt;p&gt;以下のコマンドを使用するのでグローバルにインストールしておく。&lt;/p&gt;
 
@@ -306,7 +584,7 @@ reporting:
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;step-1-いろいろ初期化-プロジェクトの作成:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 1: いろいろ初期化(プロジェクトの作成)&lt;/h1&gt;
+&lt;h2 id=&#34;step-1-いろいろ初期化-プロジェクトの作成:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 1: いろいろ初期化(プロジェクトの作成)&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mkdir app
 $ tsd init  # いろいろ尋ねてくるけど enter 連打
@@ -320,7 +598,7 @@ $ tree ./ -L 1
 └── typings         # tsd init で作成される（ライブラリの定義のソースコードが入る）
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step-2-ライブラリのインストール:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 2: ライブラリのインストール&lt;/h1&gt;
+&lt;h2 id=&#34;step-2-ライブラリのインストール:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 2: ライブラリのインストール&lt;/h2&gt;
 
 &lt;p&gt;npm と tsd を利用して、ライブラリ、ライブラリの定義をインストール。&lt;/p&gt;
 
@@ -332,7 +610,7 @@ $ npm install jquery --save
 $ tsd install jquery --save
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step-3-app-を作成:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 3: app を作成&lt;/h1&gt;
+&lt;h2 id=&#34;step-3-app-を作成:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 3: app を作成&lt;/h2&gt;
 
 &lt;p&gt;app の下に app.ts として以下を作成。&lt;/p&gt;
 
@@ -356,7 +634,7 @@ $(() =&amp;gt; {
 &amp;lt;/html&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step-4-コンパイルする:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 4: コンパイルする&lt;/h1&gt;
+&lt;h2 id=&#34;step-4-コンパイルする:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 4: コンパイルする&lt;/h2&gt;
 
 &lt;p&gt;step 3 で作成した app.ts を js に変換するために tsc の設定を作成する。
 &lt;strong&gt;step 1 ./&lt;/strong&gt; で tsconfig.json として以下のように作成。&lt;/p&gt;
@@ -409,7 +687,7 @@ $(function () {
     └── tsd.d.ts
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step-5-webpack-導入:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 5: webpack 導入&lt;/h1&gt;
+&lt;h2 id=&#34;step-5-webpack-導入:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 5: webpack 導入&lt;/h2&gt;
 
 &lt;p&gt;フロントでも require を利用するために、&lt;strong&gt;webpack&lt;/strong&gt; をインストールして、ついでに、TypeScript のファイルを処理できるように loader をいれる。&lt;/p&gt;
 
@@ -452,7 +730,7 @@ $ webpack
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack&#34;&gt;ソースはこちらから&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;参考:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;参考&lt;/h1&gt;
+&lt;h2 id=&#34;参考:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.jbrantly.com/typescript-and-webpack/&#34;&gt;TypeScript and webpack&lt;/a&gt;&lt;/li&gt;
@@ -474,7 +752,7 @@ $ webpack
 
 &lt;p&gt;これで簡単に更新できる！！&lt;/p&gt;
 
-&lt;h1 id=&#34;更新する:fa2289da0f3da34235594a1a0c6afa63&#34;&gt;更新する&lt;/h1&gt;
+&lt;h2 id=&#34;更新する:fa2289da0f3da34235594a1a0c6afa63&#34;&gt;更新する&lt;/h2&gt;
 
 &lt;p&gt;以下の通り。すごく簡単だね。&lt;/p&gt;
 
@@ -522,9 +800,9 @@ $ npm install
 &lt;p&gt;&lt;a href=&#34;http://help.livereload.com/kb/general-use/browser-extensions&#34;&gt;http://help.livereload.com/kb/general-use/browser-extensions&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h1 id=&#34;warning:a97b1ae451068793f1b3b1195bc54f9f&#34;&gt;Warning&lt;/h1&gt;
+&lt;h2 id=&#34;warning:a97b1ae451068793f1b3b1195bc54f9f&#34;&gt;Warning&lt;/h2&gt;
 
-&lt;p&gt;
+
 &lt;figure class=&#34;image-half__center&#34;&gt;
     
         &lt;img src=&#34;livereload_warning.png&#34; /&gt;
@@ -536,13 +814,13 @@ $ npm install
     &lt;/figcaption&gt;
     
 &lt;/figure&gt;
-&lt;/p&gt;
 
-&lt;h1 id=&#34;extension-old:a97b1ae451068793f1b3b1195bc54f9f&#34;&gt;Extension (old)&lt;/h1&gt;
+
+&lt;h2 id=&#34;extension-old:a97b1ae451068793f1b3b1195bc54f9f&#34;&gt;Extension (old)&lt;/h2&gt;
 
 &lt;p&gt;これではない。&lt;/p&gt;
 
-&lt;p&gt;
+
 &lt;figure class=&#34;image-half__center&#34;&gt;
     
         &lt;img src=&#34;livereload_extension.png&#34; /&gt;
@@ -554,9 +832,9 @@ $ npm install
     &lt;/figcaption&gt;
     
 &lt;/figure&gt;
-&lt;/p&gt;
 
-&lt;h1 id=&#34;extension-new:a97b1ae451068793f1b3b1195bc54f9f&#34;&gt;Extension (new)&lt;/h1&gt;
+
+&lt;h2 id=&#34;extension-new:a97b1ae451068793f1b3b1195bc54f9f&#34;&gt;Extension (new)&lt;/h2&gt;
 
 &lt;p&gt;以下のURLから入れましょう。&lt;/p&gt;
 
@@ -588,11 +866,11 @@ $ npm install
 
 &lt;p&gt;当ページでは、&lt;a href=&#34;https://gist.github.com/sebz/efddfc8fdcb6b480f567&#34;&gt;Github Gist&lt;/a&gt;  を用いて検索を実現していますが、お手軽さでいうと、&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; ですね。なので今回は、&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; の導入方法を紹介。&lt;/p&gt;
 
-&lt;h1 id=&#34;step-1-登録する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 1 登録する&lt;/h1&gt;
+&lt;h2 id=&#34;step-1-登録する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 1 登録する&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; にアクセスして登録しましょう。&lt;/p&gt;
 
-&lt;p&gt;
+
 &lt;figure &gt;
     
         &lt;img src=&#34;step1.png&#34; /&gt;
@@ -604,13 +882,13 @@ $ npm install
     &lt;/figcaption&gt;
     
 &lt;/figure&gt;
-&lt;/p&gt;
 
-&lt;h1 id=&#34;step-2-作成する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 2 作成する&lt;/h1&gt;
+
+&lt;h2 id=&#34;step-2-作成する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 2 作成する&lt;/h2&gt;
 
 &lt;p&gt;必要情報を入力しましょう。&lt;strong&gt;検索するサイト&lt;/strong&gt;を入力すると、&lt;strong&gt;検索エンジンの名前&lt;/strong&gt; も入力されるため枠で囲っていません。&lt;/p&gt;
 
-&lt;p&gt;
+
 &lt;figure &gt;
     
         &lt;img src=&#34;step2.png&#34; /&gt;
@@ -622,13 +900,13 @@ $ npm install
     &lt;/figcaption&gt;
     
 &lt;/figure&gt;
-&lt;/p&gt;
 
-&lt;h1 id=&#34;step-3-確認する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 3 確認する&lt;/h1&gt;
+
+&lt;h2 id=&#34;step-3-確認する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 3 確認する&lt;/h2&gt;
 
 &lt;p&gt;作成された検索エンジンを確認しましょう。&lt;/p&gt;
 
-&lt;p&gt;
+
 &lt;figure &gt;
     
         &lt;img src=&#34;step3.png&#34; /&gt;
@@ -640,13 +918,13 @@ $ npm install
     &lt;/figcaption&gt;
     
 &lt;/figure&gt;
-&lt;/p&gt;
 
-&lt;h1 id=&#34;step-4-設定する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 4 設定する&lt;/h1&gt;
+
+&lt;h2 id=&#34;step-4-設定する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 4 設定する&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;対象&lt;/strong&gt; のリストメニューの &lt;strong&gt;デザイン&lt;/strong&gt; をえらんで、レイアウトやテーマなど色々設定しましょう。設定すると、&lt;strong&gt;プレビュー&lt;/strong&gt;で確認できます。最後に&lt;strong&gt;保存してコードを取得&lt;/strong&gt;します。&lt;/p&gt;
 
-&lt;p&gt;
+
 &lt;figure &gt;
     
         &lt;img src=&#34;step4.png&#34; /&gt;
@@ -658,9 +936,9 @@ $ npm install
     &lt;/figcaption&gt;
     
 &lt;/figure&gt;
-&lt;/p&gt;
 
-&lt;h1 id=&#34;step-5-取得する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 5 取得する&lt;/h1&gt;
+
+&lt;h2 id=&#34;step-5-取得する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 5 取得する&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;コード&lt;/strong&gt; をコピーしときましょう。&lt;/p&gt;
 
@@ -678,7 +956,7 @@ $ npm install
 &lt;/figure&gt;
 &lt;/p&gt;
 
-&lt;h1 id=&#34;step-6-設置する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 6 設置する&lt;/h1&gt;
+&lt;h2 id=&#34;step-6-設置する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 6 設置する&lt;/h2&gt;
 
 &lt;p&gt;コピーしたコードを layouts の任意の html に貼り付けましょう。完成すると以下のように検索が可能になります。&lt;/p&gt;
 
@@ -715,7 +993,7 @@ $ npm install
 
 &lt;p&gt;ただし、以下を読むより動画 &lt;a href=&#34;http://dotinstall.com/lessons/basic_docker&#34;&gt;Docker入門 (全11回)&lt;/a&gt; で学ぶほうが分かりやすい。&lt;/p&gt;
 
-&lt;h1 id=&#34;step1-docker-vm-の作成-復習:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step1 docker vm の作成(復習)&lt;/h1&gt;
+&lt;h2 id=&#34;step1-docker-vm-の作成-復習:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step1 docker vm の作成(復習)&lt;/h2&gt;
 
 &lt;p&gt;とりあえず docker vm を作成・利用する。忘れた方は、こちらで&lt;a href=&#34;http://blog.syati.info/post/docker_machine/&#34;&gt;docker-machine コマンドの使用方法・流れ&lt;/a&gt;&lt;/p&gt;
 
@@ -738,13 +1016,13 @@ Get http:///var/run/docker.sock/v1.20/containers/json: dial unix /var/run/docker
 * Is your docker daemon up and running?
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step1-5-簡単な全体イメージ:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step1.5 簡単な全体イメージ&lt;/h1&gt;
+&lt;h2 id=&#34;step1-5-簡単な全体イメージ:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step1.5 簡単な全体イメージ&lt;/h2&gt;
 
 &lt;p&gt;以下で使用する用語の全体イメージは以下のような感じである。&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Dockerfile&lt;/strong&gt; から &lt;strong&gt;Image&lt;/strong&gt; を作成、Image から &lt;strong&gt;Container&lt;/strong&gt; を立ち上げる&lt;/p&gt;
 
-&lt;h1 id=&#34;step2-dockerfile-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step2 Dockerfile の作成&lt;/h1&gt;
+&lt;h2 id=&#34;step2-dockerfile-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step2 Dockerfile の作成&lt;/h2&gt;
 
 &lt;p&gt;Dockerfile （ Image 作成の手順書）を作成する。dir 構成は以下の通り。&lt;/p&gt;
 
@@ -768,7 +1046,7 @@ MAINTAINER mizuki-y&amp;lt;mizuki-y@syati.info&amp;gt; # 作成者の情報
 &lt;li&gt;&lt;a href=&#34;https://docs.docker.com/reference/builder/&#34;&gt;Dockerfile reference&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;step3-image-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step3 Image の作成&lt;/h1&gt;
+&lt;h2 id=&#34;step3-image-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step3 Image の作成&lt;/h2&gt;
 
 &lt;p&gt;Dockerfile から Image を 作成するため &lt;strong&gt;build&lt;/strong&gt; コマンドを実施する。&lt;/p&gt;
 
@@ -785,7 +1063,7 @@ Build a new image from the source code at PATH
 $ docker build -t syati:nginx .
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step4-image-の確認:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step4 Image の確認&lt;/h1&gt;
+&lt;h2 id=&#34;step4-image-の確認:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step4 Image の確認&lt;/h2&gt;
 
 &lt;p&gt;作成した Image を確認するため &lt;strong&gt;images&lt;/strong&gt; コマンドを実施する。 Step2 で FROM しか指定していないので何も変わっていない（SIZE 同じ）が Dockerfile から Image を作成できている。&lt;/p&gt;
 
@@ -801,7 +1079,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 nginx               latest              0b354d33906d        10 days ago         132.9 MB
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step5-container-を立ち上げる:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step5 Container を立ち上げる&lt;/h1&gt;
+&lt;h2 id=&#34;step5-container-を立ち上げる:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step5 Container を立ち上げる&lt;/h2&gt;
 
 &lt;p&gt;作成した Image から Container を立ち上げるために &lt;strong&gt;run&lt;/strong&gt; コマンドを実施する&lt;/p&gt;
 
@@ -847,16 +1125,16 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 &lt;p&gt;これは利用イメージが &lt;a href=&#34;https://hub.docker.com/_/nginx/&#34;&gt;Official Repository nginx&lt;/a&gt; この &lt;a href=&#34;https://github.com/nginxinc/docker-nginx/blob/7f3ef0927ec619d20181e677c97f991df0d7d446/Dockerfile&#34;&gt;Dockerfile&lt;/a&gt; を利用して作成されているためである。&lt;/p&gt;
 
-&lt;h1 id=&#34;step6-nginx-のデフォルトページを見る:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step6 nginx のデフォルトページを見る&lt;/h1&gt;
+&lt;h2 id=&#34;step6-nginx-のデフォルトページを見る:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step6 nginx のデフォルトページを見る&lt;/h2&gt;
 
 &lt;p&gt;Step1 で docker vm の ip を確認してポートを付与してあげる。 -p オプションでポートをした場合で考えると以下にアクセスすれば &lt;strong&gt;Welcome to nginx!&lt;/strong&gt; が見れるはず&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;http://192.168.99.100:8000
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;その他:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;その他&lt;/h1&gt;
+&lt;h2 id=&#34;その他:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;その他&lt;/h2&gt;
 
-&lt;h2 id=&#34;container-の中身を確認する:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;container の中身を確認する&lt;/h2&gt;
+&lt;h3 id=&#34;container-の中身を確認する:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;container の中身を確認する&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -t -i syati:nginx /bin/bash
 
@@ -883,7 +1161,7 @@ Run a command in a new container
 
 &lt;p&gt;今回は &lt;strong&gt;docker-machine コマンド&lt;/strong&gt;（コンテナを動かす vm を管理するコマンド）の使用方法、流れを記す。&lt;/p&gt;
 
-&lt;h1 id=&#34;前提:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;前提&lt;/h1&gt;
+&lt;h2 id=&#34;前提:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;前提&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;OSX 10.10.5&lt;/li&gt;
@@ -896,7 +1174,7 @@ Run a command in a new container
 &lt;li&gt;Virtual Box 5.0.3&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;docker-machine-コマンド-流れ:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;docker-machine コマンド、流れ&lt;/h1&gt;
+&lt;h2 id=&#34;docker-machine-コマンド-流れ:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;docker-machine コマンド、流れ&lt;/h2&gt;
 
 &lt;p&gt;以下のレイヤーと対応するコマンドを覚えておくと、スムーズかもしれない。&lt;/p&gt;
 
@@ -926,7 +1204,7 @@ Run a command in a new container
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h2 id=&#34;step-1-docker-vm-を確認する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 1 docker vm を確認する&lt;/h2&gt;
+&lt;h3 id=&#34;step-1-docker-vm-を確認する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 1 docker vm を確認する&lt;/h3&gt;
 
 &lt;p&gt;作成した docker vm を確認する。普段の &lt;strong&gt;ls&lt;/strong&gt; と同じ感じで使う頻度が高い。はじめは何もないので空である。&lt;/p&gt;
 
@@ -935,7 +1213,7 @@ Run a command in a new container
 NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-2-docker-vm-を作成する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 2 docker vm を作成する&lt;/h2&gt;
+&lt;h3 id=&#34;step-2-docker-vm-を作成する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 2 docker vm を作成する&lt;/h3&gt;
 
 &lt;p&gt;docker vm を作成する。 以下のコマンドは、オプション driver で virtualbox を指定して、 vm 名を sample にしている。色々オプションがあるので、もっと詳しくという方は、&lt;a href=&#34;https://docs.docker.com/machine/reference/create/&#34;&gt;create&lt;/a&gt; を参考にしてください。&lt;/p&gt;
 
@@ -956,7 +1234,7 @@ NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
 sample             virtualbox   Running   tcp://192.168.99.103:2376
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-3-docker-vm-を利用する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 3 docker vm を利用する&lt;/h2&gt;
+&lt;h3 id=&#34;step-3-docker-vm-を利用する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 3 docker vm を利用する&lt;/h3&gt;
 
 &lt;p&gt;Step 2 まででは、対象の docker vm にコンテナを操作するコマンド(docker ps など)を実行できない。SSH で対象 vm に入れば可能だが、そんな面倒くさいことは毎回したくない。
 そこで、以下のように env -&amp;gt; eval コマンドを実行して、利用する docker vm の環境変数を設定する。設定した docker vm の ACTIVE に * が記される。&lt;/p&gt;
@@ -980,9 +1258,9 @@ sample    *        virtualbox   Running   tcp://192.168.99.103:2376
 
 &lt;p&gt;これで今後利用する docker コマンドは docker vm である sample に発行される。&lt;/p&gt;
 
-&lt;h1 id=&#34;その他:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;その他&lt;/h1&gt;
+&lt;h2 id=&#34;その他:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;その他&lt;/h2&gt;
 
-&lt;h2 id=&#34;docker-vm-の中身を確認する-ssh-で入る:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;docker vm の中身を確認する ssh で入る&lt;/h2&gt;
+&lt;h3 id=&#34;docker-vm-の中身を確認する-ssh-で入る:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;docker vm の中身を確認する ssh で入る&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker-machine ssh sample
 
@@ -1017,13 +1295,13 @@ Docker version 1.8.1, build d12ea79
 
 &lt;p&gt;昔、Vagrant と Chef でローカル開発環境を構築していたこともありましたが provison が遅く、何だかなぁ〜と思っているうちに遠ざかっていました。Docker はコンテナ型で、vagrant より軽いのかな。&lt;/p&gt;
 
-&lt;h1 id=&#34;前提:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;前提&lt;/h1&gt;
+&lt;h2 id=&#34;前提:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;前提&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;OSX 10.10.5&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;step-1-install-virtualbox:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 1 Install VirtualBox&lt;/h1&gt;
+&lt;h2 id=&#34;step-1-install-virtualbox:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 1 Install VirtualBox&lt;/h2&gt;
 
 &lt;p&gt;VirtualBox5.0.2 だと Step 3 で動かなくなるので、&lt;a href=&#34;https://www.virtualbox.org/wiki/Testbuilds&#34;&gt;テストビルド&lt;/a&gt;から入れる。5.0.2 だった場合、 &lt;a href=&#34;#error-1:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;エラー1&lt;/a&gt;が出る。&lt;/p&gt;
 
@@ -1035,7 +1313,7 @@ Docker version 1.8.1, build d12ea79
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;step-2-install-docker-toolbox:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 2 Install Docker Toolbox&lt;/h1&gt;
+&lt;h2 id=&#34;step-2-install-docker-toolbox:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 2 Install Docker Toolbox&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew cask install dockertoolbox
 &lt;/code&gt;&lt;/pre&gt;
@@ -1053,7 +1331,7 @@ Docker version 1.8.1, build d12ea79
 Docker version 1.8.1, build d12ea79
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step-3-とりあえず起動:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 3 とりあえず起動&lt;/h1&gt;
+&lt;h2 id=&#34;step-3-とりあえず起動:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 3 とりあえず起動&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://docs.docker.com/mac/step_one/#step-3-verify-your-installation&#34;&gt;Installation&lt;/a&gt; に書いてあるとおり、以下のコマンドで、とりあえず起動、コマンドを実行してみる。&lt;a href=&#34;#error:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;エラー&lt;/a&gt;が無いことをもって、インストール・起動ができたことの確認を終了する。&lt;/p&gt;
 
@@ -1081,9 +1359,9 @@ For more examples and ideas, visit:
   https://docs.docker.com/userguide/
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;error:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Error&lt;/h1&gt;
+&lt;h2 id=&#34;error:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Error&lt;/h2&gt;
 
-&lt;h2 id=&#34;error-1:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;VirtualBox 5.0.2 時で start.sh を叩いた場合&lt;/h2&gt;
+&lt;h3 id=&#34;error-1:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;VirtualBox 5.0.2 時で start.sh を叩いた場合&lt;/h3&gt;
 
 &lt;p&gt;以下のとおり、vm が立ち上がってくれない。&lt;/p&gt;
 
@@ -1114,7 +1392,7 @@ exit status 1
 Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;error-2:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;VirtualBox 5.0.3 にした後、以前作成した vm のエラー&lt;/h2&gt;
+&lt;h3 id=&#34;error-2:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;VirtualBox 5.0.3 にした後、以前作成した vm のエラー&lt;/h3&gt;
 
 &lt;p&gt;設定が取れないので、以前作成した vm は削除して、あらためて start.sh を叩きましょう。&lt;/p&gt;
 
@@ -1134,7 +1412,7 @@ open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or di
 
 &lt;p&gt;Docker に入門して、Dockerfile を書くことになったので、とりあえず dockerfile-mode 。&lt;/p&gt;
 
-&lt;h1 id=&#34;install:2ed0ba6269ab29d148cbcf4c83fce2a2&#34;&gt;Install&lt;/h1&gt;
+&lt;h2 id=&#34;install:2ed0ba6269ab29d148cbcf4c83fce2a2&#34;&gt;Install&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;M-x package-list-package で以下をインストールする&lt;/p&gt;
@@ -1162,16 +1440,16 @@ open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or di
 
 &lt;p&gt;Web ページや App Store から App をダブルクリックしてインストールは面倒くさいので &lt;strong&gt;cask&lt;/strong&gt; をいれて解決する。&lt;/p&gt;
 
-&lt;h1 id=&#34;インストールとコマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;インストールとコマンド&lt;/h1&gt;
+&lt;h2 id=&#34;インストールとコマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;インストールとコマンド&lt;/h2&gt;
 
-&lt;h2 id=&#34;インストール:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;インストール&lt;/h2&gt;
+&lt;h3 id=&#34;インストール:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;インストール&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;cask&lt;/strong&gt; コマンドを使えるようにするために以下のコマンドを実行する。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install caskroom/cask/brew-cask
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;コマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;コマンド&lt;/h2&gt;
+&lt;h3 id=&#34;コマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;コマンド&lt;/h3&gt;
 
 &lt;p&gt;検索&lt;/p&gt;
 
@@ -1193,7 +1471,7 @@ chromecast                         google-chrome-canary
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew cask uninstall google-chrome
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;その他:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;その他&lt;/h1&gt;
+&lt;h2 id=&#34;その他:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;その他&lt;/h2&gt;
 
 &lt;p&gt;cask でインストールしたアプリは以下にインストールされ、ホームフォルダ(~/)の Applications からアプリへのシンボリックリンクが作成される。ルート(/)にインストールが必要なものはパスワードが求められる。&lt;/p&gt;
 
@@ -1214,7 +1492,7 @@ chromecast                         google-chrome-canary
 └── Visual Studio Code.app -&amp;gt; /opt/homebrew-cask/Caskroom/visual-studio-code/0.7.0/Visual Studio Code.app
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;参考:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;参考&lt;/h1&gt;
+&lt;h2 id=&#34;参考:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://caskroom.io/&#34;&gt;Homebrew Cask&lt;/a&gt;&lt;/li&gt;
@@ -1235,7 +1513,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 
 &lt;p&gt;ドットで jquery も underscore も browser もしてくれる。 angular も!!&lt;/p&gt;
 
-&lt;h1 id=&#34;step-1-tern-のインストール-設定:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 1 tern のインストール・設定&lt;/h1&gt;
+&lt;h2 id=&#34;step-1-tern-のインストール-設定:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 1 tern のインストール・設定&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;npm で tern をインストールする&lt;/p&gt;
@@ -1260,7 +1538,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h1 id=&#34;step-2-emacs-の-package-をインストール:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 2 emacs の package をインストール&lt;/h1&gt;
+&lt;h2 id=&#34;step-2-emacs-の-package-をインストール:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 2 emacs の package をインストール&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;M-x package-list-package で以下の2点をインストールする（該当箇所で &lt;strong&gt;i&lt;/strong&gt; をタイプしてマークをつけて &lt;strong&gt;x&lt;/strong&gt; でインストールする）
@@ -1289,7 +1567,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h1 id=&#34;step-3-試す:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 3 試す&lt;/h1&gt;
+&lt;h2 id=&#34;step-3-試す:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 3 試す&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;angular
   .module(&#39;MyApp&#39;, [])
@@ -1298,7 +1576,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
   })
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;参考:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;参考&lt;/h1&gt;
+&lt;h2 id=&#34;参考:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://ternjs.net/doc/manual.html&#34;&gt;tern&lt;/a&gt;&lt;/li&gt;
@@ -1324,14 +1602,14 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 
 &lt;p&gt;&lt;strong&gt;ターミナルで alt key が使えないよ！！&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;メタキーとして-option-キーを使用-にチェック:784ef5322b7ad8a18c627bd23e19b9ed&#34;&gt;&amp;ldquo;メタキーとして Option キーを使用&amp;rdquo; にチェック&lt;/h1&gt;
+&lt;h2 id=&#34;メタキーとして-option-キーを使用-にチェック:784ef5322b7ad8a18c627bd23e19b9ed&#34;&gt;&amp;ldquo;メタキーとして Option キーを使用&amp;rdquo; にチェック&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;ターミナル -&amp;gt; 環境設定 -&amp;gt; プロファイルタブ を開く。&lt;/li&gt;
 &lt;li&gt;以下の図のように &amp;ldquo;メタキーとして Option キーを使用&amp;rdquo; にチェックが入っていないと思うで、チェックする。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;
+
 &lt;figure class=&#34;image-half__center&#34;&gt;
     
         &lt;img src=&#34;settings.png&#34; /&gt;
@@ -1343,7 +1621,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
     &lt;/figcaption&gt;
     
 &lt;/figure&gt;
-&lt;/p&gt;
+
 </description>
     </item>
     
@@ -1367,7 +1645,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 &lt;li&gt;&lt;a href=&#34;http://blog.syati.info/post/add_disqus_to_hugo/&#34;&gt;Part 3&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 1 Client-side の SyntaxHighlighter ライブラリ取得&lt;/h1&gt;
+&lt;h2 id=&#34;step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 1 Client-side の SyntaxHighlighter ライブラリ取得&lt;/h2&gt;
 
 &lt;p&gt;導入方法として &lt;strong&gt;Server-side&lt;/strong&gt; と &lt;strong&gt;Client-side&lt;/strong&gt; の方法がありますが、
 今回は後者を利用します。また、ライブラリーはたくさんありますが、&lt;strong&gt;&lt;a href=&#34;http://prismjs.com/&#34;&gt;Prism&lt;/a&gt;&lt;/strong&gt;
@@ -1377,7 +1655,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 ページ下部の DOWNLOAD JS と DOWNLOAD CSS から DL しましょう。
 ちなみに当ページの Prism のテーマは Default(Okaidia) を利用しています。&lt;/p&gt;
 
-&lt;h1 id=&#34;step-2-対象ファイルコピー:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 2 対象ファイルコピー&lt;/h1&gt;
+&lt;h2 id=&#34;step-2-対象ファイルコピー:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 2 対象ファイルコピー&lt;/h2&gt;
 
 &lt;p&gt;DL したファイルを以下のようにコピーしてあげる。&lt;/p&gt;
 
@@ -1385,7 +1663,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 $ cp prism.css yourblog/static/css/
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step-3-custom-設定を加える:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 3 custom 設定を加える&lt;/h1&gt;
+&lt;h2 id=&#34;step-3-custom-設定を加える:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 3 custom 設定を加える&lt;/h2&gt;
 
 &lt;p&gt;以下のように yourblog/layouts/partials/custom に移動して
 &lt;strong&gt;対象ファイル１&lt;/strong&gt;と&lt;strong&gt;対象ファイル２&lt;/strong&gt;を編集します。&lt;/p&gt;
@@ -1413,7 +1691,7 @@ $ tree -L 1
 
 &lt;p&gt;これで設定は終了。&lt;/p&gt;
 
-&lt;h1 id=&#34;step-4-コードをいれてみる:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 4 コードをいれてみる&lt;/h1&gt;
+&lt;h2 id=&#34;step-4-コードをいれてみる:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 4 コードをいれてみる&lt;/h2&gt;
 
 &lt;p&gt;新しい記事でも作成して、以下のような感じでコードをいれると。
 ~ 半角でいれると解釈されるため 〜 全角で入れています。&lt;/p&gt;
@@ -1458,7 +1736,7 @@ Hugo を用いて github.io にブログを立ち上げましたが、コメン�
 
 &lt;p&gt;全てが終われば &lt;a href=&#34;http://syati.github.io/yourblog/&#34;&gt;yourblog&lt;/a&gt; のようにコメント欄が作成できる。&lt;/p&gt;
 
-&lt;h1 id=&#34;step-1-theme-を変える:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 1 theme を変える&lt;/h1&gt;
+&lt;h2 id=&#34;step-1-theme-を変える:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 1 theme を変える&lt;/h2&gt;
 
 &lt;p&gt;今まで通り、themes に中に theme を git clone してもいいのだが、
 とりあえず今回は themes ディレクトリを利用しないことにする。&lt;/p&gt;
@@ -1495,7 +1773,7 @@ $ rm -rf themes # 必要無いのでとりあえず削除
 $ hugo server # テーマが変わっていることが確認できる
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step-2-disqus-を導入:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 2 Disqus を導入&lt;/h1&gt;
+&lt;h2 id=&#34;step-2-disqus-を導入:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 2 Disqus を導入&lt;/h2&gt;
 
 &lt;p&gt;導入が楽なので &lt;a href=&#34;https://disqus.com&#34;&gt;Disqus&lt;/a&gt; を利用する。&lt;/p&gt;
 
@@ -1519,7 +1797,7 @@ $ hugo server # テーマが変わっていることが確認できる
 &amp;lt;noscript&amp;gt;Please enable JavaScript to view the &amp;lt;a href=&amp;quot;https://disqus.com/?ref_noscript&amp;quot; rel=&amp;quot;nofollow&amp;quot;&amp;gt;comments powered by Disqus.&amp;lt;/a&amp;gt;&amp;lt;/noscript&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step-3-config-toml-を変更する:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 3 config.toml を変更する&lt;/h1&gt;
+&lt;h2 id=&#34;step-3-config-toml-を変更する:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 3 config.toml を変更する&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/greyshade#setup&#34;&gt;テーマの設定&lt;/a&gt; を config.toml にコピペして、編集。
 Step 2 で覚えておいた &lt;strong&gt;[disqus_shortname]&lt;/strong&gt; を設定に入れる。以下サンプル&lt;/p&gt;
@@ -1576,7 +1854,7 @@ disqus_show_comment_count = false
 google_analytics_tracking_id = &amp;quot;&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step-4-記事にパラメータを加える:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 4 記事にパラメータを加える&lt;/h1&gt;
+&lt;h2 id=&#34;step-4-記事にパラメータを加える:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 4 記事にパラメータを加える&lt;/h2&gt;
 
 &lt;p&gt;最後に記事のパラメータに &lt;strong&gt;comments = true&lt;/strong&gt; といれれば、disqus を読み込んでコメント欄が入る。
 ただし、localhost では読み込まないようにしているので、記事ページ下部 に &lt;strong&gt;Comments&lt;/strong&gt;
@@ -1592,7 +1870,7 @@ comments = true
 first page.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;step-5-新規記事のテンプレートを変更しておく:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 5 新規記事のテンプレートを変更しておく&lt;/h1&gt;
+&lt;h2 id=&#34;step-5-新規記事のテンプレートを変更しておく:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 5 新規記事のテンプレートを変更しておく&lt;/h2&gt;
 
 &lt;p&gt;毎回コマンド（ &lt;strong&gt;hugo new post/new_post.md&lt;/strong&gt; ） で新規記事作成後に、
 comments = true とパラメータ設定するのは面倒くさいので
@@ -1604,166 +1882,6 @@ Tags = []
 Categories = []
 comments = true
 +++
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Hugo Part 2 - Hugo で github にブログを立ち上げる</title>
-      <link>http://blog.syati.info/post/create_hugo_2/</link>
-      <pubDate>Sun, 07 Jun 2015 21:55:31 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/create_hugo_2/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
-&lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; を参考にして、セットアップ手順を記していく。&lt;/p&gt;
-
-&lt;h1 id=&#34;step-1-github-に-blog-repository-をつくる:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 1 github に blog repository をつくる&lt;/h1&gt;
-
-&lt;p&gt;github にアクセスして、repository をつくる。repository name がそのまま URL になる（以下のようなURL）。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;http://[username].githug.io/[repo]&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;[] の意味
-
-&lt;ul&gt;
-&lt;li&gt;[username] : github の username&lt;/li&gt;
-&lt;li&gt;[repo] : github に作成する repository name&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;step-2-blog-の設定をかいておく:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 2 blog の設定をかいておく&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;※以降、github に yourblog として repostitory を作成したとして記す。また、part 1 で作成した yourblog があるものとする&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;part 1 で作成した yourblog ディレクトリ内の &lt;strong&gt;config.toml&lt;/strong&gt; を開いて設定を書く（以下参考）。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;title = &amp;quot;My New Hugo Site&amp;quot;
-baseurl = &amp;quot;http://[username].github.io/yourblog&amp;quot;
-languageCode = &amp;quot;ja-jp&amp;quot;
-theme = &amp;quot;hyde&amp;quot;　# part 1 で選んだ theme を設定する
-canonifyurls = true # 相対パスではなく baseurl を基点とした絶対パスにする
-
-[params]
-  description = &amp;quot;This is yourblog&amp;quot;
-  author = &amp;quot;your name&amp;quot;
-
-[taxonomies]
-  category = &amp;quot;categories&amp;quot;
-  tag = &amp;quot;tags&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;参考
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://gohugo.io/overview/configuration/&#34;&gt;Configuring Hugo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://mojavy.com/blog/2013/04/26/toml/&#34;&gt;TOMLノススメ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/toml-lang/toml&#34;&gt;toml-lang/toml&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;step-3-repository-に-push-する:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 3 repository に push する&lt;/h1&gt;
-
-&lt;p&gt;yourblog ディレクトリで以下のコマンドを実行する。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git init # part 1 で作成した yourblog をリポジトリにする
-$ git remote add origin git@github.com:[username]/yourblog.git # remote を設定する
-$ git pull origin master
-$
-$ rm -rf public # このディレクトリは git subtree を利用して管理するので削除する
-$ git add -A
-$ git commit -m &amp;quot;Add hugo template&amp;quot;
-$ git push origin master
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;step-4-gh-pages-ブランチを作成する:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 4 gh-pages ブランチを作成する&lt;/h1&gt;
-
-&lt;p&gt;gh-pages ブランチには hugo で作成されたコンテンツ（ public ）のみ置いて、
-関係のないもの（ archetypes, themes, etc ）は紛らわしいので管理したくない。&lt;/p&gt;
-
-&lt;p&gt;そこで、master から独立したブランチを作成するために、orphan オプションを
-つけて履歴のないブランチを作成する。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git checkout --orphan gh-pages   # orphan ブランチ 作成
-$ git rm --cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
-$ git add README.md                # README.md だけいれておく
-$ git commit -m &amp;quot;initial commit on gh-pages branch&amp;quot;
-$ git push origin gh-pages
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;master に戻って git subtree を利用して、gh-pages ブランチを master の public に取り込む。
-subtree って何？って思う方は、下部の参考を見てください。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git checkout master
-$ git subtree add --prefix=public git@github.com:[username]/yourblog.git gh-pages --squash
-$ git subtree pull --prefix=public git@github.com:[username]/yourblog.git gh-pages
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;hugo コマンドで public を生成して以下のように push していくことで、
-master に変更を加え、gh-pages にも変更を加える事が出来る。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ hugo
-$ git add -A
-$ git commit -m &amp;quot;Updating site&amp;quot;
-$ git push origin master
-$ git subtree push --prefix=public git@github.com:Syati/yourblog.git gh-pages
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;基本的に新しい記事を書いて github.io に公開（ Deploy ）する際、上記の手順を踏むことになる。
-毎回これするのはめんどくさいので、Step 5 に進む。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;参考
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://qiita.com/akiko-pusu/items/7c0a99b8cb37882d2cfe&#34;&gt;gitの空ブランチを作る&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://japan.blogs.atlassian.com/2014/03/alternatives-to-git-submodule-git-subtree/&#34;&gt;Git Submodule の代替: Git Subtree&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://qiita.com/shogo82148/items/04b29b195dbbb373152f&#34;&gt;git-subtree移行メモ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://qiita.com/marutanm/items/d02e7d5ff8ed7c2c4b95&#34;&gt;submoduleとsubtree-mergingの使い分け&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;step-5-めんどさい-deploy-はスクリプトを利用する:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 5 めんどさい Deploy はスクリプトを利用する&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; の &lt;strong&gt;deploy.sh&lt;/strong&gt; に書かれている以下を利用する。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;
-# !/bin/bash
-
-echo -e &amp;quot;\033[0;32mDeploying updates to GitHub...\033[0m&amp;quot;
-
-# Build the project. 
-hugo
-
-# Add changes to git.
-git add -A
-
-# Commit changes.
-msg=&amp;quot;rebuilding site `date`&amp;quot;
-if [ $# -eq 1 ]
-  then msg=&amp;quot;$1&amp;quot;
-fi
-git commit -m &amp;quot;$msg&amp;quot;
-
-# Push source and build repos.
-git push origin master
-git subtree push --prefix=public git@github.com:[username]/yourblog.git gh-pages　
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/spencerlyon2/hugo_gh_blog&#34;&gt;spencerlyon2/hugo_gh_blog&lt;/a&gt; のレポジトリに deploy.sh
-があるので　DL してきて修正するのがはやいかも。&lt;/p&gt;
-
-&lt;p&gt;deploy.sh を yourblog ディレクトリに保存したのち、実行できるように以下を実行する。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ chmod +x deploy.sh
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これで新しい記事を書いて github.io に公開（ Deploy ）する際は、以下のコマンドを実行するのみで良い。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./deploy.sh
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>

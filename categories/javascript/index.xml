@@ -7,7 +7,285 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Wed, 07 Oct 2015 22:00:32 JST</updated>
+    <updated>Tue, 29 Dec 2015 12:38:07 JST</updated>
+    
+    <item>
+      <title>Sequelize Part 1 - 導入してREPLで試してみる</title>
+      <link>http://blog.syati.info/post/sequelize_getting_started/</link>
+      <pubDate>Tue, 29 Dec 2015 12:38:07 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/sequelize_getting_started/</guid>
+      <description>
+
+&lt;p&gt;ちょっと前まで MEAN とか流行っていた気がするんですが、今はどうなんですかね？実際にちょっとしたWEBサービスで利用してみると、MongoDB が思った以上に厄介だった。トランザクションが無いのが、どうしても辛い。後々考えると面倒くさいことになるのは目に見えているのでヤメヤメ。ということで従来通り RDB を利用、そして、ORM は &lt;strong&gt;Sequelize&lt;/strong&gt; を利用したので、その辺をメモっていきたいと思う。&lt;/p&gt;
+
+&lt;p&gt;以降で説明するコードは、&lt;a href=&#34;https://github.com/Syati/sequelize-sample/tree/master/01_repl&#34;&gt;01_repl&lt;/a&gt; にあります。&lt;/p&gt;
+
+&lt;h2 id=&#34;環境:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;環境&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;OSX 10.10.5&lt;/li&gt;
+&lt;li&gt;Node 5.3.0&lt;/li&gt;
+&lt;li&gt;MariaDB 10.1.9&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;orm-導入に際して:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;ORM 導入に際して&lt;/h2&gt;
+
+&lt;p&gt;Node で RDB を利用するために、ORM のライブラリを検討。意外とあるもんですね。
+以下に github の star と fork 数をまとめる(2015/12/29 調べ)。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Lib&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Star&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Fork&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/balderdashy/waterline&#34;&gt;waterline&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2541&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;359&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/tgriesser/bookshelf&#34;&gt;bookshelf&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;2824&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;228&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/dresende/node-orm2&#34;&gt;node-orm2&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1655&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;282&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/sequelize/sequelize&#34;&gt;sequelize&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;5344&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1160&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;それぞれの Lib の差異はわかりませんが Star と Fork 数で判断して、&lt;strong&gt;Sequelize で決定&lt;/strong&gt;。ドキュメントも見やすかったのでいいかな。&lt;/p&gt;
+
+&lt;h2 id=&#34;1-db-orm-orm-cli-のインストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1. DB・ORM・ORM-CLI のインストール&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-1-db-インストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1.1. DB インストール&lt;/h3&gt;
+
+&lt;p&gt;mysql, posgre がある場合は不要。今回は mariadb を利用する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew update
+$ brew install mariadb 
+
+$ unset TMPDIR
+$ mysql_install_db
+
+## start mariadb
+$ mysql.server start
+
+## connect mariadb
+$ mysql -uroot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;参考
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://mariadb.com/kb/en/mariadb/building-mariadb-on-mac-os-x-using-homebrew/&#34;&gt;Building MariaDB on Mac OS X Using Homebrew&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;1-2-orm-sequelize-インストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1.2. ORM (Sequelize) インストール&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install --save sequelize
+$ npm install --save mysql // For both mysql and mariadb dialects
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;1-3-orm-cli-sequelize-cli-インストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1.3. ORM-CLI (Sequelize CLI) インストール&lt;/h3&gt;
+
+&lt;p&gt;初期設定、モデル作成、マイグレーション など便利なので CLI をいれる。
+コマンドラインをグローバルで利用したいので &lt;strong&gt;g&lt;/strong&gt; 付与する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install -g sequelize-cli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;2-各種設定:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2. 各種設定&lt;/h2&gt;
+
+&lt;p&gt;現状の dir 構成は以下のとおり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sample_prj
+├── node_modules
+└── package.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-1-db-作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2.1. DB 作成&lt;/h3&gt;
+
+&lt;p&gt;今回利用する DB を &lt;strong&gt;seq_dev&lt;/strong&gt; として、 mariadb に作成する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mysql -uroot
+## mariadb に接続後、今回利用するデータベースを作成する
+$ create database seq_dev character set utf8;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-2-初期設定する:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2.2. 初期設定する&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;1.3&lt;/strong&gt; でインストールした Sequelize CLI を用いて初期設定する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sequelize init #プロジェクトルートで実行。初期設定を作成する
+
+# dir 構成は以下になる
+sample_prj
+├── config     # config.json に DB の初期設定が書き出される
+├── migrations # cli で model:create した際、migration が自動作成される
+├── models     # cli で model:create した際、model が自動作成される
+├── node_modules
+├── package.json
+└── seeders    # cli で seed:create した際、seed が自動作成される
+
+# 基本的に上記は .sequelizerc にてカスタマイズ可能
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;config/config.json&lt;/strong&gt; に初期設定があるが、先ほど作成したデータベース名と異なっているので変更する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// サンプル config.json
+{
+  &amp;quot;development: {
+    &amp;quot;username&amp;quot;: &amp;quot;root&amp;quot;,
+    &amp;quot;password&amp;quot;: null,
+    &amp;quot;database&amp;quot;: &amp;quot;seq_dev&amp;quot;,
+    &amp;quot;host&amp;quot;: &amp;quot;127.0.0.1&amp;quot;,
+    &amp;quot;dialect&amp;quot;: &amp;quot;mysql&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;3-はじめてのモデル作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;3. はじめてのモデル作成&lt;/h2&gt;
+
+&lt;h3 id=&#34;3-1-model-の作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;3.1. model の作成&lt;/h3&gt;
+
+&lt;p&gt;models ディレクトリに model.js のように手動でモデルを作成しても良いのだが、CLI を利用してモデルを作成してあげると、マイグレーションも一緒に作成してくれるので、CLI を利用すると楽かもしれない。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;※ただし、&lt;a href=&#34;http://stackoverflow.com/questions/27835801/how-to-auto-generate-migrations-with-sequelize-cli-from-sequelize-models&#34;&gt;作成したモデルを変更しても該当マイグレーションを更新する術がない&lt;/a&gt;&lt;/strong&gt;ので、手動で変更してあげる必要がある。django みたいに model から migration が作成できたら良いんだけどな・・。&lt;/p&gt;
+
+&lt;p&gt;いざ、モデル作成。プロジェクトルートで以下のコマンドを叩く。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sequelize model:create --name User --attributes firstName:string,lastName:string
+
+## models が以下のようになる
+models
+├── index.js
+└── user.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記は、以下テーブルを作成することになる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Users
+
+&lt;ul&gt;
+&lt;li&gt;firstName&lt;/li&gt;
+&lt;li&gt;lastName&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;基本的に定義したモデルの複数形がテーブルになる。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;By default, sequelize will automatically transform all passed model names (first parameter of define) into plural.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;参考
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;docs.sequelizejs.com/en/latest/docs/models-definition&#34;&gt;Definition&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;3-2-models-の-index-js-について:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;3.2. models の index.js について&lt;/h3&gt;
+
+&lt;p&gt;models dir には index.js が sequelize init によって作成されるが、これは models ディレクトリにある全ファイルを読み込んで、モデルを構築してくれる。その際に、モデル間のリレーションも一緒に構築する。利用する際には、index.js を読み込んで、該当モデルを利用することになる。(部分的に ES6 利用)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// 利用例
+
+const models = require(&#39;./models&#39;);
+
+const User = models.User;
+User.findAll().then((users) =&amp;gt; console.log(users));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;4-試してみる:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;4. 試してみる&lt;/h2&gt;
+
+&lt;h3 id=&#34;4-1-エントリポイントの作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;4.1. エントリポイントの作成&lt;/h3&gt;
+
+&lt;p&gt;とりあえず色々試してみたいので、repl できるようにプロジェクトルートに &lt;strong&gt;repl.js&lt;/strong&gt; とでもしてエントリポイントを作成する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// repl.js
+const models = require(&#39;./models&#39;);
+
+models.sequelize.sync({force:true}).then(() =&amp;gt; {
+  console.log(&amp;quot;DEV DATA CREATED SUCCESSFULLY&amp;quot;);
+});
+
+module.exports = models;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記ですが、sync メソッドで、定義したモデルをDBに反映する。force:true オプションを与えることで、毎回 テーブルを Drop して Create してくれる。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;本番では migration を利用する&lt;/strong&gt;ことになると思いますが、開発環境や、とりあえず試めすくらいには 、スキームを変更するのが楽なので、force:true でも良い気がする。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;参考
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/sequelize/#sync&#34;&gt;sync&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;4-2-node-replで試す:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;4.2. Node REPLで試す&lt;/h3&gt;
+
+&lt;p&gt;REPL を起動する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ node
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以下を打ち込んで試してみる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// repl 内
+const models = require(&#39;./repl&#39;);
+const User = models.User;
+
+// ユーザ作成
+User.create({
+    firstName: &#39;Yamada&#39;, 
+    lastName: &#39;Tarou&#39;
+}).then((user) =&amp;gt; console.log(JSON.stringify(user)));
+// 出力
+// &amp;gt; Executing (default): INSERT INTO `Users` (`id`,`firstName`,`lastName`,`updatedAt`,`createdAt`) VALUES (DEFAULT,&#39;Yamada&#39;,&#39;Tarou&#39;,&#39;2015-12-30 03:10:38&#39;,&#39;2015-12-30 03:10:38&#39;);
+// {&amp;quot;id&amp;quot;:1,&amp;quot;firstName&amp;quot;:&amp;quot;Yamada&amp;quot;,&amp;quot;lastName&amp;quot;:&amp;quot;Tarou&amp;quot;,&amp;quot;updatedAt&amp;quot;:&amp;quot;2015-12-30T03:10:38.000Z&amp;quot;,&amp;quot;createdAt&amp;quot;:&amp;quot;2015-12-30T03:10:38.000Z&amp;quot;}
+
+// ユーザ取得
+User.findAll().then((users) =&amp;gt; console.log(JSON.stringify(users)));
+// 出力
+// &amp;gt; Executing (default): SELECT `id`, `firstName`, `lastName`, `createdAt`, `updatedAt` FROM `Users` AS `User`;
+// [{&amp;quot;id&amp;quot;:1,&amp;quot;firstName&amp;quot;:&amp;quot;Yamada&amp;quot;,&amp;quot;lastName&amp;quot;:&amp;quot;Tarou&amp;quot;,&amp;quot;createdAt&amp;quot;:&amp;quot;2015-12-30T03:10:38.000Z&amp;quot;,&amp;quot;updatedAt&amp;quot;:&amp;quot;2015-12-30T03:10:38.000Z&amp;quot;}]
+
+// ※出力を見やすくするため JSON.stringify しています
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;その他メソッド
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/model/&#34;&gt;http://docs.sequelizejs.com/en/latest/api/model/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>package.json を一括更新</title>
@@ -23,7 +301,7 @@
 
 &lt;p&gt;これで簡単に更新できる！！&lt;/p&gt;
 
-&lt;h1 id=&#34;更新する:fa2289da0f3da34235594a1a0c6afa63&#34;&gt;更新する&lt;/h1&gt;
+&lt;h2 id=&#34;更新する:fa2289da0f3da34235594a1a0c6afa63&#34;&gt;更新する&lt;/h2&gt;
 
 &lt;p&gt;以下の通り。すごく簡単だね。&lt;/p&gt;
 
@@ -60,7 +338,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 
 &lt;p&gt;ドットで jquery も underscore も browser もしてくれる。 angular も!!&lt;/p&gt;
 
-&lt;h1 id=&#34;step-1-tern-のインストール-設定:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 1 tern のインストール・設定&lt;/h1&gt;
+&lt;h2 id=&#34;step-1-tern-のインストール-設定:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 1 tern のインストール・設定&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;npm で tern をインストールする&lt;/p&gt;
@@ -85,7 +363,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h1 id=&#34;step-2-emacs-の-package-をインストール:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 2 emacs の package をインストール&lt;/h1&gt;
+&lt;h2 id=&#34;step-2-emacs-の-package-をインストール:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 2 emacs の package をインストール&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;M-x package-list-package で以下の2点をインストールする（該当箇所で &lt;strong&gt;i&lt;/strong&gt; をタイプしてマークをつけて &lt;strong&gt;x&lt;/strong&gt; でインストールする）
@@ -114,7 +392,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h1 id=&#34;step-3-試す:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 3 試す&lt;/h1&gt;
+&lt;h2 id=&#34;step-3-試す:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 3 試す&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;angular
   .module(&#39;MyApp&#39;, [])
@@ -123,7 +401,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
   })
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;参考:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;参考&lt;/h1&gt;
+&lt;h2 id=&#34;参考:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://ternjs.net/doc/manual.html&#34;&gt;tern&lt;/a&gt;&lt;/li&gt;
@@ -148,9 +426,9 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/angular-test-sample&#34;&gt;https://github.com/Syati/angular-test-sample&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;準備:d28091e7273529f0913311111ae23332&#34;&gt;準備&lt;/h1&gt;
+&lt;h2 id=&#34;準備:d28091e7273529f0913311111ae23332&#34;&gt;準備&lt;/h2&gt;
 
-&lt;h2 id=&#34;ubuntu:d28091e7273529f0913311111ae23332&#34;&gt;ubuntu&lt;/h2&gt;
+&lt;h3 id=&#34;ubuntu:d28091e7273529f0913311111ae23332&#34;&gt;ubuntu&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;node &amp;amp; npm&lt;/li&gt;
@@ -160,7 +438,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 $ sudo apt-get install npm
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;mac:d28091e7273529f0913311111ae23332&#34;&gt;mac&lt;/h2&gt;
+&lt;h3 id=&#34;mac:d28091e7273529f0913311111ae23332&#34;&gt;mac&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;node &amp;amp; npm&lt;/li&gt;
@@ -169,7 +447,7 @@ $ sudo apt-get install npm
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install node
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;共通:d28091e7273529f0913311111ae23332&#34;&gt;共通&lt;/h2&gt;
+&lt;h3 id=&#34;共通:d28091e7273529f0913311111ae23332&#34;&gt;共通&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;bower&lt;/li&gt;
@@ -185,20 +463,20 @@ $ sudo apt-get install npm
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo npm install -g karma-cli
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332&#34;&gt;実施：サンプルを CLONE して TEST&lt;/h1&gt;
+&lt;h2 id=&#34;実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332&#34;&gt;実施：サンプルを CLONE して TEST&lt;/h2&gt;
 
 &lt;p&gt;github にサンプルを書いたので clone する。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git clone git@github.com:Syati/angular-test-sample.git
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;prj-依存環境を入れる:d28091e7273529f0913311111ae23332&#34;&gt;prj 依存環境を入れる&lt;/h2&gt;
+&lt;h3 id=&#34;prj-依存環境を入れる:d28091e7273529f0913311111ae23332&#34;&gt;prj 依存環境を入れる&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd your_clone_path/angular-test-sample/controller/recipe1
 $ npm install
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;test-実行する:d28091e7273529f0913311111ae23332&#34;&gt;test 実行する&lt;/h2&gt;
+&lt;h3 id=&#34;test-実行する:d28091e7273529f0913311111ae23332&#34;&gt;test 実行する&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm test
 &lt;/code&gt;&lt;/pre&gt;
@@ -212,9 +490,9 @@ INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id
 PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;説明:d28091e7273529f0913311111ae23332&#34;&gt;説明&lt;/h1&gt;
+&lt;h2 id=&#34;説明:d28091e7273529f0913311111ae23332&#34;&gt;説明&lt;/h2&gt;
 
-&lt;h2 id=&#34;directory:d28091e7273529f0913311111ae23332&#34;&gt;directory&lt;/h2&gt;
+&lt;h3 id=&#34;directory:d28091e7273529f0913311111ae23332&#34;&gt;directory&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;    recipe1
     ├── app
@@ -232,7 +510,7 @@ PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
     └── node_modules  #2 npm lib install dir
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;1-bower:d28091e7273529f0913311111ae23332&#34;&gt;#1 bower&lt;/h2&gt;
+&lt;h3 id=&#34;1-bower:d28091e7273529f0913311111ae23332&#34;&gt;#1 bower&lt;/h3&gt;
 
 &lt;p&gt;js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。&lt;/p&gt;
 
@@ -265,7 +543,7 @@ $ bower install angular --save　# または --save-dev
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;2-npm:d28091e7273529f0913311111ae23332&#34;&gt;#2 npm&lt;/h2&gt;
+&lt;h3 id=&#34;2-npm:d28091e7273529f0913311111ae23332&#34;&gt;#2 npm&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm init 
 $ npm install jasmine --save-dev　# または --save
@@ -294,7 +572,7 @@ $ npm install jasmine --save-dev　# または --save
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;3-karma-angular-の-unit-test-の設定:d28091e7273529f0913311111ae23332&#34;&gt;#3 karma  angular の unit test の設定&lt;/h2&gt;
+&lt;h3 id=&#34;3-karma-angular-の-unit-test-の設定:d28091e7273529f0913311111ae23332&#34;&gt;#3 karma  angular の unit test の設定&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;karma init  # コマンドで初期設定 karma.conf.js を作成できる
 &lt;/code&gt;&lt;/pre&gt;
@@ -337,7 +615,7 @@ $ npm install jasmine --save-dev　# または --save
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;4-test-を書く:d28091e7273529f0913311111ae23332&#34;&gt;#4 test を書く&lt;/h2&gt;
+&lt;h3 id=&#34;4-test-を書く:d28091e7273529f0913311111ae23332&#34;&gt;#4 test を書く&lt;/h3&gt;
 
 &lt;p&gt;テストするうえで jasmine の理解は必須なので &lt;a href=&#34;http://jasmine.github.io/2.1/introduction.html&#34;&gt;tutorial&lt;/a&gt; で勉強しておく。
 index.html をローカルで開けばわかると思うが button click で &amp;lsquo;hello&amp;rsquo; とでてくるだけのもの。
@@ -382,7 +660,7 @@ describe(&#39;Unit: app moudle &#39;, function(){
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;まとめ:d28091e7273529f0913311111ae23332&#34;&gt;まとめ&lt;/h1&gt;
+&lt;h2 id=&#34;まとめ:d28091e7273529f0913311111ae23332&#34;&gt;まとめ&lt;/h2&gt;
 
 &lt;p&gt;controller のテストは意外と簡単。ただし、DI が増えてくるとハマるポイントも多くなってくるので、次はそんなサンプルを書いていくつもり。&lt;/p&gt;
 </description>
@@ -399,16 +677,16 @@ describe(&#39;Unit: app moudle &#39;, function(){
 &lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
 ということで私の環境を忘れないうちにメモ！！&lt;/p&gt;
 
-&lt;h1 id=&#34;前提:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;前提&lt;/h1&gt;
+&lt;h2 id=&#34;前提:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;前提&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;ubuntu 12.04 or OSX&lt;/li&gt;
 &lt;li&gt;emacs &amp;gt;= 24&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;構築:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;構築&lt;/h1&gt;
+&lt;h2 id=&#34;構築:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;構築&lt;/h2&gt;
 
-&lt;h2 id=&#34;パッケージ管理にmelpa追加:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理にmelpa追加&lt;/h2&gt;
+&lt;h3 id=&#34;パッケージ管理にmelpa追加:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理にmelpa追加&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
@@ -419,7 +697,7 @@ describe(&#39;Unit: app moudle &#39;, function(){
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;パッケージ管理からインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理からインストール&lt;/h2&gt;
+&lt;h3 id=&#34;パッケージ管理からインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理からインストール&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;M-x package-list-package で以下の2点をインストールする（該当箇所で &lt;strong&gt;i&lt;/strong&gt; をタイプしてマークをつけて &lt;strong&gt;x&lt;/strong&gt; でインストールする）
@@ -436,7 +714,7 @@ describe(&#39;Unit: app moudle &#39;, function(){
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;jshint をインストール&lt;/h2&gt;
+&lt;h3 id=&#34;jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;jshint をインストール&lt;/h3&gt;
 
 &lt;p&gt;上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。&lt;/p&gt;
 
@@ -465,12 +743,12 @@ describe(&#39;Unit: app moudle &#39;, function(){
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;試す:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;試す&lt;/h1&gt;
+&lt;h2 id=&#34;試す:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;試す&lt;/h2&gt;
 
 &lt;p&gt;a.js とでもファイルを作ってみると emacsの下の帯に　(javascript-IDE FlyC) となっていることが確認できる。
 後は適当にプログラムを書けば jshint がはしり、文法エラーなどを教えてくれる。&lt;/p&gt;
 
-&lt;h1 id=&#34;参考:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;参考&lt;/h1&gt;
+&lt;h2 id=&#34;参考:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://melpa.milkbox.net/#/getting-started&#34;&gt;melpa&lt;/a&gt;&lt;/li&gt;
@@ -490,7 +768,7 @@ describe(&#39;Unit: app moudle &#39;, function(){
 
 &lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
 
-&lt;h1 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h1&gt;
+&lt;h2 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h2&gt;
 
 &lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
 
@@ -511,11 +789,11 @@ Error: Cannot find module &#39;underscore&#39;
   at Interface.EventEmitter.emit (events.js:96:17)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h1&gt;
+&lt;h2 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h2&gt;
 
 &lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
 
-&lt;h1 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h1&gt;
+&lt;h2 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;設定するパスを確認する&lt;/li&gt;
@@ -566,11 +844,11 @@ Error: Cannot find module &#39;underscore&#39;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;解決策:faaade8871e8a9add4cb3dea3150f715&#34;&gt;解決策&lt;/h1&gt;
+&lt;h2 id=&#34;解決策:faaade8871e8a9add4cb3dea3150f715&#34;&gt;解決策&lt;/h2&gt;
 
 &lt;p&gt;以下のように &lt;strong&gt;.bowerrc&lt;/strong&gt; を project ルートに作成してあげる。これを自分の好きなように書き換えることで、インストールディレクトリを変更できる。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;// .bowerrc
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// .bowerrc
 {
     &amp;quot;directory&amp;quot; : &amp;quot;js/bower_components&amp;quot;
 }
@@ -578,7 +856,7 @@ Error: Cannot find module &#39;underscore&#39;
 
 &lt;p&gt;以降、bower install すれば希望通り&lt;/p&gt;
 
-&lt;h2 id=&#34;bowerrc作成後:faaade8871e8a9add4cb3dea3150f715&#34;&gt;.bowerrc作成後&lt;/h2&gt;
+&lt;h3 id=&#34;bowerrc作成後:faaade8871e8a9add4cb3dea3150f715&#34;&gt;.bowerrc作成後&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;project/
@@ -601,11 +879,11 @@ Error: Cannot find module &#39;underscore&#39;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;参考:faaade8871e8a9add4cb3dea3150f715&#34;&gt;参考&lt;/h1&gt;
+&lt;h2 id=&#34;参考:faaade8871e8a9add4cb3dea3150f715&#34;&gt;参考&lt;/h2&gt;
 
-&lt;h2 id=&#34;デフォルトの動作:faaade8871e8a9add4cb3dea3150f715&#34;&gt;デフォルトの動作&lt;/h2&gt;
+&lt;h3 id=&#34;デフォルトの動作:faaade8871e8a9add4cb3dea3150f715&#34;&gt;デフォルトの動作&lt;/h3&gt;
 
-&lt;h3 id=&#34;初期ディレクトリ構成:faaade8871e8a9add4cb3dea3150f715&#34;&gt;初期ディレクトリ構成&lt;/h3&gt;
+&lt;h4 id=&#34;初期ディレクトリ構成:faaade8871e8a9add4cb3dea3150f715&#34;&gt;初期ディレクトリ構成&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;project/
@@ -618,7 +896,7 @@ Error: Cannot find module &#39;underscore&#39;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;コマンド:faaade8871e8a9add4cb3dea3150f715&#34;&gt;コマンド&lt;/h3&gt;
+&lt;h4 id=&#34;コマンド:faaade8871e8a9add4cb3dea3150f715&#34;&gt;コマンド&lt;/h4&gt;
 
 &lt;p&gt;project ルートで 以下のように bower コマンドを入れる&lt;/p&gt;
 
@@ -626,7 +904,7 @@ Error: Cannot find module &#39;underscore&#39;
 bower install jquery -save
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;コマンド後のディレクトリ構成:faaade8871e8a9add4cb3dea3150f715&#34;&gt;コマンド後のディレクトリ構成&lt;/h3&gt;
+&lt;h4 id=&#34;コマンド後のディレクトリ構成:faaade8871e8a9add4cb3dea3150f715&#34;&gt;コマンド後のディレクトリ構成&lt;/h4&gt;
 
 &lt;p&gt;ディレクトリは以下のようになる。&lt;/p&gt;
 
