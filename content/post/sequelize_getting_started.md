@@ -1,6 +1,6 @@
 +++
 Categories = ["JavaScript"]
-Description = "Sequelize ではじめる Node ORM。とりあえず導入して試してみるよ"
+Description = "Sequelize ではじめる Node ORM。とりあえず導入して、Node の REPL で試してみる"
 Tags = ["Sequelize", "ORM"]
 comments = true
 date = "2015-12-29T12:38:07+09:00"
