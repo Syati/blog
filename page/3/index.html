@@ -130,6 +130,34 @@
 
 	
 	
+	    <a href="http://blog.syati.info/categories/osx"> OSX </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://blog.syati.info/post/make_env_mac/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/make_env_mac/" itemprop="url">Development Environment in my OSX</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。
+ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。</p>
+
+		<a href="http://blog.syati.info/post/make_env_mac/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
 		<a href="http://blog.syati.info/categories/emacs"> Emacs </a>,
 	
 
@@ -378,37 +406,6 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 	<div class="entry-content" itemprop="articleBody">
 		org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 org2blogからの投稿 の続き。 必要なもの htmlize.el を load-path の通ったところに入れる。 htmlize.el は org-mode をDLして、解凍した contrib/lisp に入っている。 SyntaxHighlighter Evolved をワードプレスに入れて有効化しておく。 emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に :wp-code t を書き加える。 以下が .emacs.d/init.el に書き込んだ私の org2blog の設定 ;;org2blog (require &lsquo;org2blog) (setq org2blog/wp-blog-alist &lsquo;((&ldquo;wordpress&rdquo; :url &ldquo;your wordpress url&rdquo; :username &ldquo;login name&rdquo; :wp-code t))) ;; insert this line 使ってみる org2blog/wp-new-entry で投稿記事を作成する。 以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。 表記 #+BEGIN_SRC 言語 :syntaxhl [利用したいパラメータ（任意）] ソースコード #+END_SRC :syntaxhl にパラメータを与えない場合は、ワードプレスの管理画面-&gt;設定 SyntaxHighlighter の一般設定が用いられる。 パラメータはこちら ＃+BEGIN_SRC bash :syntaxhl echo "hoge" ＃+END_SRC これで org2blog の記事投稿でコードも綺麗に投稿できる。 補足 必要なもの 3.
 		<a href="http://blog.syati.info/post/org2blogInsertSourceCode/" class="more-link">Read on →</a>
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-		<a href="http://blog.syati.info/categories/shell"> Shell </a>,
-	
-
-	
-	
-	    <a href="http://blog.syati.info/categories/osx"> OSX </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/" itemprop="url">reattach-to-user-namespace: unsupported new OS を解決する</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。 手順 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard ここにいってソースコードをDLしてくる（git cloneでもOK） ダウンロードしたファイルのディレクトリで make する cd ~/Downloads/tmux-MacOSX-pasteboard make reattach-to-user-namespace パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく which reattach-to-user-namespace makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする これでワーニングもサヨウナラ 参考 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
-		
 	</div>
 </article>
 

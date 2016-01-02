@@ -130,6 +130,37 @@
 
 	
 	
+		<a href="http://blog.syati.info/categories/shell"> Shell </a>,
+	
+
+	
+	
+	    <a href="http://blog.syati.info/categories/osx"> OSX </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/" itemprop="url">reattach-to-user-namespace: unsupported new OS を解決する</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。 手順 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard ここにいってソースコードをDLしてくる（git cloneでもOK） ダウンロードしたファイルのディレクトリで make する cd ~/Downloads/tmux-MacOSX-pasteboard make reattach-to-user-namespace パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく which reattach-to-user-namespace makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする これでワーニングもサヨウナラ 参考 https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
+		
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Jun 4, 2015' data-updated="true" itemprop="datePublished">Thu, Jun 4, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
 		<a href="http://blog.syati.info/categories/linux"> Linux </a>,
 	
 
@@ -223,33 +254,6 @@
 	<div class="entry-content" itemprop="articleBody">
 		Windows 7 と Ubuntu 12.04 のマシンを利用している Syati ですが、毎回 Ubuntu を立ち上げてログイン、synergy を立ち上げるのは面倒くさいので Ubuntu ログイン画面で自動で起動させるようにした。 方法 /etc/lightdm/lightdm に一行加える 1 [SeatDefaults] 2 greeter-session=unity-greeter 3 greeter-setup-script=/usr/bin/synergyc シナジーサーバーが起動しているIP /* この行を加えた */ 参考サイト Ubuntu11.10でSynergyを自動起動
 		
-	</div>
-</article>
-
-				    
-				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="meta">
-		<div class="date"><time datetime='Mon, Jan 1, 0001' data-updated="true" itemprop="datePublished">Mon, Jan 1, 0001</time>
-</div>
-		<div class="tags">
-
-
-	
-	
-	    <a href="http://blog.syati.info/categories/javascript"> JavaScript </a>
-	
-
-
-</div>
-		
-			<span class="comments"><a href="http://blog.syati.info/post/sequelize_relation/#disqus_thread">Comments</a></span>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="http://blog.syati.info/post/sequelize_relation/" itemprop="url">Sequelize Part 2 - リレーションについて</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p><a href="http://blog.syati.info/post/sequelize_getting_started/">Sequelize Part 1</a> で、なんとなくわかってきた！！と思うので、今回は、リレーションについて学ぶ。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。</p>
-
-		<a href="http://blog.syati.info/post/sequelize_relation/" class="more-link">Read on →</a>
 	</div>
 </article>
 
