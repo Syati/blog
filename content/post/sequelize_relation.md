@@ -3,7 +3,7 @@ Categories = ["JavaScript"]
 Description = "Sequelize のリレーションを学ぶ。belongsTo, hasOne, hasMany, belongsToMany の4つだけ。後、オプションを少し学べばやりたいことは大方出来るようになる。"
 Tags = ["Sequelize", "ORM"]
 comments = true
-date = "2016-1-2T22:00:15+09:00"
+date = "2016-01-02T22:00:15+09:00"
 title = "Sequelize Part 2 - リレーションについて"
 
 +++
