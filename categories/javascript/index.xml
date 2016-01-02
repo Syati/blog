@@ -131,7 +131,7 @@ $ npm install --save mysql // For both mysql and mariadb dialects
 $ create database seq_dev character set utf8;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-2-初期設定する:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2.2. 初期設定する&lt;/h3&gt;
+&lt;h3 id=&#34;2-2-初期設定:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2.2. 初期設定&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;1.3&lt;/strong&gt; でインストールした Sequelize CLI を用いて初期設定する。&lt;/p&gt;
 
@@ -187,22 +187,40 @@ models
 &lt;li&gt;Users
 
 &lt;ul&gt;
+&lt;li&gt;id (自動作成)&lt;/li&gt;
 &lt;li&gt;firstName&lt;/li&gt;
 &lt;li&gt;lastName&lt;/li&gt;
+&lt;li&gt;createdAt (自動作成)&lt;/li&gt;
+&lt;li&gt;updatedAt (自動作成)&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;基本的に定義したモデルの複数形がテーブルになる。&lt;/p&gt;
+&lt;p&gt;なんで複数形？っていうのは、以下の通り。基本的に定義したモデルの複数形がテーブルになる。&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;By default, sequelize will automatically transform all passed model names (first parameter of define) into plural.&lt;/p&gt;
 &lt;/blockquote&gt;
 
+&lt;p&gt;id の自動作成は、明確に記載されてないんだけど（どこかにあるのかな）、以下が効いてると思われる。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Sequelize will assume your table has a id primary key property by default.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;createdAt, updatedAt の自動作成は通り。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Sequelize will then automatically add the attributes createdAt and updatedAt.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;自動作成を無効にしたい！！カスタマイズしたいということは、もちろん可能。以下の参考へ。&lt;/p&gt;
+
 &lt;ul&gt;
 &lt;li&gt;参考
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;docs.sequelizejs.com/en/latest/docs/models-definition&#34;&gt;Definition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/legacy/#primary-keys&#34;&gt;PrimaryKey&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/models-definition&#34;&gt;Definition&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -283,6 +301,12 @@ User.findAll().then((users) =&amp;gt; console.log(JSON.stringify(users)));
 &lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/model/&#34;&gt;http://docs.sequelizejs.com/en/latest/api/model/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;Project.create({name: &amp;ldquo;aho&amp;rdquo;});
+let user = User.create({
+    firstName: &amp;lsquo;Yamada&amp;rsquo;,
+    lastName: &amp;lsquo;Tarou&amp;rsquo;
+}).then((user) =&amp;gt; user)&lt;/p&gt;
 </description>
     </item>
     
@@ -923,6 +947,429 @@ bower install jquery -save
 &lt;li&gt;bower.json&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sequelize Part 2 - リレーションについて</title>
+      <link>http://blog.syati.info/post/sequelize_relation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://blog.syati.info/post/sequelize_relation/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/sequelize_getting_started/&#34;&gt;Sequelize Part 1&lt;/a&gt; で、なんとなくわかってきた！！と思うので、今回は、リレーションについて学ぶ。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。&lt;/p&gt;
+
+&lt;h2 id=&#34;1-リレーションの種類:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1. リレーションの種類&lt;/h2&gt;
+
+&lt;p&gt;リレーションを理解するためには、&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/associations/&#34;&gt;Relations / Associations&lt;/a&gt; を読み込まないと始まらない。結構ボリュームがあって、心折れそうになりますが！！実は大したことはないはず・・・。まずは、少しだけ用語の説明。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;When calling a method such as User.hasOne(Project), we say that the User model (the model that the function is being invoked on) is the source and the Project model (the model being passed as an argument) is the target.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;単なる呼び方ですね。先に出てくるモデルが &lt;strong&gt;source&lt;/strong&gt; 。後に出てくるモデルが &lt;strong&gt;target&lt;/strong&gt; ですよってことですね。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// 以下の場合
+User.hasOne(Project)
+// User モデルが source
+// Project モデルが target
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これは、外部キーがどちらに追加されるのかを明記するために利用する。リレーションは、以降の4種類（メソッド）ある。&lt;/p&gt;
+
+&lt;h3 id=&#34;1-1-belongsto:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.1. belongsTo&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;プレイヤ belongs to チーム&lt;/strong&gt; という場合。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Player = this.sequelize.define(&#39;Player&#39;, {/* ...attributes */})
+  , Team  = this.sequelize.define(&#39;Team&#39;, {/* ...attributes */});
+
+Player.belongsTo(Team);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記は、以下のテーブルになる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Players
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;attributes&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TeamId (belongsTo によって追加される)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Teams
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;attributes&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/associations/#belongsto&#34;&gt;belongsTo&lt;/a&gt; では &lt;strong&gt;source (Player)&lt;/strong&gt; に外部キー（&lt;strong&gt;TeamId&lt;/strong&gt;）が追加される。また、Player インスタンスは、&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/associations/belongs-to/&#34;&gt;belongsTo - api&lt;/a&gt; メソッドを持つ。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;※外部キーが camelCase&lt;/strong&gt; ！？という方は、&lt;a href=&#34;#2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.2. underscored: 外部キーの命名規則を camelCase から underscored にする&lt;/a&gt; を参照のこと。&lt;/p&gt;
+
+&lt;h3 id=&#34;1-2-hasone:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.2. hasOne&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;ユーザ has one プロフィール&lt;/strong&gt; という場合。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var User = sequelize.define(&#39;User&#39;, {/* ... */})
+var Profile = sequelize.define(&#39;Profile&#39;, {/* ... */})
+ 
+User.hasOne(Profile)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記は、以下のテーブルになる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Users
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Profiles
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UserId (hasOne によって追加される)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;(http://docs.sequelizejs.com/en/latest/docs/associations/#hasone&#34;&gt;hasOne&lt;/a&gt; では &lt;strong&gt;target (Profile)&lt;/strong&gt; に外部キー（&lt;strong&gt;UserId&lt;/strong&gt;）が追加される。&lt;strong&gt;belongsTo とその点が違うことに注意&lt;/strong&gt;。また、User インスタンスは &lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/associations/has-one/&#34;&gt;hasOne - api&lt;/a&gt; メソッドを持つ。&lt;/p&gt;
+
+&lt;h3 id=&#34;1-3-hasmany:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.3. hasMany&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;プロジェクト has many ユーザ&lt;/strong&gt; という場合。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Project = sequelize.define(&#39;Project&#39;, {/* ... */})
+var User = sequelize.define(&#39;User&#39;, {/* ... */})
+ 
+Project.hasMany(User)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記では、以下のテーブルになる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Projects
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Users
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ProjectId (hasMany によって追加される)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/associations/#one-to-many-associations&#34;&gt;hasMany&lt;/a&gt; では &lt;strong&gt;target (User)&lt;/strong&gt; に外部キー（&lt;strong&gt;ProjectId&lt;/strong&gt;）が追加される。これだけ見ると &lt;strong&gt;hasOne と同じじゃないか&lt;/strong&gt;と思うかもしれないが、インスタンスが持つメソッドが異なる。Project インスタンスは &lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/associations/has-many/&#34;&gt;hasMany - api&lt;/a&gt; メソッドを持つ。&lt;/p&gt;
+
+&lt;h3 id=&#34;1-4-belongstomany:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.4. belongsToMany&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;プロジェクトは複数のユーザを持ち、ユーザは複数のプロジェクトに属する&lt;/strong&gt; という &lt;strong&gt;多対多&lt;/strong&gt; の場合。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Project = sequelize.define(&#39;Project&#39;, {/* ... */})
+var User = sequelize.define(&#39;User&#39;, {/* ... */})
+
+Project.belongsToMany(User, {through: &#39;UserProjects&#39;});
+User.belongsToMany(Project, {through: &#39;UserProjects&#39;});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記は、以下のテーブルになる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Projects
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Users
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UserProjects   (through オプションで指定した名前のテーブル)&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;UserId    (belongsToMany によって追加される)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ProjectId (belongsToMany によって追加される)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/associations/#belongs-to-many-associations&#34;&gt;belongsToMany&lt;/a&gt; では、&lt;strong&gt;through で指定した名前のテーブル&lt;/strong&gt;に双方のキー（ProjectId, UserId）が追加される。また、それぞれのインスタンスに以下のとおり(または &lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/associations/belongs-to-many/&#34;&gt;belongsToMany - api&lt;/a&gt;) メソッドが追加される。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This will add methods &lt;strong&gt;getUsers, setUsers, addUser,addUsers to Project&lt;/strong&gt;, and &lt;strong&gt;getProjects, setProjects and addProject, addProjects to User&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;上記の UserProjects （中間テーブル）を見ると分かると思いますが &lt;strong&gt;id&lt;/strong&gt; はありません。理由は以下のとおり。UserId, ProjectId の複合キーで十分なため、別にプライマリキー設ける必要ないでしょって話かな。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;By default the code above will add ProjectId and UserId to the UserProjects table, and remove any previously defined primary key attribute - the table will be uniquely identified by the combination of the keys of the two tables, and there is no reason to have other PK columns.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ただし UserProjects モデルを以下のように定義することで、&lt;strong&gt;id&lt;/strong&gt; を追加することや、&lt;strong&gt;status&lt;/strong&gt; カラムを中間テーブルに追加することができる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Project = sequelize.define(&#39;Project&#39;, {/* ... */})
+var User = sequelize.define(&#39;User&#39;, {/* ... */})
+
+var UserProjects = sequelize.define(&#39;UserProjects&#39;, {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    status: DataTypes.STRING
+})
+
+User.belongsToMany(Project, { through: UserProjects })
+Project.belongsToMany(User, { through: UserProjects })
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;2-その他-オプション:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2. その他、オプション&lt;/h2&gt;
+
+&lt;h3 id=&#34;2-1-片方向と双方向:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.1. 片方向と双方向&lt;/h3&gt;
+
+&lt;p&gt;以下の違いを覚えておく。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;片方向（one way）
+
+&lt;ul&gt;
+&lt;li&gt;belongsTo&lt;/li&gt;
+&lt;li&gt;hasOne&lt;/li&gt;
+&lt;li&gt;hasMany&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;双方向 (two way)
+
+&lt;ul&gt;
+&lt;li&gt;belongsToMany&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;片方向とは、言葉の通りだが、一方からしか取得できないということである。例えば、&lt;strong&gt;プレイヤ belongs to チーム&lt;/strong&gt; という場合で考えると、&lt;strong&gt;プレイヤからチームを取得することは可能&lt;/strong&gt;だが、&lt;strong&gt;チームからプレイヤを取得することは不可能&lt;/strong&gt;ということである。以下コードサンプル。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Player = this.sequelize.define(&#39;Player&#39;, {/* ...attributes */})
+  , Team  = this.sequelize.define(&#39;Team&#39;, {/* ...attributes */});
+
+Player.belongsTo(Team);
+
+...
+
+// インスタンス利用
+// plyaer インスタンスから team を取得することは可能だが
+player.getTeam()
+// 以下のように team から プレイヤを取得することはできない
+// team.getPlayers()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なので、&lt;strong&gt;片方向のメソッドを利用して、双方向から取得できるようにする&lt;/strong&gt;には、以下のようにモデルを定義してあげる必要がある。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Player = this.sequelize.define(&#39;Player&#39;, {/* ...attributes */})
+  , Team  = this.sequelize.define(&#39;Team&#39;, {/* ...attributes */});
+
+Player.belongsTo(Team); // belongsTo を利用
+Team.hasMany(Player);   // hasMany を利用
+...
+
+// インスタンス利用
+// plyaer インスタンスから team を取得することは可能かつ
+player.getTeam()
+// team から players を取得することが可能。
+team.getPlayers()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;双方向については、上記のようなことをする必要はない。双方向を利用した際に、インスタンスにメソッドが追加されるため。&lt;a href=&#34;http://localhost:1313/post/sequelize_relation/#1-4-belongstomany:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.4. belongsToMany&lt;/a&gt; 参照のこと。&lt;/p&gt;
+
+&lt;h3 id=&#34;2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.2. underscored: 外部キーの命名規則を camelCase から underscored にする&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Foreign keys&lt;/strong&gt; は camelCase になります。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The default casing is camelCase however if the source model is configured with underscored: true the foreignKey will be snake_case.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;もし、&lt;strong&gt;underscored&lt;/strong&gt; のほうがいいよねって場合は、以下のようにしてあげる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var Player = this.sequelize.define(&#39;Player&#39;, {
+    /* ... */
+}, {
+    underscored: true
+});
+
+var Team  = this.sequelize.define(&#39;Team&#39;, {/* ... */});
+
+Player.belongsTo(Team);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記は、以下のテーブルになる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Players
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;team_id (camelCase ではなく _ になる)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Teams
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;2-3-as-target-のモデル名を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.3. as: target のモデル名を任意に変更する&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;as&lt;/strong&gt; オプションに任意の名前を与えることで、target のモデル名を変更できる&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var User = this.sequelize.define(&#39;User&#39;, {/* ... */})
+  , Project = sequelize.define(&#39;Project&#39;, {/* ... */})
+
+User.belongsTo(Project, {as: &#39;Prj&#39;});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記は、以下のテーブルになる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Users
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PrjId (ProjectId ではなく as で指定した名前Id になる)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Projects
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;※ここで注意する必要があるのは&lt;/strong&gt; リレーション(belongsToなど)を追加したときにインスタンスに追加されるメソッドである。今回の場合は User インスタンスのもつメソッドが以下になる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// as なしの場合、以下のメソッドだが（デフォルト）
+user.getProject();
+
+// as ありの場合、以下のメソッド(指定した名前)になる
+user.getPrj()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-4-foreignkey-外部キーの名前を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.4. foreignKey: 外部キーの名前を任意に変更する&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;foreignKey&lt;/strong&gt; オプションに任意の名前を与えることで、Sequelize の外部キーの命名規則を完全無視できる&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var User = this.sequelize.define(&#39;User&#39;, {/* ... */})
+  , Project = sequelize.define(&#39;Project&#39;, {/* ... */})
+
+User.belongsTo(Project, {foreignKey: &#39;fk_project&#39;});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記は、以下のテーブルになる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Users
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;fk_project (ProjectId ではなく foreignKey で指定した名前になる)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Projects
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;※ここで注意する必要があるのは&lt;/strong&gt; as で指定した場合とは異なり、インスタンスのもつメソッドは変わらないということ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// foreginKey あり・なしに関わらず、以下のメソッド（デフォルト）
+user.getProject();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-5-targetkey-外部キーをプライマリキーから任意のカラムに変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.5. targetKey: 外部キーをプライマリキーから任意のカラムに変更する&lt;/h3&gt;
+
+&lt;p&gt;以下にある通り、デフォルトの外部キーは target (または source)のプライマリキーになります。belongsTo としか書いてないけど、それ以外も基本同じ。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;By default the target key for a belongsTo relation will be the target primary key. To override this behavior, use the targetKey option.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;例えば、Project の name カラムを外部キーにする場合。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var User = this.sequelize.define(&#39;User&#39;, {/* ... */});
+var Project = sequelize.define(&#39;Project&#39;, {
+    name: { type: DataTypes.STRING, unique: true}
+});
+
+User.belongsTo(models.Project, {foreignKey: &#39;fk_projectname&#39;, targetKey: &#39;name&#39;});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記は、以下のテーブルになる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Users
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;li&gt;fk_projectname&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Projects
+
+&lt;ul&gt;
+&lt;li&gt;id&lt;/li&gt;
+&lt;li&gt;name&lt;/li&gt;
+&lt;li&gt;createdAt&lt;/li&gt;
+&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;インスタンスのもつメソッドは &lt;a href=&#34;#2-4-foreignkey-外部キーの名前を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.4. foreignKey: 外部キーの名前を任意に変更する&lt;/a&gt; と変わりなし&lt;/p&gt;
 </description>
     </item>
     
