@@ -131,7 +131,7 @@ $ npm install --save mysql // For both mysql and mariadb dialects
 $ create database seq_dev character set utf8;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-2-初期設定する:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2.2. 初期設定する&lt;/h3&gt;
+&lt;h3 id=&#34;2-2-初期設定:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2.2. 初期設定&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;1.3&lt;/strong&gt; でインストールした Sequelize CLI を用いて初期設定する。&lt;/p&gt;
 
@@ -187,22 +187,40 @@ models
 &lt;li&gt;Users
 
 &lt;ul&gt;
+&lt;li&gt;id (自動作成)&lt;/li&gt;
 &lt;li&gt;firstName&lt;/li&gt;
 &lt;li&gt;lastName&lt;/li&gt;
+&lt;li&gt;createdAt (自動作成)&lt;/li&gt;
+&lt;li&gt;updatedAt (自動作成)&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;基本的に定義したモデルの複数形がテーブルになる。&lt;/p&gt;
+&lt;p&gt;なんで複数形？っていうのは、以下の通り。基本的に定義したモデルの複数形がテーブルになる。&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;By default, sequelize will automatically transform all passed model names (first parameter of define) into plural.&lt;/p&gt;
 &lt;/blockquote&gt;
 
+&lt;p&gt;id の自動作成は、明確に記載されてないんだけど（どこかにあるのかな）、以下が効いてると思われる。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Sequelize will assume your table has a id primary key property by default.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;createdAt, updatedAt の自動作成は通り。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Sequelize will then automatically add the attributes createdAt and updatedAt.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;自動作成を無効にしたい！！カスタマイズしたいということは、もちろん可能。以下の参考へ。&lt;/p&gt;
+
 &lt;ul&gt;
 &lt;li&gt;参考
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;docs.sequelizejs.com/en/latest/docs/models-definition&#34;&gt;Definition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/legacy/#primary-keys&#34;&gt;PrimaryKey&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/models-definition&#34;&gt;Definition&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -283,6 +301,12 @@ User.findAll().then((users) =&amp;gt; console.log(JSON.stringify(users)));
 &lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/model/&#34;&gt;http://docs.sequelizejs.com/en/latest/api/model/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;Project.create({name: &amp;ldquo;aho&amp;rdquo;});
+let user = User.create({
+    firstName: &amp;lsquo;Yamada&amp;rsquo;,
+    lastName: &amp;lsquo;Tarou&amp;rsquo;
+}).then((user) =&amp;gt; user)&lt;/p&gt;
 </description>
     </item>
     
@@ -505,7 +529,7 @@ Lines        : 100% ( 6/6 )
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;大事なのは、 &lt;strong&gt;1. pretest、&lt;/strong&gt; &lt;strong&gt;2. test、&lt;/strong&gt; &lt;strong&gt;3. posttest&lt;/strong&gt; です。&lt;/p&gt;
+&lt;p&gt;大事なのは、 &lt;strong&gt;1. pretest、2. test、3. posttest&lt;/strong&gt; です。&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;npm test&lt;/strong&gt; を実行することで &lt;strong&gt;1. 2. 3.&lt;/strong&gt;の順番で実行してくれます。今回の step2 - step5 をコマンド１つで済せられるということですね。&lt;/p&gt;
 

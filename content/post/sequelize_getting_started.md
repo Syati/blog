@@ -94,7 +94,7 @@ $ mysql -uroot
 $ create database seq_dev character set utf8;
 ~~~
 
-### 2.2. 初期設定する
+### 2.2. 初期設定
 
 **1.3** でインストールした Sequelize CLI を用いて初期設定する。
 
@@ -151,16 +151,30 @@ models
 上記は、以下テーブルを作成することになる。
 
 - Users
+   - id (自動作成)
    - firstName
    - lastName
+   - createdAt (自動作成)
+   - updatedAt (自動作成)
 
-基本的に定義したモデルの複数形がテーブルになる。
+なんで複数形？っていうのは、以下の通り。基本的に定義したモデルの複数形がテーブルになる。
 
 > By default, sequelize will automatically transform all passed model names (first parameter of define) into plural.
 
-- 参考
-    - [Definition](docs.sequelizejs.com/en/latest/docs/models-definition)
+id の自動作成は、明確に記載されてないんだけど（どこかにあるのかな）、以下が効いてると思われる。
 
+> Sequelize will assume your table has a id primary key property by default.
+
+createdAt, updatedAt の自動作成は通り。
+
+> Sequelize will then automatically add the attributes createdAt and updatedAt.
+
+自動作成を無効にしたい！！カスタマイズしたいということは、もちろん可能。以下の参考へ。
+
+- 参考
+    - [PrimaryKey](http://docs.sequelizejs.com/en/latest/docs/legacy/#primary-keys)
+    - [Definition](http://docs.sequelizejs.com/en/latest/docs/models-definition)
+    
 
 ### 3.2. models の index.js について
 
@@ -233,3 +247,10 @@ User.findAll().then((users) => console.log(JSON.stringify(users)));
 
 - その他メソッド
     - http://docs.sequelizejs.com/en/latest/api/model/
+
+
+Project.create({name: "aho"});
+let user = User.create({
+    firstName: 'Yamada', 
+    lastName: 'Tarou'
+}).then((user) => user)

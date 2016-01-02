@@ -137,7 +137,7 @@
 <li><a href="#2-各種設定:d0405ca9cb7f9fb6a32a84decaf220bd">2. 各種設定</a>
 <ul>
 <li><a href="#2-1-db-作成:d0405ca9cb7f9fb6a32a84decaf220bd">2.1. DB 作成</a></li>
-<li><a href="#2-2-初期設定する:d0405ca9cb7f9fb6a32a84decaf220bd">2.2. 初期設定する</a></li>
+<li><a href="#2-2-初期設定:d0405ca9cb7f9fb6a32a84decaf220bd">2.2. 初期設定</a></li>
 </ul></li>
 <li><a href="#3-はじめてのモデル作成:d0405ca9cb7f9fb6a32a84decaf220bd">3. はじめてのモデル作成</a>
 <ul>
@@ -269,7 +269,7 @@ $ npm install --save mysql // For both mysql and mariadb dialects
 $ create database seq_dev character set utf8;
 </code></pre>
 
-<h3 id="2-2-初期設定する:d0405ca9cb7f9fb6a32a84decaf220bd">2.2. 初期設定する</h3>
+<h3 id="2-2-初期設定:d0405ca9cb7f9fb6a32a84decaf220bd">2.2. 初期設定</h3>
 
 <p><strong>1.3</strong> でインストールした Sequelize CLI を用いて初期設定する。</p>
 
@@ -325,22 +325,40 @@ models
 <li>Users
 
 <ul>
+<li>id (自動作成)</li>
 <li>firstName</li>
 <li>lastName</li>
+<li>createdAt (自動作成)</li>
+<li>updatedAt (自動作成)</li>
 </ul></li>
 </ul>
 
-<p>基本的に定義したモデルの複数形がテーブルになる。</p>
+<p>なんで複数形？っていうのは、以下の通り。基本的に定義したモデルの複数形がテーブルになる。</p>
 
 <blockquote>
 <p>By default, sequelize will automatically transform all passed model names (first parameter of define) into plural.</p>
 </blockquote>
 
+<p>id の自動作成は、明確に記載されてないんだけど（どこかにあるのかな）、以下が効いてると思われる。</p>
+
+<blockquote>
+<p>Sequelize will assume your table has a id primary key property by default.</p>
+</blockquote>
+
+<p>createdAt, updatedAt の自動作成は通り。</p>
+
+<blockquote>
+<p>Sequelize will then automatically add the attributes createdAt and updatedAt.</p>
+</blockquote>
+
+<p>自動作成を無効にしたい！！カスタマイズしたいということは、もちろん可能。以下の参考へ。</p>
+
 <ul>
 <li>参考
 
 <ul>
-<li><a href="docs.sequelizejs.com/en/latest/docs/models-definition">Definition</a></li>
+<li><a href="http://docs.sequelizejs.com/en/latest/docs/legacy/#primary-keys">PrimaryKey</a></li>
+<li><a href="http://docs.sequelizejs.com/en/latest/docs/models-definition">Definition</a></li>
 </ul></li>
 </ul>
 
@@ -421,6 +439,12 @@ User.findAll().then((users) =&gt; console.log(JSON.stringify(users)));
 <li><a href="http://docs.sequelizejs.com/en/latest/api/model/">http://docs.sequelizejs.com/en/latest/api/model/</a></li>
 </ul></li>
 </ul>
+
+<p>Project.create({name: &ldquo;aho&rdquo;});
+let user = User.create({
+    firstName: &lsquo;Yamada&rsquo;,
+    lastName: &lsquo;Tarou&rsquo;
+}).then((user) =&gt; user)</p>
 </div>
 </article>
 					
@@ -486,7 +510,7 @@ User.findAll().then((users) =&gt; console.log(JSON.stringify(users)));
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2015
+			<footer id="footer" class="inner">Copyright &copy; 2016
 
     Syati.info
 

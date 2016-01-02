@@ -228,7 +228,7 @@ Lines        : 100% ( 6/6 )
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;大事なのは、 &lt;strong&gt;1. pretest、&lt;/strong&gt; &lt;strong&gt;2. test、&lt;/strong&gt; &lt;strong&gt;3. posttest&lt;/strong&gt; です。&lt;/p&gt;
+&lt;p&gt;大事なのは、 &lt;strong&gt;1. pretest、2. test、3. posttest&lt;/strong&gt; です。&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;npm test&lt;/strong&gt; を実行することで &lt;strong&gt;1. 2. 3.&lt;/strong&gt;の順番で実行してくれます。今回の step2 - step5 をコマンド１つで済せられるということですね。&lt;/p&gt;
 

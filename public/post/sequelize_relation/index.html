@@ -1,0 +1,647 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head>
+	<meta charset="utf-8">
+	<title>Sequelize Part 2 - リレーションについて - Syati.info</title>
+	<meta name="author" content="map[author:mizuki-y]">
+
+	
+	  
+	<meta name="description" content="Sequelize のリレーションを学ぶ。belongsTo, hasOne, hasMany, belongsToMany の4つだけ。後、オプションを少し学べばやりたいことは大方出来るようになる。">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='http://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://blog.syati.info/post/sequelize_relation/">
+	<link href="http://blog.syati.info/favicon.png" rel="shortcut icon">
+	<link href="http://blog.syati.info/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://blog.syati.info/css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-9380531-6', 'auto', {'allowLinker': true});
+  ga('require', 'linker');
+  ga('linker:autoLink', ['syati.info'] );
+  ga('send', 'pageview');
+</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner">
+<a href="http://blog.syati.info">    
+    <div>
+        <h1>
+            Syati.info
+        </h1>        
+        <p>
+            かんがえるさかな
+        </p>
+    </div>
+</a>
+</section>
+
+
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='http://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+			<a class="google" href='https://plus.google.com/&#43;mizukiyamamoto' rel="author" title="Google+">Google+</a>
+		
+		
+			<a class="twitter" href='http://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='http://blog.syati.info/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+<nav id="main-nav">
+    <ul class="main">
+    <li><a href="http://blog.syati.info/">Blog</a></li>
+    <li><a href="http://blog.syati.info/about/">About</a></li>
+    <li><a href="http://blog.syati.info/post/">Archives</a></li>
+</ul>
+<div class="search-nav">
+    <label for="search">Search</label>
+    <input id="search" type="text">
+    <ul id="results">
+    </ul>
+</div>
+
+
+
+</nav>
+
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 class="title" itemprop="name">Sequelize Part 2 - リレーションについて</h1>
+    <div id="toc">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-リレーションの種類:4ab89ffec193a533a37a4e4a7c6ae107">1. リレーションの種類</a>
+<ul>
+<li><a href="#1-1-belongsto:4ab89ffec193a533a37a4e4a7c6ae107">1.1. belongsTo</a></li>
+<li><a href="#1-2-hasone:4ab89ffec193a533a37a4e4a7c6ae107">1.2. hasOne</a></li>
+<li><a href="#1-3-hasmany:4ab89ffec193a533a37a4e4a7c6ae107">1.3. hasMany</a></li>
+<li><a href="#1-4-belongstomany:4ab89ffec193a533a37a4e4a7c6ae107">1.4. belongsToMany</a></li>
+</ul></li>
+<li><a href="#2-その他-オプション:4ab89ffec193a533a37a4e4a7c6ae107">2. その他、オプション</a>
+<ul>
+<li><a href="#2-1-片方向と双方向:4ab89ffec193a533a37a4e4a7c6ae107">2.1. 片方向と双方向</a></li>
+<li><a href="#2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする:4ab89ffec193a533a37a4e4a7c6ae107">2.2. underscored: 外部キーの命名規則を camelCase から underscored にする</a></li>
+<li><a href="#2-3-as-target-のモデル名を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107">2.3. as: target のモデル名を任意に変更する</a></li>
+<li><a href="#2-4-foreignkey-外部キーの名前を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107">2.4. foreignKey: 外部キーの名前を任意に変更する</a></li>
+<li><a href="#2-5-targetkey-外部キーをプライマリキーから任意のカラムに変更する:4ab89ffec193a533a37a4e4a7c6ae107">2.5. targetKey: 外部キーをプライマリキーから任意のカラムに変更する</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>    
+	<div class="entry-content" itemprop="articleBody">
+
+<p><a href="http://blog.syati.info/post/sequelize_getting_started/">Sequelize Part 1</a> で、なんとなくわかってきた！！と思うので、今回は、リレーションについて学ぶ。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。</p>
+
+<h2 id="1-リレーションの種類:4ab89ffec193a533a37a4e4a7c6ae107">1. リレーションの種類</h2>
+
+<p>リレーションを理解するためには、<a href="http://docs.sequelizejs.com/en/latest/docs/associations/">Relations / Associations</a> を読み込まないと始まらない。結構ボリュームがあって、心折れそうになりますが！！実は大したことはないはず・・・。まずは、少しだけ用語の説明。</p>
+
+<blockquote>
+<p>When calling a method such as User.hasOne(Project), we say that the User model (the model that the function is being invoked on) is the source and the Project model (the model being passed as an argument) is the target.</p>
+</blockquote>
+
+<p>単なる呼び方ですね。先に出てくるモデルが <strong>source</strong> 。後に出てくるモデルが <strong>target</strong> ですよってことですね。</p>
+
+<pre><code class="language-javascript">// 以下の場合
+User.hasOne(Project)
+// User モデルが source
+// Project モデルが target
+</code></pre>
+
+<p>これは、外部キーがどちらに追加されるのかを明記するために利用する。リレーションは、以降の4種類（メソッド）ある。</p>
+
+<h3 id="1-1-belongsto:4ab89ffec193a533a37a4e4a7c6ae107">1.1. belongsTo</h3>
+
+<p><strong>プレイヤ belongs to チーム</strong> という場合。</p>
+
+<pre><code class="language-javascript">var Player = this.sequelize.define('Player', {/* ...attributes */})
+  , Team  = this.sequelize.define('Team', {/* ...attributes */});
+
+Player.belongsTo(Team);
+</code></pre>
+
+<p>上記は、以下のテーブルになる。</p>
+
+<ul>
+<li>Players
+
+<ul>
+<li>id</li>
+<li>&hellip;attributes</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+<li><strong>TeamId (belongsTo によって追加される)</strong></li>
+</ul></li>
+<li>Teams
+
+<ul>
+<li>id</li>
+<li>&hellip;attributes</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+</ul></li>
+</ul>
+
+<p><a href="http://docs.sequelizejs.com/en/latest/docs/associations/#belongsto">belongsTo</a> では <strong>source (Player)</strong> に外部キー（<strong>TeamId</strong>）が追加される。また、Player インスタンスは、<a href="http://docs.sequelizejs.com/en/latest/api/associations/belongs-to/">belongsTo - api</a> メソッドを持つ。</p>
+
+<p><strong>※外部キーが camelCase</strong> ！？という方は、<a href="#2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする:4ab89ffec193a533a37a4e4a7c6ae107">2.2. underscored: 外部キーの命名規則を camelCase から underscored にする</a> を参照のこと。</p>
+
+<h3 id="1-2-hasone:4ab89ffec193a533a37a4e4a7c6ae107">1.2. hasOne</h3>
+
+<p><strong>ユーザ has one プロフィール</strong> という場合。</p>
+
+<pre><code class="language-javascript">var User = sequelize.define('User', {/* ... */})
+var Profile = sequelize.define('Profile', {/* ... */})
+ 
+User.hasOne(Profile)
+</code></pre>
+
+<p>上記は、以下のテーブルになる。</p>
+
+<ul>
+<li>Users
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+</ul></li>
+<li>Profiles
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+<li><strong>UserId (hasOne によって追加される)</strong></li>
+</ul></li>
+</ul>
+
+<p><a href="(http://docs.sequelizejs.com/en/latest/docs/associations/#hasone">hasOne</a> では <strong>target (Profile)</strong> に外部キー（<strong>UserId</strong>）が追加される。<strong>belongsTo とその点が違うことに注意</strong>。また、User インスタンスは <a href="http://docs.sequelizejs.com/en/latest/api/associations/has-one/">hasOne - api</a> メソッドを持つ。</p>
+
+<h3 id="1-3-hasmany:4ab89ffec193a533a37a4e4a7c6ae107">1.3. hasMany</h3>
+
+<p><strong>プロジェクト has many ユーザ</strong> という場合。</p>
+
+<pre><code class="language-javascript">var Project = sequelize.define('Project', {/* ... */})
+var User = sequelize.define('User', {/* ... */})
+ 
+Project.hasMany(User)
+</code></pre>
+
+<p>上記では、以下のテーブルになる。</p>
+
+<ul>
+<li>Projects
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+</ul></li>
+<li>Users
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+<li><strong>ProjectId (hasMany によって追加される)</strong></li>
+</ul></li>
+</ul>
+
+<p><a href="http://docs.sequelizejs.com/en/latest/docs/associations/#one-to-many-associations">hasMany</a> では <strong>target (User)</strong> に外部キー（<strong>ProjectId</strong>）が追加される。これだけ見ると <strong>hasOne と同じじゃないか</strong>と思うかもしれないが、インスタンスが持つメソッドが異なる。Project インスタンスは <a href="http://docs.sequelizejs.com/en/latest/api/associations/has-many/">hasMany - api</a> メソッドを持つ。</p>
+
+<h3 id="1-4-belongstomany:4ab89ffec193a533a37a4e4a7c6ae107">1.4. belongsToMany</h3>
+
+<p><strong>プロジェクトは複数のユーザを持ち、ユーザは複数のプロジェクトに属する</strong> という <strong>多対多</strong> の場合。</p>
+
+<pre><code class="language-javascript">var Project = sequelize.define('Project', {/* ... */})
+var User = sequelize.define('User', {/* ... */})
+
+Project.belongsToMany(User, {through: 'UserProjects'});
+User.belongsToMany(Project, {through: 'UserProjects'});
+</code></pre>
+
+<p>上記は、以下のテーブルになる。</p>
+
+<ul>
+<li>Projects
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+</ul></li>
+<li>Users
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+</ul></li>
+<li><strong>UserProjects   (through オプションで指定した名前のテーブル)</strong>
+
+<ul>
+<li><strong>UserId    (belongsToMany によって追加される)</strong></li>
+<li><strong>ProjectId (belongsToMany によって追加される)</strong></li>
+<li>createdAt</li>
+<li>updatedAt</li>
+</ul></li>
+</ul>
+
+<p><a href="http://docs.sequelizejs.com/en/latest/docs/associations/#belongs-to-many-associations">belongsToMany</a> では、<strong>through で指定した名前のテーブル</strong>に双方のキー（ProjectId, UserId）が追加される。また、それぞれのインスタンスに以下のとおり(または <a href="http://docs.sequelizejs.com/en/latest/api/associations/belongs-to-many/">belongsToMany - api</a>) メソッドが追加される。</p>
+
+<blockquote>
+<p>This will add methods <strong>getUsers, setUsers, addUser,addUsers to Project</strong>, and <strong>getProjects, setProjects and addProject, addProjects to User</strong>.</p>
+</blockquote>
+
+<p>上記の UserProjects （中間テーブル）を見ると分かると思いますが <strong>id</strong> はありません。理由は以下のとおり。UserId, ProjectId の複合キーで十分なため、別にプライマリキー設ける必要ないでしょって話かな。</p>
+
+<blockquote>
+<p>By default the code above will add ProjectId and UserId to the UserProjects table, and remove any previously defined primary key attribute - the table will be uniquely identified by the combination of the keys of the two tables, and there is no reason to have other PK columns.</p>
+</blockquote>
+
+<p>ただし UserProjects モデルを以下のように定義することで、<strong>id</strong> を追加することや、<strong>status</strong> カラムを中間テーブルに追加することができる。</p>
+
+<pre><code class="language-javascript">var Project = sequelize.define('Project', {/* ... */})
+var User = sequelize.define('User', {/* ... */})
+
+var UserProjects = sequelize.define('UserProjects', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    status: DataTypes.STRING
+})
+
+User.belongsToMany(Project, { through: UserProjects })
+Project.belongsToMany(User, { through: UserProjects })
+</code></pre>
+
+<h2 id="2-その他-オプション:4ab89ffec193a533a37a4e4a7c6ae107">2. その他、オプション</h2>
+
+<h3 id="2-1-片方向と双方向:4ab89ffec193a533a37a4e4a7c6ae107">2.1. 片方向と双方向</h3>
+
+<p>以下の違いを覚えておく。</p>
+
+<ul>
+<li>片方向（one way）
+
+<ul>
+<li>belongsTo</li>
+<li>hasOne</li>
+<li>hasMany</li>
+</ul></li>
+<li>双方向 (two way)
+
+<ul>
+<li>belongsToMany</li>
+</ul></li>
+</ul>
+
+<p>片方向とは、言葉の通りだが、一方からしか取得できないということである。例えば、<strong>プレイヤ belongs to チーム</strong> という場合で考えると、<strong>プレイヤからチームを取得することは可能</strong>だが、<strong>チームからプレイヤを取得することは不可能</strong>ということである。以下コードサンプル。</p>
+
+<pre><code class="language-javascript">var Player = this.sequelize.define('Player', {/* ...attributes */})
+  , Team  = this.sequelize.define('Team', {/* ...attributes */});
+
+Player.belongsTo(Team);
+
+...
+
+// インスタンス利用
+// plyaer インスタンスから team を取得することは可能だが
+player.getTeam()
+// 以下のように team から プレイヤを取得することはできない
+// team.getPlayers()
+</code></pre>
+
+<p>なので、<strong>片方向のメソッドを利用して、双方向から取得できるようにする</strong>には、以下のようにモデルを定義してあげる必要がある。</p>
+
+<pre><code class="language-javascript">var Player = this.sequelize.define('Player', {/* ...attributes */})
+  , Team  = this.sequelize.define('Team', {/* ...attributes */});
+
+Player.belongsTo(Team); // belongsTo を利用
+Team.hasMany(Player);   // hasMany を利用
+...
+
+// インスタンス利用
+// plyaer インスタンスから team を取得することは可能かつ
+player.getTeam()
+// team から players を取得することが可能。
+team.getPlayers()
+</code></pre>
+
+<p>双方向については、上記のようなことをする必要はない。双方向を利用した際に、インスタンスにメソッドが追加されるため。<a href="http://localhost:1313/post/sequelize_relation/#1-4-belongstomany:4ab89ffec193a533a37a4e4a7c6ae107">1.4. belongsToMany</a> 参照のこと。</p>
+
+<h3 id="2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする:4ab89ffec193a533a37a4e4a7c6ae107">2.2. underscored: 外部キーの命名規則を camelCase から underscored にする</h3>
+
+<p><strong>Foreign keys</strong> は camelCase になります。</p>
+
+<blockquote>
+<p>The default casing is camelCase however if the source model is configured with underscored: true the foreignKey will be snake_case.</p>
+</blockquote>
+
+<p>もし、<strong>underscored</strong> のほうがいいよねって場合は、以下のようにしてあげる。</p>
+
+<pre><code class="language-javascript">var Player = this.sequelize.define('Player', {
+    /* ... */
+}, {
+    underscored: true
+});
+
+var Team  = this.sequelize.define('Team', {/* ... */});
+
+Player.belongsTo(Team);
+</code></pre>
+
+<p>上記は、以下のテーブルになる。</p>
+
+<ul>
+<li>Players
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+<li><strong>team_id (camelCase ではなく _ になる)</strong></li>
+</ul></li>
+<li>Teams
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+</ul></li>
+</ul>
+
+<h3 id="2-3-as-target-のモデル名を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107">2.3. as: target のモデル名を任意に変更する</h3>
+
+<p><strong>as</strong> オプションに任意の名前を与えることで、target のモデル名を変更できる</p>
+
+<pre><code class="language-javascript">var User = this.sequelize.define('User', {/* ... */})
+  , Project = sequelize.define('Project', {/* ... */})
+
+User.belongsTo(Project, {as: 'Prj'});
+</code></pre>
+
+<p>上記は、以下のテーブルになる。</p>
+
+<ul>
+<li>Users
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+<li><strong>PrjId (ProjectId ではなく as で指定した名前Id になる)</strong></li>
+</ul></li>
+<li>Projects
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+</ul></li>
+</ul>
+
+<p><strong>※ここで注意する必要があるのは</strong> リレーション(belongsToなど)を追加したときにインスタンスに追加されるメソッドである。今回の場合は User インスタンスのもつメソッドが以下になる。</p>
+
+<pre><code class="language-javascript">// as なしの場合、以下のメソッドだが（デフォルト）
+user.getProject();
+
+// as ありの場合、以下のメソッド(指定した名前)になる
+user.getPrj()
+</code></pre>
+
+<h3 id="2-4-foreignkey-外部キーの名前を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107">2.4. foreignKey: 外部キーの名前を任意に変更する</h3>
+
+<p><strong>foreignKey</strong> オプションに任意の名前を与えることで、Sequelize の外部キーの命名規則を完全無視できる</p>
+
+<pre><code class="language-javascript">var User = this.sequelize.define('User', {/* ... */})
+  , Project = sequelize.define('Project', {/* ... */})
+
+User.belongsTo(Project, {foreignKey: 'fk_project'});
+</code></pre>
+
+<p>上記は、以下のテーブルになる。</p>
+
+<ul>
+<li>Users
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+<li><strong>fk_project (ProjectId ではなく foreignKey で指定した名前になる)</strong></li>
+</ul></li>
+<li>Projects
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+</ul></li>
+</ul>
+
+<p><strong>※ここで注意する必要があるのは</strong> as で指定した場合とは異なり、インスタンスのもつメソッドは変わらないということ。</p>
+
+<pre><code class="language-javascript">// foreginKey あり・なしに関わらず、以下のメソッド（デフォルト）
+user.getProject();
+</code></pre>
+
+<h3 id="2-5-targetkey-外部キーをプライマリキーから任意のカラムに変更する:4ab89ffec193a533a37a4e4a7c6ae107">2.5. targetKey: 外部キーをプライマリキーから任意のカラムに変更する</h3>
+
+<p>以下にある通り、デフォルトの外部キーは target (または source)のプライマリキーになります。belongsTo としか書いてないけど、それ以外も基本同じ。</p>
+
+<blockquote>
+<p>By default the target key for a belongsTo relation will be the target primary key. To override this behavior, use the targetKey option.</p>
+</blockquote>
+
+<p>例えば、Project の name カラムを外部キーにする場合。</p>
+
+<pre><code class="language-javascript">var User = this.sequelize.define('User', {/* ... */});
+var Project = sequelize.define('Project', {
+    name: { type: DataTypes.STRING, unique: true}
+});
+
+User.belongsTo(models.Project, {foreignKey: 'fk_projectname', targetKey: 'name'});
+</code></pre>
+
+<p>上記は、以下のテーブルになる。</p>
+
+<ul>
+<li>Users
+
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+<li>fk_projectname</li>
+</ul></li>
+<li>Projects
+
+<ul>
+<li>id</li>
+<li>name</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+</ul></li>
+</ul>
+
+<p>インスタンスのもつメソッドは <a href="#2-4-foreignkey-外部キーの名前を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107">2.4. foreignKey: 外部キーの名前を任意に変更する</a> と変わりなし</p>
+</div>
+</article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size=''></a>
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					<section id="comment">
+					    <h1 class="title">Comments</h1>
+					    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+					</section>
+					
+					
+
+<script type="text/javascript">
+    
+    var disqus_shortname = 'blogsyatiinfo';
+
+    
+    
+
+    
+    (function () {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+    
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+    
+</script>
+
+
+				    </div>
+				</div>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8331825501555489"
+                     data-ad-slot="1897822451"
+                     data-ad-format="auto"></ins>
+                <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2016
+
+    Syati.info
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="http://blog.syati.info/js/slash.js"></script>
+<script src="http://blog.syati.info/js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script>
+</footer>
+		</div>
+	</div>
+	<script src="http://blog.syati.info/js/prism.js"></script>
+<script src="http://blog.syati.info/js/lunr.min.js"></script>
+<script src="http://blog.syati.info/js/search.js"></script>
+
+</body>
+</html>
