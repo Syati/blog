@@ -6,7 +6,14 @@
 			<span class="comments"><a href="{{ .Permalink }}#disqus_thread">Comments</a></span>
 		{{ end }}
 	</div>
-	<h1 class="title" itemprop="name"><a href="{{ .Permalink }}" itemprop="url">{{ if $.Site.Params.titlecase }}{{ .Title | title }}{{ else }}{{ .Title }}{{ end }}</a></h1>
+	<h1 class="title" itemprop="name">
+        <a href="{{ .Permalink }}" itemprop="url">
+            {{ if .Params.logo }}
+            <img class="entry-title-logo" src="/images/logo/{{ .Params.logo }}" />
+            {{ end }}
+            {{ if $.Site.Params.titlecase }}{{ .Title | title }}{{ else }}{{ .Title }}{{ end }}
+        </a>
+    </h1>
 	<div class="entry-content" itemprop="articleBody">
 		{{ .Summary }}
 		{{ if .Truncated }}<a href="{{ .Permalink }}" class="more-link">{{ if $.Site.Params.excerpt_link }}{{ $.Site.Params.excerpt_link }}{{ else }}Read on →{{ end }}</a>{{ end }}

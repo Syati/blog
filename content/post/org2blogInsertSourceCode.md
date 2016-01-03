@@ -4,10 +4,13 @@ Description = "org2blog の記事にコードブロックを入れるをいれ�
 Tags = ["Blog", "org2blog"]
 date = "2015-06-04T23:09:38+09:00"
 title = "org2blog の記事にコードブロックを入れる"
+logo = "emacs"
 
 +++
 
 org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 [org2blogからの投稿](http://syati.info/?p=1746) の続き。
+
+<!--more-->
 
 ## 必要なもの
 

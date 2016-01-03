@@ -9,6 +9,8 @@ title = "synerge ubuntu"
 
 Windows 7 と Ubuntu 12.04 のマシンを利用している Syati ですが、毎回 Ubuntu を立ち上げてログイン、synergy を立ち上げるのは面倒くさいので Ubuntu ログイン画面で自動で起動させるようにした。
 
+<!--more-->
+
 ## 方法
 
 /etc/lightdm/lightdm に一行加える

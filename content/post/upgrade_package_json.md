@@ -5,7 +5,7 @@ Tags = ["npm", "node"]
 comments = true
 date = "2015-10-07T22:00:32+09:00"
 title = "package.json を一括更新"
-
+logo = "npm"
 +++
 
 package.json の dependencies を、どうやって一括で更新するのかなと思ってたら！！

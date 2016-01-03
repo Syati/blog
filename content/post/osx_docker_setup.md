@@ -5,6 +5,7 @@ Tags = ["Env", "Infra"]
 comments = true
 date = "2015-09-03T16:00:00+09:00"
 title = "Docker Part 1 - Mac に Docker をインストールする"
+logo = "docker"
 
 +++
 

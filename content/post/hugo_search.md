@@ -5,7 +5,7 @@ Tags = ["Blog", "github.io"]
 comments = true
 date = "2015-09-21T16:25:47+09:00"
 title = "Hugo Part 5 - Hugo に Google カスタム検索エンジンを導入"
-
+logo = "hugo"
 +++
 
 記事が多くなってくると、やっぱり検索したくなるもんです。Hugo で検索を使うには、[Tools](https://gohugo.io/tools) に書いてある通り以下の方法があります。

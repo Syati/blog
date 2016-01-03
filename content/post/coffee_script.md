@@ -4,7 +4,7 @@ Description = "Emacs で CoffeeScript を AutoComplete するメモ"
 Tags = ["Env"]
 date = "2015-06-04T23:09:38+09:00"
 title = "Emacs で CoffeeScript を AutoComplete する"
-
+logo = "emacs"
 +++
 
 [Coffee-modeでauto-completeを使えるようにする](http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/) を参考に、

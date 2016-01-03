@@ -4,7 +4,7 @@ Description = "Emacs で Javascript なら js2-mode, tern-mode"
 Tags = ["Env"]
 date = "2015-08-31T13:38:35+09:00"
 title = "Emacs で Javascript なら js2-mode, tern-mode"
-
+logo = "emacs"
 +++
 
 [Emacs で JavaScript の開発環境を整える]({{< ref "post/emacsJavascript.md" >}}) で、

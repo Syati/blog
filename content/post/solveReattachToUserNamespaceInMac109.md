@@ -7,8 +7,9 @@ title = "reattach-to-user-namespace: unsupported new OS を解決する"
 
 +++
 
-
 ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。
+
+<!--more-->
 
 ## 手順
 

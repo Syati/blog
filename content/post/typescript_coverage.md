@@ -5,6 +5,7 @@ Tags = ["test", "coverage"]
 comments = true
 date = "2015-10-31T14:00:39+09:00"
 title = "TypeScript でユニットテストする。カバレッジもねっ!!"
+logo = "typescript"
 
 +++
 

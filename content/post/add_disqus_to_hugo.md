@@ -5,6 +5,7 @@ Tags = ["Blog", "github.io"]
 comments = true
 date = "2015-06-09T00:02:04+09:00"
 title = "Hugo Part 3 - Hugo にコメント欄を導入"
+logo = "hugo"
 
 +++
 

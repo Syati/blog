@@ -4,7 +4,7 @@ Description = "Emacs で JavaScript の開発環境を整えるメモ"
 Tags = ["Env"]
 date = "2015-06-04T23:09:38+09:00"
 title = "Emacs で JavaScript の開発環境を整える"
-
+logo = "emacs"
 +++
 
 開発環境はとっても大事なんですが、構築までに時間がかかりますよね。

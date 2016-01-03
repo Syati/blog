@@ -4,7 +4,7 @@ Description = "Cygwin、Zsh、NTEmacs で Windows に Linux環境を構築をす
 Tags = ["Env"]
 date = "2015-06-04T23:09:38+09:00"
 title = "Cygwin + Zsh + NTEmacs で作る Linux環境 in Windows"
-
+logo = "emacs"
 +++
 
 

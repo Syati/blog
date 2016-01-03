@@ -5,6 +5,7 @@ Tags = ["Sequelize", "ORM"]
 comments = true
 date = "2016-01-02T22:00:15+09:00"
 title = "Sequelize Part 2 - リレーションについて"
+logo = "sequelize"
 
 +++
     

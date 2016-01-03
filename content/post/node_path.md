@@ -7,8 +7,9 @@ title = "node 利用するなら、まずは環境変数を設定しましょう
 
 +++
 
-
 javascript を REPL で利用できるといえば **node** 。underscore.js を試したいと思いハマったメモ。
+
+<!--more-->
 
 ## はまった事
 

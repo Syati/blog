@@ -5,6 +5,7 @@ Tags = ["Blog", "github.io"]
 date = "2015-06-07T21:55:31+09:00"
 title = "Hugo Part 2 - Hugo で github にブログを立ち上げる"
 comments = true
+logo = "hugo"
 
 +++
 

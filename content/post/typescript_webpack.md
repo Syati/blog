@@ -5,6 +5,7 @@ Tags = ["webpack"]
 comments = true
 date = "2015-10-10T18:37:23+09:00"
 title = "TypeScript でフロントエンドを実装する"
+logo = "typescript"
 
 +++
 

@@ -1,5 +1,10 @@
-
-    <h1 class="title" itemprop="name">{{ if $.Site.Params.titlecase }}{{ .Title | title }}{{ else }}{{ .Title }}{{ end }}</h1>
+   
+   <h1 class="title" itemprop="name">
+       {{ if .Params.logo }}
+       <img class="entry-title-logo" src="/images/logo/{{ .Params.logo }}" />
+       {{ end }}
+       {{ if $.Site.Params.titlecase }}{{ .Title | title }}{{ else }}{{ .Title }}{{ end }}
+   </h1>
     <div id="toc">
         {{ .TableOfContents }}
     </div>    

@@ -5,6 +5,7 @@ Tags = ["Env", "Infra"]
 comments = true
 date = "2015-09-20T15:49:48+09:00"
 title = "Docker Part 3 - Docker で nginx を構築する"
+logo = "docker"
 
 +++
 

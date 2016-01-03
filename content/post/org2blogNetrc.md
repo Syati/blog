@@ -4,10 +4,12 @@ Description = "org2blog で毎回ログインする際に求められるパス�
 Tags = ["Blog", "org2blog"]
 date = "2015-06-04T23:09:38+09:00"
 title = "org2blog でブログに接続する際のパスワードを .netrc に保存しておく"
-
+logo = "emacs"
 +++
 
 org2blog で毎回ログインする際に求められるパスワード入力がめんどくさいが、init.el に書いておくのもちょっと&#x2026;とおもっている場合は、.netrc を使うのがお勧め
+
+<!--more-->
 
 ## 手順
 
