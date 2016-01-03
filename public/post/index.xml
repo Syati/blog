@@ -17,7 +17,7 @@
       <guid>http://blog.syati.info/post/sequelize_relation/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/sequelize_getting_started/&#34;&gt;Sequelize Part 1&lt;/a&gt; で、なんとなくわかってきた！！と思うので、今回は、リレーションについて学ぶ。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/sequelize_getting_started/&#34;&gt;Sequelize Part 1&lt;/a&gt; で、なんとなくわかってきた！！と思うので、今回は、リレーションについて学ぶ。&lt;strong&gt;belongsTo, hasOne, hasMany, belongsToMany&lt;/strong&gt; の4つだけ。後、オプションを少し学べばやりたいことは大方出来るようになる。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。&lt;/p&gt;
 
 &lt;h2 id=&#34;1-リレーションの種類:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1. リレーションの種類&lt;/h2&gt;
 

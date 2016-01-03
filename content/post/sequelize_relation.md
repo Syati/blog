@@ -1,6 +1,6 @@
 +++
 Categories = ["JavaScript"]
-Description = "Sequelize のリレーションを学ぶ。belongsTo, hasOne, hasMany, belongsToMany の4つだけ。後、オプションを少し学べばやりたいことは大方出来るようになる。"
+Description = "Sequelize のリレーションを学ぶ。belongsTo, hasOne, hasMany, belongsToMany の4つだけ。後、オプションを少し学べばやりたいことは大方出来るようになる。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。"
 Tags = ["Sequelize", "ORM"]
 comments = true
 date = "2016-01-02T22:00:15+09:00"
@@ -8,7 +8,7 @@ title = "Sequelize Part 2 - リレーションについて"
 
 +++
     
-[Sequelize Part 1]({{< ref "post/sequelize_getting_started.md" >}}) で、なんとなくわかってきた！！と思うので、今回は、リレーションについて学ぶ。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。
+[Sequelize Part 1]({{< ref "post/sequelize_getting_started.md" >}}) で、なんとなくわかってきた！！と思うので、今回は、リレーションについて学ぶ。**belongsTo, hasOne, hasMany, belongsToMany** の4つだけ。後、オプションを少し学べばやりたいことは大方出来るようになる。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。
 
 <!--more-->
 
