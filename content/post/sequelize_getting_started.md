@@ -248,10 +248,3 @@ User.findAll().then((users) => console.log(JSON.stringify(users)));
 
 - その他メソッド
     - http://docs.sequelizejs.com/en/latest/api/model/
-
-
-Project.create({name: "aho"});
-let user = User.create({
-    firstName: 'Yamada', 
-    lastName: 'Tarou'
-}).then((user) => user)
