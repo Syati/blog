@@ -5,7 +5,9 @@
        {{ end }}
        {{ if $.Site.Params.titlecase }}{{ .Title | title }}{{ else }}{{ .Title }}{{ end }}
    </h1>
+   {{ if .TableOfContents }}   
     <div id="toc">
         {{ .TableOfContents }}
-    </div>    
+    </div>
+    {{ end }}
 	<div class="entry-content" itemprop="articleBody">{{ .Content }}</div>
