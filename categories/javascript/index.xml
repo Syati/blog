@@ -724,12 +724,6 @@ User.findAll().then((users) =&amp;gt; console.log(JSON.stringify(users)));
 &lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/model/&#34;&gt;http://docs.sequelizejs.com/en/latest/api/model/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;p&gt;Project.create({name: &amp;ldquo;aho&amp;rdquo;});
-let user = User.create({
-    firstName: &amp;lsquo;Yamada&amp;rsquo;,
-    lastName: &amp;lsquo;Tarou&amp;rsquo;
-}).then((user) =&amp;gt; user)&lt;/p&gt;
 </description>
     </item>
     
