@@ -7,7 +7,34 @@
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Sat, 02 Jan 2016 22:00:15 JST</updated>
+    <updated>Wed, 13 Jul 2016 01:01:50 JST</updated>
+    
+    <item>
+      <title>うるさいよ &#39;You are running composer with xdebug enabled. This has a major impact on runtime performance&#39;</title>
+      <link>http://blog.syati.info/post/php-composer/</link>
+      <pubDate>Wed, 13 Jul 2016 01:01:50 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/php-composer/</guid>
+      <description>
+
+&lt;p&gt;最近、php を触る機会が増えたので、メモメモ。
+composer 叩いたら xdebug を enable にしてると遅いよっていう以下のメッセージが流れるので composer 叩いた時に出ないようにする。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;You are running composer with xdebug enabled. This has a major impact on runtime performance. See https://getcomposer.org/xdebug
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;方法:1b16d1c75676533b4a2de7dd8fcb89c6&#34;&gt;方法&lt;/h2&gt;
+
+&lt;p&gt;zsh を利用しているので .zshrc に以下を加える。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;alias composer=&amp;quot;php -n /usr/local/bin/composer&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;参考:1b16d1c75676533b4a2de7dd8fcb89c6&#34;&gt;参考&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&#34;&gt;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Sequelize Part 2 - リレーションについて</title>
@@ -2062,101 +2089,6 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
     
 &lt;/figure&gt;
 
-</description>
-    </item>
-    
-    <item>
-      <title>Hugo Part 4 - Hugo に SyntaxHighlighter を導入</title>
-      <link>http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</link>
-      <pubDate>Wed, 17 Jun 2015 22:42:39 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</guid>
-      <description>
-
-&lt;p&gt;ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
-というこで &lt;a href=&#34;http://gohugo.io/extras/highlighting/&#34;&gt;Syntax Highlighting&lt;/a&gt; を
-参考にして早速導入する。&lt;/p&gt;
-
-&lt;p&gt;dir 構成等は、以下の記事参照のこと&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.syati.info/post/add_disqus_to_hugo/&#34;&gt;Part 3&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 1 Client-side の SyntaxHighlighter ライブラリ取得&lt;/h2&gt;
-
-&lt;p&gt;導入方法として &lt;strong&gt;Server-side&lt;/strong&gt; と &lt;strong&gt;Client-side&lt;/strong&gt; の方法がありますが、
-今回は後者を利用します。また、ライブラリーはたくさんありますが、&lt;strong&gt;&lt;a href=&#34;http://prismjs.com/&#34;&gt;Prism&lt;/a&gt;&lt;/strong&gt;
-を利用します。&lt;/p&gt;
-
-&lt;p&gt;Prism のHPにいって利用したい好きな Themes と Languages にチェックをいれて、
-ページ下部の DOWNLOAD JS と DOWNLOAD CSS から DL しましょう。
-ちなみに当ページの Prism のテーマは Default(Okaidia) を利用しています。&lt;/p&gt;
-
-&lt;h2 id=&#34;step-2-対象ファイルコピー:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 2 対象ファイルコピー&lt;/h2&gt;
-
-&lt;p&gt;DL したファイルを以下のようにコピーしてあげる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cp prism.js yourblog/static/js/
-$ cp prism.css yourblog/static/css/
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;step-3-custom-設定を加える:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 3 custom 設定を加える&lt;/h2&gt;
-
-&lt;p&gt;以下のように yourblog/layouts/partials/custom に移動して
-&lt;strong&gt;対象ファイル１&lt;/strong&gt;と&lt;strong&gt;対象ファイル２&lt;/strong&gt;を編集します。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd yourblog/layouts/partials/custom
-$ tree -L 1
-.
-├── after_footer.html  # 対象ファイル１
-├── asides
-├── footer.html
-├── head.html          # 対象ファイル２
-├── header.html
-└── navigation.html
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;以下のように対象ファイル１に１行追加。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;&amp;lt;script src=&amp;quot;{{ .Site.BaseURL }}/js/prism.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;以下のように対象ファイル２に１行追加。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;&amp;lt;link href=&amp;quot;{{ .Site.BaseURL }}/css/prism.css&amp;quot; media=&amp;quot;screen, projection&amp;quot; rel=&amp;quot;stylesheet&amp;quot; type=&amp;quot;text/css&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;これで設定は終了。&lt;/p&gt;
-
-&lt;h2 id=&#34;step-4-コードをいれてみる:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 4 コードをいれてみる&lt;/h2&gt;
-
-&lt;p&gt;新しい記事でも作成して、以下のような感じでコードをいれると。
-~ 半角でいれると解釈されるため 〜 全角で入れています。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-markup&#34;&gt;〜〜〜c
-#include &amp;lt;stdio.h&amp;gt;
-
-int main(void)
-{
-    printf(&amp;quot;hello, world\n&amp;quot;);
-    return;
-}
-〜〜〜
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;あら素敵！！というふうになる。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
-
-int main(void)
-{
-    printf(&amp;quot;hello, world\n&amp;quot;);
-    return;
-}
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
