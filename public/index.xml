@@ -11,10 +11,10 @@
     
     <item>
       <title>うるさいよ &#39;You are running composer with xdebug enabled. This has a major impact on runtime performance&#39;</title>
-      <link>http://blog.syati.info/post/php-composer/</link>
+      <link>http://blog.syati.info/post/php_composer/</link>
       <pubDate>Wed, 13 Jul 2016 01:01:50 JST</pubDate>
       
-      <guid>http://blog.syati.info/post/php-composer/</guid>
+      <guid>http://blog.syati.info/post/php_composer/</guid>
       <description>
 
 &lt;p&gt;最近、php を触る機会が増えたので、メモメモ。
@@ -23,14 +23,14 @@ composer 叩いたら xdebug を enable にしてると遅いよっていう以�
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;You are running composer with xdebug enabled. This has a major impact on runtime performance. See https://getcomposer.org/xdebug
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;方法:1b16d1c75676533b4a2de7dd8fcb89c6&#34;&gt;方法&lt;/h2&gt;
+&lt;h2 id=&#34;方法:1ead9dddf59ab7fa3348954d3c2dbcf6&#34;&gt;方法&lt;/h2&gt;
 
 &lt;p&gt;zsh を利用しているので .zshrc に以下を加える。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;alias composer=&amp;quot;php -n /usr/local/bin/composer&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;参考:1b16d1c75676533b4a2de7dd8fcb89c6&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考:1ead9dddf59ab7fa3348954d3c2dbcf6&#34;&gt;参考&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&#34;&gt;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&lt;/a&gt;&lt;/p&gt;
 </description>
