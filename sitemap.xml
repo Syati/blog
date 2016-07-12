@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://blog.syati.info/</loc>
-    <lastmod>2016-01-02T22:00:15+09:00</lastmod>
+    <lastmod>2016-07-13T01:01:50+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/post/php-composer/</loc>
+    <lastmod>2016-07-13T01:01:50+09:00</lastmod>
   </url>
   
   <url>
