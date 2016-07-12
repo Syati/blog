@@ -1,6 +1,3 @@
 # blog
 
-
-http://syati.github.io/blog
-
-aaa
+http://blog.syati.info
