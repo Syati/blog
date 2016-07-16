@@ -5,6 +5,7 @@ Tags = ["composer"]
 comments = true
 date = "2016-07-13T01:01:50+09:00"
 title = "うるさいよ 'You are running composer with xdebug enabled. This has a major impact on runtime performance'"
+logo = "php"
 
 +++
 
