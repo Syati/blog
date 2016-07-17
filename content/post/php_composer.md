@@ -12,6 +12,8 @@ logo = "php"
 最近、php を触る機会が増えたので、メモメモ。
 composer 叩いたら xdebug を enable にしてると遅いよっていう以下のメッセージが流れるので composer 叩いた時に出ないようにする。
 
+<!--more-->
+
 ~~~bash
 You are running composer with xdebug enabled. This has a major impact on runtime performance. See https://getcomposer.org/xdebug
 ~~~

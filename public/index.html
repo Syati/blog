@@ -153,7 +153,9 @@
         </a>
     </h1>
 	<div class="entry-content" itemprop="articleBody">
-		最近、php を触る機会が増えたので、メモメモ。 composer 叩いたら xdebug を enable にしてると遅いよっていう以下のメッセージが流れるので composer 叩いた時に出ないようにする。 You are running composer with xdebug enabled. This has a major impact on runtime performance. See https://getcomposer.org/xdebug 方法 方法 1. 2. どちらかでインストール、設定する 1. brew でインストールする brew install composer # .zshrc に alias を設定する alias composer=&quot;php -n /usr/local/Cellar/composer/1.1.2/libexec/composer.phar&quot; 1.1.2 というバージョンのところは適宜修正する。 その他 以下のよう alias を設定すれば良いのではと思うかもしれないが、うまくコマンドが通らない # .zshrc に alias を設定する alias composer=&quot;php -n /usr/local/bin/composer&quot; #上記の設定だとコマンドを叩いた時に以下のような出力がでてしまう $ composer /usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &quot;$@&quot; というのも usr/local/bin/composer のリンク先が /usr/local/Cellar/composer/1.1.2/libexec/composer でその中身が以下のようになっているため。 #!/usr/bin/env bash /usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &quot;$@&quot; 2.
+		<p>最近、php を触る機会が増えたので、メモメモ。
+composer 叩いたら xdebug を enable にしてると遅いよっていう以下のメッセージが流れるので composer 叩いた時に出ないようにする。</p>
+
 		<a href="http://blog.syati.info/post/php_composer/" class="more-link">Read on →</a>
 	</div>
 </article>
