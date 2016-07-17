@@ -133,7 +133,14 @@
 <ul>
 <li>
 <ul>
-<li><a href="#方法:1ead9dddf59ab7fa3348954d3c2dbcf6">方法</a></li>
+<li><a href="#方法:1ead9dddf59ab7fa3348954d3c2dbcf6">方法</a>
+<ul>
+<li><a href="#1-brew-でインストールする:1ead9dddf59ab7fa3348954d3c2dbcf6">1. brew でインストールする</a>
+<ul>
+<li><a href="#その他:1ead9dddf59ab7fa3348954d3c2dbcf6">その他</a></li>
+</ul></li>
+<li><a href="#2-composer-の-web-からインストールする:1ead9dddf59ab7fa3348954d3c2dbcf6">2. composer の web からインストールする</a></li>
+</ul></li>
 <li><a href="#参考:1ead9dddf59ab7fa3348954d3c2dbcf6">参考</a></li>
 </ul></li>
 </ul>
@@ -150,9 +157,45 @@ composer 叩いたら xdebug を enable にしてると遅いよっていう以�
 
 <h2 id="方法:1ead9dddf59ab7fa3348954d3c2dbcf6">方法</h2>
 
-<p>zsh を利用しているので .zshrc に以下を加える。</p>
+<p>方法 1. 2. どちらかでインストール、設定する</p>
 
-<pre><code class="language-bash">alias composer=&quot;php -n /usr/local/bin/composer&quot;
+<h3 id="1-brew-でインストールする:1ead9dddf59ab7fa3348954d3c2dbcf6">1. brew でインストールする</h3>
+
+<pre><code class="language-bash">brew install composer
+
+# .zshrc に alias を設定する
+alias composer=&quot;php -n /usr/local/Cellar/composer/1.1.2/libexec/composer.phar&quot;
+</code></pre>
+
+<p><strong>1.1.2</strong> というバージョンのところは適宜修正する。</p>
+
+<h4 id="その他:1ead9dddf59ab7fa3348954d3c2dbcf6">その他</h4>
+
+<p>以下のよう alias を設定すれば良いのではと思うかもしれないが、うまくコマンドが通らない</p>
+
+<pre><code class="language-bash"># .zshrc に alias を設定する
+alias composer=&quot;php -n /usr/local/bin/composer&quot;
+
+#上記の設定だとコマンドを叩いた時に以下のような出力がでてしまう
+$ composer
+/usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &quot;$@&quot;
+</code></pre>
+
+<p>というのも <strong>usr/local/bin/composer</strong> のリンク先が <strong>/usr/local/Cellar/composer/1.1.2/libexec/composer</strong> でその中身が以下のようになっているため。</p>
+
+<pre><code class="language-bash">#!/usr/bin/env bash
+/usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &quot;$@&quot;
+</code></pre>
+
+<h3 id="2-composer-の-web-からインストールする:1ead9dddf59ab7fa3348954d3c2dbcf6">2. composer の web からインストールする</h3>
+
+<pre><code class="language-bash">wget https://getcomposer.org/download/1.1.3/composer.phar
+mv ./composer.phar /usr/local/bin/composer
+chmod +x /usr/local/bin/composer
+</code></pre>
+
+<pre><code class="language-bash"># .zshrc に alias を設定する
+alias composer=&quot;php -n /usr/local/bin/composer&quot;
 </code></pre>
 
 <h2 id="参考:1ead9dddf59ab7fa3348954d3c2dbcf6">参考</h2>
