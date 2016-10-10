@@ -58,7 +58,7 @@ module.exports = function(grunt) {
                 console.failed(e.message);
             }
 
-            var href = S(abspath).chompLeft(CONTENT_PATH_PREFIX).chompRight(".md").s;
+          var href = S(abspath).chompLeft(CONTENT_PATH_PREFIX).chompRight(".md").concat("/").s;
             // href for index.md files stops at the folder name
             if (filename === "index.md") {
                 href = S(abspath).chompLeft(CONTENT_PATH_PREFIX).chompRight(filename).s;
