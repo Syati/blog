@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Tool on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://blog.syati.info/categories/tool/</link>
+    <language>ja-JP</language>
+    
+    <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
+    <updated>Sat, 29 Apr 2017 19:02:10 JST</updated>
+    
+    <item>
+      <title>Sequel Pro の ctrl&#43;h ヘルプを backspace に変更する</title>
+      <link>http://blog.syati.info/post/sequel_pro_overwrite_ctrl_h/</link>
+      <pubDate>Sat, 29 Apr 2017 19:02:10 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/sequel_pro_overwrite_ctrl_h/</guid>
+      <description>&lt;p&gt;Sequel Pro 便利ですよね。簡単に select とか DB 作成、きれいな結果表示などなど。
+ただ、emacs ユーザーの私にとってウザくてウザくて堪らないのが、&lt;strong&gt;ctrl+h&lt;/strong&gt; を打つと、このソフトでは&lt;strong&gt;ヘルプ&lt;/strong&gt;を開くということ。頼むから Backspace にしてくれ！！と。&lt;/p&gt;
+
+&lt;p&gt;調べてみると、上書き出来るではないか！！&lt;a href=&#34;https://github.com/sequelpro/sequelpro/issues/1974&#34;&gt;github の issue&lt;/a&gt;に書いてあった。ということで以下に、その方法記す。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;準備&#34;&gt;準備&lt;/h2&gt;
+
+&lt;p&gt;とりあえず、デフォルトでは ctrl+h でこのヘルプがでてくる。&lt;/p&gt;
+
+
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;popup_help.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;fig 1. help が出力される&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;なんで、ヘルプがでるかというと以下で ctrl+h にショートカットが割り当てられているため。&lt;/p&gt;
+
+
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;default_shortcut.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;fig 2. default のショートカット&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h2 id=&#34;修正&#34;&gt;修正&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-システム環境設定-キーボード-ショートカットタブ-アプリケーション&#34;&gt;1. システム環境設定 -&amp;gt; キーボード -&amp;gt; ショートカットタブ -&amp;gt; アプリケーション&lt;/h3&gt;
+
+
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;default_keyboard_shortcut.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;fig 3. アプリケーションのショートカット&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h3 id=&#34;2-ボタンから新規追加する&#34;&gt;2. + ボタンから新規追加する&lt;/h3&gt;
+
+&lt;p&gt;大事なのは Sequel Pro で既存で割当てられいるメニューコマンドと同じにするということ。すなわち &lt;strong&gt;準備 fig 2.&lt;/strong&gt; に表示されている &lt;strong&gt;^H&lt;/strong&gt; のメニューコマンド &lt;strong&gt;単語の MySQL ヘルプ&lt;/strong&gt; である。とりあえず &lt;strong&gt;Shift + Command + H&lt;/strong&gt; にでも割り当てる。&lt;/p&gt;
+
+
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;add_keyboard_shortcut.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;fig 4. Sequel Pro の既存ショートカットを上書きする&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;added_keyboard_shortcut.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;fig 5. 登録完了&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h3 id=&#34;3-sequel-pro-でショートカットが上書きされたかを確認する&#34;&gt;3. Sequel Pro でショートカットが上書きされたかを確認する&lt;/h3&gt;
+
+&lt;p&gt;Sequel Pro のヘルプを確認する。変更されていることが確認できる。&lt;/p&gt;
+
+
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;added_shortcut.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;fig 6. ショートカット上書き完了&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;後はクエリで ctrl+h で backspece できることを確認する。&lt;/p&gt;
+
+&lt;h2 id=&#34;終わりに&#34;&gt;終わりに&lt;/h2&gt;
+
+&lt;p&gt;ctrl + h で &lt;em&gt;ヘルプに悩まされる日々、さようなら&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

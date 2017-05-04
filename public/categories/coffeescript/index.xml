@@ -15,12 +15,11 @@
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
       <guid>http://blog.syati.info/post/coffee_script/</guid>
-      <description>
+      <description>&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、
+coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。
+&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、
-coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。&lt;/p&gt;
-
-&lt;h2 id=&#34;必要なパッケージ:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;必要なパッケージ&lt;/h2&gt;
+&lt;h2 id=&#34;必要なパッケージ&#34;&gt;必要なパッケージ&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;M-x package-list-package から 以下をインストールする
@@ -30,7 +29,7 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;設定:39085f89ce5df764c9a96e79f52fa5cd&#34;&gt;設定&lt;/h2&gt;
+&lt;h2 id=&#34;設定&#34;&gt;設定&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考にして以下の部分を変更してあげる&lt;/p&gt;
 
@@ -39,8 +38,7 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
         (jquery-doc-setup) ;; ここに jquery-doc を追加する
         (add-to-list &#39;ac-dictionary-files &amp;quot;~/.emacs.d/ac-dict/js2-mode&amp;quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
      ))
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
   </channel>

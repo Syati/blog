@@ -15,11 +15,11 @@
       <pubDate>Sat, 02 Jan 2016 22:00:15 JST</pubDate>
       
       <guid>http://blog.syati.info/post/sequelize_relation/</guid>
-      <description>
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/sequelize_getting_started/&#34;&gt;Sequelize Part 1&lt;/a&gt; で、なんとなくわかってきた！！と思うので、今回は、リレーションについて学ぶ。&lt;strong&gt;belongsTo, hasOne, hasMany, belongsToMany&lt;/strong&gt; の4つだけ。後、オプションを少し学べばやりたいことは大方出来るようになる。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/sequelize_getting_started/&#34;&gt;Sequelize Part 1&lt;/a&gt; で、なんとなくわかってきた！！と思うので、今回は、リレーションについて学ぶ。&lt;strong&gt;belongsTo, hasOne, hasMany, belongsToMany&lt;/strong&gt; の4つだけ。後、オプションを少し学べばやりたいことは大方出来るようになる。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;1-リレーションの種類:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1. リレーションの種類&lt;/h2&gt;
+&lt;h2 id=&#34;1-リレーションの種類&#34;&gt;1. リレーションの種類&lt;/h2&gt;
 
 &lt;p&gt;リレーションを理解するためには、&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/associations/&#34;&gt;Relations / Associations&lt;/a&gt; を読み込まないと始まらない。結構ボリュームがあって、心折れそうになりますが！！実は大したことはないはず・・・。まずは、少しだけ用語の説明。&lt;/p&gt;
 
@@ -37,7 +37,7 @@ User.hasOne(Project)
 
 &lt;p&gt;これは、外部キーがどちらに追加されるのかを明記するために利用する。リレーションは、以降の4種類（メソッド）ある。&lt;/p&gt;
 
-&lt;h3 id=&#34;1-1-belongsto:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.1. belongsTo&lt;/h3&gt;
+&lt;h3 id=&#34;1-1-belongsto&#34;&gt;1.1. belongsTo&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;プレイヤ belongs to チーム&lt;/strong&gt; という場合。&lt;/p&gt;
 
@@ -73,7 +73,7 @@ Player.belongsTo(Team);
 
 &lt;p&gt;&lt;strong&gt;※外部キーが camelCase&lt;/strong&gt; ！？という方は、&lt;a href=&#34;#2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.2. underscored: 外部キーの命名規則を camelCase から underscored にする&lt;/a&gt; を参照のこと。&lt;/p&gt;
 
-&lt;h3 id=&#34;1-2-hasone:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.2. hasOne&lt;/h3&gt;
+&lt;h3 id=&#34;1-2-hasone&#34;&gt;1.2. hasOne&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;ユーザ has one プロフィール&lt;/strong&gt; という場合。&lt;/p&gt;
 
@@ -101,13 +101,14 @@ User.hasOne(Profile)
 &lt;li&gt;&amp;hellip;&lt;/li&gt;
 &lt;li&gt;createdAt&lt;/li&gt;
 &lt;li&gt;updatedAt&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UserId (hasOne によって追加される)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UserId (hasOne によって追加される)&lt;/strong&gt;
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&#34;(http://docs.sequelizejs.com/en/latest/docs/associations/#hasone&#34;&gt;hasOne&lt;/a&gt; では &lt;strong&gt;target (Profile)&lt;/strong&gt; に外部キー（&lt;strong&gt;UserId&lt;/strong&gt;）が追加される。&lt;strong&gt;belongsTo とその点が違うことに注意&lt;/strong&gt;。また、User インスタンスは &lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/associations/has-one/&#34;&gt;hasOne - api&lt;/a&gt; メソッドを持つ。&lt;/p&gt;
+&lt;p&gt;[hasOne]((&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/associations/#hasone&#34;&gt;http://docs.sequelizejs.com/en/latest/docs/associations/#hasone&lt;/a&gt;) では &lt;strong&gt;target (Profile)&lt;/strong&gt; に外部キー（&lt;strong&gt;UserId&lt;/strong&gt;）が追加される。&lt;strong&gt;belongsTo とその点が違うことに注意&lt;/strong&gt;。また、User インスタンスは &lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/associations/has-one/&#34;&gt;hasOne - api&lt;/a&gt; メソッドを持つ。&lt;/p&gt;
 
-&lt;h3 id=&#34;1-3-hasmany:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.3. hasMany&lt;/h3&gt;
+&lt;h3 id=&#34;1-3-hasmany&#34;&gt;1.3. hasMany&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;プロジェクト has many ユーザ&lt;/strong&gt; という場合。&lt;/p&gt;
 
@@ -141,7 +142,7 @@ Project.hasMany(User)
 
 &lt;p&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/associations/#one-to-many-associations&#34;&gt;hasMany&lt;/a&gt; では &lt;strong&gt;target (User)&lt;/strong&gt; に外部キー（&lt;strong&gt;ProjectId&lt;/strong&gt;）が追加される。これだけ見ると &lt;strong&gt;hasOne と同じじゃないか&lt;/strong&gt;と思うかもしれないが、インスタンスが持つメソッドが異なる。Project インスタンスは &lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/associations/has-many/&#34;&gt;hasMany - api&lt;/a&gt; メソッドを持つ。&lt;/p&gt;
 
-&lt;h3 id=&#34;1-4-belongstomany:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.4. belongsToMany&lt;/h3&gt;
+&lt;h3 id=&#34;1-4-belongstomany&#34;&gt;1.4. belongsToMany&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;プロジェクトは複数のユーザを持ち、ユーザは複数のプロジェクトに属する&lt;/strong&gt; という &lt;strong&gt;多対多&lt;/strong&gt; の場合。&lt;/p&gt;
 
@@ -211,9 +212,9 @@ User.belongsToMany(Project, { through: UserProjects })
 Project.belongsToMany(User, { through: UserProjects })
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;2-その他-オプション:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2. その他、オプション&lt;/h2&gt;
+&lt;h2 id=&#34;2-その他-オプション&#34;&gt;2. その他、オプション&lt;/h2&gt;
 
-&lt;h3 id=&#34;2-1-片方向と双方向:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.1. 片方向と双方向&lt;/h3&gt;
+&lt;h3 id=&#34;2-1-片方向と双方向&#34;&gt;2.1. 片方向と双方向&lt;/h3&gt;
 
 &lt;p&gt;以下の違いを覚えておく。&lt;/p&gt;
 
@@ -266,7 +267,7 @@ team.getPlayers()
 
 &lt;p&gt;双方向については、上記のようなことをする必要はない。双方向を利用した際に、インスタンスにメソッドが追加されるため。&lt;a href=&#34;http://localhost:1313/post/sequelize_relation/#1-4-belongstomany:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.4. belongsToMany&lt;/a&gt; 参照のこと。&lt;/p&gt;
 
-&lt;h3 id=&#34;2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.2. underscored: 外部キーの命名規則を camelCase から underscored にする&lt;/h3&gt;
+&lt;h3 id=&#34;2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする&#34;&gt;2.2. underscored: 外部キーの命名規則を camelCase から underscored にする&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Foreign keys&lt;/strong&gt; は camelCase になります。&lt;/p&gt;
 
@@ -309,7 +310,7 @@ Player.belongsTo(Team);
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;2-3-as-target-のモデル名を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.3. as: target のモデル名を任意に変更する&lt;/h3&gt;
+&lt;h3 id=&#34;2-3-as-target-のモデル名を任意に変更する&#34;&gt;2.3. as: target のモデル名を任意に変更する&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;as&lt;/strong&gt; オプションに任意の名前を与えることで、target のモデル名を変更できる&lt;/p&gt;
 
@@ -350,7 +351,7 @@ user.getProject();
 user.getPrj()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-4-foreignkey-外部キーの名前を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.4. foreignKey: 外部キーの名前を任意に変更する&lt;/h3&gt;
+&lt;h3 id=&#34;2-4-foreignkey-外部キーの名前を任意に変更する&#34;&gt;2.4. foreignKey: 外部キーの名前を任意に変更する&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;foreignKey&lt;/strong&gt; オプションに任意の名前を与えることで、Sequelize の外部キーの命名規則を完全無視できる&lt;/p&gt;
 
@@ -388,7 +389,7 @@ User.belongsTo(Project, {foreignKey: &#39;fk_project&#39;});
 user.getProject();
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-5-targetkey-外部キーをプライマリキーから任意のカラムに変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.5. targetKey: 外部キーをプライマリキーから任意のカラムに変更する&lt;/h3&gt;
+&lt;h3 id=&#34;2-5-targetkey-外部キーをプライマリキーから任意のカラムに変更する&#34;&gt;2.5. targetKey: 外部キーをプライマリキーから任意のカラムに変更する&lt;/h3&gt;
 
 &lt;p&gt;以下にある通り、デフォルトの外部キーは target (または source)のプライマリキーになります。belongsTo としか書いてないけど、それ以外も基本同じ。&lt;/p&gt;
 
@@ -424,12 +425,12 @@ User.belongsTo(models.Project, {foreignKey: &#39;fk_projectname&#39;, targetKey:
 &lt;li&gt;id&lt;/li&gt;
 &lt;li&gt;name&lt;/li&gt;
 &lt;li&gt;createdAt&lt;/li&gt;
-&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;li&gt;updatedAt
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;インスタンスのもつメソッドは &lt;a href=&#34;#2-4-foreignkey-外部キーの名前を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.4. foreignKey: 外部キーの名前を任意に変更する&lt;/a&gt; と変わりなし&lt;/p&gt;
-</description>
+&lt;p&gt;インスタンスのもつメソッドは &lt;a href=&#34;#2-4-foreignkey-外部キーの名前を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.4. foreignKey: 外部キーの名前を任意に変更する&lt;/a&gt; と変わりなし&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -438,13 +439,13 @@ User.belongsTo(models.Project, {foreignKey: &#39;fk_projectname&#39;, targetKey:
       <pubDate>Tue, 29 Dec 2015 12:38:07 JST</pubDate>
       
       <guid>http://blog.syati.info/post/sequelize_getting_started/</guid>
-      <description>
-
-&lt;p&gt;ちょっと前まで MEAN とか流行っていた気がするんですが、今はどうなんですかね？実際にちょっとしたWEBサービスで利用してみると、MongoDB が思った以上に厄介だった。トランザクションが無いのが、どうしても辛い。後々考えると面倒くさいことになるのは目に見えているのでヤメヤメ。ということで従来通り RDB を利用、そして、ORM は &lt;strong&gt;Sequelize&lt;/strong&gt; を利用したので、その辺をメモっていきたいと思う。&lt;/p&gt;
+      <description>&lt;p&gt;ちょっと前まで MEAN とか流行っていた気がするんですが、今はどうなんですかね？実際にちょっとしたWEBサービスで利用してみると、MongoDB が思った以上に厄介だった。トランザクションが無いのが、どうしても辛い。後々考えると面倒くさいことになるのは目に見えているのでヤメヤメ。ということで従来通り RDB を利用、そして、ORM は &lt;strong&gt;Sequelize&lt;/strong&gt; を利用したので、その辺をメモっていきたいと思う。&lt;/p&gt;
 
 &lt;p&gt;以降で説明するコードは、&lt;a href=&#34;https://github.com/Syati/sequelize-sample/tree/master/01_repl&#34;&gt;01_repl&lt;/a&gt; にあります。&lt;/p&gt;
 
-&lt;h2 id=&#34;環境:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;環境&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;環境&#34;&gt;環境&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;OSX 10.10.5&lt;/li&gt;
@@ -452,7 +453,7 @@ User.belongsTo(models.Project, {foreignKey: &#39;fk_projectname&#39;, targetKey:
 &lt;li&gt;MariaDB 10.1.9&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;orm-導入に際して:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;ORM 導入に際して&lt;/h2&gt;
+&lt;h2 id=&#34;orm-導入に際して&#34;&gt;ORM 導入に際して&lt;/h2&gt;
 
 &lt;p&gt;Node で RDB を利用するために、ORM のライブラリを検討。意外とあるもんですね。
 以下に github の star と fork 数をまとめる(2015/12/29 調べ)。&lt;/p&gt;
@@ -495,9 +496,9 @@ User.belongsTo(models.Project, {foreignKey: &#39;fk_projectname&#39;, targetKey:
 
 &lt;p&gt;それぞれの Lib の差異はわかりませんが Star と Fork 数で判断して、&lt;strong&gt;Sequelize で決定&lt;/strong&gt;。ドキュメントも見やすかったのでいいかな。&lt;/p&gt;
 
-&lt;h2 id=&#34;1-db-orm-orm-cli-のインストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1. DB・ORM・ORM-CLI のインストール&lt;/h2&gt;
+&lt;h2 id=&#34;1-db-orm-orm-cli-のインストール&#34;&gt;1. DB・ORM・ORM-CLI のインストール&lt;/h2&gt;
 
-&lt;h3 id=&#34;1-1-db-インストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1.1. DB インストール&lt;/h3&gt;
+&lt;h3 id=&#34;1-1-db-インストール&#34;&gt;1.1. DB インストール&lt;/h3&gt;
 
 &lt;p&gt;mysql, posgre がある場合は不要。今回は mariadb を利用する。&lt;/p&gt;
 
@@ -522,13 +523,13 @@ $ mysql -uroot
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;1-2-orm-sequelize-インストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1.2. ORM (Sequelize) インストール&lt;/h3&gt;
+&lt;h3 id=&#34;1-2-orm-sequelize-インストール&#34;&gt;1.2. ORM (Sequelize) インストール&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install --save sequelize
 $ npm install --save mysql // For both mysql and mariadb dialects
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;1-3-orm-cli-sequelize-cli-インストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1.3. ORM-CLI (Sequelize CLI) インストール&lt;/h3&gt;
+&lt;h3 id=&#34;1-3-orm-cli-sequelize-cli-インストール&#34;&gt;1.3. ORM-CLI (Sequelize CLI) インストール&lt;/h3&gt;
 
 &lt;p&gt;初期設定、モデル作成、マイグレーション など便利なので CLI をいれる。
 コマンドラインをグローバルで利用したいので &lt;strong&gt;g&lt;/strong&gt; 付与する。&lt;/p&gt;
@@ -536,7 +537,7 @@ $ npm install --save mysql // For both mysql and mariadb dialects
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install -g sequelize-cli
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;2-各種設定:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2. 各種設定&lt;/h2&gt;
+&lt;h2 id=&#34;2-各種設定&#34;&gt;2. 各種設定&lt;/h2&gt;
 
 &lt;p&gt;現状の dir 構成は以下のとおり。&lt;/p&gt;
 
@@ -545,7 +546,7 @@ $ npm install --save mysql // For both mysql and mariadb dialects
 └── package.json
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-1-db-作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2.1. DB 作成&lt;/h3&gt;
+&lt;h3 id=&#34;2-1-db-作成&#34;&gt;2.1. DB 作成&lt;/h3&gt;
 
 &lt;p&gt;今回利用する DB を &lt;strong&gt;seq_dev&lt;/strong&gt; として、 mariadb に作成する。&lt;/p&gt;
 
@@ -554,7 +555,7 @@ $ npm install --save mysql // For both mysql and mariadb dialects
 $ create database seq_dev character set utf8;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-2-初期設定:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2.2. 初期設定&lt;/h3&gt;
+&lt;h3 id=&#34;2-2-初期設定&#34;&gt;2.2. 初期設定&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;1.3&lt;/strong&gt; でインストールした Sequelize CLI を用いて初期設定する。&lt;/p&gt;
 
@@ -586,9 +587,9 @@ sample_prj
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;3-はじめてのモデル作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;3. はじめてのモデル作成&lt;/h2&gt;
+&lt;h2 id=&#34;3-はじめてのモデル作成&#34;&gt;3. はじめてのモデル作成&lt;/h2&gt;
 
-&lt;h3 id=&#34;3-1-model-の作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;3.1. model の作成&lt;/h3&gt;
+&lt;h3 id=&#34;3-1-model-の作成&#34;&gt;3.1. model の作成&lt;/h3&gt;
 
 &lt;p&gt;models ディレクトリに model.js のように手動でモデルを作成しても良いのだが、CLI を利用してモデルを作成してあげると、マイグレーションも一緒に作成してくれるので、CLI を利用すると楽かもしれない。&lt;/p&gt;
 
@@ -643,11 +644,12 @@ models
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/legacy/#primary-keys&#34;&gt;PrimaryKey&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/models-definition&#34;&gt;Definition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/models-definition&#34;&gt;Definition&lt;/a&gt;
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;3-2-models-の-index-js-について:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;3.2. models の index.js について&lt;/h3&gt;
+&lt;h3 id=&#34;3-2-models-の-index-js-について&#34;&gt;3.2. models の index.js について&lt;/h3&gt;
 
 &lt;p&gt;models dir には index.js が sequelize init によって作成されるが、これは models ディレクトリにある全ファイルを読み込んで、モデルを構築してくれる。その際に、モデル間のリレーションも一緒に構築する。利用する際には、index.js を読み込んで、該当モデルを利用することになる。(ES6 利用)&lt;/p&gt;
 
@@ -658,9 +660,9 @@ const User = models.User;
 User.findAll().then((users) =&amp;gt; console.log(users));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;4-試してみる:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;4. 試してみる&lt;/h2&gt;
+&lt;h2 id=&#34;4-試してみる&#34;&gt;4. 試してみる&lt;/h2&gt;
 
-&lt;h3 id=&#34;4-1-エントリポイントの作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;4.1. エントリポイントの作成&lt;/h3&gt;
+&lt;h3 id=&#34;4-1-エントリポイントの作成&#34;&gt;4.1. エントリポイントの作成&lt;/h3&gt;
 
 &lt;p&gt;とりあえず色々試してみたいので、repl できるようにプロジェクトルートに &lt;strong&gt;repl.js&lt;/strong&gt; とでもしてエントリポイントを作成する。&lt;/p&gt;
 
@@ -686,7 +688,7 @@ module.exports = models;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;4-2-node-replで試す:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;4.2. Node REPLで試す&lt;/h3&gt;
+&lt;h3 id=&#34;4-2-node-replで試す&#34;&gt;4.2. Node REPLで試す&lt;/h3&gt;
 
 &lt;p&gt;REPL を起動する。&lt;/p&gt;
 
@@ -723,8 +725,7 @@ User.findAll().then((users) =&amp;gt; console.log(JSON.stringify(users)));
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/model/&#34;&gt;http://docs.sequelizejs.com/en/latest/api/model/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -733,15 +734,15 @@ User.findAll().then((users) =&amp;gt; console.log(JSON.stringify(users)));
       <pubDate>Wed, 07 Oct 2015 22:00:32 JST</pubDate>
       
       <guid>http://blog.syati.info/post/upgrade_package_json/</guid>
-      <description>
-
-&lt;p&gt;package.json の dependencies を、どうやって一括で更新するのかなと思ってたら！！&lt;/p&gt;
+      <description>&lt;p&gt;package.json の dependencies を、どうやって一括で更新するのかなと思ってたら！！&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/npm-check-updates&#34;&gt;npm-check-updates&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;これで簡単に更新できる！！&lt;/p&gt;
 
-&lt;h2 id=&#34;更新する:fa2289da0f3da34235594a1a0c6afa63&#34;&gt;更新する&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;更新する&#34;&gt;更新する&lt;/h2&gt;
 
 &lt;p&gt;以下の通り。すごく簡単だね。&lt;/p&gt;
 
@@ -761,24 +762,23 @@ Upgraded /your/path/package.json
 $ npm install
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;一括更新完了！！&lt;/p&gt;
-</description>
+&lt;p&gt;一括更新完了！！&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Emacs で Javascript なら js2-mode, tern-mode</title>
-      <link>http://blog.syati.info/post/emacsJavascript2/</link>
+      <link>http://blog.syati.info/post/emacsjavascript2/</link>
       <pubDate>Mon, 31 Aug 2015 13:38:35 JST</pubDate>
       
-      <guid>http://blog.syati.info/post/emacsJavascript2/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/emacsJavascript/&#34;&gt;Emacs で JavaScript の開発環境を整える&lt;/a&gt; で、
+      <guid>http://blog.syati.info/post/emacsjavascript2/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/emacsjavascript/&#34;&gt;Emacs で JavaScript の開発環境を整える&lt;/a&gt; で、
 Emacs と Javascript の開発環境を記しましたが、さらに改善できたので、メモメモ。&lt;/p&gt;
 
 &lt;p&gt;ドットで jquery も underscore も browser もしてくれる。 angular も!!&lt;/p&gt;
 
-&lt;h2 id=&#34;step-1-tern-のインストール-設定:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 1 tern のインストール・設定&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;step-1-tern-のインストール-設定&#34;&gt;Step 1 tern のインストール・設定&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;npm で tern をインストールする&lt;/p&gt;
@@ -803,7 +803,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;step-2-emacs-の-package-をインストール:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 2 emacs の package をインストール&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-emacs-の-package-をインストール&#34;&gt;Step 2 emacs の package をインストール&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;M-x package-list-package で以下の2点をインストールする（該当箇所で &lt;strong&gt;i&lt;/strong&gt; をタイプしてマークをつけて &lt;strong&gt;x&lt;/strong&gt; でインストールする）
@@ -819,11 +819,9 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 &lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(autoload &#39;js2-mode &amp;quot;js2-mode&amp;quot; nil t)
 (add-to-list &#39;auto-mode-alist &#39;(&amp;quot;\\.js\\&#39;&amp;quot; . js2-mode))
 
-
 (add-hook &#39;js2-mode-hook
     (lambda ()
         (tern-mode t)))
-
 
 (eval-after-load &#39;tern
     &#39;(progn
@@ -832,7 +830,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;step-3-試す:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 3 試す&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-試す&#34;&gt;Step 3 試す&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;angular
   .module(&#39;MyApp&#39;, [])
@@ -841,14 +839,13 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
   })
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;参考:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://ternjs.net/doc/manual.html&#34;&gt;tern&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -857,18 +854,17 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
       <guid>http://blog.syati.info/post/angular-test-sample-recipe1/</guid>
-      <description>
-
-&lt;p&gt;js ってテストしにくいよねってことで今流行りの angular で unit test する。
+      <description>&lt;p&gt;js ってテストしにくいよねってことで今流行りの angular で unit test する。
 最初なので、事細かに説明するつもりで書いてみる。&lt;/p&gt;
 
 &lt;p&gt;サンプルは以下から git clone してください。ソースと突き合わせながら見るといいかも。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/angular-test-sample&#34;&gt;https://github.com/Syati/angular-test-sample&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/angular-test-sample&#34;&gt;https://github.com/Syati/angular-test-sample&lt;/a&gt;
+&lt;/p&gt;
 
-&lt;h2 id=&#34;準備:d28091e7273529f0913311111ae23332&#34;&gt;準備&lt;/h2&gt;
+&lt;h2 id=&#34;準備&#34;&gt;準備&lt;/h2&gt;
 
-&lt;h3 id=&#34;ubuntu:d28091e7273529f0913311111ae23332&#34;&gt;ubuntu&lt;/h3&gt;
+&lt;h3 id=&#34;ubuntu&#34;&gt;ubuntu&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;node &amp;amp; npm&lt;/li&gt;
@@ -878,7 +874,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 $ sudo apt-get install npm
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;mac:d28091e7273529f0913311111ae23332&#34;&gt;mac&lt;/h3&gt;
+&lt;h3 id=&#34;mac&#34;&gt;mac&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;node &amp;amp; npm&lt;/li&gt;
@@ -887,7 +883,7 @@ $ sudo apt-get install npm
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install node
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;共通:d28091e7273529f0913311111ae23332&#34;&gt;共通&lt;/h3&gt;
+&lt;h3 id=&#34;共通&#34;&gt;共通&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;bower&lt;/li&gt;
@@ -903,20 +899,20 @@ $ sudo apt-get install npm
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo npm install -g karma-cli
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;実施-サンプルを-clone-して-test:d28091e7273529f0913311111ae23332&#34;&gt;実施：サンプルを CLONE して TEST&lt;/h2&gt;
+&lt;h2 id=&#34;実施-サンプルを-clone-して-test&#34;&gt;実施：サンプルを CLONE して TEST&lt;/h2&gt;
 
 &lt;p&gt;github にサンプルを書いたので clone する。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git clone git@github.com:Syati/angular-test-sample.git
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;prj-依存環境を入れる:d28091e7273529f0913311111ae23332&#34;&gt;prj 依存環境を入れる&lt;/h3&gt;
+&lt;h3 id=&#34;prj-依存環境を入れる&#34;&gt;prj 依存環境を入れる&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd your_clone_path/angular-test-sample/controller/recipe1
 $ npm install
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;test-実行する:d28091e7273529f0913311111ae23332&#34;&gt;test 実行する&lt;/h3&gt;
+&lt;h3 id=&#34;test-実行する&#34;&gt;test 実行する&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm test
 &lt;/code&gt;&lt;/pre&gt;
@@ -930,9 +926,9 @@ INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id
 PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;説明:d28091e7273529f0913311111ae23332&#34;&gt;説明&lt;/h2&gt;
+&lt;h2 id=&#34;説明&#34;&gt;説明&lt;/h2&gt;
 
-&lt;h3 id=&#34;directory:d28091e7273529f0913311111ae23332&#34;&gt;directory&lt;/h3&gt;
+&lt;h3 id=&#34;directory&#34;&gt;directory&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;    recipe1
     ├── app
@@ -950,7 +946,7 @@ PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
     └── node_modules  #2 npm lib install dir
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;1-bower:d28091e7273529f0913311111ae23332&#34;&gt;#1 bower&lt;/h3&gt;
+&lt;h3 id=&#34;1-bower&#34;&gt;#1 bower&lt;/h3&gt;
 
 &lt;p&gt;js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。&lt;/p&gt;
 
@@ -983,7 +979,7 @@ $ bower install angular --save　# または --save-dev
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;2-npm:d28091e7273529f0913311111ae23332&#34;&gt;#2 npm&lt;/h3&gt;
+&lt;h3 id=&#34;2-npm&#34;&gt;#2 npm&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm init 
 $ npm install jasmine --save-dev　# または --save
@@ -1012,7 +1008,7 @@ $ npm install jasmine --save-dev　# または --save
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;3-karma-angular-の-unit-test-の設定:d28091e7273529f0913311111ae23332&#34;&gt;#3 karma  angular の unit test の設定&lt;/h3&gt;
+&lt;h3 id=&#34;3-karma-angular-の-unit-test-の設定&#34;&gt;#3 karma  angular の unit test の設定&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;karma init  # コマンドで初期設定 karma.conf.js を作成できる
 &lt;/code&gt;&lt;/pre&gt;
@@ -1055,7 +1051,7 @@ $ npm install jasmine --save-dev　# または --save
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;4-test-を書く:d28091e7273529f0913311111ae23332&#34;&gt;#4 test を書く&lt;/h3&gt;
+&lt;h3 id=&#34;4-test-を書く&#34;&gt;#4 test を書く&lt;/h3&gt;
 
 &lt;p&gt;テストするうえで jasmine の理解は必須なので &lt;a href=&#34;http://jasmine.github.io/2.1/introduction.html&#34;&gt;tutorial&lt;/a&gt; で勉強しておく。
 index.html をローカルで開けばわかると思うが button click で &amp;lsquo;hello&amp;rsquo; とでてくるだけのもの。
@@ -1100,33 +1096,31 @@ describe(&#39;Unit: app moudle &#39;, function(){
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;まとめ:d28091e7273529f0913311111ae23332&#34;&gt;まとめ&lt;/h2&gt;
+&lt;h2 id=&#34;まとめ&#34;&gt;まとめ&lt;/h2&gt;
 
-&lt;p&gt;controller のテストは意外と簡単。ただし、DI が増えてくるとハマるポイントも多くなってくるので、次はそんなサンプルを書いていくつもり。&lt;/p&gt;
-</description>
+&lt;p&gt;controller のテストは意外と簡単。ただし、DI が増えてくるとハマるポイントも多くなってくるので、次はそんなサンプルを書いていくつもり。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Emacs で JavaScript の開発環境を整える</title>
-      <link>http://blog.syati.info/post/emacsJavascript/</link>
+      <link>http://blog.syati.info/post/emacsjavascript/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://blog.syati.info/post/emacsJavascript/</guid>
-      <description>
+      <guid>http://blog.syati.info/post/emacsjavascript/</guid>
+      <description>&lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
+ということで私の環境を忘れないうちにメモ！！
+&lt;/p&gt;
 
-&lt;p&gt;開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
-ということで私の環境を忘れないうちにメモ！！&lt;/p&gt;
-
-&lt;h2 id=&#34;前提:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;前提&lt;/h2&gt;
+&lt;h2 id=&#34;前提&#34;&gt;前提&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;ubuntu 12.04 or OSX&lt;/li&gt;
 &lt;li&gt;emacs &amp;gt;= 24&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;構築:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;構築&lt;/h2&gt;
+&lt;h2 id=&#34;構築&#34;&gt;構築&lt;/h2&gt;
 
-&lt;h3 id=&#34;パッケージ管理にmelpa追加:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理にmelpa追加&lt;/h3&gt;
+&lt;h3 id=&#34;パッケージ管理にmelpa追加&#34;&gt;パッケージ管理にmelpa追加&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;~/.emacs.d/init.el に以下を追加&lt;/p&gt;
@@ -1137,7 +1131,7 @@ describe(&#39;Unit: app moudle &#39;, function(){
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;パッケージ管理からインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;パッケージ管理からインストール&lt;/h3&gt;
+&lt;h3 id=&#34;パッケージ管理からインストール&#34;&gt;パッケージ管理からインストール&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;M-x package-list-package で以下の2点をインストールする（該当箇所で &lt;strong&gt;i&lt;/strong&gt; をタイプしてマークをつけて &lt;strong&gt;x&lt;/strong&gt; でインストールする）
@@ -1154,7 +1148,7 @@ describe(&#39;Unit: app moudle &#39;, function(){
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;jshint-をインストール:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;jshint をインストール&lt;/h3&gt;
+&lt;h3 id=&#34;jshint-をインストール&#34;&gt;jshint をインストール&lt;/h3&gt;
 
 &lt;p&gt;上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。&lt;/p&gt;
 
@@ -1183,19 +1177,18 @@ describe(&#39;Unit: app moudle &#39;, function(){
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;試す:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;試す&lt;/h2&gt;
+&lt;h2 id=&#34;試す&#34;&gt;試す&lt;/h2&gt;
 
 &lt;p&gt;a.js とでもファイルを作ってみると emacsの下の帯に　(javascript-IDE FlyC) となっていることが確認できる。
 後は適当にプログラムを書けば jshint がはしり、文法エラーなどを教えてくれる。&lt;/p&gt;
 
-&lt;h2 id=&#34;参考:1a9908f99c55ee21878c3c149440fb4d&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://melpa.milkbox.net/#/getting-started&#34;&gt;melpa&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -1204,11 +1197,11 @@ describe(&#39;Unit: app moudle &#39;, function(){
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
       <guid>http://blog.syati.info/post/node_path/</guid>
-      <description>
+      <description>&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
 
-&lt;p&gt;javascript を REPL で利用できるといえば &lt;strong&gt;node&lt;/strong&gt; 。underscore.js を試したいと思いハマったメモ。&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;はまった事:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;はまった事&lt;/h2&gt;
+&lt;h2 id=&#34;はまった事&#34;&gt;はまった事&lt;/h2&gt;
 
 &lt;p&gt;以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。&lt;/p&gt;
 
@@ -1229,11 +1222,11 @@ Error: Cannot find module &#39;underscore&#39;
   at Interface.EventEmitter.emit (events.js:96:17)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;原因:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;原因&lt;/h2&gt;
+&lt;h2 id=&#34;原因&#34;&gt;原因&lt;/h2&gt;
 
 &lt;p&gt;npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。&lt;/p&gt;
 
-&lt;h2 id=&#34;解決:27ef1157700a533f7be8bb419ba8b42a&#34;&gt;解決&lt;/h2&gt;
+&lt;h2 id=&#34;解決&#34;&gt;解決&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;設定するパスを確認する&lt;/li&gt;
@@ -1248,8 +1241,7 @@ Error: Cannot find module &#39;underscore&#39;
 &lt;/ol&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export NODE_PATH=/usr/local/lib/node_modules
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -1258,9 +1250,7 @@ Error: Cannot find module &#39;underscore&#39;
       <pubDate>Sun, 01 Mar 2015 21:37:06 JST</pubDate>
       
       <guid>http://blog.syati.info/post/bowerrc/</guid>
-      <description>
-
-&lt;p&gt;bower install をしたはいいが、デフォルトでインストールされるディレクトリ(bower_components)を以下の例のように変えたい、そんな時は。&lt;/p&gt;
+      <description>&lt;p&gt;bower install をしたはいいが、デフォルトでインストールされるディレクトリ(bower_components)を以下の例のように変えたい、そんな時は。&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;&lt;/p&gt;
 
@@ -1284,7 +1274,9 @@ Error: Cannot find module &#39;underscore&#39;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;解決策:faaade8871e8a9add4cb3dea3150f715&#34;&gt;解決策&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;解決策&#34;&gt;解決策&lt;/h2&gt;
 
 &lt;p&gt;以下のように &lt;strong&gt;.bowerrc&lt;/strong&gt; を project ルートに作成してあげる。これを自分の好きなように書き換えることで、インストールディレクトリを変更できる。&lt;/p&gt;
 
@@ -1296,7 +1288,7 @@ Error: Cannot find module &#39;underscore&#39;
 
 &lt;p&gt;以降、bower install すれば希望通り&lt;/p&gt;
 
-&lt;h3 id=&#34;bowerrc作成後:faaade8871e8a9add4cb3dea3150f715&#34;&gt;.bowerrc作成後&lt;/h3&gt;
+&lt;h3 id=&#34;bowerrc作成後&#34;&gt;.bowerrc作成後&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;project/
@@ -1319,11 +1311,11 @@ Error: Cannot find module &#39;underscore&#39;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;参考:faaade8871e8a9add4cb3dea3150f715&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
-&lt;h3 id=&#34;デフォルトの動作:faaade8871e8a9add4cb3dea3150f715&#34;&gt;デフォルトの動作&lt;/h3&gt;
+&lt;h3 id=&#34;デフォルトの動作&#34;&gt;デフォルトの動作&lt;/h3&gt;
 
-&lt;h4 id=&#34;初期ディレクトリ構成:faaade8871e8a9add4cb3dea3150f715&#34;&gt;初期ディレクトリ構成&lt;/h4&gt;
+&lt;h4 id=&#34;初期ディレクトリ構成&#34;&gt;初期ディレクトリ構成&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;project/
@@ -1336,7 +1328,7 @@ Error: Cannot find module &#39;underscore&#39;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;コマンド:faaade8871e8a9add4cb3dea3150f715&#34;&gt;コマンド&lt;/h4&gt;
+&lt;h4 id=&#34;コマンド&#34;&gt;コマンド&lt;/h4&gt;
 
 &lt;p&gt;project ルートで 以下のように bower コマンドを入れる&lt;/p&gt;
 
@@ -1344,7 +1336,7 @@ Error: Cannot find module &#39;underscore&#39;
 bower install jquery -save
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;コマンド後のディレクトリ構成:faaade8871e8a9add4cb3dea3150f715&#34;&gt;コマンド後のディレクトリ構成&lt;/h4&gt;
+&lt;h4 id=&#34;コマンド後のディレクトリ構成&#34;&gt;コマンド後のディレクトリ構成&lt;/h4&gt;
 
 &lt;p&gt;ディレクトリは以下のようになる。&lt;/p&gt;
 
@@ -1363,8 +1355,7 @@ bower install jquery -save
 &lt;li&gt;index.html&lt;/li&gt;
 &lt;li&gt;bower.json&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
   </channel>

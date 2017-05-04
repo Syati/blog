@@ -131,19 +131,19 @@
 <ul>
 <li>
 <ul>
-<li><a href="#はまった事:27ef1157700a533f7be8bb419ba8b42a">はまった事</a></li>
-<li><a href="#原因:27ef1157700a533f7be8bb419ba8b42a">原因</a></li>
-<li><a href="#解決:27ef1157700a533f7be8bb419ba8b42a">解決</a></li>
+<li><a href="#はまった事">はまった事</a></li>
+<li><a href="#原因">原因</a></li>
+<li><a href="#解決">解決</a></li>
 </ul></li>
 </ul>
 </nav>
     </div>
     
-	<div class="entry-content" itemprop="articleBody">
+	<div class="entry-content" itemprop="articleBody"><p>javascript を REPL で利用できるといえば <strong>node</strong> 。underscore.js を試したいと思いハマったメモ。</p>
 
-<p>javascript を REPL で利用できるといえば <strong>node</strong> 。underscore.js を試したいと思いハマったメモ。</p>
+<p></p>
 
-<h2 id="はまった事:27ef1157700a533f7be8bb419ba8b42a">はまった事</h2>
+<h2 id="はまった事">はまった事</h2>
 
 <p>以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。</p>
 
@@ -164,11 +164,11 @@ Error: Cannot find module 'underscore'
   at Interface.EventEmitter.emit (events.js:96:17)
 </code></pre>
 
-<h2 id="原因:27ef1157700a533f7be8bb419ba8b42a">原因</h2>
+<h2 id="原因">原因</h2>
 
 <p>npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。</p>
 
-<h2 id="解決:27ef1157700a533f7be8bb419ba8b42a">解決</h2>
+<h2 id="解決">解決</h2>
 
 <ol>
 <li>設定するパスを確認する</li>
@@ -183,8 +183,7 @@ Error: Cannot find module 'underscore'
 </ol>
 
 <pre><code class="language-bash">export NODE_PATH=/usr/local/lib/node_modules
-</code></pre>
-</div>
+</code></pre></div>
 
                         </article>
 					
@@ -250,7 +249,7 @@ Error: Cannot find module 'underscore'
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2016
+			<footer id="footer" class="inner">Copyright &copy; 2017
 
     Syati.info
 

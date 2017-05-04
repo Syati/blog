@@ -15,9 +15,7 @@
       <pubDate>Fri, 25 Sep 2015 08:49:12 JST</pubDate>
       
       <guid>http://blog.syati.info/post/livereload_firefox/</guid>
-      <description>
-
-&lt;p&gt;Firefox LiveReload + grunt-contrib-watch LiveReload で以下の warning メッセージがでて、LiveReload うごかないよ！！&lt;/p&gt;
+      <description>&lt;p&gt;Firefox LiveReload + grunt-contrib-watch LiveReload で以下の warning メッセージがでて、LiveReload うごかないよ！！&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;You are using an old incompatible version of the command-line tool.&lt;/p&gt;
@@ -33,7 +31,9 @@
 &lt;p&gt;&lt;a href=&#34;http://help.livereload.com/kb/general-use/browser-extensions&#34;&gt;http://help.livereload.com/kb/general-use/browser-extensions&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;warning:a97b1ae451068793f1b3b1195bc54f9f&#34;&gt;Warning&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;warning&#34;&gt;Warning&lt;/h2&gt;
 
 
 &lt;figure class=&#34;image-half__center&#34;&gt;
@@ -49,7 +49,7 @@
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;extension-old:a97b1ae451068793f1b3b1195bc54f9f&#34;&gt;Extension (old)&lt;/h2&gt;
+&lt;h2 id=&#34;extension-old&#34;&gt;Extension (old)&lt;/h2&gt;
 
 &lt;p&gt;これではない。&lt;/p&gt;
 
@@ -67,14 +67,13 @@
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;extension-new:a97b1ae451068793f1b3b1195bc54f9f&#34;&gt;Extension (new)&lt;/h2&gt;
+&lt;h2 id=&#34;extension-new&#34;&gt;Extension (new)&lt;/h2&gt;
 
 &lt;p&gt;以下のURLから入れましょう。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://help.livereload.com/kb/general-use/browser-extensions&#34;&gt;http://help.livereload.com/kb/general-use/browser-extensions&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;おしまい。&lt;/p&gt;
-</description>
+&lt;p&gt;おしまい。&lt;/p&gt;</description>
     </item>
     
   </channel>
