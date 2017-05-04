@@ -133,37 +133,37 @@
 <ul>
 <li>
 <ul>
-<li><a href="#step-0-事前準備:134ba188964091106b5909c7aef27c8d">Step 0: 事前準備</a>
+<li><a href="#step-0-事前準備">Step 0: 事前準備</a>
 <ul>
-<li><a href="#流れ:134ba188964091106b5909c7aef27c8d">流れ</a></li>
-<li><a href="#ライブラリ:134ba188964091106b5909c7aef27c8d">ライブラリ</a></li>
+<li><a href="#流れ">流れ</a></li>
+<li><a href="#ライブラリ">ライブラリ</a></li>
 </ul></li>
-<li><a href="#step-1-とりあえずテストを書く:134ba188964091106b5909c7aef27c8d">Step 1: とりあえずテストを書く</a></li>
-<li><a href="#step-2-トランスパイルする:134ba188964091106b5909c7aef27c8d">Step 2: トランスパイルする</a></li>
-<li><a href="#step-3-テストする:134ba188964091106b5909c7aef27c8d">Step 3: テストする</a></li>
-<li><a href="#step-4-カバレッジを測る:134ba188964091106b5909c7aef27c8d">Step 4: カバレッジを測る</a></li>
-<li><a href="#step-5-ソースマップから-ts-のカバレッジを測る:134ba188964091106b5909c7aef27c8d">Step 5: ソースマップから ts のカバレッジを測る</a></li>
-<li><a href="#step-6-package-json-で楽する:134ba188964091106b5909c7aef27c8d">Step 6: package.json で楽する</a></li>
-<li><a href="#その他:134ba188964091106b5909c7aef27c8d">その他</a>
+<li><a href="#step-1-とりあえずテストを書く">Step 1: とりあえずテストを書く</a></li>
+<li><a href="#step-2-トランスパイルする">Step 2: トランスパイルする</a></li>
+<li><a href="#step-3-テストする">Step 3: テストする</a></li>
+<li><a href="#step-4-カバレッジを測る">Step 4: カバレッジを測る</a></li>
+<li><a href="#step-5-ソースマップから-ts-のカバレッジを測る">Step 5: ソースマップから ts のカバレッジを測る</a></li>
+<li><a href="#step-6-package-json-で楽する">Step 6: package.json で楽する</a></li>
+<li><a href="#その他">その他</a>
 <ul>
-<li><a href="#istanbul-yml-でカバレッジレポートのディレクトリ指定する:134ba188964091106b5909c7aef27c8d">.istanbul.yml でカバレッジレポートのディレクトリ指定する</a></li>
+<li><a href="#istanbul-yml-でカバレッジレポートのディレクトリ指定する">.istanbul.yml でカバレッジレポートのディレクトリ指定する</a></li>
 </ul></li>
 </ul></li>
 </ul>
 </nav>
     </div>
     
-	<div class="entry-content" itemprop="articleBody">
-
-<p>AltJs ってトランスパイルした後、テストを実行させる必要があるから・・、面倒くさいんだよね。なんか、あまり情報もないし、これだから AltJs は・・・と思うわけですが、やってみると案外大したことないもんです。</p>
+	<div class="entry-content" itemprop="articleBody"><p>AltJs ってトランスパイルした後、テストを実行させる必要があるから・・、面倒くさいんだよね。なんか、あまり情報もないし、これだから AltJs は・・・と思うわけですが、やってみると案外大したことないもんです。</p>
 
 <p>今回は、TypeScript のコードのユニットテスト、カバレッジを記していこうと思います。本記事のコードは以下のURLにあります。</p>
 
 <p><a href="https://github.com/Syati/typescript-sample/tree/master/011_test_sample">https://github.com/Syati/typescript-sample/tree/master/011_test_sample</a></p>
 
-<h2 id="step-0-事前準備:134ba188964091106b5909c7aef27c8d">Step 0: 事前準備</h2>
+<p></p>
 
-<h3 id="流れ:134ba188964091106b5909c7aef27c8d">流れ</h3>
+<h2 id="step-0-事前準備">Step 0: 事前準備</h2>
+
+<h3 id="流れ">流れ</h3>
 
 <ol>
 <li>ts でコードを書く</li>
@@ -172,7 +172,7 @@
 <li>map を利用して<strong>ts カバレッジ</strong>を測る</li>
 </ol>
 
-<h3 id="ライブラリ:134ba188964091106b5909c7aef27c8d">ライブラリ</h3>
+<h3 id="ライブラリ">ライブラリ</h3>
 
 <p><strong>npm install -g mocha istanbul remap-istanbul</strong> でそれぞれコマンドが利用できるようになります。</p>
 
@@ -202,7 +202,7 @@
 </ul></li>
 </ul>
 
-<h2 id="step-1-とりあえずテストを書く:134ba188964091106b5909c7aef27c8d">Step 1: とりあえずテストを書く</h2>
+<h2 id="step-1-とりあえずテストを書く">Step 1: とりあえずテストを書く</h2>
 
 <p><a href="https://github.com/Syati/typescript-sample/tree/master/011_test_sample">プロジェクト</a> を確認しておく。全体が理解しやすくなると思う。</p>
 
@@ -229,7 +229,7 @@ describe(&quot;TestTarget&quot;, () =&gt; {
 
 <p>すごいシンプルですね。</p>
 
-<h2 id="step-2-トランスパイルする:134ba188964091106b5909c7aef27c8d">Step 2: トランスパイルする</h2>
+<h2 id="step-2-トランスパイルする">Step 2: トランスパイルする</h2>
 
 <p>tsc コマンドを叩く前に設定ファイルを書いときましょう。以下の tsconfig.json になります。
 とくに変わった点はないですね。重要なポイントとしては、<strong>&ldquo;sourceMap&rdquo;: true</strong>です。
@@ -259,7 +259,7 @@ describe(&quot;TestTarget&quot;, () =&gt; {
 <pre><code class="language-bash">$ tsc
 </code></pre>
 
-<h2 id="step-3-テストする:134ba188964091106b5909c7aef27c8d">Step 3: テストする</h2>
+<h2 id="step-3-テストする">Step 3: テストする</h2>
 
 <p>Step 2 でトランスパイル済みなので、ts ファイル以外に js、map ファイルが存在すると思います。ディレクトリが汚れてあたふたするかもしれませんが、package.json に clean スクリプトを書くことで解決できるので、今は我慢。</p>
 
@@ -281,7 +281,7 @@ describe(&quot;TestTarget&quot;, () =&gt; {
 
 <p>ユニットテストのモチベーションをあげるためにも、やっぱりカバレッジですよ！！</p>
 
-<h2 id="step-4-カバレッジを測る:134ba188964091106b5909c7aef27c8d">Step 4: カバレッジを測る</h2>
+<h2 id="step-4-カバレッジを測る">Step 4: カバレッジを測る</h2>
 
 <p>とくに必要なことはありません。Step 0 で説明したとおり <strong>istanbul</strong> を利用するだけ。
 すこし異なっているのは、 mocha が _mocha を利用するということです。理由は、以下のとおり。</p>
@@ -322,7 +322,7 @@ Lines        : 100% ( 6/6 )
 </figure>
 
 
-<h2 id="step-5-ソースマップから-ts-のカバレッジを測る:134ba188964091106b5909c7aef27c8d">Step 5: ソースマップから ts のカバレッジを測る</h2>
+<h2 id="step-5-ソースマップから-ts-のカバレッジを測る">Step 5: ソースマップから ts のカバレッジを測る</h2>
 
 <p><strong>coverage</strong> ディレクトリにて以下のコマンドたたいてあげるだけです。ts のカバレッジが html-repot ディレクトリに出力されます。</p>
 
@@ -347,7 +347,7 @@ Lines        : 100% ( 6/6 )
 
 <p>＊図が Step 4 とデザインが違うのは、remap-istanbul で利用している istanbul のバージョンが古いからだと思われる</p>
 
-<h2 id="step-6-package-json-で楽する:134ba188964091106b5909c7aef27c8d">Step 6: package.json で楽する</h2>
+<h2 id="step-6-package-json-で楽する">Step 6: package.json で楽する</h2>
 
 <p>一連のコマンドを <strong>package.json</strong> に書いておきましょう。以下サンプル。</p>
 
@@ -377,9 +377,9 @@ $ npm test
 $ npm clean
 </code></pre>
 
-<h2 id="その他:134ba188964091106b5909c7aef27c8d">その他</h2>
+<h2 id="その他">その他</h2>
 
-<h3 id="istanbul-yml-でカバレッジレポートのディレクトリ指定する:134ba188964091106b5909c7aef27c8d">.istanbul.yml でカバレッジレポートのディレクトリ指定する</h3>
+<h3 id="istanbul-yml-でカバレッジレポートのディレクトリ指定する">.istanbul.yml でカバレッジレポートのディレクトリ指定する</h3>
 
 <p><strong>.istanbul.yml</strong> に以下のように書いてあげることで、レポートの出力先を変えることが出来る。</p>
 
@@ -391,8 +391,7 @@ reporting:
 <p>もっとカスタマイズしたい場合は、以下のコマンドからデフォルト設定など説明をみるといいかも。</p>
 
 <pre><code class="language-bash">$ istanbul help config
-</code></pre>
-</div>
+</code></pre></div>
 
                         </article>
 					
@@ -458,7 +457,7 @@ reporting:
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2016
+			<footer id="footer" class="inner">Copyright &copy; 2017
 
     Syati.info
 

@@ -15,20 +15,19 @@
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
       <guid>http://blog.syati.info/post/nkf/</guid>
-      <description>
+      <description>&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
+開いてびっくり文字化け。全部 utf-8 に修正してしまいます。
+&lt;/p&gt;
 
-&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
-開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;
-
-&lt;h2 id=&#34;利用するもの:20365379b7c8425a727d73dace0cb088&#34;&gt;利用するもの&lt;/h2&gt;
+&lt;h2 id=&#34;利用するもの&#34;&gt;利用するもの&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
 
-&lt;h2 id=&#34;インストール:20365379b7c8425a727d73dace0cb088&#34;&gt;インストール&lt;/h2&gt;
+&lt;h2 id=&#34;インストール&#34;&gt;インストール&lt;/h2&gt;
 
 &lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
 
-&lt;h2 id=&#34;利用例:20365379b7c8425a727d73dace0cb088&#34;&gt;利用例&lt;/h2&gt;
+&lt;h2 id=&#34;利用例&#34;&gt;利用例&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
@@ -48,27 +47,26 @@ output: Shift_JIS
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;参考:20365379b7c8425a727d73dace0cb088&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
     <item>
       <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
-      <link>http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/</link>
+      <link>http://blog.syati.info/post/solvereattachtousernamespaceinmac109/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/</guid>
-      <description>
+      <guid>http://blog.syati.info/post/solvereattachtousernamespaceinmac109/</guid>
+      <description>&lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;
 
-&lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;手順:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;手順&lt;/h2&gt;
+&lt;h2 id=&#34;手順&#34;&gt;手順&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt; ここにいってソースコードをDLしてくる（git cloneでもOK）&lt;/li&gt;
@@ -89,12 +87,11 @@ make reattach-to-user-namespace
 
 &lt;p&gt;これでワーニングもサヨウナラ&lt;/p&gt;
 
-&lt;h2 id=&#34;参考:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
   </channel>

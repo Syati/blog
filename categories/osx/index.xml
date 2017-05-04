@@ -15,19 +15,19 @@
       <pubDate>Wed, 13 Jul 2016 01:01:50 JST</pubDate>
       
       <guid>http://blog.syati.info/post/php_composer/</guid>
-      <description>
-
-&lt;p&gt;最近、php を触る機会が増えたので、メモメモ。
+      <description>&lt;p&gt;最近、php を触る機会が増えたので、メモメモ。
 composer 叩いたら xdebug を enable にしてると遅いよっていう以下のメッセージが流れるので composer 叩いた時に出ないようにする。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;You are running composer with xdebug enabled. This has a major impact on runtime performance. See https://getcomposer.org/xdebug
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;方法:1ead9dddf59ab7fa3348954d3c2dbcf6&#34;&gt;方法&lt;/h2&gt;
+&lt;h2 id=&#34;方法&#34;&gt;方法&lt;/h2&gt;
 
 &lt;p&gt;方法 1. 2. どちらかでインストール、設定する&lt;/p&gt;
 
-&lt;h3 id=&#34;1-brew-でインストールする:1ead9dddf59ab7fa3348954d3c2dbcf6&#34;&gt;1. brew でインストールする&lt;/h3&gt;
+&lt;h3 id=&#34;1-brew-でインストールする&#34;&gt;1. brew でインストールする&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew install composer
 
@@ -37,7 +37,7 @@ alias composer=&amp;quot;php -n /usr/local/Cellar/composer/1.1.2/libexec/compose
 
 &lt;p&gt;&lt;strong&gt;1.1.2&lt;/strong&gt; というバージョンのところは適宜修正する。&lt;/p&gt;
 
-&lt;h4 id=&#34;その他:1ead9dddf59ab7fa3348954d3c2dbcf6&#34;&gt;その他&lt;/h4&gt;
+&lt;h4 id=&#34;その他&#34;&gt;その他&lt;/h4&gt;
 
 &lt;p&gt;以下のよう alias を設定すれば良いのではと思うかもしれないが、うまくコマンドが通らない&lt;/p&gt;
 
@@ -55,7 +55,7 @@ $ composer
 /usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &amp;quot;$@&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-composer-の-web-からインストールする:1ead9dddf59ab7fa3348954d3c2dbcf6&#34;&gt;2. composer の web からインストールする&lt;/h3&gt;
+&lt;h3 id=&#34;2-composer-の-web-からインストールする&#34;&gt;2. composer の web からインストールする&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget https://getcomposer.org/download/1.1.3/composer.phar
 mv ./composer.phar /usr/local/bin/composer
@@ -66,10 +66,9 @@ chmod +x /usr/local/bin/composer
 alias composer=&amp;quot;php -n /usr/local/bin/composer&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;参考:1ead9dddf59ab7fa3348954d3c2dbcf6&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&#34;&gt;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&lt;/a&gt;&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&#34;&gt;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -78,9 +77,7 @@ alias composer=&amp;quot;php -n /usr/local/bin/composer&amp;quot;
       <pubDate>Sun, 20 Sep 2015 15:49:48 JST</pubDate>
       
       <guid>http://blog.syati.info/post/docker_tutorial_nginx/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/docker_machine/&#34;&gt;docker-machine コマンドの使用方法・流れ&lt;/a&gt; で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/docker_machine/&#34;&gt;docker-machine コマンドの使用方法・流れ&lt;/a&gt; で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。&lt;/p&gt;
 
 &lt;p&gt;以前、何度か &lt;a href=&#34;http://dotinstall.com/lessons/basic_docker&#34;&gt;Docker入門 (全11回)&lt;/a&gt; で docker に入門しましたが、その後挫折。 入門して nginx を構築を出来たはいいが、 MEAN とか LAMP の開発環境を構築するのがすごく困難な感じがして。&lt;a href=&#34;https://docs.docker.com/reference/commandline/cli/&#34;&gt;docker コマンド&lt;/a&gt; たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。&lt;/p&gt;
 
@@ -88,7 +85,9 @@ alias composer=&amp;quot;php -n /usr/local/bin/composer&amp;quot;
 
 &lt;p&gt;ただし、以下を読むより動画 &lt;a href=&#34;http://dotinstall.com/lessons/basic_docker&#34;&gt;Docker入門 (全11回)&lt;/a&gt; で学ぶほうが分かりやすい。&lt;/p&gt;
 
-&lt;h2 id=&#34;step1-docker-vm-の作成-復習:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step1 docker vm の作成(復習)&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;step1-docker-vm-の作成-復習&#34;&gt;Step1 docker vm の作成(復習)&lt;/h2&gt;
 
 &lt;p&gt;とりあえず docker vm を作成・利用する。忘れた方は、こちらで&lt;a href=&#34;http://blog.syati.info/post/docker_machine/&#34;&gt;docker-machine コマンドの使用方法・流れ&lt;/a&gt;&lt;/p&gt;
 
@@ -111,13 +110,13 @@ Get http:///var/run/docker.sock/v1.20/containers/json: dial unix /var/run/docker
 * Is your docker daemon up and running?
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step1-5-簡単な全体イメージ:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step1.5 簡単な全体イメージ&lt;/h2&gt;
+&lt;h2 id=&#34;step1-5-簡単な全体イメージ&#34;&gt;Step1.5 簡単な全体イメージ&lt;/h2&gt;
 
 &lt;p&gt;以下で使用する用語の全体イメージは以下のような感じである。&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Dockerfile&lt;/strong&gt; から &lt;strong&gt;Image&lt;/strong&gt; を作成、Image から &lt;strong&gt;Container&lt;/strong&gt; を立ち上げる&lt;/p&gt;
 
-&lt;h2 id=&#34;step2-dockerfile-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step2 Dockerfile の作成&lt;/h2&gt;
+&lt;h2 id=&#34;step2-dockerfile-の作成&#34;&gt;Step2 Dockerfile の作成&lt;/h2&gt;
 
 &lt;p&gt;Dockerfile （ Image 作成の手順書）を作成する。dir 構成は以下の通り。&lt;/p&gt;
 
@@ -141,7 +140,7 @@ MAINTAINER mizuki-y&amp;lt;mizuki-y@syati.info&amp;gt; # 作成者の情報
 &lt;li&gt;&lt;a href=&#34;https://docs.docker.com/reference/builder/&#34;&gt;Dockerfile reference&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step3-image-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step3 Image の作成&lt;/h2&gt;
+&lt;h2 id=&#34;step3-image-の作成&#34;&gt;Step3 Image の作成&lt;/h2&gt;
 
 &lt;p&gt;Dockerfile から Image を 作成するため &lt;strong&gt;build&lt;/strong&gt; コマンドを実施する。&lt;/p&gt;
 
@@ -158,7 +157,7 @@ Build a new image from the source code at PATH
 $ docker build -t syati:nginx .
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step4-image-の確認:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step4 Image の確認&lt;/h2&gt;
+&lt;h2 id=&#34;step4-image-の確認&#34;&gt;Step4 Image の確認&lt;/h2&gt;
 
 &lt;p&gt;作成した Image を確認するため &lt;strong&gt;images&lt;/strong&gt; コマンドを実施する。 Step2 で FROM しか指定していないので何も変わっていない（SIZE 同じ）が Dockerfile から Image を作成できている。&lt;/p&gt;
 
@@ -174,7 +173,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 nginx               latest              0b354d33906d        10 days ago         132.9 MB
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step5-container-を立ち上げる:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step5 Container を立ち上げる&lt;/h2&gt;
+&lt;h2 id=&#34;step5-container-を立ち上げる&#34;&gt;Step5 Container を立ち上げる&lt;/h2&gt;
 
 &lt;p&gt;作成した Image から Container を立ち上げるために &lt;strong&gt;run&lt;/strong&gt; コマンドを実施する&lt;/p&gt;
 
@@ -220,16 +219,16 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 &lt;p&gt;これは利用イメージが &lt;a href=&#34;https://hub.docker.com/_/nginx/&#34;&gt;Official Repository nginx&lt;/a&gt; この &lt;a href=&#34;https://github.com/nginxinc/docker-nginx/blob/7f3ef0927ec619d20181e677c97f991df0d7d446/Dockerfile&#34;&gt;Dockerfile&lt;/a&gt; を利用して作成されているためである。&lt;/p&gt;
 
-&lt;h2 id=&#34;step6-nginx-のデフォルトページを見る:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step6 nginx のデフォルトページを見る&lt;/h2&gt;
+&lt;h2 id=&#34;step6-nginx-のデフォルトページを見る&#34;&gt;Step6 nginx のデフォルトページを見る&lt;/h2&gt;
 
 &lt;p&gt;Step1 で docker vm の ip を確認してポートを付与してあげる。 -p オプションでポートをした場合で考えると以下にアクセスすれば &lt;strong&gt;Welcome to nginx!&lt;/strong&gt; が見れるはず&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;http://192.168.99.100:8000
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;その他:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;その他&lt;/h2&gt;
+&lt;h2 id=&#34;その他&#34;&gt;その他&lt;/h2&gt;
 
-&lt;h3 id=&#34;container-の中身を確認する:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;container の中身を確認する&lt;/h3&gt;
+&lt;h3 id=&#34;container-の中身を確認する&#34;&gt;container の中身を確認する&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -t -i syati:nginx /bin/bash
 
@@ -240,8 +239,7 @@ Usage:	docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 Run a command in a new container
   -i, --interactive=false         Keep STDIN open even if not attached
   -t, --tty=false                 Allocate a pseudo-TTY
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -250,13 +248,13 @@ Run a command in a new container
       <pubDate>Wed, 09 Sep 2015 23:00:19 JST</pubDate>
       
       <guid>http://blog.syati.info/post/docker_machine/</guid>
-      <description>
-
-&lt;p&gt;Docker すごい。 何がすごいって環境構築が楽すぎる。以前は、Vagrant と Chef でゴリゴリ書いてアプリケーションが動くように頑張ってましたが、そんな事しなくても大方用意されてる。あとはその組み合わせ環境を構築するだけ。懸念点であった Vagrant 、Chef のような provision が、遅いということは今のところ無い。最初にイメージを DL してコンテナ化するので、若干の時間はかかるものの、それでも早い。 具体的な環境構築については、後日記そうと思う。&lt;/p&gt;
+      <description>&lt;p&gt;Docker すごい。 何がすごいって環境構築が楽すぎる。以前は、Vagrant と Chef でゴリゴリ書いてアプリケーションが動くように頑張ってましたが、そんな事しなくても大方用意されてる。あとはその組み合わせ環境を構築するだけ。懸念点であった Vagrant 、Chef のような provision が、遅いということは今のところ無い。最初にイメージを DL してコンテナ化するので、若干の時間はかかるものの、それでも早い。 具体的な環境構築については、後日記そうと思う。&lt;/p&gt;
 
 &lt;p&gt;今回は &lt;strong&gt;docker-machine コマンド&lt;/strong&gt;（コンテナを動かす vm を管理するコマンド）の使用方法、流れを記す。&lt;/p&gt;
 
-&lt;h2 id=&#34;前提:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;前提&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;前提&#34;&gt;前提&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;OSX 10.10.5&lt;/li&gt;
@@ -269,7 +267,7 @@ Run a command in a new container
 &lt;li&gt;Virtual Box 5.0.3&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;docker-machine-コマンド-流れ:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;docker-machine コマンド、流れ&lt;/h2&gt;
+&lt;h2 id=&#34;docker-machine-コマンド-流れ&#34;&gt;docker-machine コマンド、流れ&lt;/h2&gt;
 
 &lt;p&gt;以下のレイヤーと対応するコマンドを覚えておくと、スムーズかもしれない。&lt;/p&gt;
 
@@ -299,7 +297,7 @@ Run a command in a new container
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&#34;step-1-docker-vm-を確認する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 1 docker vm を確認する&lt;/h3&gt;
+&lt;h3 id=&#34;step-1-docker-vm-を確認する&#34;&gt;Step 1 docker vm を確認する&lt;/h3&gt;
 
 &lt;p&gt;作成した docker vm を確認する。普段の &lt;strong&gt;ls&lt;/strong&gt; と同じ感じで使う頻度が高い。はじめは何もないので空である。&lt;/p&gt;
 
@@ -308,7 +306,7 @@ Run a command in a new container
 NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;step-2-docker-vm-を作成する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 2 docker vm を作成する&lt;/h3&gt;
+&lt;h3 id=&#34;step-2-docker-vm-を作成する&#34;&gt;Step 2 docker vm を作成する&lt;/h3&gt;
 
 &lt;p&gt;docker vm を作成する。 以下のコマンドは、オプション driver で virtualbox を指定して、 vm 名を sample にしている。色々オプションがあるので、もっと詳しくという方は、&lt;a href=&#34;https://docs.docker.com/machine/reference/create/&#34;&gt;create&lt;/a&gt; を参考にしてください。&lt;/p&gt;
 
@@ -329,7 +327,7 @@ NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
 sample             virtualbox   Running   tcp://192.168.99.103:2376
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;step-3-docker-vm-を利用する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 3 docker vm を利用する&lt;/h3&gt;
+&lt;h3 id=&#34;step-3-docker-vm-を利用する&#34;&gt;Step 3 docker vm を利用する&lt;/h3&gt;
 
 &lt;p&gt;Step 2 まででは、対象の docker vm にコンテナを操作するコマンド(docker ps など)を実行できない。SSH で対象 vm に入れば可能だが、そんな面倒くさいことは毎回したくない。
 そこで、以下のように env -&amp;gt; eval コマンドを実行して、利用する docker vm の環境変数を設定する。設定した docker vm の ACTIVE に * が記される。&lt;/p&gt;
@@ -353,9 +351,9 @@ sample    *        virtualbox   Running   tcp://192.168.99.103:2376
 
 &lt;p&gt;これで今後利用する docker コマンドは docker vm である sample に発行される。&lt;/p&gt;
 
-&lt;h2 id=&#34;その他:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;その他&lt;/h2&gt;
+&lt;h2 id=&#34;その他&#34;&gt;その他&lt;/h2&gt;
 
-&lt;h3 id=&#34;docker-vm-の中身を確認する-ssh-で入る:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;docker vm の中身を確認する ssh で入る&lt;/h3&gt;
+&lt;h3 id=&#34;docker-vm-の中身を確認する-ssh-で入る&#34;&gt;docker vm の中身を確認する ssh で入る&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker-machine ssh sample
 
@@ -374,8 +372,7 @@ sample    *        virtualbox   Running   tcp://192.168.99.103:2376
 |_.__/ \___/ \___/ \__|_____\__,_|\___/ \___|_|\_\___|_|
 Boot2Docker version 1.8.1, build master : 7f12e95 - Thu Aug 13 03:24:56 UTC 2015
 Docker version 1.8.1, build d12ea79
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -384,21 +381,21 @@ Docker version 1.8.1, build d12ea79
       <pubDate>Thu, 03 Sep 2015 16:00:00 JST</pubDate>
       
       <guid>http://blog.syati.info/post/osx_docker_setup/</guid>
-      <description>
-
-&lt;p&gt;巷で Docker と騒がれて随分経ったでしょうか。私の Mac が新しくなったのを気に Docker に入門したいと思います。何か新しい開発の度にゴミが入るのはちょっと・・・、とも思いますしね。&lt;/p&gt;
+      <description>&lt;p&gt;巷で Docker と騒がれて随分経ったでしょうか。私の Mac が新しくなったのを気に Docker に入門したいと思います。何か新しい開発の度にゴミが入るのはちょっと・・・、とも思いますしね。&lt;/p&gt;
 
 &lt;p&gt;昔、Vagrant と Chef でローカル開発環境を構築していたこともありましたが provison が遅く、何だかなぁ〜と思っているうちに遠ざかっていました。Docker はコンテナ型で、vagrant より軽いのかな。&lt;/p&gt;
 
-&lt;h2 id=&#34;前提:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;前提&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;前提&#34;&gt;前提&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;OSX 10.10.5&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step-1-install-virtualbox:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 1 Install VirtualBox&lt;/h2&gt;
+&lt;h2 id=&#34;step-1-install-virtualbox&#34;&gt;Step 1 Install VirtualBox&lt;/h2&gt;
 
-&lt;p&gt;VirtualBox5.0.2 だと Step 3 で動かなくなるので、&lt;a href=&#34;https://www.virtualbox.org/wiki/Testbuilds&#34;&gt;テストビルド&lt;/a&gt;から入れる。5.0.2 だった場合、 &lt;a href=&#34;#error-1:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;エラー1&lt;/a&gt;が出る。&lt;/p&gt;
+&lt;p&gt;VirtualBox5.0.2 だと Step 3 で動かなくなるので、&lt;a href=&#34;https://www.virtualbox.org/wiki/Testbuilds&#34;&gt;テストビルド&lt;/a&gt;から入れる。5.0.2 だった場合、 &lt;a href=&#34;#error-1&#34;&gt;エラー1&lt;/a&gt;が出る。&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;参考
@@ -408,12 +405,12 @@ Docker version 1.8.1, build d12ea79
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step-2-install-docker-toolbox:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 2 Install Docker Toolbox&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-install-docker-toolbox&#34;&gt;Step 2 Install Docker Toolbox&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew cask install dockertoolbox
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;(http://blog.syati.info/post/brew_cask/&#34;&gt;cask&lt;/a&gt; って思う方は、公式から &lt;a href=&#34;https://www.docker.com/toolbox&#34;&gt;Docker Toolbox&lt;/a&gt; をインストールしましょう。詳しい説明は、&lt;a href=&#34;https://docs.docker.com/mac/step_one/&#34;&gt;Install Docker Mac OS X&lt;/a&gt; 。インストールされる場所は以下のとおり、/usr/local/bin なので、path が通っていればコマンドが通るはずです。&lt;/p&gt;
+&lt;p&gt;[cask]((http://blog.syati.info/post/brew_cask/) って思う方は、公式から &lt;a href=&#34;https://www.docker.com/toolbox&#34;&gt;Docker Toolbox&lt;/a&gt; をインストールしましょう。詳しい説明は、&lt;a href=&#34;https://docs.docker.com/mac/step_one/&#34;&gt;Install Docker Mac OS X&lt;/a&gt; 。インストールされる場所は以下のとおり、/usr/local/bin なので、path が通っていればコマンドが通るはずです。&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;By default, the standard Docker Toolbox installation:
@@ -426,9 +423,9 @@ Docker version 1.8.1, build d12ea79
 Docker version 1.8.1, build d12ea79
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-3-とりあえず起動:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 3 とりあえず起動&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-とりあえず起動&#34;&gt;Step 3 とりあえず起動&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://docs.docker.com/mac/step_one/#step-3-verify-your-installation&#34;&gt;Installation&lt;/a&gt; に書いてあるとおり、以下のコマンドで、とりあえず起動、コマンドを実行してみる。&lt;a href=&#34;#error:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;エラー&lt;/a&gt;が無いことをもって、インストール・起動ができたことの確認を終了する。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://docs.docker.com/mac/step_one/#step-3-verify-your-installation&#34;&gt;Installation&lt;/a&gt; に書いてあるとおり、以下のコマンドで、とりあえず起動、コマンドを実行してみる。&lt;a href=&#34;#error&#34;&gt;エラー&lt;/a&gt;が無いことをもって、インストール・起動ができたことの確認を終了する。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ bash &#39;/Applications/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh&#39;
 $ docker run hello-world
@@ -454,9 +451,9 @@ For more examples and ideas, visit:
   https://docs.docker.com/userguide/
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;error:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Error&lt;/h2&gt;
+&lt;h2 id=&#34;error&#34;&gt;Error&lt;/h2&gt;
 
-&lt;h3 id=&#34;error-1:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;VirtualBox 5.0.2 時で start.sh を叩いた場合&lt;/h3&gt;
+&lt;h3 id=&#34;error-1&#34;&gt;VirtualBox 5.0.2 時で start.sh を叩いた場合&lt;/h3&gt;
 
 &lt;p&gt;以下のとおり、vm が立ち上がってくれない。&lt;/p&gt;
 
@@ -487,14 +484,13 @@ exit status 1
 Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;error-2:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;VirtualBox 5.0.3 にした後、以前作成した vm のエラー&lt;/h3&gt;
+&lt;h3 id=&#34;error-2&#34;&gt;VirtualBox 5.0.3 にした後、以前作成した vm のエラー&lt;/h3&gt;
 
 &lt;p&gt;設定が取れないので、以前作成した vm は削除して、あらためて start.sh を叩きましょう。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker-machine env default
 open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or directory
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -503,20 +499,20 @@ open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or di
       <pubDate>Mon, 31 Aug 2015 18:44:21 JST</pubDate>
       
       <guid>http://blog.syati.info/post/brew_cask/</guid>
-      <description>
+      <description>&lt;p&gt;Web ページや App Store から App をダブルクリックしてインストールは面倒くさいので &lt;strong&gt;cask&lt;/strong&gt; をいれて解決する。&lt;/p&gt;
 
-&lt;p&gt;Web ページや App Store から App をダブルクリックしてインストールは面倒くさいので &lt;strong&gt;cask&lt;/strong&gt; をいれて解決する。&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;インストールとコマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;インストールとコマンド&lt;/h2&gt;
+&lt;h2 id=&#34;インストールとコマンド&#34;&gt;インストールとコマンド&lt;/h2&gt;
 
-&lt;h3 id=&#34;インストール:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;インストール&lt;/h3&gt;
+&lt;h3 id=&#34;インストール&#34;&gt;インストール&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;cask&lt;/strong&gt; コマンドを使えるようにするために以下のコマンドを実行する。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install caskroom/cask/brew-cask
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;コマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;コマンド&lt;/h3&gt;
+&lt;h3 id=&#34;コマンド&#34;&gt;コマンド&lt;/h3&gt;
 
 &lt;p&gt;検索&lt;/p&gt;
 
@@ -538,7 +534,7 @@ chromecast                         google-chrome-canary
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew cask uninstall google-chrome
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;その他:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;その他&lt;/h2&gt;
+&lt;h2 id=&#34;その他&#34;&gt;その他&lt;/h2&gt;
 
 &lt;p&gt;cask でインストールしたアプリは以下にインストールされ、ホームフォルダ(~/)の Applications からアプリへのシンボリックリンクが作成される。ルート(/)にインストールが必要なものはパスワードが求められる。&lt;/p&gt;
 
@@ -559,12 +555,11 @@ chromecast                         google-chrome-canary
 └── Visual Studio Code.app -&amp;gt; /opt/homebrew-cask/Caskroom/visual-studio-code/0.7.0/Visual Studio Code.app
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;参考:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://caskroom.io/&#34;&gt;Homebrew Cask&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -573,9 +568,7 @@ chromecast                         google-chrome-canary
       <pubDate>Sun, 30 Aug 2015 13:38:35 JST</pubDate>
       
       <guid>http://blog.syati.info/post/altkey_in_osx-terminal/</guid>
-      <description>
-
-&lt;p&gt;Mac の環境を新しく作ることになったので、以前の環境が出来るまでメモしていく。&lt;/p&gt;
+      <description>&lt;p&gt;Mac の環境を新しく作ることになったので、以前の環境が出来るまでメモしていく。&lt;/p&gt;
 
 &lt;p&gt;バックアップからの復元を使えば楽なのだが、ゴミが入るのは・・・。&lt;/p&gt;
 
@@ -583,7 +576,9 @@ chromecast                         google-chrome-canary
 
 &lt;p&gt;&lt;strong&gt;ターミナルで alt key が使えないよ！！&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;メタキーとして-option-キーを使用-にチェック:784ef5322b7ad8a18c627bd23e19b9ed&#34;&gt;&amp;ldquo;メタキーとして Option キーを使用&amp;rdquo; にチェック&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;メタキーとして-option-キーを使用-にチェック&#34;&gt;&amp;ldquo;メタキーとして Option キーを使用&amp;rdquo; にチェック&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;ターミナル -&amp;gt; 環境設定 -&amp;gt; プロファイルタブ を開く。&lt;/li&gt;
@@ -601,9 +596,7 @@ chromecast                         google-chrome-canary
         
     &lt;/figcaption&gt;
     
-&lt;/figure&gt;
-
-</description>
+&lt;/figure&gt;</description>
     </item>
     
     <item>
@@ -612,12 +605,11 @@ chromecast                         google-chrome-canary
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
       <guid>http://blog.syati.info/post/make_env_mac/</guid>
-      <description>
+      <description>&lt;p&gt;仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。
+ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。
+&lt;/p&gt;
 
-&lt;p&gt;仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。
-ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。&lt;/p&gt;
-
-&lt;h2 id=&#34;開発環境:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;開発環境&lt;/h2&gt;
+&lt;h2 id=&#34;開発環境&#34;&gt;開発環境&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;xcode:開発環境
@@ -687,7 +679,7 @@ chromecast                         google-chrome-canary
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;ブラウジング:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;ブラウジング&lt;/h1&gt;
+&lt;h1 id=&#34;ブラウジング&#34;&gt;ブラウジング&lt;/h1&gt;
 
 &lt;ul&gt;
 &lt;li&gt;adobe pdf&lt;/li&gt;
@@ -725,7 +717,7 @@ chromecast                         google-chrome-canary
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;キーバインド設定:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;キーバインド設定&lt;/h2&gt;
+&lt;h2 id=&#34;キーバインド設定&#34;&gt;キーバインド設定&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;HyperSwitch：ウィンドウ切り替え
@@ -762,7 +754,7 @@ chromecast                         google-chrome-canary
 &lt;/ol&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;その他:36f6a794586ec6fdca3bbe848a14a5cc&#34;&gt;その他&lt;/h2&gt;
+&lt;h2 id=&#34;その他&#34;&gt;その他&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;inconsolate:フォント&lt;/li&gt;
@@ -791,21 +783,20 @@ chromecast                         google-chrome-canary
 &lt;ol&gt;
 &lt;li&gt;「アップルボタン」 -&amp;gt; 「システム環境設定」 -&amp;gt; 「マウス」-&amp;gt; 「スクロールの方向：ナチュラル」のチェックを外す&lt;/li&gt;
 &lt;/ol&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
     <item>
       <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
-      <link>http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/</link>
+      <link>http://blog.syati.info/post/solvereattachtousernamespaceinmac109/</link>
       <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
       
-      <guid>http://blog.syati.info/post/solveReattachToUserNamespaceInMac109/</guid>
-      <description>
+      <guid>http://blog.syati.info/post/solvereattachtousernamespaceinmac109/</guid>
+      <description>&lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;
 
-&lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;手順:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;手順&lt;/h2&gt;
+&lt;h2 id=&#34;手順&#34;&gt;手順&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt; ここにいってソースコードをDLしてくる（git cloneでもOK）&lt;/li&gt;
@@ -826,12 +817,11 @@ make reattach-to-user-namespace
 
 &lt;p&gt;これでワーニングもサヨウナラ&lt;/p&gt;
 
-&lt;h2 id=&#34;参考:ff82e517b0f612048d2cd31b441a1bfd&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
   </channel>

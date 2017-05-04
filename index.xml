@@ -1,13 +1,135 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title> on Syati.info </title>
+      <title>Syati.info on Syati.info </title>
       <generator uri="https://gohugo.io">Hugo</generator>
     <link>http://blog.syati.info/</link>
     <language>ja-JP</language>
     
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Wed, 13 Jul 2016 01:01:50 JST</updated>
+    <updated>Sat, 29 Apr 2017 19:02:10 JST</updated>
+    
+    <item>
+      <title>Sequel Pro の ctrl&#43;h ヘルプを backspace に変更する</title>
+      <link>http://blog.syati.info/post/sequel_pro_overwrite_ctrl_h/</link>
+      <pubDate>Sat, 29 Apr 2017 19:02:10 JST</pubDate>
+      
+      <guid>http://blog.syati.info/post/sequel_pro_overwrite_ctrl_h/</guid>
+      <description>&lt;p&gt;Sequel Pro 便利ですよね。簡単に select とか DB 作成、きれいな結果表示などなど。
+ただ、emacs ユーザーの私にとってウザくてウザくて堪らないのが、&lt;strong&gt;ctrl+h&lt;/strong&gt; を打つと、このソフトでは&lt;strong&gt;ヘルプ&lt;/strong&gt;を開くということ。頼むから Backspace にしてくれ！！と。&lt;/p&gt;
+
+&lt;p&gt;調べてみると、上書き出来るではないか！！&lt;a href=&#34;https://github.com/sequelpro/sequelpro/issues/1974&#34;&gt;github の issue&lt;/a&gt;に書いてあった。ということで以下に、その方法記す。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;準備&#34;&gt;準備&lt;/h2&gt;
+
+&lt;p&gt;とりあえず、デフォルトでは ctrl+h でこのヘルプがでてくる。&lt;/p&gt;
+
+
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;popup_help.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;fig 1. help が出力される&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;なんで、ヘルプがでるかというと以下で ctrl+h にショートカットが割り当てられているため。&lt;/p&gt;
+
+
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;default_shortcut.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;fig 2. default のショートカット&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h2 id=&#34;修正&#34;&gt;修正&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-システム環境設定-キーボード-ショートカットタブ-アプリケーション&#34;&gt;1. システム環境設定 -&amp;gt; キーボード -&amp;gt; ショートカットタブ -&amp;gt; アプリケーション&lt;/h3&gt;
+
+
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;default_keyboard_shortcut.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;fig 3. アプリケーションのショートカット&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h3 id=&#34;2-ボタンから新規追加する&#34;&gt;2. + ボタンから新規追加する&lt;/h3&gt;
+
+&lt;p&gt;大事なのは Sequel Pro で既存で割当てられいるメニューコマンドと同じにするということ。すなわち &lt;strong&gt;準備 fig 2.&lt;/strong&gt; に表示されている &lt;strong&gt;^H&lt;/strong&gt; のメニューコマンド &lt;strong&gt;単語の MySQL ヘルプ&lt;/strong&gt; である。とりあえず &lt;strong&gt;Shift + Command + H&lt;/strong&gt; にでも割り当てる。&lt;/p&gt;
+
+
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;add_keyboard_shortcut.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;fig 4. Sequel Pro の既存ショートカットを上書きする&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;added_keyboard_shortcut.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;fig 5. 登録完了&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;h3 id=&#34;3-sequel-pro-でショートカットが上書きされたかを確認する&#34;&gt;3. Sequel Pro でショートカットが上書きされたかを確認する&lt;/h3&gt;
+
+&lt;p&gt;Sequel Pro のヘルプを確認する。変更されていることが確認できる。&lt;/p&gt;
+
+
+&lt;figure class=&#34;image-half__center&#34;&gt;
+    
+        &lt;img src=&#34;added_shortcut.jpg&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;fig 6. ショートカット上書き完了&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;後はクエリで ctrl+h で backspece できることを確認する。&lt;/p&gt;
+
+&lt;h2 id=&#34;終わりに&#34;&gt;終わりに&lt;/h2&gt;
+
+&lt;p&gt;ctrl + h で &lt;em&gt;ヘルプに悩まされる日々、さようなら&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>うるさいよ &#39;You are running composer with xdebug enabled. This has a major impact on runtime performance&#39;</title>
@@ -15,19 +137,19 @@
       <pubDate>Wed, 13 Jul 2016 01:01:50 JST</pubDate>
       
       <guid>http://blog.syati.info/post/php_composer/</guid>
-      <description>
-
-&lt;p&gt;最近、php を触る機会が増えたので、メモメモ。
+      <description>&lt;p&gt;最近、php を触る機会が増えたので、メモメモ。
 composer 叩いたら xdebug を enable にしてると遅いよっていう以下のメッセージが流れるので composer 叩いた時に出ないようにする。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;You are running composer with xdebug enabled. This has a major impact on runtime performance. See https://getcomposer.org/xdebug
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;方法:1ead9dddf59ab7fa3348954d3c2dbcf6&#34;&gt;方法&lt;/h2&gt;
+&lt;h2 id=&#34;方法&#34;&gt;方法&lt;/h2&gt;
 
 &lt;p&gt;方法 1. 2. どちらかでインストール、設定する&lt;/p&gt;
 
-&lt;h3 id=&#34;1-brew-でインストールする:1ead9dddf59ab7fa3348954d3c2dbcf6&#34;&gt;1. brew でインストールする&lt;/h3&gt;
+&lt;h3 id=&#34;1-brew-でインストールする&#34;&gt;1. brew でインストールする&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew install composer
 
@@ -37,7 +159,7 @@ alias composer=&amp;quot;php -n /usr/local/Cellar/composer/1.1.2/libexec/compose
 
 &lt;p&gt;&lt;strong&gt;1.1.2&lt;/strong&gt; というバージョンのところは適宜修正する。&lt;/p&gt;
 
-&lt;h4 id=&#34;その他:1ead9dddf59ab7fa3348954d3c2dbcf6&#34;&gt;その他&lt;/h4&gt;
+&lt;h4 id=&#34;その他&#34;&gt;その他&lt;/h4&gt;
 
 &lt;p&gt;以下のよう alias を設定すれば良いのではと思うかもしれないが、うまくコマンドが通らない&lt;/p&gt;
 
@@ -55,7 +177,7 @@ $ composer
 /usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &amp;quot;$@&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-composer-の-web-からインストールする:1ead9dddf59ab7fa3348954d3c2dbcf6&#34;&gt;2. composer の web からインストールする&lt;/h3&gt;
+&lt;h3 id=&#34;2-composer-の-web-からインストールする&#34;&gt;2. composer の web からインストールする&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget https://getcomposer.org/download/1.1.3/composer.phar
 mv ./composer.phar /usr/local/bin/composer
@@ -66,10 +188,9 @@ chmod +x /usr/local/bin/composer
 alias composer=&amp;quot;php -n /usr/local/bin/composer&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;参考:1ead9dddf59ab7fa3348954d3c2dbcf6&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&#34;&gt;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&lt;/a&gt;&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&#34;&gt;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -78,11 +199,11 @@ alias composer=&amp;quot;php -n /usr/local/bin/composer&amp;quot;
       <pubDate>Sat, 02 Jan 2016 22:00:15 JST</pubDate>
       
       <guid>http://blog.syati.info/post/sequelize_relation/</guid>
-      <description>
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/sequelize_getting_started/&#34;&gt;Sequelize Part 1&lt;/a&gt; で、なんとなくわかってきた！！と思うので、今回は、リレーションについて学ぶ。&lt;strong&gt;belongsTo, hasOne, hasMany, belongsToMany&lt;/strong&gt; の4つだけ。後、オプションを少し学べばやりたいことは大方出来るようになる。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/sequelize_getting_started/&#34;&gt;Sequelize Part 1&lt;/a&gt; で、なんとなくわかってきた！！と思うので、今回は、リレーションについて学ぶ。&lt;strong&gt;belongsTo, hasOne, hasMany, belongsToMany&lt;/strong&gt; の4つだけ。後、オプションを少し学べばやりたいことは大方出来るようになる。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;1-リレーションの種類:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1. リレーションの種類&lt;/h2&gt;
+&lt;h2 id=&#34;1-リレーションの種類&#34;&gt;1. リレーションの種類&lt;/h2&gt;
 
 &lt;p&gt;リレーションを理解するためには、&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/associations/&#34;&gt;Relations / Associations&lt;/a&gt; を読み込まないと始まらない。結構ボリュームがあって、心折れそうになりますが！！実は大したことはないはず・・・。まずは、少しだけ用語の説明。&lt;/p&gt;
 
@@ -100,7 +221,7 @@ User.hasOne(Project)
 
 &lt;p&gt;これは、外部キーがどちらに追加されるのかを明記するために利用する。リレーションは、以降の4種類（メソッド）ある。&lt;/p&gt;
 
-&lt;h3 id=&#34;1-1-belongsto:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.1. belongsTo&lt;/h3&gt;
+&lt;h3 id=&#34;1-1-belongsto&#34;&gt;1.1. belongsTo&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;プレイヤ belongs to チーム&lt;/strong&gt; という場合。&lt;/p&gt;
 
@@ -136,7 +257,7 @@ Player.belongsTo(Team);
 
 &lt;p&gt;&lt;strong&gt;※外部キーが camelCase&lt;/strong&gt; ！？という方は、&lt;a href=&#34;#2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.2. underscored: 外部キーの命名規則を camelCase から underscored にする&lt;/a&gt; を参照のこと。&lt;/p&gt;
 
-&lt;h3 id=&#34;1-2-hasone:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.2. hasOne&lt;/h3&gt;
+&lt;h3 id=&#34;1-2-hasone&#34;&gt;1.2. hasOne&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;ユーザ has one プロフィール&lt;/strong&gt; という場合。&lt;/p&gt;
 
@@ -164,13 +285,14 @@ User.hasOne(Profile)
 &lt;li&gt;&amp;hellip;&lt;/li&gt;
 &lt;li&gt;createdAt&lt;/li&gt;
 &lt;li&gt;updatedAt&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UserId (hasOne によって追加される)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UserId (hasOne によって追加される)&lt;/strong&gt;
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&#34;(http://docs.sequelizejs.com/en/latest/docs/associations/#hasone&#34;&gt;hasOne&lt;/a&gt; では &lt;strong&gt;target (Profile)&lt;/strong&gt; に外部キー（&lt;strong&gt;UserId&lt;/strong&gt;）が追加される。&lt;strong&gt;belongsTo とその点が違うことに注意&lt;/strong&gt;。また、User インスタンスは &lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/associations/has-one/&#34;&gt;hasOne - api&lt;/a&gt; メソッドを持つ。&lt;/p&gt;
+&lt;p&gt;[hasOne]((&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/associations/#hasone&#34;&gt;http://docs.sequelizejs.com/en/latest/docs/associations/#hasone&lt;/a&gt;) では &lt;strong&gt;target (Profile)&lt;/strong&gt; に外部キー（&lt;strong&gt;UserId&lt;/strong&gt;）が追加される。&lt;strong&gt;belongsTo とその点が違うことに注意&lt;/strong&gt;。また、User インスタンスは &lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/associations/has-one/&#34;&gt;hasOne - api&lt;/a&gt; メソッドを持つ。&lt;/p&gt;
 
-&lt;h3 id=&#34;1-3-hasmany:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.3. hasMany&lt;/h3&gt;
+&lt;h3 id=&#34;1-3-hasmany&#34;&gt;1.3. hasMany&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;プロジェクト has many ユーザ&lt;/strong&gt; という場合。&lt;/p&gt;
 
@@ -204,7 +326,7 @@ Project.hasMany(User)
 
 &lt;p&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/associations/#one-to-many-associations&#34;&gt;hasMany&lt;/a&gt; では &lt;strong&gt;target (User)&lt;/strong&gt; に外部キー（&lt;strong&gt;ProjectId&lt;/strong&gt;）が追加される。これだけ見ると &lt;strong&gt;hasOne と同じじゃないか&lt;/strong&gt;と思うかもしれないが、インスタンスが持つメソッドが異なる。Project インスタンスは &lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/associations/has-many/&#34;&gt;hasMany - api&lt;/a&gt; メソッドを持つ。&lt;/p&gt;
 
-&lt;h3 id=&#34;1-4-belongstomany:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.4. belongsToMany&lt;/h3&gt;
+&lt;h3 id=&#34;1-4-belongstomany&#34;&gt;1.4. belongsToMany&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;プロジェクトは複数のユーザを持ち、ユーザは複数のプロジェクトに属する&lt;/strong&gt; という &lt;strong&gt;多対多&lt;/strong&gt; の場合。&lt;/p&gt;
 
@@ -274,9 +396,9 @@ User.belongsToMany(Project, { through: UserProjects })
 Project.belongsToMany(User, { through: UserProjects })
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;2-その他-オプション:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2. その他、オプション&lt;/h2&gt;
+&lt;h2 id=&#34;2-その他-オプション&#34;&gt;2. その他、オプション&lt;/h2&gt;
 
-&lt;h3 id=&#34;2-1-片方向と双方向:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.1. 片方向と双方向&lt;/h3&gt;
+&lt;h3 id=&#34;2-1-片方向と双方向&#34;&gt;2.1. 片方向と双方向&lt;/h3&gt;
 
 &lt;p&gt;以下の違いを覚えておく。&lt;/p&gt;
 
@@ -329,7 +451,7 @@ team.getPlayers()
 
 &lt;p&gt;双方向については、上記のようなことをする必要はない。双方向を利用した際に、インスタンスにメソッドが追加されるため。&lt;a href=&#34;http://localhost:1313/post/sequelize_relation/#1-4-belongstomany:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;1.4. belongsToMany&lt;/a&gt; 参照のこと。&lt;/p&gt;
 
-&lt;h3 id=&#34;2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.2. underscored: 外部キーの命名規則を camelCase から underscored にする&lt;/h3&gt;
+&lt;h3 id=&#34;2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする&#34;&gt;2.2. underscored: 外部キーの命名規則を camelCase から underscored にする&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;Foreign keys&lt;/strong&gt; は camelCase になります。&lt;/p&gt;
 
@@ -372,7 +494,7 @@ Player.belongsTo(Team);
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;2-3-as-target-のモデル名を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.3. as: target のモデル名を任意に変更する&lt;/h3&gt;
+&lt;h3 id=&#34;2-3-as-target-のモデル名を任意に変更する&#34;&gt;2.3. as: target のモデル名を任意に変更する&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;as&lt;/strong&gt; オプションに任意の名前を与えることで、target のモデル名を変更できる&lt;/p&gt;
 
@@ -413,7 +535,7 @@ user.getProject();
 user.getPrj()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-4-foreignkey-外部キーの名前を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.4. foreignKey: 外部キーの名前を任意に変更する&lt;/h3&gt;
+&lt;h3 id=&#34;2-4-foreignkey-外部キーの名前を任意に変更する&#34;&gt;2.4. foreignKey: 外部キーの名前を任意に変更する&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;foreignKey&lt;/strong&gt; オプションに任意の名前を与えることで、Sequelize の外部キーの命名規則を完全無視できる&lt;/p&gt;
 
@@ -451,7 +573,7 @@ User.belongsTo(Project, {foreignKey: &#39;fk_project&#39;});
 user.getProject();
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-5-targetkey-外部キーをプライマリキーから任意のカラムに変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.5. targetKey: 外部キーをプライマリキーから任意のカラムに変更する&lt;/h3&gt;
+&lt;h3 id=&#34;2-5-targetkey-外部キーをプライマリキーから任意のカラムに変更する&#34;&gt;2.5. targetKey: 外部キーをプライマリキーから任意のカラムに変更する&lt;/h3&gt;
 
 &lt;p&gt;以下にある通り、デフォルトの外部キーは target (または source)のプライマリキーになります。belongsTo としか書いてないけど、それ以外も基本同じ。&lt;/p&gt;
 
@@ -487,12 +609,12 @@ User.belongsTo(models.Project, {foreignKey: &#39;fk_projectname&#39;, targetKey:
 &lt;li&gt;id&lt;/li&gt;
 &lt;li&gt;name&lt;/li&gt;
 &lt;li&gt;createdAt&lt;/li&gt;
-&lt;li&gt;updatedAt&lt;/li&gt;
+&lt;li&gt;updatedAt
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;インスタンスのもつメソッドは &lt;a href=&#34;#2-4-foreignkey-外部キーの名前を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.4. foreignKey: 外部キーの名前を任意に変更する&lt;/a&gt; と変わりなし&lt;/p&gt;
-</description>
+&lt;p&gt;インスタンスのもつメソッドは &lt;a href=&#34;#2-4-foreignkey-外部キーの名前を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107&#34;&gt;2.4. foreignKey: 外部キーの名前を任意に変更する&lt;/a&gt; と変わりなし&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -501,13 +623,13 @@ User.belongsTo(models.Project, {foreignKey: &#39;fk_projectname&#39;, targetKey:
       <pubDate>Tue, 29 Dec 2015 12:38:07 JST</pubDate>
       
       <guid>http://blog.syati.info/post/sequelize_getting_started/</guid>
-      <description>
-
-&lt;p&gt;ちょっと前まで MEAN とか流行っていた気がするんですが、今はどうなんですかね？実際にちょっとしたWEBサービスで利用してみると、MongoDB が思った以上に厄介だった。トランザクションが無いのが、どうしても辛い。後々考えると面倒くさいことになるのは目に見えているのでヤメヤメ。ということで従来通り RDB を利用、そして、ORM は &lt;strong&gt;Sequelize&lt;/strong&gt; を利用したので、その辺をメモっていきたいと思う。&lt;/p&gt;
+      <description>&lt;p&gt;ちょっと前まで MEAN とか流行っていた気がするんですが、今はどうなんですかね？実際にちょっとしたWEBサービスで利用してみると、MongoDB が思った以上に厄介だった。トランザクションが無いのが、どうしても辛い。後々考えると面倒くさいことになるのは目に見えているのでヤメヤメ。ということで従来通り RDB を利用、そして、ORM は &lt;strong&gt;Sequelize&lt;/strong&gt; を利用したので、その辺をメモっていきたいと思う。&lt;/p&gt;
 
 &lt;p&gt;以降で説明するコードは、&lt;a href=&#34;https://github.com/Syati/sequelize-sample/tree/master/01_repl&#34;&gt;01_repl&lt;/a&gt; にあります。&lt;/p&gt;
 
-&lt;h2 id=&#34;環境:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;環境&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;環境&#34;&gt;環境&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;OSX 10.10.5&lt;/li&gt;
@@ -515,7 +637,7 @@ User.belongsTo(models.Project, {foreignKey: &#39;fk_projectname&#39;, targetKey:
 &lt;li&gt;MariaDB 10.1.9&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;orm-導入に際して:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;ORM 導入に際して&lt;/h2&gt;
+&lt;h2 id=&#34;orm-導入に際して&#34;&gt;ORM 導入に際して&lt;/h2&gt;
 
 &lt;p&gt;Node で RDB を利用するために、ORM のライブラリを検討。意外とあるもんですね。
 以下に github の star と fork 数をまとめる(2015/12/29 調べ)。&lt;/p&gt;
@@ -558,9 +680,9 @@ User.belongsTo(models.Project, {foreignKey: &#39;fk_projectname&#39;, targetKey:
 
 &lt;p&gt;それぞれの Lib の差異はわかりませんが Star と Fork 数で判断して、&lt;strong&gt;Sequelize で決定&lt;/strong&gt;。ドキュメントも見やすかったのでいいかな。&lt;/p&gt;
 
-&lt;h2 id=&#34;1-db-orm-orm-cli-のインストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1. DB・ORM・ORM-CLI のインストール&lt;/h2&gt;
+&lt;h2 id=&#34;1-db-orm-orm-cli-のインストール&#34;&gt;1. DB・ORM・ORM-CLI のインストール&lt;/h2&gt;
 
-&lt;h3 id=&#34;1-1-db-インストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1.1. DB インストール&lt;/h3&gt;
+&lt;h3 id=&#34;1-1-db-インストール&#34;&gt;1.1. DB インストール&lt;/h3&gt;
 
 &lt;p&gt;mysql, posgre がある場合は不要。今回は mariadb を利用する。&lt;/p&gt;
 
@@ -585,13 +707,13 @@ $ mysql -uroot
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;1-2-orm-sequelize-インストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1.2. ORM (Sequelize) インストール&lt;/h3&gt;
+&lt;h3 id=&#34;1-2-orm-sequelize-インストール&#34;&gt;1.2. ORM (Sequelize) インストール&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install --save sequelize
 $ npm install --save mysql // For both mysql and mariadb dialects
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;1-3-orm-cli-sequelize-cli-インストール:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;1.3. ORM-CLI (Sequelize CLI) インストール&lt;/h3&gt;
+&lt;h3 id=&#34;1-3-orm-cli-sequelize-cli-インストール&#34;&gt;1.3. ORM-CLI (Sequelize CLI) インストール&lt;/h3&gt;
 
 &lt;p&gt;初期設定、モデル作成、マイグレーション など便利なので CLI をいれる。
 コマンドラインをグローバルで利用したいので &lt;strong&gt;g&lt;/strong&gt; 付与する。&lt;/p&gt;
@@ -599,7 +721,7 @@ $ npm install --save mysql // For both mysql and mariadb dialects
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ npm install -g sequelize-cli
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;2-各種設定:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2. 各種設定&lt;/h2&gt;
+&lt;h2 id=&#34;2-各種設定&#34;&gt;2. 各種設定&lt;/h2&gt;
 
 &lt;p&gt;現状の dir 構成は以下のとおり。&lt;/p&gt;
 
@@ -608,7 +730,7 @@ $ npm install --save mysql // For both mysql and mariadb dialects
 └── package.json
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-1-db-作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2.1. DB 作成&lt;/h3&gt;
+&lt;h3 id=&#34;2-1-db-作成&#34;&gt;2.1. DB 作成&lt;/h3&gt;
 
 &lt;p&gt;今回利用する DB を &lt;strong&gt;seq_dev&lt;/strong&gt; として、 mariadb に作成する。&lt;/p&gt;
 
@@ -617,7 +739,7 @@ $ npm install --save mysql // For both mysql and mariadb dialects
 $ create database seq_dev character set utf8;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-2-初期設定:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;2.2. 初期設定&lt;/h3&gt;
+&lt;h3 id=&#34;2-2-初期設定&#34;&gt;2.2. 初期設定&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;1.3&lt;/strong&gt; でインストールした Sequelize CLI を用いて初期設定する。&lt;/p&gt;
 
@@ -649,9 +771,9 @@ sample_prj
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;3-はじめてのモデル作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;3. はじめてのモデル作成&lt;/h2&gt;
+&lt;h2 id=&#34;3-はじめてのモデル作成&#34;&gt;3. はじめてのモデル作成&lt;/h2&gt;
 
-&lt;h3 id=&#34;3-1-model-の作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;3.1. model の作成&lt;/h3&gt;
+&lt;h3 id=&#34;3-1-model-の作成&#34;&gt;3.1. model の作成&lt;/h3&gt;
 
 &lt;p&gt;models ディレクトリに model.js のように手動でモデルを作成しても良いのだが、CLI を利用してモデルを作成してあげると、マイグレーションも一緒に作成してくれるので、CLI を利用すると楽かもしれない。&lt;/p&gt;
 
@@ -706,11 +828,12 @@ models
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/legacy/#primary-keys&#34;&gt;PrimaryKey&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/models-definition&#34;&gt;Definition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/docs/models-definition&#34;&gt;Definition&lt;/a&gt;
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;3-2-models-の-index-js-について:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;3.2. models の index.js について&lt;/h3&gt;
+&lt;h3 id=&#34;3-2-models-の-index-js-について&#34;&gt;3.2. models の index.js について&lt;/h3&gt;
 
 &lt;p&gt;models dir には index.js が sequelize init によって作成されるが、これは models ディレクトリにある全ファイルを読み込んで、モデルを構築してくれる。その際に、モデル間のリレーションも一緒に構築する。利用する際には、index.js を読み込んで、該当モデルを利用することになる。(ES6 利用)&lt;/p&gt;
 
@@ -721,9 +844,9 @@ const User = models.User;
 User.findAll().then((users) =&amp;gt; console.log(users));
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;4-試してみる:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;4. 試してみる&lt;/h2&gt;
+&lt;h2 id=&#34;4-試してみる&#34;&gt;4. 試してみる&lt;/h2&gt;
 
-&lt;h3 id=&#34;4-1-エントリポイントの作成:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;4.1. エントリポイントの作成&lt;/h3&gt;
+&lt;h3 id=&#34;4-1-エントリポイントの作成&#34;&gt;4.1. エントリポイントの作成&lt;/h3&gt;
 
 &lt;p&gt;とりあえず色々試してみたいので、repl できるようにプロジェクトルートに &lt;strong&gt;repl.js&lt;/strong&gt; とでもしてエントリポイントを作成する。&lt;/p&gt;
 
@@ -749,7 +872,7 @@ module.exports = models;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;4-2-node-replで試す:d0405ca9cb7f9fb6a32a84decaf220bd&#34;&gt;4.2. Node REPLで試す&lt;/h3&gt;
+&lt;h3 id=&#34;4-2-node-replで試す&#34;&gt;4.2. Node REPLで試す&lt;/h3&gt;
 
 &lt;p&gt;REPL を起動する。&lt;/p&gt;
 
@@ -786,8 +909,7 @@ User.findAll().then((users) =&amp;gt; console.log(JSON.stringify(users)));
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://docs.sequelizejs.com/en/latest/api/model/&#34;&gt;http://docs.sequelizejs.com/en/latest/api/model/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -796,17 +918,17 @@ User.findAll().then((users) =&amp;gt; console.log(JSON.stringify(users)));
       <pubDate>Sat, 31 Oct 2015 14:00:39 JST</pubDate>
       
       <guid>http://blog.syati.info/post/typescript_coverage/</guid>
-      <description>
-
-&lt;p&gt;AltJs ってトランスパイルした後、テストを実行させる必要があるから・・、面倒くさいんだよね。なんか、あまり情報もないし、これだから AltJs は・・・と思うわけですが、やってみると案外大したことないもんです。&lt;/p&gt;
+      <description>&lt;p&gt;AltJs ってトランスパイルした後、テストを実行させる必要があるから・・、面倒くさいんだよね。なんか、あまり情報もないし、これだから AltJs は・・・と思うわけですが、やってみると案外大したことないもんです。&lt;/p&gt;
 
 &lt;p&gt;今回は、TypeScript のコードのユニットテスト、カバレッジを記していこうと思います。本記事のコードは以下のURLにあります。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/011_test_sample&#34;&gt;https://github.com/Syati/typescript-sample/tree/master/011_test_sample&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;step-0-事前準備:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 0: 事前準備&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;流れ:134ba188964091106b5909c7aef27c8d&#34;&gt;流れ&lt;/h3&gt;
+&lt;h2 id=&#34;step-0-事前準備&#34;&gt;Step 0: 事前準備&lt;/h2&gt;
+
+&lt;h3 id=&#34;流れ&#34;&gt;流れ&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;ts でコードを書く&lt;/li&gt;
@@ -815,7 +937,7 @@ User.findAll().then((users) =&amp;gt; console.log(JSON.stringify(users)));
 &lt;li&gt;map を利用して&lt;strong&gt;ts カバレッジ&lt;/strong&gt;を測る&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;ライブラリ:134ba188964091106b5909c7aef27c8d&#34;&gt;ライブラリ&lt;/h3&gt;
+&lt;h3 id=&#34;ライブラリ&#34;&gt;ライブラリ&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;npm install -g mocha istanbul remap-istanbul&lt;/strong&gt; でそれぞれコマンドが利用できるようになります。&lt;/p&gt;
 
@@ -845,7 +967,7 @@ User.findAll().then((users) =&amp;gt; console.log(JSON.stringify(users)));
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step-1-とりあえずテストを書く:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 1: とりあえずテストを書く&lt;/h2&gt;
+&lt;h2 id=&#34;step-1-とりあえずテストを書く&#34;&gt;Step 1: とりあえずテストを書く&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/011_test_sample&#34;&gt;プロジェクト&lt;/a&gt; を確認しておく。全体が理解しやすくなると思う。&lt;/p&gt;
 
@@ -872,7 +994,7 @@ describe(&amp;quot;TestTarget&amp;quot;, () =&amp;gt; {
 
 &lt;p&gt;すごいシンプルですね。&lt;/p&gt;
 
-&lt;h2 id=&#34;step-2-トランスパイルする:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 2: トランスパイルする&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-トランスパイルする&#34;&gt;Step 2: トランスパイルする&lt;/h2&gt;
 
 &lt;p&gt;tsc コマンドを叩く前に設定ファイルを書いときましょう。以下の tsconfig.json になります。
 とくに変わった点はないですね。重要なポイントとしては、&lt;strong&gt;&amp;ldquo;sourceMap&amp;rdquo;: true&lt;/strong&gt;です。
@@ -902,7 +1024,7 @@ describe(&amp;quot;TestTarget&amp;quot;, () =&amp;gt; {
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ tsc
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-3-テストする:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 3: テストする&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-テストする&#34;&gt;Step 3: テストする&lt;/h2&gt;
 
 &lt;p&gt;Step 2 でトランスパイル済みなので、ts ファイル以外に js、map ファイルが存在すると思います。ディレクトリが汚れてあたふたするかもしれませんが、package.json に clean スクリプトを書くことで解決できるので、今は我慢。&lt;/p&gt;
 
@@ -924,7 +1046,7 @@ describe(&amp;quot;TestTarget&amp;quot;, () =&amp;gt; {
 
 &lt;p&gt;ユニットテストのモチベーションをあげるためにも、やっぱりカバレッジですよ！！&lt;/p&gt;
 
-&lt;h2 id=&#34;step-4-カバレッジを測る:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 4: カバレッジを測る&lt;/h2&gt;
+&lt;h2 id=&#34;step-4-カバレッジを測る&#34;&gt;Step 4: カバレッジを測る&lt;/h2&gt;
 
 &lt;p&gt;とくに必要なことはありません。Step 0 で説明したとおり &lt;strong&gt;istanbul&lt;/strong&gt; を利用するだけ。
 すこし異なっているのは、 mocha が _mocha を利用するということです。理由は、以下のとおり。&lt;/p&gt;
@@ -965,7 +1087,7 @@ Lines        : 100% ( 6/6 )
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;step-5-ソースマップから-ts-のカバレッジを測る:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 5: ソースマップから ts のカバレッジを測る&lt;/h2&gt;
+&lt;h2 id=&#34;step-5-ソースマップから-ts-のカバレッジを測る&#34;&gt;Step 5: ソースマップから ts のカバレッジを測る&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;coverage&lt;/strong&gt; ディレクトリにて以下のコマンドたたいてあげるだけです。ts のカバレッジが html-repot ディレクトリに出力されます。&lt;/p&gt;
 
@@ -990,7 +1112,7 @@ Lines        : 100% ( 6/6 )
 
 &lt;p&gt;＊図が Step 4 とデザインが違うのは、remap-istanbul で利用している istanbul のバージョンが古いからだと思われる&lt;/p&gt;
 
-&lt;h2 id=&#34;step-6-package-json-で楽する:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 6: package.json で楽する&lt;/h2&gt;
+&lt;h2 id=&#34;step-6-package-json-で楽する&#34;&gt;Step 6: package.json で楽する&lt;/h2&gt;
 
 &lt;p&gt;一連のコマンドを &lt;strong&gt;package.json&lt;/strong&gt; に書いておきましょう。以下サンプル。&lt;/p&gt;
 
@@ -1020,9 +1142,9 @@ $ npm test
 $ npm clean
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;その他:134ba188964091106b5909c7aef27c8d&#34;&gt;その他&lt;/h2&gt;
+&lt;h2 id=&#34;その他&#34;&gt;その他&lt;/h2&gt;
 
-&lt;h3 id=&#34;istanbul-yml-でカバレッジレポートのディレクトリ指定する:134ba188964091106b5909c7aef27c8d&#34;&gt;.istanbul.yml でカバレッジレポートのディレクトリ指定する&lt;/h3&gt;
+&lt;h3 id=&#34;istanbul-yml-でカバレッジレポートのディレクトリ指定する&#34;&gt;.istanbul.yml でカバレッジレポートのディレクトリ指定する&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;.istanbul.yml&lt;/strong&gt; に以下のように書いてあげることで、レポートの出力先を変えることが出来る。&lt;/p&gt;
 
@@ -1034,8 +1156,7 @@ reporting:
 &lt;p&gt;もっとカスタマイズしたい場合は、以下のコマンドからデフォルト設定など説明をみるといいかも。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ istanbul help config
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -1044,15 +1165,15 @@ reporting:
       <pubDate>Sat, 10 Oct 2015 18:37:23 JST</pubDate>
       
       <guid>http://blog.syati.info/post/typescript_webpack/</guid>
-      <description>
-
-&lt;p&gt;型が恋しいのです。仮引数見た時に、何が入るか簡単に知りたいのです。実引数の型が違った時には教えてほしいのです。そんなこんなで、TypeScript がお気に入りです。&lt;/p&gt;
+      <description>&lt;p&gt;型が恋しいのです。仮引数見た時に、何が入るか簡単に知りたいのです。実引数の型が違った時には教えてほしいのです。そんなこんなで、TypeScript がお気に入りです。&lt;/p&gt;
 
 &lt;p&gt;今回は、どうやってフロントエンドで TypeScript を利用するか記していこうと思います。本記事のコードは以下のURLにあります。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack&#34;&gt;https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;step-0-事前準備:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 0: 事前準備&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;step-0-事前準備&#34;&gt;Step 0: 事前準備&lt;/h2&gt;
 
 &lt;p&gt;以下のコマンドを使用するのでグローバルにインストールしておく。&lt;/p&gt;
 
@@ -1087,7 +1208,7 @@ reporting:
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step-1-いろいろ初期化-プロジェクトの作成:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 1: いろいろ初期化(プロジェクトの作成)&lt;/h2&gt;
+&lt;h2 id=&#34;step-1-いろいろ初期化-プロジェクトの作成&#34;&gt;Step 1: いろいろ初期化(プロジェクトの作成)&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mkdir app
 $ tsd init  # いろいろ尋ねてくるけど enter 連打
@@ -1101,7 +1222,7 @@ $ tree ./ -L 1
 └── typings         # tsd init で作成される（ライブラリの定義のソースコードが入る）
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-2-ライブラリのインストール:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 2: ライブラリのインストール&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-ライブラリのインストール&#34;&gt;Step 2: ライブラリのインストール&lt;/h2&gt;
 
 &lt;p&gt;npm と tsd を利用して、ライブラリ、ライブラリの定義をインストール。&lt;/p&gt;
 
@@ -1113,7 +1234,7 @@ $ npm install jquery --save
 $ tsd install jquery --save
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-3-app-を作成:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 3: app を作成&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-app-を作成&#34;&gt;Step 3: app を作成&lt;/h2&gt;
 
 &lt;p&gt;app の下に app.ts として以下を作成。&lt;/p&gt;
 
@@ -1137,7 +1258,7 @@ $(() =&amp;gt; {
 &amp;lt;/html&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-4-コンパイルする:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 4: コンパイルする&lt;/h2&gt;
+&lt;h2 id=&#34;step-4-コンパイルする&#34;&gt;Step 4: コンパイルする&lt;/h2&gt;
 
 &lt;p&gt;step 3 で作成した app.ts を js に変換するために tsc の設定を作成する。
 &lt;strong&gt;step 1 ./&lt;/strong&gt; で tsconfig.json として以下のように作成。&lt;/p&gt;
@@ -1190,7 +1311,7 @@ $(function () {
     └── tsd.d.ts
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-5-webpack-導入:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 5: webpack 導入&lt;/h2&gt;
+&lt;h2 id=&#34;step-5-webpack-導入&#34;&gt;Step 5: webpack 導入&lt;/h2&gt;
 
 &lt;p&gt;フロントでも require を利用するために、&lt;strong&gt;webpack&lt;/strong&gt; をインストールして、ついでに、TypeScript のファイルを処理できるように loader をいれる。&lt;/p&gt;
 
@@ -1233,12 +1354,11 @@ $ webpack
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack&#34;&gt;ソースはこちらから&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;参考:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.jbrantly.com/typescript-and-webpack/&#34;&gt;TypeScript and webpack&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -1247,15 +1367,15 @@ $ webpack
       <pubDate>Wed, 07 Oct 2015 22:00:32 JST</pubDate>
       
       <guid>http://blog.syati.info/post/upgrade_package_json/</guid>
-      <description>
-
-&lt;p&gt;package.json の dependencies を、どうやって一括で更新するのかなと思ってたら！！&lt;/p&gt;
+      <description>&lt;p&gt;package.json の dependencies を、どうやって一括で更新するのかなと思ってたら！！&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/npm-check-updates&#34;&gt;npm-check-updates&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;これで簡単に更新できる！！&lt;/p&gt;
 
-&lt;h2 id=&#34;更新する:fa2289da0f3da34235594a1a0c6afa63&#34;&gt;更新する&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;更新する&#34;&gt;更新する&lt;/h2&gt;
 
 &lt;p&gt;以下の通り。すごく簡単だね。&lt;/p&gt;
 
@@ -1275,8 +1395,7 @@ Upgraded /your/path/package.json
 $ npm install
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;一括更新完了！！&lt;/p&gt;
-</description>
+&lt;p&gt;一括更新完了！！&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -1285,9 +1404,7 @@ $ npm install
       <pubDate>Fri, 25 Sep 2015 08:49:12 JST</pubDate>
       
       <guid>http://blog.syati.info/post/livereload_firefox/</guid>
-      <description>
-
-&lt;p&gt;Firefox LiveReload + grunt-contrib-watch LiveReload で以下の warning メッセージがでて、LiveReload うごかないよ！！&lt;/p&gt;
+      <description>&lt;p&gt;Firefox LiveReload + grunt-contrib-watch LiveReload で以下の warning メッセージがでて、LiveReload うごかないよ！！&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;You are using an old incompatible version of the command-line tool.&lt;/p&gt;
@@ -1303,7 +1420,9 @@ $ npm install
 &lt;p&gt;&lt;a href=&#34;http://help.livereload.com/kb/general-use/browser-extensions&#34;&gt;http://help.livereload.com/kb/general-use/browser-extensions&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;warning:a97b1ae451068793f1b3b1195bc54f9f&#34;&gt;Warning&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;warning&#34;&gt;Warning&lt;/h2&gt;
 
 
 &lt;figure class=&#34;image-half__center&#34;&gt;
@@ -1319,7 +1438,7 @@ $ npm install
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;extension-old:a97b1ae451068793f1b3b1195bc54f9f&#34;&gt;Extension (old)&lt;/h2&gt;
+&lt;h2 id=&#34;extension-old&#34;&gt;Extension (old)&lt;/h2&gt;
 
 &lt;p&gt;これではない。&lt;/p&gt;
 
@@ -1337,14 +1456,13 @@ $ npm install
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;extension-new:a97b1ae451068793f1b3b1195bc54f9f&#34;&gt;Extension (new)&lt;/h2&gt;
+&lt;h2 id=&#34;extension-new&#34;&gt;Extension (new)&lt;/h2&gt;
 
 &lt;p&gt;以下のURLから入れましょう。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://help.livereload.com/kb/general-use/browser-extensions&#34;&gt;http://help.livereload.com/kb/general-use/browser-extensions&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;おしまい。&lt;/p&gt;
-</description>
+&lt;p&gt;おしまい。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -1353,9 +1471,7 @@ $ npm install
       <pubDate>Mon, 21 Sep 2015 16:25:47 JST</pubDate>
       
       <guid>http://blog.syati.info/post/hugo_search/</guid>
-      <description>
-
-&lt;p&gt;記事が多くなってくると、やっぱり検索したくなるもんです。Hugo で検索を使うには、&lt;a href=&#34;https://gohugo.io/tools&#34;&gt;Tools&lt;/a&gt; に書いてある通り以下の方法があります。&lt;/p&gt;
+      <description>&lt;p&gt;記事が多くなってくると、やっぱり検索したくなるもんです。Hugo で検索を使うには、&lt;a href=&#34;https://gohugo.io/tools&#34;&gt;Tools&lt;/a&gt; に書いてある通り以下の方法があります。&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt;&lt;/li&gt;
@@ -1369,7 +1485,9 @@ $ npm install
 
 &lt;p&gt;当ページでは、&lt;a href=&#34;https://gist.github.com/sebz/efddfc8fdcb6b480f567&#34;&gt;Github Gist&lt;/a&gt;  を用いて検索を実現していますが、お手軽さでいうと、&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; ですね。なので今回は、&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; の導入方法を紹介。&lt;/p&gt;
 
-&lt;h2 id=&#34;step-1-登録する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 1 登録する&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;step-1-登録する&#34;&gt;Step 1 登録する&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; にアクセスして登録しましょう。&lt;/p&gt;
 
@@ -1387,7 +1505,7 @@ $ npm install
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;step-2-作成する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 2 作成する&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-作成する&#34;&gt;Step 2 作成する&lt;/h2&gt;
 
 &lt;p&gt;必要情報を入力しましょう。&lt;strong&gt;検索するサイト&lt;/strong&gt;を入力すると、&lt;strong&gt;検索エンジンの名前&lt;/strong&gt; も入力されるため枠で囲っていません。&lt;/p&gt;
 
@@ -1405,7 +1523,7 @@ $ npm install
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;step-3-確認する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 3 確認する&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-確認する&#34;&gt;Step 3 確認する&lt;/h2&gt;
 
 &lt;p&gt;作成された検索エンジンを確認しましょう。&lt;/p&gt;
 
@@ -1423,7 +1541,7 @@ $ npm install
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;step-4-設定する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 4 設定する&lt;/h2&gt;
+&lt;h2 id=&#34;step-4-設定する&#34;&gt;Step 4 設定する&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;対象&lt;/strong&gt; のリストメニューの &lt;strong&gt;デザイン&lt;/strong&gt; をえらんで、レイアウトやテーマなど色々設定しましょう。設定すると、&lt;strong&gt;プレビュー&lt;/strong&gt;で確認できます。最後に&lt;strong&gt;保存してコードを取得&lt;/strong&gt;します。&lt;/p&gt;
 
@@ -1441,11 +1559,11 @@ $ npm install
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;step-5-取得する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 5 取得する&lt;/h2&gt;
+&lt;h2 id=&#34;step-5-取得する&#34;&gt;Step 5 取得する&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;コード&lt;/strong&gt; をコピーしときましょう。&lt;/p&gt;
 
-&lt;p&gt;
+
 &lt;figure &gt;
     
         &lt;img src=&#34;step5.png&#34; /&gt;
@@ -1457,13 +1575,13 @@ $ npm install
     &lt;/figcaption&gt;
     
 &lt;/figure&gt;
-&lt;/p&gt;
 
-&lt;h2 id=&#34;step-6-設置する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 6 設置する&lt;/h2&gt;
+
+&lt;h2 id=&#34;step-6-設置する&#34;&gt;Step 6 設置する&lt;/h2&gt;
 
 &lt;p&gt;コピーしたコードを layouts の任意の html に貼り付けましょう。完成すると以下のように検索が可能になります。&lt;/p&gt;
 
-&lt;p&gt;&lt;script&gt;
+&lt;script&gt;
   (function() {
     var cx = &#39;004743453564496319247:9t8ean_mgiw&#39;;
     var gcse = document.createElement(&#39;script&#39;);
@@ -1475,9 +1593,7 @@ $ npm install
     s.parentNode.insertBefore(gcse, s);
   })();
 &lt;/script&gt;
-&lt;gcse:search&gt;&lt;/gcse:search&gt;
-&lt;/p&gt;
-</description>
+&lt;gcse:search&gt;&lt;/gcse:search&gt;</description>
     </item>
     
     <item>
@@ -1486,9 +1602,7 @@ $ npm install
       <pubDate>Sun, 20 Sep 2015 15:49:48 JST</pubDate>
       
       <guid>http://blog.syati.info/post/docker_tutorial_nginx/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/docker_machine/&#34;&gt;docker-machine コマンドの使用方法・流れ&lt;/a&gt; で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/docker_machine/&#34;&gt;docker-machine コマンドの使用方法・流れ&lt;/a&gt; で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。&lt;/p&gt;
 
 &lt;p&gt;以前、何度か &lt;a href=&#34;http://dotinstall.com/lessons/basic_docker&#34;&gt;Docker入門 (全11回)&lt;/a&gt; で docker に入門しましたが、その後挫折。 入門して nginx を構築を出来たはいいが、 MEAN とか LAMP の開発環境を構築するのがすごく困難な感じがして。&lt;a href=&#34;https://docs.docker.com/reference/commandline/cli/&#34;&gt;docker コマンド&lt;/a&gt; たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。&lt;/p&gt;
 
@@ -1496,7 +1610,9 @@ $ npm install
 
 &lt;p&gt;ただし、以下を読むより動画 &lt;a href=&#34;http://dotinstall.com/lessons/basic_docker&#34;&gt;Docker入門 (全11回)&lt;/a&gt; で学ぶほうが分かりやすい。&lt;/p&gt;
 
-&lt;h2 id=&#34;step1-docker-vm-の作成-復習:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step1 docker vm の作成(復習)&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;step1-docker-vm-の作成-復習&#34;&gt;Step1 docker vm の作成(復習)&lt;/h2&gt;
 
 &lt;p&gt;とりあえず docker vm を作成・利用する。忘れた方は、こちらで&lt;a href=&#34;http://blog.syati.info/post/docker_machine/&#34;&gt;docker-machine コマンドの使用方法・流れ&lt;/a&gt;&lt;/p&gt;
 
@@ -1519,13 +1635,13 @@ Get http:///var/run/docker.sock/v1.20/containers/json: dial unix /var/run/docker
 * Is your docker daemon up and running?
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step1-5-簡単な全体イメージ:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step1.5 簡単な全体イメージ&lt;/h2&gt;
+&lt;h2 id=&#34;step1-5-簡単な全体イメージ&#34;&gt;Step1.5 簡単な全体イメージ&lt;/h2&gt;
 
 &lt;p&gt;以下で使用する用語の全体イメージは以下のような感じである。&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Dockerfile&lt;/strong&gt; から &lt;strong&gt;Image&lt;/strong&gt; を作成、Image から &lt;strong&gt;Container&lt;/strong&gt; を立ち上げる&lt;/p&gt;
 
-&lt;h2 id=&#34;step2-dockerfile-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step2 Dockerfile の作成&lt;/h2&gt;
+&lt;h2 id=&#34;step2-dockerfile-の作成&#34;&gt;Step2 Dockerfile の作成&lt;/h2&gt;
 
 &lt;p&gt;Dockerfile （ Image 作成の手順書）を作成する。dir 構成は以下の通り。&lt;/p&gt;
 
@@ -1549,7 +1665,7 @@ MAINTAINER mizuki-y&amp;lt;mizuki-y@syati.info&amp;gt; # 作成者の情報
 &lt;li&gt;&lt;a href=&#34;https://docs.docker.com/reference/builder/&#34;&gt;Dockerfile reference&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step3-image-の作成:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step3 Image の作成&lt;/h2&gt;
+&lt;h2 id=&#34;step3-image-の作成&#34;&gt;Step3 Image の作成&lt;/h2&gt;
 
 &lt;p&gt;Dockerfile から Image を 作成するため &lt;strong&gt;build&lt;/strong&gt; コマンドを実施する。&lt;/p&gt;
 
@@ -1566,7 +1682,7 @@ Build a new image from the source code at PATH
 $ docker build -t syati:nginx .
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step4-image-の確認:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step4 Image の確認&lt;/h2&gt;
+&lt;h2 id=&#34;step4-image-の確認&#34;&gt;Step4 Image の確認&lt;/h2&gt;
 
 &lt;p&gt;作成した Image を確認するため &lt;strong&gt;images&lt;/strong&gt; コマンドを実施する。 Step2 で FROM しか指定していないので何も変わっていない（SIZE 同じ）が Dockerfile から Image を作成できている。&lt;/p&gt;
 
@@ -1582,7 +1698,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 nginx               latest              0b354d33906d        10 days ago         132.9 MB
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step5-container-を立ち上げる:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step5 Container を立ち上げる&lt;/h2&gt;
+&lt;h2 id=&#34;step5-container-を立ち上げる&#34;&gt;Step5 Container を立ち上げる&lt;/h2&gt;
 
 &lt;p&gt;作成した Image から Container を立ち上げるために &lt;strong&gt;run&lt;/strong&gt; コマンドを実施する&lt;/p&gt;
 
@@ -1628,16 +1744,16 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 &lt;p&gt;これは利用イメージが &lt;a href=&#34;https://hub.docker.com/_/nginx/&#34;&gt;Official Repository nginx&lt;/a&gt; この &lt;a href=&#34;https://github.com/nginxinc/docker-nginx/blob/7f3ef0927ec619d20181e677c97f991df0d7d446/Dockerfile&#34;&gt;Dockerfile&lt;/a&gt; を利用して作成されているためである。&lt;/p&gt;
 
-&lt;h2 id=&#34;step6-nginx-のデフォルトページを見る:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;Step6 nginx のデフォルトページを見る&lt;/h2&gt;
+&lt;h2 id=&#34;step6-nginx-のデフォルトページを見る&#34;&gt;Step6 nginx のデフォルトページを見る&lt;/h2&gt;
 
 &lt;p&gt;Step1 で docker vm の ip を確認してポートを付与してあげる。 -p オプションでポートをした場合で考えると以下にアクセスすれば &lt;strong&gt;Welcome to nginx!&lt;/strong&gt; が見れるはず&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;http://192.168.99.100:8000
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;その他:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;その他&lt;/h2&gt;
+&lt;h2 id=&#34;その他&#34;&gt;その他&lt;/h2&gt;
 
-&lt;h3 id=&#34;container-の中身を確認する:70cfd8bcb00d2acafeb3ae1cc961ca2c&#34;&gt;container の中身を確認する&lt;/h3&gt;
+&lt;h3 id=&#34;container-の中身を確認する&#34;&gt;container の中身を確認する&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker run -t -i syati:nginx /bin/bash
 
@@ -1648,8 +1764,7 @@ Usage:	docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 Run a command in a new container
   -i, --interactive=false         Keep STDIN open even if not attached
   -t, --tty=false                 Allocate a pseudo-TTY
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -1658,13 +1773,13 @@ Run a command in a new container
       <pubDate>Wed, 09 Sep 2015 23:00:19 JST</pubDate>
       
       <guid>http://blog.syati.info/post/docker_machine/</guid>
-      <description>
-
-&lt;p&gt;Docker すごい。 何がすごいって環境構築が楽すぎる。以前は、Vagrant と Chef でゴリゴリ書いてアプリケーションが動くように頑張ってましたが、そんな事しなくても大方用意されてる。あとはその組み合わせ環境を構築するだけ。懸念点であった Vagrant 、Chef のような provision が、遅いということは今のところ無い。最初にイメージを DL してコンテナ化するので、若干の時間はかかるものの、それでも早い。 具体的な環境構築については、後日記そうと思う。&lt;/p&gt;
+      <description>&lt;p&gt;Docker すごい。 何がすごいって環境構築が楽すぎる。以前は、Vagrant と Chef でゴリゴリ書いてアプリケーションが動くように頑張ってましたが、そんな事しなくても大方用意されてる。あとはその組み合わせ環境を構築するだけ。懸念点であった Vagrant 、Chef のような provision が、遅いということは今のところ無い。最初にイメージを DL してコンテナ化するので、若干の時間はかかるものの、それでも早い。 具体的な環境構築については、後日記そうと思う。&lt;/p&gt;
 
 &lt;p&gt;今回は &lt;strong&gt;docker-machine コマンド&lt;/strong&gt;（コンテナを動かす vm を管理するコマンド）の使用方法、流れを記す。&lt;/p&gt;
 
-&lt;h2 id=&#34;前提:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;前提&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;前提&#34;&gt;前提&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;OSX 10.10.5&lt;/li&gt;
@@ -1677,7 +1792,7 @@ Run a command in a new container
 &lt;li&gt;Virtual Box 5.0.3&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;docker-machine-コマンド-流れ:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;docker-machine コマンド、流れ&lt;/h2&gt;
+&lt;h2 id=&#34;docker-machine-コマンド-流れ&#34;&gt;docker-machine コマンド、流れ&lt;/h2&gt;
 
 &lt;p&gt;以下のレイヤーと対応するコマンドを覚えておくと、スムーズかもしれない。&lt;/p&gt;
 
@@ -1707,7 +1822,7 @@ Run a command in a new container
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&#34;step-1-docker-vm-を確認する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 1 docker vm を確認する&lt;/h3&gt;
+&lt;h3 id=&#34;step-1-docker-vm-を確認する&#34;&gt;Step 1 docker vm を確認する&lt;/h3&gt;
 
 &lt;p&gt;作成した docker vm を確認する。普段の &lt;strong&gt;ls&lt;/strong&gt; と同じ感じで使う頻度が高い。はじめは何もないので空である。&lt;/p&gt;
 
@@ -1716,7 +1831,7 @@ Run a command in a new container
 NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;step-2-docker-vm-を作成する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 2 docker vm を作成する&lt;/h3&gt;
+&lt;h3 id=&#34;step-2-docker-vm-を作成する&#34;&gt;Step 2 docker vm を作成する&lt;/h3&gt;
 
 &lt;p&gt;docker vm を作成する。 以下のコマンドは、オプション driver で virtualbox を指定して、 vm 名を sample にしている。色々オプションがあるので、もっと詳しくという方は、&lt;a href=&#34;https://docs.docker.com/machine/reference/create/&#34;&gt;create&lt;/a&gt; を参考にしてください。&lt;/p&gt;
 
@@ -1737,7 +1852,7 @@ NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
 sample             virtualbox   Running   tcp://192.168.99.103:2376
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;step-3-docker-vm-を利用する:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;Step 3 docker vm を利用する&lt;/h3&gt;
+&lt;h3 id=&#34;step-3-docker-vm-を利用する&#34;&gt;Step 3 docker vm を利用する&lt;/h3&gt;
 
 &lt;p&gt;Step 2 まででは、対象の docker vm にコンテナを操作するコマンド(docker ps など)を実行できない。SSH で対象 vm に入れば可能だが、そんな面倒くさいことは毎回したくない。
 そこで、以下のように env -&amp;gt; eval コマンドを実行して、利用する docker vm の環境変数を設定する。設定した docker vm の ACTIVE に * が記される。&lt;/p&gt;
@@ -1761,9 +1876,9 @@ sample    *        virtualbox   Running   tcp://192.168.99.103:2376
 
 &lt;p&gt;これで今後利用する docker コマンドは docker vm である sample に発行される。&lt;/p&gt;
 
-&lt;h2 id=&#34;その他:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;その他&lt;/h2&gt;
+&lt;h2 id=&#34;その他&#34;&gt;その他&lt;/h2&gt;
 
-&lt;h3 id=&#34;docker-vm-の中身を確認する-ssh-で入る:7c5114aaedd3fb4e06a20334e7806cc9&#34;&gt;docker vm の中身を確認する ssh で入る&lt;/h3&gt;
+&lt;h3 id=&#34;docker-vm-の中身を確認する-ssh-で入る&#34;&gt;docker vm の中身を確認する ssh で入る&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker-machine ssh sample
 
@@ -1782,8 +1897,7 @@ sample    *        virtualbox   Running   tcp://192.168.99.103:2376
 |_.__/ \___/ \___/ \__|_____\__,_|\___/ \___|_|\_\___|_|
 Boot2Docker version 1.8.1, build master : 7f12e95 - Thu Aug 13 03:24:56 UTC 2015
 Docker version 1.8.1, build d12ea79
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -1792,21 +1906,21 @@ Docker version 1.8.1, build d12ea79
       <pubDate>Thu, 03 Sep 2015 16:00:00 JST</pubDate>
       
       <guid>http://blog.syati.info/post/osx_docker_setup/</guid>
-      <description>
-
-&lt;p&gt;巷で Docker と騒がれて随分経ったでしょうか。私の Mac が新しくなったのを気に Docker に入門したいと思います。何か新しい開発の度にゴミが入るのはちょっと・・・、とも思いますしね。&lt;/p&gt;
+      <description>&lt;p&gt;巷で Docker と騒がれて随分経ったでしょうか。私の Mac が新しくなったのを気に Docker に入門したいと思います。何か新しい開発の度にゴミが入るのはちょっと・・・、とも思いますしね。&lt;/p&gt;
 
 &lt;p&gt;昔、Vagrant と Chef でローカル開発環境を構築していたこともありましたが provison が遅く、何だかなぁ〜と思っているうちに遠ざかっていました。Docker はコンテナ型で、vagrant より軽いのかな。&lt;/p&gt;
 
-&lt;h2 id=&#34;前提:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;前提&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;前提&#34;&gt;前提&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;OSX 10.10.5&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step-1-install-virtualbox:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 1 Install VirtualBox&lt;/h2&gt;
+&lt;h2 id=&#34;step-1-install-virtualbox&#34;&gt;Step 1 Install VirtualBox&lt;/h2&gt;
 
-&lt;p&gt;VirtualBox5.0.2 だと Step 3 で動かなくなるので、&lt;a href=&#34;https://www.virtualbox.org/wiki/Testbuilds&#34;&gt;テストビルド&lt;/a&gt;から入れる。5.0.2 だった場合、 &lt;a href=&#34;#error-1:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;エラー1&lt;/a&gt;が出る。&lt;/p&gt;
+&lt;p&gt;VirtualBox5.0.2 だと Step 3 で動かなくなるので、&lt;a href=&#34;https://www.virtualbox.org/wiki/Testbuilds&#34;&gt;テストビルド&lt;/a&gt;から入れる。5.0.2 だった場合、 &lt;a href=&#34;#error-1&#34;&gt;エラー1&lt;/a&gt;が出る。&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;参考
@@ -1816,12 +1930,12 @@ Docker version 1.8.1, build d12ea79
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step-2-install-docker-toolbox:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 2 Install Docker Toolbox&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-install-docker-toolbox&#34;&gt;Step 2 Install Docker Toolbox&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew cask install dockertoolbox
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;(http://blog.syati.info/post/brew_cask/&#34;&gt;cask&lt;/a&gt; って思う方は、公式から &lt;a href=&#34;https://www.docker.com/toolbox&#34;&gt;Docker Toolbox&lt;/a&gt; をインストールしましょう。詳しい説明は、&lt;a href=&#34;https://docs.docker.com/mac/step_one/&#34;&gt;Install Docker Mac OS X&lt;/a&gt; 。インストールされる場所は以下のとおり、/usr/local/bin なので、path が通っていればコマンドが通るはずです。&lt;/p&gt;
+&lt;p&gt;[cask]((http://blog.syati.info/post/brew_cask/) って思う方は、公式から &lt;a href=&#34;https://www.docker.com/toolbox&#34;&gt;Docker Toolbox&lt;/a&gt; をインストールしましょう。詳しい説明は、&lt;a href=&#34;https://docs.docker.com/mac/step_one/&#34;&gt;Install Docker Mac OS X&lt;/a&gt; 。インストールされる場所は以下のとおり、/usr/local/bin なので、path が通っていればコマンドが通るはずです。&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;By default, the standard Docker Toolbox installation:
@@ -1834,9 +1948,9 @@ Docker version 1.8.1, build d12ea79
 Docker version 1.8.1, build d12ea79
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-3-とりあえず起動:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Step 3 とりあえず起動&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-とりあえず起動&#34;&gt;Step 3 とりあえず起動&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://docs.docker.com/mac/step_one/#step-3-verify-your-installation&#34;&gt;Installation&lt;/a&gt; に書いてあるとおり、以下のコマンドで、とりあえず起動、コマンドを実行してみる。&lt;a href=&#34;#error:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;エラー&lt;/a&gt;が無いことをもって、インストール・起動ができたことの確認を終了する。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://docs.docker.com/mac/step_one/#step-3-verify-your-installation&#34;&gt;Installation&lt;/a&gt; に書いてあるとおり、以下のコマンドで、とりあえず起動、コマンドを実行してみる。&lt;a href=&#34;#error&#34;&gt;エラー&lt;/a&gt;が無いことをもって、インストール・起動ができたことの確認を終了する。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ bash &#39;/Applications/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh&#39;
 $ docker run hello-world
@@ -1862,9 +1976,9 @@ For more examples and ideas, visit:
   https://docs.docker.com/userguide/
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;error:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;Error&lt;/h2&gt;
+&lt;h2 id=&#34;error&#34;&gt;Error&lt;/h2&gt;
 
-&lt;h3 id=&#34;error-1:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;VirtualBox 5.0.2 時で start.sh を叩いた場合&lt;/h3&gt;
+&lt;h3 id=&#34;error-1&#34;&gt;VirtualBox 5.0.2 時で start.sh を叩いた場合&lt;/h3&gt;
 
 &lt;p&gt;以下のとおり、vm が立ち上がってくれない。&lt;/p&gt;
 
@@ -1895,14 +2009,13 @@ exit status 1
 Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;error-2:721a6b0475e6190575ce57e1a6fd89e9&#34;&gt;VirtualBox 5.0.3 にした後、以前作成した vm のエラー&lt;/h3&gt;
+&lt;h3 id=&#34;error-2&#34;&gt;VirtualBox 5.0.3 にした後、以前作成した vm のエラー&lt;/h3&gt;
 
 &lt;p&gt;設定が取れないので、以前作成した vm は削除して、あらためて start.sh を叩きましょう。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ docker-machine env default
 open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or directory
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -1911,11 +2024,11 @@ open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or di
       <pubDate>Wed, 02 Sep 2015 17:58:56 JST</pubDate>
       
       <guid>http://blog.syati.info/post/emacs_dockerfilemode/</guid>
-      <description>
+      <description>&lt;p&gt;Docker に入門して、Dockerfile を書くことになったので、とりあえず dockerfile-mode 。&lt;/p&gt;
 
-&lt;p&gt;Docker に入門して、Dockerfile を書くことになったので、とりあえず dockerfile-mode 。&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;install:2ed0ba6269ab29d148cbcf4c83fce2a2&#34;&gt;Install&lt;/h2&gt;
+&lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;M-x package-list-package で以下をインストールする&lt;/p&gt;
@@ -1929,8 +2042,7 @@ open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or di
 &lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(autoload &#39;dockerfile-mode &amp;quot;dockerfile-mode&amp;quot; nil t)
 (add-to-list &#39;auto-mode-alist &#39;(&amp;quot;Dockerfile\\&#39;&amp;quot; . dockerfile-mode))
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -1939,20 +2051,20 @@ open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or di
       <pubDate>Mon, 31 Aug 2015 18:44:21 JST</pubDate>
       
       <guid>http://blog.syati.info/post/brew_cask/</guid>
-      <description>
+      <description>&lt;p&gt;Web ページや App Store から App をダブルクリックしてインストールは面倒くさいので &lt;strong&gt;cask&lt;/strong&gt; をいれて解決する。&lt;/p&gt;
 
-&lt;p&gt;Web ページや App Store から App をダブルクリックしてインストールは面倒くさいので &lt;strong&gt;cask&lt;/strong&gt; をいれて解決する。&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;インストールとコマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;インストールとコマンド&lt;/h2&gt;
+&lt;h2 id=&#34;インストールとコマンド&#34;&gt;インストールとコマンド&lt;/h2&gt;
 
-&lt;h3 id=&#34;インストール:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;インストール&lt;/h3&gt;
+&lt;h3 id=&#34;インストール&#34;&gt;インストール&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;cask&lt;/strong&gt; コマンドを使えるようにするために以下のコマンドを実行する。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install caskroom/cask/brew-cask
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;コマンド:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;コマンド&lt;/h3&gt;
+&lt;h3 id=&#34;コマンド&#34;&gt;コマンド&lt;/h3&gt;
 
 &lt;p&gt;検索&lt;/p&gt;
 
@@ -1974,7 +2086,7 @@ chromecast                         google-chrome-canary
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew cask uninstall google-chrome
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;その他:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;その他&lt;/h2&gt;
+&lt;h2 id=&#34;その他&#34;&gt;その他&lt;/h2&gt;
 
 &lt;p&gt;cask でインストールしたアプリは以下にインストールされ、ホームフォルダ(~/)の Applications からアプリへのシンボリックリンクが作成される。ルート(/)にインストールが必要なものはパスワードが求められる。&lt;/p&gt;
 
@@ -1995,28 +2107,27 @@ chromecast                         google-chrome-canary
 └── Visual Studio Code.app -&amp;gt; /opt/homebrew-cask/Caskroom/visual-studio-code/0.7.0/Visual Studio Code.app
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;参考:9d81b5a07e5dbce04a4ad1efcbd9ec2f&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://caskroom.io/&#34;&gt;Homebrew Cask&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
     <item>
       <title>Emacs で Javascript なら js2-mode, tern-mode</title>
-      <link>http://blog.syati.info/post/emacsJavascript2/</link>
+      <link>http://blog.syati.info/post/emacsjavascript2/</link>
       <pubDate>Mon, 31 Aug 2015 13:38:35 JST</pubDate>
       
-      <guid>http://blog.syati.info/post/emacsJavascript2/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/emacsJavascript/&#34;&gt;Emacs で JavaScript の開発環境を整える&lt;/a&gt; で、
+      <guid>http://blog.syati.info/post/emacsjavascript2/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/emacsjavascript/&#34;&gt;Emacs で JavaScript の開発環境を整える&lt;/a&gt; で、
 Emacs と Javascript の開発環境を記しましたが、さらに改善できたので、メモメモ。&lt;/p&gt;
 
 &lt;p&gt;ドットで jquery も underscore も browser もしてくれる。 angular も!!&lt;/p&gt;
 
-&lt;h2 id=&#34;step-1-tern-のインストール-設定:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 1 tern のインストール・設定&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;step-1-tern-のインストール-設定&#34;&gt;Step 1 tern のインストール・設定&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;npm で tern をインストールする&lt;/p&gt;
@@ -2041,7 +2152,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;step-2-emacs-の-package-をインストール:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 2 emacs の package をインストール&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-emacs-の-package-をインストール&#34;&gt;Step 2 emacs の package をインストール&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;M-x package-list-package で以下の2点をインストールする（該当箇所で &lt;strong&gt;i&lt;/strong&gt; をタイプしてマークをつけて &lt;strong&gt;x&lt;/strong&gt; でインストールする）
@@ -2057,11 +2168,9 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 &lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(autoload &#39;js2-mode &amp;quot;js2-mode&amp;quot; nil t)
 (add-to-list &#39;auto-mode-alist &#39;(&amp;quot;\\.js\\&#39;&amp;quot; . js2-mode))
 
-
 (add-hook &#39;js2-mode-hook
     (lambda ()
         (tern-mode t)))
-
 
 (eval-after-load &#39;tern
     &#39;(progn
@@ -2070,7 +2179,7 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;step-3-試す:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;Step 3 試す&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-試す&#34;&gt;Step 3 試す&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;angular
   .module(&#39;MyApp&#39;, [])
@@ -2079,53 +2188,13 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
   })
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;参考:3f7d9efd2043d47de4f96647460d1d8a&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://ternjs.net/doc/manual.html&#34;&gt;tern&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://code.google.com/p/js2-mode/&#34;&gt;js2-mode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://npmjs.org/&#34;&gt;npm&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Mac の Terminal で ALT KEY </title>
-      <link>http://blog.syati.info/post/altkey_in_osx-terminal/</link>
-      <pubDate>Sun, 30 Aug 2015 13:38:35 JST</pubDate>
-      
-      <guid>http://blog.syati.info/post/altkey_in_osx-terminal/</guid>
-      <description>
-
-&lt;p&gt;Mac の環境を新しく作ることになったので、以前の環境が出来るまでメモしていく。&lt;/p&gt;
-
-&lt;p&gt;バックアップからの復元を使えば楽なのだが、ゴミが入るのは・・・。&lt;/p&gt;
-
-&lt;p&gt;ただし、意外とハマる。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;ターミナルで alt key が使えないよ！！&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;メタキーとして-option-キーを使用-にチェック:784ef5322b7ad8a18c627bd23e19b9ed&#34;&gt;&amp;ldquo;メタキーとして Option キーを使用&amp;rdquo; にチェック&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;ターミナル -&amp;gt; 環境設定 -&amp;gt; プロファイルタブ を開く。&lt;/li&gt;
-&lt;li&gt;以下の図のように &amp;ldquo;メタキーとして Option キーを使用&amp;rdquo; にチェックが入っていないと思うで、チェックする。&lt;/li&gt;
-&lt;/ol&gt;
-
-
-&lt;figure class=&#34;image-half__center&#34;&gt;
-    
-        &lt;img src=&#34;settings.png&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;h4&gt;ターミナル -&amp;gt; 環境設定 -&amp;gt; プロファイルタブ&lt;/h4&gt;
-        
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-</description>
+&lt;/ul&gt;</description>
     </item>
     
   </channel>

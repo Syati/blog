@@ -15,17 +15,17 @@
       <pubDate>Sat, 31 Oct 2015 14:00:39 JST</pubDate>
       
       <guid>http://blog.syati.info/post/typescript_coverage/</guid>
-      <description>
-
-&lt;p&gt;AltJs ってトランスパイルした後、テストを実行させる必要があるから・・、面倒くさいんだよね。なんか、あまり情報もないし、これだから AltJs は・・・と思うわけですが、やってみると案外大したことないもんです。&lt;/p&gt;
+      <description>&lt;p&gt;AltJs ってトランスパイルした後、テストを実行させる必要があるから・・、面倒くさいんだよね。なんか、あまり情報もないし、これだから AltJs は・・・と思うわけですが、やってみると案外大したことないもんです。&lt;/p&gt;
 
 &lt;p&gt;今回は、TypeScript のコードのユニットテスト、カバレッジを記していこうと思います。本記事のコードは以下のURLにあります。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/011_test_sample&#34;&gt;https://github.com/Syati/typescript-sample/tree/master/011_test_sample&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;step-0-事前準備:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 0: 事前準備&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;流れ:134ba188964091106b5909c7aef27c8d&#34;&gt;流れ&lt;/h3&gt;
+&lt;h2 id=&#34;step-0-事前準備&#34;&gt;Step 0: 事前準備&lt;/h2&gt;
+
+&lt;h3 id=&#34;流れ&#34;&gt;流れ&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;ts でコードを書く&lt;/li&gt;
@@ -34,7 +34,7 @@
 &lt;li&gt;map を利用して&lt;strong&gt;ts カバレッジ&lt;/strong&gt;を測る&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;ライブラリ:134ba188964091106b5909c7aef27c8d&#34;&gt;ライブラリ&lt;/h3&gt;
+&lt;h3 id=&#34;ライブラリ&#34;&gt;ライブラリ&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;npm install -g mocha istanbul remap-istanbul&lt;/strong&gt; でそれぞれコマンドが利用できるようになります。&lt;/p&gt;
 
@@ -64,7 +64,7 @@
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step-1-とりあえずテストを書く:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 1: とりあえずテストを書く&lt;/h2&gt;
+&lt;h2 id=&#34;step-1-とりあえずテストを書く&#34;&gt;Step 1: とりあえずテストを書く&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/master/011_test_sample&#34;&gt;プロジェクト&lt;/a&gt; を確認しておく。全体が理解しやすくなると思う。&lt;/p&gt;
 
@@ -91,7 +91,7 @@ describe(&amp;quot;TestTarget&amp;quot;, () =&amp;gt; {
 
 &lt;p&gt;すごいシンプルですね。&lt;/p&gt;
 
-&lt;h2 id=&#34;step-2-トランスパイルする:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 2: トランスパイルする&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-トランスパイルする&#34;&gt;Step 2: トランスパイルする&lt;/h2&gt;
 
 &lt;p&gt;tsc コマンドを叩く前に設定ファイルを書いときましょう。以下の tsconfig.json になります。
 とくに変わった点はないですね。重要なポイントとしては、&lt;strong&gt;&amp;ldquo;sourceMap&amp;rdquo;: true&lt;/strong&gt;です。
@@ -121,7 +121,7 @@ describe(&amp;quot;TestTarget&amp;quot;, () =&amp;gt; {
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ tsc
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-3-テストする:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 3: テストする&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-テストする&#34;&gt;Step 3: テストする&lt;/h2&gt;
 
 &lt;p&gt;Step 2 でトランスパイル済みなので、ts ファイル以外に js、map ファイルが存在すると思います。ディレクトリが汚れてあたふたするかもしれませんが、package.json に clean スクリプトを書くことで解決できるので、今は我慢。&lt;/p&gt;
 
@@ -143,7 +143,7 @@ describe(&amp;quot;TestTarget&amp;quot;, () =&amp;gt; {
 
 &lt;p&gt;ユニットテストのモチベーションをあげるためにも、やっぱりカバレッジですよ！！&lt;/p&gt;
 
-&lt;h2 id=&#34;step-4-カバレッジを測る:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 4: カバレッジを測る&lt;/h2&gt;
+&lt;h2 id=&#34;step-4-カバレッジを測る&#34;&gt;Step 4: カバレッジを測る&lt;/h2&gt;
 
 &lt;p&gt;とくに必要なことはありません。Step 0 で説明したとおり &lt;strong&gt;istanbul&lt;/strong&gt; を利用するだけ。
 すこし異なっているのは、 mocha が _mocha を利用するということです。理由は、以下のとおり。&lt;/p&gt;
@@ -184,7 +184,7 @@ Lines        : 100% ( 6/6 )
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;step-5-ソースマップから-ts-のカバレッジを測る:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 5: ソースマップから ts のカバレッジを測る&lt;/h2&gt;
+&lt;h2 id=&#34;step-5-ソースマップから-ts-のカバレッジを測る&#34;&gt;Step 5: ソースマップから ts のカバレッジを測る&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;coverage&lt;/strong&gt; ディレクトリにて以下のコマンドたたいてあげるだけです。ts のカバレッジが html-repot ディレクトリに出力されます。&lt;/p&gt;
 
@@ -209,7 +209,7 @@ Lines        : 100% ( 6/6 )
 
 &lt;p&gt;＊図が Step 4 とデザインが違うのは、remap-istanbul で利用している istanbul のバージョンが古いからだと思われる&lt;/p&gt;
 
-&lt;h2 id=&#34;step-6-package-json-で楽する:134ba188964091106b5909c7aef27c8d&#34;&gt;Step 6: package.json で楽する&lt;/h2&gt;
+&lt;h2 id=&#34;step-6-package-json-で楽する&#34;&gt;Step 6: package.json で楽する&lt;/h2&gt;
 
 &lt;p&gt;一連のコマンドを &lt;strong&gt;package.json&lt;/strong&gt; に書いておきましょう。以下サンプル。&lt;/p&gt;
 
@@ -239,9 +239,9 @@ $ npm test
 $ npm clean
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;その他:134ba188964091106b5909c7aef27c8d&#34;&gt;その他&lt;/h2&gt;
+&lt;h2 id=&#34;その他&#34;&gt;その他&lt;/h2&gt;
 
-&lt;h3 id=&#34;istanbul-yml-でカバレッジレポートのディレクトリ指定する:134ba188964091106b5909c7aef27c8d&#34;&gt;.istanbul.yml でカバレッジレポートのディレクトリ指定する&lt;/h3&gt;
+&lt;h3 id=&#34;istanbul-yml-でカバレッジレポートのディレクトリ指定する&#34;&gt;.istanbul.yml でカバレッジレポートのディレクトリ指定する&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;.istanbul.yml&lt;/strong&gt; に以下のように書いてあげることで、レポートの出力先を変えることが出来る。&lt;/p&gt;
 
@@ -253,8 +253,7 @@ reporting:
 &lt;p&gt;もっとカスタマイズしたい場合は、以下のコマンドからデフォルト設定など説明をみるといいかも。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ istanbul help config
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -263,15 +262,15 @@ reporting:
       <pubDate>Sat, 10 Oct 2015 18:37:23 JST</pubDate>
       
       <guid>http://blog.syati.info/post/typescript_webpack/</guid>
-      <description>
-
-&lt;p&gt;型が恋しいのです。仮引数見た時に、何が入るか簡単に知りたいのです。実引数の型が違った時には教えてほしいのです。そんなこんなで、TypeScript がお気に入りです。&lt;/p&gt;
+      <description>&lt;p&gt;型が恋しいのです。仮引数見た時に、何が入るか簡単に知りたいのです。実引数の型が違った時には教えてほしいのです。そんなこんなで、TypeScript がお気に入りです。&lt;/p&gt;
 
 &lt;p&gt;今回は、どうやってフロントエンドで TypeScript を利用するか記していこうと思います。本記事のコードは以下のURLにあります。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack&#34;&gt;https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;step-0-事前準備:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 0: 事前準備&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;step-0-事前準備&#34;&gt;Step 0: 事前準備&lt;/h2&gt;
 
 &lt;p&gt;以下のコマンドを使用するのでグローバルにインストールしておく。&lt;/p&gt;
 
@@ -306,7 +305,7 @@ reporting:
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step-1-いろいろ初期化-プロジェクトの作成:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 1: いろいろ初期化(プロジェクトの作成)&lt;/h2&gt;
+&lt;h2 id=&#34;step-1-いろいろ初期化-プロジェクトの作成&#34;&gt;Step 1: いろいろ初期化(プロジェクトの作成)&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ mkdir app
 $ tsd init  # いろいろ尋ねてくるけど enter 連打
@@ -320,7 +319,7 @@ $ tree ./ -L 1
 └── typings         # tsd init で作成される（ライブラリの定義のソースコードが入る）
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-2-ライブラリのインストール:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 2: ライブラリのインストール&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-ライブラリのインストール&#34;&gt;Step 2: ライブラリのインストール&lt;/h2&gt;
 
 &lt;p&gt;npm と tsd を利用して、ライブラリ、ライブラリの定義をインストール。&lt;/p&gt;
 
@@ -332,7 +331,7 @@ $ npm install jquery --save
 $ tsd install jquery --save
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-3-app-を作成:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 3: app を作成&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-app-を作成&#34;&gt;Step 3: app を作成&lt;/h2&gt;
 
 &lt;p&gt;app の下に app.ts として以下を作成。&lt;/p&gt;
 
@@ -356,7 +355,7 @@ $(() =&amp;gt; {
 &amp;lt;/html&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-4-コンパイルする:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 4: コンパイルする&lt;/h2&gt;
+&lt;h2 id=&#34;step-4-コンパイルする&#34;&gt;Step 4: コンパイルする&lt;/h2&gt;
 
 &lt;p&gt;step 3 で作成した app.ts を js に変換するために tsc の設定を作成する。
 &lt;strong&gt;step 1 ./&lt;/strong&gt; で tsconfig.json として以下のように作成。&lt;/p&gt;
@@ -409,7 +408,7 @@ $(function () {
     └── tsd.d.ts
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-5-webpack-導入:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;Step 5: webpack 導入&lt;/h2&gt;
+&lt;h2 id=&#34;step-5-webpack-導入&#34;&gt;Step 5: webpack 導入&lt;/h2&gt;
 
 &lt;p&gt;フロントでも require を利用するために、&lt;strong&gt;webpack&lt;/strong&gt; をインストールして、ついでに、TypeScript のファイルを処理できるように loader をいれる。&lt;/p&gt;
 
@@ -452,12 +451,11 @@ $ webpack
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack&#34;&gt;ソースはこちらから&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;参考:949a9ea0a4a82c7fd7909a699c67654c&#34;&gt;参考&lt;/h2&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.jbrantly.com/typescript-and-webpack/&#34;&gt;TypeScript and webpack&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
   </channel>

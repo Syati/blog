@@ -15,9 +15,7 @@
       <pubDate>Mon, 21 Sep 2015 16:25:47 JST</pubDate>
       
       <guid>http://blog.syati.info/post/hugo_search/</guid>
-      <description>
-
-&lt;p&gt;記事が多くなってくると、やっぱり検索したくなるもんです。Hugo で検索を使うには、&lt;a href=&#34;https://gohugo.io/tools&#34;&gt;Tools&lt;/a&gt; に書いてある通り以下の方法があります。&lt;/p&gt;
+      <description>&lt;p&gt;記事が多くなってくると、やっぱり検索したくなるもんです。Hugo で検索を使うには、&lt;a href=&#34;https://gohugo.io/tools&#34;&gt;Tools&lt;/a&gt; に書いてある通り以下の方法があります。&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt;&lt;/li&gt;
@@ -31,7 +29,9 @@
 
 &lt;p&gt;当ページでは、&lt;a href=&#34;https://gist.github.com/sebz/efddfc8fdcb6b480f567&#34;&gt;Github Gist&lt;/a&gt;  を用いて検索を実現していますが、お手軽さでいうと、&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; ですね。なので今回は、&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; の導入方法を紹介。&lt;/p&gt;
 
-&lt;h2 id=&#34;step-1-登録する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 1 登録する&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;step-1-登録する&#34;&gt;Step 1 登録する&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; にアクセスして登録しましょう。&lt;/p&gt;
 
@@ -49,7 +49,7 @@
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;step-2-作成する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 2 作成する&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-作成する&#34;&gt;Step 2 作成する&lt;/h2&gt;
 
 &lt;p&gt;必要情報を入力しましょう。&lt;strong&gt;検索するサイト&lt;/strong&gt;を入力すると、&lt;strong&gt;検索エンジンの名前&lt;/strong&gt; も入力されるため枠で囲っていません。&lt;/p&gt;
 
@@ -67,7 +67,7 @@
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;step-3-確認する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 3 確認する&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-確認する&#34;&gt;Step 3 確認する&lt;/h2&gt;
 
 &lt;p&gt;作成された検索エンジンを確認しましょう。&lt;/p&gt;
 
@@ -85,7 +85,7 @@
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;step-4-設定する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 4 設定する&lt;/h2&gt;
+&lt;h2 id=&#34;step-4-設定する&#34;&gt;Step 4 設定する&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;対象&lt;/strong&gt; のリストメニューの &lt;strong&gt;デザイン&lt;/strong&gt; をえらんで、レイアウトやテーマなど色々設定しましょう。設定すると、&lt;strong&gt;プレビュー&lt;/strong&gt;で確認できます。最後に&lt;strong&gt;保存してコードを取得&lt;/strong&gt;します。&lt;/p&gt;
 
@@ -103,11 +103,11 @@
 &lt;/figure&gt;
 
 
-&lt;h2 id=&#34;step-5-取得する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 5 取得する&lt;/h2&gt;
+&lt;h2 id=&#34;step-5-取得する&#34;&gt;Step 5 取得する&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;コード&lt;/strong&gt; をコピーしときましょう。&lt;/p&gt;
 
-&lt;p&gt;
+
 &lt;figure &gt;
     
         &lt;img src=&#34;step5.png&#34; /&gt;
@@ -119,13 +119,13 @@
     &lt;/figcaption&gt;
     
 &lt;/figure&gt;
-&lt;/p&gt;
 
-&lt;h2 id=&#34;step-6-設置する:c6d03d0bc6493d1eda9beabc92f669d7&#34;&gt;Step 6 設置する&lt;/h2&gt;
+
+&lt;h2 id=&#34;step-6-設置する&#34;&gt;Step 6 設置する&lt;/h2&gt;
 
 &lt;p&gt;コピーしたコードを layouts の任意の html に貼り付けましょう。完成すると以下のように検索が可能になります。&lt;/p&gt;
 
-&lt;p&gt;&lt;script&gt;
+&lt;script&gt;
   (function() {
     var cx = &#39;004743453564496319247:9t8ean_mgiw&#39;;
     var gcse = document.createElement(&#39;script&#39;);
@@ -137,9 +137,7 @@
     s.parentNode.insertBefore(gcse, s);
   })();
 &lt;/script&gt;
-&lt;gcse:search&gt;&lt;/gcse:search&gt;
-&lt;/p&gt;
-</description>
+&lt;gcse:search&gt;&lt;/gcse:search&gt;</description>
     </item>
     
     <item>
@@ -148,9 +146,7 @@
       <pubDate>Wed, 17 Jun 2015 22:42:39 JST</pubDate>
       
       <guid>http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</guid>
-      <description>
-
-&lt;p&gt;ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
+      <description>&lt;p&gt;ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
 というこで &lt;a href=&#34;http://gohugo.io/extras/highlighting/&#34;&gt;Syntax Highlighting&lt;/a&gt; を
 参考にして早速導入する。&lt;/p&gt;
 
@@ -162,7 +158,9 @@
 &lt;li&gt;&lt;a href=&#34;http://blog.syati.info/post/add_disqus_to_hugo/&#34;&gt;Part 3&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step-1-client-side-の-syntaxhighlighter-ライブラリ取得:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 1 Client-side の SyntaxHighlighter ライブラリ取得&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;step-1-client-side-の-syntaxhighlighter-ライブラリ取得&#34;&gt;Step 1 Client-side の SyntaxHighlighter ライブラリ取得&lt;/h2&gt;
 
 &lt;p&gt;導入方法として &lt;strong&gt;Server-side&lt;/strong&gt; と &lt;strong&gt;Client-side&lt;/strong&gt; の方法がありますが、
 今回は後者を利用します。また、ライブラリーはたくさんありますが、&lt;strong&gt;&lt;a href=&#34;http://prismjs.com/&#34;&gt;Prism&lt;/a&gt;&lt;/strong&gt;
@@ -172,7 +170,7 @@
 ページ下部の DOWNLOAD JS と DOWNLOAD CSS から DL しましょう。
 ちなみに当ページの Prism のテーマは Default(Okaidia) を利用しています。&lt;/p&gt;
 
-&lt;h2 id=&#34;step-2-対象ファイルコピー:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 2 対象ファイルコピー&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-対象ファイルコピー&#34;&gt;Step 2 対象ファイルコピー&lt;/h2&gt;
 
 &lt;p&gt;DL したファイルを以下のようにコピーしてあげる。&lt;/p&gt;
 
@@ -180,7 +178,7 @@
 $ cp prism.css yourblog/static/css/
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-3-custom-設定を加える:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 3 custom 設定を加える&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-custom-設定を加える&#34;&gt;Step 3 custom 設定を加える&lt;/h2&gt;
 
 &lt;p&gt;以下のように yourblog/layouts/partials/custom に移動して
 &lt;strong&gt;対象ファイル１&lt;/strong&gt;と&lt;strong&gt;対象ファイル２&lt;/strong&gt;を編集します。&lt;/p&gt;
@@ -208,7 +206,7 @@ $ tree -L 1
 
 &lt;p&gt;これで設定は終了。&lt;/p&gt;
 
-&lt;h2 id=&#34;step-4-コードをいれてみる:25f7dcbfc05249f56e29c36f92828fdf&#34;&gt;Step 4 コードをいれてみる&lt;/h2&gt;
+&lt;h2 id=&#34;step-4-コードをいれてみる&#34;&gt;Step 4 コードをいれてみる&lt;/h2&gt;
 
 &lt;p&gt;新しい記事でも作成して、以下のような感じでコードをいれると。
 ~ 半角でいれると解釈されるため 〜 全角で入れています。&lt;/p&gt;
@@ -233,8 +231,7 @@ int main(void)
     printf(&amp;quot;hello, world\n&amp;quot;);
     return;
 }
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -243,9 +240,7 @@ int main(void)
       <pubDate>Tue, 09 Jun 2015 00:02:04 JST</pubDate>
       
       <guid>http://blog.syati.info/post/add_disqus_to_hugo/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; 、 &lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; 、 &lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で
 Hugo を用いて github.io にブログを立ち上げましたが、コメント欄が無いので導入したい！！&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://gohugo.io/extras/comments/&#34;&gt;Comments in Hugo&lt;/a&gt; を参考にして早速、導入していこうとおもったが、
@@ -253,7 +248,9 @@ Hugo を用いて github.io にブログを立ち上げましたが、コメン�
 
 &lt;p&gt;全てが終われば &lt;a href=&#34;http://syati.github.io/yourblog/&#34;&gt;yourblog&lt;/a&gt; のようにコメント欄が作成できる。&lt;/p&gt;
 
-&lt;h2 id=&#34;step-1-theme-を変える:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 1 theme を変える&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;step-1-theme-を変える&#34;&gt;Step 1 theme を変える&lt;/h2&gt;
 
 &lt;p&gt;今まで通り、themes に中に theme を git clone してもいいのだが、
 とりあえず今回は themes ディレクトリを利用しないことにする。&lt;/p&gt;
@@ -290,7 +287,7 @@ $ rm -rf themes # 必要無いのでとりあえず削除
 $ hugo server # テーマが変わっていることが確認できる
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-2-disqus-を導入:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 2 Disqus を導入&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-disqus-を導入&#34;&gt;Step 2 Disqus を導入&lt;/h2&gt;
 
 &lt;p&gt;導入が楽なので &lt;a href=&#34;https://disqus.com&#34;&gt;Disqus&lt;/a&gt; を利用する。&lt;/p&gt;
 
@@ -314,7 +311,7 @@ $ hugo server # テーマが変わっていることが確認できる
 &amp;lt;noscript&amp;gt;Please enable JavaScript to view the &amp;lt;a href=&amp;quot;https://disqus.com/?ref_noscript&amp;quot; rel=&amp;quot;nofollow&amp;quot;&amp;gt;comments powered by Disqus.&amp;lt;/a&amp;gt;&amp;lt;/noscript&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-3-config-toml-を変更する:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 3 config.toml を変更する&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-config-toml-を変更する&#34;&gt;Step 3 config.toml を変更する&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/Syati/greyshade#setup&#34;&gt;テーマの設定&lt;/a&gt; を config.toml にコピペして、編集。
 Step 2 で覚えておいた &lt;strong&gt;[disqus_shortname]&lt;/strong&gt; を設定に入れる。以下サンプル&lt;/p&gt;
@@ -371,7 +368,7 @@ disqus_show_comment_count = false
 google_analytics_tracking_id = &amp;quot;&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-4-記事にパラメータを加える:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 4 記事にパラメータを加える&lt;/h2&gt;
+&lt;h2 id=&#34;step-4-記事にパラメータを加える&#34;&gt;Step 4 記事にパラメータを加える&lt;/h2&gt;
 
 &lt;p&gt;最後に記事のパラメータに &lt;strong&gt;comments = true&lt;/strong&gt; といれれば、disqus を読み込んでコメント欄が入る。
 ただし、localhost では読み込まないようにしているので、記事ページ下部 に &lt;strong&gt;Comments&lt;/strong&gt;
@@ -387,7 +384,7 @@ comments = true
 first page.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-5-新規記事のテンプレートを変更しておく:d75fd18943ec8adafe7501d2e4ec3936&#34;&gt;Step 5 新規記事のテンプレートを変更しておく&lt;/h2&gt;
+&lt;h2 id=&#34;step-5-新規記事のテンプレートを変更しておく&#34;&gt;Step 5 新規記事のテンプレートを変更しておく&lt;/h2&gt;
 
 &lt;p&gt;毎回コマンド（ &lt;strong&gt;hugo new post/new_post.md&lt;/strong&gt; ） で新規記事作成後に、
 comments = true とパラメータ設定するのは面倒くさいので
@@ -399,8 +396,7 @@ Tags = []
 Categories = []
 comments = true
 +++
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -409,12 +405,12 @@ comments = true
       <pubDate>Sun, 07 Jun 2015 21:55:31 JST</pubDate>
       
       <guid>http://blog.syati.info/post/create_hugo_2/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
+      <description>&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
 &lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; を参考にして、セットアップ手順を記していく。&lt;/p&gt;
 
-&lt;h2 id=&#34;step-1-github-に-blog-repository-をつくる:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 1 github に blog repository をつくる&lt;/h2&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;step-1-github-に-blog-repository-をつくる&#34;&gt;Step 1 github に blog repository をつくる&lt;/h2&gt;
 
 &lt;p&gt;github にアクセスして、repository をつくる。repository name がそのまま URL になる（以下のようなURL）。&lt;/p&gt;
 
@@ -429,7 +425,7 @@ comments = true
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step-2-blog-の設定をかいておく:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 2 blog の設定をかいておく&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-blog-の設定をかいておく&#34;&gt;Step 2 blog の設定をかいておく&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;※以降、github に yourblog として repostitory を作成したとして記す。また、part 1 で作成した yourblog があるものとする&lt;/strong&gt;&lt;/p&gt;
 
@@ -460,7 +456,7 @@ canonifyurls = true # 相対パスではなく baseurl を基点とした絶対�
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step-3-repository-に-push-する:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 3 repository に push する&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-repository-に-push-する&#34;&gt;Step 3 repository に push する&lt;/h2&gt;
 
 &lt;p&gt;yourblog ディレクトリで以下のコマンドを実行する。&lt;/p&gt;
 
@@ -474,7 +470,7 @@ $ git commit -m &amp;quot;Add hugo template&amp;quot;
 $ git push origin master
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-4-gh-pages-ブランチを作成する:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 4 gh-pages ブランチを作成する&lt;/h2&gt;
+&lt;h2 id=&#34;step-4-gh-pages-ブランチを作成する&#34;&gt;Step 4 gh-pages ブランチを作成する&lt;/h2&gt;
 
 &lt;p&gt;gh-pages ブランチには hugo で作成されたコンテンツ（ public ）のみ置いて、
 関係のないもの（ archetypes, themes, etc ）は紛らわしいので管理したくない。&lt;/p&gt;
@@ -521,7 +517,7 @@ $ git subtree push --prefix=public git@github.com:Syati/yourblog.git gh-pages
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;step-5-めんどさい-deploy-はスクリプトを利用する:a830f51eecde66402e29d75bcb0532ee&#34;&gt;Step 5 めんどさい Deploy はスクリプトを利用する&lt;/h2&gt;
+&lt;h2 id=&#34;step-5-めんどさい-deploy-はスクリプトを利用する&#34;&gt;Step 5 めんどさい Deploy はスクリプトを利用する&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; の &lt;strong&gt;deploy.sh&lt;/strong&gt; に書かれている以下を利用する。&lt;/p&gt;
 
@@ -559,8 +555,7 @@ git subtree push --prefix=public git@github.com:[username]/yourblog.git gh-pages
 &lt;p&gt;これで新しい記事を書いて github.io に公開（ Deploy ）する際は、以下のコマンドを実行するのみで良い。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ./deploy.sh
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -569,9 +564,7 @@ git subtree push --prefix=public git@github.com:[username]/yourblog.git gh-pages
       <pubDate>Fri, 05 Jun 2015 21:55:31 JST</pubDate>
       
       <guid>http://blog.syati.info/post/create_hugo/</guid>
-      <description>
-
-&lt;p&gt;WordPress でブログをつくっていましたが、記事投稿が面倒くさなって続かない。
+      <description>&lt;p&gt;WordPress でブログをつくっていましたが、記事投稿が面倒くさなって続かない。
 なぜかと考えた時にテキストで書いたものを簡単に POST できないからである。
 過去に org2blog などを試し、簡単になった！！と喜んでいた時期もあったが、
 WordPress の Version Up などで POST できなくり、それっきり・・・。&lt;/p&gt;
@@ -579,29 +572,29 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 &lt;p&gt;今回は、ついに上記のことを打開できる策を見つけたのだ。
 それが &lt;strong&gt;Hugo で github.io 上にブログを立ち上げることだ。&lt;/strong&gt;
 何が良いかといえば、markdown でかけて、github に push するだけでブログ
-が更新されることだ。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://gohugo.io/overview/quickstart/&#34;&gt;Hugo Quickstart Guide&lt;/a&gt; にならって
+が更新されることだ。
+ 
+&lt;a href=&#34;http://gohugo.io/overview/quickstart/&#34;&gt;Hugo Quickstart Guide&lt;/a&gt; にならって
 セットアップ手順を記していく。Part 1 では、まずはブログをローカルに構築する。
 &lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
 
-&lt;h2 id=&#34;step-1-インストールしましょう:21ff63570566c64813270f2340abd251&#34;&gt;Step 1 インストールしましょう&lt;/h2&gt;
+&lt;h2 id=&#34;step-1-インストールしましょう&#34;&gt;Step 1 インストールしましょう&lt;/h2&gt;
 
-&lt;h3 id=&#34;osx-の場合:21ff63570566c64813270f2340abd251&#34;&gt;OSX の場合&lt;/h3&gt;
+&lt;h3 id=&#34;osx-の場合&#34;&gt;OSX の場合&lt;/h3&gt;
 
 &lt;p&gt;以下のコマンドでおしまい。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ brew install hugo
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;ubuntu-の場合:21ff63570566c64813270f2340abd251&#34;&gt;Ubuntu の場合&lt;/h3&gt;
+&lt;h3 id=&#34;ubuntu-の場合&#34;&gt;Ubuntu の場合&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;Hugo relase&lt;/a&gt; から適したものをDLして以下のコマンドを実行する。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ sudo dpkg -i hugo_0.14_amd64.deb　# 自分に適したパッケージを選んでね
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-2-ブログをつくろう:21ff63570566c64813270f2340abd251&#34;&gt;Step 2 ブログをつくろう&lt;/h2&gt;
+&lt;h2 id=&#34;step-2-ブログをつくろう&#34;&gt;Step 2 ブログをつくろう&lt;/h2&gt;
 
 &lt;p&gt;以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。&lt;/p&gt;
 
@@ -619,7 +612,7 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 └── static      # 今回は利用しない（サイトで利用する js, css, images などを置く）
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-3-新しい記事をつくろう:21ff63570566c64813270f2340abd251&#34;&gt;Step 3 新しい記事をつくろう&lt;/h2&gt;
+&lt;h2 id=&#34;step-3-新しい記事をつくろう&#34;&gt;Step 3 新しい記事をつくろう&lt;/h2&gt;
 
 &lt;p&gt;yourblog ディレクトリで以下のコマンド実行して、新規記事を作成する。&lt;/p&gt;
 
@@ -644,14 +637,14 @@ title = &amp;quot;hello&amp;quot;
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-4-テーマをインストールしよう:21ff63570566c64813270f2340abd251&#34;&gt;Step 4 テーマをインストールしよう&lt;/h2&gt;
+&lt;h2 id=&#34;step-4-テーマをインストールしよう&#34;&gt;Step 4 テーマをインストールしよう&lt;/h2&gt;
 
 &lt;p&gt;自分好みのテーマをさがすために、テーマ一式いれてみる。yourblog ディレクトリで以下のコマンドを実行する。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git clone -\-recursive https://github.com/spf13/hugoThemes themes
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;step-5-ブログを見てみよう:21ff63570566c64813270f2340abd251&#34;&gt;Step 5 ブログを見てみよう&lt;/h2&gt;
+&lt;h2 id=&#34;step-5-ブログを見てみよう&#34;&gt;Step 5 ブログを見てみよう&lt;/h2&gt;
 
 &lt;p&gt;とりあえず準備はととのったので、サーバーを立ち上げてブログを見てみる。&lt;/p&gt;
 
@@ -686,8 +679,7 @@ Web Server is available at http://127.0.0.1:1313/
 
 &lt;p&gt;ブログ構築完成。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
-</description>
+&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -133,27 +133,27 @@
 <ul>
 <li>
 <ul>
-<li><a href="#step-0-事前準備:949a9ea0a4a82c7fd7909a699c67654c">Step 0: 事前準備</a></li>
-<li><a href="#step-1-いろいろ初期化-プロジェクトの作成:949a9ea0a4a82c7fd7909a699c67654c">Step 1: いろいろ初期化(プロジェクトの作成)</a></li>
-<li><a href="#step-2-ライブラリのインストール:949a9ea0a4a82c7fd7909a699c67654c">Step 2: ライブラリのインストール</a></li>
-<li><a href="#step-3-app-を作成:949a9ea0a4a82c7fd7909a699c67654c">Step 3: app を作成</a></li>
-<li><a href="#step-4-コンパイルする:949a9ea0a4a82c7fd7909a699c67654c">Step 4: コンパイルする</a></li>
-<li><a href="#step-5-webpack-導入:949a9ea0a4a82c7fd7909a699c67654c">Step 5: webpack 導入</a></li>
-<li><a href="#参考:949a9ea0a4a82c7fd7909a699c67654c">参考</a></li>
+<li><a href="#step-0-事前準備">Step 0: 事前準備</a></li>
+<li><a href="#step-1-いろいろ初期化-プロジェクトの作成">Step 1: いろいろ初期化(プロジェクトの作成)</a></li>
+<li><a href="#step-2-ライブラリのインストール">Step 2: ライブラリのインストール</a></li>
+<li><a href="#step-3-app-を作成">Step 3: app を作成</a></li>
+<li><a href="#step-4-コンパイルする">Step 4: コンパイルする</a></li>
+<li><a href="#step-5-webpack-導入">Step 5: webpack 導入</a></li>
+<li><a href="#参考">参考</a></li>
 </ul></li>
 </ul>
 </nav>
     </div>
     
-	<div class="entry-content" itemprop="articleBody">
-
-<p>型が恋しいのです。仮引数見た時に、何が入るか簡単に知りたいのです。実引数の型が違った時には教えてほしいのです。そんなこんなで、TypeScript がお気に入りです。</p>
+	<div class="entry-content" itemprop="articleBody"><p>型が恋しいのです。仮引数見た時に、何が入るか簡単に知りたいのです。実引数の型が違った時には教えてほしいのです。そんなこんなで、TypeScript がお気に入りです。</p>
 
 <p>今回は、どうやってフロントエンドで TypeScript を利用するか記していこうと思います。本記事のコードは以下のURLにあります。</p>
 
 <p><a href="https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack">https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack</a></p>
 
-<h2 id="step-0-事前準備:949a9ea0a4a82c7fd7909a699c67654c">Step 0: 事前準備</h2>
+<p></p>
+
+<h2 id="step-0-事前準備">Step 0: 事前準備</h2>
 
 <p>以下のコマンドを使用するのでグローバルにインストールしておく。</p>
 
@@ -188,7 +188,7 @@
 </ul></li>
 </ul>
 
-<h2 id="step-1-いろいろ初期化-プロジェクトの作成:949a9ea0a4a82c7fd7909a699c67654c">Step 1: いろいろ初期化(プロジェクトの作成)</h2>
+<h2 id="step-1-いろいろ初期化-プロジェクトの作成">Step 1: いろいろ初期化(プロジェクトの作成)</h2>
 
 <pre><code class="language-bash">$ mkdir app
 $ tsd init  # いろいろ尋ねてくるけど enter 連打
@@ -202,7 +202,7 @@ $ tree ./ -L 1
 └── typings         # tsd init で作成される（ライブラリの定義のソースコードが入る）
 </code></pre>
 
-<h2 id="step-2-ライブラリのインストール:949a9ea0a4a82c7fd7909a699c67654c">Step 2: ライブラリのインストール</h2>
+<h2 id="step-2-ライブラリのインストール">Step 2: ライブラリのインストール</h2>
 
 <p>npm と tsd を利用して、ライブラリ、ライブラリの定義をインストール。</p>
 
@@ -214,7 +214,7 @@ $ npm install jquery --save
 $ tsd install jquery --save
 </code></pre>
 
-<h2 id="step-3-app-を作成:949a9ea0a4a82c7fd7909a699c67654c">Step 3: app を作成</h2>
+<h2 id="step-3-app-を作成">Step 3: app を作成</h2>
 
 <p>app の下に app.ts として以下を作成。</p>
 
@@ -238,7 +238,7 @@ $(() =&gt; {
 &lt;/html&gt;
 </code></pre>
 
-<h2 id="step-4-コンパイルする:949a9ea0a4a82c7fd7909a699c67654c">Step 4: コンパイルする</h2>
+<h2 id="step-4-コンパイルする">Step 4: コンパイルする</h2>
 
 <p>step 3 で作成した app.ts を js に変換するために tsc の設定を作成する。
 <strong>step 1 ./</strong> で tsconfig.json として以下のように作成。</p>
@@ -291,7 +291,7 @@ $(function () {
     └── tsd.d.ts
 </code></pre>
 
-<h2 id="step-5-webpack-導入:949a9ea0a4a82c7fd7909a699c67654c">Step 5: webpack 導入</h2>
+<h2 id="step-5-webpack-導入">Step 5: webpack 導入</h2>
 
 <p>フロントでも require を利用するために、<strong>webpack</strong> をインストールして、ついでに、TypeScript のファイルを処理できるように loader をいれる。</p>
 
@@ -334,12 +334,11 @@ $ webpack
 
 <p><a href="https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack">ソースはこちらから</a></p>
 
-<h2 id="参考:949a9ea0a4a82c7fd7909a699c67654c">参考</h2>
+<h2 id="参考">参考</h2>
 
 <ul>
 <li><a href="http://www.jbrantly.com/typescript-and-webpack/">TypeScript and webpack</a></li>
-</ul>
-</div>
+</ul></div>
 
                         </article>
 					
@@ -405,7 +404,7 @@ $ webpack
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2016
+			<footer id="footer" class="inner">Copyright &copy; 2017
 
     Syati.info
 

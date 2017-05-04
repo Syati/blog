@@ -133,33 +133,33 @@
 <ul>
 <li>
 <ul>
-<li><a href="#方法:1ead9dddf59ab7fa3348954d3c2dbcf6">方法</a>
+<li><a href="#方法">方法</a>
 <ul>
-<li><a href="#1-brew-でインストールする:1ead9dddf59ab7fa3348954d3c2dbcf6">1. brew でインストールする</a>
+<li><a href="#1-brew-でインストールする">1. brew でインストールする</a>
 <ul>
-<li><a href="#その他:1ead9dddf59ab7fa3348954d3c2dbcf6">その他</a></li>
+<li><a href="#その他">その他</a></li>
 </ul></li>
-<li><a href="#2-composer-の-web-からインストールする:1ead9dddf59ab7fa3348954d3c2dbcf6">2. composer の web からインストールする</a></li>
+<li><a href="#2-composer-の-web-からインストールする">2. composer の web からインストールする</a></li>
 </ul></li>
-<li><a href="#参考:1ead9dddf59ab7fa3348954d3c2dbcf6">参考</a></li>
+<li><a href="#参考">参考</a></li>
 </ul></li>
 </ul>
 </nav>
     </div>
     
-	<div class="entry-content" itemprop="articleBody">
-
-<p>最近、php を触る機会が増えたので、メモメモ。
+	<div class="entry-content" itemprop="articleBody"><p>最近、php を触る機会が増えたので、メモメモ。
 composer 叩いたら xdebug を enable にしてると遅いよっていう以下のメッセージが流れるので composer 叩いた時に出ないようにする。</p>
+
+<p></p>
 
 <pre><code class="language-bash">You are running composer with xdebug enabled. This has a major impact on runtime performance. See https://getcomposer.org/xdebug
 </code></pre>
 
-<h2 id="方法:1ead9dddf59ab7fa3348954d3c2dbcf6">方法</h2>
+<h2 id="方法">方法</h2>
 
 <p>方法 1. 2. どちらかでインストール、設定する</p>
 
-<h3 id="1-brew-でインストールする:1ead9dddf59ab7fa3348954d3c2dbcf6">1. brew でインストールする</h3>
+<h3 id="1-brew-でインストールする">1. brew でインストールする</h3>
 
 <pre><code class="language-bash">brew install composer
 
@@ -169,7 +169,7 @@ alias composer=&quot;php -n /usr/local/Cellar/composer/1.1.2/libexec/composer.ph
 
 <p><strong>1.1.2</strong> というバージョンのところは適宜修正する。</p>
 
-<h4 id="その他:1ead9dddf59ab7fa3348954d3c2dbcf6">その他</h4>
+<h4 id="その他">その他</h4>
 
 <p>以下のよう alias を設定すれば良いのではと思うかもしれないが、うまくコマンドが通らない</p>
 
@@ -187,7 +187,7 @@ $ composer
 /usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &quot;$@&quot;
 </code></pre>
 
-<h3 id="2-composer-の-web-からインストールする:1ead9dddf59ab7fa3348954d3c2dbcf6">2. composer の web からインストールする</h3>
+<h3 id="2-composer-の-web-からインストールする">2. composer の web からインストールする</h3>
 
 <pre><code class="language-bash">wget https://getcomposer.org/download/1.1.3/composer.phar
 mv ./composer.phar /usr/local/bin/composer
@@ -198,10 +198,9 @@ chmod +x /usr/local/bin/composer
 alias composer=&quot;php -n /usr/local/bin/composer&quot;
 </code></pre>
 
-<h2 id="参考:1ead9dddf59ab7fa3348954d3c2dbcf6">参考</h2>
+<h2 id="参考">参考</h2>
 
-<p><a href="http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer">http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer</a></p>
-</div>
+<p><a href="http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer">http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer</a></p></div>
 
                         </article>
 					
@@ -267,7 +266,7 @@ alias composer=&quot;php -n /usr/local/bin/composer&quot;
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2016
+			<footer id="footer" class="inner">Copyright &copy; 2017
 
     Syati.info
 
