@@ -1,79 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Firefox on Syati.info </title>
-      <generator uri="https://gohugo.io">Hugo</generator>
+    <title>Firefox on Syati.info</title>
     <link>http://blog.syati.info/categories/firefox/</link>
+    <description>Recent content in Firefox on Syati.info</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Fri, 25 Sep 2015 08:49:12 JST</updated>
+    <lastBuildDate>Fri, 25 Sep 2015 08:49:12 +0900</lastBuildDate>
+    
+	<atom:link href="http://blog.syati.info/categories/firefox/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>LiveReload with Firefox</title>
       <link>http://blog.syati.info/post/livereload_firefox/</link>
-      <pubDate>Fri, 25 Sep 2015 08:49:12 JST</pubDate>
+      <pubDate>Fri, 25 Sep 2015 08:49:12 +0900</pubDate>
       
       <guid>http://blog.syati.info/post/livereload_firefox/</guid>
       <description>&lt;p&gt;Firefox LiveReload + grunt-contrib-watch LiveReload で以下の warning メッセージがでて、LiveReload うごかないよ！！&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;You are using an old incompatible version of the command-line tool.&lt;/p&gt;
-
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
 &lt;p&gt;Please run following command &amp;hellip;.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;なんでや・・と思いながら、よくよくアドオンの見たら書いてあった・・・。&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;This extension is deprecated. The latest version is available at&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://help.livereload.com/kb/general-use/browser-extensions&#34;&gt;http://help.livereload.com/kb/general-use/browser-extensions&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;p&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;warning&#34;&gt;Warning&lt;/h2&gt;
-
-
-&lt;figure class=&#34;image-half__center&#34;&gt;
-    
-        &lt;img src=&#34;livereload_warning.png&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;h4&gt;LiveReload Warning&lt;/h4&gt;
-        
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;h2 id=&#34;extension-old&#34;&gt;Extension (old)&lt;/h2&gt;
-
-&lt;p&gt;これではない。&lt;/p&gt;
-
-
-&lt;figure class=&#34;image-half__center&#34;&gt;
-    
-        &lt;img src=&#34;livereload_extension.png&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;h4&gt;LiveReload extension (old)&lt;/h4&gt;
-        
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;h2 id=&#34;extension-new&#34;&gt;Extension (new)&lt;/h2&gt;
-
-&lt;p&gt;以下のURLから入れましょう。&lt;/p&gt;
-
+&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;http://help.livereload.com/kb/general-use/browser-extensions&#34;&gt;http://help.livereload.com/kb/general-use/browser-extensions&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;おしまい。&lt;/p&gt;</description>
+&lt;/blockquote&gt;</description>
     </item>
     
   </channel>

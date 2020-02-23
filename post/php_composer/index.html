@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,76 +131,47 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#方法">方法</a>
-<ul>
-<li><a href="#1-brew-でインストールする">1. brew でインストールする</a>
-<ul>
-<li><a href="#その他">その他</a></li>
-</ul></li>
-<li><a href="#2-composer-の-web-からインストールする">2. composer の web からインストールする</a></li>
-</ul></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#方法">方法</a>
+      <ul>
+        <li><a href="#1-brew-でインストールする">1. brew でインストールする</a></li>
+        <li><a href="#2-composer-の-web-からインストールする">2. composer の web からインストールする</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>最近、php を触る機会が増えたので、メモメモ。
 composer 叩いたら xdebug を enable にしてると遅いよっていう以下のメッセージが流れるので composer 叩いた時に出ないようにする。</p>
-
-<p></p>
-
-<pre><code class="language-bash">You are running composer with xdebug enabled. This has a major impact on runtime performance. See https://getcomposer.org/xdebug
-</code></pre>
-
-<h2 id="方法">方法</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">You are running composer with xdebug enabled. This has a major impact on runtime performance. See https://getcomposer.org/xdebug
+</code></pre></div><h2 id="方法">方法</h2>
 <p>方法 1. 2. どちらかでインストール、設定する</p>
-
 <h3 id="1-brew-でインストールする">1. brew でインストールする</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install composer
 
-<pre><code class="language-bash">brew install composer
-
-# .zshrc に alias を設定する
-alias composer=&quot;php -n /usr/local/Cellar/composer/1.1.2/libexec/composer.phar&quot;
-</code></pre>
-
-<p><strong>1.1.2</strong> というバージョンのところは適宜修正する。</p>
-
+<span style="color:#75715e"># .zshrc に alias を設定する</span>
+alias composer<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;php -n /usr/local/Cellar/composer/1.1.2/libexec/composer.phar&#34;</span>
+</code></pre></div><p><strong>1.1.2</strong> というバージョンのところは適宜修正する。</p>
 <h4 id="その他">その他</h4>
-
 <p>以下のよう alias を設定すれば良いのではと思うかもしれないが、うまくコマンドが通らない</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># .zshrc に alias を設定する</span>
+alias composer<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;php -n /usr/local/bin/composer&#34;</span>
 
-<pre><code class="language-bash"># .zshrc に alias を設定する
-alias composer=&quot;php -n /usr/local/bin/composer&quot;
-
-#上記の設定だとコマンドを叩いた時に以下のような出力がでてしまう
+<span style="color:#75715e">#上記の設定だとコマンドを叩いた時に以下のような出力がでてしまう</span>
 $ composer
-/usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &quot;$@&quot;
-</code></pre>
-
-<p>というのも <strong>usr/local/bin/composer</strong> のリンク先が <strong>/usr/local/Cellar/composer/1.1.2/libexec/composer</strong> でその中身が以下のようになっているため。</p>
-
-<pre><code class="language-bash">#!/usr/bin/env bash
-/usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &quot;$@&quot;
-</code></pre>
-
-<h3 id="2-composer-の-web-からインストールする">2. composer の web からインストールする</h3>
-
-<pre><code class="language-bash">wget https://getcomposer.org/download/1.1.3/composer.phar
+/usr/bin/env php -d allow_url_fopen<span style="color:#f92672">=</span>On -d detect_unicode<span style="color:#f92672">=</span>Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>
+</code></pre></div><p>というのも <strong>usr/local/bin/composer</strong> のリンク先が <strong>/usr/local/Cellar/composer/1.1.2/libexec/composer</strong> でその中身が以下のようになっているため。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/usr/bin/env bash
+</span><span style="color:#75715e"></span>/usr/bin/env php -d allow_url_fopen<span style="color:#f92672">=</span>On -d detect_unicode<span style="color:#f92672">=</span>Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>
+</code></pre></div><h3 id="2-composer-の-web-からインストールする">2. composer の web からインストールする</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://getcomposer.org/download/1.1.3/composer.phar
 mv ./composer.phar /usr/local/bin/composer
 chmod +x /usr/local/bin/composer
-</code></pre>
-
-<pre><code class="language-bash"># .zshrc に alias を設定する
-alias composer=&quot;php -n /usr/local/bin/composer&quot;
-</code></pre>
-
-<h2 id="参考">参考</h2>
-
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># .zshrc に alias を設定する</span>
+alias composer<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;php -n /usr/local/bin/composer&#34;</span>
+</code></pre></div><h2 id="参考">参考</h2>
 <p><a href="http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer">http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer</a></p></div>
 
                         </article>
@@ -266,9 +238,10 @@ alias composer=&quot;php -n /usr/local/bin/composer&quot;
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -128,62 +129,45 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#はまった事">はまった事</a></li>
-<li><a href="#原因">原因</a></li>
-<li><a href="#解決">解決</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#はまった事">はまった事</a></li>
+    <li><a href="#原因">原因</a></li>
+    <li><a href="#解決">解決</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>javascript を REPL で利用できるといえば <strong>node</strong> 。underscore.js を試したいと思いハマったメモ。</p>
-
-<p></p>
-
 <h2 id="はまった事">はまった事</h2>
-
 <p>以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。</p>
-
-<pre><code class="language-bash">$ sudo npm install undersocre -g
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo npm install undersocre -g
 $ node 
     
-require('underscore'); 
-Error: Cannot find module 'underscore'
-  at Function.Module._resolveFilename (module.js:338:15)
-  at Function.Module._load (module.js:280:25)
-  at Module.require (module.js:362:17)
-  at require (module.js:378:17)
+require<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;underscore&#39;</span><span style="color:#f92672">)</span>; 
+Error: Cannot find module <span style="color:#e6db74">&#39;underscore&#39;</span>
+  at Function.Module._resolveFilename <span style="color:#f92672">(</span>module.js:338:15<span style="color:#f92672">)</span>
+  at Function.Module._load <span style="color:#f92672">(</span>module.js:280:25<span style="color:#f92672">)</span>
+  at Module.require <span style="color:#f92672">(</span>module.js:362:17<span style="color:#f92672">)</span>
+  at require <span style="color:#f92672">(</span>module.js:378:17<span style="color:#f92672">)</span>
   at repl:1:1
-  at REPLServer.self.eval (repl.js:109:21)
-  at rli.on.self.bufferedCmd (repl.js:258:20)
-  at REPLServer.self.eval (repl.js:116:5)
-  at Interface.&lt;anonymous&gt; (repl.js:248:12)
-  at Interface.EventEmitter.emit (events.js:96:17)
-</code></pre>
-
-<h2 id="原因">原因</h2>
-
+  at REPLServer.self.eval <span style="color:#f92672">(</span>repl.js:109:21<span style="color:#f92672">)</span>
+  at rli.on.self.bufferedCmd <span style="color:#f92672">(</span>repl.js:258:20<span style="color:#f92672">)</span>
+  at REPLServer.self.eval <span style="color:#f92672">(</span>repl.js:116:5<span style="color:#f92672">)</span>
+  at Interface.&lt;anonymous&gt; <span style="color:#f92672">(</span>repl.js:248:12<span style="color:#f92672">)</span>
+  at Interface.EventEmitter.emit <span style="color:#f92672">(</span>events.js:96:17<span style="color:#f92672">)</span>
+</code></pre></div><h2 id="原因">原因</h2>
 <p>npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。</p>
-
 <h2 id="解決">解決</h2>
-
 <ol>
 <li>設定するパスを確認する</li>
 </ol>
-
-<pre><code class="language-bash">npm root -g
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm root -g
 /usr/local/lib/node_modules
-</code></pre>
-
-<ol>
+</code></pre></div><ol start="2">
 <li>利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了</li>
 </ol>
-
-<pre><code class="language-bash">export NODE_PATH=/usr/local/lib/node_modules
-</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export NODE_PATH<span style="color:#f92672">=</span>/usr/local/lib/node_modules
+</code></pre></div></div>
 
                         </article>
 					
@@ -249,9 +233,10 @@ Error: Cannot find module 'underscore'
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

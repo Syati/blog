@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,268 +131,191 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#step-0-事前準備">Step 0: 事前準備</a>
-<ul>
-<li><a href="#流れ">流れ</a></li>
-<li><a href="#ライブラリ">ライブラリ</a></li>
-</ul></li>
-<li><a href="#step-1-とりあえずテストを書く">Step 1: とりあえずテストを書く</a></li>
-<li><a href="#step-2-トランスパイルする">Step 2: トランスパイルする</a></li>
-<li><a href="#step-3-テストする">Step 3: テストする</a></li>
-<li><a href="#step-4-カバレッジを測る">Step 4: カバレッジを測る</a></li>
-<li><a href="#step-5-ソースマップから-ts-のカバレッジを測る">Step 5: ソースマップから ts のカバレッジを測る</a></li>
-<li><a href="#step-6-package-json-で楽する">Step 6: package.json で楽する</a></li>
-<li><a href="#その他">その他</a>
-<ul>
-<li><a href="#istanbul-yml-でカバレッジレポートのディレクトリ指定する">.istanbul.yml でカバレッジレポートのディレクトリ指定する</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#step-0-事前準備">Step 0: 事前準備</a>
+      <ul>
+        <li><a href="#流れ">流れ</a></li>
+        <li><a href="#ライブラリ">ライブラリ</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-1-とりあえずテストを書く">Step 1: とりあえずテストを書く</a></li>
+    <li><a href="#step-2-トランスパイルする">Step 2: トランスパイルする</a></li>
+    <li><a href="#step-3-テストする">Step 3: テストする</a></li>
+    <li><a href="#step-4-カバレッジを測る">Step 4: カバレッジを測る</a></li>
+    <li><a href="#step-5-ソースマップから-ts-のカバレッジを測る">Step 5: ソースマップから ts のカバレッジを測る</a></li>
+    <li><a href="#step-6-packagejson-で楽する">Step 6: package.json で楽する</a></li>
+    <li><a href="#その他">その他</a>
+      <ul>
+        <li><a href="#istanbulyml-でカバレッジレポートのディレクトリ指定する">.istanbul.yml でカバレッジレポートのディレクトリ指定する</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>AltJs ってトランスパイルした後、テストを実行させる必要があるから・・、面倒くさいんだよね。なんか、あまり情報もないし、これだから AltJs は・・・と思うわけですが、やってみると案外大したことないもんです。</p>
-
 <p>今回は、TypeScript のコードのユニットテスト、カバレッジを記していこうと思います。本記事のコードは以下のURLにあります。</p>
-
 <p><a href="https://github.com/Syati/typescript-sample/tree/master/011_test_sample">https://github.com/Syati/typescript-sample/tree/master/011_test_sample</a></p>
-
-<p></p>
-
 <h2 id="step-0-事前準備">Step 0: 事前準備</h2>
-
 <h3 id="流れ">流れ</h3>
-
 <ol>
 <li>ts でコードを書く</li>
 <li>トランスパイルする（js と map を出力）</li>
 <li>js をテストする</li>
 <li>map を利用して<strong>ts カバレッジ</strong>を測る</li>
 </ol>
-
 <h3 id="ライブラリ">ライブラリ</h3>
-
 <p><strong>npm install -g mocha istanbul remap-istanbul</strong> でそれぞれコマンドが利用できるようになります。</p>
-
 <ul>
 <li>Test framework
-
 <ul>
 <li><a href="https://www.npmjs.com/package/mocha">mocha</a>
-
 <ul>
 <li>テストフレームワークですね。他にも karma, jasmine など、たくさんありますがシンプルなので、とっつきやすかった。</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Coverage
-
 <ul>
 <li><a href="https://www.npmjs.com/package/istanbul">istanbul</a>
-
 <ul>
 <li>カバレッジを測定してくれる。カバレッジがあると、ユニットテストのモチベーションが上がりますよね！！</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://www.npmjs.com/package/remap-istanbul">remap-istanbul</a>
-
 <ul>
 <li>istanbul だけでは、トランスパイル後（js）のカバレッジしか測れないので、map を利用して、ts のカバレッジを測る</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="step-1-とりあえずテストを書く">Step 1: とりあえずテストを書く</h2>
-
 <p><a href="https://github.com/Syati/typescript-sample/tree/master/011_test_sample">プロジェクト</a> を確認しておく。全体が理解しやすくなると思う。</p>
-
 <p>テストは、単にコンストラクタで与えられた値を保持しているかどうか。</p>
-
-<pre><code class="language-typescript">// app/src/main.ts
-export default class TestTarget {
-    constructor(public name){
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// app/src/main.ts
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestTarget</span> {
+    <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">name</span>){
     }
 }
-</code></pre>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// app/test/main.test.ts
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">assert</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;power-assert&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">TestTarget</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../src/main&#39;</span>;
 
-<pre><code class="language-typescript">// app/test/main.test.ts
-import assert from 'power-assert';
-import TestTarget from '../src/main';
-
-describe(&quot;TestTarget&quot;, () =&gt; {
-    it(&quot;should have a name&quot;, () =&gt; {
-        let testTarget = new TestTarget(&quot;test&quot;);
-        assert.equal(testTarget.name, &quot;test&quot;);
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#34;TestTarget&#34;</span>, () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;should have a name&#34;</span>, () <span style="color:#f92672">=&gt;</span> {
+        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">testTarget</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TestTarget</span>(<span style="color:#e6db74">&#34;test&#34;</span>);
+        <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">equal</span>(<span style="color:#a6e22e">testTarget</span>.<span style="color:#a6e22e">name</span>, <span style="color:#e6db74">&#34;test&#34;</span>);
     });
 });
-</code></pre>
-
-<p>すごいシンプルですね。</p>
-
+</code></pre></div><p>すごいシンプルですね。</p>
 <h2 id="step-2-トランスパイルする">Step 2: トランスパイルする</h2>
-
 <p>tsc コマンドを叩く前に設定ファイルを書いときましょう。以下の tsconfig.json になります。
 とくに変わった点はないですね。重要なポイントとしては、<strong>&ldquo;sourceMap&rdquo;: true</strong>です。
 後々、ts のカバレッジを測るために必要になってきます。</p>
-
-<pre><code class="language-javascript">{
-  &quot;version&quot;: &quot;1.6.2&quot;,
-  &quot;compilerOptions&quot;: {
-    &quot;module&quot;: &quot;commonjs&quot;,
-    &quot;target&quot;: &quot;es5&quot;,
-    &quot;sourceMap&quot;: true
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
+  <span style="color:#e6db74">&#34;version&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1.6.2&#34;</span>,
+  <span style="color:#e6db74">&#34;compilerOptions&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;module&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;commonjs&#34;</span>,
+    <span style="color:#e6db74">&#34;target&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;es5&#34;</span>,
+    <span style="color:#e6db74">&#34;sourceMap&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
   },
-  &quot;exclude&quot;: [
-    &quot;dist&quot;,
-    &quot;node_modules&quot;
+  <span style="color:#e6db74">&#34;exclude&#34;</span><span style="color:#f92672">:</span> [
+    <span style="color:#e6db74">&#34;dist&#34;</span>,
+    <span style="color:#e6db74">&#34;node_modules&#34;</span>
   ],
-  &quot;files&quot;: [
-    &quot;typings/tsd.d.ts&quot;,
-    &quot;app/src/main.ts&quot;,
-    &quot;app/test/main.test.ts&quot;
+  <span style="color:#e6db74">&#34;files&#34;</span><span style="color:#f92672">:</span> [
+    <span style="color:#e6db74">&#34;typings/tsd.d.ts&#34;</span>,
+    <span style="color:#e6db74">&#34;app/src/main.ts&#34;</span>,
+    <span style="color:#e6db74">&#34;app/test/main.test.ts&#34;</span>
   ]
 }
-</code></pre>
-
-<p>プロジェクトルートで tsc コマンドを叩きます</p>
-
-<pre><code class="language-bash">$ tsc
-</code></pre>
-
-<h2 id="step-3-テストする">Step 3: テストする</h2>
-
+</code></pre></div><p>プロジェクトルートで tsc コマンドを叩きます</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tsc
+</code></pre></div><h2 id="step-3-テストする">Step 3: テストする</h2>
 <p>Step 2 でトランスパイル済みなので、ts ファイル以外に js、map ファイルが存在すると思います。ディレクトリが汚れてあたふたするかもしれませんが、package.json に clean スクリプトを書くことで解決できるので、今は我慢。</p>
-
 <p>プロジェクトルートでテストコマンドを叩いてみます。</p>
-
-<pre><code class="language-bash">$ mocha app/test/*.test.js
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mocha app/test/*.test.js
 
   TestTarget
 
     ✓ should have a name
 
 
-  1 passing (8ms)
-</code></pre>
-
-<p>成功、終わりです。</p>
-
+  <span style="color:#ae81ff">1</span> passing <span style="color:#f92672">(</span>8ms<span style="color:#f92672">)</span>
+</code></pre></div><p>成功、終わりです。</p>
 <p>味気ないですね。</p>
-
 <p>ユニットテストのモチベーションをあげるためにも、やっぱりカバレッジですよ！！</p>
-
 <h2 id="step-4-カバレッジを測る">Step 4: カバレッジを測る</h2>
-
 <p>とくに必要なことはありません。Step 0 で説明したとおり <strong>istanbul</strong> を利用するだけ。
 すこし異なっているのは、 mocha が _mocha を利用するということです。理由は、以下のとおり。</p>
-
 <p><a href="https://github.com/gotwarlost/istanbul/issues/44#issuecomment-16093330">https://github.com/gotwarlost/istanbul/issues/44#issuecomment-16093330</a></p>
-
-<pre><code class="language-bash">$ istanbul cover _mocha -- ./app/test/*.test.js
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ istanbul cover _mocha -- ./app/test/*.test.js
 
   TestTarget
 
     ✓ should have a name
 
 
-  1 passing (5ms)
+  <span style="color:#ae81ff">1</span> passing <span style="color:#f92672">(</span>5ms<span style="color:#f92672">)</span>
 
 
-=============================== Coverage summary ===============================
-Statements   : 100% ( 6/6 )
-Branches     : 100% ( 0/0 )
-Functions    : 100% ( 2/2 )
-Lines        : 100% ( 6/6 )
-================================================================================
-</code></pre>
-
-<p>出力に、<strong>coverage summary</strong> が増えましたね。また、プロジェクトルートに <strong>coverage</strong> ディレクトリが出力されているので、中の index.html を見ましょう。通過したコード、100% の数字にやる気が出てきますね。ただし、これはトランスパイル後の js のカバレッジなので、あと一手間かけてあげましょう。</p>
-
-
-<figure >
-    
-        <img src="coverage_js.png" />
-    
-    
-    <figcaption>
-        <h4>トランスパイル後のカバレッジ</h4>
-        
-    </figcaption>
-    
+<span style="color:#f92672">===============================</span> Coverage summary <span style="color:#f92672">===============================</span>
+Statements   : 100% <span style="color:#f92672">(</span> 6/6 <span style="color:#f92672">)</span>
+Branches     : 100% <span style="color:#f92672">(</span> 0/0 <span style="color:#f92672">)</span>
+Functions    : 100% <span style="color:#f92672">(</span> 2/2 <span style="color:#f92672">)</span>
+Lines        : 100% <span style="color:#f92672">(</span> 6/6 <span style="color:#f92672">)</span>
+<span style="color:#f92672">================================================================================</span>
+</code></pre></div><p>出力に、<strong>coverage summary</strong> が増えましたね。また、プロジェクトルートに <strong>coverage</strong> ディレクトリが出力されているので、中の index.html を見ましょう。通過したコード、100% の数字にやる気が出てきますね。ただし、これはトランスパイル後の js のカバレッジなので、あと一手間かけてあげましょう。</p>
+<figure>
+    <img src="coverage_js.png"/> <figcaption>
+            <h4>トランスパイル後のカバレッジ</h4>
+        </figcaption>
 </figure>
-
 
 <h2 id="step-5-ソースマップから-ts-のカバレッジを測る">Step 5: ソースマップから ts のカバレッジを測る</h2>
-
 <p><strong>coverage</strong> ディレクトリにて以下のコマンドたたいてあげるだけです。ts のカバレッジが html-repot ディレクトリに出力されます。</p>
-
-<pre><code class="language-bash">$ remap-istanbul -i coverage.json -o html-report -t html
-</code></pre>
-
-
-<figure >
-    
-        <img src="coverage_ts.png" />
-    
-    
-    <figcaption>
-        <h4>ts のカバレッジ</h4>
-        
-    </figcaption>
-    
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ remap-istanbul -i coverage.json -o html-report -t html
+</code></pre></div><figure>
+    <img src="coverage_ts.png"/> <figcaption>
+            <h4>ts のカバレッジ</h4>
+        </figcaption>
 </figure>
 
-
 <p>ts のカバレッジが測れました。ただ、一連のコマンドを毎回叩くのは疲れるので、<strong>package.json</strong> を用いて楽にしましょう。</p>
-
 <p>＊図が Step 4 とデザインが違うのは、remap-istanbul で利用している istanbul のバージョンが古いからだと思われる</p>
-
-<h2 id="step-6-package-json-で楽する">Step 6: package.json で楽する</h2>
-
+<h2 id="step-6-packagejson-で楽する">Step 6: package.json で楽する</h2>
 <p>一連のコマンドを <strong>package.json</strong> に書いておきましょう。以下サンプル。</p>
-
-<pre><code class="language-javascript">{
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
   ...
 
-  &quot;scripts&quot;: {
-    &quot;postinstall&quot;: &quot;tsd install&quot;,
-    &quot;clean&quot;: &quot;find -E . -regex './app/.+\\.(js|map)$' -type f | xargs rm &amp;&amp; rm -rf ./build&quot;,
-    &quot;pretest&quot;: &quot;tsc&quot;,
-    &quot;test&quot;: &quot;istanbul cover _mocha -- ./app/test/*.test.js&quot;,
-    &quot;posttest&quot;: &quot;cd coverage &amp;&amp; remap-istanbul -i coverage.json -o html-report -t html&quot;
+  <span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;postinstall&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;tsd install&#34;</span>,
+    <span style="color:#e6db74">&#34;clean&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;find -E . -regex &#39;./app/.+\\.(js|map)$&#39; -type f | xargs rm &amp;&amp; rm -rf ./build&#34;</span>,
+    <span style="color:#e6db74">&#34;pretest&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;tsc&#34;</span>,
+    <span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;istanbul cover _mocha -- ./app/test/*.test.js&#34;</span>,
+    <span style="color:#e6db74">&#34;posttest&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;cd coverage &amp;&amp; remap-istanbul -i coverage.json -o html-report -t html&#34;</span>
     },
     
     ...
 }
-</code></pre>
-
-<p>大事なのは、 <strong>1. pretest、2. test、3. posttest</strong> です。</p>
-
-<p><strong>npm test</strong> を実行することで <strong>1. 2. 3.</strong>の順番で実行してくれます。今回の step2 - step5 をコマンド１つで済せられるということですね。</p>
-
-<pre><code class="language-bash"># 次回からはこれだけでよい
+</code></pre></div><p>大事なのは、 <strong>1. pretest、2. test、3. posttest</strong> です。</p>
+<p><strong>npm test</strong> を実行することで **1. 2. 3.**の順番で実行してくれます。今回の step2 - step5 をコマンド１つで済せられるということですね。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 次回からはこれだけでよい</span>
 $ npm test 
 
-# js とか map 削除したいとおもったら
+<span style="color:#75715e"># js とか map 削除したいとおもったら</span>
 $ npm clean
-</code></pre>
-
-<h2 id="その他">その他</h2>
-
-<h3 id="istanbul-yml-でカバレッジレポートのディレクトリ指定する">.istanbul.yml でカバレッジレポートのディレクトリ指定する</h3>
-
+</code></pre></div><h2 id="その他">その他</h2>
+<h3 id="istanbulyml-でカバレッジレポートのディレクトリ指定する">.istanbul.yml でカバレッジレポートのディレクトリ指定する</h3>
 <p><strong>.istanbul.yml</strong> に以下のように書いてあげることで、レポートの出力先を変えることが出来る。</p>
-
-<pre><code class="language-yaml">#.istanbul.yml
-reporting:
-    dir: ./docs/coverage
-</code></pre>
-
-<p>もっとカスタマイズしたい場合は、以下のコマンドからデフォルト設定など説明をみるといいかも。</p>
-
-<pre><code class="language-bash">$ istanbul help config
-</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e">#.istanbul.yml</span>
+<span style="color:#66d9ef">reporting</span>:
+    <span style="color:#66d9ef">dir</span>: ./docs/coverage
+</code></pre></div><p>もっとカスタマイズしたい場合は、以下のコマンドからデフォルト設定など説明をみるといいかも。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ istanbul help config
+</code></pre></div></div>
 
                         </article>
 					
@@ -457,9 +381,10 @@ reporting:
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

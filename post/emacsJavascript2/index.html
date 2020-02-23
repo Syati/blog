@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,64 +131,53 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#step-1-tern-のインストール-設定">Step 1 tern のインストール・設定</a></li>
-<li><a href="#step-2-emacs-の-package-をインストール">Step 2 emacs の package をインストール</a></li>
-<li><a href="#step-3-試す">Step 3 試す</a></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#step-1-tern-のインストール設定">Step 1 tern のインストール・設定</a></li>
+    <li><a href="#step-2-emacs-の-package-をインストール">Step 2 emacs の package をインストール</a></li>
+    <li><a href="#step-3-試す">Step 3 試す</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p><a href="http://blog.syati.info/post/emacsjavascript/">Emacs で JavaScript の開発環境を整える</a> で、
 Emacs と Javascript の開発環境を記しましたが、さらに改善できたので、メモメモ。</p>
-
 <p>ドットで jquery も underscore も browser もしてくれる。 angular も!!</p>
-
-<p></p>
-
-<h2 id="step-1-tern-のインストール-設定">Step 1 tern のインストール・設定</h2>
-
+<h2 id="step-1-tern-のインストール設定">Step 1 tern のインストール・設定</h2>
 <ol>
-<li><p>npm で tern をインストールする</p>
-
-<pre><code class="language-bash">$ npm install -g tern
-</code></pre></li>
-
-<li><p>~/.tern-config を以下のような感じで作成</p>
-
-<pre><code class="language-javascript">{
-  &quot;libs&quot;: [
-    &quot;browser&quot;,
-    &quot;jquery&quot;,
-    &quot;ecma5&quot;,
-    &quot;underscore&quot;
+<li>
+<p>npm で tern をインストールする</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm install -g tern
+</code></pre></div></li>
+<li>
+<p>~/.tern-config を以下のような感じで作成</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
+  <span style="color:#e6db74">&#34;libs&#34;</span><span style="color:#f92672">:</span> [
+    <span style="color:#e6db74">&#34;browser&#34;</span>,
+    <span style="color:#e6db74">&#34;jquery&#34;</span>,
+    <span style="color:#e6db74">&#34;ecma5&#34;</span>,
+    <span style="color:#e6db74">&#34;underscore&#34;</span>
   ],
-  &quot;plugins&quot;: {
-    &quot;angular&quot;: {},
-    &quot;Node&quot;: {}
+  <span style="color:#e6db74">&#34;plugins&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;angular&#34;</span><span style="color:#f92672">:</span> {},
+    <span style="color:#e6db74">&#34;Node&#34;</span><span style="color:#f92672">:</span> {}
   }
 }
-</code></pre></li>
+</code></pre></div></li>
 </ol>
-
 <h2 id="step-2-emacs-の-package-をインストール">Step 2 emacs の package をインストール</h2>
-
 <ol>
-<li>M-x package-list-package で以下の2点をインストールする（該当箇所で <strong>i</strong> をタイプしてマークをつけて <strong>x</strong> でインストールする）
-
+<li>
+<p>M-x package-list-package で以下の2点をインストールする（該当箇所で <strong>i</strong> をタイプしてマークをつけて <strong>x</strong> でインストールする）</p>
 <ol>
 <li>tern</li>
 <li>js2-mode</li>
 <li>tern-auto-complete</li>
-</ol></li>
-
-<li><p>~/.emacs.d/init.el に以下を追加</p>
-
-<pre><code class="language-clike">(autoload 'js2-mode &quot;js2-mode&quot; nil t)
+</ol>
+</li>
+<li>
+<p>~/.emacs.d/init.el に以下を追加</p>
+<pre><code class="language-clike" data-lang="clike">(autoload 'js2-mode &quot;js2-mode&quot; nil t)
 (add-to-list 'auto-mode-alist '(&quot;\\.js\\'&quot; . js2-mode))
 
 (add-hook 'js2-mode-hook
@@ -200,18 +190,13 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
         (tern-ac-setup)))
 </code></pre></li>
 </ol>
-
 <h2 id="step-3-試す">Step 3 試す</h2>
-
-<pre><code class="language-javascript">angular
-  .module('MyApp', [])
-  .controller('SomeCtrl', function($scope, $http) {
-    # ここで $scope. とでも入れてみる
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">angular</span>
+  .<span style="color:#a6e22e">module</span>(<span style="color:#e6db74">&#39;MyApp&#39;</span>, [])
+  .<span style="color:#a6e22e">controller</span>(<span style="color:#e6db74">&#39;SomeCtrl&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">$scope</span>, <span style="color:#a6e22e">$http</span>) {
+    <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">ここで</span> <span style="color:#a6e22e">$scope</span>. <span style="color:#a6e22e">とでも入れてみる</span>
   })
-</code></pre>
-
-<h2 id="参考">参考</h2>
-
+</code></pre></div><h2 id="参考">参考</h2>
 <ul>
 <li><a href="http://ternjs.net/doc/manual.html">tern</a></li>
 <li><a href="http://code.google.com/p/js2-mode/">js2-mode</a></li>
@@ -282,9 +267,10 @@ Emacs と Javascript の開発環境を記しましたが、さらに改善で�
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

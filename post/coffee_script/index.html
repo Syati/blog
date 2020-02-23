@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,35 +131,26 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#必要なパッケージ">必要なパッケージ</a></li>
-<li><a href="#設定">設定</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#必要なパッケージ">必要なパッケージ</a></li>
+    <li><a href="#設定">設定</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p><a href="http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/">Coffee-modeでauto-completeを使えるようにする</a> を参考に、
-coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。
-</p>
-
+coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。</p>
 <h2 id="必要なパッケージ">必要なパッケージ</h2>
-
 <ul>
 <li>M-x package-list-package から 以下をインストールする
-
 <ul>
 <li>jquery-doc</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="設定">設定</h2>
-
 <p><a href="http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/">Coffee-modeでauto-completeを使えるようにする</a> を参考にして以下の部分を変更してあげる</p>
-
-<pre><code class="language-clike">(add-hook 'coffee-mode-hook
+<pre><code class="language-clike" data-lang="clike">(add-hook 'coffee-mode-hook
     '(lambda ()
         (jquery-doc-setup) ;; ここに jquery-doc を追加する
         (add-to-list 'ac-dictionary-files &quot;~/.emacs.d/ac-dict/js2-mode&quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
@@ -229,9 +221,10 @@ coffee script で auto-complete 使えるようにして、ついでに jquery �
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

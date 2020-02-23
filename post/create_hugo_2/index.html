@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,170 +131,128 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#step-1-github-に-blog-repository-をつくる">Step 1 github に blog repository をつくる</a></li>
-<li><a href="#step-2-blog-の設定をかいておく">Step 2 blog の設定をかいておく</a></li>
-<li><a href="#step-3-repository-に-push-する">Step 3 repository に push する</a></li>
-<li><a href="#step-4-gh-pages-ブランチを作成する">Step 4 gh-pages ブランチを作成する</a></li>
-<li><a href="#step-5-めんどさい-deploy-はスクリプトを利用する">Step 5 めんどさい Deploy はスクリプトを利用する</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#step-1-github-に-blog-repository-をつくる">Step 1 github に blog repository をつくる</a></li>
+    <li><a href="#step-2-blog-の設定をかいておく">Step 2 blog の設定をかいておく</a></li>
+    <li><a href="#step-3-repository-に-push-する">Step 3 repository に push する</a></li>
+    <li><a href="#step-4-gh-pages-ブランチを作成する">Step 4 gh-pages ブランチを作成する</a></li>
+    <li><a href="#step-5-めんどさい-deploy-はスクリプトを利用する">Step 5 めんどさい Deploy はスクリプトを利用する</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p><a href="http://blog.syati.info/post/create_hugo/">Part 1</a> では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
 <a href="http://gohugo.io/tutorials/github-pages-blog/">Hosting on GitHub Pages</a> を参考にして、セットアップ手順を記していく。</p>
-
-<p></p>
-
 <h2 id="step-1-github-に-blog-repository-をつくる">Step 1 github に blog repository をつくる</h2>
-
 <p>github にアクセスして、repository をつくる。repository name がそのまま URL になる（以下のようなURL）。</p>
-
 <p><strong>http://[username].githug.io/[repo]</strong></p>
-
 <ul>
 <li>[] の意味
-
 <ul>
 <li>[username] : github の username</li>
 <li>[repo] : github に作成する repository name</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="step-2-blog-の設定をかいておく">Step 2 blog の設定をかいておく</h2>
-
 <p><strong>※以降、github に yourblog として repostitory を作成したとして記す。また、part 1 で作成した yourblog があるものとする</strong></p>
-
 <p>part 1 で作成した yourblog ディレクトリ内の <strong>config.toml</strong> を開いて設定を書く（以下参考）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;My New Hugo Site&#34;</span>
+baseurl <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://[username].github.io/yourblog&#34;</span>
+languageCode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ja-jp&#34;</span>
+theme <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hyde&#34;</span>　<span style="color:#75715e"># part 1 で選んだ theme を設定する</span>
+canonifyurls <span style="color:#f92672">=</span> true <span style="color:#75715e"># 相対パスではなく baseurl を基点とした絶対パスにする</span>
 
-<pre><code class="language-bash">title = &quot;My New Hugo Site&quot;
-baseurl = &quot;http://[username].github.io/yourblog&quot;
-languageCode = &quot;ja-jp&quot;
-theme = &quot;hyde&quot;　# part 1 で選んだ theme を設定する
-canonifyurls = true # 相対パスではなく baseurl を基点とした絶対パスにする
+<span style="color:#f92672">[</span>params<span style="color:#f92672">]</span>
+  description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;This is yourblog&#34;</span>
+  author <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;your name&#34;</span>
 
-[params]
-  description = &quot;This is yourblog&quot;
-  author = &quot;your name&quot;
-
-[taxonomies]
-  category = &quot;categories&quot;
-  tag = &quot;tags&quot;
-</code></pre>
-
-<ul>
+<span style="color:#f92672">[</span>taxonomies<span style="color:#f92672">]</span>
+  category <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;categories&#34;</span>
+  tag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;tags&#34;</span>
+</code></pre></div><ul>
 <li>参考
-
 <ul>
 <li><a href="http://gohugo.io/overview/configuration/">Configuring Hugo</a></li>
 <li><a href="http://mojavy.com/blog/2013/04/26/toml/">TOMLノススメ</a></li>
 <li><a href="https://github.com/toml-lang/toml">toml-lang/toml</a></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="step-3-repository-に-push-する">Step 3 repository に push する</h2>
-
 <p>yourblog ディレクトリで以下のコマンドを実行する。</p>
-
-<pre><code class="language-bash">$ git init # part 1 で作成した yourblog をリポジトリにする
-$ git remote add origin git@github.com:[username]/yourblog.git # remote を設定する
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git init <span style="color:#75715e"># part 1 で作成した yourblog をリポジトリにする</span>
+$ git remote add origin git@github.com:<span style="color:#f92672">[</span>username<span style="color:#f92672">]</span>/yourblog.git <span style="color:#75715e"># remote を設定する</span>
 $ git pull origin master
 $
-$ rm -rf public # このディレクトリは git subtree を利用して管理するので削除する
+$ rm -rf public <span style="color:#75715e"># このディレクトリは git subtree を利用して管理するので削除する</span>
 $ git add -A
-$ git commit -m &quot;Add hugo template&quot;
+$ git commit -m <span style="color:#e6db74">&#34;Add hugo template&#34;</span>
 $ git push origin master
-</code></pre>
-
-<h2 id="step-4-gh-pages-ブランチを作成する">Step 4 gh-pages ブランチを作成する</h2>
-
+</code></pre></div><h2 id="step-4-gh-pages-ブランチを作成する">Step 4 gh-pages ブランチを作成する</h2>
 <p>gh-pages ブランチには hugo で作成されたコンテンツ（ public ）のみ置いて、
 関係のないもの（ archetypes, themes, etc ）は紛らわしいので管理したくない。</p>
-
 <p>そこで、master から独立したブランチを作成するために、orphan オプションを
 つけて履歴のないブランチを作成する。</p>
-
-<pre><code class="language-bash">$ git checkout --orphan gh-pages   # orphan ブランチ 作成
-$ git rm --cached $(git ls-files)  # 要らないので、全て管理対象からすべて外す
-$ git add README.md                # README.md だけいれておく
-$ git commit -m &quot;initial commit on gh-pages branch&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git checkout --orphan gh-pages   <span style="color:#75715e"># orphan ブランチ 作成</span>
+$ git rm --cached <span style="color:#66d9ef">$(</span>git ls-files<span style="color:#66d9ef">)</span>  <span style="color:#75715e"># 要らないので、全て管理対象からすべて外す</span>
+$ git add README.md                <span style="color:#75715e"># README.md だけいれておく</span>
+$ git commit -m <span style="color:#e6db74">&#34;initial commit on gh-pages branch&#34;</span>
 $ git push origin gh-pages
-</code></pre>
-
-<p>master に戻って git subtree を利用して、gh-pages ブランチを master の public に取り込む。
+</code></pre></div><p>master に戻って git subtree を利用して、gh-pages ブランチを master の public に取り込む。
 subtree って何？って思う方は、下部の参考を見てください。</p>
-
-<pre><code class="language-bash">$ git checkout master
-$ git subtree add --prefix=public git@github.com:[username]/yourblog.git gh-pages --squash
-$ git subtree pull --prefix=public git@github.com:[username]/yourblog.git gh-pages
-</code></pre>
-
-<p>hugo コマンドで public を生成して以下のように push していくことで、
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git checkout master
+$ git subtree add --prefix<span style="color:#f92672">=</span>public git@github.com:<span style="color:#f92672">[</span>username<span style="color:#f92672">]</span>/yourblog.git gh-pages --squash
+$ git subtree pull --prefix<span style="color:#f92672">=</span>public git@github.com:<span style="color:#f92672">[</span>username<span style="color:#f92672">]</span>/yourblog.git gh-pages
+</code></pre></div><p>hugo コマンドで public を生成して以下のように push していくことで、
 master に変更を加え、gh-pages にも変更を加える事が出来る。</p>
-
-<pre><code class="language-bash">$ hugo
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ hugo
 $ git add -A
-$ git commit -m &quot;Updating site&quot;
+$ git commit -m <span style="color:#e6db74">&#34;Updating site&#34;</span>
 $ git push origin master
-$ git subtree push --prefix=public git@github.com:Syati/yourblog.git gh-pages
-</code></pre>
-
-<p>基本的に新しい記事を書いて github.io に公開（ Deploy ）する際、上記の手順を踏むことになる。
+$ git subtree push --prefix<span style="color:#f92672">=</span>public git@github.com:Syati/yourblog.git gh-pages
+</code></pre></div><p>基本的に新しい記事を書いて github.io に公開（ Deploy ）する際、上記の手順を踏むことになる。
 毎回これするのはめんどくさいので、Step 5 に進む。</p>
-
 <ul>
 <li>参考
-
 <ul>
 <li><a href="http://qiita.com/akiko-pusu/items/7c0a99b8cb37882d2cfe">gitの空ブランチを作る</a></li>
 <li><a href="http://japan.blogs.atlassian.com/2014/03/alternatives-to-git-submodule-git-subtree/">Git Submodule の代替: Git Subtree</a></li>
 <li><a href="http://qiita.com/shogo82148/items/04b29b195dbbb373152f">git-subtree移行メモ</a></li>
 <li><a href="http://qiita.com/marutanm/items/d02e7d5ff8ed7c2c4b95">submoduleとsubtree-mergingの使い分け</a></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="step-5-めんどさい-deploy-はスクリプトを利用する">Step 5 めんどさい Deploy はスクリプトを利用する</h2>
-
 <p><a href="http://gohugo.io/tutorials/github-pages-blog/">Hosting on GitHub Pages</a> の <strong>deploy.sh</strong> に書かれている以下を利用する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+<span style="color:#75715e"># !/bin/bash</span>
 
-<pre><code class="language-bash">
-# !/bin/bash
+echo -e <span style="color:#e6db74">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
 
-echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
-
-# Build the project. 
+<span style="color:#75715e"># Build the project.</span> 
 hugo
 
-# Add changes to git.
+<span style="color:#75715e"># Add changes to git.</span>
 git add -A
 
-# Commit changes.
-msg=&quot;rebuilding site `date`&quot;
-if [ $# -eq 1 ]
-  then msg=&quot;$1&quot;
-fi
-git commit -m &quot;$msg&quot;
+<span style="color:#75715e"># Commit changes.</span>
+msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rebuilding site `date`&#34;</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $# -eq <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>
+  <span style="color:#66d9ef">then</span> msg<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">fi</span>
+git commit -m <span style="color:#e6db74">&#34;</span>$msg<span style="color:#e6db74">&#34;</span>
 
-# Push source and build repos.
+<span style="color:#75715e"># Push source and build repos.</span>
 git push origin master
-git subtree push --prefix=public git@github.com:[username]/yourblog.git gh-pages　
-</code></pre>
-
-<p><a href="https://github.com/spencerlyon2/hugo_gh_blog">spencerlyon2/hugo_gh_blog</a> のレポジトリに deploy.sh
+git subtree push --prefix<span style="color:#f92672">=</span>public git@github.com:<span style="color:#f92672">[</span>username<span style="color:#f92672">]</span>/yourblog.git gh-pages　
+</code></pre></div><p><a href="https://github.com/spencerlyon2/hugo_gh_blog">spencerlyon2/hugo_gh_blog</a> のレポジトリに deploy.sh
 があるので　DL してきて修正するのがはやいかも。</p>
-
 <p>deploy.sh を yourblog ディレクトリに保存したのち、実行できるように以下を実行する。</p>
-
-<pre><code class="language-bash">$ chmod +x deploy.sh
-</code></pre>
-
-<p>これで新しい記事を書いて github.io に公開（ Deploy ）する際は、以下のコマンドを実行するのみで良い。</p>
-
-<pre><code class="language-bash">$ ./deploy.sh
-</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ chmod +x deploy.sh
+</code></pre></div><p>これで新しい記事を書いて github.io に公開（ Deploy ）する際は、以下のコマンドを実行するのみで良い。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ./deploy.sh
+</code></pre></div></div>
 
                         </article>
 					
@@ -359,9 +318,10 @@ git subtree push --prefix=public git@github.com:[username]/yourblog.git gh-pages
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,135 +131,70 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#準備">準備</a></li>
-<li><a href="#修正">修正</a>
-<ul>
-<li><a href="#1-システム環境設定-キーボード-ショートカットタブ-アプリケーション">1. システム環境設定 -&gt; キーボード -&gt; ショートカットタブ -&gt; アプリケーション</a></li>
-<li><a href="#2-ボタンから新規追加する">2. + ボタンから新規追加する</a></li>
-<li><a href="#3-sequel-pro-でショートカットが上書きされたかを確認する">3. Sequel Pro でショートカットが上書きされたかを確認する</a></li>
-</ul></li>
-<li><a href="#終わりに">終わりに</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#準備">準備</a></li>
+    <li><a href="#修正">修正</a>
+      <ul>
+        <li><a href="#1-システム環境設定---キーボード---ショートカットタブ---アプリケーション">1. システム環境設定 -> キーボード -> ショートカットタブ -> アプリケーション</a></li>
+        <li><a href="#2--ボタンから新規追加する">2. + ボタンから新規追加する</a></li>
+        <li><a href="#3-sequel-pro-でショートカットが上書きされたかを確認する">3. Sequel Pro でショートカットが上書きされたかを確認する</a></li>
+      </ul>
+    </li>
+    <li><a href="#終わりに">終わりに</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>Sequel Pro 便利ですよね。簡単に select とか DB 作成、きれいな結果表示などなど。
 ただ、emacs ユーザーの私にとってウザくてウザくて堪らないのが、<strong>ctrl+h</strong> を打つと、このソフトでは<strong>ヘルプ</strong>を開くということ。頼むから Backspace にしてくれ！！と。</p>
-
 <p>調べてみると、上書き出来るではないか！！<a href="https://github.com/sequelpro/sequelpro/issues/1974">github の issue</a>に書いてあった。ということで以下に、その方法記す。</p>
-
-<p></p>
-
 <h2 id="準備">準備</h2>
-
 <p>とりあえず、デフォルトでは ctrl+h でこのヘルプがでてくる。</p>
-
-
 <figure class="image-half__center">
-    
-        <img src="popup_help.jpg" />
-    
-    
-    <figcaption>
-        <h4>fig 1. help が出力される</h4>
-        
-    </figcaption>
-    
+    <img src="popup_help.jpg"/> <figcaption>
+            <h4>fig 1. help が出力される</h4>
+        </figcaption>
 </figure>
-
 
 <p>なんで、ヘルプがでるかというと以下で ctrl+h にショートカットが割り当てられているため。</p>
-
-
 <figure class="image-half__center">
-    
-        <img src="default_shortcut.jpg" />
-    
-    
-    <figcaption>
-        <h4>fig 2. default のショートカット</h4>
-        
-    </figcaption>
-    
+    <img src="default_shortcut.jpg"/> <figcaption>
+            <h4>fig 2. default のショートカット</h4>
+        </figcaption>
 </figure>
-
 
 <h2 id="修正">修正</h2>
-
-<h3 id="1-システム環境設定-キーボード-ショートカットタブ-アプリケーション">1. システム環境設定 -&gt; キーボード -&gt; ショートカットタブ -&gt; アプリケーション</h3>
-
-
+<h3 id="1-システム環境設定---キーボード---ショートカットタブ---アプリケーション">1. システム環境設定 -&gt; キーボード -&gt; ショートカットタブ -&gt; アプリケーション</h3>
 <figure class="image-half__center">
-    
-        <img src="default_keyboard_shortcut.jpg" />
-    
-    
-    <figcaption>
-        <h4>fig 3. アプリケーションのショートカット</h4>
-        
-    </figcaption>
-    
+    <img src="default_keyboard_shortcut.jpg"/> <figcaption>
+            <h4>fig 3. アプリケーションのショートカット</h4>
+        </figcaption>
 </figure>
 
-
-<h3 id="2-ボタンから新規追加する">2. + ボタンから新規追加する</h3>
-
+<h3 id="2--ボタンから新規追加する">2. + ボタンから新規追加する</h3>
 <p>大事なのは Sequel Pro で既存で割当てられいるメニューコマンドと同じにするということ。すなわち <strong>準備 fig 2.</strong> に表示されている <strong>^H</strong> のメニューコマンド <strong>単語の MySQL ヘルプ</strong> である。とりあえず <strong>Shift + Command + H</strong> にでも割り当てる。</p>
-
-
 <figure class="image-half__center">
-    
-        <img src="add_keyboard_shortcut.jpg" />
-    
-    
-    <figcaption>
-        <h4>fig 4. Sequel Pro の既存ショートカットを上書きする</h4>
-        
-    </figcaption>
-    
+    <img src="add_keyboard_shortcut.jpg"/> <figcaption>
+            <h4>fig 4. Sequel Pro の既存ショートカットを上書きする</h4>
+        </figcaption>
 </figure>
 
-
-
 <figure class="image-half__center">
-    
-        <img src="added_keyboard_shortcut.jpg" />
-    
-    
-    <figcaption>
-        <h4>fig 5. 登録完了</h4>
-        
-    </figcaption>
-    
+    <img src="added_keyboard_shortcut.jpg"/> <figcaption>
+            <h4>fig 5. 登録完了</h4>
+        </figcaption>
 </figure>
-
 
 <h3 id="3-sequel-pro-でショートカットが上書きされたかを確認する">3. Sequel Pro でショートカットが上書きされたかを確認する</h3>
-
 <p>Sequel Pro のヘルプを確認する。変更されていることが確認できる。</p>
-
-
 <figure class="image-half__center">
-    
-        <img src="added_shortcut.jpg" />
-    
-    
-    <figcaption>
-        <h4>fig 6. ショートカット上書き完了</h4>
-        
-    </figcaption>
-    
+    <img src="added_shortcut.jpg"/> <figcaption>
+            <h4>fig 6. ショートカット上書き完了</h4>
+        </figcaption>
 </figure>
 
-
 <p>後はクエリで ctrl+h で backspece できることを確認する。</p>
-
 <h2 id="終わりに">終わりに</h2>
-
 <p>ctrl + h で <em>ヘルプに悩まされる日々、さようなら</em></p></div>
 
                         </article>
@@ -325,9 +261,10 @@
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

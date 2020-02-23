@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -128,109 +129,95 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#os">os</a></li>
-<li><a href="#scala-開発環境">scala 開発環境</a>
-<ul>
-<li><a href="#java-のインストール">java のインストール</a></li>
-<li><a href="#scala-のインストール">scala のインストール</a></li>
-</ul></li>
-<li><a href="#ensime-導入">ENSIME 導入</a>
-<ul>
-<li><a href="#scala-mode2">scala-mode2</a></li>
-<li><a href="#scala-mode-補助">scala-mode 補助</a></li>
-</ul></li>
-<li><a href="#参考サイト">参考サイト</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#os">os</a></li>
+    <li><a href="#scala-開発環境">scala 開発環境</a>
+      <ul>
+        <li><a href="#java-のインストール">java のインストール</a></li>
+        <li><a href="#scala-のインストール">scala のインストール</a></li>
+      </ul>
+    </li>
+    <li><a href="#ensime-導入">ENSIME 導入</a>
+      <ul>
+        <li><a href="#scala-mode2">scala-mode2</a></li>
+        <li><a href="#scala-mode-補助">scala-mode 補助</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考サイト">参考サイト</a></li>
+  </ul>
 </nav>
     </div>
     
-	<div class="entry-content" itemprop="articleBody"><p>ubuntu で scala の開発環境を構築するメモ
- </p>
-
+	<div class="entry-content" itemprop="articleBody"><p>ubuntu で scala の開発環境を構築するメモ</p>
 <h2 id="os">os</h2>
-
 <ul>
 <li>ubuntu 12.04</li>
 <li>emacs 24.3.1</li>
 </ul>
-
 <h2 id="scala-開発環境">scala 開発環境</h2>
-
 <h3 id="java-のインストール">java のインストール</h3>
-
 <ol>
 <li>jdk をインストール
-
 <ul>
 <li>sudo apt-get install default-jdk</li>
-</ul></li>
+</ul>
+</li>
 <li>以下のコマンドでエラーが無いことを確認
-
 <ul>
 <li>java -version</li>
 <li>javac -version</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-
 <h3 id="scala-のインストール">scala のインストール</h3>
-
 <ol>
 <li>scala のダウンロード
-
 <ul>
-<li><a href="http://www.scala-lang.org/download/">http://www.scala-lang.org/download/</a><br />
-
+<li><a href="http://www.scala-lang.org/download/">http://www.scala-lang.org/download/</a>
 <ul>
 <li>sudo apt-get install scala でも可能だが version が古い</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>解凍ファイルを usr/local に上書きする</li>
 <li>ターミナルから以下のコマンドで、インストールできているか確認する
-
 <ul>
 <li>scala -version</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-
 <h2 id="ensime-導入">ENSIME 導入</h2>
-
 <h3 id="scala-mode2">scala-mode2</h3>
-
 <ul>
-<li>以下から tool を clone する
-
+<li>
+<p>以下から tool を clone する</p>
 <ul>
 <li>git clone <a href="https://github.com/hvesalai/scala-mode2.git">https://github.com/hvesalai/scala-mode2.git</a></li>
-</ul></li>
-<li>コピーした scala-mode に移動して make コマンドする
-
+</ul>
+</li>
+<li>
+<p>コピーした scala-mode に移動して make コマンドする</p>
 <ul>
 <li>カレントディレクトリで .elc ファイルを作成される</li>
-</ul></li>
-
-<li><p>init.el に書く加える</p>
-
+</ul>
+</li>
+<li>
+<p>init.el に書く加える</p>
 <pre><code>(add-to-list 'load-path &quot;/path/to/scala-mode2/&quot;)
 (require 'scala-mode2)
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
-
 <h3 id="scala-mode-補助">scala-mode 補助</h3>
-
 <ul>
 <li>yasnipet がない場合は、以下から clone する
-
 <ul>
 <li><a href="https://github.com/capitaomorte/yasnippet">https://github.com/capitaomorte/yasnippet</a></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="参考サイト">参考サイト</h2>
-
 <ul>
 <li><a href="http://bach.istc.kobe-u.ac.jp/lect/ProLang/org/scala.html">Scalaプログラミング入門</a></li>
 <li><a href="http://blog.iss.ms/2012/06/02/101357">Scalaの入門にあたってscala-modeを入れてみた</a></li>
@@ -300,9 +287,10 @@
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

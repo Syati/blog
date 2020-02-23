@@ -1,74 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Php on Syati.info </title>
-      <generator uri="https://gohugo.io">Hugo</generator>
+    <title>PHP on Syati.info</title>
     <link>http://blog.syati.info/categories/php/</link>
+    <description>Recent content in PHP on Syati.info</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Wed, 13 Jul 2016 01:01:50 JST</updated>
+    <lastBuildDate>Wed, 13 Jul 2016 01:01:50 +0900</lastBuildDate>
+    
+	<atom:link href="http://blog.syati.info/categories/php/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>うるさいよ &#39;You are running composer with xdebug enabled. This has a major impact on runtime performance&#39;</title>
       <link>http://blog.syati.info/post/php_composer/</link>
-      <pubDate>Wed, 13 Jul 2016 01:01:50 JST</pubDate>
+      <pubDate>Wed, 13 Jul 2016 01:01:50 +0900</pubDate>
       
       <guid>http://blog.syati.info/post/php_composer/</guid>
       <description>&lt;p&gt;最近、php を触る機会が増えたので、メモメモ。
-composer 叩いたら xdebug を enable にしてると遅いよっていう以下のメッセージが流れるので composer 叩いた時に出ないようにする。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;You are running composer with xdebug enabled. This has a major impact on runtime performance. See https://getcomposer.org/xdebug
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;方法&#34;&gt;方法&lt;/h2&gt;
-
-&lt;p&gt;方法 1. 2. どちらかでインストール、設定する&lt;/p&gt;
-
-&lt;h3 id=&#34;1-brew-でインストールする&#34;&gt;1. brew でインストールする&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;brew install composer
-
-# .zshrc に alias を設定する
-alias composer=&amp;quot;php -n /usr/local/Cellar/composer/1.1.2/libexec/composer.phar&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;1.1.2&lt;/strong&gt; というバージョンのところは適宜修正する。&lt;/p&gt;
-
-&lt;h4 id=&#34;その他&#34;&gt;その他&lt;/h4&gt;
-
-&lt;p&gt;以下のよう alias を設定すれば良いのではと思うかもしれないが、うまくコマンドが通らない&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# .zshrc に alias を設定する
-alias composer=&amp;quot;php -n /usr/local/bin/composer&amp;quot;
-
-#上記の設定だとコマンドを叩いた時に以下のような出力がでてしまう
-$ composer
-/usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &amp;quot;$@&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;というのも &lt;strong&gt;usr/local/bin/composer&lt;/strong&gt; のリンク先が &lt;strong&gt;/usr/local/Cellar/composer/1.1.2/libexec/composer&lt;/strong&gt; でその中身が以下のようになっているため。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/usr/bin/env bash
-/usr/bin/env php -d allow_url_fopen=On -d detect_unicode=Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &amp;quot;$@&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;2-composer-の-web-からインストールする&#34;&gt;2. composer の web からインストールする&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;wget https://getcomposer.org/download/1.1.3/composer.phar
-mv ./composer.phar /usr/local/bin/composer
-chmod +x /usr/local/bin/composer
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# .zshrc に alias を設定する
-alias composer=&amp;quot;php -n /usr/local/bin/composer&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&#34;&gt;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&lt;/a&gt;&lt;/p&gt;</description>
+composer 叩いたら xdebug を enable にしてると遅いよっていう以下のメッセージが流れるので composer 叩いた時に出ないようにする。&lt;/p&gt;</description>
     </item>
     
   </channel>
