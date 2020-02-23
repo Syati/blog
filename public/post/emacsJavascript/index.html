@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,100 +131,81 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#前提">前提</a></li>
-<li><a href="#構築">構築</a>
-<ul>
-<li><a href="#パッケージ管理にmelpa追加">パッケージ管理にmelpa追加</a></li>
-<li><a href="#パッケージ管理からインストール">パッケージ管理からインストール</a></li>
-<li><a href="#jshint-をインストール">jshint をインストール</a></li>
-</ul></li>
-<li><a href="#試す">試す</a></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#前提">前提</a></li>
+    <li><a href="#構築">構築</a>
+      <ul>
+        <li><a href="#パッケージ管理にmelpa追加">パッケージ管理にmelpa追加</a></li>
+        <li><a href="#パッケージ管理からインストール">パッケージ管理からインストール</a></li>
+        <li><a href="#jshint-をインストール">jshint をインストール</a></li>
+      </ul>
+    </li>
+    <li><a href="#試す">試す</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>開発環境はとっても大事なんですが、構築までに時間がかかりますよね。
-ということで私の環境を忘れないうちにメモ！！
-</p>
-
+ということで私の環境を忘れないうちにメモ！！</p>
 <h2 id="前提">前提</h2>
-
 <ul>
 <li>ubuntu 12.04 or OSX</li>
 <li>emacs &gt;= 24</li>
 </ul>
-
 <h2 id="構築">構築</h2>
-
 <h3 id="パッケージ管理にmelpa追加">パッケージ管理にmelpa追加</h3>
-
 <ul>
-<li><p>~/.emacs.d/init.el に以下を追加</p>
-
-<pre><code class="language-clike">(require 'package)
+<li>
+<p>~/.emacs.d/init.el に以下を追加</p>
+<pre><code class="language-clike" data-lang="clike">(require 'package)
 (add-to-list 'package-archives
   '(&quot;melpa&quot; . &quot;http://melpa.milkbox.net/packages/&quot;) t)
 </code></pre></li>
 </ul>
-
 <h3 id="パッケージ管理からインストール">パッケージ管理からインストール</h3>
-
 <ul>
-<li>M-x package-list-package で以下の2点をインストールする（該当箇所で <strong>i</strong> をタイプしてマークをつけて <strong>x</strong> でインストールする）
-
+<li>
+<p>M-x package-list-package で以下の2点をインストールする（該当箇所で <strong>i</strong> をタイプしてマークをつけて <strong>x</strong> でインストールする）</p>
 <ol>
 <li>flycheck</li>
 <li>js2-mode</li>
-</ol></li>
-
-<li><p>~/.emacs.d/init.el に以下を追加</p>
-
-<pre><code class="language-clike">(add-hook 'after-init-hook #'global-flycheck-mode)
+</ol>
+</li>
+<li>
+<p>~/.emacs.d/init.el に以下を追加</p>
+<pre><code class="language-clike" data-lang="clike">(add-hook 'after-init-hook #'global-flycheck-mode)
 (add-to-list 'auto-mode-alist '(&quot;\\.js\\'&quot; . js2-mode))
 </code></pre></li>
 </ul>
-
 <h3 id="jshint-をインストール">jshint をインストール</h3>
-
 <p>上記をインストールすることで、javascript の文法エラーなどを捕まえてくれる。</p>
-
 <ul>
-<li><p>npm をインストール</p>
-
+<li>
+<p>npm をインストール</p>
 <ul>
-<li><p>ubuntu の場合</p>
-
-<pre><code class="language-bash">$ sudo apt-get install npm
-</code></pre></li>
-
-<li><p>OSX の場合</p>
-
-<pre><code class="language-bash">$ brew install npm
-</code></pre></li>
-</ul></li>
-
-<li><p>jshint をインストール</p>
-
-<pre><code class="language-bash">$ sudo npm install jshint -g
-</code></pre>
-
-<ul>
-<li>オプション -g でグローバルで利用するということ。付けない場合は、カレントディレクトリにインストールされる。</li>
-</ul></li>
+<li>
+<p>ubuntu の場合</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt-get install npm
+</code></pre></div></li>
+<li>
+<p>OSX の場合</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew install npm
+</code></pre></div></li>
 </ul>
-
+</li>
+<li>
+<p>jshint をインストール</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo npm install jshint -g
+</code></pre></div><ul>
+<li>オプション -g でグローバルで利用するということ。付けない場合は、カレントディレクトリにインストールされる。</li>
+</ul>
+</li>
+</ul>
 <h2 id="試す">試す</h2>
-
 <p>a.js とでもファイルを作ってみると emacsの下の帯に　(javascript-IDE FlyC) となっていることが確認できる。
 後は適当にプログラムを書けば jshint がはしり、文法エラーなどを教えてくれる。</p>
-
 <h2 id="参考">参考</h2>
-
 <ul>
 <li><a href="http://melpa.milkbox.net/#/getting-started">melpa</a></li>
 <li><a href="http://code.google.com/p/js2-mode/">js2-mode</a></li>
@@ -294,9 +276,10 @@
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

@@ -1,6 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://blog.syati.info/categories/</loc>
+    <lastmod>2017-04-29T19:02:10+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/post/</loc>
+    <lastmod>2017-04-29T19:02:10+09:00</lastmod>
+  </url>
   
   <url>
     <loc>http://blog.syati.info/post/sequel_pro_overwrite_ctrl_h/</loc>
@@ -8,8 +18,28 @@
   </url>
   
   <url>
+    <loc>http://blog.syati.info/categories/tool/</loc>
+    <lastmod>2017-04-29T19:02:10+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/categories/osx/</loc>
+    <lastmod>2016-07-13T01:01:50+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/categories/php/</loc>
+    <lastmod>2016-07-13T01:01:50+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.syati.info/post/php_composer/</loc>
     <lastmod>2016-07-13T01:01:50+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/categories/javascript/</loc>
+    <lastmod>2016-01-02T22:00:15+09:00</lastmod>
   </url>
   
   <url>
@@ -20,6 +50,11 @@
   <url>
     <loc>http://blog.syati.info/post/sequelize_getting_started/</loc>
     <lastmod>2015-12-29T12:38:07+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/categories/typescript/</loc>
+    <lastmod>2015-10-31T14:00:39+09:00</lastmod>
   </url>
   
   <url>
@@ -38,13 +73,33 @@
   </url>
   
   <url>
+    <loc>http://blog.syati.info/categories/browser/</loc>
+    <lastmod>2015-09-25T08:49:12+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/categories/firefox/</loc>
+    <lastmod>2015-09-25T08:49:12+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.syati.info/post/livereload_firefox/</loc>
     <lastmod>2015-09-25T08:49:12+09:00</lastmod>
   </url>
   
   <url>
+    <loc>http://blog.syati.info/categories/hugo/</loc>
+    <lastmod>2015-09-21T16:25:47+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.syati.info/post/hugo_search/</loc>
     <lastmod>2015-09-21T16:25:47+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/categories/docker/</loc>
+    <lastmod>2015-09-20T15:49:48+09:00</lastmod>
   </url>
   
   <url>
@@ -60,6 +115,11 @@
   <url>
     <loc>http://blog.syati.info/post/osx_docker_setup/</loc>
     <lastmod>2015-09-03T16:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/categories/emacs/</loc>
+    <lastmod>2015-09-02T17:58:56+09:00</lastmod>
   </url>
   
   <url>
@@ -108,7 +168,17 @@
   </url>
   
   <url>
+    <loc>http://blog.syati.info/categories/coffeescript/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.syati.info/post/make_windows_emacs/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/categories/design/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
@@ -138,12 +208,17 @@
   </url>
   
   <url>
-    <loc>http://blog.syati.info/post/make_scala_env/</loc>
+    <loc>http://blog.syati.info/categories/linux/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
     <loc>http://blog.syati.info/post/nkf/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/categories/node/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
@@ -163,12 +238,37 @@
   </url>
   
   <url>
+    <loc>http://blog.syati.info/categories/platform/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.syati.info/post/solvereattachtousernamespaceinmac109/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
   <url>
+    <loc>http://blog.syati.info/categories/scala/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/post/make_scala_env/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/categories/shell/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.syati.info/post/vagrant_css_problem/</loc>
+    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.syati.info/categories/windows/</loc>
     <lastmod>2015-06-04T23:09:38+09:00</lastmod>
   </url>
   
@@ -183,140 +283,18 @@
   </url>
   
   <url>
+    <loc>http://blog.syati.info/categories/ubuntu/</loc>
+    <lastmod>2015-03-01T21:37:06+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.syati.info/about/</loc>
     <lastmod>2015-03-01T21:36:21+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.syati.info/categories/browser/</loc>
-    <lastmod>2015-09-25T08:49:12+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/</loc>
-    <lastmod>2015-09-25T08:49:12+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/coffeescript/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/design/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/docker/</loc>
-    <lastmod>2015-09-20T15:49:48+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/emacs/</loc>
-    <lastmod>2015-09-02T17:58:56+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/firefox/</loc>
-    <lastmod>2015-09-25T08:49:12+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/hugo/</loc>
-    <lastmod>2015-09-21T16:25:47+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/javascript/</loc>
-    <lastmod>2016-01-02T22:00:15+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/linux/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/node/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/osx/</loc>
-    <lastmod>2016-07-13T01:01:50+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/php/</loc>
-    <lastmod>2016-07-13T01:01:50+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/platform/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/post/</loc>
-    <lastmod>2017-04-29T19:02:10+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/scala/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/shell/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.syati.info/</loc>
-    <lastmod>2017-04-29T19:02:10+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/tool/</loc>
-    <lastmod>2017-04-29T19:02:10+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/typescript/</loc>
-    <lastmod>2015-10-31T14:00:39+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/ubuntu/</loc>
-    <lastmod>2015-03-01T21:37:06+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.syati.info/categories/windows/</loc>
-    <lastmod>2015-06-04T23:09:38+09:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2015-03-01T21:36:21+09:00</lastmod>
   </url>
   
 </urlset>

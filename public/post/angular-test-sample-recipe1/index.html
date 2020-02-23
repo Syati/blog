@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -128,278 +129,221 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#準備">準備</a>
-<ul>
-<li><a href="#ubuntu">ubuntu</a></li>
-<li><a href="#mac">mac</a></li>
-<li><a href="#共通">共通</a></li>
-</ul></li>
-<li><a href="#実施-サンプルを-clone-して-test">実施：サンプルを CLONE して TEST</a>
-<ul>
-<li><a href="#prj-依存環境を入れる">prj 依存環境を入れる</a></li>
-<li><a href="#test-実行する">test 実行する</a></li>
-</ul></li>
-<li><a href="#説明">説明</a>
-<ul>
-<li><a href="#directory">directory</a></li>
-<li><a href="#1-bower">#1 bower</a></li>
-<li><a href="#2-npm">#2 npm</a></li>
-<li><a href="#3-karma-angular-の-unit-test-の設定">#3 karma  angular の unit test の設定</a></li>
-<li><a href="#4-test-を書く">#4 test を書く</a></li>
-</ul></li>
-<li><a href="#まとめ">まとめ</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#準備">準備</a>
+      <ul>
+        <li><a href="#ubuntu">ubuntu</a></li>
+        <li><a href="#mac">mac</a></li>
+        <li><a href="#共通">共通</a></li>
+      </ul>
+    </li>
+    <li><a href="#実施サンプルを-clone-して-test">実施：サンプルを CLONE して TEST</a>
+      <ul>
+        <li><a href="#prj-依存環境を入れる">prj 依存環境を入れる</a></li>
+        <li><a href="#test-実行する">test 実行する</a></li>
+      </ul>
+    </li>
+    <li><a href="#説明">説明</a>
+      <ul>
+        <li><a href="#directory">directory</a></li>
+        <li><a href="#1-bower">#1 bower</a></li>
+        <li><a href="#2-npm">#2 npm</a></li>
+        <li><a href="#3-karma--angular-の-unit-test-の設定">#3 karma  angular の unit test の設定</a></li>
+        <li><a href="#4-test-を書く">#4 test を書く</a></li>
+      </ul>
+    </li>
+    <li><a href="#まとめ">まとめ</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>js ってテストしにくいよねってことで今流行りの angular で unit test する。
 最初なので、事細かに説明するつもりで書いてみる。</p>
-
 <p>サンプルは以下から git clone してください。ソースと突き合わせながら見るといいかも。</p>
-
-<p><a href="https://github.com/Syati/angular-test-sample">https://github.com/Syati/angular-test-sample</a>
-</p>
-
+<p><a href="https://github.com/Syati/angular-test-sample">https://github.com/Syati/angular-test-sample</a></p>
 <h2 id="準備">準備</h2>
-
 <h3 id="ubuntu">ubuntu</h3>
-
 <ul>
 <li>node &amp; npm</li>
 </ul>
-
-<pre><code class="language-bash">$ sudo apt-get install nodejs
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt-get install nodejs
 $ sudo apt-get install npm
-</code></pre>
-
-<h3 id="mac">mac</h3>
-
+</code></pre></div><h3 id="mac">mac</h3>
 <ul>
 <li>node &amp; npm</li>
 </ul>
-
-<pre><code class="language-bash">$ brew install node
-</code></pre>
-
-<h3 id="共通">共通</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew install node
+</code></pre></div><h3 id="共通">共通</h3>
 <ul>
 <li>bower</li>
 </ul>
-
-<pre><code class="language-bash">$ sudo npm install -g bower
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo npm install -g bower
+</code></pre></div><ul>
 <li>karma</li>
 </ul>
-
-<pre><code class="language-bash">$ sudo npm install -g karma-cli
-</code></pre>
-
-<h2 id="実施-サンプルを-clone-して-test">実施：サンプルを CLONE して TEST</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo npm install -g karma-cli
+</code></pre></div><h2 id="実施サンプルを-clone-して-test">実施：サンプルを CLONE して TEST</h2>
 <p>github にサンプルを書いたので clone する。</p>
-
-<pre><code class="language-bash">$ git clone git@github.com:Syati/angular-test-sample.git
-</code></pre>
-
-<h3 id="prj-依存環境を入れる">prj 依存環境を入れる</h3>
-
-<pre><code class="language-bash">$ cd your_clone_path/angular-test-sample/controller/recipe1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone git@github.com:Syati/angular-test-sample.git
+</code></pre></div><h3 id="prj-依存環境を入れる">prj 依存環境を入れる</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd your_clone_path/angular-test-sample/controller/recipe1
 $ npm install
-</code></pre>
-
-<h3 id="test-実行する">test 実行する</h3>
-
-<pre><code class="language-bash">$ npm test
-</code></pre>
-
-<p>以下のような出力で、テストが成功する。</p>
-
-<pre><code class="language-bash">WARN [karma]: Port 9876 in use
-INFO [karma]: Karma v0.12.24 server started at http://localhost:9877/
-INFO [launcher]: Starting browser PhantomJS
-INFO [PhantomJS 1.9.8 (Linux)]: Connected on socket -9tnO3qPnHscs3zVjS4l with id 62869514
-PhantomJS 1.9.8 (Linux): Executed 1 of 1 SUCCESS (0.038 secs / 0.007 secs)
-</code></pre>
-
-<h2 id="説明">説明</h2>
-
+</code></pre></div><h3 id="test-実行する">test 実行する</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm test
+</code></pre></div><p>以下のような出力で、テストが成功する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">WARN <span style="color:#f92672">[</span>karma<span style="color:#f92672">]</span>: Port <span style="color:#ae81ff">9876</span> in use
+INFO <span style="color:#f92672">[</span>karma<span style="color:#f92672">]</span>: Karma v0.12.24 server started at http://localhost:9877/
+INFO <span style="color:#f92672">[</span>launcher<span style="color:#f92672">]</span>: Starting browser PhantomJS
+INFO <span style="color:#f92672">[</span>PhantomJS 1.9.8 <span style="color:#f92672">(</span>Linux<span style="color:#f92672">)]</span>: Connected on socket -9tnO3qPnHscs3zVjS4l with id <span style="color:#ae81ff">62869514</span>
+PhantomJS 1.9.8 <span style="color:#f92672">(</span>Linux<span style="color:#f92672">)</span>: Executed <span style="color:#ae81ff">1</span> of <span style="color:#ae81ff">1</span> SUCCESS <span style="color:#f92672">(</span>0.038 secs / 0.007 secs<span style="color:#f92672">)</span>
+</code></pre></div><h2 id="説明">説明</h2>
 <h3 id="directory">directory</h3>
-
-<pre><code class="language-bash">    recipe1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    recipe1
     ├── app
-    │   ├── bower_compornents #1 bower js lib install dir
+    │   ├── bower_compornents <span style="color:#75715e">#1 bower js lib install dir</span>
     │   ├── css
     │   ├── index.html
     │   ├── js
-    │   │   └── app.js       #4 target js
-    │   └── test              #2 test files
-    │        └── app.spec.js  #4 test js
-    ├── .bowerrc      #1 bower install dir 設定
-    ├── bower.json    #1 bower install する js lib などの設定
-    ├── karma.conf.js #3 angular のテスト設定
-    ├── package.json  #2 npm lib などの設定 
-    └── node_modules  #2 npm lib install dir
-</code></pre>
-
-<h3 id="1-bower">#1 bower</h3>
-
+    │   │   └── app.js       <span style="color:#75715e">#4 target js</span>
+    │   └── test              <span style="color:#75715e">#2 test files</span>
+    │        └── app.spec.js  <span style="color:#75715e">#4 test js</span>
+    ├── .bowerrc      <span style="color:#75715e">#1 bower install dir 設定</span>
+    ├── bower.json    <span style="color:#75715e">#1 bower install する js lib などの設定</span>
+    ├── karma.conf.js <span style="color:#75715e">#3 angular のテスト設定</span>
+    ├── package.json  <span style="color:#75715e">#2 npm lib などの設定</span> 
+    └── node_modules  <span style="color:#75715e">#2 npm lib install dir</span>
+</code></pre></div><h3 id="1-bower">#1 bower</h3>
 <p>js のパッケージ(jqueryなど)を DL してくれる便利パッケージ。</p>
-
-<pre><code class="language-bash">$ bower init  # コマンドで初期設定 bower.json を作成
-$ bower install angular --save　# または --save-dev
-</code></pre>
-
-<p>デフォルトは <strong>bower.json</strong> がある場所がインストール先になるので <strong>.bowerrc</strong> にインストール先を書いておく。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ bower init  <span style="color:#75715e"># コマンドで初期設定 bower.json を作成</span>
+$ bower install angular --save　<span style="color:#75715e"># または --save-dev</span>
+</code></pre></div><p>デフォルトは <strong>bower.json</strong> がある場所がインストール先になるので <strong>.bowerrc</strong> にインストール先を書いておく。
 上記を実施することで以下のファイルを作成する。</p>
-
 <ul>
-<li>bower.json</li>
-
-<li><p>.bowerrc</p></li>
-
-<li><p>その他</p>
-
+<li>
+<p>bower.json</p>
+</li>
+<li>
+<p>.bowerrc</p>
+</li>
+<li>
+<p>その他</p>
 <ul>
 <li>.gitignore に bower_components を入れておく（bower install でいつでも同じ環境を構築できるので）。</li>
-<li>bower のオプション <strong>&#x2013;save</strong> または <strong>&#x2013;save-dev</strong> を分けることで、本番用と開発用を分けることが出来る。
-
+<li>bower のオプション <strong>–save</strong> または <strong>–save-dev</strong> を分けることで、本番用と開発用を分けることが出来る。
 <ul>
-<li><strong>bower install &#x2013;production</strong> で &#x2013;save-dev で入れたパッケージはインストールせずに済むのである。</li>
-</ul></li>
+<li><strong>bower install –production</strong> で –save-dev で入れたパッケージはインストールせずに済むのである。</li>
+</ul>
+</li>
 <li>参考
-
 <ul>
 <li><a href="http://bower.io/docs/api">http://bower.io/docs/api</a></li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="2-npm">#2 npm</h3>
-
-<pre><code class="language-bash">$ npm init 
-$ npm install jasmine --save-dev　# または --save
-</code></pre>
-
-<p>上記を実施することで以下のファイルを作成する。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm init 
+$ npm install jasmine --save-dev　<span style="color:#75715e"># または --save</span>
+</code></pre></div><p>上記を実施することで以下のファイルを作成する。</p>
 <ul>
 <li>package.json</li>
 <li>その他
-
 <ul>
 <li>.gitignore に node_modules を入れておく（npm install でいつでも同じ環境を構築できるので）。</li>
-<li>npm のオプション <strong>&#x2013;save</strong> または <strong>&#x2013;save-dev</strong> を分けることで、本番用と開発用を分けることが出来る(bower と同様ですね)。
-
+<li>npm のオプション <strong>–save</strong> または <strong>–save-dev</strong> を分けることで、本番用と開発用を分けることが出来る(bower と同様ですね)。
 <ul>
-<li><strong>npm install &#x2013;production</strong> で &#x2013;save-dev で入れたパッケージはインストールせずに済むのである。</li>
-<li>今回は test 用しかないので &#x2013;save-dev ですべてインストールする。</li>
-</ul></li>
+<li><strong>npm install –production</strong> で –save-dev で入れたパッケージはインストールせずに済むのである。</li>
+<li>今回は test 用しかないので –save-dev ですべてインストールする。</li>
+</ul>
+</li>
 <li><strong>package.json 内の scripts って便利</strong></li>
 <li>参考
-
 <ul>
 <li><a href="https://www.npmjs.org/doc/cli/npm-install.html">https://www.npmjs.org/doc/cli/npm-install.html</a></li>
-</ul></li>
-</ul></li>
 </ul>
-
-<h3 id="3-karma-angular-の-unit-test-の設定">#3 karma  angular の unit test の設定</h3>
-
-<pre><code class="language-bash">karma init  # コマンドで初期設定 karma.conf.js を作成できる
-</code></pre>
-
-<p>今回特に意識する場所としては以下の通り。</p>
-
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-karma--angular-の-unit-test-の設定">#3 karma  angular の unit test の設定</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">karma init  <span style="color:#75715e"># コマンドで初期設定 karma.conf.js を作成できる</span>
+</code></pre></div><p>今回特に意識する場所としては以下の通り。</p>
 <ul>
 <li>basePath
-
 <ul>
 <li>基準とするパスなので設定ファイルのある場所 <strong>./</strong> にする。</li>
-</ul></li>
+</ul>
+</li>
 <li>files
-
 <ul>
 <li>ここで必要な js lib と テストのターゲット js とテスト js を読み込ませてあげる。</li>
-</ul></li>
+</ul>
+</li>
 <li>browsers
-
 <ul>
 <li>init のデフォルトだと Chrome だが、テストするたびに Chrome が開くのは邪魔なので、PhantomJS にする。
-
 <ul>
 <li><a href="http://phantomjs.org/">PhantomJS</a></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>plugins
-
 <ul>
 <li><a href="http://jasmine.github.io">jasmine</a> を利用するために以下を追加する。
-
 <ul>
 <li>karma-jasmine</li>
-</ul></li>
+</ul>
+</li>
 <li>karma から PhantomJS を呼べるようにするために以下を追加する。
-
 <ul>
 <li>karma-phantomjs-launcher</li>
-</ul></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="4-test-を書く">#4 test を書く</h3>
-
 <p>テストするうえで jasmine の理解は必須なので <a href="http://jasmine.github.io/2.1/introduction.html">tutorial</a> で勉強しておく。
 index.html をローカルで開けばわかると思うが button click で &lsquo;hello&rsquo; とでてくるだけのもの。
 テストする js は app.js である。</p>
-
 <p>テストコードにコメント付与した。</p>
-
-<pre><code class="language-javascript">'use strict';
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#e6db74">&#39;use strict&#39;</span>;
  
-describe('Unit: app moudle ', function(){
-  var scope; # scope がどこからでも呼べるように定義しておく
+<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;Unit: app moudle &#39;</span>, <span style="color:#66d9ef">function</span>(){
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scope</span>; <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">scope</span> <span style="color:#a6e22e">がどこからでも呼べるように定義しておく</span>
 
-  beforeEach(function(){
-    angular.mock.module('app'); # モジュールのモックを作成する
+  <span style="color:#a6e22e">beforeEach</span>(<span style="color:#66d9ef">function</span>(){
+    <span style="color:#a6e22e">angular</span>.<span style="color:#a6e22e">mock</span>.<span style="color:#a6e22e">module</span>(<span style="color:#e6db74">&#39;app&#39;</span>); <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">モジュールのモックを作成する</span>
   });
 
-  describe('MainCtrl', function(){
-    # ここで DI する。今回は MainCtrl cotroller で GET, POST など何もしていないので
-    # $rootScope と $controller のみ
-    beforeEach(inject(function($rootScope, $controller){ 
-      scope = $rootScope.$new(); # scope を作成して、上記で定義した scope に代入する
+  <span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;MainCtrl&#39;</span>, <span style="color:#66d9ef">function</span>(){
+    <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">ここで</span> <span style="color:#a6e22e">DI</span> <span style="color:#a6e22e">する</span><span style="color:#960050;background-color:#1e0010">。</span><span style="color:#a6e22e">今回は</span> <span style="color:#a6e22e">MainCtrl</span> <span style="color:#a6e22e">cotroller</span> <span style="color:#a6e22e">で</span> <span style="color:#a6e22e">GET</span>, <span style="color:#a6e22e">POST</span> <span style="color:#a6e22e">など何もしていないので</span>
+    <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">$rootScope</span> <span style="color:#a6e22e">と</span> <span style="color:#a6e22e">$controller</span> <span style="color:#a6e22e">のみ</span>
+    <span style="color:#a6e22e">beforeEach</span>(<span style="color:#a6e22e">inject</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">$rootScope</span>, <span style="color:#a6e22e">$controller</span>){ 
+      <span style="color:#a6e22e">scope</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$rootScope</span>.<span style="color:#a6e22e">$new</span>(); <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">scope</span> <span style="color:#a6e22e">を作成して</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">上記で定義した</span> <span style="color:#a6e22e">scope</span> <span style="color:#a6e22e">に代入する</span>
 
-      # scope を渡してコントローラを作成する
-      # これで scope に controller 内に定義した sayHello 関数などが入る 
-      $controller('MainCtrl', {'$scope': scope}); 
+      <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">scope</span> <span style="color:#a6e22e">を渡してコントローラを作成する</span>
+      <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">これで</span> <span style="color:#a6e22e">scope</span> <span style="color:#a6e22e">に</span> <span style="color:#a6e22e">controller</span> <span style="color:#a6e22e">内に定義した</span> <span style="color:#a6e22e">sayHello</span> <span style="color:#a6e22e">関数などが入る</span> 
+      <span style="color:#a6e22e">$controller</span>(<span style="color:#e6db74">&#39;MainCtrl&#39;</span>, {<span style="color:#e6db74">&#39;$scope&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scope</span>}); 
     }));
 
-    it('sayHello', function(){
-      scope.sayHello();
-      # scope.message が 'hello' となっているかテスト
-      expect(scope.message).toBe('hello');
+    <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;sayHello&#39;</span>, <span style="color:#66d9ef">function</span>(){
+      <span style="color:#a6e22e">scope</span>.<span style="color:#a6e22e">sayHello</span>();
+      <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">scope</span>.<span style="color:#a6e22e">message</span> <span style="color:#a6e22e">が</span> <span style="color:#e6db74">&#39;hello&#39;</span> <span style="color:#a6e22e">となっているかテスト</span>
+      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">scope</span>.<span style="color:#a6e22e">message</span>).<span style="color:#a6e22e">toBe</span>(<span style="color:#e6db74">&#39;hello&#39;</span>);
     });
   });
 });
-</code></pre>
-
-<ul>
+</code></pre></div><ul>
 <li>その他
-
 <ul>
 <li>angular.mock.module を利用するうえで、bower.json に記述のある angular-mocks は必要。</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="まとめ">まとめ</h2>
-
 <p>controller のテストは意外と簡単。ただし、DI が増えてくるとハマるポイントも多くなってくるので、次はそんなサンプルを書いていくつもり。</p></div>
 
                         </article>
@@ -466,9 +410,10 @@ describe('Unit: app moudle ', function(){
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

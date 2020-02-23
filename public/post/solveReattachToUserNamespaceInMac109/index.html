@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -128,43 +129,36 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#手順">手順</a></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#手順">手順</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。</p>
-
-<p></p>
-
 <h2 id="手順">手順</h2>
-
 <ol>
-<li><a href="https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard">https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard</a> ここにいってソースコードをDLしてくる（git cloneでもOK）</li>
-
-<li><p>ダウンロードしたファイルのディレクトリで make する</p>
-
+<li>
+<p><a href="https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard">https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard</a> ここにいってソースコードをDLしてくる（git cloneでもOK）</p>
+</li>
+<li>
+<p>ダウンロードしたファイルのディレクトリで make する</p>
 <pre><code>cd ~/Downloads/tmux-MacOSX-pasteboard
 make reattach-to-user-namespace
-</code></pre></li>
-
-<li><p>パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく</p>
-
+</code></pre>
+</li>
+<li>
+<p>パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく</p>
 <pre><code>which reattach-to-user-namespace
-</code></pre></li>
-
-<li><p>makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする</p></li>
+</code></pre>
+</li>
+<li>
+<p>makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする</p>
+</li>
 </ol>
-
 <p>これでワーニングもサヨウナラ</p>
-
 <h2 id="参考">参考</h2>
-
 <ul>
 <li><a href="https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard">https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard</a></li>
 </ul></div>
@@ -233,9 +227,10 @@ make reattach-to-user-namespace
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

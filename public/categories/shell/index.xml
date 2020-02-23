@@ -1,97 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Shell on Syati.info </title>
-      <generator uri="https://gohugo.io">Hugo</generator>
+    <title>Shell on Syati.info</title>
     <link>http://blog.syati.info/categories/shell/</link>
+    <description>Recent content in Shell on Syati.info</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Thu, 04 Jun 2015 23:09:38 JST</updated>
+    <lastBuildDate>Thu, 04 Jun 2015 23:09:38 +0900</lastBuildDate>
+    
+	<atom:link href="http://blog.syati.info/categories/shell/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>nkf で直す文字化け</title>
       <link>http://blog.syati.info/post/nkf/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 +0900</pubDate>
       
       <guid>http://blog.syati.info/post/nkf/</guid>
       <description>&lt;p&gt;Windows 時代の遺産で、文字コードが shift_jis のファイルがたくさんありました。
-開いてびっくり文字化け。全部 utf-8 に修正してしまいます。
-&lt;/p&gt;
-
-&lt;h2 id=&#34;利用するもの&#34;&gt;利用するもの&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;nkf&lt;/strong&gt; ただこれだけ&lt;/p&gt;
-
-&lt;h2 id=&#34;インストール&#34;&gt;インストール&lt;/h2&gt;
-
-&lt;p&gt;パッケージ管理でいれるのが楽です。無い場合は、&lt;a href=&#34;http://sourceforge.jp/projects/nkf/&#34;&gt;nkf Network Kanji Filter&lt;/a&gt; からダウンロードして、make してください。&lt;/p&gt;
-
-&lt;h2 id=&#34;利用例&#34;&gt;利用例&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;文字コードを判定する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -g shiftjis.txt
-output: Shift_JIS
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換してターミナル出力する場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;文字コードを utf-8 + 改行コードを UNIX に変換して元のファイルを上書きする場合&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;% nkf -w --overwrite -Lu shiftjis.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2012/03/31/nkf_command_option/&#34;&gt;Linux上で文字コードを変換できるコマンドnkfのオプション一覧&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.layer8.sh/ja/2011/12/23/%E6%96%87%E5%AD%97%E3%82%B3%E3%83%BC%E3%83%89%E5%A4%89%E6%8F%9B%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89nkf%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81-linux/&#34;&gt;文字コード変換コマンドnkfの使い方まとめ Linux&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.turbolinux.co.jp/products/server/10s/manual/command_guide/command_guide/nkf.html&#34;&gt;6.9. 文字コードと改行コードの変換 【nkf】&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+開いてびっくり文字化け。全部 utf-8 に修正してしまいます。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>reattach-to-user-namespace: unsupported new OS を解決する</title>
       <link>http://blog.syati.info/post/solvereattachtousernamespaceinmac109/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 +0900</pubDate>
       
       <guid>http://blog.syati.info/post/solvereattachtousernamespaceinmac109/</guid>
-      <description>&lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;手順&#34;&gt;手順&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt; ここにいってソースコードをDLしてくる（git cloneでもOK）&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;ダウンロードしたファイルのディレクトリで make する&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd ~/Downloads/tmux-MacOSX-pasteboard
-make reattach-to-user-namespace
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;パスの通っている reattach-to-usernamespace がどこにあるかを以下のコマンドで確認しておく&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;which reattach-to-user-namespace
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;makeで出来た reattach-to-user-namespace をパスの通っているものに上書きする&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;これでワーニングもサヨウナラ&lt;/p&gt;
-
-&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&#34;&gt;https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>&lt;p&gt;ワーニングが出たら気になる。何が何でも消したくなってしまう。解決手順は以下のとおり。10.9に対応した reattach-to-user-namespace にするだけです。&lt;/p&gt;</description>
     </item>
     
   </channel>

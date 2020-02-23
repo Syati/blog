@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,84 +131,56 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#step-1-client-side-の-syntaxhighlighter-ライブラリ取得">Step 1 Client-side の SyntaxHighlighter ライブラリ取得</a></li>
-<li><a href="#step-2-対象ファイルコピー">Step 2 対象ファイルコピー</a></li>
-<li><a href="#step-3-custom-設定を加える">Step 3 custom 設定を加える</a></li>
-<li><a href="#step-4-コードをいれてみる">Step 4 コードをいれてみる</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#step-1-client-side-の-syntaxhighlighter-ライブラリ取得">Step 1 Client-side の SyntaxHighlighter ライブラリ取得</a></li>
+    <li><a href="#step-2-対象ファイルコピー">Step 2 対象ファイルコピー</a></li>
+    <li><a href="#step-3-custom-設定を加える">Step 3 custom 設定を加える</a></li>
+    <li><a href="#step-4-コードをいれてみる">Step 4 コードをいれてみる</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
 というこで <a href="http://gohugo.io/extras/highlighting/">Syntax Highlighting</a> を
 参考にして早速導入する。</p>
-
 <p>dir 構成等は、以下の記事参照のこと</p>
-
 <ul>
 <li><a href="http://blog.syati.info/post/create_hugo/">Part 1</a></li>
 <li><a href="http://blog.syati.info/post/create_hugo_2/">Part 2</a></li>
 <li><a href="http://blog.syati.info/post/add_disqus_to_hugo/">Part 3</a></li>
 </ul>
-
-<p></p>
-
 <h2 id="step-1-client-side-の-syntaxhighlighter-ライブラリ取得">Step 1 Client-side の SyntaxHighlighter ライブラリ取得</h2>
-
 <p>導入方法として <strong>Server-side</strong> と <strong>Client-side</strong> の方法がありますが、
 今回は後者を利用します。また、ライブラリーはたくさんありますが、<strong><a href="http://prismjs.com/">Prism</a></strong>
 を利用します。</p>
-
 <p>Prism のHPにいって利用したい好きな Themes と Languages にチェックをいれて、
 ページ下部の DOWNLOAD JS と DOWNLOAD CSS から DL しましょう。
 ちなみに当ページの Prism のテーマは Default(Okaidia) を利用しています。</p>
-
 <h2 id="step-2-対象ファイルコピー">Step 2 対象ファイルコピー</h2>
-
 <p>DL したファイルを以下のようにコピーしてあげる。</p>
-
-<pre><code class="language-bash">$ cp prism.js yourblog/static/js/
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cp prism.js yourblog/static/js/
 $ cp prism.css yourblog/static/css/
-</code></pre>
-
-<h2 id="step-3-custom-設定を加える">Step 3 custom 設定を加える</h2>
-
+</code></pre></div><h2 id="step-3-custom-設定を加える">Step 3 custom 設定を加える</h2>
 <p>以下のように yourblog/layouts/partials/custom に移動して
 <strong>対象ファイル１</strong>と<strong>対象ファイル２</strong>を編集します。</p>
-
-<pre><code class="language-bash">$ cd yourblog/layouts/partials/custom
-$ tree -L 1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd yourblog/layouts/partials/custom
+$ tree -L <span style="color:#ae81ff">1</span>
 .
-├── after_footer.html  # 対象ファイル１
+├── after_footer.html  <span style="color:#75715e"># 対象ファイル１</span>
 ├── asides
 ├── footer.html
-├── head.html          # 対象ファイル２
+├── head.html          <span style="color:#75715e"># 対象ファイル２</span>
 ├── header.html
 └── navigation.html
-</code></pre>
-
-<p>以下のように対象ファイル１に１行追加。</p>
-
-<pre><code class="language-markup">&lt;script src=&quot;{{ .Site.BaseURL }}/js/prism.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-
-<p>以下のように対象ファイル２に１行追加。</p>
-
-<pre><code class="language-markup">&lt;link href=&quot;{{ .Site.BaseURL }}/css/prism.css&quot; media=&quot;screen, projection&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
-</code></pre>
-
-<p>これで設定は終了。</p>
-
+</code></pre></div><p>以下のように対象ファイル１に１行追加。</p>
+<pre><code class="language-markup" data-lang="markup">&lt;script src=&quot;{{ .Site.BaseURL }}/js/prism.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>以下のように対象ファイル２に１行追加。</p>
+<pre><code class="language-markup" data-lang="markup">&lt;link href=&quot;{{ .Site.BaseURL }}/css/prism.css&quot; media=&quot;screen, projection&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+</code></pre><p>これで設定は終了。</p>
 <h2 id="step-4-コードをいれてみる">Step 4 コードをいれてみる</h2>
-
 <p>新しい記事でも作成して、以下のような感じでコードをいれると。
 ~ 半角でいれると解釈されるため 〜 全角で入れています。</p>
-
-<pre><code class="language-markup">〜〜〜c
+<pre><code class="language-markup" data-lang="markup">〜〜〜c
 #include &lt;stdio.h&gt;
 
 int main(void)
@@ -216,18 +189,15 @@ int main(void)
     return;
 }
 〜〜〜
-</code></pre>
-
-<p>あら素敵！！というふうになる。</p>
-
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-
-int main(void)
+</code></pre><p>あら素敵！！というふうになる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 {
-    printf(&quot;hello, world\n&quot;);
-    return;
+    printf(<span style="color:#e6db74">&#34;hello, world</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">return</span>;
 }
-</code></pre></div>
+</code></pre></div></div>
 
                         </article>
 					
@@ -293,9 +263,10 @@ int main(void)
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

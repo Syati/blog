@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,104 +131,92 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#step-0-事前準備">Step 0: 事前準備</a></li>
-<li><a href="#step-1-いろいろ初期化-プロジェクトの作成">Step 1: いろいろ初期化(プロジェクトの作成)</a></li>
-<li><a href="#step-2-ライブラリのインストール">Step 2: ライブラリのインストール</a></li>
-<li><a href="#step-3-app-を作成">Step 3: app を作成</a></li>
-<li><a href="#step-4-コンパイルする">Step 4: コンパイルする</a></li>
-<li><a href="#step-5-webpack-導入">Step 5: webpack 導入</a></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#step-0-事前準備">Step 0: 事前準備</a></li>
+    <li><a href="#step-1-いろいろ初期化プロジェクトの作成">Step 1: いろいろ初期化(プロジェクトの作成)</a></li>
+    <li><a href="#step-2-ライブラリのインストール">Step 2: ライブラリのインストール</a></li>
+    <li><a href="#step-3-app-を作成">Step 3: app を作成</a></li>
+    <li><a href="#step-4-コンパイルする">Step 4: コンパイルする</a></li>
+    <li><a href="#step-5-webpack-導入">Step 5: webpack 導入</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>型が恋しいのです。仮引数見た時に、何が入るか簡単に知りたいのです。実引数の型が違った時には教えてほしいのです。そんなこんなで、TypeScript がお気に入りです。</p>
-
 <p>今回は、どうやってフロントエンドで TypeScript を利用するか記していこうと思います。本記事のコードは以下のURLにあります。</p>
-
 <p><a href="https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack">https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack</a></p>
-
-<p></p>
-
 <h2 id="step-0-事前準備">Step 0: 事前準備</h2>
-
 <p>以下のコマンドを使用するのでグローバルにインストールしておく。</p>
-
 <ul>
-<li><p>Package managers</p>
-
+<li>
+<p>Package managers</p>
 <ul>
-<li><a href="https://www.npmjs.com/">npm</a>: プロジェクトで利用するライブラリをインストールするために利用する。</li>
-
-<li><p><a href="http://definitelytyped.org/tsd/">tsd</a>: プロジェクトで利用するライブラリの定義ファイルをインストールするために利用する。</p>
-
-<pre><code class="language-bash">npm install tsd -g
-</code></pre></li>
-</ul></li>
-
-<li><p>typescript compiler</p>
-
-<ul>
-<li><p><a href="http://www.typescriptlang.org/">tsc</a>: ts ファイルをコンパイルするために利用する。</p>
-
-<pre><code class="language-bash">npm install typescript -g
-</code></pre></li>
-</ul></li>
-
-<li><p>Build tools</p>
-
-<ul>
-<li><p><a href="https://webpack.github.io/docs/">webpack</a>: フロントエンドでモジュールをロードするために利用する。</p>
-
-<pre><code class="language-bash">npm install webpack -g
-</code></pre></li>
-</ul></li>
+<li>
+<p><a href="https://www.npmjs.com/">npm</a>: プロジェクトで利用するライブラリをインストールするために利用する。</p>
+</li>
+<li>
+<p><a href="http://definitelytyped.org/tsd/">tsd</a>: プロジェクトで利用するライブラリの定義ファイルをインストールするために利用する。</p>
+<pre><code>~~~bash
+npm install tsd -g
+~~~
+</code></pre>
+</li>
 </ul>
-
-<h2 id="step-1-いろいろ初期化-プロジェクトの作成">Step 1: いろいろ初期化(プロジェクトの作成)</h2>
-
-<pre><code class="language-bash">$ mkdir app
-$ tsd init  # いろいろ尋ねてくるけど enter 連打
+</li>
+<li>
+<p>typescript compiler</p>
+<ul>
+<li>
+<p><a href="http://www.typescriptlang.org/">tsc</a>: ts ファイルをコンパイルするために利用する。</p>
+<pre><code>~~~bash
+npm install typescript -g
+~~~
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Build tools</p>
+<ul>
+<li>
+<p><a href="https://webpack.github.io/docs/">webpack</a>: フロントエンドでモジュールをロードするために利用する。</p>
+<pre><code>~~~bash
+npm install webpack -g
+~~~
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="step-1-いろいろ初期化プロジェクトの作成">Step 1: いろいろ初期化(プロジェクトの作成)</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkdir app
+$ tsd init  <span style="color:#75715e"># いろいろ尋ねてくるけど enter 連打</span>
 $ npm init
 
-$ tree ./ -L 1
+$ tree ./ -L <span style="color:#ae81ff">1</span>
 ./
-├── app             # ここに html, ts などを入れる
-├── package.json    # npm init で作成される（ライブラリ管理）
-├── tsd.json        # tsd init で作成される（ライブラリの定義を管理）
-└── typings         # tsd init で作成される（ライブラリの定義のソースコードが入る）
-</code></pre>
-
-<h2 id="step-2-ライブラリのインストール">Step 2: ライブラリのインストール</h2>
-
+├── app             <span style="color:#75715e"># ここに html, ts などを入れる</span>
+├── package.json    <span style="color:#75715e"># npm init で作成される（ライブラリ管理）</span>
+├── tsd.json        <span style="color:#75715e"># tsd init で作成される（ライブラリの定義を管理）</span>
+└── typings         <span style="color:#75715e"># tsd init で作成される（ライブラリの定義のソースコードが入る）</span>
+</code></pre></div><h2 id="step-2-ライブラリのインストール">Step 2: ライブラリのインストール</h2>
 <p>npm と tsd を利用して、ライブラリ、ライブラリの定義をインストール。</p>
-
-<pre><code class="language-bash"># step 1 ./ で以下のコマンドを実行
-## プロジェクトで利用するライブラリのインストール
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># step 1 ./ で以下のコマンドを実行</span>
+<span style="color:#75715e">## プロジェクトで利用するライブラリのインストール</span>
 $ npm install typescript --save
 $ npm install jquery --save
-## TypeScript で利用するにはもちろん定義が必要なので、tsd で jquery をインストール
+<span style="color:#75715e">## TypeScript で利用するにはもちろん定義が必要なので、tsd で jquery をインストール</span>
 $ tsd install jquery --save
-</code></pre>
-
-<h2 id="step-3-app-を作成">Step 3: app を作成</h2>
-
+</code></pre></div><h2 id="step-3-app-を作成">Step 3: app を作成</h2>
 <p>app の下に app.ts として以下を作成。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">$</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;jquery&#39;</span>;
 
-<pre><code class="language-typescript">import * as $ from 'jquery';
-
-$(() =&gt; {
-    $(document.body).html(&quot;hello&quot;);
+<span style="color:#a6e22e">$</span>(() <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#a6e22e">$</span>(document.<span style="color:#a6e22e">body</span>).<span style="color:#a6e22e">html</span>(<span style="color:#e6db74">&#34;hello&#34;</span>);
 });
-</code></pre>
-
-<p>app の下に index.html として以下を作成。 後に app.ts から bundle.js を作成するため、この段階で script を埋め込んでおく。</p>
-
-<pre><code class="language-markup">&lt;!DOCTYPE html&gt;
+</code></pre></div><p>app の下に index.html として以下を作成。 後に app.ts から bundle.js を作成するため、この段階で script を埋め込んでおく。</p>
+<pre><code class="language-markup" data-lang="markup">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;meta charset=&quot;UTF-8&quot;/&gt;
@@ -236,44 +225,31 @@ $(() =&gt; {
     &lt;body&gt;
     &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-
-<h2 id="step-4-コンパイルする">Step 4: コンパイルする</h2>
-
+</code></pre><h2 id="step-4-コンパイルする">Step 4: コンパイルする</h2>
 <p>step 3 で作成した app.ts を js に変換するために tsc の設定を作成する。
 <strong>step 1 ./</strong> で tsconfig.json として以下のように作成。</p>
-
-<pre><code class="language-javascript">{
-  &quot;compilerOptions&quot;: {
-    &quot;sourceMap&quot;: false,     # ソースマップ作成の有無
-    &quot;target&quot;: &quot;ES5&quot;,        # target の設定
-    &quot;outDir&quot;: &quot;app/build&quot;,  # 出力先
-    &quot;module&quot;: &quot;commonjs&quot;    # module のスタイル
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
+  <span style="color:#e6db74">&#34;compilerOptions&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;sourceMap&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,     <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">ソースマップ作成の有無</span>
+    <span style="color:#e6db74">&#34;target&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ES5&#34;</span>,        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">target</span> <span style="color:#a6e22e">の設定</span>
+    <span style="color:#e6db74">&#34;outDir&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;app/build&#34;</span>,  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">出力先</span>
+    <span style="color:#e6db74">&#34;module&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;commonjs&#34;</span>    <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">module</span> <span style="color:#a6e22e">のスタイル</span>
   },
-  &quot;files&quot;: [                # ファイル
-    &quot;typings/tsd.d.ts&quot;,
-    &quot;app/app.ts&quot;
+  <span style="color:#e6db74">&#34;files&#34;</span><span style="color:#f92672">:</span> [                <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">ファイル</span>
+    <span style="color:#e6db74">&#34;typings/tsd.d.ts&#34;</span>,
+    <span style="color:#e6db74">&#34;app/app.ts&#34;</span>
   ]
 }
-</code></pre>
-
-<p>とりあえずコンパイルしてみる。</p>
-
-<pre><code class="language-bash"># step 1 ./ で以下のコマンドを実行
+</code></pre></div><p>とりあえずコンパイルしてみる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># step 1 ./ で以下のコマンドを実行</span>
 tsc
-</code></pre>
-
-<p>app/build に app.js が作成されているので覗いてみる。<strong>require</strong> の記述があるが、もちろんフロントではつかえない。そこで、フロントでも require を利用するために、<strong>webpack</strong> を用いる。</p>
-
-<pre><code class="language-javascript">var $ = require('jquery');
-$(function () {
-    $(document.body).html(&quot;hello&quot;);
+</code></pre></div><p>app/build に app.js が作成されているので覗いてみる。<strong>require</strong> の記述があるが、もちろんフロントではつかえない。そこで、フロントでも require を利用するために、<strong>webpack</strong> を用いる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;jquery&#39;</span>);
+<span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">function</span> () {
+    <span style="color:#a6e22e">$</span>(document.<span style="color:#a6e22e">body</span>).<span style="color:#a6e22e">html</span>(<span style="color:#e6db74">&#34;hello&#34;</span>);
 });
-</code></pre>
-
-<p>ここまでのプロジェクトディレクトリは以下のとおり。</p>
-
-<pre><code class="language-bash">./
+</code></pre></div><p>ここまでのプロジェクトディレクトリは以下のとおり。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./
 ├── package.json
 ├── tsconfig.json
 ├── tsd.json
@@ -289,53 +265,36 @@ $(function () {
     ├── jquery
     │   └── jquery.d.ts
     └── tsd.d.ts
-</code></pre>
-
-<h2 id="step-5-webpack-導入">Step 5: webpack 導入</h2>
-
+</code></pre></div><h2 id="step-5-webpack-導入">Step 5: webpack 導入</h2>
 <p>フロントでも require を利用するために、<strong>webpack</strong> をインストールして、ついでに、TypeScript のファイルを処理できるように loader をいれる。</p>
-
-<pre><code class="language-bash"># webpack のインストールは、step 0 でインストールしたものとする
-# typescript ファイルを処理できるように以下の webpack 用の loader をプロジェクトのライブラリに追加する
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># webpack のインストールは、step 0 でインストールしたものとする</span>
+<span style="color:#75715e"># typescript ファイルを処理できるように以下の webpack 用の loader をプロジェクトのライブラリに追加する</span>
 npm install ts-loader --save
-</code></pre>
-
-<p>webpack コマンドをたたけば require などの依存関係を解決してくれるのだが、いろいろとオプションを指定する必要がある。毎回コマンドの度に、それらを打ち込むのは面倒くさいので、設定ファイルに書いておいてあげる。</p>
-
+</code></pre></div><p>webpack コマンドをたたけば require などの依存関係を解決してくれるのだが、いろいろとオプションを指定する必要がある。毎回コマンドの度に、それらを打ち込むのは面倒くさいので、設定ファイルに書いておいてあげる。</p>
 <p><strong>step 1 ./</strong> で webpack.config.js として以下のように webpack の設定を作成する。</p>
-
-<pre><code class="language-javascript">module.exports = {
-  entry: './app/app.ts',
-  output: {
-    filename: './app/build/bundle.js'
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./app/app.ts&#39;</span>,
+  <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./app/build/bundle.js&#39;</span>
   },
-  resolve: {
-    // Add `.ts` and `.tsx` as a resolvable extension.
-    extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+  <span style="color:#a6e22e">resolve</span><span style="color:#f92672">:</span> {
+    <span style="color:#75715e">// Add `.ts` and `.tsx` as a resolvable extension.
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">extensions</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#e6db74">&#39;.webpack.js&#39;</span>, <span style="color:#e6db74">&#39;.web.js&#39;</span>, <span style="color:#e6db74">&#39;.ts&#39;</span>, <span style="color:#e6db74">&#39;.tsx&#39;</span>, <span style="color:#e6db74">&#39;.js&#39;</span>]
   },
-  module: {
-    loaders: [
-      // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-      { test: /\.tsx?$/, loader: 'ts-loader' }
+  <span style="color:#a6e22e">module</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">loaders</span><span style="color:#f92672">:</span> [
+      <span style="color:#75715e">// all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
+</span><span style="color:#75715e"></span>      { <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.tsx?$/</span>, <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ts-loader&#39;</span> }
     ]
   }
 }
-</code></pre>
-
-<p>これで簡単に webpack とコマンドをたたくだけ。</p>
-
-<pre><code class="language-bash"># step 1 ./ で以下のコマンドを実行
+</code></pre></div><p>これで簡単に webpack とコマンドをたたくだけ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># step 1 ./ で以下のコマンドを実行</span>
 $ webpack
-</code></pre>
-
-<p>app/build に bundle.js が作成されているので覗いてみる。require が解決され、単一の js ファイルとして出力されていることがわかる。</p>
-
+</code></pre></div><p>app/build に bundle.js が作成されているので覗いてみる。require が解決され、単一の js ファイルとして出力されていることがわかる。</p>
 <p>これで index.html をブラウザーで覗いてみると、<strong>hello</strong> の文字が出力されている。</p>
-
 <p><a href="https://github.com/Syati/typescript-sample/tree/0cdd35bc90b3222d2b292bf63fdddeb009b77b52/webpack">ソースはこちらから</a></p>
-
 <h2 id="参考">参考</h2>
-
 <ul>
 <li><a href="http://www.jbrantly.com/typescript-and-webpack/">TypeScript and webpack</a></li>
 </ul></div>
@@ -404,9 +363,10 @@ $ webpack
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,445 +131,352 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-リレーションの種類">1. リレーションの種類</a>
-<ul>
-<li><a href="#1-1-belongsto">1.1. belongsTo</a></li>
-<li><a href="#1-2-hasone">1.2. hasOne</a></li>
-<li><a href="#1-3-hasmany">1.3. hasMany</a></li>
-<li><a href="#1-4-belongstomany">1.4. belongsToMany</a></li>
-</ul></li>
-<li><a href="#2-その他-オプション">2. その他、オプション</a>
-<ul>
-<li><a href="#2-1-片方向と双方向">2.1. 片方向と双方向</a></li>
-<li><a href="#2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする">2.2. underscored: 外部キーの命名規則を camelCase から underscored にする</a></li>
-<li><a href="#2-3-as-target-のモデル名を任意に変更する">2.3. as: target のモデル名を任意に変更する</a></li>
-<li><a href="#2-4-foreignkey-外部キーの名前を任意に変更する">2.4. foreignKey: 外部キーの名前を任意に変更する</a></li>
-<li><a href="#2-5-targetkey-外部キーをプライマリキーから任意のカラムに変更する">2.5. targetKey: 外部キーをプライマリキーから任意のカラムに変更する</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#1-リレーションの種類">1. リレーションの種類</a>
+      <ul>
+        <li><a href="#11-belongsto">1.1. belongsTo</a></li>
+        <li><a href="#12-hasone">1.2. hasOne</a></li>
+        <li><a href="#13-hasmany">1.3. hasMany</a></li>
+        <li><a href="#14-belongstomany">1.4. belongsToMany</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-その他オプション">2. その他、オプション</a>
+      <ul>
+        <li><a href="#21-片方向と双方向">2.1. 片方向と双方向</a></li>
+        <li><a href="#22-underscored-外部キーの命名規則を-camelcase-から-underscored-にする">2.2. underscored: 外部キーの命名規則を camelCase から underscored にする</a></li>
+        <li><a href="#23-as-target-のモデル名を任意に変更する">2.3. as: target のモデル名を任意に変更する</a></li>
+        <li><a href="#24-foreignkey-外部キーの名前を任意に変更する">2.4. foreignKey: 外部キーの名前を任意に変更する</a></li>
+        <li><a href="#25-targetkey-外部キーをプライマリキーから任意のカラムに変更する">2.5. targetKey: 外部キーをプライマリキーから任意のカラムに変更する</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p><a href="http://blog.syati.info/post/sequelize_getting_started/">Sequelize Part 1</a> で、なんとなくわかってきた！！と思うので、今回は、リレーションについて学ぶ。<strong>belongsTo, hasOne, hasMany, belongsToMany</strong> の4つだけ。後、オプションを少し学べばやりたいことは大方出来るようになる。後々、WEBアプリケーションフレームワークから利用する際、ここら辺の理解は必須ですからね。</p>
-
-<p></p>
-
 <h2 id="1-リレーションの種類">1. リレーションの種類</h2>
-
 <p>リレーションを理解するためには、<a href="http://docs.sequelizejs.com/en/latest/docs/associations/">Relations / Associations</a> を読み込まないと始まらない。結構ボリュームがあって、心折れそうになりますが！！実は大したことはないはず・・・。まずは、少しだけ用語の説明。</p>
-
 <blockquote>
 <p>When calling a method such as User.hasOne(Project), we say that the User model (the model that the function is being invoked on) is the source and the Project model (the model being passed as an argument) is the target.</p>
 </blockquote>
-
 <p>単なる呼び方ですね。先に出てくるモデルが <strong>source</strong> 。後に出てくるモデルが <strong>target</strong> ですよってことですね。</p>
-
-<pre><code class="language-javascript">// 以下の場合
-User.hasOne(Project)
-// User モデルが source
-// Project モデルが target
-</code></pre>
-
-<p>これは、外部キーがどちらに追加されるのかを明記するために利用する。リレーションは、以降の4種類（メソッド）ある。</p>
-
-<h3 id="1-1-belongsto">1.1. belongsTo</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// 以下の場合
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">User</span>.<span style="color:#a6e22e">hasOne</span>(<span style="color:#a6e22e">Project</span>)
+<span style="color:#75715e">// User モデルが source
+</span><span style="color:#75715e">// Project モデルが target
+</span></code></pre></div><p>これは、外部キーがどちらに追加されるのかを明記するために利用する。リレーションは、以降の4種類（メソッド）ある。</p>
+<h3 id="11-belongsto">1.1. belongsTo</h3>
 <p><strong>プレイヤ belongs to チーム</strong> という場合。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Player</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Player&#39;</span>, {<span style="color:#75715e">/* ...attributes */</span>})
+  , <span style="color:#a6e22e">Team</span>  <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Team&#39;</span>, {<span style="color:#75715e">/* ...attributes */</span>});
 
-<pre><code class="language-javascript">var Player = this.sequelize.define('Player', {/* ...attributes */})
-  , Team  = this.sequelize.define('Team', {/* ...attributes */});
-
-Player.belongsTo(Team);
-</code></pre>
-
-<p>上記は、以下のテーブルになる。</p>
-
+<span style="color:#a6e22e">Player</span>.<span style="color:#a6e22e">belongsTo</span>(<span style="color:#a6e22e">Team</span>);
+</code></pre></div><p>上記は、以下のテーブルになる。</p>
 <ul>
 <li>Players
-
 <ul>
 <li>id</li>
 <li>&hellip;attributes</li>
 <li>createdAt</li>
 <li>updatedAt</li>
 <li><strong>TeamId (belongsTo によって追加される)</strong></li>
-</ul></li>
+</ul>
+</li>
 <li>Teams
-
 <ul>
 <li>id</li>
 <li>&hellip;attributes</li>
 <li>createdAt</li>
 <li>updatedAt</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><a href="http://docs.sequelizejs.com/en/latest/docs/associations/#belongsto">belongsTo</a> では <strong>source (Player)</strong> に外部キー（<strong>TeamId</strong>）が追加される。また、Player インスタンスは、<a href="http://docs.sequelizejs.com/en/latest/api/associations/belongs-to/">belongsTo - api</a> メソッドを持つ。</p>
-
-<p><strong>※外部キーが camelCase</strong> ！？という方は、<a href="#2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする:4ab89ffec193a533a37a4e4a7c6ae107">2.2. underscored: 外部キーの命名規則を camelCase から underscored にする</a> を参照のこと。</p>
-
-<h3 id="1-2-hasone">1.2. hasOne</h3>
-
+<p><strong>※外部キーが camelCase</strong> ！？という方は、<a href="#2-2-underscored-%E5%A4%96%E9%83%A8%E3%82%AD%E3%83%BC%E3%81%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87%E3%82%92-camelcase-%E3%81%8B%E3%82%89-underscored-%E3%81%AB%E3%81%99%E3%82%8B:4ab89ffec193a533a37a4e4a7c6ae107">2.2. underscored: 外部キーの命名規則を camelCase から underscored にする</a> を参照のこと。</p>
+<h3 id="12-hasone">1.2. hasOne</h3>
 <p><strong>ユーザ has one プロフィール</strong> という場合。</p>
-
-<pre><code class="language-javascript">var User = sequelize.define('User', {/* ... */})
-var Profile = sequelize.define('Profile', {/* ... */})
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;User&#39;</span>, {<span style="color:#75715e">/* ... */</span>})
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Profile</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Profile&#39;</span>, {<span style="color:#75715e">/* ... */</span>})
  
-User.hasOne(Profile)
-</code></pre>
-
-<p>上記は、以下のテーブルになる。</p>
-
+<span style="color:#a6e22e">User</span>.<span style="color:#a6e22e">hasOne</span>(<span style="color:#a6e22e">Profile</span>)
+</code></pre></div><p>上記は、以下のテーブルになる。</p>
 <ul>
 <li>Users
-
 <ul>
 <li>id</li>
 <li>&hellip;</li>
 <li>createdAt</li>
 <li>updatedAt</li>
-</ul></li>
-<li>Profiles
-
-<ul>
-<li>id</li>
-<li>&hellip;</li>
-<li>createdAt</li>
-<li>updatedAt</li>
-<li><strong>UserId (hasOne によって追加される)</strong>
-<br /></li>
-</ul></li>
 </ul>
-
+</li>
+<li>Profiles
+<ul>
+<li>id</li>
+<li>&hellip;</li>
+<li>createdAt</li>
+<li>updatedAt</li>
+<li><strong>UserId (hasOne によって追加される)</strong></li>
+</ul>
+</li>
+</ul>
 <p>[hasOne]((<a href="http://docs.sequelizejs.com/en/latest/docs/associations/#hasone">http://docs.sequelizejs.com/en/latest/docs/associations/#hasone</a>) では <strong>target (Profile)</strong> に外部キー（<strong>UserId</strong>）が追加される。<strong>belongsTo とその点が違うことに注意</strong>。また、User インスタンスは <a href="http://docs.sequelizejs.com/en/latest/api/associations/has-one/">hasOne - api</a> メソッドを持つ。</p>
-
-<h3 id="1-3-hasmany">1.3. hasMany</h3>
-
+<h3 id="13-hasmany">1.3. hasMany</h3>
 <p><strong>プロジェクト has many ユーザ</strong> という場合。</p>
-
-<pre><code class="language-javascript">var Project = sequelize.define('Project', {/* ... */})
-var User = sequelize.define('User', {/* ... */})
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Project</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Project&#39;</span>, {<span style="color:#75715e">/* ... */</span>})
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;User&#39;</span>, {<span style="color:#75715e">/* ... */</span>})
  
-Project.hasMany(User)
-</code></pre>
-
-<p>上記では、以下のテーブルになる。</p>
-
+<span style="color:#a6e22e">Project</span>.<span style="color:#a6e22e">hasMany</span>(<span style="color:#a6e22e">User</span>)
+</code></pre></div><p>上記では、以下のテーブルになる。</p>
 <ul>
 <li>Projects
-
 <ul>
 <li>id</li>
 <li>&hellip;</li>
 <li>createdAt</li>
 <li>updatedAt</li>
-</ul></li>
+</ul>
+</li>
 <li>Users
-
 <ul>
 <li>id</li>
 <li>&hellip;</li>
 <li>createdAt</li>
 <li>updatedAt</li>
 <li><strong>ProjectId (hasMany によって追加される)</strong></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><a href="http://docs.sequelizejs.com/en/latest/docs/associations/#one-to-many-associations">hasMany</a> では <strong>target (User)</strong> に外部キー（<strong>ProjectId</strong>）が追加される。これだけ見ると <strong>hasOne と同じじゃないか</strong>と思うかもしれないが、インスタンスが持つメソッドが異なる。Project インスタンスは <a href="http://docs.sequelizejs.com/en/latest/api/associations/has-many/">hasMany - api</a> メソッドを持つ。</p>
-
-<h3 id="1-4-belongstomany">1.4. belongsToMany</h3>
-
+<h3 id="14-belongstomany">1.4. belongsToMany</h3>
 <p><strong>プロジェクトは複数のユーザを持ち、ユーザは複数のプロジェクトに属する</strong> という <strong>多対多</strong> の場合。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Project</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Project&#39;</span>, {<span style="color:#75715e">/* ... */</span>})
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;User&#39;</span>, {<span style="color:#75715e">/* ... */</span>})
 
-<pre><code class="language-javascript">var Project = sequelize.define('Project', {/* ... */})
-var User = sequelize.define('User', {/* ... */})
-
-Project.belongsToMany(User, {through: 'UserProjects'});
-User.belongsToMany(Project, {through: 'UserProjects'});
-</code></pre>
-
-<p>上記は、以下のテーブルになる。</p>
-
+<span style="color:#a6e22e">Project</span>.<span style="color:#a6e22e">belongsToMany</span>(<span style="color:#a6e22e">User</span>, {<span style="color:#a6e22e">through</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;UserProjects&#39;</span>});
+<span style="color:#a6e22e">User</span>.<span style="color:#a6e22e">belongsToMany</span>(<span style="color:#a6e22e">Project</span>, {<span style="color:#a6e22e">through</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;UserProjects&#39;</span>});
+</code></pre></div><p>上記は、以下のテーブルになる。</p>
 <ul>
 <li>Projects
-
 <ul>
 <li>id</li>
 <li>&hellip;</li>
 <li>createdAt</li>
 <li>updatedAt</li>
-</ul></li>
+</ul>
+</li>
 <li>Users
-
 <ul>
 <li>id</li>
 <li>&hellip;</li>
 <li>createdAt</li>
 <li>updatedAt</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>UserProjects   (through オプションで指定した名前のテーブル)</strong>
-
 <ul>
 <li><strong>UserId    (belongsToMany によって追加される)</strong></li>
 <li><strong>ProjectId (belongsToMany によって追加される)</strong></li>
 <li>createdAt</li>
 <li>updatedAt</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><a href="http://docs.sequelizejs.com/en/latest/docs/associations/#belongs-to-many-associations">belongsToMany</a> では、<strong>through で指定した名前のテーブル</strong>に双方のキー（ProjectId, UserId）が追加される。また、それぞれのインスタンスに以下のとおり(または <a href="http://docs.sequelizejs.com/en/latest/api/associations/belongs-to-many/">belongsToMany - api</a>) メソッドが追加される。</p>
-
 <blockquote>
 <p>This will add methods <strong>getUsers, setUsers, addUser,addUsers to Project</strong>, and <strong>getProjects, setProjects and addProject, addProjects to User</strong>.</p>
 </blockquote>
-
 <p>上記の UserProjects （中間テーブル）を見ると分かると思いますが <strong>id</strong> はありません。理由は以下のとおり。UserId, ProjectId の複合キーで十分なため、別にプライマリキー設ける必要ないでしょって話かな。</p>
-
 <blockquote>
 <p>By default the code above will add ProjectId and UserId to the UserProjects table, and remove any previously defined primary key attribute - the table will be uniquely identified by the combination of the keys of the two tables, and there is no reason to have other PK columns.</p>
 </blockquote>
-
 <p>ただし UserProjects モデルを以下のように定義することで、<strong>id</strong> を追加することや、<strong>status</strong> カラムを中間テーブルに追加することができる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Project</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Project&#39;</span>, {<span style="color:#75715e">/* ... */</span>})
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;User&#39;</span>, {<span style="color:#75715e">/* ... */</span>})
 
-<pre><code class="language-javascript">var Project = sequelize.define('Project', {/* ... */})
-var User = sequelize.define('User', {/* ... */})
-
-var UserProjects = sequelize.define('UserProjects', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">UserProjects</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;UserProjects&#39;</span>, {
+    <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> {
+      <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">DataTypes</span>.<span style="color:#a6e22e">INTEGER</span>,
+      <span style="color:#a6e22e">primaryKey</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+      <span style="color:#a6e22e">autoIncrement</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
     },
-    status: DataTypes.STRING
+    <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">DataTypes</span>.<span style="color:#a6e22e">STRING</span>
 })
 
-User.belongsToMany(Project, { through: UserProjects })
-Project.belongsToMany(User, { through: UserProjects })
-</code></pre>
-
-<h2 id="2-その他-オプション">2. その他、オプション</h2>
-
-<h3 id="2-1-片方向と双方向">2.1. 片方向と双方向</h3>
-
+<span style="color:#a6e22e">User</span>.<span style="color:#a6e22e">belongsToMany</span>(<span style="color:#a6e22e">Project</span>, { <span style="color:#a6e22e">through</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">UserProjects</span> })
+<span style="color:#a6e22e">Project</span>.<span style="color:#a6e22e">belongsToMany</span>(<span style="color:#a6e22e">User</span>, { <span style="color:#a6e22e">through</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">UserProjects</span> })
+</code></pre></div><h2 id="2-その他オプション">2. その他、オプション</h2>
+<h3 id="21-片方向と双方向">2.1. 片方向と双方向</h3>
 <p>以下の違いを覚えておく。</p>
-
 <ul>
 <li>片方向（one way）
-
 <ul>
 <li>belongsTo</li>
 <li>hasOne</li>
 <li>hasMany</li>
-</ul></li>
+</ul>
+</li>
 <li>双方向 (two way)
-
 <ul>
 <li>belongsToMany</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>片方向とは、言葉の通りだが、一方からしか取得できないということである。例えば、<strong>プレイヤ belongs to チーム</strong> という場合で考えると、<strong>プレイヤからチームを取得することは可能</strong>だが、<strong>チームからプレイヤを取得することは不可能</strong>ということである。以下コードサンプル。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Player</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Player&#39;</span>, {<span style="color:#75715e">/* ...attributes */</span>})
+  , <span style="color:#a6e22e">Team</span>  <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Team&#39;</span>, {<span style="color:#75715e">/* ...attributes */</span>});
 
-<pre><code class="language-javascript">var Player = this.sequelize.define('Player', {/* ...attributes */})
-  , Team  = this.sequelize.define('Team', {/* ...attributes */});
-
-Player.belongsTo(Team);
+<span style="color:#a6e22e">Player</span>.<span style="color:#a6e22e">belongsTo</span>(<span style="color:#a6e22e">Team</span>);
 
 ...
 
-// インスタンス利用
-// plyaer インスタンスから team を取得することは可能だが
-player.getTeam()
-// 以下のように team から プレイヤを取得することはできない
-// team.getPlayers()
-</code></pre>
+<span style="color:#75715e">// インスタンス利用
+</span><span style="color:#75715e">// plyaer インスタンスから team を取得することは可能だが
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">player</span>.<span style="color:#a6e22e">getTeam</span>()
+<span style="color:#75715e">// 以下のように team から プレイヤを取得することはできない
+</span><span style="color:#75715e">// team.getPlayers()
+</span></code></pre></div><p>なので、<strong>片方向のメソッドを利用して、双方向から取得できるようにする</strong>には、以下のようにモデルを定義してあげる必要がある。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Player</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Player&#39;</span>, {<span style="color:#75715e">/* ...attributes */</span>})
+  , <span style="color:#a6e22e">Team</span>  <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Team&#39;</span>, {<span style="color:#75715e">/* ...attributes */</span>});
 
-<p>なので、<strong>片方向のメソッドを利用して、双方向から取得できるようにする</strong>には、以下のようにモデルを定義してあげる必要がある。</p>
+<span style="color:#a6e22e">Player</span>.<span style="color:#a6e22e">belongsTo</span>(<span style="color:#a6e22e">Team</span>); <span style="color:#75715e">// belongsTo を利用
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Team</span>.<span style="color:#a6e22e">hasMany</span>(<span style="color:#a6e22e">Player</span>);   <span style="color:#75715e">// hasMany を利用
+</span><span style="color:#75715e"></span>...
 
-<pre><code class="language-javascript">var Player = this.sequelize.define('Player', {/* ...attributes */})
-  , Team  = this.sequelize.define('Team', {/* ...attributes */});
-
-Player.belongsTo(Team); // belongsTo を利用
-Team.hasMany(Player);   // hasMany を利用
-...
-
-// インスタンス利用
-// plyaer インスタンスから team を取得することは可能かつ
-player.getTeam()
-// team から players を取得することが可能。
-team.getPlayers()
-</code></pre>
-
-<p>双方向については、上記のようなことをする必要はない。双方向を利用した際に、インスタンスにメソッドが追加されるため。<a href="http://localhost:1313/post/sequelize_relation/#1-4-belongstomany:4ab89ffec193a533a37a4e4a7c6ae107">1.4. belongsToMany</a> 参照のこと。</p>
-
-<h3 id="2-2-underscored-外部キーの命名規則を-camelcase-から-underscored-にする">2.2. underscored: 外部キーの命名規則を camelCase から underscored にする</h3>
-
+<span style="color:#75715e">// インスタンス利用
+</span><span style="color:#75715e">// plyaer インスタンスから team を取得することは可能かつ
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">player</span>.<span style="color:#a6e22e">getTeam</span>()
+<span style="color:#75715e">// team から players を取得することが可能。
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">team</span>.<span style="color:#a6e22e">getPlayers</span>()
+</code></pre></div><p>双方向については、上記のようなことをする必要はない。双方向を利用した際に、インスタンスにメソッドが追加されるため。<a href="http://localhost:1313/post/sequelize_relation/#1-4-belongstomany:4ab89ffec193a533a37a4e4a7c6ae107">1.4. belongsToMany</a> 参照のこと。</p>
+<h3 id="22-underscored-外部キーの命名規則を-camelcase-から-underscored-にする">2.2. underscored: 外部キーの命名規則を camelCase から underscored にする</h3>
 <p><strong>Foreign keys</strong> は camelCase になります。</p>
-
 <blockquote>
 <p>The default casing is camelCase however if the source model is configured with underscored: true the foreignKey will be snake_case.</p>
 </blockquote>
-
 <p>もし、<strong>underscored</strong> のほうがいいよねって場合は、以下のようにしてあげる。</p>
-
-<pre><code class="language-javascript">var Player = this.sequelize.define('Player', {
-    /* ... */
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Player</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Player&#39;</span>, {
+    <span style="color:#75715e">/* ... */</span>
 }, {
-    underscored: true
+    <span style="color:#a6e22e">underscored</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
 });
 
-var Team  = this.sequelize.define('Team', {/* ... */});
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Team</span>  <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Team&#39;</span>, {<span style="color:#75715e">/* ... */</span>});
 
-Player.belongsTo(Team);
-</code></pre>
-
-<p>上記は、以下のテーブルになる。</p>
-
+<span style="color:#a6e22e">Player</span>.<span style="color:#a6e22e">belongsTo</span>(<span style="color:#a6e22e">Team</span>);
+</code></pre></div><p>上記は、以下のテーブルになる。</p>
 <ul>
 <li>Players
-
 <ul>
 <li>id</li>
 <li>&hellip;</li>
 <li>createdAt</li>
 <li>updatedAt</li>
 <li><strong>team_id (camelCase ではなく _ になる)</strong></li>
-</ul></li>
+</ul>
+</li>
 <li>Teams
-
 <ul>
 <li>id</li>
 <li>&hellip;</li>
 <li>createdAt</li>
 <li>updatedAt</li>
-</ul></li>
 </ul>
-
-<h3 id="2-3-as-target-のモデル名を任意に変更する">2.3. as: target のモデル名を任意に変更する</h3>
-
+</li>
+</ul>
+<h3 id="23-as-target-のモデル名を任意に変更する">2.3. as: target のモデル名を任意に変更する</h3>
 <p><strong>as</strong> オプションに任意の名前を与えることで、target のモデル名を変更できる</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;User&#39;</span>, {<span style="color:#75715e">/* ... */</span>})
+  , <span style="color:#a6e22e">Project</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Project&#39;</span>, {<span style="color:#75715e">/* ... */</span>})
 
-<pre><code class="language-javascript">var User = this.sequelize.define('User', {/* ... */})
-  , Project = sequelize.define('Project', {/* ... */})
-
-User.belongsTo(Project, {as: 'Prj'});
-</code></pre>
-
-<p>上記は、以下のテーブルになる。</p>
-
+<span style="color:#a6e22e">User</span>.<span style="color:#a6e22e">belongsTo</span>(<span style="color:#a6e22e">Project</span>, {<span style="color:#a6e22e">as</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Prj&#39;</span>});
+</code></pre></div><p>上記は、以下のテーブルになる。</p>
 <ul>
 <li>Users
-
 <ul>
 <li>id</li>
 <li>&hellip;</li>
 <li>createdAt</li>
 <li>updatedAt</li>
 <li><strong>PrjId (ProjectId ではなく as で指定した名前Id になる)</strong></li>
-</ul></li>
+</ul>
+</li>
 <li>Projects
-
 <ul>
 <li>id</li>
 <li>&hellip;</li>
 <li>createdAt</li>
 <li>updatedAt</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><strong>※ここで注意する必要があるのは</strong> リレーション(belongsToなど)を追加したときにインスタンスに追加されるメソッドである。今回の場合は User インスタンスのもつメソッドが以下になる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// as なしの場合、以下のメソッドだが（デフォルト）
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">getProject</span>();
 
-<pre><code class="language-javascript">// as なしの場合、以下のメソッドだが（デフォルト）
-user.getProject();
-
-// as ありの場合、以下のメソッド(指定した名前)になる
-user.getPrj()
-</code></pre>
-
-<h3 id="2-4-foreignkey-外部キーの名前を任意に変更する">2.4. foreignKey: 外部キーの名前を任意に変更する</h3>
-
+<span style="color:#75715e">// as ありの場合、以下のメソッド(指定した名前)になる
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">getPrj</span>()
+</code></pre></div><h3 id="24-foreignkey-外部キーの名前を任意に変更する">2.4. foreignKey: 外部キーの名前を任意に変更する</h3>
 <p><strong>foreignKey</strong> オプションに任意の名前を与えることで、Sequelize の外部キーの命名規則を完全無視できる</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;User&#39;</span>, {<span style="color:#75715e">/* ... */</span>})
+  , <span style="color:#a6e22e">Project</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Project&#39;</span>, {<span style="color:#75715e">/* ... */</span>})
 
-<pre><code class="language-javascript">var User = this.sequelize.define('User', {/* ... */})
-  , Project = sequelize.define('Project', {/* ... */})
-
-User.belongsTo(Project, {foreignKey: 'fk_project'});
-</code></pre>
-
-<p>上記は、以下のテーブルになる。</p>
-
+<span style="color:#a6e22e">User</span>.<span style="color:#a6e22e">belongsTo</span>(<span style="color:#a6e22e">Project</span>, {<span style="color:#a6e22e">foreignKey</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;fk_project&#39;</span>});
+</code></pre></div><p>上記は、以下のテーブルになる。</p>
 <ul>
 <li>Users
-
 <ul>
 <li>id</li>
 <li>&hellip;</li>
 <li>createdAt</li>
 <li>updatedAt</li>
 <li><strong>fk_project (ProjectId ではなく foreignKey で指定した名前になる)</strong></li>
-</ul></li>
+</ul>
+</li>
 <li>Projects
-
 <ul>
 <li>id</li>
 <li>&hellip;</li>
 <li>createdAt</li>
 <li>updatedAt</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p><strong>※ここで注意する必要があるのは</strong> as で指定した場合とは異なり、インスタンスのもつメソッドは変わらないということ。</p>
-
-<pre><code class="language-javascript">// foreginKey あり・なしに関わらず、以下のメソッド（デフォルト）
-user.getProject();
-</code></pre>
-
-<h3 id="2-5-targetkey-外部キーをプライマリキーから任意のカラムに変更する">2.5. targetKey: 外部キーをプライマリキーから任意のカラムに変更する</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// foreginKey あり・なしに関わらず、以下のメソッド（デフォルト）
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">getProject</span>();
+</code></pre></div><h3 id="25-targetkey-外部キーをプライマリキーから任意のカラムに変更する">2.5. targetKey: 外部キーをプライマリキーから任意のカラムに変更する</h3>
 <p>以下にある通り、デフォルトの外部キーは target (または source)のプライマリキーになります。belongsTo としか書いてないけど、それ以外も基本同じ。</p>
-
 <blockquote>
 <p>By default the target key for a belongsTo relation will be the target primary key. To override this behavior, use the targetKey option.</p>
 </blockquote>
-
 <p>例えば、Project の name カラムを外部キーにする場合。</p>
-
-<pre><code class="language-javascript">var User = this.sequelize.define('User', {/* ... */});
-var Project = sequelize.define('Project', {
-    name: { type: DataTypes.STRING, unique: true}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;User&#39;</span>, {<span style="color:#75715e">/* ... */</span>});
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Project</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">sequelize</span>.<span style="color:#a6e22e">define</span>(<span style="color:#e6db74">&#39;Project&#39;</span>, {
+    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">DataTypes</span>.<span style="color:#a6e22e">STRING</span>, <span style="color:#a6e22e">unique</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>}
 });
 
-User.belongsTo(models.Project, {foreignKey: 'fk_projectname', targetKey: 'name'});
-</code></pre>
-
-<p>上記は、以下のテーブルになる。</p>
-
+<span style="color:#a6e22e">User</span>.<span style="color:#a6e22e">belongsTo</span>(<span style="color:#a6e22e">models</span>.<span style="color:#a6e22e">Project</span>, {<span style="color:#a6e22e">foreignKey</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;fk_projectname&#39;</span>, <span style="color:#a6e22e">targetKey</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;name&#39;</span>});
+</code></pre></div><p>上記は、以下のテーブルになる。</p>
 <ul>
 <li>Users
-
 <ul>
 <li>id</li>
 <li>&hellip;</li>
 <li>createdAt</li>
 <li>updatedAt</li>
 <li>fk_projectname</li>
-</ul></li>
+</ul>
+</li>
 <li>Projects
-
 <ul>
 <li>id</li>
 <li>name</li>
 <li>createdAt</li>
-<li>updatedAt
-<br /></li>
-</ul></li>
+<li>updatedAt</li>
 </ul>
-
-<p>インスタンスのもつメソッドは <a href="#2-4-foreignkey-外部キーの名前を任意に変更する:4ab89ffec193a533a37a4e4a7c6ae107">2.4. foreignKey: 外部キーの名前を任意に変更する</a> と変わりなし</p></div>
+</li>
+</ul>
+<p>インスタンスのもつメソッドは <a href="#2-4-foreignkey-%E5%A4%96%E9%83%A8%E3%82%AD%E3%83%BC%E3%81%AE%E5%90%8D%E5%89%8D%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AB%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B:4ab89ffec193a533a37a4e4a7c6ae107">2.4. foreignKey: 外部キーの名前を任意に変更する</a> と変わりなし</p></div>
 
                         </article>
 					
@@ -634,9 +542,10 @@ User.belongsTo(models.Project, {foreignKey: 'fk_projectname', targetKey: 'name'}
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

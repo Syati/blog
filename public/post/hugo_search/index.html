@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,130 +131,70 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#step-1-登録する">Step 1 登録する</a></li>
-<li><a href="#step-2-作成する">Step 2 作成する</a></li>
-<li><a href="#step-3-確認する">Step 3 確認する</a></li>
-<li><a href="#step-4-設定する">Step 4 設定する</a></li>
-<li><a href="#step-5-取得する">Step 5 取得する</a></li>
-<li><a href="#step-6-設置する">Step 6 設置する</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#step-1-登録する">Step 1 登録する</a></li>
+    <li><a href="#step-2-作成する">Step 2 作成する</a></li>
+    <li><a href="#step-3-確認する">Step 3 確認する</a></li>
+    <li><a href="#step-4-設定する">Step 4 設定する</a></li>
+    <li><a href="#step-5-取得する">Step 5 取得する</a></li>
+    <li><a href="#step-6-設置する">Step 6 設置する</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>記事が多くなってくると、やっぱり検索したくなるもんです。Hugo で検索を使うには、<a href="https://gohugo.io/tools">Tools</a> に書いてある通り以下の方法があります。</p>
-
 <ul>
 <li><a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a></li>
 <li>自前でインデックスを作成して提供する方法
-
 <ul>
 <li><a href="https://github.com/blevesearch/hugoidx">Hugoidx</a>: Bleve を用いる</li>
 <li><a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">Github Gist</a>: grunt と lunr.js を用いる</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>当ページでは、<a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">Github Gist</a>  を用いて検索を実現していますが、お手軽さでいうと、<a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> ですね。なので今回は、<a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> の導入方法を紹介。</p>
-
-<p></p>
-
 <h2 id="step-1-登録する">Step 1 登録する</h2>
-
 <p><a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> にアクセスして登録しましょう。</p>
-
-
-<figure >
-    
-        <img src="step1.png" />
-    
-    
-    <figcaption>
-        <h4>カスタム検索エンジンの登録</h4>
-        
-    </figcaption>
-    
+<figure>
+    <img src="step1.png"/> <figcaption>
+            <h4>カスタム検索エンジンの登録</h4>
+        </figcaption>
 </figure>
-
 
 <h2 id="step-2-作成する">Step 2 作成する</h2>
-
 <p>必要情報を入力しましょう。<strong>検索するサイト</strong>を入力すると、<strong>検索エンジンの名前</strong> も入力されるため枠で囲っていません。</p>
-
-
-<figure >
-    
-        <img src="step2.png" />
-    
-    
-    <figcaption>
-        <h4>カスタム検索エンジンの作成</h4>
-        
-    </figcaption>
-    
+<figure>
+    <img src="step2.png"/> <figcaption>
+            <h4>カスタム検索エンジンの作成</h4>
+        </figcaption>
 </figure>
-
 
 <h2 id="step-3-確認する">Step 3 確認する</h2>
-
 <p>作成された検索エンジンを確認しましょう。</p>
-
-
-<figure >
-    
-        <img src="step3.png" />
-    
-    
-    <figcaption>
-        <h4>カスタム検索エンジンの確認</h4>
-        
-    </figcaption>
-    
+<figure>
+    <img src="step3.png"/> <figcaption>
+            <h4>カスタム検索エンジンの確認</h4>
+        </figcaption>
 </figure>
-
 
 <h2 id="step-4-設定する">Step 4 設定する</h2>
-
 <p><strong>対象</strong> のリストメニューの <strong>デザイン</strong> をえらんで、レイアウトやテーマなど色々設定しましょう。設定すると、<strong>プレビュー</strong>で確認できます。最後に<strong>保存してコードを取得</strong>します。</p>
-
-
-<figure >
-    
-        <img src="step4.png" />
-    
-    
-    <figcaption>
-        <h4>カスタム検索エンジンの設定</h4>
-        
-    </figcaption>
-    
+<figure>
+    <img src="step4.png"/> <figcaption>
+            <h4>カスタム検索エンジンの設定</h4>
+        </figcaption>
 </figure>
-
 
 <h2 id="step-5-取得する">Step 5 取得する</h2>
-
 <p><strong>コード</strong> をコピーしときましょう。</p>
-
-
-<figure >
-    
-        <img src="step5.png" />
-    
-    
-    <figcaption>
-        <h4>カスタム検索エンジンのコードを取得</h4>
-        
-    </figcaption>
-    
+<figure>
+    <img src="step5.png"/> <figcaption>
+            <h4>カスタム検索エンジンのコードを取得</h4>
+        </figcaption>
 </figure>
 
-
 <h2 id="step-6-設置する">Step 6 設置する</h2>
-
 <p>コピーしたコードを layouts の任意の html に貼り付けましょう。完成すると以下のように検索が可能になります。</p>
-
 <script>
   (function() {
     var cx = '004743453564496319247:9t8ean_mgiw';
@@ -332,9 +273,10 @@
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

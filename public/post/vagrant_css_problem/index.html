@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -128,48 +129,34 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#原因">原因</a></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#原因">原因</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>最近、vagrant、chef-solo で開発環境を構築するのがブームなSyatiです。xampp、mamp とかで？？ができないとかよくありますが、面倒くさいので皆サーバーと同じ環境にして開発しましょうよ。そしたら、？？ができないなんてことがなくなりますので。</p>
-
 <p>今回はまったのは、vagrant の共有フォルダに apache のバーチャルホストのドキュメントルートを設定して、ローカルでソースコードをいじり、ブラウザで確認している時である。</p>
-
 <p><strong>CSSをいじって、ブラウザで確認しても反映されないのである。もちろんキャッシュクリア済み。やむなくvagrantを再起動すると反映されるのである</strong></p>
-
-<p></p>
-
 <h2 id="原因">原因</h2>
-
 <p>httpd.conf の設定に問題があった。
 以下の設定を加えるのである。EnableSendfile なんて httpd.conf 中のどこにも記述が無いんだが、デフォルトが On のため、明示的に加えてあげる必要がある。</p>
-
 <pre><code>EnableSendfile Off
 </code></pre>
-
 <p>以下<a href="http://httpd.apache.org/docs/2.2/mod/core.html#enablesendfile"> EnableSendfile</a>より引用</p>
-
 <blockquote>
 <p>このディレクティブはクライアンにファイルの内容を送るときに httpd がカーネルの sendfile サポートを使うかどうかを制御します。デフォルトでは、 例えば静的なファイルの配送のように、リクエストの処理にファイルの 途中のデータのアクセスを必要としないときには、Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。
 sendfile は read と send を別々に行なうことと、バッファの割り当てを 回避します。しかし、プラットフォームやファイルシステムの中には 運用上の問題を避けるためにこの機能を使用不可にした方が良い場合があります</p>
 </blockquote>
-
-<p>おそらく、以下の部分が原因か！？それでファイルを変更しても、逐次更新されないんでしょう。
--   <strong>Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。</strong></p>
-
+<p>おそらく、以下の部分が原因か！？それでファイルを変更しても、逐次更新されないんでしょう。</p>
+<ul>
+<li><strong>Apache は OS が サポートしていればファイルを読み込むことなく sendfile を使って ファイルの内容を送ります。</strong></li>
+</ul>
 <h2 id="参考">参考</h2>
-
 <ul>
 <li><a href="http://qiita.com/shoyan/items/12389d5beaa8695b1a53">http://qiita.com/shoyan/items/12389d5beaa8695b1a53</a></li>
 </ul>
-
 <p>上記に nginx の場合も書いて有りますね。</p></div>
 
                         </article>
@@ -236,9 +223,10 @@ sendfile は read と send を別々に行なうことと、バッファの割�
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

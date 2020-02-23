@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -128,198 +129,186 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#開発環境">開発環境</a></li>
-</ul></li>
-<li><a href="#ブラウジング">ブラウジング</a>
-<ul>
-<li><a href="#キーバインド設定">キーバインド設定</a></li>
-<li><a href="#その他">その他</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#開発環境">開発環境</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#キーバインド設定">キーバインド設定</a></li>
+    <li><a href="#その他">その他</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>仕事で Mac を利用することになった Syati です。main os が Ubuntu だからか、Windows より全然開発環境を構築しやすい。
-ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。
-</p>
-
+ただ、やることはたくさんあった。ストレスが無い開発環境を構築することは難しいものです・・・。ある程度、構築できたので記録しておく。</p>
 <h2 id="開発環境">開発環境</h2>
-
 <ul>
 <li>xcode:開発環境
-
 <ul>
 <li>プラグイン
-
 <ul>
 <li>command line tools (os x mountain lion) for xcode</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>fink:package management のソフト
-
 <ul>
 <li>上記を用いて入れたソフトウェア
-
 <ul>
 <li>coreutil-default
-
 <ul>
 <li>prefix に g がない方</li>
 <li>/sw/bin にコマンドが入るので、パスの優先度を上げておく</li>
-</ul></li>
+</ul>
+</li>
 <li>wget</li>
 <li>tmux</li>
-</ul></li>
+</ul>
+</li>
 <li>問題：mac の tmux では pbcopy/pbpaste で クリップボードの共有ができない</li>
 <li>解決：<a href="http://d.hatena.ne.jp/tmatsuu/20111220/1324399472">X環境のクリップボードやOS Xのペーストボードとtmuxのバッファを連携する方法</a>
-
 <ul>
 <li>autoconf
-
 <ul>
 <li>古かったので結局自分で入れた</li>
-</ul></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>emacs24.2:エディター
-
 <ul>
 <li>デフォルトは emacs22.1 のため導入する。ただし、パッチを入れないと最大化等できない。以下のサイト参照のこと
-
 <ul>
 <li><a href="http://mgrace.info/?p=1032">http://mgrace.info/?p=1032</a></li>
 <li><a href="http://sakito.jp/emacs/emacs24.html">http://sakito.jp/emacs/emacs24.html</a></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>デフォルトターミナルの変更
-
 <ul>
 <li>コマンド <strong>chsh</strong> で zsh にする</li>
-</ul></li>
+</ul>
+</li>
 <li>iTerm2：ターミナル
-
 <ul>
 <li>デフォルトのターミナルに比べて、なんか見やすかったから入れといた
-
 <ul>
 <li><a href="http://www.iterm2.com/#/section/home">http://www.iterm2.com/#/section/home</a></li>
-</ul></li>
+</ul>
+</li>
 <li>meta-key が使えるように以下を実施する
-
 <ul>
 <li><a href="http://d.hatena.ne.jp/kitokitoki/20111129/p1">http://d.hatena.ne.jp/kitokitoki/20111129/p1</a></li>
-</ul></li>
-<li>zsh + tmux を使っていると、当該ソフトの autocomplete とか tab とか、あまり必要性を感じないんだが、どうなんだろうか。なんかメリットあったら教えて下さい。</li>
-</ul></li>
 </ul>
-
+</li>
+<li>zsh + tmux を使っていると、当該ソフトの autocomplete とか tab とか、あまり必要性を感じないんだが、どうなんだろうか。なんかメリットあったら教えて下さい。</li>
+</ul>
+</li>
+</ul>
 <h1 id="ブラウジング">ブラウジング</h1>
-
 <ul>
 <li>adobe pdf</li>
 <li>adobe flash</li>
 <li>firefox:ブラウザ
-
 <ul>
 <li>meta key が効かない問題あり・・・。現在対処不明</li>
 <li>アドオンのインストール
-
 <ul>
 <li>keysnail</li>
-</ul></li>
+</ul>
+</li>
 <li>plugin(従来と異なる点だけ)
-
 <ul>
 <li>Set Mac
-
 <ul>
 <li>firefox で Ctl + space が利用できるようになる
-
 <ul>
 <li>導入しない場合 Ctrl + space では、 右クリックになる</li>
-</ul></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>問題：acrobat reader をインストールしたのに、firefox から pdf の DL がされない、見れない、見れたと思ったら文字化けして困った</li>
 <li>解決：firefox を選択した後、上部のメニューバーの「 firefox 」-&gt; 「環境設定」-&gt; 「アプリケーションタブ」を選択して以下の通りする
-
 <ul>
 <li>ファイルの種類：Adobe Pdf document</li>
 <li>取り扱い方法　：Adobe Readerを使用（標準設定）</li>
-</ul></li>
-<li>ここが、Adobe Acrobat NPAPI Plug-in <code>~</code> とかになっていたのが原因だった</li>
-</ul></li>
 </ul>
-
+</li>
+<li>ここが、Adobe Acrobat NPAPI Plug-in <code>~</code> とかになっていたのが原因だった</li>
+</ul>
+</li>
+</ul>
 <h2 id="キーバインド設定">キーバインド設定</h2>
-
 <ul>
 <li>HyperSwitch：ウィンドウ切り替え
-
 <ul>
 <li>mac の command + tab だと、アプリケーション単位の切り替えしかできないことに加えて、main os の ubuntu とキーバインド alt + tab で揃えたいので導入する
-
 <ul>
 <li><a href="http://bahoom.com/hyperswitch">http://bahoom.com/hyperswitch</a></li>
-</ul></li>
+</ul>
+</li>
 <li>問題：HyperSwitch の設定から command + tab -&gt; alt + tab に変更したが、ターミナルではうまく働かない</li>
 <li>解決：ターミナルを選択した後、上部のメニューバーの「ターミナル」 -&gt; 「キーボード入力のセキュリティを保護」のチェックを外す
-
 <ul>
 <li>「キーボード入力のセキュリティを保護」が原因だったけど、これ何？</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>KeyRemap4MacBook:キーバインド変更
-
 <ul>
 <li>キーボードの「英数」「かな」がうざいので、 以下の通り違うキーに変更する
-
 <ol>
 <li>KeyRemap4MacBookを立ち上げて、Change Key タブから For Japanese メニューを選択する</li>
 <li>Change EISUU Key メニュー選択して、好きなキーバインドに変更する</li>
 <li>Change KANA key も同様に実施する</li>
-</ol></li>
-</ul></li>
+</ol>
+</li>
+</ul>
+</li>
 <li>IMEの変換（ひらがなと英数）を Ctrl + / にしたいので以下を実施する
-
 <ol>
 <li>「アップルボタン」 -&gt; 「システム環境設定」 -&gt; 「キーボード」-&gt; 「キーボードショートカット」 -&gt; 「キーボードと文字入力」を選択する</li>
 <li>「前の入力ソース」をダブルクリック後、Ctrl + / をタイプする</li>
-</ol></li>
+</ol>
+</li>
 </ul>
-
 <h2 id="その他">その他</h2>
-
 <ul>
 <li>inconsolate:フォント</li>
 <li>takao:フォント</li>
 <li>QuickSilver：ランチャー
-
 <ul>
 <li>どこからでもキーボードでアプリケーションを起動したいため導入する
-
 <ul>
 <li><a href="http://quicksilver.en.softonic.com/mac">http://quicksilver.en.softonic.com/mac</a></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>ShifIt:ウィンドウサイズ変更アプリ
-
 <ul>
 <li>Windows の windowボタン + カーソル で ウィンドを半分にしたり拡大したり出来たと思いますが、それを可能にする。
-
 <ul>
 <li><a href="http://code.google.com/p/shiftit/">http://code.google.com/p/shiftit/</a></li>
 <li><a href="http://veadardiary.blog29.fc2.com/blog-entry-2764.html">ウィンドウのサイズ変更や移動をホットキーから『ShiftIt』</a></li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 <li>マウスのホイール操作が逆なので戻す
-
 <ol>
 <li>「アップルボタン」 -&gt; 「システム環境設定」 -&gt; 「マウス」-&gt; 「スクロールの方向：ナチュラル」のチェックを外す</li>
-</ol></li>
+</ol>
+</li>
 </ul></div>
 
                         </article>
@@ -386,9 +375,10 @@
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

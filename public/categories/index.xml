@@ -1,13 +1,187 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Categories on Syati.info </title>
-      <generator uri="https://gohugo.io">Hugo</generator>
+    <title>Categories on Syati.info</title>
     <link>http://blog.syati.info/categories/</link>
+    <description>Recent content in Categories on Syati.info</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Fri, 25 Sep 2015 08:49:12 JST</updated>
+    <lastBuildDate>Sat, 29 Apr 2017 19:02:10 +0900</lastBuildDate>
+    
+	<atom:link href="http://blog.syati.info/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tool</title>
+      <link>http://blog.syati.info/categories/tool/</link>
+      <pubDate>Sat, 29 Apr 2017 19:02:10 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/tool/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OSX</title>
+      <link>http://blog.syati.info/categories/osx/</link>
+      <pubDate>Wed, 13 Jul 2016 01:01:50 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/osx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PHP</title>
+      <link>http://blog.syati.info/categories/php/</link>
+      <pubDate>Wed, 13 Jul 2016 01:01:50 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>http://blog.syati.info/categories/javascript/</link>
+      <pubDate>Sat, 02 Jan 2016 22:00:15 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TypeScript</title>
+      <link>http://blog.syati.info/categories/typescript/</link>
+      <pubDate>Sat, 31 Oct 2015 14:00:39 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/typescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Browser</title>
+      <link>http://blog.syati.info/categories/browser/</link>
+      <pubDate>Fri, 25 Sep 2015 08:49:12 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/browser/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Firefox</title>
+      <link>http://blog.syati.info/categories/firefox/</link>
+      <pubDate>Fri, 25 Sep 2015 08:49:12 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/firefox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>http://blog.syati.info/categories/hugo/</link>
+      <pubDate>Mon, 21 Sep 2015 16:25:47 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>http://blog.syati.info/categories/docker/</link>
+      <pubDate>Sun, 20 Sep 2015 15:49:48 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Emacs</title>
+      <link>http://blog.syati.info/categories/emacs/</link>
+      <pubDate>Wed, 02 Sep 2015 17:58:56 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CoffeeScript</title>
+      <link>http://blog.syati.info/categories/coffeescript/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/coffeescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Design</title>
+      <link>http://blog.syati.info/categories/design/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>http://blog.syati.info/categories/linux/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Node</title>
+      <link>http://blog.syati.info/categories/node/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/node/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Platform</title>
+      <link>http://blog.syati.info/categories/platform/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/platform/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scala</title>
+      <link>http://blog.syati.info/categories/scala/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/scala/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shell</title>
+      <link>http://blog.syati.info/categories/shell/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/shell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>http://blog.syati.info/categories/windows/</link>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu</title>
+      <link>http://blog.syati.info/categories/ubuntu/</link>
+      <pubDate>Sun, 01 Mar 2015 21:37:06 +0900</pubDate>
+      
+      <guid>http://blog.syati.info/categories/ubuntu/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

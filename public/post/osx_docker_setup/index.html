@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,70 +131,49 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#前提">前提</a></li>
-<li><a href="#step-1-install-virtualbox">Step 1 Install VirtualBox</a></li>
-<li><a href="#step-2-install-docker-toolbox">Step 2 Install Docker Toolbox</a></li>
-<li><a href="#step-3-とりあえず起動">Step 3 とりあえず起動</a></li>
-<li><a href="#error">Error</a>
-<ul>
-<li><a href="#error-1">VirtualBox 5.0.2 時で start.sh を叩いた場合</a></li>
-<li><a href="#error-2">VirtualBox 5.0.3 にした後、以前作成した vm のエラー</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#前提">前提</a></li>
+    <li><a href="#step-1-install-virtualbox">Step 1 Install VirtualBox</a></li>
+    <li><a href="#step-2-install-docker-toolbox">Step 2 Install Docker Toolbox</a></li>
+    <li><a href="#step-3-とりあえず起動">Step 3 とりあえず起動</a></li>
+    <li><a href="#error">Error</a>
+      <ul>
+        <li><a href="#error-1">VirtualBox 5.0.2 時で start.sh を叩いた場合</a></li>
+        <li><a href="#error-2">VirtualBox 5.0.3 にした後、以前作成した vm のエラー</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>巷で Docker と騒がれて随分経ったでしょうか。私の Mac が新しくなったのを気に Docker に入門したいと思います。何か新しい開発の度にゴミが入るのはちょっと・・・、とも思いますしね。</p>
-
 <p>昔、Vagrant と Chef でローカル開発環境を構築していたこともありましたが provison が遅く、何だかなぁ〜と思っているうちに遠ざかっていました。Docker はコンテナ型で、vagrant より軽いのかな。</p>
-
-<p></p>
-
 <h2 id="前提">前提</h2>
-
 <ul>
 <li>OSX 10.10.5</li>
 </ul>
-
 <h2 id="step-1-install-virtualbox">Step 1 Install VirtualBox</h2>
-
 <p>VirtualBox5.0.2 だと Step 3 で動かなくなるので、<a href="https://www.virtualbox.org/wiki/Testbuilds">テストビルド</a>から入れる。5.0.2 だった場合、 <a href="#error-1">エラー1</a>が出る。</p>
-
 <ul>
 <li>参考
-
 <ul>
 <li><a href="http://qiita.com/tukiyo3/items/c912fe9e403706964995">Docker Toolbox付属のVirtualBox5.0.2では動かないので5.0.3を手動で入れること</a></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="step-2-install-docker-toolbox">Step 2 Install Docker Toolbox</h2>
-
-<pre><code class="language-bash">$ brew cask install dockertoolbox
-</code></pre>
-
-<p>[cask]((http://blog.syati.info/post/brew_cask/) って思う方は、公式から <a href="https://www.docker.com/toolbox">Docker Toolbox</a> をインストールしましょう。詳しい説明は、<a href="https://docs.docker.com/mac/step_one/">Install Docker Mac OS X</a> 。インストールされる場所は以下のとおり、/usr/local/bin なので、path が通っていればコマンドが通るはずです。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew cask install dockertoolbox
+</code></pre></div><p>[cask]((http://blog.syati.info/post/brew_cask/) って思う方は、公式から <a href="https://www.docker.com/toolbox">Docker Toolbox</a> をインストールしましょう。詳しい説明は、<a href="https://docs.docker.com/mac/step_one/">Install Docker Mac OS X</a> 。インストールされる場所は以下のとおり、/usr/local/bin なので、path が通っていればコマンドが通るはずです。</p>
 <blockquote>
 <p>By default, the standard Docker Toolbox installation:
-   installs binaries for the Docker tools in /usr/local/bin</p>
+installs binaries for the Docker tools in /usr/local/bin</p>
 </blockquote>
-
 <p>コマンド例</p>
-
-<pre><code class="language-bash">$ docker --version
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker --version
 Docker version 1.8.1, build d12ea79
-</code></pre>
-
-<h2 id="step-3-とりあえず起動">Step 3 とりあえず起動</h2>
-
+</code></pre></div><h2 id="step-3-とりあえず起動">Step 3 とりあえず起動</h2>
 <p><a href="http://docs.docker.com/mac/step_one/#step-3-verify-your-installation">Installation</a> に書いてあるとおり、以下のコマンドで、とりあえず起動、コマンドを実行してみる。<a href="#error">エラー</a>が無いことをもって、インストール・起動ができたことの確認を終了する。</p>
-
-<pre><code class="language-bash">$ bash '/Applications/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ bash <span style="color:#e6db74">&#39;/Applications/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh&#39;</span>
 $ docker run hello-world
 
 Hello from Docker.
@@ -201,7 +181,7 @@ This message shows that your installation appears to be working correctly.
 
 To generate this message, Docker took the following steps:
  1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.
+ 2. The Docker daemon pulled the <span style="color:#e6db74">&#34;hello-world&#34;</span> image from the Docker Hub.
  3. The Docker daemon created a new container from that image which runs the
     executable that produces the output you are currently reading.
  4. The Docker daemon streamed that output to the Docker client, which sent it
@@ -215,48 +195,39 @@ Share images, automate workflows, and more with a free Docker Hub account:
 
 For more examples and ideas, visit:
   https://docs.docker.com/userguide/
-</code></pre>
-
-<h2 id="error">Error</h2>
-
+</code></pre></div><h2 id="error">Error</h2>
 <h3 id="error-1">VirtualBox 5.0.2 時で start.sh を叩いた場合</h3>
-
 <p>以下のとおり、vm が立ち上がってくれない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+Started machines may have new IP addresses. You may need to re-run the <span style="color:#e6db74">`</span>docker-machine env<span style="color:#e6db74">`</span> command.
 
-<pre><code class="language-bash">
-Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
-
-Setting environment variables for machine default...
-
-
-                        ##         .
-                  ## ## ##        ==
-               ## ## ## ## ##    ===
-           /&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;\___/ ===
-      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
-           \______ o           __/
-             \    \         __/
-              \____\_______/
+Setting environment variables <span style="color:#66d9ef">for</span> machine default...
 
 
-host is not running
-docker is configured to use the default machine with IP
-For help getting started, check out the docs at https://docs.docker.com
-
-default is not running. Please start this with docker-machine start default
-
-$ docker-machine start default
-exit status 1
-Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
-</code></pre>
-
-<h3 id="error-2">VirtualBox 5.0.3 にした後、以前作成した vm のエラー</h3>
-
+                        <span style="color:#75715e">##         .</span>
+                  <span style="color:#75715e">## ## ##        ==</span>
+               <span style="color:#75715e">## ## ## ## ##    ===</span>
+           /<span style="color:#e6db74">&#34;&#34;&#34;&#34;&#34;&#34;&#34;&#34;&#34;&#34;&#34;&#34;&#34;&#34;&#34;&#34;&#34;\___/ ===
+</span><span style="color:#e6db74">      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
+</span><span style="color:#e6db74">           \______ o           __/
+</span><span style="color:#e6db74">             \    \         __/
+</span><span style="color:#e6db74">              \____\_______/
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">host is not running
+</span><span style="color:#e6db74">docker is configured to use the default machine with IP
+</span><span style="color:#e6db74">For help getting started, check out the docs at https://docs.docker.com
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">default is not running. Please start this with docker-machine start default
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"></span>$<span style="color:#e6db74"> docker-machine start default
+</span><span style="color:#e6db74">exit status 1
+</span><span style="color:#e6db74">Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
+</span></code></pre></div><h3 id="error-2">VirtualBox 5.0.3 にした後、以前作成した vm のエラー</h3>
 <p>設定が取れないので、以前作成した vm は削除して、あらためて start.sh を叩きましょう。</p>
-
-<pre><code class="language-bash">$ docker-machine env default
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-machine env default
 open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or directory
-</code></pre></div>
+</code></pre></div></div>
 
                         </article>
 					
@@ -322,9 +293,10 @@ open /Users/mizuki-y/.docker/machine/machines/default/ca.pem: no such file or di
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

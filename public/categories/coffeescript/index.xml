@@ -1,44 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-      <title>Coffeescript on Syati.info </title>
-      <generator uri="https://gohugo.io">Hugo</generator>
+    <title>CoffeeScript on Syati.info</title>
     <link>http://blog.syati.info/categories/coffeescript/</link>
+    <description>Recent content in CoffeeScript on Syati.info</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <updated>Thu, 04 Jun 2015 23:09:38 JST</updated>
+    <lastBuildDate>Thu, 04 Jun 2015 23:09:38 +0900</lastBuildDate>
+    
+	<atom:link href="http://blog.syati.info/categories/coffeescript/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Emacs で CoffeeScript を AutoComplete する</title>
       <link>http://blog.syati.info/post/coffee_script/</link>
-      <pubDate>Thu, 04 Jun 2015 23:09:38 JST</pubDate>
+      <pubDate>Thu, 04 Jun 2015 23:09:38 +0900</pubDate>
       
       <guid>http://blog.syati.info/post/coffee_script/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考に、
-coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。
-&lt;/p&gt;
-
-&lt;h2 id=&#34;必要なパッケージ&#34;&gt;必要なパッケージ&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;M-x package-list-package から 以下をインストールする
-
-&lt;ul&gt;
-&lt;li&gt;jquery-doc&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;設定&#34;&gt;設定&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://tatsuyano.github.io/blog/2013/03/19/coffee-mode-used-ac-dict/&#34;&gt;Coffee-modeでauto-completeを使えるようにする&lt;/a&gt; を参考にして以下の部分を変更してあげる&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-clike&#34;&gt;(add-hook &#39;coffee-mode-hook
-    &#39;(lambda ()
-        (jquery-doc-setup) ;; ここに jquery-doc を追加する
-        (add-to-list &#39;ac-dictionary-files &amp;quot;~/.emacs.d/ac-dict/js2-mode&amp;quot;) ;; ここの ~/emacs.d/~~ は自分の辞書ファイルがあるところにしてある
-     ))
-&lt;/code&gt;&lt;/pre&gt;</description>
+coffee script で auto-complete 使えるようにして、ついでに jquery も auto-complete に追加してあげる。&lt;/p&gt;</description>
     </item>
     
   </channel>

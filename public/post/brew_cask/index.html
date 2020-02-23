@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -128,66 +129,41 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#インストールとコマンド">インストールとコマンド</a>
-<ul>
-<li><a href="#インストール">インストール</a></li>
-<li><a href="#コマンド">コマンド</a></li>
-</ul></li>
-<li><a href="#その他">その他</a></li>
-<li><a href="#参考">参考</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#インストールとコマンド">インストールとコマンド</a>
+      <ul>
+        <li><a href="#インストール">インストール</a></li>
+        <li><a href="#コマンド">コマンド</a></li>
+      </ul>
+    </li>
+    <li><a href="#その他">その他</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>Web ページや App Store から App をダブルクリックしてインストールは面倒くさいので <strong>cask</strong> をいれて解決する。</p>
-
-<p></p>
-
 <h2 id="インストールとコマンド">インストールとコマンド</h2>
-
 <h3 id="インストール">インストール</h3>
-
 <p><strong>cask</strong> コマンドを使えるようにするために以下のコマンドを実行する。</p>
-
-<pre><code class="language-bash">$ brew install caskroom/cask/brew-cask
-</code></pre>
-
-<h3 id="コマンド">コマンド</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew install caskroom/cask/brew-cask
+</code></pre></div><h3 id="コマンド">コマンド</h3>
 <p>検索</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew cask search chrome
 
-<pre><code class="language-bash">$ brew cask search chrome
-
-==&gt; Partial matches
+<span style="color:#f92672">==</span>&gt; Partial matches
 chrome-devtools                    google-chrome                      google-chrome-dev
 chrome-remote-desktop-host         google-chrome-beta
 chromecast                         google-chrome-canary
-</code></pre>
-
-<p>インストール</p>
-
-<pre><code class="language-bash">$ brew cask install google-chrome
-</code></pre>
-
-<p>アンインストール</p>
-
-<pre><code class="language-bash">$ brew cask uninstall google-chrome
-</code></pre>
-
-<h2 id="その他">その他</h2>
-
+</code></pre></div><p>インストール</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew cask install google-chrome
+</code></pre></div><p>アンインストール</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew cask uninstall google-chrome
+</code></pre></div><h2 id="その他">その他</h2>
 <p>cask でインストールしたアプリは以下にインストールされ、ホームフォルダ(~/)の Applications からアプリへのシンボリックリンクが作成される。ルート(/)にインストールが必要なものはパスワードが求められる。</p>
-
-<pre><code class="language-bash">/opt/homebrew-cask/Caskroom/
-</code></pre>
-
-<p>以下、~/Applications の例</p>
-
-<pre><code class="language-bash">~/Applications
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/opt/homebrew-cask/Caskroom/
+</code></pre></div><p>以下、~/Applications の例</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">~/Applications
 ├── Alfred 2.app -&gt; /opt/homebrew-cask/Caskroom/alfred/2.7.2_400/Alfred 2.app
 ├── Alfred Preferences.app -&gt; /opt/homebrew-cask/Caskroom/alfred/2.7.2_400/Alfred 2.app/Contents/Preferences/Alfred Preferences.app
 ├── Chrome Apps.localized
@@ -197,10 +173,7 @@ chromecast                         google-chrome-canary
 ├── Google Chrome.app -&gt; /opt/homebrew-cask/Caskroom/google-chrome/latest/Google Chrome.app
 ├── ShiftIt.app -&gt; /opt/homebrew-cask/Caskroom/shiftit/1.6.3/ShiftIt.app
 └── Visual Studio Code.app -&gt; /opt/homebrew-cask/Caskroom/visual-studio-code/0.7.0/Visual Studio Code.app
-</code></pre>
-
-<h2 id="参考">参考</h2>
-
+</code></pre></div><h2 id="参考">参考</h2>
 <ul>
 <li><a href="http://caskroom.io/">Homebrew Cask</a></li>
 </ul></div>
@@ -269,9 +242,10 @@ chromecast                         google-chrome-canary
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

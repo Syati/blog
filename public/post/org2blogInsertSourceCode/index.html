@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,203 +131,109 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#必要なもの">必要なもの</a></li>
-<li><a href="#使ってみる">使ってみる</a></li>
-<li><a href="#補足">補足</a></li>
-<li><a href="#覚えておくと良いショートカット">覚えておくと良いショートカット</a></li>
-<li><a href="#その他-参考サイト">その他、参考サイト</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#必要なもの">必要なもの</a></li>
+    <li><a href="#使ってみる">使ってみる</a></li>
+    <li><a href="#補足">補足</a></li>
+    <li><a href="#覚えておくと良いショートカット">覚えておくと良いショートカット</a></li>
+    <li><a href="#その他参考サイト">その他、参考サイト</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p>org2blog の記事投稿でコードも綺麗に投稿したい。ってことで先日 <a href="http://syati.info/?p=1746">org2blogからの投稿</a> の続き。</p>
-
-<p></p>
-
 <h2 id="必要なもの">必要なもの</h2>
-
 <ol>
-<li><p>htmlize.el を load-path の通ったところに入れる。</p>
-
+<li>
+<p>htmlize.el を load-path の通ったところに入れる。</p>
 <ul>
 <li>htmlize.el は <a href="http://orgmode.org/ja/index.html">org-mode</a> をDLして、解凍した contrib/lisp に入っている。</li>
-</ul></li>
-
-<li><p><a href="http://wordpress.org/extend/plugins/syntaxhighlighter/">SyntaxHighlighter Evolved</a> をワードプレスに入れて有効化しておく。</p></li>
-
-<li><p>emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に <strong>:wp-code t</strong> を書き加える。</p>
-
+</ul>
+</li>
+<li>
+<p><a href="http://wordpress.org/extend/plugins/syntaxhighlighter/">SyntaxHighlighter Evolved</a> をワードプレスに入れて有効化しておく。</p>
+</li>
+<li>
+<p>emacs の設定ファイル ( .emacs または .emacs.d/init.el ) の org2blog 設定に <strong>:wp-code t</strong> を書き加える。</p>
 <ul>
-<li><p>以下が .emacs.d/init.el に書き込んだ私の org2blog の設定</p>
-
+<li>
+<p>以下が .emacs.d/init.el に書き込んだ私の org2blog の設定</p>
 <p>;;org2blog
 (require &lsquo;org2blog)
 (setq org2blog/wp-blog-alist
-      &lsquo;((&ldquo;wordpress&rdquo;
-         :url &ldquo;your wordpress url&rdquo;
-         :username &ldquo;login name&rdquo;
-         :wp-code t))) ;; insert this line</p></li>
-</ul></li>
+&lsquo;((&ldquo;wordpress&rdquo;
+:url &ldquo;your wordpress url&rdquo;
+:username &ldquo;login name&rdquo;
+:wp-code t))) ;; insert this line</p>
+</li>
+</ul>
+</li>
 </ol>
-
 <h2 id="使ってみる">使ってみる</h2>
-
 <ol>
-<li>org2blog/wp-new-entry で投稿記事を作成する。</li>
-
-<li><p>以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。</p>
-
+<li>
+<p>org2blog/wp-new-entry で投稿記事を作成する。</p>
+</li>
+<li>
+<p>以下のようにコードブロックを挿入する（都合によりコードブロック内の＃は全角にしてありますが、# 半角にすること）。</p>
 <ul>
 <li>表記 <strong>#+BEGIN_SRC 言語　:syntaxhl [利用したいパラメータ（任意）] ソースコード #+END_SRC</strong>
-
 <ul>
 <li>:syntaxhl にパラメータを与えない場合は、ワードプレスの管理画面-&gt;設定 SyntaxHighlighter の一般設定が用いられる。</li>
-<li><a href="http://en.support.wordpress.com/code/posting-source-code/#configuration-parameters">パラメータはこちら</a>
-<br /></li>
-</ul></li>
+<li><a href="http://en.support.wordpress.com/code/posting-source-code/#configuration-parameters">パラメータはこちら</a></li>
 </ul>
-
-<pre>
-＃+BEGIN_SRC bash :syntaxhl
-echo "hoge" 
-＃+END_SRC
-</pre></li>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+</li>
 </ol>
-
 <p>これで org2blog の記事投稿でコードも綺麗に投稿できる。</p>
-
 <h2 id="補足">補足</h2>
-
 <ul>
-<li><p>必要なもの 3. の設定を加えるのは、以下の通り <pre> タグが挿入されるため SyntaxHighlighter の表記方法 [language] code [/language] と合致しなくなるため。（以下は org2blog.el 内のコード）</p>
-
+<li>必要なもの 3. の設定を加えるのは、以下の通り <!-- raw HTML omitted --> タグが挿入されるため SyntaxHighlighter の表記方法 [language] code [/language] と合致しなくなるため。（以下は org2blog.el 内のコード）
 <ul>
-<li><p>参考 <a href="https://github.com/punchagan/org2blog#posting-source-code-blocks">org2blog</a></p>
-
+<li>
+<p>参考 <a href="https://github.com/punchagan/org2blog#posting-source-code-blocks">org2blog</a></p>
 <p>(defcustom org2blog/wp-use-sourcecode-shortcode nil
-   &ldquo;Non-nil means convert <pre> tags to WP sourcecode blocks.
- NOTE: htmlize.el available in org-mode&rsquo;s contrib directory should
- be on your emacs load-path for this to work.&rdquo;
-   :group &lsquo;org2blog/wp
-   :type &lsquo;boolean)</p></li>
-</ul></li>
+&ldquo;Non-nil means convert <!-- raw HTML omitted --> tags to WP sourcecode blocks.
+NOTE: htmlize.el available in org-mode&rsquo;s contrib directory should
+be on your emacs load-path for this to work.&rdquo;
+:group &lsquo;org2blog/wp
+:type &lsquo;boolean)</p>
+</li>
 </ul>
-
+</li>
+</ul>
 <h2 id="覚えておくと良いショートカット">覚えておくと良いショートカット</h2>
-
 <ul>
-<li>コードブロックを挿入する際は <strong>&lt;キー<TAB></strong> をタイプするべし。
-
+<li>コードブロックを挿入する際は <strong>&lt;キー<!-- raw HTML omitted --></strong> をタイプするべし。
 <ul>
 <li>以下は、挿入したいテンプレートのキー一覧
-
 <ul>
 <li>参考 <a href="http://emacsclub.github.com/html/org_tutorial.html">Org-mode Tutorial / Cheat Sheet</a></li>
-</ul></li>
-</ul></li>
 </ul>
-
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="left" />
-
-<col  class="left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="left">キー　</th>
-<th scope="col" class="left">挿入したいテンプレート</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td class="left">s</td>
-<td class="left">#+begin\_src &#x2026; #+end\_src</td>
-</tr>
-
-
-<tr>
-<td class="left">e</td>
-<td class="left">#+begin\_example &#x2026; #+end\_example</td>
-</tr>
-
-
-<tr>
-<td class="left">q</td>
-<td class="left">#+begin\_quote &#x2026; #+end\_quote</td>
-</tr>
-
-
-<tr>
-<td class="left">v</td>
-<td class="left">#+begin\_verse &#x2026; #+end\_verse</td>
-</tr>
-
-
-<tr>
-<td class="left">c</td>
-<td class="left">#+begin\_center &#x2026; #+end\_center</td>
-</tr>
-
-
-<tr>
-<td class="left">l</td>
-<td class="left">#+begin\_latex &#x2026; #+end\_latex</td>
-</tr>
-
-
-<tr>
-<td class="left">L</td>
-<td class="left">#+latex:</td>
-</tr>
-
-
-<tr>
-<td class="left">h</td>
-<td class="left">#+begin\_html &#x2026; #+end\_html</td>
-</tr>
-
-
-<tr>
-<td class="left">H</td>
-<td class="left">#+html:</td>
-</tr>
-
-
-<tr>
-<td class="left">a</td>
-<td class="left">#+begin\_ascii &#x2026; #+end\_ascii</td>
-</tr>
-
-
-<tr>
-<td class="left">A</td>
-<td class="left">#+ascii:</td>
-</tr>
-
-
-<tr>
-<td class="left">i</td>
-<td class="left">#+index: line</td>
-</tr>
-
-
-<tr>
-<td class="left">I</td>
-<td class="left">#+include: line</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="その他-参考サイト">その他、参考サイト</h2>
-
+</li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="その他参考サイト">その他、参考サイト</h2>
 <ul>
 <li><a href="http://orgmode.org/worg/org-contrib/babel/intro.html">Babel: Introduction</a></li>
 <li><a href="http://d.hatena.ne.jp/tamura70/20100304/org">Emacs org-modeを使ってみる: (29) エクスポートオプション一覧</a></li>
@@ -396,9 +303,10 @@ echo "hoge"
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>

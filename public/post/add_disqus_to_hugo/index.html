@@ -27,9 +27,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -130,37 +131,26 @@
       
     <div id="toc">
         <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#step-1-theme-を変える">Step 1 theme を変える</a></li>
-<li><a href="#step-2-disqus-を導入">Step 2 Disqus を導入</a></li>
-<li><a href="#step-3-config-toml-を変更する">Step 3 config.toml を変更する</a></li>
-<li><a href="#step-4-記事にパラメータを加える">Step 4 記事にパラメータを加える</a></li>
-<li><a href="#step-5-新規記事のテンプレートを変更しておく">Step 5 新規記事のテンプレートを変更しておく</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#step-1-theme-を変える">Step 1 theme を変える</a></li>
+    <li><a href="#step-2-disqus-を導入">Step 2 Disqus を導入</a></li>
+    <li><a href="#step-3-configtoml-を変更する">Step 3 config.toml を変更する</a></li>
+    <li><a href="#step-4-記事にパラメータを加える">Step 4 記事にパラメータを加える</a></li>
+    <li><a href="#step-5-新規記事のテンプレートを変更しておく">Step 5 新規記事のテンプレートを変更しておく</a></li>
+  </ul>
 </nav>
     </div>
     
 	<div class="entry-content" itemprop="articleBody"><p><a href="http://blog.syati.info/post/create_hugo/">Part 1</a> 、 <a href="http://blog.syati.info/post/create_hugo_2/">Part 2</a> で
 Hugo を用いて github.io にブログを立ち上げましたが、コメント欄が無いので導入したい！！</p>
-
 <p><a href="http://gohugo.io/extras/comments/">Comments in Hugo</a> を参考にして早速、導入していこうとおもったが、
 もっと楽にやりたいので、Part 1 で利用していた theme の hyde を変えて超簡単に導入する。</p>
-
 <p>全てが終われば <a href="http://syati.github.io/yourblog/">yourblog</a> のようにコメント欄が作成できる。</p>
-
-<p></p>
-
 <h2 id="step-1-theme-を変える">Step 1 theme を変える</h2>
-
 <p>今まで通り、themes に中に theme を git clone してもいいのだが、
 とりあえず今回は themes ディレクトリを利用しないことにする。</p>
-
 <p>なので <strong>config.toml</strong> の<strong>theme</strong> 設定を削除する</p>
-
-<pre><code class="language-clike">title = &quot;My New Hugo Site&quot;
+<pre><code class="language-clike" data-lang="clike">title = &quot;My New Hugo Site&quot;
 baseurl = &quot;http://syati.github.io/yourblog&quot;
 languageCode = &quot;ja-jp&quot;
 theme = &quot;hyde&quot;  //この行はもう不要なので削除する
@@ -172,13 +162,10 @@ theme = &quot;hyde&quot;  //この行はもう不要なので削除する
 [taxonomies]
   category = &quot;categories&quot;
   tag = &quot;tags&quot;
-</code></pre>
-
-<p>theme を <a href="https://github.com/Syati/greyshade">Syati/greyshade</a> に変更する。
+</code></pre><p>theme を <a href="https://github.com/Syati/greyshade">Syati/greyshade</a> に変更する。
 git clone して yourblog のメインテーマにする</p>
-
-<pre><code class="language-bash">$ git clone git@github.com:Syati/greyshade.git
-$ tree -L 1 #こんなディレクトリ構成
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone git@github.com:Syati/greyshade.git
+$ tree -L <span style="color:#ae81ff">1</span> <span style="color:#75715e">#こんなディレクトリ構成</span>
 .
 ├── greyshade
 └── yourblog
@@ -186,20 +173,15 @@ $ tree -L 1 #こんなディレクトリ構成
 $ cd greyshade
 $ cp -R archetypes images layouts static ../yourblog
 $ cd ../yourblog
-$ rm -rf themes # 必要無いのでとりあえず削除
-$ hugo server # テーマが変わっていることが確認できる
-</code></pre>
-
-<h2 id="step-2-disqus-を導入">Step 2 Disqus を導入</h2>
-
+$ rm -rf themes <span style="color:#75715e"># 必要無いのでとりあえず削除</span>
+$ hugo server <span style="color:#75715e"># テーマが変わっていることが確認できる</span>
+</code></pre></div><h2 id="step-2-disqus-を導入">Step 2 Disqus を導入</h2>
 <p>導入が楽なので <a href="https://disqus.com">Disqus</a> を利用する。</p>
-
 <p>Disqus に Sign up して http://[username].github.io でサイトを登録して
 ゴニョゴニョすると、<strong>Choose your platform</strong> とかでる画面になるので
 <strong>Universal Code</strong> をクリックすると、以下のコードをコメント欄を表示
 させたいところに入れてね！と記載があるが、以下の <strong>[disqus_shortname]</strong> だけ覚えておく。</p>
-
-<pre><code class="language-markup">&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
+<pre><code class="language-markup" data-lang="markup">&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = [disqus_shortname];
@@ -212,72 +194,64 @@ $ hugo server # テーマが変わっていることが確認できる
     })();
 &lt;/script&gt;
 &lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot; rel=&quot;nofollow&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
-</code></pre>
-
-<h2 id="step-3-config-toml-を変更する">Step 3 config.toml を変更する</h2>
-
+</code></pre><h2 id="step-3-configtoml-を変更する">Step 3 config.toml を変更する</h2>
 <p><a href="https://github.com/Syati/greyshade#setup">テーマの設定</a> を config.toml にコピペして、編集。
 Step 2 で覚えておいた <strong>[disqus_shortname]</strong> を設定に入れる。以下サンプル</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;My New Hugo Site&#34;</span>
+baseurl <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://syati.github.io/yourblog&#34;</span>
+languageCode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ja-jp&#34;</span>
+canonifyurls <span style="color:#f92672">=</span> true
 
-<pre><code class="language-bash">title = &quot;My New Hugo Site&quot;
-baseurl = &quot;http://syati.github.io/yourblog&quot;
-languageCode = &quot;ja-jp&quot;
-canonifyurls = true
+<span style="color:#f92672">[</span>author<span style="color:#f92672">]</span>
+name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;your name&#34;</span>
+<span style="color:#75715e"># email will use for gravatar</span>
+email <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
 
-[author]
-name = &quot;your name&quot;
-# email will use for gravatar
-email = &quot;&quot;
+<span style="color:#f92672">[</span>taxonomies<span style="color:#f92672">]</span>
+category <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;categories&#34;</span>
 
-[taxonomies]
-category = &quot;categories&quot;
+<span style="color:#f92672">[</span>params<span style="color:#f92672">]</span>
+<span style="color:#75715e"># site description, will show under navigation</span>
+description <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;This is yourblog&#34;</span>
 
-[params]
-# site description, will show under navigation
-description = &quot;This is yourblog&quot;
+<span style="color:#75715e"># RSS / Email (optional) subscription links (change if using something like Feedburner)</span>
+subscribe_rss <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/index.xml&#34;</span>
+subscribe_email <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
 
-# RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss = &quot;/index.xml&quot;
-subscribe_email = &quot;&quot;
+<span style="color:#75715e"># social links</span>
+facebook_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+googleplus_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+twitter_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+github_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+coderwall_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+stackoverflow_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+stackoverflow_user_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+linkedin_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+pinterest_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+delicious_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+pinboard_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+quora_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+instagram_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+behance_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+douban_user <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
 
-# social links
-facebook_user = &quot;&quot;
-googleplus_user = &quot;&quot;
-twitter_user = &quot;&quot;
-github_user = &quot;&quot;
-coderwall_user = &quot;&quot;
-stackoverflow_user = &quot;&quot;
-stackoverflow_user_id = &quot;&quot;
-linkedin_user = &quot;&quot;
-pinterest_user = &quot;&quot;
-delicious_user = &quot;&quot;
-pinboard_user = &quot;&quot;
-quora_user = &quot;&quot;
-instagram_user = &quot;&quot;
-behance_user = &quot;&quot;
-douban_user = &quot;&quot;
+<span style="color:#75715e"># share links</span>
+facebook_like <span style="color:#f92672">=</span> true
+twitter_tweet_button <span style="color:#f92672">=</span> true
+google_plus_one <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;true&#34;</span>
+addthis_profile_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
 
-# share links
-facebook_like = true
-twitter_tweet_button = true
-google_plus_one = &quot;true&quot;
-addthis_profile_id = &quot;&quot;
+<span style="color:#75715e"># Disqus Comments</span>
+disqus_short_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;[disqus_shortname]&#34;</span> <span style="color:#75715e">#ここに part2 で覚えた[disqus_shortname]を入れる</span>
+disqus_show_comment_count <span style="color:#f92672">=</span> false
 
-# Disqus Comments
-disqus_short_name = &quot;[disqus_shortname]&quot; #ここに part2 で覚えた[disqus_shortname]を入れる
-disqus_show_comment_count = false
-
-# google analytics
-google_analytics_tracking_id = &quot;&quot;
-</code></pre>
-
-<h2 id="step-4-記事にパラメータを加える">Step 4 記事にパラメータを加える</h2>
-
+<span style="color:#75715e"># google analytics</span>
+google_analytics_tracking_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</code></pre></div><h2 id="step-4-記事にパラメータを加える">Step 4 記事にパラメータを加える</h2>
 <p>最後に記事のパラメータに <strong>comments = true</strong> といれれば、disqus を読み込んでコメント欄が入る。
 ただし、localhost では読み込まないようにしているので、記事ページ下部 に <strong>Comments</strong>
 とだけでてくる。</p>
-
-<pre><code class="language-markup">+++
+<pre><code class="language-markup" data-lang="markup">+++
 date = &quot;2015-06-06T17:20:38+09:00&quot;
 title = &quot;first&quot;
 comments = true
@@ -285,15 +259,11 @@ comments = true
 +++
 
 first page.
-</code></pre>
-
-<h2 id="step-5-新規記事のテンプレートを変更しておく">Step 5 新規記事のテンプレートを変更しておく</h2>
-
+</code></pre><h2 id="step-5-新規記事のテンプレートを変更しておく">Step 5 新規記事のテンプレートを変更しておく</h2>
 <p>毎回コマンド（ <strong>hugo new post/new_post.md</strong> ） で新規記事作成後に、
 comments = true とパラメータ設定するのは面倒くさいので
 yourblog/archetypes/default.md を以下のように変更しておくと楽ができる</p>
-
-<pre><code class="language-markup">+++
+<pre><code class="language-markup" data-lang="markup">+++
 Description = &quot;&quot;
 Tags = []
 Categories = []
@@ -365,9 +335,10 @@ comments = true
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2017
+			<footer id="footer" class="inner">Copyright &copy; 2020
 
     Syati.info
+
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
 <script src="http://blog.syati.info/js/slash.js"></script>
