@@ -1,0 +1,28 @@
+[settings]
+env_shell_expand = false
+
+[tools]
+go = "1.23.8"
+
+[env]
+_.path = ["./bin", "{{ env.HOME }}/go/bin"]
+
+[tasks.install-hugo]
+description = "Install Hugo extended version"
+run = "go install -tags extended github.com/gohugoio/hugo@latest"
+
+[tasks.build]
+description = "Build the site with Hugo"
+run = "hugo"
+
+[tasks.serve]
+description = "Start Hugo development server"
+run = "hugo server -D"
+
+[tasks.deploy]
+description = "Deploy to GitHub Pages"
+run = "./deploy.sh"
+
+[tasks.build-search]
+description = "Build search index"
+run = "npm run build"
