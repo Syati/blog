@@ -14,8 +14,8 @@
 {{ partial "custom/header.html" . }}
 <nav id="sub-nav">
 	<div class="social">
-		{{ if $.Site.Author.email }}
-			<a class="email" href='mailto:{{ $.Site.Author.email }}' title="Email">Email</a>
+		{{ if $.Site.Params.email }}
+			<a class="email" href='mailto:{{ $.Site.Params.email }}' title="Email">Email</a>
 		{{ end }}
 		{{ if $.Site.Params.facebook_user }}
 			<a class="facebook" href='https://www.facebook.com/{{ $.Site.Params.facebook_user }}' title="Facebook">Facebook</a>

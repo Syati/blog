@@ -47,3 +47,8 @@ disqus_show_comment_count = true
 # google analytics
 google_analytics_tracking_id = "UA-9380531-6"
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+

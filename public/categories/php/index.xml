@@ -1,25 +1,49 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>PHP on Syati.info</title>
-    <link>http://blog.syati.info/categories/php/</link>
-    <description>Recent content in PHP on Syati.info</description>
-    <generator>Hugo -- gohugo.io</generator>
+      <title>PHP on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>https://blog.syati.info/categories/php/</link>
     <language>ja-JP</language>
+    <author>mizuki-y</author>
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <lastBuildDate>Wed, 13 Jul 2016 01:01:50 +0900</lastBuildDate>
-    
-	<atom:link href="http://blog.syati.info/categories/php/index.xml" rel="self" type="application/rss+xml" />
-    
+    <updated>Wed, 13 Jul 2016 01:01:50 JST</updated>
     
     <item>
       <title>うるさいよ &#39;You are running composer with xdebug enabled. This has a major impact on runtime performance&#39;</title>
-      <link>http://blog.syati.info/post/php_composer/</link>
-      <pubDate>Wed, 13 Jul 2016 01:01:50 +0900</pubDate>
-      
-      <guid>http://blog.syati.info/post/php_composer/</guid>
+      <link>https://blog.syati.info/post/php_composer/</link>
+      <pubDate>Wed, 13 Jul 2016 01:01:50 JST</pubDate>
+      <author>mizuki-y</author>
+      <guid>https://blog.syati.info/post/php_composer/</guid>
       <description>&lt;p&gt;最近、php を触る機会が増えたので、メモメモ。
-composer 叩いたら xdebug を enable にしてると遅いよっていう以下のメッセージが流れるので composer 叩いた時に出ないようにする。&lt;/p&gt;</description>
+composer 叩いたら xdebug を enable にしてると遅いよっていう以下のメッセージが流れるので composer 叩いた時に出ないようにする。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;You are running composer with xdebug enabled. This has a major impact on runtime performance. See https://getcomposer.org/xdebug
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;方法&#34;&gt;方法&lt;/h2&gt;
+&lt;p&gt;方法 1. 2. どちらかでインストール、設定する&lt;/p&gt;
+&lt;h3 id=&#34;1-brew-でインストールする&#34;&gt;1. brew でインストールする&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install composer
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# .zshrc に alias を設定する&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;alias composer&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;php -n /usr/local/Cellar/composer/1.1.2/libexec/composer.phar&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;1.1.2&lt;/strong&gt; というバージョンのところは適宜修正する。&lt;/p&gt;
+&lt;h4 id=&#34;その他&#34;&gt;その他&lt;/h4&gt;
+&lt;p&gt;以下のよう alias を設定すれば良いのではと思うかもしれないが、うまくコマンドが通らない&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# .zshrc に alias を設定する&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;alias composer&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;php -n /usr/local/bin/composer&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#上記の設定だとコマンドを叩いた時に以下のような出力がでてしまう&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ composer
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;/usr/bin/env php -d allow_url_fopen&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;On -d detect_unicode&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$@&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;というのも &lt;strong&gt;usr/local/bin/composer&lt;/strong&gt; のリンク先が &lt;strong&gt;/usr/local/Cellar/composer/1.1.2/libexec/composer&lt;/strong&gt; でその中身が以下のようになっているため。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/usr/bin/env bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;/usr/bin/env php -d allow_url_fopen&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;On -d detect_unicode&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;Off /usr/local/Cellar/composer/1.1.2/libexec/composer.phar &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$@&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-composer-の-web-からインストールする&#34;&gt;2. composer の web からインストールする&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;wget https://getcomposer.org/download/1.1.3/composer.phar
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mv ./composer.phar /usr/local/bin/composer
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;chmod +x /usr/local/bin/composer
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# .zshrc に alias を設定する&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;alias composer&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;php -n /usr/local/bin/composer&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&#34;&gt;http://stackoverflow.com/questions/31083195/disabling-xdebug-when-running-composer&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

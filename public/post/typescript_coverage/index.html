@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>TypeScript でユニットテストする。カバレッジもねっ!! - Syati.info</title>
-	<meta name="author" content="map[author:mizuki-y]">
+	<meta name="author" content="mizuki-y">
 
 	
 	  
@@ -17,16 +17,16 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     
-	<link href='http://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	<link href='https://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://blog.syati.info/post/typescript_coverage/">
-	<link href="http://blog.syati.info/favicon.png" rel="shortcut icon">
-	<link href="http://blog.syati.info/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="http://blog.syati.info/css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="canonical" href="https://blog.syati.info/post/typescript_coverage/">
+	<link href="https://blog.syati.info//favicon.png" rel="shortcut icon">
+	<link href="https://blog.syati.info//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://blog.syati.info//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
 	
-	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://blog.syati.info//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
 <script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -52,7 +52,7 @@
 		<div class="left-col">
 			<div class="intrude-less">
 			<header id="header" class="inner">
-<a href="http://blog.syati.info">    
+<a href="https://blog.syati.info/">    
     <div>
         <h1>
             Syati.info
@@ -69,13 +69,13 @@
 	<div class="social">
 		
 		
-			<a class="facebook" href='http://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+			<a class="facebook" href='https://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
 		
 		
 			<a class="google" href='https://plus.google.com/&#43;mizukiyamamoto' rel="author" title="Google+">Google+</a>
 		
 		
-			<a class="twitter" href='http://twitter.com/syati_org' title="Twitter">Twitter</a>
+			<a class="twitter" href='https://twitter.com/syati_org' title="Twitter">Twitter</a>
 		
 		
 			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
@@ -91,15 +91,15 @@
 		
     	
     	
-			<a class="rss" href='http://blog.syati.info/index.xml' title="RSS">RSS</a>
+			<a class="rss" href='https://blog.syati.info/index.xml' title="RSS">RSS</a>
 		
 	</div>
 </nav>
 <nav id="main-nav">
     <ul class="main">
-    <li><a href="http://blog.syati.info/">Blog</a></li>
-    <li><a href="http://blog.syati.info/about/">About</a></li>
-    <li><a href="http://blog.syati.info/post/">Archives</a></li>
+    <li><a href="https://blog.syati.info/">Blog</a></li>
+    <li><a href="https://blog.syati.info/about/">About</a></li>
+    <li><a href="https://blog.syati.info/post/">Archives</a></li>
 </ul>
 <div class="search-nav">
     <label for="search">Search</label>
@@ -124,7 +124,7 @@
                                
    <h1 class="title" itemprop="name">
        
-       <img class="entry-title-logo" src="http://blog.syati.info/images/logo/typescript" />
+       <img class="entry-title-logo" src="https://blog.syati.info/images/logo/typescript" />
        
        TypeScript でユニットテストする。カバレッジもねっ!!
    </h1>
@@ -194,128 +194,126 @@
 <h2 id="step-1-とりあえずテストを書く">Step 1: とりあえずテストを書く</h2>
 <p><a href="https://github.com/Syati/typescript-sample/tree/master/011_test_sample">プロジェクト</a> を確認しておく。全体が理解しやすくなると思う。</p>
 <p>テストは、単にコンストラクタで与えられた値を保持しているかどうか。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// app/src/main.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestTarget</span> {
-    <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">name</span>){
-    }
-}
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// app/test/main.test.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">assert</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;power-assert&#39;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">TestTarget</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../src/main&#39;</span>;
-
-<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#34;TestTarget&#34;</span>, () <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;should have a name&#34;</span>, () <span style="color:#f92672">=&gt;</span> {
-        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">testTarget</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TestTarget</span>(<span style="color:#e6db74">&#34;test&#34;</span>);
-        <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">equal</span>(<span style="color:#a6e22e">testTarget</span>.<span style="color:#a6e22e">name</span>, <span style="color:#e6db74">&#34;test&#34;</span>);
-    });
-});
-</code></pre></div><p>すごいシンプルですね。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// app/src/main.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestTarget</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">name</span>){
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// app/test/main.test.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">assert</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;power-assert&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">TestTarget</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../src/main&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#34;TestTarget&#34;</span>, () <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;should have a name&#34;</span>, () <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">testTarget</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TestTarget</span>(<span style="color:#e6db74">&#34;test&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">equal</span>(<span style="color:#a6e22e">testTarget</span>.<span style="color:#a6e22e">name</span>, <span style="color:#e6db74">&#34;test&#34;</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>すごいシンプルですね。</p>
 <h2 id="step-2-トランスパイルする">Step 2: トランスパイルする</h2>
 <p>tsc コマンドを叩く前に設定ファイルを書いときましょう。以下の tsconfig.json になります。
 とくに変わった点はないですね。重要なポイントとしては、<strong>&ldquo;sourceMap&rdquo;: true</strong>です。
 後々、ts のカバレッジを測るために必要になってきます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
-  <span style="color:#e6db74">&#34;version&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1.6.2&#34;</span>,
-  <span style="color:#e6db74">&#34;compilerOptions&#34;</span><span style="color:#f92672">:</span> {
-    <span style="color:#e6db74">&#34;module&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;commonjs&#34;</span>,
-    <span style="color:#e6db74">&#34;target&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;es5&#34;</span>,
-    <span style="color:#e6db74">&#34;sourceMap&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
-  },
-  <span style="color:#e6db74">&#34;exclude&#34;</span><span style="color:#f92672">:</span> [
-    <span style="color:#e6db74">&#34;dist&#34;</span>,
-    <span style="color:#e6db74">&#34;node_modules&#34;</span>
-  ],
-  <span style="color:#e6db74">&#34;files&#34;</span><span style="color:#f92672">:</span> [
-    <span style="color:#e6db74">&#34;typings/tsd.d.ts&#34;</span>,
-    <span style="color:#e6db74">&#34;app/src/main.ts&#34;</span>,
-    <span style="color:#e6db74">&#34;app/test/main.test.ts&#34;</span>
-  ]
-}
-</code></pre></div><p>プロジェクトルートで tsc コマンドを叩きます</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tsc
-</code></pre></div><h2 id="step-3-テストする">Step 3: テストする</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;version&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1.6.2&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;compilerOptions&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;module&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;commonjs&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;target&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;es5&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sourceMap&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;exclude&#34;</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;dist&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;node_modules&#34;</span>
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;files&#34;</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;typings/tsd.d.ts&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;app/src/main.ts&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;app/test/main.test.ts&#34;</span>
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>プロジェクトルートで tsc コマンドを叩きます</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tsc
+</span></span></code></pre></div><h2 id="step-3-テストする">Step 3: テストする</h2>
 <p>Step 2 でトランスパイル済みなので、ts ファイル以外に js、map ファイルが存在すると思います。ディレクトリが汚れてあたふたするかもしれませんが、package.json に clean スクリプトを書くことで解決できるので、今は我慢。</p>
 <p>プロジェクトルートでテストコマンドを叩いてみます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mocha app/test/*.test.js
-
-  TestTarget
-
-    ✓ should have a name
-
-
-  <span style="color:#ae81ff">1</span> passing <span style="color:#f92672">(</span>8ms<span style="color:#f92672">)</span>
-</code></pre></div><p>成功、終わりです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mocha app/test/*.test.js
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  TestTarget
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ✓ should have a name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> passing <span style="color:#f92672">(</span>8ms<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>成功、終わりです。</p>
 <p>味気ないですね。</p>
 <p>ユニットテストのモチベーションをあげるためにも、やっぱりカバレッジですよ！！</p>
 <h2 id="step-4-カバレッジを測る">Step 4: カバレッジを測る</h2>
 <p>とくに必要なことはありません。Step 0 で説明したとおり <strong>istanbul</strong> を利用するだけ。
 すこし異なっているのは、 mocha が _mocha を利用するということです。理由は、以下のとおり。</p>
 <p><a href="https://github.com/gotwarlost/istanbul/issues/44#issuecomment-16093330">https://github.com/gotwarlost/istanbul/issues/44#issuecomment-16093330</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ istanbul cover _mocha -- ./app/test/*.test.js
-
-  TestTarget
-
-    ✓ should have a name
-
-
-  <span style="color:#ae81ff">1</span> passing <span style="color:#f92672">(</span>5ms<span style="color:#f92672">)</span>
-
-
-<span style="color:#f92672">===============================</span> Coverage summary <span style="color:#f92672">===============================</span>
-Statements   : 100% <span style="color:#f92672">(</span> 6/6 <span style="color:#f92672">)</span>
-Branches     : 100% <span style="color:#f92672">(</span> 0/0 <span style="color:#f92672">)</span>
-Functions    : 100% <span style="color:#f92672">(</span> 2/2 <span style="color:#f92672">)</span>
-Lines        : 100% <span style="color:#f92672">(</span> 6/6 <span style="color:#f92672">)</span>
-<span style="color:#f92672">================================================================================</span>
-</code></pre></div><p>出力に、<strong>coverage summary</strong> が増えましたね。また、プロジェクトルートに <strong>coverage</strong> ディレクトリが出力されているので、中の index.html を見ましょう。通過したコード、100% の数字にやる気が出てきますね。ただし、これはトランスパイル後の js のカバレッジなので、あと一手間かけてあげましょう。</p>
-<figure>
-    <img src="coverage_js.png"/> <figcaption>
-            <h4>トランスパイル後のカバレッジ</h4>
-        </figcaption>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ istanbul cover _mocha -- ./app/test/*.test.js
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  TestTarget
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ✓ should have a name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> passing <span style="color:#f92672">(</span>5ms<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">===============================</span> Coverage summary <span style="color:#f92672">===============================</span>
+</span></span><span style="display:flex;"><span>Statements   : 100% <span style="color:#f92672">(</span> 6/6 <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Branches     : 100% <span style="color:#f92672">(</span> 0/0 <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Functions    : 100% <span style="color:#f92672">(</span> 2/2 <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Lines        : 100% <span style="color:#f92672">(</span> 6/6 <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">================================================================================</span>
+</span></span></code></pre></div><p>出力に、<strong>coverage summary</strong> が増えましたね。また、プロジェクトルートに <strong>coverage</strong> ディレクトリが出力されているので、中の index.html を見ましょう。通過したコード、100% の数字にやる気が出てきますね。ただし、これはトランスパイル後の js のカバレッジなので、あと一手間かけてあげましょう。</p>
+<figure><img src="https://blog.syati.info/post/typescript_coverage/coverage_js.png"><figcaption>
+      <h4>トランスパイル後のカバレッジ</h4>
+    </figcaption>
 </figure>
 
 <h2 id="step-5-ソースマップから-ts-のカバレッジを測る">Step 5: ソースマップから ts のカバレッジを測る</h2>
 <p><strong>coverage</strong> ディレクトリにて以下のコマンドたたいてあげるだけです。ts のカバレッジが html-repot ディレクトリに出力されます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ remap-istanbul -i coverage.json -o html-report -t html
-</code></pre></div><figure>
-    <img src="coverage_ts.png"/> <figcaption>
-            <h4>ts のカバレッジ</h4>
-        </figcaption>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ remap-istanbul -i coverage.json -o html-report -t html
+</span></span></code></pre></div><figure><img src="https://blog.syati.info/post/typescript_coverage/coverage_ts.png"><figcaption>
+      <h4>ts のカバレッジ</h4>
+    </figcaption>
 </figure>
 
 <p>ts のカバレッジが測れました。ただ、一連のコマンドを毎回叩くのは疲れるので、<strong>package.json</strong> を用いて楽にしましょう。</p>
 <p>＊図が Step 4 とデザインが違うのは、remap-istanbul で利用している istanbul のバージョンが古いからだと思われる</p>
 <h2 id="step-6-packagejson-で楽する">Step 6: package.json で楽する</h2>
 <p>一連のコマンドを <strong>package.json</strong> に書いておきましょう。以下サンプル。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
-  ...
-
-  <span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#f92672">:</span> {
-    <span style="color:#e6db74">&#34;postinstall&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;tsd install&#34;</span>,
-    <span style="color:#e6db74">&#34;clean&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;find -E . -regex &#39;./app/.+\\.(js|map)$&#39; -type f | xargs rm &amp;&amp; rm -rf ./build&#34;</span>,
-    <span style="color:#e6db74">&#34;pretest&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;tsc&#34;</span>,
-    <span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;istanbul cover _mocha -- ./app/test/*.test.js&#34;</span>,
-    <span style="color:#e6db74">&#34;posttest&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;cd coverage &amp;&amp; remap-istanbul -i coverage.json -o html-report -t html&#34;</span>
-    },
-    
-    ...
-}
-</code></pre></div><p>大事なのは、 <strong>1. pretest、2. test、3. posttest</strong> です。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;postinstall&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;tsd install&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;clean&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;find -E . -regex &#39;./app/.+\\.(js|map)$&#39; -type f | xargs rm &amp;&amp; rm -rf ./build&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pretest&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;tsc&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;istanbul cover _mocha -- ./app/test/*.test.js&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;posttest&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;cd coverage &amp;&amp; remap-istanbul -i coverage.json -o html-report -t html&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>大事なのは、 <strong>1. pretest、2. test、3. posttest</strong> です。</p>
 <p><strong>npm test</strong> を実行することで **1. 2. 3.**の順番で実行してくれます。今回の step2 - step5 をコマンド１つで済せられるということですね。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 次回からはこれだけでよい</span>
-$ npm test 
-
-<span style="color:#75715e"># js とか map 削除したいとおもったら</span>
-$ npm clean
-</code></pre></div><h2 id="その他">その他</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 次回からはこれだけでよい</span>
+</span></span><span style="display:flex;"><span>$ npm test 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># js とか map 削除したいとおもったら</span>
+</span></span><span style="display:flex;"><span>$ npm clean
+</span></span></code></pre></div><h2 id="その他">その他</h2>
 <h3 id="istanbulyml-でカバレッジレポートのディレクトリ指定する">.istanbul.yml でカバレッジレポートのディレクトリ指定する</h3>
 <p><strong>.istanbul.yml</strong> に以下のように書いてあげることで、レポートの出力先を変えることが出来る。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e">#.istanbul.yml</span>
-<span style="color:#66d9ef">reporting</span>:
-    <span style="color:#66d9ef">dir</span>: ./docs/coverage
-</code></pre></div><p>もっとカスタマイズしたい場合は、以下のコマンドからデフォルト設定など説明をみるといいかも。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ istanbul help config
-</code></pre></div></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e">#.istanbul.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">reporting</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">dir</span>: <span style="color:#ae81ff">./docs/coverage</span>
+</span></span></code></pre></div><p>もっとカスタマイズしたい場合は、以下のコマンドからデフォルト設定など説明をみるといいかも。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ istanbul help config
+</span></span></code></pre></div></div>
 
                         </article>
 					
@@ -333,7 +331,7 @@ $ npm clean
 	
 	</div>
 	
-  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	<script type="text/javascript" src='//s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
   	
 </div>
 
@@ -361,7 +359,7 @@ $ npm clean
         return;
     
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
     
@@ -381,14 +379,14 @@ $ npm clean
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2020
+			<footer id="footer" class="inner">Copyright &copy; 2026
 
-    Syati.info
+mizuki-y
 
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
-<script src="http://blog.syati.info/js/slash.js"></script>
-<script src="http://blog.syati.info/js/jquery.fancybox.pack.js"></script>
+<script src="https://blog.syati.info//js/slash.js"></script>
+<script src="https://blog.syati.info//js/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
 	$('.fancybox').fancybox();
@@ -397,9 +395,9 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
 </footer>
 		</div>
 	</div>
-	<script src="http://blog.syati.info/js/prism.js"></script>
-<script src="http://blog.syati.info/js/lunr.min.js"></script>
-<script src="http://blog.syati.info/js/search.js"></script>
+	<script src="https://blog.syati.info//js/prism.js"></script>
+<script src="https://blog.syati.info//js/lunr.min.js"></script>
+<script src="https://blog.syati.info//js/search.js"></script>
 
 </body>
 </html>
