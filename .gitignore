@@ -1,4 +1,27 @@
-node_modules
+# macOS
 .DS_Store
+
+# Editor
 .tern-port
+
+# Hugo
+public/
+.hugo_build.lock
+resources/_gen/
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+go.work.sum
+
+# CSS preprocessor
 .sass-cache
+
+# Node.js (legacy - can be removed if not using npm anymore)
+node_modules/
