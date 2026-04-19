@@ -2,8 +2,8 @@
 
 echo -e "\033[0;32mDeploying updates to Github...\033[0m"
 
-# Build index for searching
-npm run build
+# Build search index with Go
+go run cmd/indexer/main.go
 
 # Build the project.
 hugo

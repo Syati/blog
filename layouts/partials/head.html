@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>{{ if and (.IsPage) (.Title) }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
-	<meta name="author" content="{{ .Site.Author }}">
+	<meta name="author" content="{{ .Site.Params.author }}">
 
 	{{ $description := .Description }}
 	{{ if $description }} {{ $description := .Summary }} {{ end }}
