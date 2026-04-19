@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>node 利用するなら、まずは環境変数を設定しましょう - Syati.info</title>
-	<meta name="author" content="map[author:mizuki-y]">
+	<meta name="author" content="mizuki-y">
 
 	
 	  
@@ -17,16 +17,16 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     
-	<link href='http://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	<link href='https://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://blog.syati.info/post/node_path/">
-	<link href="http://blog.syati.info/favicon.png" rel="shortcut icon">
-	<link href="http://blog.syati.info/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="http://blog.syati.info/css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="canonical" href="https://blog.syati.info/post/node_path/">
+	<link href="https://blog.syati.info//favicon.png" rel="shortcut icon">
+	<link href="https://blog.syati.info//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://blog.syati.info//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
 	
-	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://blog.syati.info//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
 <script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -52,7 +52,7 @@
 		<div class="left-col">
 			<div class="intrude-less">
 			<header id="header" class="inner">
-<a href="http://blog.syati.info">    
+<a href="https://blog.syati.info/">    
     <div>
         <h1>
             Syati.info
@@ -69,13 +69,13 @@
 	<div class="social">
 		
 		
-			<a class="facebook" href='http://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+			<a class="facebook" href='https://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
 		
 		
 			<a class="google" href='https://plus.google.com/&#43;mizukiyamamoto' rel="author" title="Google+">Google+</a>
 		
 		
-			<a class="twitter" href='http://twitter.com/syati_org' title="Twitter">Twitter</a>
+			<a class="twitter" href='https://twitter.com/syati_org' title="Twitter">Twitter</a>
 		
 		
 			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
@@ -91,15 +91,15 @@
 		
     	
     	
-			<a class="rss" href='http://blog.syati.info/index.xml' title="RSS">RSS</a>
+			<a class="rss" href='https://blog.syati.info/index.xml' title="RSS">RSS</a>
 		
 	</div>
 </nav>
 <nav id="main-nav">
     <ul class="main">
-    <li><a href="http://blog.syati.info/">Blog</a></li>
-    <li><a href="http://blog.syati.info/about/">About</a></li>
-    <li><a href="http://blog.syati.info/post/">Archives</a></li>
+    <li><a href="https://blog.syati.info/">Blog</a></li>
+    <li><a href="https://blog.syati.info/about/">About</a></li>
+    <li><a href="https://blog.syati.info/post/">Archives</a></li>
 </ul>
 <div class="search-nav">
     <label for="search">Search</label>
@@ -140,34 +140,34 @@
 	<div class="entry-content" itemprop="articleBody"><p>javascript を REPL で利用できるといえば <strong>node</strong> 。underscore.js を試したいと思いハマったメモ。</p>
 <h2 id="はまった事">はまった事</h2>
 <p>以下の通り、グローバルにunderscoreをいれてnodeを起動したのちunderscoreを読み込むとエラー。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo npm install undersocre -g
-$ node 
-    
-require<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;underscore&#39;</span><span style="color:#f92672">)</span>; 
-Error: Cannot find module <span style="color:#e6db74">&#39;underscore&#39;</span>
-  at Function.Module._resolveFilename <span style="color:#f92672">(</span>module.js:338:15<span style="color:#f92672">)</span>
-  at Function.Module._load <span style="color:#f92672">(</span>module.js:280:25<span style="color:#f92672">)</span>
-  at Module.require <span style="color:#f92672">(</span>module.js:362:17<span style="color:#f92672">)</span>
-  at require <span style="color:#f92672">(</span>module.js:378:17<span style="color:#f92672">)</span>
-  at repl:1:1
-  at REPLServer.self.eval <span style="color:#f92672">(</span>repl.js:109:21<span style="color:#f92672">)</span>
-  at rli.on.self.bufferedCmd <span style="color:#f92672">(</span>repl.js:258:20<span style="color:#f92672">)</span>
-  at REPLServer.self.eval <span style="color:#f92672">(</span>repl.js:116:5<span style="color:#f92672">)</span>
-  at Interface.&lt;anonymous&gt; <span style="color:#f92672">(</span>repl.js:248:12<span style="color:#f92672">)</span>
-  at Interface.EventEmitter.emit <span style="color:#f92672">(</span>events.js:96:17<span style="color:#f92672">)</span>
-</code></pre></div><h2 id="原因">原因</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo npm install undersocre -g
+</span></span><span style="display:flex;"><span>$ node 
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>require<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;underscore&#39;</span><span style="color:#f92672">)</span>; 
+</span></span><span style="display:flex;"><span>Error: Cannot find module <span style="color:#e6db74">&#39;underscore&#39;</span>
+</span></span><span style="display:flex;"><span>  at Function.Module._resolveFilename <span style="color:#f92672">(</span>module.js:338:15<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  at Function.Module._load <span style="color:#f92672">(</span>module.js:280:25<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  at Module.require <span style="color:#f92672">(</span>module.js:362:17<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  at require <span style="color:#f92672">(</span>module.js:378:17<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  at repl:1:1
+</span></span><span style="display:flex;"><span>  at REPLServer.self.eval <span style="color:#f92672">(</span>repl.js:109:21<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  at rli.on.self.bufferedCmd <span style="color:#f92672">(</span>repl.js:258:20<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  at REPLServer.self.eval <span style="color:#f92672">(</span>repl.js:116:5<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  at Interface.&lt;anonymous&gt; <span style="color:#f92672">(</span>repl.js:248:12<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  at Interface.EventEmitter.emit <span style="color:#f92672">(</span>events.js:96:17<span style="color:#f92672">)</span>
+</span></span></code></pre></div><h2 id="原因">原因</h2>
 <p>npmでインストールしたnode_modulesのパスを環境変数に設定していなかっただけ。</p>
 <h2 id="解決">解決</h2>
 <ol>
 <li>設定するパスを確認する</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm root -g
-/usr/local/lib/node_modules
-</code></pre></div><ol start="2">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm root -g
+</span></span><span style="display:flex;"><span>/usr/local/lib/node_modules
+</span></span></code></pre></div><ol start="2">
 <li>利用ターミナル(bash なら .bashrc、zsh なら .zshrc ）に１の結果を以下のように追加して終了</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">export NODE_PATH<span style="color:#f92672">=</span>/usr/local/lib/node_modules
-</code></pre></div></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export NODE_PATH<span style="color:#f92672">=</span>/usr/local/lib/node_modules
+</span></span></code></pre></div></div>
 
                         </article>
 					
@@ -185,7 +185,7 @@ Error: Cannot find module <span style="color:#e6db74">&#39;underscore&#39;</span
 	
 	</div>
 	
-  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	<script type="text/javascript" src='//s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
   	
 </div>
 
@@ -213,7 +213,7 @@ Error: Cannot find module <span style="color:#e6db74">&#39;underscore&#39;</span
         return;
     
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
     
@@ -233,14 +233,14 @@ Error: Cannot find module <span style="color:#e6db74">&#39;underscore&#39;</span
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2020
+			<footer id="footer" class="inner">Copyright &copy; 2026
 
-    Syati.info
+mizuki-y
 
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
-<script src="http://blog.syati.info/js/slash.js"></script>
-<script src="http://blog.syati.info/js/jquery.fancybox.pack.js"></script>
+<script src="https://blog.syati.info//js/slash.js"></script>
+<script src="https://blog.syati.info//js/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
 	$('.fancybox').fancybox();
@@ -249,9 +249,9 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
 </footer>
 		</div>
 	</div>
-	<script src="http://blog.syati.info/js/prism.js"></script>
-<script src="http://blog.syati.info/js/lunr.min.js"></script>
-<script src="http://blog.syati.info/js/search.js"></script>
+	<script src="https://blog.syati.info//js/prism.js"></script>
+<script src="https://blog.syati.info//js/lunr.min.js"></script>
+<script src="https://blog.syati.info//js/search.js"></script>
 
 </body>
 </html>

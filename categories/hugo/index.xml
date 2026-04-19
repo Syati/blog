@@ -1,23 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hugo on Syati.info</title>
-    <link>http://blog.syati.info/categories/hugo/</link>
-    <description>Recent content in Hugo on Syati.info</description>
-    <generator>Hugo -- gohugo.io</generator>
+      <title>Hugo on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>https://blog.syati.info/categories/hugo/</link>
     <language>ja-JP</language>
+    <author>mizuki-y</author>
     <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 21 Sep 2015 16:25:47 +0900</lastBuildDate>
-    
-	<atom:link href="http://blog.syati.info/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
-    
+    <updated>Mon, 21 Sep 2015 16:25:47 JST</updated>
     
     <item>
       <title>Hugo Part 5 - Hugo に Google カスタム検索エンジンを導入</title>
-      <link>http://blog.syati.info/post/hugo_search/</link>
-      <pubDate>Mon, 21 Sep 2015 16:25:47 +0900</pubDate>
-      
-      <guid>http://blog.syati.info/post/hugo_search/</guid>
+      <link>https://blog.syati.info/post/hugo_search/</link>
+      <pubDate>Mon, 21 Sep 2015 16:25:47 JST</pubDate>
+      <author>mizuki-y</author>
+      <guid>https://blog.syati.info/post/hugo_search/</guid>
       <description>&lt;p&gt;記事が多くなってくると、やっぱり検索したくなるもんです。Hugo で検索を使うには、&lt;a href=&#34;https://gohugo.io/tools&#34;&gt;Tools&lt;/a&gt; に書いてある通り以下の方法があります。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt;&lt;/li&gt;
@@ -28,55 +24,388 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;当ページでは、&lt;a href=&#34;https://gist.github.com/sebz/efddfc8fdcb6b480f567&#34;&gt;Github Gist&lt;/a&gt;  を用いて検索を実現していますが、お手軽さでいうと、&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; ですね。なので今回は、&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; の導入方法を紹介。&lt;/p&gt;</description>
+&lt;p&gt;当ページでは、&lt;a href=&#34;https://gist.github.com/sebz/efddfc8fdcb6b480f567&#34;&gt;Github Gist&lt;/a&gt;  を用いて検索を実現していますが、お手軽さでいうと、&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; ですね。なので今回は、&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; の導入方法を紹介。&lt;/p&gt;
+&lt;h2 id=&#34;step-1-登録する&#34;&gt;Step 1 登録する&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://cse.google.co.jp/cse/&#34;&gt;Google カスタム検索エンジン&lt;/a&gt; にアクセスして登録しましょう。&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&#34;https://blog.syati.info/post/hugo_search/step1.png&#34;&gt;&lt;figcaption&gt;
+      &lt;h4&gt;カスタム検索エンジンの登録&lt;/h4&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;step-2-作成する&#34;&gt;Step 2 作成する&lt;/h2&gt;
+&lt;p&gt;必要情報を入力しましょう。&lt;strong&gt;検索するサイト&lt;/strong&gt;を入力すると、&lt;strong&gt;検索エンジンの名前&lt;/strong&gt; も入力されるため枠で囲っていません。&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&#34;https://blog.syati.info/post/hugo_search/step2.png&#34;&gt;&lt;figcaption&gt;
+      &lt;h4&gt;カスタム検索エンジンの作成&lt;/h4&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;step-3-確認する&#34;&gt;Step 3 確認する&lt;/h2&gt;
+&lt;p&gt;作成された検索エンジンを確認しましょう。&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&#34;https://blog.syati.info/post/hugo_search/step3.png&#34;&gt;&lt;figcaption&gt;
+      &lt;h4&gt;カスタム検索エンジンの確認&lt;/h4&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;step-4-設定する&#34;&gt;Step 4 設定する&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;対象&lt;/strong&gt; のリストメニューの &lt;strong&gt;デザイン&lt;/strong&gt; をえらんで、レイアウトやテーマなど色々設定しましょう。設定すると、&lt;strong&gt;プレビュー&lt;/strong&gt;で確認できます。最後に&lt;strong&gt;保存してコードを取得&lt;/strong&gt;します。&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&#34;https://blog.syati.info/post/hugo_search/step4.png&#34;&gt;&lt;figcaption&gt;
+      &lt;h4&gt;カスタム検索エンジンの設定&lt;/h4&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;step-5-取得する&#34;&gt;Step 5 取得する&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;コード&lt;/strong&gt; をコピーしときましょう。&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&#34;https://blog.syati.info/post/hugo_search/step5.png&#34;&gt;&lt;figcaption&gt;
+      &lt;h4&gt;カスタム検索エンジンのコードを取得&lt;/h4&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;step-6-設置する&#34;&gt;Step 6 設置する&lt;/h2&gt;
+&lt;p&gt;コピーしたコードを layouts の任意の html に貼り付けましょう。完成すると以下のように検索が可能になります。&lt;/p&gt;
+&lt;script&gt;
+  (function() {
+    var cx = &#39;004743453564496319247:9t8ean_mgiw&#39;;
+    var gcse = document.createElement(&#39;script&#39;);
+    gcse.type = &#39;text/javascript&#39;;
+    gcse.async = true;
+    gcse.src = (document.location.protocol == &#39;https:&#39; ? &#39;https:&#39; : &#39;http:&#39;) +
+        &#39;//cse.google.com/cse.js?cx=&#39; + cx;
+    var s = document.getElementsByTagName(&#39;script&#39;)[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+&lt;/script&gt;
+&lt;gcse:search&gt;&lt;/gcse:search&gt;</description>
     </item>
     
     <item>
       <title>Hugo Part 4 - Hugo に SyntaxHighlighter を導入</title>
-      <link>http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</link>
-      <pubDate>Wed, 17 Jun 2015 22:42:39 +0900</pubDate>
-      
-      <guid>http://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</guid>
+      <link>https://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</link>
+      <pubDate>Wed, 17 Jun 2015 22:42:39 JST</pubDate>
+      <author>mizuki-y</author>
+      <guid>https://blog.syati.info/post/add_syntaxhighlighter_to_hugo/</guid>
       <description>&lt;p&gt;ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
 というこで &lt;a href=&#34;http://gohugo.io/extras/highlighting/&#34;&gt;Syntax Highlighting&lt;/a&gt; を
 参考にして早速導入する。&lt;/p&gt;
 &lt;p&gt;dir 構成等は、以下の記事参照のこと&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.syati.info/post/add_disqus_to_hugo/&#34;&gt;Part 3&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;li&gt;&lt;a href=&#34;https://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.syati.info/post/add_disqus_to_hugo/&#34;&gt;Part 3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-1-client-side-の-syntaxhighlighter-ライブラリ取得&#34;&gt;Step 1 Client-side の SyntaxHighlighter ライブラリ取得&lt;/h2&gt;
+&lt;p&gt;導入方法として &lt;strong&gt;Server-side&lt;/strong&gt; と &lt;strong&gt;Client-side&lt;/strong&gt; の方法がありますが、
+今回は後者を利用します。また、ライブラリーはたくさんありますが、&lt;strong&gt;&lt;a href=&#34;http://prismjs.com/&#34;&gt;Prism&lt;/a&gt;&lt;/strong&gt;
+を利用します。&lt;/p&gt;
+&lt;p&gt;Prism のHPにいって利用したい好きな Themes と Languages にチェックをいれて、
+ページ下部の DOWNLOAD JS と DOWNLOAD CSS から DL しましょう。
+ちなみに当ページの Prism のテーマは Default(Okaidia) を利用しています。&lt;/p&gt;
+&lt;h2 id=&#34;step-2-対象ファイルコピー&#34;&gt;Step 2 対象ファイルコピー&lt;/h2&gt;
+&lt;p&gt;DL したファイルを以下のようにコピーしてあげる。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cp prism.js yourblog/static/js/
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cp prism.css yourblog/static/css/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-3-custom-設定を加える&#34;&gt;Step 3 custom 設定を加える&lt;/h2&gt;
+&lt;p&gt;以下のように yourblog/layouts/partials/custom に移動して
+&lt;strong&gt;対象ファイル１&lt;/strong&gt;と&lt;strong&gt;対象ファイル２&lt;/strong&gt;を編集します。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cd yourblog/layouts/partials/custom
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ tree -L &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── after_footer.html  &lt;span style=&#34;color:#75715e&#34;&gt;# 対象ファイル１&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── asides
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── footer.html
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── head.html          &lt;span style=&#34;color:#75715e&#34;&gt;# 対象ファイル２&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── header.html
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;└── navigation.html
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;以下のように対象ファイル１に１行追加。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-markup&#34; data-lang=&#34;markup&#34;&gt;&amp;lt;script src=&amp;#34;{{ .Site.BaseURL }}/js/prism.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以下のように対象ファイル２に１行追加。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-markup&#34; data-lang=&#34;markup&#34;&gt;&amp;lt;link href=&amp;#34;{{ .Site.BaseURL }}/css/prism.css&amp;#34; media=&amp;#34;screen, projection&amp;#34; rel=&amp;#34;stylesheet&amp;#34; type=&amp;#34;text/css&amp;#34;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;これで設定は終了。&lt;/p&gt;
+&lt;h2 id=&#34;step-4-コードをいれてみる&#34;&gt;Step 4 コードをいれてみる&lt;/h2&gt;
+&lt;p&gt;新しい記事でも作成して、以下のような感じでコードをいれると。
+~ 半角でいれると解釈されるため 〜 全角で入れています。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-markup&#34; data-lang=&#34;markup&#34;&gt;〜〜〜c
+#include &amp;lt;stdio.h&amp;gt;
+
+int main(void)
+{
+    printf(&amp;#34;hello, world\n&amp;#34;);
+    return;
+}
+〜〜〜
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;あら素敵！！というふうになる。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello, world&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
       <title>Hugo Part 3 - Hugo にコメント欄を導入</title>
-      <link>http://blog.syati.info/post/add_disqus_to_hugo/</link>
-      <pubDate>Tue, 09 Jun 2015 00:02:04 +0900</pubDate>
-      
-      <guid>http://blog.syati.info/post/add_disqus_to_hugo/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; 、 &lt;a href=&#34;http://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で
+      <link>https://blog.syati.info/post/add_disqus_to_hugo/</link>
+      <pubDate>Tue, 09 Jun 2015 00:02:04 JST</pubDate>
+      <author>mizuki-y</author>
+      <guid>https://blog.syati.info/post/add_disqus_to_hugo/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; 、 &lt;a href=&#34;https://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で
 Hugo を用いて github.io にブログを立ち上げましたが、コメント欄が無いので導入したい！！&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://gohugo.io/extras/comments/&#34;&gt;Comments in Hugo&lt;/a&gt; を参考にして早速、導入していこうとおもったが、
 もっと楽にやりたいので、Part 1 で利用していた theme の hyde を変えて超簡単に導入する。&lt;/p&gt;
-&lt;p&gt;全てが終われば &lt;a href=&#34;http://syati.github.io/yourblog/&#34;&gt;yourblog&lt;/a&gt; のようにコメント欄が作成できる。&lt;/p&gt;</description>
+&lt;p&gt;全てが終われば &lt;a href=&#34;http://syati.github.io/yourblog/&#34;&gt;yourblog&lt;/a&gt; のようにコメント欄が作成できる。&lt;/p&gt;
+&lt;h2 id=&#34;step-1-theme-を変える&#34;&gt;Step 1 theme を変える&lt;/h2&gt;
+&lt;p&gt;今まで通り、themes に中に theme を git clone してもいいのだが、
+とりあえず今回は themes ディレクトリを利用しないことにする。&lt;/p&gt;
+&lt;p&gt;なので &lt;strong&gt;config.toml&lt;/strong&gt; の&lt;strong&gt;theme&lt;/strong&gt; 設定を削除する&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-clike&#34; data-lang=&#34;clike&#34;&gt;title = &amp;#34;My New Hugo Site&amp;#34;
+baseurl = &amp;#34;http://syati.github.io/yourblog&amp;#34;
+languageCode = &amp;#34;ja-jp&amp;#34;
+theme = &amp;#34;hyde&amp;#34;  //この行はもう不要なので削除する
+
+[params]
+  description = &amp;#34;This is yourblog&amp;#34;
+  author = &amp;#34;your name&amp;#34;
+
+[taxonomies]
+  category = &amp;#34;categories&amp;#34;
+  tag = &amp;#34;tags&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;theme を &lt;a href=&#34;https://github.com/Syati/greyshade&#34;&gt;Syati/greyshade&lt;/a&gt; に変更する。
+git clone して yourblog のメインテーマにする&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git clone git@github.com:Syati/greyshade.git
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ tree -L &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;#こんなディレクトリ構成&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── greyshade
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;└── yourblog
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cd greyshade
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cp -R archetypes images layouts static ../yourblog
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cd ../yourblog
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ rm -rf themes &lt;span style=&#34;color:#75715e&#34;&gt;# 必要無いのでとりあえず削除&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ hugo server &lt;span style=&#34;color:#75715e&#34;&gt;# テーマが変わっていることが確認できる&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-2-disqus-を導入&#34;&gt;Step 2 Disqus を導入&lt;/h2&gt;
+&lt;p&gt;導入が楽なので &lt;a href=&#34;https://disqus.com&#34;&gt;Disqus&lt;/a&gt; を利用する。&lt;/p&gt;
+&lt;p&gt;Disqus に Sign up して http://[username].github.io でサイトを登録して
+ゴニョゴニョすると、&lt;strong&gt;Choose your platform&lt;/strong&gt; とかでる画面になるので
+&lt;strong&gt;Universal Code&lt;/strong&gt; をクリックすると、以下のコードをコメント欄を表示
+させたいところに入れてね！と記載があるが、以下の &lt;strong&gt;[disqus_shortname]&lt;/strong&gt; だけ覚えておく。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-markup&#34; data-lang=&#34;markup&#34;&gt;&amp;lt;div id=&amp;#34;disqus_thread&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt;
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = [disqus_shortname];
+    
+    /* * * DON&amp;#39;T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement(&amp;#39;script&amp;#39;); dsq.type = &amp;#39;text/javascript&amp;#39;; dsq.async = true;
+        dsq.src = &amp;#39;//&amp;#39; + disqus_shortname + &amp;#39;.disqus.com/embed.js&amp;#39;;
+        (document.getElementsByTagName(&amp;#39;head&amp;#39;)[0] || document.getElementsByTagName(&amp;#39;body&amp;#39;)[0]).appendChild(dsq);
+    })();
+&amp;lt;/script&amp;gt;
+&amp;lt;noscript&amp;gt;Please enable JavaScript to view the &amp;lt;a href=&amp;#34;https://disqus.com/?ref_noscript&amp;#34; rel=&amp;#34;nofollow&amp;#34;&amp;gt;comments powered by Disqus.&amp;lt;/a&amp;gt;&amp;lt;/noscript&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;step-3-configtoml-を変更する&#34;&gt;Step 3 config.toml を変更する&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/greyshade#setup&#34;&gt;テーマの設定&lt;/a&gt; を config.toml にコピペして、編集。
+Step 2 で覚えておいた &lt;strong&gt;[disqus_shortname]&lt;/strong&gt; を設定に入れる。以下サンプル&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;title &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;My New Hugo Site&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;baseurl &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://syati.github.io/yourblog&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;languageCode &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ja-jp&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;canonifyurls &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; true
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;author&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;name &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;your name&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# email will use for gravatar&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;email &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;taxonomies&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;category &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;categories&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;params&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# site description, will show under navigation&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;description &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;This is yourblog&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# RSS / Email (optional) subscription links (change if using something like Feedburner)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;subscribe_rss &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/index.xml&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;subscribe_email &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# social links&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;facebook_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;googleplus_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;twitter_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;github_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;coderwall_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;stackoverflow_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;stackoverflow_user_id &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;linkedin_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pinterest_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;delicious_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pinboard_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;quora_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;instagram_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;behance_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;douban_user &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# share links&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;facebook_like &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; true
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;twitter_tweet_button &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; true
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;google_plus_one &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;addthis_profile_id &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Disqus Comments&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;disqus_short_name &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;[disqus_shortname]&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;#ここに part2 で覚えた[disqus_shortname]を入れる&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;disqus_show_comment_count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; false
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# google analytics&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;google_analytics_tracking_id &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-4-記事にパラメータを加える&#34;&gt;Step 4 記事にパラメータを加える&lt;/h2&gt;
+&lt;p&gt;最後に記事のパラメータに &lt;strong&gt;comments = true&lt;/strong&gt; といれれば、disqus を読み込んでコメント欄が入る。
+ただし、localhost では読み込まないようにしているので、記事ページ下部 に &lt;strong&gt;Comments&lt;/strong&gt;
+とだけでてくる。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-markup&#34; data-lang=&#34;markup&#34;&gt;+++
+date = &amp;#34;2015-06-06T17:20:38+09:00&amp;#34;
+title = &amp;#34;first&amp;#34;
+comments = true
+
++++
+
+first page.
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;step-5-新規記事のテンプレートを変更しておく&#34;&gt;Step 5 新規記事のテンプレートを変更しておく&lt;/h2&gt;
+&lt;p&gt;毎回コマンド（ &lt;strong&gt;hugo new post/new_post.md&lt;/strong&gt; ） で新規記事作成後に、
+comments = true とパラメータ設定するのは面倒くさいので
+yourblog/archetypes/default.md を以下のように変更しておくと楽ができる&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-markup&#34; data-lang=&#34;markup&#34;&gt;+++
+Description = &amp;#34;&amp;#34;
+Tags = []
+Categories = []
+comments = true
++++
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
       <title>Hugo Part 2 - Hugo で github にブログを立ち上げる</title>
-      <link>http://blog.syati.info/post/create_hugo_2/</link>
-      <pubDate>Sun, 07 Jun 2015 21:55:31 +0900</pubDate>
-      
-      <guid>http://blog.syati.info/post/create_hugo_2/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
-&lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; を参考にして、セットアップ手順を記していく。&lt;/p&gt;</description>
+      <link>https://blog.syati.info/post/create_hugo_2/</link>
+      <pubDate>Sun, 07 Jun 2015 21:55:31 JST</pubDate>
+      <author>mizuki-y</author>
+      <guid>https://blog.syati.info/post/create_hugo_2/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://blog.syati.info/post/create_hugo/&#34;&gt;Part 1&lt;/a&gt; では、ブログをローカルに構築したので、今回は github に repository をつくってブログを立ち上げる。
+&lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; を参考にして、セットアップ手順を記していく。&lt;/p&gt;
+&lt;h2 id=&#34;step-1-github-に-blog-repository-をつくる&#34;&gt;Step 1 github に blog repository をつくる&lt;/h2&gt;
+&lt;p&gt;github にアクセスして、repository をつくる。repository name がそのまま URL になる（以下のようなURL）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;http://[username].githug.io/[repo]&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[] の意味
+&lt;ul&gt;
+&lt;li&gt;[username] : github の username&lt;/li&gt;
+&lt;li&gt;[repo] : github に作成する repository name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-2-blog-の設定をかいておく&#34;&gt;Step 2 blog の設定をかいておく&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;※以降、github に yourblog として repostitory を作成したとして記す。また、part 1 で作成した yourblog があるものとする&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;part 1 で作成した yourblog ディレクトリ内の &lt;strong&gt;config.toml&lt;/strong&gt; を開いて設定を書く（以下参考）。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;title &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;My New Hugo Site&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;baseurl &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://[username].github.io/yourblog&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;languageCode &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ja-jp&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;theme &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hyde&amp;#34;&lt;/span&gt;　&lt;span style=&#34;color:#75715e&#34;&gt;# part 1 で選んだ theme を設定する&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;canonifyurls &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; true &lt;span style=&#34;color:#75715e&#34;&gt;# 相対パスではなく baseurl を基点とした絶対パスにする&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;params&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  description &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;This is yourblog&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  author &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;your name&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;taxonomies&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  category &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;categories&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  tag &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;tags&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;参考
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://gohugo.io/overview/configuration/&#34;&gt;Configuring Hugo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mojavy.com/blog/2013/04/26/toml/&#34;&gt;TOMLノススメ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/toml-lang/toml&#34;&gt;toml-lang/toml&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-3-repository-に-push-する&#34;&gt;Step 3 repository に push する&lt;/h2&gt;
+&lt;p&gt;yourblog ディレクトリで以下のコマンドを実行する。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git init &lt;span style=&#34;color:#75715e&#34;&gt;# part 1 で作成した yourblog をリポジトリにする&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git remote add origin git@github.com:&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;username&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;/yourblog.git &lt;span style=&#34;color:#75715e&#34;&gt;# remote を設定する&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git pull origin master
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ rm -rf public &lt;span style=&#34;color:#75715e&#34;&gt;# このディレクトリは git subtree を利用して管理するので削除する&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git add -A
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git commit -m &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Add hugo template&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git push origin master
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-4-gh-pages-ブランチを作成する&#34;&gt;Step 4 gh-pages ブランチを作成する&lt;/h2&gt;
+&lt;p&gt;gh-pages ブランチには hugo で作成されたコンテンツ（ public ）のみ置いて、
+関係のないもの（ archetypes, themes, etc ）は紛らわしいので管理したくない。&lt;/p&gt;
+&lt;p&gt;そこで、master から独立したブランチを作成するために、orphan オプションを
+つけて履歴のないブランチを作成する。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git checkout --orphan gh-pages   &lt;span style=&#34;color:#75715e&#34;&gt;# orphan ブランチ 作成&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git rm --cached &lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;git ls-files&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# 要らないので、全て管理対象からすべて外す&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git add README.md                &lt;span style=&#34;color:#75715e&#34;&gt;# README.md だけいれておく&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git commit -m &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;initial commit on gh-pages branch&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git push origin gh-pages
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;master に戻って git subtree を利用して、gh-pages ブランチを master の public に取り込む。
+subtree って何？って思う方は、下部の参考を見てください。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git checkout master
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git subtree add --prefix&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;public git@github.com:&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;username&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;/yourblog.git gh-pages --squash
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git subtree pull --prefix&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;public git@github.com:&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;username&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;/yourblog.git gh-pages
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;hugo コマンドで public を生成して以下のように push していくことで、
+master に変更を加え、gh-pages にも変更を加える事が出来る。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ hugo
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git add -A
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git commit -m &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Updating site&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git push origin master
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git subtree push --prefix&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;public git@github.com:Syati/yourblog.git gh-pages
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;基本的に新しい記事を書いて github.io に公開（ Deploy ）する際、上記の手順を踏むことになる。
+毎回これするのはめんどくさいので、Step 5 に進む。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;参考
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/akiko-pusu/items/7c0a99b8cb37882d2cfe&#34;&gt;gitの空ブランチを作る&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://japan.blogs.atlassian.com/2014/03/alternatives-to-git-submodule-git-subtree/&#34;&gt;Git Submodule の代替: Git Subtree&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/shogo82148/items/04b29b195dbbb373152f&#34;&gt;git-subtree移行メモ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/marutanm/items/d02e7d5ff8ed7c2c4b95&#34;&gt;submoduleとsubtree-mergingの使い分け&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-5-めんどさい-deploy-はスクリプトを利用する&#34;&gt;Step 5 めんどさい Deploy はスクリプトを利用する&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/&#34;&gt;Hosting on GitHub Pages&lt;/a&gt; の &lt;strong&gt;deploy.sh&lt;/strong&gt; に書かれている以下を利用する。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# !/bin/bash&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\033[0;32mDeploying updates to GitHub...\033[0m&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Build the project. &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Add changes to git.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git add -A
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Commit changes.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;msg&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;rebuilding site `date`&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; $# -eq &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt; msg&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$1&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git commit -m &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$msg&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Push source and build repos.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git push origin master
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git subtree push --prefix&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;public git@github.com:&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;username&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;/yourblog.git gh-pages　
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/spencerlyon2/hugo_gh_blog&#34;&gt;spencerlyon2/hugo_gh_blog&lt;/a&gt; のレポジトリに deploy.sh
+があるので　DL してきて修正するのがはやいかも。&lt;/p&gt;
+&lt;p&gt;deploy.sh を yourblog ディレクトリに保存したのち、実行できるように以下を実行する。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ chmod +x deploy.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;これで新しい記事を書いて github.io に公開（ Deploy ）する際は、以下のコマンドを実行するのみで良い。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ ./deploy.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
       <title>Hugo Part 1 - Hugo で github にブログを立ち上げる</title>
-      <link>http://blog.syati.info/post/create_hugo/</link>
-      <pubDate>Fri, 05 Jun 2015 21:55:31 +0900</pubDate>
-      
-      <guid>http://blog.syati.info/post/create_hugo/</guid>
+      <link>https://blog.syati.info/post/create_hugo/</link>
+      <pubDate>Fri, 05 Jun 2015 21:55:31 JST</pubDate>
+      <author>mizuki-y</author>
+      <guid>https://blog.syati.info/post/create_hugo/</guid>
       <description>&lt;p&gt;WordPress でブログをつくっていましたが、記事投稿が面倒くさなって続かない。
 なぜかと考えた時にテキストで書いたものを簡単に POST できないからである。
 過去に org2blog などを試し、簡単になった！！と喜んでいた時期もあったが、
@@ -84,7 +413,71 @@ WordPress の Version Up などで POST できなくり、それっきり・・�
 &lt;p&gt;今回は、ついに上記のことを打開できる策を見つけたのだ。
 それが &lt;strong&gt;Hugo で github.io 上にブログを立ち上げることだ。&lt;/strong&gt;
 何が良いかといえば、markdown でかけて、github に push するだけでブログ
-が更新されることだ。&lt;/p&gt;</description>
+が更新されることだ。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://gohugo.io/overview/quickstart/&#34;&gt;Hugo Quickstart Guide&lt;/a&gt; にならって
+セットアップ手順を記していく。Part 1 では、まずはブログをローカルに構築する。
+&lt;a href=&#34;https://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;
+&lt;h2 id=&#34;step-1-インストールしましょう&#34;&gt;Step 1 インストールしましょう&lt;/h2&gt;
+&lt;h3 id=&#34;osx-の場合&#34;&gt;OSX の場合&lt;/h3&gt;
+&lt;p&gt;以下のコマンドでおしまい。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ brew install hugo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;ubuntu-の場合&#34;&gt;Ubuntu の場合&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;Hugo relase&lt;/a&gt; から適したものをDLして以下のコマンドを実行する。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ sudo dpkg -i hugo_0.14_amd64.deb　&lt;span style=&#34;color:#75715e&#34;&gt;# 自分に適したパッケージを選んでね&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-2-ブログをつくろう&#34;&gt;Step 2 ブログをつくろう&lt;/h2&gt;
+&lt;p&gt;以下のコマンドを実行して、カレントディレクトリにブログの雛形を作成できる。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ hugo new site ./yourblog
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;雛形はこんな感じになる。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;yourblog/
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── archetypes  &lt;span style=&#34;color:#75715e&#34;&gt;# 新規記事を作成した際に利用される雛形を置く場所&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── config.toml &lt;span style=&#34;color:#75715e&#34;&gt;# 設定を書くファイル&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── content     &lt;span style=&#34;color:#75715e&#34;&gt;# 記事などが入る場所&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── data        &lt;span style=&#34;color:#75715e&#34;&gt;# 今回は利用しない（サイトを生成するときに利用する DATA などを置く。詳しくは http://gohugo.io/extras/datafiles/ ）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── layouts     &lt;span style=&#34;color:#75715e&#34;&gt;# 今回は利用しない（サイトを生成するときの雛形）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;└── static      &lt;span style=&#34;color:#75715e&#34;&gt;# 今回は利用しない（サイトで利用する js, css, images などを置く）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-3-新しい記事をつくろう&#34;&gt;Step 3 新しい記事をつくろう&lt;/h2&gt;
+&lt;p&gt;yourblog ディレクトリで以下のコマンド実行して、新規記事を作成する。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ hugo new post/hello.md
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;こんな感じで新規記事が作成される。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;content/
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;└── post
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    └── hello.md
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;hello.md の中身はこんな感じ。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;+++
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;date = &amp;#34;2015-06-05T23:04:20+09:00&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;draft = true # この行を消せば step 5 の -\-buildDrafts オプションはいりません
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;title = &amp;#34;hello&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;+++
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-4-テーマをインストールしよう&#34;&gt;Step 4 テーマをインストールしよう&lt;/h2&gt;
+&lt;p&gt;自分好みのテーマをさがすために、テーマ一式いれてみる。yourblog ディレクトリで以下のコマンドを実行する。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git clone -&lt;span style=&#34;color:#ae81ff&#34;&gt;\-&lt;/span&gt;recursive https://github.com/spf13/hugoThemes themes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-5-ブログを見てみよう&#34;&gt;Step 5 ブログを見てみよう&lt;/h2&gt;
+&lt;p&gt;とりあえず準備はととのったので、サーバーを立ち上げてブログを見てみる。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ hugo server -&lt;span style=&#34;color:#ae81ff&#34;&gt;\-&lt;/span&gt;theme&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;hyde -&lt;span style=&#34;color:#ae81ff&#34;&gt;\-&lt;/span&gt;buildDrafts
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; of &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; draft rendered
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; future content 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; pages created
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; paginator pages created
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; tags created
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; categories created
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;in &lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt; ms
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Serving pages from /home/mizuki-y/Documents/yourblog/public
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Web Server is available at http://127.0.0.1:1313/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;http://127.0.0.1:1313/ にアクセスするとブログが見れるようになっている。&lt;/p&gt;
+&lt;p&gt;theme を以下のように変更して、自分の好きなものを選ぼう。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ hugo server -&lt;span style=&#34;color:#ae81ff&#34;&gt;\-&lt;/span&gt;theme&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;slim -&lt;span style=&#34;color:#ae81ff&#34;&gt;\-&lt;/span&gt;buildDrafts
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;コマンドオプションについて
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;--theme&lt;/strong&gt;: themes ディレクトリに入っているディレクトリ名を指定してあげる&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;--buildDrafts&lt;/strong&gt;: draft ステータスのものを表示するためのオプション&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ブログ構築完成。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.syati.info/post/create_hugo_2/&#34;&gt;Part 2&lt;/a&gt; で、github.io にブログを立ち上げる。&lt;/p&gt;</description>
     </item>
     
   </channel>

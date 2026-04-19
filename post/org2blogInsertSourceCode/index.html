@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>org2blog の記事にコードブロックを入れる - Syati.info</title>
-	<meta name="author" content="map[author:mizuki-y]">
+	<meta name="author" content="mizuki-y">
 
 	
 	  
@@ -17,16 +17,16 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     
-	<link href='http://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	<link href='https://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://blog.syati.info/post/org2bloginsertsourcecode/">
-	<link href="http://blog.syati.info/favicon.png" rel="shortcut icon">
-	<link href="http://blog.syati.info/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="http://blog.syati.info/css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="canonical" href="https://blog.syati.info/post/org2bloginsertsourcecode/">
+	<link href="https://blog.syati.info//favicon.png" rel="shortcut icon">
+	<link href="https://blog.syati.info//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://blog.syati.info//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
 	
-	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://blog.syati.info//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
 <script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -52,7 +52,7 @@
 		<div class="left-col">
 			<div class="intrude-less">
 			<header id="header" class="inner">
-<a href="http://blog.syati.info">    
+<a href="https://blog.syati.info/">    
     <div>
         <h1>
             Syati.info
@@ -69,13 +69,13 @@
 	<div class="social">
 		
 		
-			<a class="facebook" href='http://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+			<a class="facebook" href='https://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
 		
 		
 			<a class="google" href='https://plus.google.com/&#43;mizukiyamamoto' rel="author" title="Google+">Google+</a>
 		
 		
-			<a class="twitter" href='http://twitter.com/syati_org' title="Twitter">Twitter</a>
+			<a class="twitter" href='https://twitter.com/syati_org' title="Twitter">Twitter</a>
 		
 		
 			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
@@ -91,15 +91,15 @@
 		
     	
     	
-			<a class="rss" href='http://blog.syati.info/index.xml' title="RSS">RSS</a>
+			<a class="rss" href='https://blog.syati.info/index.xml' title="RSS">RSS</a>
 		
 	</div>
 </nav>
 <nav id="main-nav">
     <ul class="main">
-    <li><a href="http://blog.syati.info/">Blog</a></li>
-    <li><a href="http://blog.syati.info/about/">About</a></li>
-    <li><a href="http://blog.syati.info/post/">Archives</a></li>
+    <li><a href="https://blog.syati.info/">Blog</a></li>
+    <li><a href="https://blog.syati.info/about/">About</a></li>
+    <li><a href="https://blog.syati.info/post/">Archives</a></li>
 </ul>
 <div class="search-nav">
     <label for="search">Search</label>
@@ -124,7 +124,7 @@
                                
    <h1 class="title" itemprop="name">
        
-       <img class="entry-title-logo" src="http://blog.syati.info/images/logo/emacs" />
+       <img class="entry-title-logo" src="https://blog.syati.info/images/logo/emacs" />
        
        org2blog の記事にコードブロックを入れる
    </h1>
@@ -184,19 +184,22 @@
 </ul>
 </li>
 </ul>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+＃+BEGIN_SRC bash :syntaxhl
+echo "hoge" 
+＃+END_SRC
+</pre>
 </li>
 </ol>
 <p>これで org2blog の記事投稿でコードも綺麗に投稿できる。</p>
 <h2 id="補足">補足</h2>
 <ul>
-<li>必要なもの 3. の設定を加えるのは、以下の通り <!-- raw HTML omitted --> タグが挿入されるため SyntaxHighlighter の表記方法 [language] code [/language] と合致しなくなるため。（以下は org2blog.el 内のコード）
+<li>必要なもの 3. の設定を加えるのは、以下の通り <pre> タグが挿入されるため SyntaxHighlighter の表記方法 [language] code [/language] と合致しなくなるため。（以下は org2blog.el 内のコード）
 <ul>
 <li>
 <p>参考 <a href="https://github.com/punchagan/org2blog#posting-source-code-blocks">org2blog</a></p>
 <p>(defcustom org2blog/wp-use-sourcecode-shortcode nil
-&ldquo;Non-nil means convert <!-- raw HTML omitted --> tags to WP sourcecode blocks.
+&ldquo;Non-nil means convert <pre> tags to WP sourcecode blocks.
 NOTE: htmlize.el available in org-mode&rsquo;s contrib directory should
 be on your emacs load-path for this to work.&rdquo;
 :group &lsquo;org2blog/wp
@@ -207,7 +210,7 @@ be on your emacs load-path for this to work.&rdquo;
 </ul>
 <h2 id="覚えておくと良いショートカット">覚えておくと良いショートカット</h2>
 <ul>
-<li>コードブロックを挿入する際は <strong>&lt;キー<!-- raw HTML omitted --></strong> をタイプするべし。
+<li>コードブロックを挿入する際は <strong>&lt;キー<TAB></strong> をタイプするべし。
 <ul>
 <li>以下は、挿入したいテンプレートのキー一覧
 <ul>
@@ -217,22 +220,72 @@ be on your emacs load-path for this to work.&rdquo;
 </ul>
 </li>
 </ul>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col  class="left" />
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">キー　</th>
+<th scope="col" class="left">挿入したいテンプレート</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">s</td>
+<td class="left">#+begin\_src &#x2026; #+end\_src</td>
+</tr>
+<tr>
+<td class="left">e</td>
+<td class="left">#+begin\_example &#x2026; #+end\_example</td>
+</tr>
+<tr>
+<td class="left">q</td>
+<td class="left">#+begin\_quote &#x2026; #+end\_quote</td>
+</tr>
+<tr>
+<td class="left">v</td>
+<td class="left">#+begin\_verse &#x2026; #+end\_verse</td>
+</tr>
+<tr>
+<td class="left">c</td>
+<td class="left">#+begin\_center &#x2026; #+end\_center</td>
+</tr>
+<tr>
+<td class="left">l</td>
+<td class="left">#+begin\_latex &#x2026; #+end\_latex</td>
+</tr>
+<tr>
+<td class="left">L</td>
+<td class="left">#+latex:</td>
+</tr>
+<tr>
+<td class="left">h</td>
+<td class="left">#+begin\_html &#x2026; #+end\_html</td>
+</tr>
+<tr>
+<td class="left">H</td>
+<td class="left">#+html:</td>
+</tr>
+<tr>
+<td class="left">a</td>
+<td class="left">#+begin\_ascii &#x2026; #+end\_ascii</td>
+</tr>
+<tr>
+<td class="left">A</td>
+<td class="left">#+ascii:</td>
+</tr>
+<tr>
+<td class="left">i</td>
+<td class="left">#+index: line</td>
+</tr>
+<tr>
+<td class="left">I</td>
+<td class="left">#+include: line</td>
+</tr>
+</tbody>
+</table>
 <h2 id="その他参考サイト">その他、参考サイト</h2>
 <ul>
 <li><a href="http://orgmode.org/worg/org-contrib/babel/intro.html">Babel: Introduction</a></li>
@@ -255,7 +308,7 @@ be on your emacs load-path for this to work.&rdquo;
 	
 	</div>
 	
-  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	<script type="text/javascript" src='//s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
   	
 </div>
 
@@ -283,7 +336,7 @@ be on your emacs load-path for this to work.&rdquo;
         return;
     
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
     
@@ -303,14 +356,14 @@ be on your emacs load-path for this to work.&rdquo;
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2020
+			<footer id="footer" class="inner">Copyright &copy; 2026
 
-    Syati.info
+mizuki-y
 
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
-<script src="http://blog.syati.info/js/slash.js"></script>
-<script src="http://blog.syati.info/js/jquery.fancybox.pack.js"></script>
+<script src="https://blog.syati.info//js/slash.js"></script>
+<script src="https://blog.syati.info//js/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
 	$('.fancybox').fancybox();
@@ -319,9 +372,9 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
 </footer>
 		</div>
 	</div>
-	<script src="http://blog.syati.info/js/prism.js"></script>
-<script src="http://blog.syati.info/js/lunr.min.js"></script>
-<script src="http://blog.syati.info/js/search.js"></script>
+	<script src="https://blog.syati.info//js/prism.js"></script>
+<script src="https://blog.syati.info//js/lunr.min.js"></script>
+<script src="https://blog.syati.info//js/search.js"></script>
 
 </body>
 </html>

@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Docker Part 3 - Docker で nginx を構築する - Syati.info</title>
-	<meta name="author" content="map[author:mizuki-y]">
+	<meta name="author" content="mizuki-y">
 
 	
 	  
@@ -17,16 +17,16 @@
 	<meta name="MobileOptimized" content="320">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     
-	<link href='http://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	<link href='https://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://blog.syati.info/post/docker_tutorial_nginx/">
-	<link href="http://blog.syati.info/favicon.png" rel="shortcut icon">
-	<link href="http://blog.syati.info/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="http://blog.syati.info/css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link rel="canonical" href="https://blog.syati.info/post/docker_tutorial_nginx/">
+	<link href="https://blog.syati.info//favicon.png" rel="shortcut icon">
+	<link href="https://blog.syati.info//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://blog.syati.info//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
 	
-	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-	<link href="http://blog.syati.info/css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://blog.syati.info//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
 <script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -52,7 +52,7 @@
 		<div class="left-col">
 			<div class="intrude-less">
 			<header id="header" class="inner">
-<a href="http://blog.syati.info">    
+<a href="https://blog.syati.info/">    
     <div>
         <h1>
             Syati.info
@@ -69,13 +69,13 @@
 	<div class="social">
 		
 		
-			<a class="facebook" href='http://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+			<a class="facebook" href='https://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
 		
 		
 			<a class="google" href='https://plus.google.com/&#43;mizukiyamamoto' rel="author" title="Google+">Google+</a>
 		
 		
-			<a class="twitter" href='http://twitter.com/syati_org' title="Twitter">Twitter</a>
+			<a class="twitter" href='https://twitter.com/syati_org' title="Twitter">Twitter</a>
 		
 		
 			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
@@ -91,15 +91,15 @@
 		
     	
     	
-			<a class="rss" href='http://blog.syati.info/index.xml' title="RSS">RSS</a>
+			<a class="rss" href='https://blog.syati.info/index.xml' title="RSS">RSS</a>
 		
 	</div>
 </nav>
 <nav id="main-nav">
     <ul class="main">
-    <li><a href="http://blog.syati.info/">Blog</a></li>
-    <li><a href="http://blog.syati.info/about/">About</a></li>
-    <li><a href="http://blog.syati.info/post/">Archives</a></li>
+    <li><a href="https://blog.syati.info/">Blog</a></li>
+    <li><a href="https://blog.syati.info/about/">About</a></li>
+    <li><a href="https://blog.syati.info/post/">Archives</a></li>
 </ul>
 <div class="search-nav">
     <label for="search">Search</label>
@@ -124,7 +124,7 @@
                                
    <h1 class="title" itemprop="name">
        
-       <img class="entry-title-logo" src="http://blog.syati.info/images/logo/docker" />
+       <img class="entry-title-logo" src="https://blog.syati.info/images/logo/docker" />
        
        Docker Part 3 - Docker で nginx を構築する
    </h1>
@@ -148,38 +148,38 @@
 </nav>
     </div>
     
-	<div class="entry-content" itemprop="articleBody"><p><a href="http://blog.syati.info/post/docker_machine/">docker-machine コマンドの使用方法・流れ</a> で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。</p>
+	<div class="entry-content" itemprop="articleBody"><p><a href="https://blog.syati.info/post/docker_machine/">docker-machine コマンドの使用方法・流れ</a> で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。</p>
 <p>以前、何度か <a href="http://dotinstall.com/lessons/basic_docker">Docker入門 (全11回)</a> で docker に入門しましたが、その後挫折。 入門して nginx を構築を出来たはいいが、 MEAN とか LAMP の開発環境を構築するのがすごく困難な感じがして。<a href="https://docs.docker.com/reference/commandline/cli/">docker コマンド</a> たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。</p>
 <p>が、時が経過した今、楽になってますよ。情報も増えてるし、何より docker-compose （複数コンテナの構築）が便利だった。それでは nginx を構築!!</p>
 <p>ただし、以下を読むより動画 <a href="http://dotinstall.com/lessons/basic_docker">Docker入門 (全11回)</a> で学ぶほうが分かりやすい。</p>
 <h2 id="step1-docker-vm-の作成復習">Step1 docker vm の作成(復習)</h2>
-<p>とりあえず docker vm を作成・利用する。忘れた方は、こちらで<a href="http://blog.syati.info/post/docker_machine/">docker-machine コマンドの使用方法・流れ</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker-machine create --driver virtualbox mynginx
-$ eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>docker-machine env mynginx<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-$ docker-machine ls
-NAME            ACTIVE   DRIVER       STATE     URL                         SWARM
-mynginx         *        virtualbox   Running   tcp://192.168.99.100:2376
-</code></pre></div><p>これで上記の vm にたいして docker コマンドを発行できので、叩いてみる。コンテナがないので何も表示されない。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-
-<span style="color:#75715e"># 参考）eval で vm を指定しなかった場合</span>
-$ docker ps
-Get http:///var/run/docker.sock/v1.20/containers/json: dial unix /var/run/docker.sock: no such file or directory.
-* Are you trying to connect to a TLS-enabled daemon without TLS?
-* Is your docker daemon up and running?
-</code></pre></div><h2 id="step15-簡単な全体イメージ">Step1.5 簡単な全体イメージ</h2>
+<p>とりあえず docker vm を作成・利用する。忘れた方は、こちらで<a href="https://blog.syati.info/post/docker_machine/">docker-machine コマンドの使用方法・流れ</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker-machine create --driver virtualbox mynginx
+</span></span><span style="display:flex;"><span>$ eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>docker-machine env mynginx<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>$ docker-machine ls
+</span></span><span style="display:flex;"><span>NAME            ACTIVE   DRIVER       STATE     URL                         SWARM
+</span></span><span style="display:flex;"><span>mynginx         *        virtualbox   Running   tcp://192.168.99.100:2376
+</span></span></code></pre></div><p>これで上記の vm にたいして docker コマンドを発行できので、叩いてみる。コンテナがないので何も表示されない。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker ps
+</span></span><span style="display:flex;"><span>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 参考）eval で vm を指定しなかった場合</span>
+</span></span><span style="display:flex;"><span>$ docker ps
+</span></span><span style="display:flex;"><span>Get http:///var/run/docker.sock/v1.20/containers/json: dial unix /var/run/docker.sock: no such file or directory.
+</span></span><span style="display:flex;"><span>* Are you trying to connect to a TLS-enabled daemon without TLS?
+</span></span><span style="display:flex;"><span>* Is your docker daemon up and running?
+</span></span></code></pre></div><h2 id="step15-簡単な全体イメージ">Step1.5 簡単な全体イメージ</h2>
 <p>以下で使用する用語の全体イメージは以下のような感じである。</p>
 <p><strong>Dockerfile</strong> から <strong>Image</strong> を作成、Image から <strong>Container</strong> を立ち上げる</p>
 <h2 id="step2-dockerfile-の作成">Step2 Dockerfile の作成</h2>
 <p>Dockerfile （ Image 作成の手順書）を作成する。dir 構成は以下の通り。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mynginx/
-└── Dockerfile
-</code></pre></div><p>Dockerfile は以下の通り。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Docker file</span>
-FROM nginx:latest                        <span style="color:#75715e"># イメージの指定</span>
-MAINTAINER mizuki-y&lt;mizuki-y@syati.info&gt; <span style="color:#75715e"># 作成者の情報</span>
-</code></pre></div><p>上記で手順書と書いたが、２行しかない手順書である。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mynginx/
+</span></span><span style="display:flex;"><span>└── Dockerfile
+</span></span></code></pre></div><p>Dockerfile は以下の通り。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Docker file</span>
+</span></span><span style="display:flex;"><span>FROM nginx:latest                        <span style="color:#75715e"># イメージの指定</span>
+</span></span><span style="display:flex;"><span>MAINTAINER mizuki-y&lt;mizuki-y@syati.info&gt; <span style="color:#75715e"># 作成者の情報</span>
+</span></span></code></pre></div><p>上記で手順書と書いたが、２行しかない手順書である。
 ただ単に、Image に<a href="https://hub.docker.com/_/nginx/">Official Repository nginx</a>を利用しますと記述しただけ。
 <strong>RUN</strong>、<strong>CMD</strong> とか他にも命令はあるが、今回はシンプルに。いますぐ知りたい！！という場合は、以下を参考に。</p>
 <ul>
@@ -188,63 +188,63 @@ MAINTAINER mizuki-y&lt;mizuki-y@syati.info&gt; <span style="color:#75715e"># 作
 </ul>
 <h2 id="step3-image-の作成">Step3 Image の作成</h2>
 <p>Dockerfile から Image を 作成するため <strong>build</strong> コマンドを実施する。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># build コマンドのヘルプ見てみる</span>
-$ docker build --help
-
-Usage:  docker build <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> PATH | URL | -
-
-Build a new image from the source code at PATH
-<span style="color:#75715e">## 多いので省略して、今回利用するものだけ</span>
-  -t, --tag<span style="color:#f92672">=</span>                      Repository name <span style="color:#f92672">(</span>and optionally a tag<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> the image
-
-<span style="color:#75715e"># いろいろありますが、とりあえず OPTIONS -t （名前付け）だけ覚えればいいでしょう。PATH には Dockerfile パスを。</span>
-$ docker build -t syati:nginx .
-</code></pre></div><h2 id="step4-image-の確認">Step4 Image の確認</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># build コマンドのヘルプ見てみる</span>
+</span></span><span style="display:flex;"><span>$ docker build --help
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Usage:  docker build <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> PATH | URL | -
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Build a new image from the source code at PATH
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 多いので省略して、今回利用するものだけ</span>
+</span></span><span style="display:flex;"><span>  -t, --tag<span style="color:#f92672">=</span>                      Repository name <span style="color:#f92672">(</span>and optionally a tag<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> the image
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># いろいろありますが、とりあえず OPTIONS -t （名前付け）だけ覚えればいいでしょう。PATH には Dockerfile パスを。</span>
+</span></span><span style="display:flex;"><span>$ docker build -t syati:nginx .
+</span></span></code></pre></div><h2 id="step4-image-の確認">Step4 Image の確認</h2>
 <p>作成した Image を確認するため <strong>images</strong> コマンドを実施する。 Step2 で FROM しか指定していないので何も変わっていない（SIZE 同じ）が Dockerfile から Image を作成できている。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker images
-REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-syati               nginx               a232c3216f20        <span style="color:#ae81ff">9</span> seconds ago       132.9 MB
-nginx               latest              0b354d33906d        <span style="color:#ae81ff">10</span> days ago         132.9 MB　   <span style="color:#75715e"># ベースとなったイメージ</span>
-
-<span style="color:#75715e"># 参考） -t オプションつけないと &lt;none&gt; になる</span>
-$ docker images
-REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-&lt;none&gt;              &lt;none&gt;              dd06038a778d        <span style="color:#ae81ff">10</span> minutes ago      132.9 MB
-nginx               latest              0b354d33906d        <span style="color:#ae81ff">10</span> days ago         132.9 MB
-</code></pre></div><h2 id="step5-container-を立ち上げる">Step5 Container を立ち上げる</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker images
+</span></span><span style="display:flex;"><span>REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+</span></span><span style="display:flex;"><span>syati               nginx               a232c3216f20        <span style="color:#ae81ff">9</span> seconds ago       132.9 MB
+</span></span><span style="display:flex;"><span>nginx               latest              0b354d33906d        <span style="color:#ae81ff">10</span> days ago         132.9 MB　   <span style="color:#75715e"># ベースとなったイメージ</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 参考） -t オプションつけないと &lt;none&gt; になる</span>
+</span></span><span style="display:flex;"><span>$ docker images
+</span></span><span style="display:flex;"><span>REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+</span></span><span style="display:flex;"><span>&lt;none&gt;              &lt;none&gt;              dd06038a778d        <span style="color:#ae81ff">10</span> minutes ago      132.9 MB
+</span></span><span style="display:flex;"><span>nginx               latest              0b354d33906d        <span style="color:#ae81ff">10</span> days ago         132.9 MB
+</span></span></code></pre></div><h2 id="step5-container-を立ち上げる">Step5 Container を立ち上げる</h2>
 <p>作成した Image から Container を立ち上げるために <strong>run</strong> コマンドを実施する</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># run コマンドのヘルプ見てみる</span>
-$ docker run --help
-
-Usage:	docker run <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> IMAGE <span style="color:#f92672">[</span>COMMAND<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>ARG...<span style="color:#f92672">]</span>
-
-Run a command in a new container
-<span style="color:#75715e">## 多いので省略して、今回利用するものだけ</span>
-  -d, --detach<span style="color:#f92672">=</span>false              Run container in background and print container ID
-  -i, --interactive<span style="color:#f92672">=</span>false         Keep STDIN open even <span style="color:#66d9ef">if</span> not attached
-  -P, --publish-all<span style="color:#f92672">=</span>false         Publish all exposed ports to random ports
-  -p, --publish<span style="color:#f92672">=[]</span>                Publish a container<span style="color:#e6db74">&#39;s port(s) to the host
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"># コンテナを立ち上げる
-</span><span style="color:#e6db74">$ docker run -P -d syati:nginx
-</span><span style="color:#e6db74">5c70e0b84c91dc04d56fab9b9967765716008bfcb4d1fe102ba34d305994541b
-</span><span style="color:#e6db74">## -P は コンテナで開いているポートと docker vm のポートをランダムにリンクする(以下の PORTS を見るとわかる）
-</span><span style="color:#e6db74">## -d は コンテナをバックグラウンドで実行する(バックグラウンドで実行しないと次のコマンド打てなくなるから大事)
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"># ps コマンドで 動作を確認する
-</span><span style="color:#e6db74">$ docker ps
-</span><span style="color:#e6db74">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                           NAMES
-</span><span style="color:#e6db74">5c70e0b84c91        syati:nginx       &#34;nginx -g &#39;</span>daemon off<span style="color:#e6db74">&#34;   46 seconds ago      Up 45 seconds       0.0.0.0:32771-&gt;80/tcp, 0.0.0.0:32770-&gt;443/tcp   trusting_lumiere
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"># 参考) -P でランダムなポートでリンクされても困っちゃうという場合は、以下のとおり -p を使って指定してあげる
-</span><span style="color:#e6db74"></span>$<span style="color:#e6db74"> docker run -p 8000:80 -d syati:nginx
-</span><span style="color:#e6db74">2ac58799de9cfdceb02abf2b6050761801641b93c820097048cb46a9c0be3e6a
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span>$<span style="color:#e6db74"> docker ps
-</span><span style="color:#e6db74">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                           NAMES
-</span><span style="color:#e6db74">2ac58799de9c        syati:nginx       &#34;</span>nginx -g <span style="color:#960050;background-color:#1e0010">&#39;</span>daemon off<span style="color:#e6db74">&#34;   3 seconds ago       Up 3 seconds        443/tcp, 0.0.0.0:8000-&gt;80/tcp   backstabbing_einstein
-</span></code></pre></div><p>Dockerfile のことを少しでも知っていたら、以下の点を疑問に思うかもしれない。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># run コマンドのヘルプ見てみる</span>
+</span></span><span style="display:flex;"><span>$ docker run --help
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Usage:	docker run <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> IMAGE <span style="color:#f92672">[</span>COMMAND<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>ARG...<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Run a command in a new container
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 多いので省略して、今回利用するものだけ</span>
+</span></span><span style="display:flex;"><span>  -d, --detach<span style="color:#f92672">=</span>false              Run container in background and print container ID
+</span></span><span style="display:flex;"><span>  -i, --interactive<span style="color:#f92672">=</span>false         Keep STDIN open even <span style="color:#66d9ef">if</span> not attached
+</span></span><span style="display:flex;"><span>  -P, --publish-all<span style="color:#f92672">=</span>false         Publish all exposed ports to random ports
+</span></span><span style="display:flex;"><span>  -p, --publish<span style="color:#f92672">=[]</span>                Publish a container<span style="color:#e6db74">&#39;s port(s) to the host
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># コンテナを立ち上げる
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">$ docker run -P -d syati:nginx
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5c70e0b84c91dc04d56fab9b9967765716008bfcb4d1fe102ba34d305994541b
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">## -P は コンテナで開いているポートと docker vm のポートをランダムにリンクする(以下の PORTS を見るとわかる）
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">## -d は コンテナをバックグラウンドで実行する(バックグラウンドで実行しないと次のコマンド打てなくなるから大事)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># ps コマンドで 動作を確認する
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">$ docker ps
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                           NAMES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">5c70e0b84c91        syati:nginx       &#34;nginx -g &#39;</span>daemon off<span style="color:#e6db74">&#34;   46 seconds ago      Up 45 seconds       0.0.0.0:32771-&gt;80/tcp, 0.0.0.0:32770-&gt;443/tcp   trusting_lumiere
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 参考) -P でランダムなポートでリンクされても困っちゃうという場合は、以下のとおり -p を使って指定してあげる
+</span></span></span><span style="display:flex;"><span>$<span style="color:#e6db74"> docker run -p 8000:80 -d syati:nginx
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2ac58799de9cfdceb02abf2b6050761801641b93c820097048cb46a9c0be3e6a
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span>$<span style="color:#e6db74"> docker ps
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                           NAMES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2ac58799de9c        syati:nginx       &#34;</span>nginx -g <span style="color:#960050;background-color:#1e0010">&#39;</span>daemon off<span style="color:#e6db74">&#34;   3 seconds ago       Up 3 seconds        443/tcp, 0.0.0.0:8000-&gt;80/tcp   backstabbing_einstein
+</span></span></span></code></pre></div><p>Dockerfile のことを少しでも知っていたら、以下の点を疑問に思うかもしれない。</p>
 <ol>
 <li>Dockerfile に CMD を記述していないのに、 COMMAND に nginx -g って・・。</li>
 <li>Dockerfile に EXPOSE を記述していないのに、 PORTSに 80 443 って・・。</li>
@@ -252,19 +252,19 @@ Run a command in a new container
 <p>これは利用イメージが <a href="https://hub.docker.com/_/nginx/">Official Repository nginx</a> この <a href="https://github.com/nginxinc/docker-nginx/blob/7f3ef0927ec619d20181e677c97f991df0d7d446/Dockerfile">Dockerfile</a> を利用して作成されているためである。</p>
 <h2 id="step6-nginx-のデフォルトページを見る">Step6 nginx のデフォルトページを見る</h2>
 <p>Step1 で docker vm の ip を確認してポートを付与してあげる。 -p オプションでポートをした場合で考えると以下にアクセスすれば <strong>Welcome to nginx!</strong> が見れるはず</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">http://192.168.99.100:8000
-</code></pre></div><h2 id="その他">その他</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>http://192.168.99.100:8000
+</span></span></code></pre></div><h2 id="その他">その他</h2>
 <h3 id="container-の中身を確認する">container の中身を確認する</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -t -i syati:nginx /bin/bash
-
-<span style="color:#75715e"># -t -i オプションは以下の通り</span>
-$ docker run --help
-Usage:	docker run <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> IMAGE <span style="color:#f92672">[</span>COMMAND<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>ARG...<span style="color:#f92672">]</span>
-
-Run a command in a new container
-  -i, --interactive<span style="color:#f92672">=</span>false         Keep STDIN open even <span style="color:#66d9ef">if</span> not attached
-  -t, --tty<span style="color:#f92672">=</span>false                 Allocate a pseudo-TTY
-</code></pre></div></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker run -t -i syati:nginx /bin/bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -t -i オプションは以下の通り</span>
+</span></span><span style="display:flex;"><span>$ docker run --help
+</span></span><span style="display:flex;"><span>Usage:	docker run <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> IMAGE <span style="color:#f92672">[</span>COMMAND<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>ARG...<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Run a command in a new container
+</span></span><span style="display:flex;"><span>  -i, --interactive<span style="color:#f92672">=</span>false         Keep STDIN open even <span style="color:#66d9ef">if</span> not attached
+</span></span><span style="display:flex;"><span>  -t, --tty<span style="color:#f92672">=</span>false                 Allocate a pseudo-TTY
+</span></span></code></pre></div></div>
 
                         </article>
 					
@@ -282,7 +282,7 @@ Run a command in a new container
 	
 	</div>
 	
-  	<script type="text/javascript" src='http://s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	<script type="text/javascript" src='//s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
   	
 </div>
 
@@ -310,7 +310,7 @@ Run a command in a new container
         return;
     
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
     
@@ -330,14 +330,14 @@ Run a command in a new container
                  (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2020
+			<footer id="footer" class="inner">Copyright &copy; 2026
 
-    Syati.info
+mizuki-y
 
 
 Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
-<script src="http://blog.syati.info/js/slash.js"></script>
-<script src="http://blog.syati.info/js/jquery.fancybox.pack.js"></script>
+<script src="https://blog.syati.info//js/slash.js"></script>
+<script src="https://blog.syati.info//js/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
 	$('.fancybox').fancybox();
@@ -346,9 +346,9 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
 </footer>
 		</div>
 	</div>
-	<script src="http://blog.syati.info/js/prism.js"></script>
-<script src="http://blog.syati.info/js/lunr.min.js"></script>
-<script src="http://blog.syati.info/js/search.js"></script>
+	<script src="https://blog.syati.info//js/prism.js"></script>
+<script src="https://blog.syati.info//js/lunr.min.js"></script>
+<script src="https://blog.syati.info//js/search.js"></script>
 
 </body>
 </html>
