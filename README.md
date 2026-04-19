@@ -1,6 +1,6 @@
 # blog
 
-http://blog.syati.info
+https://blog.syati.info
 
 ## Setup
 
