@@ -19,7 +19,7 @@ subscribe_rss = "/index.xml"
 
 # social links
 facebook_user = "Syati.org"
-googleplus_user = "+mizukiyamamoto"
+# googleplus_user = "+mizukiyamamoto"  # Google+ service ended in 2019
 twitter_user = "syati_org"
 github_user = "Syati"
 #coderwall_user = ""
@@ -37,7 +37,7 @@ github_user = "Syati"
 # share links
 facebook_like = true
 twitter_tweet_button = true
-google_plus_one = true
+# google_plus_one = true  # Google+ service ended in 2019
 #addthis_profile_id = ""
 
 # Disqus Comments
