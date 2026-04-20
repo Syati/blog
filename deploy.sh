@@ -19,5 +19,7 @@ fi
 git commit -m "$msg"
 
 # Push source and build repos.
-git push origin master
-git subtree push --prefix=public git@github.com:Syati/blog.git gh-pages
+git push origin
+
+# Deploy to gh-pages with force push (local build is source of truth)
+git push -f origin $(git subtree split --prefix public):refs/heads/gh-pages
