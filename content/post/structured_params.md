@@ -1,134 +1,125 @@
 +++
-Categories = ["Go"]
-Description = "Go 1.22 で追加された net/http の structured_params（Structured Field Values）を、使いどころと一緒に紹介します。"
-Tags = ["Go", "net/http", "HTTP"]
+Categories = ["Ruby"]
+Description = "Rails で型安全なパラメータバリデーションとフォームオブジェクトを実現する gem structured_params を紹介します。"
+Tags = ["Ruby", "Rails", "gem", "structured_params"]
 comments = true
 date = "2026-05-03T08:07:07+00:00"
-title = "Go の structured_params 入門（HTTP Structured Field Values）"
+title = "Rails の structured_params 入門（型安全な Params / Form Object）"
 
 +++
 
-Go 1.22 で `net/http` に **structured field values**（RFC 8941）のパーサ/シリアライザとして `structured_params` が追加されました。
+この記事は https://github.com/Syati/structured_params の **structured_params（Ruby gem）** の紹介です。
 
-HTTPヘッダは歴史的に「カンマ区切り」「セミコロンでパラメータ」など、ヘッダごとに微妙に違う“手書きパース”になりがちでした。Structured Field Values は、そのヘッダ表現を共通化し、**安全にパースできる機械可読な形式**を提供します。
+Rails のコントローラーやフォーム周りで、こんな悩みはよくあります。
 
-この記事では `structured_params` が何を解決するのか、どんな型があるのか、`net/http` の中でどう使うのかをまとめます。
+- `params` は基本的に文字列で入り、型変換が散らばる
+- ネストした構造（object/array）が増えると `permit` が複雑になる
+- バリデーションと変換（cast）の責務がモデルやコントローラーに漏れる
+
+structured_params は、これらを **ActiveModel ベースの Params クラス**として切り出し、型変換・バリデーション・Strong Parameters の permit までを一貫して扱えるようにする gem です。
 
 <!--more-->
 
-## structured field values とは
+## structured_params が提供するもの
 
-RFC 8941 で定義された、HTTPヘッダのためのデータ表現です。
+structured_params の中心は `StructuredParams::Params` です。
 
-- **Item**: 1つの値（文字列/数値/真偽/トークン/バイト列/日付など）+ パラメータ
-- **List**: Item の配列
-- **Dictionary**: `key=value` の集合
+- `attribute` で「期待する型」を宣言できる
+- ActiveModel の `validates` がそのまま使える
+- ネストした object / array の型変換（cast）を扱える
+- Strong Parameters の `permit` リストを自動生成できる
+- RBS 型定義があり、型の補完/検査と相性がよい
 
-たとえば `Prefer` や `Signature` のように「キーと値」「値にぶら下がるパラメータ」を扱いたいヘッダでは、Structured Field Values を使うとパースが明確になります。
+## クイックスタート
 
-## `net/http` の `structured_params` パッケージ
+まず `StructuredParams.register_types` を呼んで、型キャストに必要な型を登録します。
 
-`structured_params` は、上の Item / List / Dictionary をGoの型で扱うためのパッケージです。
+```ruby
+# Gemfile
+gem 'structured_params'
 
-利用する側のメリットはだいたい次の3つです。
-
-1. **手書きパースを減らせる**（split/trim の積み上げをやめられる）
-2. **エッジケースに強い**（引用符、エスケープ、空白、重複など）
-3. **シリアライズも一貫**（自前で組み立てなくてよい）
-
-## まずは最小例：List をパースする
-
-ここでは「カンマ区切りの値 + パラメータ」を想定して List を読んでみます。
-
-```go
-package main
-
-import (
-  "fmt"
-  "net/http/structured_params"
-)
-
-func main() {
-  // 例: Item（token）にパラメータが付く
-  // "foo" と "bar" の2要素、foo には ;a=1 が付く
-  s := "foo;a=1, bar"
-
-  list, err := structured_params.ParseList(s)
-  if err != nil {
-    panic(err)
-  }
-
-  for i, member := range list {
-    fmt.Printf("%d: %v\n", i, member)
-  }
-}
+# どこか初期化（例: config/initializers/structured_params.rb）
+StructuredParams.register_types
 ```
 
-ポイントは、`ParseList` の戻りが「単なる `[]string` ではない」ことです。各要素が Item（と、そのパラメータ）として保持されます。
+## API パラメータバリデーション例
 
-## Item の中身：Bare Item と Parameters
+API のリクエストパラメータを「型変換 + バリデーション」して、モデルに渡すところまでを 1 つの Params クラスにまとめられます。
 
-Structured Field Values の Item は「値本体（Bare Item）」と「パラメータ」を持ちます。
+```ruby
+class AddressParams < StructuredParams::Params
+  attribute :street, :string
+  attribute :city, :string
+end
 
-- 値本体: token / string / number / boolean / byte sequence / date など
-- パラメータ: `;key=value` という形でぶら下がるメタデータ
+class UserParams < StructuredParams::Params
+  attribute :name, :string
+  attribute :age, :integer
+  attribute :score, :integer
+  attribute :tags, :array, value_type: :string            # プリミティブ配列
+  attribute :address, :object, value_class: AddressParams # ネストオブジェクト
 
-たとえば `text/html;q=0.9` の `q` は、よくある “品質値” パラメータです。structured field values ではこれも機械的に表現できます。
+  # 型変換前の生文字列をバリデーション
+  validates_raw :score, format: { with: /\A\d+\z/, message: 'must be numeric string' }
+  validates :name, presence: true
+  validates :age, numericality: { greater_than: 0 }
+  validates :score, numericality: { greater_than_or_equal_to: 0 }
+end
 
-## Dictionary：`key=value` を扱う
+def create
+  permitted = UserParams.permit(params, require: false)
+  user_params = UserParams.new(permitted)
 
-`Dictionary` は `key=value` の集合を扱います（value が省略されたり、true扱いになったりするケースも含む）。
-
-```go
-package main
-
-import (
-  "fmt"
-  "net/http/structured_params"
-)
-
-func main() {
-  s := "a=1, b=?0, c;foo=\"bar\""
-
-  dict, err := structured_params.ParseDictionary(s)
-  if err != nil {
-    panic(err)
-  }
-
-  fmt.Println(dict)
-}
+  if user_params.valid?
+    User.create!(user_params.attributes)
+  else
+    render json: { errors: user_params.errors }, status: :unprocessable_entity
+  end
+end
 ```
 
-ヘッダをアプリケーションで拡張したいとき、Dictionary の形はとても扱いやすいです（後方互換のためにキー追加していく、など）。
+`permit` を書き下す代わりに `UserParams.permit(...)` を呼べるので、コントローラー側がすっきりします。
+
+## フォームオブジェクト例
+
+structured_params はフォーム入力の扱いにも向いています。ActiveModel 互換なので、`validates` など Rails の文法でそのまま書けます。
+
+```ruby
+class UserRegistrationForm < StructuredParams::Params
+  attribute :name, :string
+  attribute :email, :string
+  attribute :terms_accepted, :boolean
+
+  validates :name, :email, presence: true
+  validates :terms_accepted, acceptance: true
+end
+
+def create
+  form = UserRegistrationForm.new(UserRegistrationForm.permit(params))
+
+  if form.valid?
+    User.create!(form.attributes)
+    redirect_to root_path
+  else
+    render :new
+  end
+end
+```
 
 ## いつ使う？（使いどころの考え方）
 
-`structured_params` は「どんなヘッダでもパースできる魔法の道具」ではなく、**Structured Field Values を採用しているヘッダ**や、**自分で設計する拡張ヘッダ**で真価を発揮します。
+特に効果が大きいのは次のようなケースです。
 
-使いどころの目安:
+- API が大きくなり、パラメータの型変換・バリデーションが散らばっている
+- ネスト（object/array）が増えて Strong Parameters の管理がつらい
+- “フォームの入力値” をモデルに変換するロジックが複雑になってきた
 
-- 既存ヘッダが RFC 8941 を参照している（あるいは将来対応したい）
-- 値が `key=value` 的で、後から項目追加したい
-- “値 + パラメータ” をちゃんと扱いたい（引用符やエスケープ込みで）
-
-逆に、伝統的なフォーマット（例: `Cookie` のような独自構文）を無理に structured field values として扱うのは避けた方がよいです。
-
-## 出力（シリアライズ）も揃える
-
-structured field values は **送信側**でも便利です。自前の文字列連結をやめて、型から正しいフォーマットへ変換できます。
-
-```go
-// 例: List/Dictionary を組み立てて Serialize* 系で文字列にする
-// （詳細は Go のドキュメントを参照）
-```
-
-これにより、微妙な空白・引用符・エスケープを毎回気にしなくて済みます。
+逆に、入力が単純で変換がほぼ不要な場合は、まずは `params.require(...).permit(...)` とモデルのバリデーションだけでも十分です。
 
 ## まとめ
 
-- `structured_params` は HTTP Structured Field Values（RFC 8941）を扱うための `net/http` 標準パッケージ
-- 手書きパースをやめて、Item / List / Dictionary として安全に扱える
-- 「RFC 8941 準拠のヘッダ」や「拡張ヘッダ設計」で特に有用
+- structured_params は Rails で「型安全な Params / Form Object」を作るための gem
+- `attribute` と ActiveModel validations で、型変換と検証を 1 つのクラスに集約できる
+- Strong Parameters の permit リストも自動生成でき、ネスト構造でも扱いやすい
 
-次は、実際に自作ヘッダ（Dictionary）を導入して、`http.Handler` 側で `ParseDictionary` し、レスポンスで `SerializeDictionary` する例まで書くと運用イメージが湧きやすいです。
-
+詳しくは upstream のドキュメント（README / docs）を参照してください。
