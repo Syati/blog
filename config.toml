@@ -49,6 +49,9 @@ disqus_show_comment_count = true
 # google analytics
 google_analytics_tracking_id = "UA-9380531-6"
 
+[outputs]
+  home = ["HTML", "JSON"]
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
