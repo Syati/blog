@@ -1,6 +1,6 @@
 +++
 Categories = ["Ruby"]
-Description = "Rails で型安全なパラメータバリデーションとフォームオブジェクトを実現する gem structured_params を紹介します。"
+Description = "Rails で型安全なパラメータバリデーションとフォームオブジェクトを実現する gem structured_params の紹介"
 Tags = ["Ruby", "Rails", "gem", "structured_params"]
 comments = true
 date = "2026-05-03T08:07:07+00:00"
@@ -8,7 +8,7 @@ title = "Rails の structured_params 入門（型安全な Params / Form Object�
 
 +++
 
-この記事は https://github.com/Syati/structured_params の **structured_params（Ruby gem）** の紹介です。
+この記事は https://github.com/Syati/structured_params の **structured_params（Ruby gem）** の紹介。
 
 Rails のコントローラーやフォーム周りで、こんな悩みはよくあります。
 
@@ -67,8 +67,7 @@ class UserParams < StructuredParams::Params
 end
 
 def create
-  permitted = UserParams.permit(params, require: false)
-  user_params = UserParams.new(permitted)
+  user_params = UserParams.new(params)
 
   if user_params.valid?
     User.create!(user_params.attributes)
@@ -78,7 +77,7 @@ def create
 end
 ```
 
-`permit` を書き下す代わりに `UserParams.permit(...)` を呼べるので、コントローラー側がすっきりする。
+`permit` を書き下す代わりに `UserParams.new(params)` を呼べるので、コントローラー側がすっきりする。
 
 ## フォームオブジェクト例
 
