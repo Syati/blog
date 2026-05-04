@@ -4,7 +4,7 @@ Description = "Rails で型安全なパラメータバリデーションとフ�
 Tags = ["Ruby", "Rails", "gem", "structured_params"]
 comments = true
 date = "2026-05-03T08:07:07+00:00"
-title = "Rails の structured_params 入門（型安全な Params / Form Object）"
+title = "structured_params gem の紹介（型安全な Params / Form Object）"
 
 +++
 
