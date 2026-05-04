@@ -47,10 +47,14 @@ disqus_short_name = "blogsyatiinfo"
 disqus_show_comment_count = true
 
 # google analytics
-google_analytics_tracking_id = "UA-9380531-6"
+googleAnalytics = "G-4YDWEDGGB2"
 
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
+disableKinds = ["RSS"]
+
+[outputs]
+  home = ["HTML", "JSON"]
+
+
+[markup.goldmark.renderer]
+  unsafe = true
 

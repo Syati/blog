@@ -11,15 +11,12 @@ _.path = ["./bin", "{{ env.HOME }}/go/bin"]
 description = "Install Hugo extended version"
 run = "go install -tags extended github.com/gohugoio/hugo@latest"
 
-[tasks.build-index]
-description = "Build search index with Go"
-run = "go run cmd/indexer/main.go"
-
 [tasks.build]
 description = "Build the site with Hugo"
 run = """
-go run cmd/indexer/main.go
 hugo
+mkdir -p public/js/lunr
+cp public/index.json public/js/lunr/PagesIndex.json
 """
 
 [tasks.serve]

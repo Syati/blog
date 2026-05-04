@@ -22,3 +22,5 @@ go.work.sum
 
 # CSS preprocessor
 .sass-cache
+
+.idea
