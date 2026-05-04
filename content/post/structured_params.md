@@ -5,7 +5,7 @@ Tags = ["Ruby", "Rails", "gem", "structured_params"]
 comments = true
 date = "2026-05-03T08:07:07+00:00"
 title = "structured_params gem の紹介（型安全な Params / Form Object）"
-
+logo = 'rails'
 +++
 
 この記事は https://github.com/Syati/structured_params の **structured_params（Ruby gem）** の紹介。
