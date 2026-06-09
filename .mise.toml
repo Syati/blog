@@ -25,4 +25,5 @@ run = "hugo server -D"
 
 [tasks.deploy]
 description = "Deploy to GitHub Pages"
+depends = ["build"]
 run = "./deploy.sh"
