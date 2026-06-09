@@ -3,9 +3,9 @@ Categories = ["Zsh"]
 Description = "fzf を使って Entire CLI のセッションやチェックポイントをインタラクティブに操作できる zsh プラグイン「entire-fzf」を作りました。"
 Tags = ["Zsh", "fzf", "entire", "CLI"]
 comments = true
-date = "2026-06-10T12:00:00+09:00"
+date = "2026-06-10T07:00:00+09:00"
 title = "fzf で Entire セッションを選択・操作する zsh プラグイン entire-fzf を作った"
-
+logo = "shell"
 +++
 
 Claude Code などの AI エージェントのセッション履歴やチェックポイントを Git ライクに記録・管理できる CLI ツール **Entire**。
