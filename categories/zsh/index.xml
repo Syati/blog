@@ -1,0 +1,66 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Zsh on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>https://blog.syati.info/categories/zsh/</link>
+    <language>ja-JP</language>
+    <author>mizuki-y</author>
+    <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
+    <updated>Wed, 10 Jun 2026 07:00:00 JST</updated>
+    
+    <item>
+      <title>fzf で Entire セッションを選択・操作する zsh プラグイン entire-fzf を作った</title>
+      <link>https://blog.syati.info/post/entire-fzf/</link>
+      <pubDate>Wed, 10 Jun 2026 07:00:00 JST</pubDate>
+      <author>mizuki-y</author>
+      <guid>https://blog.syati.info/post/entire-fzf/</guid>
+      <description>&lt;p&gt;Claude Code などの AI エージェントのセッション履歴やチェックポイントを Git ライクに記録・管理できる CLI ツール &lt;strong&gt;Entire&lt;/strong&gt;。
+非常に便利なのですが、セッションやチェックポイントの切り替え、レジューム、各チェックポイントの AI による変更理由の解説などをコマンドラインから ID を指定して実行するのは少々面倒。&lt;/p&gt;
+&lt;p&gt;そこで、fzf を使ってインタラクティブに Entire セッションやチェックポイントを選択・操作できる Zsh プラグイン &lt;strong&gt;entire-fzf&lt;/strong&gt; を作成しました。便利だと思います。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Syati/entire-fzf&#34;&gt;https://github.com/Syati/entire-fzf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/Syati/entire-fzf/raw/main/demo/demo.gif&#34; alt=&#34;Demo&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;必要なもの&#34;&gt;必要なもの&lt;/h2&gt;
+&lt;p&gt;このプラグインを利用するには、以下のコマンドがあらかじめインストールされている必要があります。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;zsh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;entire&lt;/code&gt; (AI セッション記録・管理 CLI)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fzf&lt;/code&gt; (コマンドラインファジーファインダー)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;jq&lt;/code&gt; (JSON パーサー)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;インストール方法&#34;&gt;インストール方法&lt;/h2&gt;
+&lt;h3 id=&#34;プラグインマネージャーを使わない場合&#34;&gt;プラグインマネージャーを使わない場合&lt;/h3&gt;
+&lt;p&gt;リポジトリをクローンして、&lt;code&gt;.zshrc&lt;/code&gt; でプラグインスクリプトを読み込みます。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git clone https://github.com/Syati/entire-fzf.git ~/.zsh/entire-fzf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;.zshrc&lt;/code&gt; に以下を追記します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# ~/.zshrc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;source ~/.zsh/entire-fzf/entire-fzf.plugin.zsh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;sheldon-を使う場合&#34;&gt;Sheldon を使う場合&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/rossmacarthur/sheldon&#34;&gt;Sheldon&lt;/a&gt; をお使いの場合は、&lt;code&gt;~/.config/sheldon/plugins.toml&lt;/code&gt; に以下を追加します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;plugins&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;entire-fzf&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;github&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Syati/entire-fzf&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Sheldon はプラグイン名 &lt;code&gt;entire-fzf&lt;/code&gt; から自動的に &lt;code&gt;entire-fzf.plugin.zsh&lt;/code&gt; をマッチングしてロードしてくれます。&lt;/p&gt;
+&lt;p&gt;設定を反映するには、シェルを再起動するか以下を実行します：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ eval &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;sheldon source&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;使い方提供されるコマンド&#34;&gt;使い方（提供されるコマンド）&lt;/h2&gt;
+&lt;p&gt;プラグインをロードすると、以下の 2 つの便利なインタラクティブコマンドが使えるようになります。&lt;/p&gt;
+&lt;h3 id=&#34;1-etf-entire-session-picker&#34;&gt;1. &lt;code&gt;etf&lt;/code&gt; (Entire Session Picker)&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;etf&lt;/code&gt; を実行すると、記録されている Entire セッション一覧が fzf でインタラクティブに表示されます。
+セッションを選択すると、そのセッションに対して以下のいずれかのアクションを選択して実行できます：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;resume&lt;/strong&gt;: セッションを再開する&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;explain&lt;/strong&gt;: 最新のチェックポイントの説明（AI による変更の意図などの解説）を表示する&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;checkpoints&lt;/strong&gt;: チェックポイント一覧から個別に選択して、その説明を表示する&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;info&lt;/strong&gt;: セッションの詳細情報を表示する&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;stop&lt;/strong&gt;: アクティブなセッションを停止する&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;clean&lt;/strong&gt;: セッション履歴をクリーンアップする&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-etfc-active-session-checkpoint-picker&#34;&gt;2. &lt;code&gt;etfc&lt;/code&gt; (Active Session Checkpoint Picker)&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;etfc&lt;/code&gt; を実行すると、カレントのワークツリーでアクティブになっている Entire セッションのチェックポイント（AI がコミット・チェックポイントを作成した履歴）一覧が fzf で表示されます。
+チェックポイントを選択するだけで、即座にそのチェックポイントに対する AI 生成の解説（explain）を確認できます。&lt;/p&gt;
+&lt;h2 id=&#34;その他&#34;&gt;その他&lt;/h2&gt;
+&lt;p&gt;entire dispatch など、その他の command については、今回は対象外としていますので、そちらは直接叩いてください。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

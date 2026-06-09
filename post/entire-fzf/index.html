@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head>
+	<meta charset="utf-8">
+	<title>fzf で Entire セッションを選択・操作する zsh プラグイン entire-fzf を作った - Syati.info</title>
+	<meta name="author" content="mizuki-y">
+
+	
+	  
+	<meta name="description" content="fzf を使って Entire CLI のセッションやチェックポイントをインタラクティブに操作できる zsh プラグイン「entire-fzf」を作りました。">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='https://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="https://blog.syati.info/post/entire-fzf/">
+	<link href="https://blog.syati.info//favicon.png" rel="shortcut icon">
+	<link href="https://blog.syati.info//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://blog.syati.info//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<link href="https://blog.syati.info//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4YDWEDGGB2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4YDWEDGGB2');
+</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner">
+<a href="https://blog.syati.info/">    
+    <div>
+        <h1>
+            Syati.info
+        </h1>        
+        <p>
+            かんがえるさかな
+        </p>
+    </div>
+</a>
+</section>
+
+
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='https://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+		
+			<a class="twitter" href='https://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='https://blog.syati.info/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+<nav id="main-nav">
+    <ul class="main">
+    <li><a href="https://blog.syati.info/">Blog</a></li>
+    <li><a href="https://blog.syati.info/about/">About</a></li>
+    <li><a href="https://blog.syati.info/post/">Archives</a></li>
+</ul>
+<div class="search-nav">
+    <label for="search">Search</label>
+    <input id="search" type="text">
+    <ul id="results">
+    </ul>
+</div>
+
+
+
+</nav>
+
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                               
+   <h1 class="title" itemprop="name">
+       
+       <img class="entry-title-logo" src="https://blog.syati.info/images/logo/shell" />
+       
+       fzf で Entire セッションを選択・操作する zsh プラグイン entire-fzf を作った
+   </h1>
+      
+    <div id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#必要なもの">必要なもの</a></li>
+    <li><a href="#インストール方法">インストール方法</a>
+      <ul>
+        <li><a href="#プラグインマネージャーを使わない場合">プラグインマネージャーを使わない場合</a></li>
+        <li><a href="#sheldon-を使う場合">Sheldon を使う場合</a></li>
+      </ul>
+    </li>
+    <li><a href="#使い方提供されるコマンド">使い方（提供されるコマンド）</a>
+      <ul>
+        <li><a href="#1-etf-entire-session-picker">1. <code>etf</code> (Entire Session Picker)</a></li>
+        <li><a href="#2-etfc-active-session-checkpoint-picker">2. <code>etfc</code> (Active Session Checkpoint Picker)</a></li>
+      </ul>
+    </li>
+    <li><a href="#その他">その他</a></li>
+  </ul>
+</nav>
+    </div>
+    
+	<div class="entry-content" itemprop="articleBody"><p>Claude Code などの AI エージェントのセッション履歴やチェックポイントを Git ライクに記録・管理できる CLI ツール <strong>Entire</strong>。
+非常に便利なのですが、セッションやチェックポイントの切り替え、レジューム、各チェックポイントの AI による変更理由の解説などをコマンドラインから ID を指定して実行するのは少々面倒。</p>
+<p>そこで、fzf を使ってインタラクティブに Entire セッションやチェックポイントを選択・操作できる Zsh プラグイン <strong>entire-fzf</strong> を作成しました。便利だと思います。</p>
+<p><a href="https://github.com/Syati/entire-fzf">https://github.com/Syati/entire-fzf</a></p>
+<p><img src="https://github.com/Syati/entire-fzf/raw/main/demo/demo.gif" alt="Demo"></p>
+<h2 id="必要なもの">必要なもの</h2>
+<p>このプラグインを利用するには、以下のコマンドがあらかじめインストールされている必要があります。</p>
+<ul>
+<li><code>zsh</code></li>
+<li><code>entire</code> (AI セッション記録・管理 CLI)</li>
+<li><code>fzf</code> (コマンドラインファジーファインダー)</li>
+<li><code>jq</code> (JSON パーサー)</li>
+<li><code>git</code></li>
+</ul>
+<h2 id="インストール方法">インストール方法</h2>
+<h3 id="プラグインマネージャーを使わない場合">プラグインマネージャーを使わない場合</h3>
+<p>リポジトリをクローンして、<code>.zshrc</code> でプラグインスクリプトを読み込みます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone https://github.com/Syati/entire-fzf.git ~/.zsh/entire-fzf
+</span></span></code></pre></div><p><code>.zshrc</code> に以下を追記します：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.zshrc</span>
+</span></span><span style="display:flex;"><span>source ~/.zsh/entire-fzf/entire-fzf.plugin.zsh
+</span></span></code></pre></div><h3 id="sheldon-を使う場合">Sheldon を使う場合</h3>
+<p><a href="https://github.com/rossmacarthur/sheldon">Sheldon</a> をお使いの場合は、<code>~/.config/sheldon/plugins.toml</code> に以下を追加します：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">plugins</span>.<span style="color:#a6e22e">entire-fzf</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">github</span> = <span style="color:#e6db74">&#34;Syati/entire-fzf&#34;</span>
+</span></span></code></pre></div><p>Sheldon はプラグイン名 <code>entire-fzf</code> から自動的に <code>entire-fzf.plugin.zsh</code> をマッチングしてロードしてくれます。</p>
+<p>設定を反映するには、シェルを再起動するか以下を実行します：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>sheldon source<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h2 id="使い方提供されるコマンド">使い方（提供されるコマンド）</h2>
+<p>プラグインをロードすると、以下の 2 つの便利なインタラクティブコマンドが使えるようになります。</p>
+<h3 id="1-etf-entire-session-picker">1. <code>etf</code> (Entire Session Picker)</h3>
+<p><code>etf</code> を実行すると、記録されている Entire セッション一覧が fzf でインタラクティブに表示されます。
+セッションを選択すると、そのセッションに対して以下のいずれかのアクションを選択して実行できます：</p>
+<ul>
+<li><strong>resume</strong>: セッションを再開する</li>
+<li><strong>explain</strong>: 最新のチェックポイントの説明（AI による変更の意図などの解説）を表示する</li>
+<li><strong>checkpoints</strong>: チェックポイント一覧から個別に選択して、その説明を表示する</li>
+<li><strong>info</strong>: セッションの詳細情報を表示する</li>
+<li><strong>stop</strong>: アクティブなセッションを停止する</li>
+<li><strong>clean</strong>: セッション履歴をクリーンアップする</li>
+</ul>
+<h3 id="2-etfc-active-session-checkpoint-picker">2. <code>etfc</code> (Active Session Checkpoint Picker)</h3>
+<p><code>etfc</code> を実行すると、カレントのワークツリーでアクティブになっている Entire セッションのチェックポイント（AI がコミット・チェックポイントを作成した履歴）一覧が fzf で表示されます。
+チェックポイントを選択するだけで、即座にそのチェックポイントに対する AI 生成の解説（explain）を確認できます。</p>
+<h2 id="その他">その他</h2>
+<p>entire dispatch など、その他の command については、今回は対象外としていますので、そちらは直接叩いてください。</p></div>
+
+                        </article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='//s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					<section id="comment">
+					    <h1 class="title">Comments</h1>
+					    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+					</section>
+					
+
+<script type="text/javascript">
+    
+    var disqus_shortname = 'blogsyatiinfo';
+
+    
+    
+
+    
+    (function () {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+    
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+    
+</script>
+
+
+					
+				    </div>
+				</div>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8331825501555489"
+                     data-ad-slot="1897822451"
+                     data-ad-format="auto"></ins>
+                <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2026
+
+mizuki-y
+
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="https://blog.syati.info//js/slash.js"></script>
+<script src="https://blog.syati.info//js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script>
+</footer>
+		</div>
+	</div>
+	<script src="https://blog.syati.info//js/prism.js"></script>
+<script src="https://blog.syati.info//js/lunr.min.js"></script>
+<script src="https://blog.syati.info//js/search.js"></script>
+
+</body>
+</html>

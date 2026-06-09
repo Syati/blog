@@ -1,0 +1,12 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Categories on Syati.info </title>
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>https://blog.syati.info/categories/</link>
+    <language>ja-JP</language>
+    <author>mizuki-y</author>
+    <copyright>Copyright (c) 2008 - 2015, mizuki-y; all rights reserved.</copyright>
+    <updated>Wed, 10 Jun 2026 07:00:00 JST</updated>
+    
+  </channel>
+</rss>

@@ -1,0 +1,354 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="utf-8">
+	<title>Sequelize Part 3 - リレーション belongs to - Syati.info</title>
+	<meta name="author" content="mizuki-y">
+
+	
+	  
+	<meta name="description" content="Sequelize でテーブル間のリレーション(belongs to)を作っていきたいと思う">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='http://localhost:1313/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://localhost:1313/post/sequelize_relation_belogs_to/">
+	<link href="http://localhost:1313//favicon.png" rel="shortcut icon">
+	<link href="http://localhost:1313//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="http://localhost:1313//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<link href="http://localhost:1313//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4YDWEDGGB2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4YDWEDGGB2');
+</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner">
+<a href="http://localhost:1313/">    
+    <div>
+        <h1>
+            Syati.info
+        </h1>        
+        <p>
+            かんがえるさかな
+        </p>
+    </div>
+</a>
+</section>
+
+
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='https://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+		
+			<a class="twitter" href='https://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='http://localhost:1313/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+<nav id="main-nav">
+    <ul class="main">
+    <li><a href="http://localhost:1313/">Blog</a></li>
+    <li><a href="http://localhost:1313/about/">About</a></li>
+    <li><a href="http://localhost:1313/post/">Archives</a></li>
+</ul>
+<div class="search-nav">
+    <label for="search">Search</label>
+    <input id="search" type="text">
+    <ul id="results">
+    </ul>
+</div>
+
+
+
+</nav>
+
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                               
+   <h1 class="title" itemprop="name">
+       
+       Sequelize Part 3 - リレーション belongs to
+   </h1>
+      
+    <div id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-設計">1. 設計</a></li>
+    <li><a href="#2-モデル作成">2. モデル作成</a>
+      <ul>
+        <li><a href="#21-初期モデルの作成">2.1. 初期モデルの作成</a></li>
+        <li><a href="#22-リレーション定義">2.2. リレーション定義</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-インスタンスを作成する">3. インスタンスを作成する</a>
+      <ul>
+        <li><a href="#31-リレーションも一緒に作成-1">3.1. リレーションも一緒に作成 1</a></li>
+        <li><a href="#32-リレーションも一緒に作成-2">3.2. リレーションも一緒に作成 2</a></li>
+        <li><a href="#33-別々に作成後リーレション付与">3.3. 別々に作成後、リーレション付与</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+    
+	<div class="entry-content" itemprop="articleBody"><h2 id="1-設計">1. 設計</h2>
+<p>これをつくる！！</p>
+<figure class="image-half__center"><img src="http://localhost:1313/post/sequelize_relation_belogs_to/UsersProjectsTable.jpg"><figcaption>
+      <h4>ER図</h4>
+    </figcaption>
+</figure>
+
+<h2 id="2-モデル作成">2. モデル作成</h2>
+<h3 id="21-初期モデルの作成">2.1. 初期モデルの作成</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sequelize model:create --name User --attributes firstName:string,lastName:string
+</span></span><span style="display:flex;"><span>$ sequelize model:create --name Project --attributes name:string
+</span></span></code></pre></div><h3 id="22-リレーション定義">2.2. リレーション定義</h3>
+<p>モデルのリレーションは、<strong>models/対象ファイル</strong>の <strong>classMethods 内の associate</strong> に定義してあげる。リレーションの種類は以下の通り。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 変更前
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// モデルファイルのリレーション定義箇所
+</span></span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">classMethods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">associate</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">models</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// associations can be defined here
+</span></span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 変更後
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// models/user.js
+</span></span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">classMethods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">associate</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">models</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">User</span>.<span style="color:#a6e22e">belongsTo</span>(<span style="color:#a6e22e">models</span>.<span style="color:#a6e22e">Project</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// models/project.js
+</span></span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">classMethods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">associate</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">models</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Project</span>.<span style="color:#a6e22e">hasMany</span>(<span style="color:#a6e22e">models</span>.<span style="color:#a6e22e">User</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h2 id="3-インスタンスを作成する">3. インスタンスを作成する</h2>
+<p>REPL を起動する。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ node
+</span></span></code></pre></div><p>以下を打ち込んで試してみる。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// repl 内 共通部分
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">models</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./repl&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">models</span>.<span style="color:#a6e22e">User</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Project</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">models</span>.<span style="color:#a6e22e">Project</span>;
+</span></span></code></pre></div><p>以降の 3.1, 3.2 で出力結果が異なることに注意</p>
+<h3 id="31-リレーションも一緒に作成-1">3.1. リレーションも一緒に作成 1</h3>
+<p>ユーザー作成、プロジェクト作成、リレーション付与を１つで行う。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// repl 内
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">User</span>.<span style="color:#a6e22e">create</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Suzuki&#39;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Tarou&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Project</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;second project&#39;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">include</span><span style="color:#f92672">:</span> [ <span style="color:#a6e22e">Project</span> ]
+</span></span><span style="display:flex;"><span>}).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">user</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">user</span>));
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 出力
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &gt; Executing (default): INSERT INTO `Projects` (`id`,`name`,`updatedAt`,`createdAt`) VALUES (DEFAULT,&#39;second project&#39;,&#39;2015-12-31 07:24:50&#39;,&#39;2015-12-31 07:24:50&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Executing (default): INSERT INTO `Users` (`id`,`firstName`,`lastName`,`ProjectId`,`updatedAt`,`createdAt`) VALUES (DEFAULT,&#39;Suzuki&#39;,&#39;Tarou&#39;,2,&#39;2015-12-31 07:24:50&#39;,&#39;2015-12-31 07:24:50&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// {&#34;id&#34;:2,&#34;firstName&#34;:&#34;Suzuki&#34;,&#34;lastName&#34;:&#34;Tarou&#34;,&#34;Project&#34;:{&#34;id&#34;:2,&#34;name&#34;:&#34;second project&#34;,&#34;updatedAt&#34;:&#34;2015-12-31T07:24:50.000Z&#34;,&#34;createdAt&#34;:&#34;2015-12-31T07:24:50.000Z&#34;},&#34;ProjectId&#34;:2,&#34;updatedAt&#34;:&#34;2015-12-31T07:24:50.000Z&#34;,&#34;createdAt&#34;:&#34;2015-12-31T07:24:50.000Z&#34;}
+</span></span></span></code></pre></div><ul>
+<li>参考
+<ul>
+<li><a href="http://docs.sequelizejs.com/en/latest/docs/associations/#creating-elements-of-a-belongsto-or-hasone-association">Creating with associations</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="32-リレーションも一緒に作成-2">3.2. リレーションも一緒に作成 2</h3>
+<p>ユーザー作成の後、プロジェクト作成、リレーション付与を行う。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// ユーザ作成とリレーション付与
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">User</span>.<span style="color:#a6e22e">create</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Yamada&#39;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Tarou&#39;</span>
+</span></span><span style="display:flex;"><span>}).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">user</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">createProject</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;second project&#39;</span>
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>}).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">user</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">user</span>));
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// &gt; Executing (default): INSERT INTO `Users` (`id`,`firstName`,`lastName`,`updatedAt`,`createdAt`) VALUES (DEFAULT,&#39;Yamada&#39;,&#39;Tarou&#39;,&#39;2015-12-31 07:54:07&#39;,&#39;2015-12-31 07:54:07&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Executing (default): INSERT INTO `Projects` (`id`,`name`,`updatedAt`,`createdAt`) VALUES (DEFAULT,&#39;second project&#39;,&#39;2015-12-31 07:54:07&#39;,&#39;2015-12-31 07:54:07&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Executing (default): UPDATE `Users` SET `ProjectId`=3,`updatedAt`=&#39;2015-12-31 07:54:07&#39; WHERE `id` = 3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// {&#34;id&#34;:3,&#34;firstName&#34;:&#34;Yamada&#34;,&#34;lastName&#34;:&#34;Tarou&#34;,&#34;updatedAt&#34;:&#34;2015-12-31T07:54:07.000Z&#34;,&#34;createdAt&#34;:&#34;2015-12-31T07:54:07.000Z&#34;,&#34;ProjectId&#34;:3}
+</span></span></span></code></pre></div><ul>
+<li>参考
+<ul>
+<li><a href="http://docs.sequelizejs.com/en/latest/api/associations/belongs-to/#createassociationvalues-options-promise">createAssociation</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="33-別々に作成後リーレション付与">3.3. 別々に作成後、リーレション付与</h3>
+<p>インスタンスを作成した後、リレーションを付与してあげる。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// repl 内
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// プロジェクト作成
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">Project</span>.<span style="color:#a6e22e">create</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;first project&#39;</span>
+</span></span><span style="display:flex;"><span>}).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">project</span>) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">project</span>)));
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 出力
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &gt; Executing (default): INSERT INTO `Projects` (`id`,`name`,`updatedAt`,`createdAt`) VALUES (DEFAULT,&#39;first project&#39;,&#39;2015-12-31 06:18:49&#39;,&#39;2015-12-31 06:18:49&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// {&#34;id&#34;:1,&#34;name&#34;:&#34;first project&#34;,&#34;updatedAt&#34;:&#34;2015-12-31T06:18:49.000Z&#34;,&#34;createdAt&#34;:&#34;2015-12-31T06:18:49.000Z&#34;}
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ユーザ作成とリレーション付与
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">User</span>.<span style="color:#a6e22e">create</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Yamada&#39;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Tarou&#39;</span>
+</span></span><span style="display:flex;"><span>}).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">user</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">setProject</span>(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>}).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">user</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">user</span>));
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 出力
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &gt; Executing (default): INSERT INTO `Users` (`id`,`firstName`,`lastName`,`updatedAt`,`createdAt`) VALUES (DEFAULT,&#39;Yamada&#39;,&#39;Tarou&#39;,&#39;2015-12-31 07:07:30&#39;,&#39;2015-12-31 07:07:30&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Executing (default): UPDATE `Users` SET `ProjectId`=1,`updatedAt`=&#39;2015-12-31 07:07:30&#39; WHERE `id` = 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// {&#34;id&#34;:1,&#34;firstName&#34;:&#34;Yamada&#34;,&#34;lastName&#34;:&#34;Tarou&#34;,&#34;updatedAt&#34;:&#34;2015-12-31T07:07:30.000Z&#34;,&#34;createdAt&#34;:&#34;2015-12-31T07:07:30.000Z&#34;,&#34;ProjectId&#34;:1}
+</span></span></span></code></pre></div><ul>
+<li>参考
+<ul>
+<li><a href="http://docs.sequelizejs.com/en/latest/api/associations/belongs-to/#setassociationnewassociation-options-promise">setAssociation</a></li>
+</ul>
+</li>
+</ul></div>
+
+                        </article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='//s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					<section id="comment">
+					    <h1 class="title">Comments</h1>
+					    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+					</section>
+					
+
+<script type="text/javascript">
+    
+    var disqus_shortname = 'blogsyatiinfo';
+
+    
+    
+
+    
+    (function () {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+    
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+    
+</script>
+
+
+					
+				    </div>
+				</div>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8331825501555489"
+                     data-ad-slot="1897822451"
+                     data-ad-format="auto"></ins>
+                <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2026
+
+mizuki-y
+
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="http://localhost:1313//js/slash.js"></script>
+<script src="http://localhost:1313//js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script>
+</footer>
+		</div>
+	</div>
+	<script src="http://localhost:1313//js/prism.js"></script>
+<script src="http://localhost:1313//js/lunr.min.js"></script>
+<script src="http://localhost:1313//js/search.js"></script>
+
+</body>
+</html>

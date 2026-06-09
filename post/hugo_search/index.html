@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head>
+	<meta charset="utf-8">
+	<title>Hugo Part 5 - Hugo に Google カスタム検索エンジンを導入 - Syati.info</title>
+	<meta name="author" content="mizuki-y">
+
+	
+	  
+	<meta name="description" content="Hugo に google カスタム検索エンジンを導入して、記事検索を可能にする">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='https://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="https://blog.syati.info/post/hugo_search/">
+	<link href="https://blog.syati.info//favicon.png" rel="shortcut icon">
+	<link href="https://blog.syati.info//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://blog.syati.info//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<link href="https://blog.syati.info//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4YDWEDGGB2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4YDWEDGGB2');
+</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner">
+<a href="https://blog.syati.info/">    
+    <div>
+        <h1>
+            Syati.info
+        </h1>        
+        <p>
+            かんがえるさかな
+        </p>
+    </div>
+</a>
+</section>
+
+
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='https://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+		
+			<a class="twitter" href='https://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='https://blog.syati.info/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+<nav id="main-nav">
+    <ul class="main">
+    <li><a href="https://blog.syati.info/">Blog</a></li>
+    <li><a href="https://blog.syati.info/about/">About</a></li>
+    <li><a href="https://blog.syati.info/post/">Archives</a></li>
+</ul>
+<div class="search-nav">
+    <label for="search">Search</label>
+    <input id="search" type="text">
+    <ul id="results">
+    </ul>
+</div>
+
+
+
+</nav>
+
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                               
+   <h1 class="title" itemprop="name">
+       
+       <img class="entry-title-logo" src="https://blog.syati.info/images/logo/hugo" />
+       
+       Hugo Part 5 - Hugo に Google カスタム検索エンジンを導入
+   </h1>
+      
+    <div id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-1-登録する">Step 1 登録する</a></li>
+    <li><a href="#step-2-作成する">Step 2 作成する</a></li>
+    <li><a href="#step-3-確認する">Step 3 確認する</a></li>
+    <li><a href="#step-4-設定する">Step 4 設定する</a></li>
+    <li><a href="#step-5-取得する">Step 5 取得する</a></li>
+    <li><a href="#step-6-設置する">Step 6 設置する</a></li>
+  </ul>
+</nav>
+    </div>
+    
+	<div class="entry-content" itemprop="articleBody"><p>記事が多くなってくると、やっぱり検索したくなるもんです。Hugo で検索を使うには、<a href="https://gohugo.io/tools">Tools</a> に書いてある通り以下の方法があります。</p>
+<ul>
+<li><a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a></li>
+<li>自前でインデックスを作成して提供する方法
+<ul>
+<li><a href="https://github.com/blevesearch/hugoidx">Hugoidx</a>: Bleve を用いる</li>
+<li><a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">Github Gist</a>: grunt と lunr.js を用いる</li>
+</ul>
+</li>
+</ul>
+<p>当ページでは、<a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">Github Gist</a>  を用いて検索を実現していますが、お手軽さでいうと、<a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> ですね。なので今回は、<a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> の導入方法を紹介。</p>
+<h2 id="step-1-登録する">Step 1 登録する</h2>
+<p><a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> にアクセスして登録しましょう。</p>
+<figure><img src="https://blog.syati.info/post/hugo_search/step1.png"><figcaption>
+      <h4>カスタム検索エンジンの登録</h4>
+    </figcaption>
+</figure>
+
+<h2 id="step-2-作成する">Step 2 作成する</h2>
+<p>必要情報を入力しましょう。<strong>検索するサイト</strong>を入力すると、<strong>検索エンジンの名前</strong> も入力されるため枠で囲っていません。</p>
+<figure><img src="https://blog.syati.info/post/hugo_search/step2.png"><figcaption>
+      <h4>カスタム検索エンジンの作成</h4>
+    </figcaption>
+</figure>
+
+<h2 id="step-3-確認する">Step 3 確認する</h2>
+<p>作成された検索エンジンを確認しましょう。</p>
+<figure><img src="https://blog.syati.info/post/hugo_search/step3.png"><figcaption>
+      <h4>カスタム検索エンジンの確認</h4>
+    </figcaption>
+</figure>
+
+<h2 id="step-4-設定する">Step 4 設定する</h2>
+<p><strong>対象</strong> のリストメニューの <strong>デザイン</strong> をえらんで、レイアウトやテーマなど色々設定しましょう。設定すると、<strong>プレビュー</strong>で確認できます。最後に<strong>保存してコードを取得</strong>します。</p>
+<figure><img src="https://blog.syati.info/post/hugo_search/step4.png"><figcaption>
+      <h4>カスタム検索エンジンの設定</h4>
+    </figcaption>
+</figure>
+
+<h2 id="step-5-取得する">Step 5 取得する</h2>
+<p><strong>コード</strong> をコピーしときましょう。</p>
+<figure><img src="https://blog.syati.info/post/hugo_search/step5.png"><figcaption>
+      <h4>カスタム検索エンジンのコードを取得</h4>
+    </figcaption>
+</figure>
+
+<h2 id="step-6-設置する">Step 6 設置する</h2>
+<p>コピーしたコードを layouts の任意の html に貼り付けましょう。完成すると以下のように検索が可能になります。</p>
+<script>
+  (function() {
+    var cx = '004743453564496319247:9t8ean_mgiw';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search></div>
+
+                        </article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='//s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					<section id="comment">
+					    <h1 class="title">Comments</h1>
+					    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+					</section>
+					
+
+<script type="text/javascript">
+    
+    var disqus_shortname = 'blogsyatiinfo';
+
+    
+    
+
+    
+    (function () {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+    
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+    
+</script>
+
+
+					
+				    </div>
+				</div>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8331825501555489"
+                     data-ad-slot="1897822451"
+                     data-ad-format="auto"></ins>
+                <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2026
+
+mizuki-y
+
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="https://blog.syati.info//js/slash.js"></script>
+<script src="https://blog.syati.info//js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script>
+</footer>
+		</div>
+	</div>
+	<script src="https://blog.syati.info//js/prism.js"></script>
+<script src="https://blog.syati.info//js/lunr.min.js"></script>
+<script src="https://blog.syati.info//js/search.js"></script>
+
+</body>
+</html>

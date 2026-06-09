@@ -1,0 +1,314 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head>
+	<meta charset="utf-8">
+	<title>structured_params gem の紹介（型安全な Params / Form Object） - Syati.info</title>
+	<meta name="author" content="mizuki-y">
+
+	
+	  
+	<meta name="description" content="Rails で型安全なパラメータバリデーションとフォームオブジェクトを実現する gem structured_params の紹介">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='https://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="https://blog.syati.info/post/structured_params/">
+	<link href="https://blog.syati.info//favicon.png" rel="shortcut icon">
+	<link href="https://blog.syati.info//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://blog.syati.info//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<link href="https://blog.syati.info//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4YDWEDGGB2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4YDWEDGGB2');
+</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner">
+<a href="https://blog.syati.info/">    
+    <div>
+        <h1>
+            Syati.info
+        </h1>        
+        <p>
+            かんがえるさかな
+        </p>
+    </div>
+</a>
+</section>
+
+
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='https://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+		
+			<a class="twitter" href='https://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='https://blog.syati.info/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+<nav id="main-nav">
+    <ul class="main">
+    <li><a href="https://blog.syati.info/">Blog</a></li>
+    <li><a href="https://blog.syati.info/about/">About</a></li>
+    <li><a href="https://blog.syati.info/post/">Archives</a></li>
+</ul>
+<div class="search-nav">
+    <label for="search">Search</label>
+    <input id="search" type="text">
+    <ul id="results">
+    </ul>
+</div>
+
+
+
+</nav>
+
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					<div itemscope itemtype="http://schema.org/Blog">
+					    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                               
+   <h1 class="title" itemprop="name">
+       
+       <img class="entry-title-logo" src="https://blog.syati.info/images/logo/rails" />
+       
+       structured_params gem の紹介（型安全な Params / Form Object）
+   </h1>
+      
+    <div id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#structured_params-が提供するもの">structured_params が提供するもの</a></li>
+    <li><a href="#クイックスタート">クイックスタート</a></li>
+    <li><a href="#api-パラメータバリデーション例">API パラメータバリデーション例</a></li>
+    <li><a href="#フォームオブジェクト例">フォームオブジェクト例</a></li>
+    <li><a href="#いつ使う使いどころの考え方">いつ使う？（使いどころの考え方）</a></li>
+    <li><a href="#まとめ">まとめ</a></li>
+  </ul>
+</nav>
+    </div>
+    
+	<div class="entry-content" itemprop="articleBody"><p>この記事は <a href="https://github.com/Syati/structured_params">https://github.com/Syati/structured_params</a> の <strong>structured_params（Ruby gem）</strong> の紹介。</p>
+<p>Rails のコントローラーやフォーム周りで、こんな悩みはよくあります。</p>
+<ul>
+<li><code>params</code> は基本的に文字列で入り、型変換が散らばる</li>
+<li>ネストした構造（object/array）が増えると <code>permit</code> が複雑になる</li>
+<li>バリデーションと変換（cast）の責務がモデルやコントローラーに漏れる</li>
+</ul>
+<p>structured_params は、これらを <strong>ActiveModel ベースの Params クラス</strong>として切り出し、型変換・バリデーション・Strong Parameters の permit までを一貫して扱えるようにする gem。</p>
+<h2 id="structured_params-が提供するもの">structured_params が提供するもの</h2>
+<p>structured_params の中心は <code>StructuredParams::Params</code>。</p>
+<ul>
+<li><code>attribute</code> で「期待する型」を宣言できる</li>
+<li>ActiveModel の <code>validates</code> がそのまま使える</li>
+<li>ネストした object / array の型変換（cast）を扱える</li>
+<li>Strong Parameters の <code>permit</code> リストを自動生成できる</li>
+<li>RBS 型定義があり、型の補完/検査と相性がよい</li>
+</ul>
+<h2 id="クイックスタート">クイックスタート</h2>
+<p>まず <code>StructuredParams.register_types</code> を呼んで、型キャストに必要な型を登録する。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#75715e"># Gemfile</span>
+</span></span><span style="display:flex;"><span>gem <span style="color:#e6db74">&#39;structured_params&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># どこか初期化（例: config/initializers/structured_params.rb）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">StructuredParams</span><span style="color:#f92672">.</span>register_types
+</span></span></code></pre></div><h2 id="api-パラメータバリデーション例">API パラメータバリデーション例</h2>
+<p>API のリクエストパラメータを「型変換 + バリデーション」して、モデルに渡すところまでを 1 つの Params クラスにまとめられる。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AddressParams</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">StructuredParams</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Params</span>
+</span></span><span style="display:flex;"><span>  attribute <span style="color:#e6db74">:street</span>, <span style="color:#e6db74">:string</span>
+</span></span><span style="display:flex;"><span>  attribute <span style="color:#e6db74">:city</span>, <span style="color:#e6db74">:string</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserParams</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">StructuredParams</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Params</span>
+</span></span><span style="display:flex;"><span>  attribute <span style="color:#e6db74">:name</span>, <span style="color:#e6db74">:string</span>
+</span></span><span style="display:flex;"><span>  attribute <span style="color:#e6db74">:age</span>, <span style="color:#e6db74">:integer</span>
+</span></span><span style="display:flex;"><span>  attribute <span style="color:#e6db74">:score</span>, <span style="color:#e6db74">:integer</span>
+</span></span><span style="display:flex;"><span>  attribute <span style="color:#e6db74">:tags</span>, <span style="color:#e6db74">:array</span>, <span style="color:#e6db74">value_type</span>: <span style="color:#e6db74">:string</span>            <span style="color:#75715e"># プリミティブ配列</span>
+</span></span><span style="display:flex;"><span>  attribute <span style="color:#e6db74">:address</span>, <span style="color:#e6db74">:object</span>, <span style="color:#e6db74">value_class</span>: <span style="color:#66d9ef">AddressParams</span> <span style="color:#75715e"># ネストオブジェクト</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 型変換前の生文字列をバリデーション</span>
+</span></span><span style="display:flex;"><span>  validates_raw <span style="color:#e6db74">:score</span>, format: { <span style="color:#e6db74">with</span>: <span style="color:#e6db74">/\A\d+\z/</span>, <span style="color:#e6db74">message</span>: <span style="color:#e6db74">&#39;must be numeric string&#39;</span> }
+</span></span><span style="display:flex;"><span>  validates <span style="color:#e6db74">:name</span>, <span style="color:#e6db74">presence</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  validates <span style="color:#e6db74">:age</span>, <span style="color:#e6db74">numericality</span>: { <span style="color:#e6db74">greater_than</span>: <span style="color:#ae81ff">0</span> }
+</span></span><span style="display:flex;"><span>  validates <span style="color:#e6db74">:score</span>, <span style="color:#e6db74">numericality</span>: { <span style="color:#e6db74">greater_than_or_equal_to</span>: <span style="color:#ae81ff">0</span> }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create</span>
+</span></span><span style="display:flex;"><span>  user_params <span style="color:#f92672">=</span> <span style="color:#66d9ef">UserParams</span><span style="color:#f92672">.</span>new(params)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> user_params<span style="color:#f92672">.</span>valid?
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">User</span><span style="color:#f92672">.</span>create!(user_params<span style="color:#f92672">.</span>attributes)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    render <span style="color:#e6db74">json</span>: { <span style="color:#e6db74">errors</span>: user_params<span style="color:#f92672">.</span>errors }, <span style="color:#e6db74">status</span>: <span style="color:#e6db74">:unprocessable_entity</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p><code>permit</code> を書き下す代わりに <code>UserParams.new(params)</code> を呼べるので、コントローラー側がすっきりする。</p>
+<h2 id="フォームオブジェクト例">フォームオブジェクト例</h2>
+<p>structured_params はフォーム入力の扱いにも向いている。ActiveModel 互換なので、<code>validates</code> など Rails の文法でそのまま書ける。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserRegistrationForm</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">StructuredParams</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Params</span>
+</span></span><span style="display:flex;"><span>  attribute <span style="color:#e6db74">:name</span>, <span style="color:#e6db74">:string</span>
+</span></span><span style="display:flex;"><span>  attribute <span style="color:#e6db74">:email</span>, <span style="color:#e6db74">:string</span>
+</span></span><span style="display:flex;"><span>  attribute <span style="color:#e6db74">:terms_accepted</span>, <span style="color:#e6db74">:boolean</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  validates <span style="color:#e6db74">:name</span>, <span style="color:#e6db74">:email</span>, <span style="color:#e6db74">presence</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  validates <span style="color:#e6db74">:terms_accepted</span>, <span style="color:#e6db74">acceptance</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create</span>
+</span></span><span style="display:flex;"><span>  form <span style="color:#f92672">=</span> <span style="color:#66d9ef">UserRegistrationForm</span><span style="color:#f92672">.</span>new(<span style="color:#66d9ef">UserRegistrationForm</span><span style="color:#f92672">.</span>permit(params))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> form<span style="color:#f92672">.</span>valid?
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">User</span><span style="color:#f92672">.</span>create!(form<span style="color:#f92672">.</span>attributes)
+</span></span><span style="display:flex;"><span>    redirect_to root_path
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    render <span style="color:#e6db74">:new</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h2 id="いつ使う使いどころの考え方">いつ使う？（使いどころの考え方）</h2>
+<p>特に効果が大きいのは次のようなケース。</p>
+<ul>
+<li>API が大きくなり、パラメータの型変換・バリデーションが散らばっている</li>
+<li>ネスト（object/array）が増えて Strong Parameters の管理がつらい</li>
+<li>“フォームの入力値” をモデルに変換するロジックが複雑になってきた</li>
+</ul>
+<p>逆に、入力が単純で変換がほぼ不要な場合は、まずは <code>params.require(...).permit(...)</code> とモデルのバリデーションだけでも十分。</p>
+<h2 id="まとめ">まとめ</h2>
+<ul>
+<li>structured_params は Rails で「型安全な Params / Form Object」を作るための gem</li>
+<li><code>attribute</code> と ActiveModel validations で、型変換と検証を 1 つのクラスに集約できる</li>
+<li>Strong Parameters の permit リストも自動生成でき、ネスト構造でも扱いやすい</li>
+</ul>
+<p>詳しくは upstream のドキュメント（README / docs）を参照。</p></div>
+
+                        </article>
+					
+						<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	
+	</div>
+	
+  	<script type="text/javascript" src='//s7.addthis.com/js/250/addthis_widget.js#pubid='></script>
+  	
+</div>
+
+					
+					
+					<section id="comment">
+					    <h1 class="title">Comments</h1>
+					    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+					</section>
+					
+
+<script type="text/javascript">
+    
+    var disqus_shortname = 'blogsyatiinfo';
+
+    
+    
+
+    
+    (function () {
+      
+      
+      if (window.location.hostname == "localhost")
+        return;
+    
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+    
+</script>
+
+
+					
+				    </div>
+				</div>
+                
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8331825501555489"
+                     data-ad-slot="1897822451"
+                     data-ad-format="auto"></ins>
+                <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2026
+
+mizuki-y
+
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="https://blog.syati.info//js/slash.js"></script>
+<script src="https://blog.syati.info//js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script>
+</footer>
+		</div>
+	</div>
+	<script src="https://blog.syati.info//js/prism.js"></script>
+<script src="https://blog.syati.info//js/lunr.min.js"></script>
+<script src="https://blog.syati.info//js/search.js"></script>
+
+</body>
+</html>

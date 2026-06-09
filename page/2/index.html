@@ -1,0 +1,555 @@
+<!DOCTYPE HTML>
+
+<html lang="ja-JP">
+
+<head>
+	<meta name="generator" content="Hugo 0.160.1">
+	<meta charset="utf-8">
+	<title>Syati.info</title>
+	<meta name="author" content="mizuki-y">
+
+	
+	
+	<meta name="description" content="">
+	
+
+	
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link href='https://blog.syati.info/index.xml' rel="alternate" title="Syati.info" type="application/atom+xml">
+	
+	<link rel="canonical" href="https://blog.syati.info/">
+	<link href="https://blog.syati.info//favicon.png" rel="shortcut icon">
+	<link href="https://blog.syati.info//css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="https://blog.syati.info//css/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	
+	<link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<link href="https://blog.syati.info//css/prism.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script data-ad-client="ca-pub-8331825501555489" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4YDWEDGGB2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4YDWEDGGB2');
+</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			    <header id="header" class="inner">
+<a href="https://blog.syati.info/">    
+    <div>
+        <h1>
+            Syati.info
+        </h1>        
+        <p>
+            かんがえるさかな
+        </p>
+    </div>
+</a>
+</section>
+
+
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href='https://www.facebook.com/Syati.org' title="Facebook">Facebook</a>
+		
+		
+		
+			<a class="twitter" href='https://twitter.com/syati_org' title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href='https://github.com/Syati' title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href='https://blog.syati.info/index.xml' title="RSS">RSS</a>
+		
+	</div>
+</nav>
+<nav id="main-nav">
+    <ul class="main">
+    <li><a href="https://blog.syati.info/">Blog</a></li>
+    <li><a href="https://blog.syati.info/about/">About</a></li>
+    <li><a href="https://blog.syati.info/post/">Archives</a></li>
+</ul>
+<div class="search-nav">
+    <label for="search">Search</label>
+    <input id="search" type="text">
+    <ul id="results">
+    </ul>
+</div>
+
+
+
+</nav>
+
+</header>
+			</div>
+		</div>     
+		<div class="mid-col">
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+					
+					<div itemscope itemtype="http://schema.org/Blog">
+					
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Mon, Sep 21, 2015' data-updated="true" itemprop="datePublished">Mon, Sep 21, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="https://blog.syati.info//categories/hugo"> Hugo </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="https://blog.syati.info/post/hugo_search/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name">
+        <a href="https://blog.syati.info/post/hugo_search/" itemprop="url">
+            
+            <img class="entry-title-logo" src="https://blog.syati.info/images/logo/hugo" />
+            
+            Hugo Part 5 - Hugo に Google カスタム検索エンジンを導入
+        </a>
+    </h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>記事が多くなってくると、やっぱり検索したくなるもんです。Hugo で検索を使うには、<a href="https://gohugo.io/tools">Tools</a> に書いてある通り以下の方法があります。</p>
+<ul>
+<li><a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a></li>
+<li>自前でインデックスを作成して提供する方法
+<ul>
+<li><a href="https://github.com/blevesearch/hugoidx">Hugoidx</a>: Bleve を用いる</li>
+<li><a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">Github Gist</a>: grunt と lunr.js を用いる</li>
+</ul>
+</li>
+</ul>
+<p>当ページでは、<a href="https://gist.github.com/sebz/efddfc8fdcb6b480f567">Github Gist</a>  を用いて検索を実現していますが、お手軽さでいうと、<a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> ですね。なので今回は、<a href="https://cse.google.co.jp/cse/">Google カスタム検索エンジン</a> の導入方法を紹介。</p>
+		<a href="https://blog.syati.info/post/hugo_search/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Sun, Sep 20, 2015' data-updated="true" itemprop="datePublished">Sun, Sep 20, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+		<a href="https://blog.syati.info//categories/docker"> Docker </a>,
+	
+
+	
+	
+	    <a href="https://blog.syati.info//categories/osx"> OSX </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="https://blog.syati.info/post/docker_tutorial_nginx/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name">
+        <a href="https://blog.syati.info/post/docker_tutorial_nginx/" itemprop="url">
+            
+            <img class="entry-title-logo" src="https://blog.syati.info/images/logo/docker" />
+            
+            Docker Part 3 - Docker で nginx を構築する
+        </a>
+    </h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p><a href="https://blog.syati.info/post/docker_machine/">docker-machine コマンドの使用方法・流れ</a> で、docker vm の作成までは出来るようになったので、今回 docker vm に nginx container を立ち上げたいと思う。ここからが環境構築の本番。はやく MEAN とか LAMP 環境を構築したい思うが、急がば回れです。</p>
+<p>以前、何度か <a href="http://dotinstall.com/lessons/basic_docker">Docker入門 (全11回)</a> で docker に入門しましたが、その後挫折。 入門して nginx を構築を出来たはいいが、 MEAN とか LAMP の開発環境を構築するのがすごく困難な感じがして。<a href="https://docs.docker.com/reference/commandline/cli/">docker コマンド</a> たくさんあるし、複数 container のリンクとか、データの永続化とか、ググればググるほど手強いぞ docker ってなってた・・・。</p>
+<p>が、時が経過した今、楽になってますよ。情報も増えてるし、何より docker-compose （複数コンテナの構築）が便利だった。それでは nginx を構築!!</p>
+<p>ただし、以下を読むより動画 <a href="http://dotinstall.com/lessons/basic_docker">Docker入門 (全11回)</a> で学ぶほうが分かりやすい。</p>
+		<a href="https://blog.syati.info/post/docker_tutorial_nginx/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Wed, Sep 9, 2015' data-updated="true" itemprop="datePublished">Wed, Sep 9, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+		<a href="https://blog.syati.info//categories/docker"> Docker </a>,
+	
+
+	
+	
+	    <a href="https://blog.syati.info//categories/osx"> OSX </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="https://blog.syati.info/post/docker_machine/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name">
+        <a href="https://blog.syati.info/post/docker_machine/" itemprop="url">
+            
+            <img class="entry-title-logo" src="https://blog.syati.info/images/logo/docker" />
+            
+            Docker Part 2 - docker-machine コマンドの使用方法・流れ
+        </a>
+    </h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Docker すごい。 何がすごいって環境構築が楽すぎる。以前は、Vagrant と Chef でゴリゴリ書いてアプリケーションが動くように頑張ってましたが、そんな事しなくても大方用意されてる。あとはその組み合わせ環境を構築するだけ。懸念点であった Vagrant 、Chef のような provision が、遅いということは今のところ無い。最初にイメージを DL してコンテナ化するので、若干の時間はかかるものの、それでも早い。 具体的な環境構築については、後日記そうと思う。</p>
+<p>今回は <strong>docker-machine コマンド</strong>（コンテナを動かす vm を管理するコマンド）の使用方法、流れを記す。</p>
+		<a href="https://blog.syati.info/post/docker_machine/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Thu, Sep 3, 2015' data-updated="true" itemprop="datePublished">Thu, Sep 3, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+		<a href="https://blog.syati.info//categories/docker"> Docker </a>,
+	
+
+	
+	
+	    <a href="https://blog.syati.info//categories/osx"> OSX </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="https://blog.syati.info/post/osx_docker_setup/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name">
+        <a href="https://blog.syati.info/post/osx_docker_setup/" itemprop="url">
+            
+            <img class="entry-title-logo" src="https://blog.syati.info/images/logo/docker" />
+            
+            Docker Part 1 - Mac に Docker をインストールする
+        </a>
+    </h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>巷で Docker と騒がれて随分経ったでしょうか。私の Mac が新しくなったのを気に Docker に入門したいと思います。何か新しい開発の度にゴミが入るのはちょっと・・・、とも思いますしね。</p>
+<p>昔、Vagrant と Chef でローカル開発環境を構築していたこともありましたが provison が遅く、何だかなぁ〜と思っているうちに遠ざかっていました。Docker はコンテナ型で、vagrant より軽いのかな。</p>
+		<a href="https://blog.syati.info/post/osx_docker_setup/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Wed, Sep 2, 2015' data-updated="true" itemprop="datePublished">Wed, Sep 2, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+		<a href="https://blog.syati.info//categories/emacs"> Emacs </a>,
+	
+
+	
+	
+	    <a href="https://blog.syati.info//categories/docker"> Docker </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="https://blog.syati.info/post/emacs_dockerfilemode/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name">
+        <a href="https://blog.syati.info/post/emacs_dockerfilemode/" itemprop="url">
+            
+            <img class="entry-title-logo" src="https://blog.syati.info/images/logo/emacs" />
+            
+            Emacs で Dockerfile を編集する
+        </a>
+    </h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Docker に入門して、Dockerfile を書くことになったので、とりあえず dockerfile-mode 。</p>
+		<a href="https://blog.syati.info/post/emacs_dockerfilemode/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Mon, Aug 31, 2015' data-updated="true" itemprop="datePublished">Mon, Aug 31, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="https://blog.syati.info//categories/osx"> OSX </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="https://blog.syati.info/post/brew_cask/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name">
+        <a href="https://blog.syati.info/post/brew_cask/" itemprop="url">
+            
+            brew cask が便利
+        </a>
+    </h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Web ページや App Store から App をダブルクリックしてインストールは面倒くさいので <strong>cask</strong> をいれて解決する。</p>
+		<a href="https://blog.syati.info/post/brew_cask/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Mon, Aug 31, 2015' data-updated="true" itemprop="datePublished">Mon, Aug 31, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+		<a href="https://blog.syati.info//categories/emacs"> Emacs </a>,
+	
+
+	
+	
+	    <a href="https://blog.syati.info//categories/javascript"> JavaScript </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="https://blog.syati.info/post/emacsjavascript2/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name">
+        <a href="https://blog.syati.info/post/emacsjavascript2/" itemprop="url">
+            
+            <img class="entry-title-logo" src="https://blog.syati.info/images/logo/emacs" />
+            
+            Emacs で Javascript なら js2-mode, tern-mode
+        </a>
+    </h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p><a href="https://blog.syati.info/post/emacsjavascript/">Emacs で JavaScript の開発環境を整える</a> で、
+Emacs と Javascript の開発環境を記しましたが、さらに改善できたので、メモメモ。</p>
+<p>ドットで jquery も underscore も browser もしてくれる。 angular も!!</p>
+		<a href="https://blog.syati.info/post/emacsjavascript2/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Sun, Aug 30, 2015' data-updated="true" itemprop="datePublished">Sun, Aug 30, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="https://blog.syati.info//categories/osx"> OSX </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="https://blog.syati.info/post/altkey_in_osx-terminal/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name">
+        <a href="https://blog.syati.info/post/altkey_in_osx-terminal/" itemprop="url">
+            
+            Mac の Terminal で ALT KEY 
+        </a>
+    </h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Mac の環境を新しく作ることになったので、以前の環境が出来るまでメモしていく。</p>
+<p>バックアップからの復元を使えば楽なのだが、ゴミが入るのは・・・。</p>
+<p>ただし、意外とハマる。</p>
+<p><strong>ターミナルで alt key が使えないよ！！</strong></p>
+		<a href="https://blog.syati.info/post/altkey_in_osx-terminal/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Wed, Jun 17, 2015' data-updated="true" itemprop="datePublished">Wed, Jun 17, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="https://blog.syati.info//categories/hugo"> Hugo </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="https://blog.syati.info/post/add_syntaxhighlighter_to_hugo/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name">
+        <a href="https://blog.syati.info/post/add_syntaxhighlighter_to_hugo/" itemprop="url">
+            
+            <img class="entry-title-logo" src="https://blog.syati.info/images/logo/hugo" />
+            
+            Hugo Part 4 - Hugo に SyntaxHighlighter を導入
+        </a>
+    </h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>ソースコードをブログに載せる上で欠かせないのが SyntaxHighlighter ですよね。
+というこで <a href="http://gohugo.io/extras/highlighting/">Syntax Highlighting</a> を
+参考にして早速導入する。</p>
+<p>dir 構成等は、以下の記事参照のこと</p>
+<ul>
+<li><a href="https://blog.syati.info/post/create_hugo/">Part 1</a></li>
+<li><a href="https://blog.syati.info/post/create_hugo_2/">Part 2</a></li>
+<li><a href="https://blog.syati.info/post/add_disqus_to_hugo/">Part 3</a></li>
+</ul>
+		<a href="https://blog.syati.info/post/add_syntaxhighlighter_to_hugo/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="meta">
+		<div class="date"><time datetime='Tue, Jun 9, 2015' data-updated="true" itemprop="datePublished">Tue, Jun 9, 2015</time>
+</div>
+		<div class="tags">
+
+
+	
+	
+	    <a href="https://blog.syati.info//categories/hugo"> Hugo </a>
+	
+
+
+</div>
+		
+			<span class="comments"><a href="https://blog.syati.info/post/add_disqus_to_hugo/#disqus_thread">Comments</a></span>
+		
+	</div>
+	<h1 class="title" itemprop="name">
+        <a href="https://blog.syati.info/post/add_disqus_to_hugo/" itemprop="url">
+            
+            <img class="entry-title-logo" src="https://blog.syati.info/images/logo/hugo" />
+            
+            Hugo Part 3 - Hugo にコメント欄を導入
+        </a>
+    </h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p><a href="https://blog.syati.info/post/create_hugo/">Part 1</a> 、 <a href="https://blog.syati.info/post/create_hugo_2/">Part 2</a> で
+Hugo を用いて github.io にブログを立ち上げましたが、コメント欄が無いので導入したい！！</p>
+<p><a href="http://gohugo.io/extras/comments/">Comments in Hugo</a> を参考にして早速、導入していこうとおもったが、
+もっと楽にやりたいので、Part 1 で利用していた theme の hyde を変えて超簡単に導入する。</p>
+<p>全てが終われば <a href="http://syati.github.io/yourblog/">yourblog</a> のようにコメント欄が作成できる。</p>
+		<a href="https://blog.syati.info/post/add_disqus_to_hugo/" class="more-link">Read on →</a>
+	</div>
+</article>
+
+				    
+				    </div>
+				    <nav id="pagenavi">
+					    
+					        <a href="https://blog.syati.info/" class="prev">Prev</a>
+					    
+					    
+					        <a href="https://blog.syati.info/page/3/" class="next">Next</a>
+					    
+					    <div class="center"><a href="https://blog.syati.info//post/">Blog Archives</a></div>
+					</nav>
+				</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2026
+
+mizuki-y
+
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
+<script src="https://blog.syati.info//js/slash.js"></script>
+<script src="https://blog.syati.info//js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script>
+</footer>
+		</div>
+	</div>
+	
+
+<script type="text/javascript">
+    
+    var disqus_shortname = 'blogsyatiinfo';
+
+    
+    
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+    
+
+    
+</script>
+
+
+	<script src="https://blog.syati.info//js/prism.js"></script>
+<script src="https://blog.syati.info//js/lunr.min.js"></script>
+<script src="https://blog.syati.info//js/search.js"></script>
+
+</body>
+</html>

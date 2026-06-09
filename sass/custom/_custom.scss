@@ -1,0 +1,60 @@
+.mid-col-container #toc ul {
+    list-style-type: none;
+
+    li ul {
+        margin: 0 0 0 1em;
+        padding: 0;
+    }
+}
+
+.entry-title-logo {
+  display:inline-block;                
+  width: 40px;  
+}
+
+#toc {
+  border: 1px solid #bdbdbd;
+  border-radius: 2px;
+  padding: 10px
+}
+
+
+.image-half__center {
+    width: 50%;
+    margin: 0 auto;
+}
+
+figure {
+    padding: 20px;
+}
+    
+figcaption {
+    text-align: center;
+}           
+
+.search-nav {
+    margin: 10px 0 0 0;
+    overflow: hidden;
+    
+    #search {
+        min-width: 85%;
+        border-radius: 4px;
+        border: 1px solid #CCC;
+        padding: 4px 12px;
+        font-size: 14px;
+    }
+    
+    #results {
+        li {
+            display: block !important;
+        }
+    }
+}
+    
+.gsc-above-wrapper-area-container,
+.gcsc-branding,
+.gsc-search-box,
+.gsc-table-result {
+    background: none !important;
+    border: none !important;
+}
